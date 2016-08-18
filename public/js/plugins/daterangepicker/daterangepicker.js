@@ -41,12 +41,12 @@
 
         this.format = 'MM/DD/YYYY';
         this.separator = ' - ';
-
+        /*evhanz*/
         this.locale = {
-            applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
-            fromLabel: 'From',
-            toLabel: 'To',
+            applyLabel: 'Aplicar',
+            cancelLabel: 'Cancelar',
+            fromLabel: 'Desde',
+            toLabel: 'Hasta',
             weekLabel: 'W',
             customRangeLabel: 'Custom Range',
             daysOfWeek: moment()._lang._weekdaysMin.slice(),
@@ -744,7 +744,6 @@
             } else {
                 html += '<th></th>';
             }
-
             var dateHtml = this.locale.monthNames[calendar[1][1].month()] + calendar[1][1].format(" YYYY");
 
             if (this.showDropdowns) {
@@ -879,5 +878,7 @@
         });
         return this;
     };
+
+
 
 }(window.jQuery);

@@ -39,7 +39,7 @@ div[data-styl='block-seccion']{
 div[data-styl='table']{
     /*background-color: blue;*/
     box-shadow: 11px 11px 13px 2px rgba(201,201,201,1);
-    margin: `5px;
+    margin: 5px;
 }
 .fixed-header {
     position: fixed;
@@ -89,7 +89,7 @@ div[data-styl='table']{
     padding: 0px 0px 0px 0px;
 }
 #menu-left > div{
-    box-shadow: 10px 10px 5px #;
+    box-shadow: 10px 10px 5px gray;
 }
 #menuP{
     margin-bottom: 0px;
@@ -159,3 +159,16 @@ ul, ol {
 	padding: 0px;
     margin: 0px 0px 10px 25px;
 }
+
+#table_data_op1 > thead > tr > th {
+    background-color: #2b688c;
+    color: #fff;
+
+}
+
+#table_detail_op1 > thead > tr > th {
+    background-color: #b4bfbc;
+    color: #fff;
+
+}
+
