@@ -41,3 +41,7 @@ Route::post('comercial/api/getAllProductosByProveedor',['as'=>'getAllProductosBy
     'uses'=>'ComercialController@getAllProductosByProveedor']);
 Route::post('comercial/api/getDetailProductoCompra',['as'=>'getDetailProductoCompra',
     'uses'=>'ComercialController@getDetailProductoCompra']);
+
+/*para imprimir pdf*/
+Route::get('comercial/pdf/getPDFProductProveedor/{glosa}/{subfamilia}/{familia}',['as'=>'getPDFProductProveedor',
+    'uses'=>'ComercialController@getPDFProductProveedor']);

@@ -48,9 +48,7 @@
                                                     <input class="form-control" type="text" ng-keyup="$event.keyCode == 13 && getProduct()" ng-model="producto_glosa">
                                                 </div>
                                             </form>
-
                                         </div>
-
                                     </div>
                                     <!-- Tab filtro documento -->
                                     <div id="menu1" class="tab-pane fade">
@@ -118,6 +116,17 @@
                                         <option value="">-----</option>
                                         <option value="S/.">S/.</option>
                                         <option value="US$">US$</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" >A&ntildeo</label><br>
+                                    <select name="" class="form-control" ng-model="ano">
+                                        <option value="">-----</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
 
                                     </select>
 
@@ -126,8 +135,8 @@
                                     <label for="">Exportar</label><br>
                                     <a href="" class="btn btn-success btn-xs" ng-click="export_all_excel()" title="Reporte Totalizado Excel">
                                         <i class="fa fa-file-excel-o fa-lg"></i></a>
-
-                                    <a href="" class="btn btn-default btn-xs" ng-click="export_all_pdf()" title="Reporte Totalizado PDF">
+                                    <a href="" ng-click="export_all_pdf()"
+                                       class="btn btn-default btn-xs"  title="Reporte Totalizado PDF">
                                         <i class="fa fa-file-pdf-o fa-lg" ></i>
                                     </a>
 
@@ -182,7 +191,7 @@
 
                                                    </thead>
                                                    <tbody>
-                                                   <tr ng-repeat=" val in item.detalle ">
+                                                   <tr ng-repeat=" val in item.detalle | filter:ano">
                                                        <td class="noExl" >@{{ $index }}</td>
                                                        <td>@{{ val.Numero }}</td>
                                                        <td>@{{ val.TipoDocto }}</td>
@@ -401,6 +410,30 @@
             {
 
 
+                var familia = $("#f_familia").val();
+
+                // console.log($scope.TipoDoct);
+                if($scope.producto_glosa == null || $scope.producto_glosa.length == 0){
+
+                    $scope.producto_glosa = '-';
+                }
+                if($scope.subFamilia == null || $scope.subFamilia.length == 0){
+
+                    $scope.subFamilia = '-';
+                }
+                if(familia == null || $("#f_familia").val().length == 0){
+
+                    familia='-';
+                }
+
+
+                window.location = "{{ URL::route('modComercial') }}/pdf/getPDFProductProveedor/"+$scope.producto_glosa+
+                "/"+$scope.subFamilia+"/"+familia;
+
+
+
+
+             //
             };
 
 

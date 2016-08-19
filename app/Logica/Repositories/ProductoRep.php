@@ -37,10 +37,11 @@ class ProductoRep
         {
 
             $last = \DB::select("SELECT top 1 CAST(CONVERT(FLOAT,ROUND(Precio,2,1)) AS VARCHAR) as Precio, UnidadIngreso
-                                            FROM v_allProductsAndProveedores
-                                            WHERE GLOSA = '$item->GLOSA'
-                                            AND RazonSocial = '$item->RazonSocial'
-                                            order by Fecha desc");
+                                FROM v_allProductsAndProveedores
+                                WHERE GLOSA = '$item->GLOSA'
+                                AND RazonSocial = '$item->RazonSocial'
+                                AND Moneda = '$item->Moneda'
+                                order by Fecha desc");
 
             $item->last_precio = $last[0]->Precio;
             $item->UnidadIngreso = $last[0]->UnidadIngreso;
@@ -57,7 +58,7 @@ class ProductoRep
 
 
 
-        $p = \DB::select("SELECT Fecha,Numero,TipoDocto,UnidadIngreso,
+        $p = \DB::select("SELECT Fecha,Numero,TipoDocto,UnidadIngreso,ANO,
                         CAST(CONVERT(FLOAT,ROUND(Precio,2,1)) AS VARCHAR) AS Precio
                         FROM v_allProductsAndProveedores
                         WHERE GLOSA = '$glosa'

@@ -28,7 +28,7 @@
                 <td>{{ $item->RazonSocial }}</td>
                 <td>{{ $item->Moneda }}</td>
                 <td>{{ $item->UnidadIngreso }}</td>
-                <td>{{ $item->Precio }}</td>
+                <td>{{ $item->last_precio }}</td>
             </tr>
         @endforeach
         </tbody>

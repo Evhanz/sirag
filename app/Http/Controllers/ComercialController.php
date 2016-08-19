@@ -170,4 +170,27 @@ class ComercialController extends Controller
         return \Response::Json($res);
     }
 
+
+    public function getPDFProductProveedor($glosa,$subfamilia,$familia)
+    {
+        if($glosa=='-'){
+            $glosa='';
+        }
+        if($subfamilia=='-')
+            $subfamilia='';
+        if($familia=='-')
+            $familia='';
+
+        $parameters['glosa'] = $glosa  ;
+        $parameters['subfamilia'] = $subfamilia;
+        $parameters['familia'] = $familia;
+
+
+        $productos = $this->productoRep->getAllProductosByProveedor($parameters);
+
+        $pdf = \PDF::loadView('comercial.R_pdf.r_Product_Proveedores', ['productos'=>$productos] );
+        return $pdf->stream('invoice.pdf');
+
+    }
+
 }
