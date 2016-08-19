@@ -145,6 +145,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*las a puesto Evhanz*/
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -192,6 +195,9 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        //los arego evhanz
+
+        'PDF'       => Barryvdh\DomPDF\Facade::class,
 
     ],
 

@@ -18,7 +18,7 @@ class WelcomeController extends Controller
     {
         //
 
-        return view('main/main');
+        return view('main/saludo');
     }
 
     /**

@@ -126,6 +126,11 @@
                                     <label for="">Exportar</label><br>
                                     <a href="" class="btn btn-success btn-xs" ng-click="export_all_excel()" title="Reporte Totalizado Excel">
                                         <i class="fa fa-file-excel-o fa-lg"></i></a>
+
+                                    <a href="" class="btn btn-default btn-xs" ng-click="export_all_pdf()" title="Reporte Totalizado PDF">
+                                        <i class="fa fa-file-pdf-o fa-lg" ></i>
+                                    </a>
+
                                 </div>
                             </form>
 
@@ -167,7 +172,7 @@
                                                <table class="table table-bordered" id="table_detail_op1" data-tipo="tbl_dt_@{{ $index }}">
                                                    <thead>
                                                    <tr>
-                                                       <th>I</th>
+                                                       <th class="noExl">I</th>
                                                        <th># Doc</th>
                                                        <th>T.Docto</th>
                                                        <th>Fecha</th>
@@ -178,7 +183,7 @@
                                                    </thead>
                                                    <tbody>
                                                    <tr ng-repeat=" val in item.detalle ">
-                                                       <td>@{{ $index }}</td>
+                                                       <td class="noExl" >@{{ $index }}</td>
                                                        <td>@{{ val.Numero }}</td>
                                                        <td>@{{ val.TipoDocto }}</td>
                                                        <td>@{{ val.Fecha }}</td>
@@ -218,6 +223,16 @@
     <!--PAra exportar a excel-->
     <script src="{{asset('js/plugins/table2excel/jquery.table2excel.js')}}"></script>
 
+    <!--para exportar a PDF -->
+
+        <!-- PAra esto primero se exporta las funciones de table -->
+        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/tableExport.js')}}"></script>
+        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jquery.base64.js')}}"></script>
+        <!--Luego instalamos los de pdf-->
+        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jspdf/libs/sprintf.js')}}"></script>
+        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jspdf/jspdf.js')}}"></script>
+        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jspdf/libs/base64.js')}}"></script>
+    <!-- ./ en expor pdf -->
 
     <script>
 
@@ -360,7 +375,6 @@
                     exclude_inputs: true
                 });
 
-
                 /* esto es para el pugin table2excel urL consula http://www.jqueryscript.net/table/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel.html
                 $("#table_data_op1").table2excel({
                     exclude: ".noExl",
@@ -378,6 +392,13 @@
                     escape:'false'
                 });
                  */
+
+            };
+
+
+            $scope.export_all_pdf = function ()
+            {
+
 
             };
 
