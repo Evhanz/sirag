@@ -25,12 +25,12 @@ class ProductoRep
         $familia = $data['familia'];
         $p = new ProductoDTO();
 
-        $p = \DB::select("SELECT RazonSocial,TipoDocto,Moneda,GLOSA,SUBFAMILIA,
+        $p = \DB::select("SELECT RazonSocial,Moneda,GLOSA,SUBFAMILIA,
                           CAST(CONVERT(FLOAT,ROUND(AVG(Precio),2,1)) AS VARCHAR) as Promedio
                           FROM v_allProductsAndProveedores
                           where SUBFAMILIA like '%$subfamilia%' AND FAMILIA like '%$familia%'
                           AND GLOSA like  '%$glosa%'
-                          GROUP BY RazonSocial,TipoDocto,Moneda,GLOSA,SUBFAMILIA");
+                          GROUP BY RazonSocial,Moneda,GLOSA,SUBFAMILIA");
 
         //obtenermos el ultimo dato de cada producto
         foreach($p as $item)
@@ -52,6 +52,7 @@ class ProductoRep
     public function  getDetailProductoCompra($data){
         $glosa  = $data['glosa'];
         $proveedor = $data['proveedor'];
+        $moneda = $data['moneda'];
         $p = new ProductoDTO();
 
 
@@ -61,6 +62,7 @@ class ProductoRep
                         FROM v_allProductsAndProveedores
                         WHERE GLOSA = '$glosa'
                         AND RazonSocial = '$proveedor'
+                        and Moneda = '$moneda'
                         order by Fecha desc");
 
 

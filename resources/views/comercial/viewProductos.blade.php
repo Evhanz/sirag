@@ -332,7 +332,8 @@
                     $http.post(ruta,
                             {   _token : token,
                                 glosa: item.GLOSA,
-                                proveedor: item.RazonSocial
+                                proveedor: item.RazonSocial,
+                                moneda: item.Moneda
                             })
                             .success(function(data){
 
