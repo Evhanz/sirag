@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/','WelcomeController@index');
 
 
-/*empieza las rutas par alos reportes de comercil*/
+/*empieza las rutas par alos reportes de comercial*/
 Route::get('comercial/',['as'=>'modComercial']);
 Route::get('comercial/rep/viewDocumentos',['as'=>'viewDocumentos','uses'=>'ComercialController@viewDocumentos']);
 Route::get('comercial/rep/viewRepProductos',['as'=>'viewRepProductos','uses'=>'ComercialController@viewRepProductos']);
@@ -33,6 +33,12 @@ Route::get('comercial/api/getDetalByIdDoc/{id}',['as'=>'api_getDetalByIdDoc',
     'uses'=>'ComercialController@getDetalleByIdDoc']);
 Route::get('comercial/api/getAllTipoDocumentos',['as'=>'api_getAllTipoDocumentos',
     'uses'=>'ComercialController@getAllDocumentos']);
+
+/*API  para los proveedores*/
+Route::post('comercial/api/getProveedoresByRazonAndRUC',['as'=>'getProveedoresByRazonAndRUC',
+    'uses'=>'ComercialController@getProveedoresByRazonAndRUC']);
+Route::get('comercial/api/getProductosComercioProveedor/{ruc}',['as'=>'getProductosComercioProveedor',
+    'uses'=>'ComercialController@getProductosComercioProveedor']);
 
 //API PARA TRAER LOS REPORTES DE LAS FAMILIAS Y PROCDUCTO POR FILTRO
 Route::get('comercial/api/getAllFamilias',['as'=>'getAllFamilias','uses'=>'ComercialController@getAllFamilias']);

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use sirag\Repositories\DocumentoRep;
 use sirag\Repositories\ProductoRep;
 use sirag\Repositories\TipoDocumentoRep;
+use sirag\Repositories\ProveedorRep;
 class ComercialController extends Controller
 {
     /**
@@ -21,11 +22,14 @@ class ComercialController extends Controller
     protected $documentoRep;
     protected $tipoDocuementoRep;
     protected $productoRep;
+    protected $proveedorRep;
 
-    public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep){
+    public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep,
+                                ProveedorRep $proveedorRep){
         $this->documentoRep = $documentoRep;
         $this->tipoDocuementoRep = $tipoDocumentoRep;
         $this->productoRep = $productoRep;
+        $this->proveedorRep = $proveedorRep;
     }
 
     public function index()
@@ -171,6 +175,29 @@ class ComercialController extends Controller
     }
 
 
+    /*API REST para los proveedores*/
+
+    public function getProveedoresByRazonAndRUC()
+    {
+        $data = \Input::all();
+
+        $res = $this->proveedorRep->getProveedoresByRazonAndRUC($data);
+
+        return \Response::Json($res);
+
+    }
+
+    public function  getProductosComercioProveedor($ruc){
+
+        $res = $this->proveedorRep->getProductosComercioProveedor($ruc);
+
+        return \Response::Json($res);
+    }
+
+
+
+
+    /*esto es para reportes en PDF*/
     public function getPDFProductProveedor($glosa,$subfamilia,$familia)
     {
         if($glosa=='-'){
