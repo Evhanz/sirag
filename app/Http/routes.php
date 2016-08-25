@@ -24,6 +24,7 @@ Route::get('/','WelcomeController@index');
 Route::get('comercial/',['as'=>'modComercial']);
 Route::get('comercial/rep/viewDocumentos',['as'=>'viewDocumentos','uses'=>'ComercialController@viewDocumentos']);
 Route::get('comercial/rep/viewRepProductos',['as'=>'viewRepProductos','uses'=>'ComercialController@viewRepProductos']);
+Route::get('comercial/rep/viewOrdenCompra',['as'=>'viewOrdenCompra','uses'=>'ComercialController@viewOrdenCompra']);
 
 
 /*API para treer todos los documentos de acuerdos a sus parametros*/
@@ -47,6 +48,13 @@ Route::post('comercial/api/getAllProductosByProveedor',['as'=>'getAllProductosBy
     'uses'=>'ComercialController@getAllProductosByProveedor']);
 Route::post('comercial/api/getDetailProductoCompra',['as'=>'getDetailProductoCompra',
     'uses'=>'ComercialController@getDetailProductoCompra']);
+
+//API para traer a las ordenes de compra
+Route::post('comercial/api/getOrdenesCompra',['as'=>'getOrdenesCompra','uses'=>'ComercialController@getOrdenesCompra']);
+Route::get('comercial/api/getDetailOrden/{id}',['as'=>'getDetailOrden','uses'=>'ComercialController@getDetailOrden']);
+
+
+
 
 /*para imprimir pdf*/
 Route::get('comercial/pdf/getPDFProductProveedor/{glosa}/{subfamilia}/{familia}',['as'=>'getPDFProductProveedor',

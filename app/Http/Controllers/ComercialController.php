@@ -32,72 +32,7 @@ class ComercialController extends Controller
         $this->proveedorRep = $proveedorRep;
     }
 
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     /*de aqui son todo de los reportes en vistas*/
 
@@ -111,6 +46,12 @@ class ComercialController extends Controller
     public function  viewRepProductos()
     {
         return view('comercial/viewProductos');
+    }
+
+
+    public function viewOrdenCompra()
+    {
+        return view('comercial/viewOrdenCompra');
     }
 
 
@@ -192,6 +133,26 @@ class ComercialController extends Controller
         $res = $this->proveedorRep->getProductosComercioProveedor($ruc);
 
         return \Response::Json($res);
+    }
+
+    //API para las sordenes de compra
+
+    public function getOrdenesCompra()
+    {
+        $data = \Input::all();
+
+        $res = $this->documentoRep->getOrdenesCompras($data);
+
+        return \Response::Json($res);
+
+    }
+
+    public function getDetailOrden($id)
+    {
+        $res = $this->documentoRep->getDetailOrden($id);
+
+        return \Response::Json($res);
+
     }
 
 

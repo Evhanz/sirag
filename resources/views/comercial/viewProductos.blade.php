@@ -53,7 +53,6 @@
                                             </form>
                                         </div>
                                         <!--./ Filro Principal-->
-
                                         <!-- data procesada  -->
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -177,7 +176,6 @@
 
                                         </div>
                                         <!-- ./data procesada  -->
-
                                     </div>
                                     <!-- Tab filtro proveedor -->
                                     <div id="proveedor" class="tab-pane fade">
@@ -707,8 +705,6 @@
                         .success(function(data){
 
                             $scope.proveedores = data;
-
-                            console.log(data);
 
                         }).error(function(data) {
 

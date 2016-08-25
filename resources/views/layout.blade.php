@@ -89,6 +89,7 @@
 
                     <ul class="treeview-menu">
                         <li><a href="{{ URL::route('viewRepProductos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Costo de Productos </a></li>
+                        <li><a href="{{ URL::route('viewOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Ordenes Compra </a></li>
 
                     </ul>
                 </li><!--Personal-->
