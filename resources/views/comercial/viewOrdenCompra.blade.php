@@ -127,14 +127,14 @@
                                             <td>@{{ item.idDocto }}</td>
                                             <td>@{{ item.Numero }}</td>
                                             <td>@{{ item.EMPRESA }}</td>
-                                            <td>@{{ item.Fecha }}</td>
+                                            <td>@{{ item.FechaF }}</td>
                                             <td>
-                                                <a class="" ng-click="addDetail(item.idDocto,item)">
+                                                <a class="" style="cursor: pointer" ng-click="addDetail(item.idDocto,item)">
                                                     <i class="fa fa-plus fa-lg"></i>
                                                     <input id="hd_v_detail_@{{ item.idDocto }}" type="hidden" value="0" ng-model="item.v_detail">
                                                 </a>
 
-                                                <a ng-click="removeDetail(item.idDocto)">
+                                                <a ng-click="removeDetail(item.idDocto)" style="cursor: pointer">
                                                     <i class="fa fa-chevron-circle-up fa-lg"></i>
                                                 </a>
 
@@ -291,65 +291,77 @@
                 var vigencia = $scope.filVigencia;
 
 
-                if(fecha_s_format != null){
+
+                if( fecha_s_format.length >0){
                     fecha_s_format = fecha_s_format.split('-');
                     var f_inicio =fecha_s_format[0];
                     f_inicio = changeFormat(f_inicio);
 
                     var f_fin = fecha_s_format[1];
                     f_fin = changeFormat(f_fin);
+
+
+
+                    if(proveedor == null )
+                        proveedor = '';
+                    if(numero == null)
+                        numero = '';
+                    if(vigencia == null)
+                        vigencia = '';
+                    if(f_fin==null)
+                        f_fin ='';
+
+                    /*--- Procedimiento que se haga mientras no termine  */
+
+                    $('#btnBuscarDoc').attr("disabled", true);
+
+                    $scope.Documentos = [];
+
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                    /*-----------------*/
+
+                    // console.log($scope.TipoDoct);
+
+
+
+
+                    $http.post('{{ URL::route('getOrdenesCompra') }}',
+                            {   _token : token,
+                                f_inicio:f_inicio,
+                                f_fin: f_fin,
+                                proveedor:proveedor,
+                                numero:numero,
+                                vigencia:vigencia
+
+                            })
+                            .success(function(data){
+
+                                $scope.Documentos = data;
+                                console.log( data);
+                                $('#btnBuscarDoc').attr("disabled", false);
+
+                                $( "div" ).remove( ".overlay" );
+                                $( "div" ).remove( ".loading-img" );
+
+
+                            }).error(function(data) {
+                                console.log(data);
+                                $("#box_maestro").remove(".overlay");
+                                $("#box_maestro").remove(".loading-img");
+                            });
+
+
+
+
                 }else{
-                    var f_inicio ='';
-                    var f_fin = '';
+
+                    alert('Debe ingresar primero una fecha');
+
                 }
 
 
-                if(proveedor == null )
-                    proveedor = '';
-                if(numero == null)
-                    numero = '';
-                if(vigencia == null)
-                    vigencia = '';
-                if(f_fin==null)
-                    f_fin ='';
 
-                /*--- Procedimiento que se haga mientras no termine  */
-
-                $('#btnBuscarDoc').attr("disabled", true);
-
-                $scope.Documentos = [];
-
-                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
-
-                /*-----------------*/
-
-               // console.log($scope.TipoDoct);
-
-
-                $http.post('{{ URL::route('getOrdenesCompra') }}',
-                        {   _token : token,
-                            f_inicio:f_inicio,
-                            f_fin: f_fin,
-                            proveedor:proveedor,
-                            numero:numero,
-                            vigencia:vigencia
-
-                        })
-                        .success(function(data){
-
-                            $scope.Documentos = data;
-                            console.log( data);
-                            $('#btnBuscarDoc').attr("disabled", false);
-
-                            $( "div" ).remove( ".overlay" );
-                            $( "div" ).remove( ".loading-img" );
-
-
-                        }).error(function(data) {
-                            console.log(data);
-                            $("#box_maestro").remove(".overlay");
-                            $("#box_maestro").remove(".loading-img");
-                        });
 
 
 

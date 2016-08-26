@@ -63,14 +63,15 @@ class DocumentoRep
         $numero = $data['numero'];
         $vigencia = $data['vigencia'];
 
-        $doc = \DB::select("SELECT RazonSocial as EMPRESA,CONVERT(VARCHAR(19),Fecha,103) Fecha,idDocto,TipoDocto,Correlativo,Numero,
+        $doc = \DB::select("SELECT RazonSocial as EMPRESA,CONVERT(VARCHAR(19),Fecha,103) FechaF,Fecha,idDocto,TipoDocto,Correlativo,Numero,
                             COUNT(Producto) as Productos
                             FROM v_ordenCompra_details
                             where Fecha BETWEEN '$f_inicio' AND '$f_fin'
                             AND RazonSocial like '%$proveedor%'
                             AND Numero like '%$numero%'
                             AND Vigencia like '%$vigencia%'
-                            group by RazonSocial,Fecha,idDocto,TipoDocto,Correlativo,Numero");
+                            group by RazonSocial,Fecha,idDocto,TipoDocto,Correlativo,Numero
+                            ORDER BY Fecha DESC ");
 
 
 
