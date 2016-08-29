@@ -56,6 +56,18 @@ Route::get('comercial/api/getDetailOrden/{id}',['as'=>'getDetailOrden','uses'=>'
 
 
 
+//------ llamada a las views de rh
+Route::get('rh/',['as'=>'modRH']);
+Route::get('rh/rep/viewPersonal',['as'=>'viewPersonal','uses'=>'RecursoshController@viewPersonal']);
+
+
+//----para traer todos los trabajadores
+Route::post('rh/api/getAllTrabajadoresByParameter',['as'=>'getAllTrabajadoresByParameter',
+    'uses'=>'RecursoshController@getAllTrabajadoresByParameter']);
+Route::post('rh/api/getTrabajadoresByParamOutDates',['as'=>'getTrabajadoresByParamOutDates',
+    'uses'=>'RecursoshController@getTrabajadoresByParamOutDates']);
+
+
 /*para imprimir pdf*/
 Route::get('comercial/pdf/getPDFProductProveedor/{glosa}/{subfamilia}/{familia}',['as'=>'getPDFProductProveedor',
     'uses'=>'ComercialController@getPDFProductProveedor']);

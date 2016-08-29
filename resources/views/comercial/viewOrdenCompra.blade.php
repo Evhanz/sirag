@@ -27,7 +27,7 @@
                                                     <input type="text" class="form-control" ng-model="filProveedor">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">N. Orden</label>
+                                                    <label for="">N° Orden</label>
                                                     <input type="text" class="form-control" ng-model="filNOrden">
                                                 </div>
 
