@@ -24,7 +24,7 @@
 
                                                 <div class="form-group">
                                                     <label for="" >CATEGORIA</label><br>
-                                                    <select name="" class="form-control" ng-model="filCategoria">
+                                                    <select name="" class="form-control" ng-model="filCategoria" ng-init="filCategoria='OPERARIO'">
                                                         <option value="">-----</option>
                                                         <option value="OPERARIO">OPERARIO</option>
                                                         <option value="SIN_CONTRATO">SIN_CONTRATO</option>
@@ -147,8 +147,11 @@
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
+                                            <th>CODIGO</th>
                                             <th>DNI</th>
                                             <th>Nombre</th>
+                                            <th>Sexo</th>
+                                            <th>F. Nac.</th>
                                             <th>Fecha Ini</th>
                                             <th>Fecha Fin</th>
                                             <th>Cargo</th>
@@ -158,6 +161,7 @@
                                             <th>CTA_CENTRA</th>
                                             <th>AFP/ONP</th>
                                             <th>T. COMI AFP</th>
+                                            <th>FINIQUITO</th>
                                             <th>V</th>
                                             <th>Dirección</th>
                                             <th>*</th>
@@ -165,8 +169,11 @@
                                         </thead>
                                         <tbody >
                                         <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
+                                            <th>@{{ item.FICHA }}</th>
                                             <td>@{{ item.EMPLEADO }}</td>
                                             <td>@{{ item.NOMBRE }}</td>
+                                            <td>@{{ item.SEXO | limitTo:1 }}</td>
+                                            <td>@{{ item.FECHA_NACIMIENTO }}</td>
                                             <td>@{{ item.FECHA_INICIO }}</td>
                                             <td>@{{ item.FECHA_TERMINO }}</td>
                                             <td>@{{ item.CARGO }}</td>
@@ -176,6 +183,7 @@
                                             <td>@{{ item.CTA_CENTRA }}</td>
                                             <td>@{{ item.AFP_ONP }}</td>
                                             <td>@{{ item.TIPO_COMI_AFP }}</td>
+                                            <td>@{{ item.MOTIVO_SALIDA }}</td>
                                             <td> <div class="animate-switch-container"
                                                       ng-switch on="item.VIGENCIA">
                                                     <div  ng-switch-when="A">

@@ -71,3 +71,9 @@ Route::post('rh/api/getTrabajadoresByParamOutDates',['as'=>'getTrabajadoresByPar
 /*para imprimir pdf*/
 Route::get('comercial/pdf/getPDFProductProveedor/{glosa}/{subfamilia}/{familia}',['as'=>'getPDFProductProveedor',
     'uses'=>'ComercialController@getPDFProductProveedor']);
+
+
+//para rutinas de emergencia
+
+Route::get('rutina/changeProveedores',['as'=>'changeProveedores',
+    'uses'=>'RutinaController@changeProveedores']);
