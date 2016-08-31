@@ -149,8 +149,6 @@
                                         <tr>
                                             <th>DNI</th>
                                             <th>Nombre</th>
-                                            <th>V</th>
-                                            <th>Dirección</th>
                                             <th>Fecha Ini</th>
                                             <th>Fecha Fin</th>
                                             <th>Cargo</th>
@@ -160,6 +158,8 @@
                                             <th>CTA_CENTRA</th>
                                             <th>AFP/ONP</th>
                                             <th>T. COMI AFP</th>
+                                            <th>V</th>
+                                            <th>Dirección</th>
                                             <th>*</th>
                                         </tr>
                                         </thead>
@@ -167,6 +167,15 @@
                                         <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
                                             <td>@{{ item.EMPLEADO }}</td>
                                             <td>@{{ item.NOMBRE }}</td>
+                                            <td>@{{ item.FECHA_INICIO }}</td>
+                                            <td>@{{ item.FECHA_TERMINO }}</td>
+                                            <td>@{{ item.CARGO }}</td>
+                                            <td>@{{ item.REMUNERACION }} </td>
+                                            <td>@{{ item.TIPO_CONTRATO }} </td>
+                                            <td>@{{ item.CENTRO_COSTO }}</td>
+                                            <td>@{{ item.CTA_CENTRA }}</td>
+                                            <td>@{{ item.AFP_ONP }}</td>
+                                            <td>@{{ item.TIPO_COMI_AFP }}</td>
                                             <td> <div class="animate-switch-container"
                                                       ng-switch on="item.VIGENCIA">
                                                     <div  ng-switch-when="A">
@@ -181,22 +190,12 @@
                                                     </div>
 
                                                 </div></td>
-                                            <td>@{{ item.DIRECCION | limitTo:1 }}
-
-                                                <buton class="btn btn-default">
+                                            <td>
+                                                <a class="btn btn-default" ng-click="viewDireccion(item)">
                                                     <i class="fa fa-map-marker fa-lg" ></i>
-                                                </buton>
+                                                </a>
 
                                             </td>
-                                            <td>@{{ item.FECHA_INICIO }}</td>
-                                            <td>@{{ item.FECHA_TERMINO }}</td>
-                                            <td>@{{ item.CARGO }}</td>
-                                            <td>@{{ item.REMUNERACION }} </td>
-                                            <td>@{{ item.TIPO_CONTRATO }} </td>
-                                            <td>@{{ item.CENTRO_COSTO }}</td>
-                                            <td>@{{ item.CTA_CENTRA }}</td>
-                                            <td>@{{ item.AFP_ONP }}</td>
-                                            <td>@{{ item.TIPO_COMI_AFP }}</td>
                                             <!--
 
                                             FICHA
@@ -250,6 +249,31 @@
             </div>
 
         </div>
+
+
+
+        <!-- modal modUbigeo-->
+        <div class="modal fade" id="modUbigeo" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <h3>Dirección</h3>
+                        <p>@{{ direccion }}</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--./ modal Detail-->
+
+
+
     </div>
 
 
@@ -362,6 +386,15 @@
                             $("#box_maestro").remove(".overlay");
                             $("#box_maestro").remove(".loading-img");
                         });
+            };
+
+            $scope.viewDireccion = function (item) {
+
+                $scope.direccion = item.DIRECCION;
+
+                $('#modUbigeo').modal('show');
+
+
             };
 
 
