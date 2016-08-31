@@ -263,7 +263,9 @@
                     <div class="modal-body">
 
                         <h3>Dirección</h3>
-                        <p>@{{ direccion }}</p>
+                        <p>@{{ ubigeo.DIRECCION }}</p>
+                        <h3>Ubigeo</h3>
+                        <p>@{{ ubigeo.PAIS }} - @{{ ubigeo.DEPARTAMENTO }} - @{{ ubigeo.PROVINCIA }} -@{{ ubigeo.DISTRITO }}</p>
 
                     </div>
 
@@ -390,7 +392,7 @@
 
             $scope.viewDireccion = function (item) {
 
-                $scope.direccion = item.DIRECCION;
+                $scope.ubigeo = item;
 
                 $('#modUbigeo').modal('show');
 
