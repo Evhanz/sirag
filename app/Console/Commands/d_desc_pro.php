@@ -77,6 +77,7 @@ class d_desc_pro extends Command
 
         }
 
+<<<<<<< HEAD
 
         $file = fopen(base_path()."/storage/logs/reg_accion_divide_provee.log", "a");
 
@@ -85,6 +86,9 @@ class d_desc_pro extends Command
 
 
         $this->info('Correcto'.count($res));
+=======
+        $this->info('Correcto '.count($res));
+>>>>>>> origin/master
 
     }
 }
