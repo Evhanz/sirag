@@ -15,10 +15,10 @@ class RutinaController extends Controller
 
 
         $res  = \DB::select("select CODIGO , DESCRIPCION 
-from flexline.gen_tabcod
-where EMPRESA='e01'
-and TIPO='CON_PROVEE'
-AND CODIGO LIKE '10%'");
+                            from flexline.gen_tabcod
+                            where EMPRESA='e01'
+                            and TIPO='CON_PROVEE'
+                            AND CODIGO LIKE '10%'");
 
 
 

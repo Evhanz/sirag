@@ -77,6 +77,13 @@ class d_desc_pro extends Command
 
         }
 
+
+        $file = fopen(base_path()."/storage/logs/reg_accion_divide_provee.log", "a");
+
+        fwrite($file, "Correctamente se modifico ".count($res)." hora y fecha ".date('d-m-Y h:i:s') . PHP_EOL);
+        fclose($file);
+
+
         $this->info('Correcto'.count($res));
 
     }
