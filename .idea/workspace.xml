@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php" afterPath="$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RutinaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RutinaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,12 +36,12 @@
       <file leaf-file-name="d_desc_pro.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="311">
+              <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
               <folding>
-                <marker date="1472744466728" expanded="true" signature="779:960" ph="select CODIG... gen_tabcod" />
-                <marker date="1472744466728" expanded="true" signature="1213:1426" ph="UPDATE flexl... " />
-                <marker date="1472744466728" expanded="true" signature="1552:1781" ph="UPDATE flexl... " />
+                <marker date="1472747296312" expanded="true" signature="779:960" ph="select CODIG... gen_tabcod" />
+                <marker date="1472747296312" expanded="true" signature="1213:1426" ph="UPDATE flexl... " />
+                <marker date="1472747296312" expanded="true" signature="1552:1781" ph="UPDATE flexl... " />
               </folding>
             </state>
           </provider>
@@ -95,9 +92,9 @@
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RutinaController.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php" />
         <option value="$PROJECT_DIR$/storage/logs/reg_accion_divide_provee.log" />
         <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php" />
       </list>
     </option>
   </component>
@@ -350,12 +347,12 @@
       <workItem from="1472666436705" duration="20000" />
       <workItem from="1472666793182" duration="327000" />
       <workItem from="1472670695155" duration="10442000" />
-      <workItem from="1472740414174" duration="3875000" />
+      <workItem from="1472740414174" duration="4458000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16138000" />
+    <option name="totallyTimeSpent" value="16721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -699,8 +696,8 @@
         <state relative-caret-position="272">
           <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
           <folding>
-            <marker date="1472742195687" expanded="true" signature="290:297" ph="select * fro... gen_tabcod" />
-            <marker date="1472742195687" expanded="true" signature="290:519" ph="select * fro... gen_tabcod" />
+            <marker date="1472747063321" expanded="true" signature="290:297" ph="select * fro... gen_tabcod" />
+            <marker date="1472747063321" expanded="true" signature="290:519" ph="select * fro... gen_tabcod" />
           </folding>
         </state>
       </provider>
@@ -767,12 +764,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="311">
+          <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
           <folding>
-            <marker date="1472744466728" expanded="true" signature="779:960" ph="select CODIG... gen_tabcod" />
-            <marker date="1472744466728" expanded="true" signature="1213:1426" ph="UPDATE flexl... " />
-            <marker date="1472744466728" expanded="true" signature="1552:1781" ph="UPDATE flexl... " />
+            <marker date="1472747296312" expanded="true" signature="779:960" ph="select CODIG... gen_tabcod" />
+            <marker date="1472747296312" expanded="true" signature="1213:1426" ph="UPDATE flexl... " />
+            <marker date="1472747296312" expanded="true" signature="1552:1781" ph="UPDATE flexl... " />
           </folding>
         </state>
       </provider>
