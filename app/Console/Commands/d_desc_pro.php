@@ -77,7 +77,7 @@ class d_desc_pro extends Command
 
         }
 
-        $this->info('Correcto'.count($res));
+        $this->info('Correcto '.count($res));
 
     }
 }
