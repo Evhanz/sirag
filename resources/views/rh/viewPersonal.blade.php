@@ -204,36 +204,6 @@
                                                 </a>
 
                                             </td>
-                                            <!--
-
-                                            FICHA
-      ,EMPLEADO
-      ,NOMBRE
-      ,VIGENCIA
-      ,DIRECCION
-      ,PAIS
-      ,DEPARTAMENTO
-      ,PROVINCIA
-      ,DISTRITO
-      ,FECHA_NACIMIENTO
-      ,FECHA_INICIO
-      ,FECHA_TERMINO
-      ,CARGO
-      ,REMUNERACION
-      ,ISNULL(TIPO_CONTRATO, '-') as TIPO_CONTRATO
-      ,SEXO
-      , ISNULL(CTA_CENTRA, '-') CTA_CENTRA
-      ,CENTRO_COSTO
-      ,ISNULL(MOTIVO_SALIDA, '-') MOTIVO_SALIDA
-      ,ISNULL(AFP_ONP, '-') AFP_ONP
-      ,ISNULL(TIPO_COMI_AFP, '-') TIPO_COMI_AFP
-      ,ISNULL(FECHA_RENOVA_1, '-') FECHA_RENOVA_1
-      ,ISNULL(FECHA_RENOVA_2, '-') FECHA_RENOVA_2
-      ,ISNULL(FECHA_RENOVA_3, '-') FECHA_RENOVA_3
-
-
-
-                                            -->
                                             <td>
                                                 <a class="btn btn-default" ng-click="addDetail(item.idDocto,item)">
                                                     <i class="fa fa-eye fa-lg"></i>

@@ -59,6 +59,7 @@ Route::get('comercial/api/getDetailOrden/{id}',['as'=>'getDetailOrden','uses'=>'
 //------ llamada a las views de rh
 Route::get('rh/',['as'=>'modRH']);
 Route::get('rh/rep/viewPersonal',['as'=>'viewPersonal','uses'=>'RecursoshController@viewPersonal']);
+Route::get('rh/rep/HistorialContrato',['as'=>'viewHistoryContract','uses'=>'RecursoshController@viewHistoryContract']);
 
 
 //----para traer todos los trabajadores
