@@ -1,220 +1,57 @@
-@extends('layout')
+@extends('layoutRH')
 
 @section('content')
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
-
             <div class="row" style="padding-left: 15px; padding-right: 15px;">
                 <!-- Box (with bar chart) -->
                 <div class="box box-default" >
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
-
-                            <li class="active"><a data-toggle="tab" href="#personal">Pesonal</a></li>
-
+                            <li class="active"><a data-toggle="tab" href="#home">Personal</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
-                        <div class="row" style="padding-left: 15px;">
+                        <div class="row" style="padding-left: 15px; padding-right: 15px;">
                             <div class="col-lg-12">
                                 <div class="tab-content">
-
-                                    <!-- Tab  proveedor -->
-                                    <div id="personal" class="tab-pane fade">
-                                        <!--Filtro Principal opcion proveedor-->
+                                    <div id="home" class="tab-pane fade in active">
                                         <div class="row">
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
-
-                                            <!--filtro de cabecera-->
                                             <div class="col-lg-5">
-                                                <form class="form-inline" style="padding: 15px">
-                                                    <div class="form-group">
-                                                        <label for="">Razon Social</label>
-                                                        <input class="form-control" type="text" ng-keyup="$event.keyCode == 13 && getProveedor()"
-                                                               ng-model="razon_social">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">RUC</label>
-                                                        <input class="form-control" ng-keyup="$event.keyCode == 13 && getProveedor()" type="number"  ng-model="fil_ruc">
-                                                    </div>
-                                                </form>
+                                                <label for="">Nombre</label>
+                                                <input type="text" class="form-control" ng-model="personal.NOMBRE" disabled>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label for="">DNI</label>
+                                                <input type="text" class="form-control" ng-model="personal.EMPLEADO" disabled>
                                             </div>
 
-                                            <!--Datos Pronósticos-->
-                                            <div class="col-lg-7">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" data-tipo="process_1" id="table_data_op1">
-                                                        <thead >
-                                                        <tr>
-                                                            <th>Razón Social</th>
-                                                            <th>RUC</th>
-                                                            <th>Email</th>
-                                                            <th>Telefono</th>
-                                                            <th>*</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr ng-repeat=" item in proveedores | filter:fil_ruc" id="tr_Doc_@{{ $index }}">
-                                                            <td>@{{ item.razon }}</td>
-                                                            <td>@{{ item.ruc }}</td>
-                                                            <td>@{{ item.Email | limitTo:30 }}</td>
-                                                            <td>@{{ item.Telefono }}</td>
-                                                            <td>
-
-                                                                <a href="" class="btn btn-default btn-xs" ng-click="getActiveProveedor($index)">
-                                                                    <i class="fa fa-eye fa-lg"></i>
-                                                                </a>
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                            <div class="col-lg-2">
+                                                <label for="">Inicio Contrato</label>
+                                                <input type="text" class="form-control" ng-model="personal.FECHA_INICIO" disabled>
                                             </div>
 
-
-
-                                        </div>
-                                        <!--./ Filro Principal-->
-
-                                        <hr>
-
-                                        <!-- data procesada  opcion proveedor-->
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <!-- Box  detalle-->
-                                                <div class="box box-primary" id="box_maestro">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Datos del Proveedor</h3>
-                                                    </div><!-- /.box-header -->
-                                                    <div class="box-body ">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <form action="">
-                                                                    <div class="col-md-8">
-                                                                        <label for=""> Razon</label>
-                                                                        <input ng-model="prod_active.razon" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <label for=""> Ruc</label>
-                                                                        <input ng-model="prod_active.ruc" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for=""> Direccion</label>
-                                                                        <input ng-model="prod_active.Direccion" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-7">
-                                                                        <label for=""> Email</label>
-                                                                        <input ng-model="prod_active.Email" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-5">
-                                                                        <label for=""> Telefono</label>
-                                                                        <input ng-model="prod_active.Telefono" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for=""> Contacto</label>
-                                                                        <input ng-model="prod_active.Contacto" class="form-control" type="text" readonly>
-                                                                    </div>
-
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Pais</label>
-                                                                        <input ng-model="prod_active.Pais" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Departamento</label>
-                                                                        <input ng-model="prod_active.departamento" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Distrito</label>
-                                                                        <input ng-model="prod_active.distrito" class="form-control" type="text" readonly >
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Provincia</label>
-                                                                        <input ng-model="prod_active.provincia" class="form-control" type="text" readonly>
-
-                                                                    </div>
-
-                                                                </form>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <h5>Otros</h5>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <table class="table table-bordered">
-                                                                    
-                                                                    <tr>
-                                                                        <td>Direccion</td>
-                                                                        <td>Telefono</td>
-                                                                        <td>Email</td>
-                                                                        <td>Locat.</td>
-                                                                    </tr>
-
-                                                                    <tr ng-repeat="item in prod_active.sucursales">
-                                                                        <td>@{{ item.Direccion }}</td>
-                                                                        <td>@{{ item.Telefono }}</td>
-                                                                        <td>@{{ item.email }}</td>
-                                                                        <td>@{{ item.Pais | limitTo:3 }}-
-                                                                            @{{ item.Estado | limitTo:3 }}-
-                                                                            @{{ item.Ciudad | limitTo:3 }}-
-                                                                            @{{ item.Comuna | limitTo:3 }}
-                                                                        </td>
-
-                                                                    </tr>
-
-                                                                </table>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <!-- /.row - inside box -->
-                                                    </div><!-- /.box-body -->
-                                                </div><!-- /.box -->
-
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <!-- Box (with bar chart) -->
-                                                <div class="box box-warning" id="box_maestro">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Producto</h3>
-
-                                                    </div><!-- /.box-header -->
-                                                    <div class="box-body ">
-
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label for="">Filtro</label>
-                                                                <input ng-model="fil_glosa" type="text" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <table class="ui table" id="">
-                                                                    <thead >
-                                                                    <tr>
-                                                                        <th>I</th>
-                                                                        <th>Glosa</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    <tr ng-repeat="item in prod_active.productos | filter:fil_glosa">
-                                                                        <td>@{{ $index }}</td>
-                                                                        <td>@{{ item.GLOSA }}</td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /.row - inside box -->
-                                                    </div><!-- /.box-body -->
-                                                </div><!-- /.box -->
+                                            <div class="col-lg-2">
+                                                <label for="">Fin Contrato</label>
+                                                <input type="text" class="form-control" ng-model="personal.FECHA_TERMINO" disabled>
                                             </div>
                                         </div>
-                                        <!-- ./data procesada  -->
+
+                                    </div>
+                                    <!-- Tab filtro documento -->
+                                    <div id="menu1" class="tab-pane fade">
+                                        <h3>Menu 1</h3>
+                                        <p>Some content in menu 1.</p>
+
+                                        <label>Date range:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+
+                                        </div><!-- /.input group -->
 
 
                                     </div>
@@ -238,354 +75,335 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-6" >
+                    <!-- Box (with bar chart) -->
+                    <div class="box box-info" id="box_maestro">
+                        <div class="box-header">
+                            <h4>Renovación de Contratos</h4>
+                        </div><!-- /.box-header -->
+                        <div class="box-body ">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <button class="btn btn-warning" title="nueva renovacion" ng-click="AddContract()">
+                                        <i class="fa fa-plus-square fa-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding: 15px">
+                                <div class="table-responsive"  style=" height: 190px; overflow: auto; ">
+                                    <table class="table table-bordered" id="table_data_op1">
+                                        <thead >
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th>Estado</th>
+                                            <th>*</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody >
+                                        <tr ng-repeat=" item in renovaciones | filter:search" id="tr_contrato_@{{ item.id }}">
+                                            <td>@{{ item.id }}</td>
+                                            <td>@{{ item.fecha_inicio }}</td>
+                                            <td>@{{ item.fecha_fin }}</td>
+                                            <td>@{{ item.estado }}</td>
+                                            <td>
+                                                <a class="btn btn-danger" ng-click="eliminarContrato(item.id);">
+                                                    <i class="fa fa-times-circle-o fa-lg"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- /.row - inside box -->
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+
+                </div>
+                <div class="col-lg-6" >
+                    <!-- Box (with bar chart) -->
+                    <div class="box box-info" id="box_maestro">
+                        <div class="box-header">
+                            <h4>Contratos Asignados (FlexLine)</h4>
+                        </div><!-- /.box-header -->
+                        <div class="box-body ">
+                            <div class="row" style="padding: 15px" >
+                                <div class="table-responsive"  style=" height: 190px; overflow: auto; ">
+                                    <table class="table table-bordered" id="table_data_op1">
+                                        <thead >
+                                        <tr>
+                                            <th>FICHA</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat=" item in contratos | filter:search"
+                                            id="tr_contrato_@{{ item.FICHA }}">
+                                            <td>@{{ item.FICHA }}</td>
+                                            <td>@{{ item.fecha_inicio }}</td>
+                                            <td>@{{ item.fecha_fin }}</td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div><!-- /.row - inside box -->
+                        </div><!-- /.box-body -->
 
 
 
+                    </div><!-- /.box -->
 
+                </div>
+            </div>
+        </div><!--/. content-->
+
+        <!-- modal Detail-->
+        <div class="modal fade" id="modAddContract" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Renovacion de Contrato </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <label for="">Fecha de Contrato</label>
+                            <input class="form-control" name="daterange" id="reservation" type="text">
+                            <label for="">Observación</label>
+                            <input class="form-control" id="renov_observacion" type="text" >
+                            <br>
+                            <button class="btn btn-success" ng-click="saveNewContract()">
+                                Guardar <i class="fa fa-floppy-o fa-lg"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
+        <!--./ modal Detail-->
 
-    <div class="cont-temp"></div>
+
+    </div>
 
 
     <!-- Daterangepicker css -->
     <link rel="stylesheet" href="{{asset('css/daterangepicker/daterangepicker-bs3.css')}}">
     <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
-    <!--PAra exportar a excel-->
-    <script src="{{asset('js/plugins/table2excel/jquery.table2excel.js')}}"></script>
-
-    <!--para exportar a PDF -->
-
-        <!-- PAra esto primero se exporta las funciones de table -->
-        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/tableExport.js')}}"></script>
-        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jquery.base64.js')}}"></script>
-        <!--Luego instalamos los de pdf-->
-        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jspdf/libs/sprintf.js')}}"></script>
-        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jspdf/jspdf.js')}}"></script>
-        <script  src="{{asset('js/plugins/tableExport.jquery.plugin/jspdf/libs/base64.js')}}"></script>
-    <!-- ./ en expor pdf -->
-
+    <script src="{{ asset('js/plugins/angular/angular-ui-bootstrap-0.3.0.min.js') }}"></script>
     <script>
 
         /*funciones de jquery*/
 
-        $('input[name="daterange"]').daterangepicker();
+        $('input[name="daterange"]').daterangepicker({
+            format : "DD/MM/YYYY"
+        });
         /*----*/
 
 
-        var app = angular.module("app", []);
+        var app = angular.module("app", ['ui.bootstrap']);
         app.controller("PruebaController", function($scope,$http,$window) {
+
+            var ficha = '{{ $ficha }}';
 
             $scope.s = "a";
             //Declaraciones
 
-            $scope.Documentos= [{}];
-            $scope.tipodocts = [{}];
+            $scope.contratos= [{}];
+            $scope.renovaciones = [];
+
+            //funiones que inician al principio
+
+            getDataInit();
 
 
-            $scope.familias = [];
-            $scope.subfamilias = [];
-            $scope.ProductosDTO =[];
-
-            $scope.proveedores = [];
-            $scope.prov_active = {};
-            $scope.prod_provee = [];
-
-
-
-            //funcioines que inician la pagina
-            getAllFamilias();
-            getAllSubFamilias();
-
-            //traer la data por el click
-
-            $scope.getProduct = function () {
-                var token = $('#_token').val();
-
-                /*--- Procedimiento que se haga mientras no termine  */
-
-                $scope.search = {};
-                $scope.ProductosDTO = [];
-
-                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
-
-                /*-----------------*/
-
-                // console.log($scope.TipoDoct);
-                if($scope.producto_glosa == null || $scope.producto_glosa.length == 0){
-
-                    $scope.producto_glosa = '';
-                }
-                if($scope.subFamilia == null || $scope.subFamilia.length == 0){
-
-                    $scope.subFamilia = '';
-                }
-                if($("#f_familia").val() == null || $("#f_familia").val().length == 0){
-
-                    $("#f_familia").val('');
-                }
-
-
-                $http.post('{{ URL::route('getAllProductosByProveedor') }}',
-                        {   _token : token,
-                            glosa: $scope.producto_glosa,
-                            subfamilia: $scope.subFamilia,
-                            familia:$("#f_familia").val()
-                        })
-                        .success(function(data){
-
-                            $scope.ProductosDTO = data;
-
-                            $( "div" ).remove( ".overlay" );
-                            $( "div" ).remove( ".loading-img" );
-
-
-                        }).error(function(data) {
-                            console.log(data);
-                            $("#box_maestro").remove(".overlay");
-                            $("#box_maestro").remove(".loading-img");
-                        });
-            };
-
-            //reutilizar esta funcion para insertar los detalles
-
-            $scope.addDetail = function (i,item)
+            function getDataInit()
             {
 
                 var token = $('#_token').val();
 
-                var id_detail_row = 'tr_detail_'+i;
-                var hidd_v_detail ="hd_v_detail_"+i;
 
-                var bandera = $("#"+hidd_v_detail).val();
+                //primero traemos al personal
+                $http.get('{{ URL::route('modRH') }}/api/getTrabajadorBy/'+ficha)
+                        .success(function(data){
 
-                var ruta = '{{ URL::route('getDetailProductoCompra') }}';
+                            $scope.personal = data;
+
+                            }).error(function(data) {
+                                console.log('Error trabajador'+data);
+                    });
+
+                //traemos luego a sus contratos registrados
+                $http.get('{{ URL::route('modRH') }}/api/getContratos/'+ficha)
+                        .success(function(data){
+
+                            $scope.contratos = data;
+
+                        }).error(function(data) {
+                    console.log('Error contrato'+data);
+                });
+
+                //traemos las renovaciones
+                getRenovacionesByFicha(ficha);
+            }
+
+            function getRenovacionesByFicha(f) {
+
+                //traemos las renovaciones
+                $http.get('{{ URL::route('modRH') }}/api/getRenovacionesByFicha/'+f)
+                        .success(function(data){
+
+                          $scope.renovaciones = data;
+
+                        }).error(function(data) {
+                    console.log('Error contrato'+data);
+                });
+            }
 
 
-                /*si no se a llamado a ese detalle entonces llamar*/
-                if(bandera == 0)
+            $scope.AddContract = function () {
+
+                $('#modAddContract').modal('show');
+                $('#reservation').val('');
+                $("#renov_observacion").val('');
+
+            };
+
+            $scope.saveNewContract = function () {
+
+
+                var mensaje = '';
+                var token = $('#_token').val();
+
+                var fecha = $('#reservation').val();
+                fecha =  fecha.split('-');
+
+                var f_i = changeFormat(fecha[0]);
+                var f_f = changeFormat(fecha[1]);
+
+                var f_i_trabajador = $scope.contratos[0].fecha_inicio;
+                var f_f_trabajador = $scope.contratos[0].fecha_fin;
+
+                var observacion = $("#renov_observacion").val();
+
+
+                if(observacion == null || observacion == ''){
+                    observacion = '-';
+                }
+
+               var bandera_range_date = getStateRangeDates(f_i,f_f,f_i_trabajador,f_f_trabajador);
+
+                if(bandera_range_date == 1)
                 {
+                    mensaje += "Error: la fecha se encuentra en un rango fuera de lo admitido \n";
+                }
+
+                if($scope.renovaciones.length > 0)
+                {
+                    f_i_trabajador = $scope.renovaciones[0].fecha_inicio;
+                    f_f_trabajador = $scope.renovaciones[0].fecha_fin;
+
+                    bandera_range_date = getStateRangeDates(f_i,f_f,f_i_trabajador,f_f_trabajador);
+
+                    if(bandera_range_date == 1)
+                    {
+                        mensaje += "Error: El Rango de fechas esta entre las renovciones \n";
+                    }
+                }
+
+                if(mensaje.length == ''){
+
+                  //si no existe error se crea el nuevo contrato
+
+                    var ruta = "{{ URL::route('addNewRenovacion') }}";
+                    var f_fin_cambiada = ch_format_YMD_DMY($scope.contratos[0].fecha_fin);
+                    f_i=ch_format_YMD_DMY(f_i);
+                    f_f=ch_format_YMD_DMY(f_f);
                     $http.post(ruta,
-                            {   _token : token,
-                                glosa: item.GLOSA,
-                                proveedor: item.RazonSocial,
-                                moneda: item.Moneda
+                            {_token : token,
+                                f_i:f_i,
+                                f_f: f_f,
+                                f_fin_cambiada:f_fin_cambiada,
+                                observacion:observacion,
+                                ficha:ficha
                             })
                             .success(function(data){
 
-                                item.detalle = data;
+                                console.log(data);
+                                getRenovacionesByFicha(ficha);
+                                $('#modAddContract').modal('hide');
 
+                            }).error(function(data) {
+                        console.log(data);
 
-                            }).error(function (data) {
-                                console.log("error en :"+data);
-                            });
-
-                    $("#"+hidd_v_detail).val(1);
-                    item.v_detail = '1';
+                    });
                 }else{
-                    $("#"+id_detail_row).show();
+                    alert(mensaje);
                 }
 
             };
 
-            $scope.removeDetail = function (idDoc)
-            {
-                var id_detail_row = 'tr_detail_'+idDoc;
-                $("#"+id_detail_row).hide();
-            };
+
+            $scope.eliminarContrato =function (id) {
 
 
-            $scope.export_all_excel = function()
-            {
-
-                //$("ul[data-group='Companies'] li[data-company='Microsoft']");
-
-               $('.tr_details').remove();
-
-                $("#table_data_op1").table2excel({
-                    exclude: ".noExl",
-                    name: "Libro 1",
-                    filename: "rep",
-                    fileext: ".xls",
-                    exclude_img: true,
-                    exclude_links: true,
-                    exclude_inputs: true
-                });
-
-                /* esto es para el pugin table2excel urL consula http://www.jqueryscript.net/table/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel.html
-                $("#table_data_op1").table2excel({
-                    exclude: ".noExl",
-                    name: "Libro 1",
-                    filename: "rep",
-                    fileext: ".xls",
-                    exclude_img: true,
-                    exclude_links: true,
-                    exclude_inputs: true
-                });*/
-
-                /*esto es paa el publig ableExport.Jquery.plugin https://github.com/kayalshri/tableExport.jquery.plugin http://w3lessons.info/2015/07/13/export-html-table-to-excel-csv-json-pdf-png-using-jquery/
-                $('#table_data_op1').tableExport({
-                    type:'excel',
-                    escape:'false'
-                });
-                 */
-
-            };
-
-
-            $scope.export_all_pdf = function ()
-            {
-
-
-                var familia = $("#f_familia").val();
-
-                // console.log($scope.TipoDoct);
-                if($scope.producto_glosa == null || $scope.producto_glosa.length == 0){
-
-                    $scope.producto_glosa = '-';
-                }
-                if($scope.subFamilia == null || $scope.subFamilia.length == 0){
-
-                    $scope.subFamilia = '-';
-                }
-                if(familia == null || $("#f_familia").val().length == 0){
-
-                    familia='-';
+                var r = confirm("Seguro que desea:  eliminar el contrato ?");
+                if (r == true) {
+                    console.log(id);
                 }
 
-
-                window.location = "{{ URL::route('modComercial') }}/pdf/getPDFProductProveedor/"+$scope.producto_glosa+
-                "/"+$scope.subFamilia+"/"+familia;
-
-
-
-
-             //
             };
-
-
-            $scope.export_Detail_excel = function(i){
-
-                $(".cont-temp" ).append("<tr><th>Descripcion Producto</th><th>" +
-                        "Proveedor</th><th>Moneda</th><th>Und</th><th>Ult. Precio</th></tr>");
-                $( ".cont-temp" ).append( $( "#tr_Doc_"+i ) );
-
-                $( ".cont-temp" ).append( $( "[data-tipo='tbl_dt_"+i+"']") );
-
-
-                $(".cont-temp").table2excel({
-                    exclude: ".noExl",
-                    name: "Libro 1",
-                    filename: "rep_det",
-                    fileext: ".xls",
-                    exclude_img: true,
-                    exclude_links: true,
-                    exclude_inputs: true
-                });
-
-                $( ".cont-temp" ).empty();
-
-            };
-
-
-            function getAllFamilias(){
-
-                var ruta = '{{ URL::route('modComercial') }}/api/getAllFamilias';
-
-                $http.get(ruta)
-                        .success(function(data){
-                            $scope.familias = data;
-                        }).error(function (data) {
-                            console.log("error en :"+data);
-                        });
-            }
-
-            function getAllSubFamilias(){
-
-                var ruta = '{{ URL::route('getAllSubFamilias')}}';
-
-                $http.get(ruta)
-                        .success(function(data){
-                            $scope.subfamilias = data;
-                        }).error(function (data) {
-                            console.log("error en :"+data);
-                        });
-            }
 
 
             /*funcion helper*/
-
-
-            //funcion para exportar en excel
-
-
-            //funciones para los proveedores
-
-            $scope.getProveedor  = function ()
+            function changeFormat(fecha)
             {
+                fecha = fecha.split('/');
 
-                var token = $('#_token').val();
-                var razon = $scope.razon_social;
-                var ruc = $scope.fil_ruc;
+                fecha = fecha[2].trim()+"-"+fecha[1].trim()+"-"+fecha[0].trim();
 
-                if(razon == '' || razon == null)
-                {
-                    razon  = '';
-                }
+                return fecha;
+            }
 
-                if(ruc == '' || ruc == null)
-                {
-                    ruc  = '';
-                }
+            function ch_format_YMD_DMY(fecha) {
 
+                fecha = fecha.split('-');
 
+                fecha =fecha[2].trim()+"-"+fecha[1].trim()+"-"+fecha[0].trim();
 
-                $http.post('{{ URL::route('getProveedoresByRazonAndRUC') }}',
-                        {   _token : token,
-                            razon: razon,
-                            ruc:ruc
-
-                        })
-                        .success(function(data){
-
-                            $scope.proveedores = data;
-
-                        }).error(function(data) {
-
-                            console.log('error'+data);
-                        });
-
-            };
-
-
-            $scope.getActiveProveedor = function(i)
-            {
-
-                $scope.prod_active = $scope.proveedores[i];
-
-
-                var ruta = '{{ URL::route('modComercial') }}/api/getProductosComercioProveedor/'+$scope.proveedores[i].ruc;
-
-                $http.get(ruta)
-                        .success(function(data){
-                            $scope.prod_active.productos = data;
-                        }).error(function (data) {
-                            console.log("error en :"+data);
-                        });
+                return fecha;
 
             }
 
+            function getStateRangeDates(f_i, f_f,f_i_trabajador,f_f_trabajador) {
 
+                var bandera= 0;
 
+                /*estas son la sfechas del trabajador , que es su ultimo contrato*/
+                f_i_trabajador = new Date(f_i_trabajador);
+                f_f_trabajador = new Date(f_f_trabajador);
 
+                //convertimos en date las fechas que vienen como parametros de la funcion
+                f_i = new Date(f_i);
+                f_f = new Date(f_f);
 
+                //luego comparamos para saber si esta en el rango del contrato establecido
+                //el algoritmo sacado es del sp (@f_i < FECHA_TERMINO and  (@f_f > FECHA_INICIO  OR @f_f > FECHA_TERMINO) )
 
+                if(f_i<f_f_trabajador && (f_f>f_i_trabajador || f_f>f_f_trabajador)){
 
+                    bandera = 1;
+                }
 
-
+                return bandera;
+            }
         });
     </script>
-
-
 @stop

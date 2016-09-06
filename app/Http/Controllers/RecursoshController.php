@@ -22,6 +22,12 @@ class RecursoshController extends Controller
     {
         return view('rh/viewPersonal');
     }
+    public function viewHistoryContract($ficha)
+    {
+
+        //echo $ficha;
+        return view('rh/viewHistoryContract',compact('ficha'));
+    }
 
     //API para traer a los trbajadores
 
@@ -42,6 +48,41 @@ class RecursoshController extends Controller
         $res = $this->personalRep->getTrabajadoresByParamOutDates($data);
 
         return \Response::Json($res);
+
+    }
+
+
+    public function getTrabajadorByFicha($ficha)
+    {
+        $res = $this->personalRep->getTrabajadorByFicha($ficha);
+
+        return \Response::Json($res);
+    }
+
+    public function getContratos($ficha){
+
+        $res = $this->personalRep->getContratos($ficha);
+
+        return \Response::Json($res);
+
+    }
+
+    public function getRenovacionesByFicha($ficha){
+
+        $res = $this->personalRep->getRenovaionesByFicha($ficha);
+
+        return \Response::Json($res);
+    }
+
+
+    public function addNewRenovacion(){
+
+        $data = \Input::all();
+
+        $res = $this->personalRep->addNewRenovacion($data);
+
+        return \Response::Json($res);
+
 
     }
 
