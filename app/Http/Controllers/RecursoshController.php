@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use sirag\Repositories\PersonalRep;
 
 class RecursoshController extends Controller
@@ -82,6 +83,14 @@ class RecursoshController extends Controller
         $res = $this->personalRep->addNewRenovacion($data);
 
         return \Response::Json($res);
+    }
+
+    public function deleteRenovacion(){
+        $data = \Input::all();
+
+        $this->personalRep->deleteRenovacion($data['id'],$data['ficha'],$data['fecha_fin']);
+
+        return \Response::Json("ok");
 
 
     }

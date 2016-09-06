@@ -65,12 +65,6 @@ class PersonalRep
 
     public function addNewRenovacion($data){
 
-        /*
-         *
-         * insert into renov_contract (tipo,fecha_inicio,fecha_fin,observacion,f_fin_cambiada,FICHA)
-  values ('','','','','','')
-         *
-         */
 
         $tipo = 'renovacion';
         $fecha_inicio = $data['f_i'];
@@ -78,12 +72,67 @@ class PersonalRep
         $f_fin_cambiada = $data['f_fin_cambiada'];
         $observacion = $data['observacion'];
         $ficha = $data['ficha'];
+        $res ='ok';
+        //primero insertamos los valores y luego actualizaremos los valores de las tablas
+        //PER_TRABJADOR & PER_REM_HIS
 
-        $res = \DB::insert("insert into renov_contract (tipo,fecha_inicio,fecha_fin,observacion,f_fin_cambiada,FICHA,estado)
+        \DB::transaction(function () use ($tipo,$fecha_inicio,$fecha_fin,$f_fin_cambiada,$observacion,$ficha) {
+            \DB::insert("INSERT INTO renov_contract (tipo,fecha_inicio,fecha_fin,observacion,f_fin_cambiada,FICHA,estado)
                               values ('$tipo','$fecha_inicio','$fecha_fin','$observacion','$f_fin_cambiada','$ficha',1)");
+            //luego cambiamos el formato en la funcion
+
+            $f_f = $this->changeFormat($fecha_fin);
+
+            \DB::update("UPDATE flexline.PER_TRABAJADOR
+                        SET FECHA_TERMINO='$f_f'
+                        WHERE FICHA='$ficha';");
+
+            \DB::update("UPDATE flexline.PER_REM_HIS
+                        SET FECHA_TERMINO='$f_f'
+                        WHERE FICHA='$ficha';");
+
+        });
 
         return $res;
 
+    }
+
+
+    public function deleteRenovacion($id,$ficha,$fecha_fin){
+
+        //$fecha_fin : es la fecha que fue almacenada en la renovacion de contrato para poder
+        // resguardar de que fecha se
+        //modifico
+
+
+        \DB::transaction(function () use ($id,$ficha,$fecha_fin) {
+
+            $f_f = $this->changeFormat($fecha_fin);
+
+            \DB::delete("DELETE FROM renov_contract
+                        WHERE id=$id;");
+
+            \DB::update("UPDATE flexline.PER_TRABAJADOR
+                        SET FECHA_TERMINO='$f_f'
+                        WHERE FICHA='$ficha';");
+
+            \DB::update("UPDATE flexline.PER_REM_HIS
+                        SET FECHA_TERMINO='$f_f'
+                        WHERE FICHA='$ficha';");
+
+        });
+
+        
+    }
+
+
+
+    public function changeFormat ($fecha){
+
+        $fecha = explode("-", $fecha);
+
+        $fecha = $fecha[2].$fecha[1].$fecha[0];
+        return $fecha;
     }
 
 

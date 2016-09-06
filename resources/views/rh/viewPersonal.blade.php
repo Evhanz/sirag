@@ -205,7 +205,7 @@
 
                                             </td>
                                             <td>
-                                                <a class="btn btn-default" ng-click="addDetail(item.idDocto,item)">
+                                                <a class="btn btn-default" href="{{ URL::route('modRH') }}/rep/HistorialContrato/@{{ item.FICHA }}">
                                                     <i class="fa fa-eye fa-lg"></i>
                                                 </a>
                                             </td>

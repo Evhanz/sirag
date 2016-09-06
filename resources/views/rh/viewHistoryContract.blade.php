@@ -30,12 +30,12 @@
 
                                             <div class="col-lg-2">
                                                 <label for="">Inicio Contrato</label>
-                                                <input type="text" class="form-control" ng-model="personal.FECHA_INICIO" disabled>
+                                                <input type="text" class="form-control" ng-model="personal.F_INICIO_FORMAT" disabled>
                                             </div>
 
                                             <div class="col-lg-2">
                                                 <label for="">Fin Contrato</label>
-                                                <input type="text" class="form-control" ng-model="personal.FECHA_TERMINO" disabled>
+                                                <input type="text" class="form-control" ng-model="personal.F_TERMINO_FORMAT" disabled>
                                             </div>
                                         </div>
 
@@ -106,11 +106,11 @@
                                         <tbody >
                                         <tr ng-repeat=" item in renovaciones | filter:search" id="tr_contrato_@{{ item.id }}">
                                             <td>@{{ item.id }}</td>
-                                            <td>@{{ item.fecha_inicio }}</td>
-                                            <td>@{{ item.fecha_fin }}</td>
+                                            <td>@{{ item.f_inicio_format }}</td>
+                                            <td>@{{ item.f_fin_format }}</td>
                                             <td>@{{ item.estado }}</td>
                                             <td>
-                                                <a class="btn btn-danger" ng-click="eliminarContrato(item.id);">
+                                                <a class="btn btn-danger" ng-click="eliminarContrato(item);">
                                                     <i class="fa fa-times-circle-o fa-lg"></i>
                                                 </a>
                                             </td>
@@ -144,10 +144,9 @@
                                         <tr ng-repeat=" item in contratos | filter:search"
                                             id="tr_contrato_@{{ item.FICHA }}">
                                             <td>@{{ item.FICHA }}</td>
-                                            <td>@{{ item.fecha_inicio }}</td>
-                                            <td>@{{ item.fecha_fin }}</td>
+                                            <td>@{{ item.f_inicio_format }}</td>
+                                            <td>@{{ item.f_fin_format }}</td>
                                         </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -236,6 +235,9 @@
 
                             $scope.personal = data;
 
+                            $scope.personal.F_INICIO_FORMAT = ch_format_DateTime_DateDMY($scope.personal.FECHA_INICIO);
+                            $scope.personal.F_TERMINO_FORMAT = ch_format_DateTime_DateDMY($scope.personal.FECHA_TERMINO);
+
                             }).error(function(data) {
                                 console.log('Error trabajador'+data);
                     });
@@ -243,6 +245,12 @@
                 //traemos luego a sus contratos registrados
                 $http.get('{{ URL::route('modRH') }}/api/getContratos/'+ficha)
                         .success(function(data){
+
+                            for(var i = 0;i<data.length; i++){
+
+                                data[i].f_inicio_format = ch_format_YMD_DMY(data[i].fecha_inicio);
+                                data[i].f_fin_format = ch_format_YMD_DMY(data[i].fecha_fin)
+                            }
 
                             $scope.contratos = data;
 
@@ -260,7 +268,13 @@
                 $http.get('{{ URL::route('modRH') }}/api/getRenovacionesByFicha/'+f)
                         .success(function(data){
 
-                          $scope.renovaciones = data;
+                            for(var i = 0;i<data.length; i++){
+
+                                data[i].f_inicio_format = ch_format_DateTime_DateDMY(data[i].fecha_inicio);
+                                data[i].f_fin_format = ch_format_DateTime_DateDMY(data[i].fecha_fin);
+                            }
+
+                            $scope.renovaciones = data;
 
                         }).error(function(data) {
                     console.log('Error contrato'+data);
@@ -335,9 +349,7 @@
                                 ficha:ficha
                             })
                             .success(function(data){
-
-                                console.log(data);
-                                getRenovacionesByFicha(ficha);
+                                getDataInit();
                                 $('#modAddContract').modal('hide');
 
                             }).error(function(data) {
@@ -351,12 +363,51 @@
             };
 
 
-            $scope.eliminarContrato =function (id) {
+            $scope.eliminarContrato =function (item) {
 
-
+                var token = $('#_token').val();
                 var r = confirm("Seguro que desea:  eliminar el contrato ?");
                 if (r == true) {
-                    console.log(id);
+
+
+                    //averiguaremos si la fecha de inicio de
+
+                    var actual = new Date();
+                    var fecha_inicio = new Date(item.fecha_inicio);
+
+                    var dias = actual - fecha_inicio;
+                    dias = Math.floor(dias / (1000 * 60 * 60 * 24));
+
+                    console.log(item.f_fin_cambiada);
+
+                    if(dias<15){
+
+                        var ruta = "{{ URL::route('deleteRenovacion') }}";
+                        var f_f = ch_format_DateTime_DateDMY(item.f_fin_cambiada);
+
+                        $http.post(ruta,
+                                {_token : token,
+                                    id:item.id,
+                                    fecha_fin:f_f,
+                                    ficha:item.FICHA
+                                })
+                                .success(function(data){
+                                    getDataInit();
+
+
+                                }).error(function(data) {
+                            console.log(data);
+
+                        });
+
+
+
+
+                    }else{
+                        console.log(item.f_fin_cambiada);
+                        alert("A Pasado la fecha Limite, llamar a la oficina de sistemas");
+                    }
+
                 }
 
             };
@@ -381,6 +432,19 @@
                 return fecha;
 
             }
+
+
+            function ch_format_DateTime_DateDMY(fecha) {
+
+                fecha = fecha.split(" ");
+
+                var f = fecha[0];
+                f = f.split("-");
+                f = f[2].trim()+"-"+f[1].trim()+"-"+f[0].trim();
+
+                return f;
+            }
+
 
             function getStateRangeDates(f_i, f_f,f_i_trabajador,f_f_trabajador) {
 
