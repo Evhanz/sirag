@@ -126,7 +126,19 @@ class PersonalRep
     }
 
 
+    public function getVacacionesByFicha ($ficha)
+    {
+        $res = \DB::select("SELECT TIPO_TRANS,ESTADO,
+                            ID_VACA,CONVERT(date, CAST(FEC_FINSOL AS CHAR(8)), 112) FEC_FINSOL,
+                            CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112) FEC_INISOL 
+                            FROM flexline.PER_VACACIONES
+                            where TIPO_TRANS = 'APROBACION' AND FICHA = '$ficha'");
 
+        return $res;
+    }
+
+
+    //funciones helpers
     public function changeFormat ($fecha){
 
         $fecha = explode("-", $fecha);

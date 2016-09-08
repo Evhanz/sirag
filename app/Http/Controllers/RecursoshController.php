@@ -92,6 +92,13 @@ class RecursoshController extends Controller
 
         return \Response::Json("ok");
 
+    }
+
+    public function getVacacionesByFicha($ficha)
+    {
+        $res = $this->personalRep->getVacacionesByFicha($ficha);
+
+        return \Response::Json($res);
 
     }
 

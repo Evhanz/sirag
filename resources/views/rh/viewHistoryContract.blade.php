@@ -92,8 +92,8 @@
                             </div>
 
                             <div class="row" style="padding: 15px">
-                                <div class="table-responsive"  style=" height: 190px; overflow: auto; ">
-                                    <table class="table table-bordered" id="table_data_op1">
+                                <div class="table-responsive" style=" height: 190px; overflow: auto; ">
+                                    <table class="table table-bordered" id="table_data_op1" >
                                         <thead >
                                         <tr>
                                             <th>ID</th>
@@ -131,7 +131,7 @@
                         </div><!-- /.box-header -->
                         <div class="box-body ">
                             <div class="row" style="padding: 15px" >
-                                <div class="table-responsive"  style=" height: 190px; overflow: auto; ">
+                                <div class="table-responsive"  style=" height: 224px; overflow: auto; ">
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
@@ -146,6 +146,7 @@
                                             <td>@{{ item.FICHA }}</td>
                                             <td>@{{ item.f_inicio_format }}</td>
                                             <td>@{{ item.f_fin_format }}</td>
+                                            <td>@{{ item.d_acumulados }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -160,6 +161,47 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-6" >
+                    <!-- Box (with bar chart) -->
+                    <div class="box box-info" id="box_maestro">
+                        <div class="box-header">
+                            <h4>Vacaciones </h4>
+                        </div><!-- /.box-header -->
+                        <div class="box-body ">
+                            <div class="row" style="padding: 15px" >
+                                <div class="table-responsive"  style=" height: 224px; overflow: auto; ">
+                                    <table class="table table-bordered" id="table_data_op1">
+                                        <thead >
+                                        <tr>
+                                            <th>I</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th>Transcurrido</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat=" item in vacaciones "
+                                            id="tr_vacaciones_@{{ item.ID_VACA }}">
+                                            <td>@{{ item.ID_VACA }}</td>
+                                            <td>@{{ item.FEC_INISOL_F }}</td>
+                                            <td>@{{ item.FEC_FINSOL_F }}</td>
+                                            <td>@{{ item.d_transcurrido }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div><!-- /.row - inside box -->
+                        </div><!-- /.box-body -->
+
+
+
+                    </div><!-- /.box -->
+
+                </div>
+            </div>
+
         </div><!--/. content-->
 
         <!-- modal Detail-->
@@ -217,6 +259,7 @@
 
             $scope.contratos= [{}];
             $scope.renovaciones = [];
+            $scope.vacaciones = [];
 
             //funiones que inician al principio
 
@@ -238,6 +281,7 @@
                             $scope.personal.F_INICIO_FORMAT = ch_format_DateTime_DateDMY($scope.personal.FECHA_INICIO);
                             $scope.personal.F_TERMINO_FORMAT = ch_format_DateTime_DateDMY($scope.personal.FECHA_TERMINO);
 
+
                             }).error(function(data) {
                                 console.log('Error trabajador'+data);
                     });
@@ -249,7 +293,8 @@
                             for(var i = 0;i<data.length; i++){
 
                                 data[i].f_inicio_format = ch_format_YMD_DMY(data[i].fecha_inicio);
-                                data[i].f_fin_format = ch_format_YMD_DMY(data[i].fecha_fin)
+                                data[i].f_fin_format = ch_format_YMD_DMY(data[i].fecha_fin);
+                                data[i].d_acumulados = 0;
                             }
 
                             $scope.contratos = data;
@@ -260,6 +305,12 @@
 
                 //traemos las renovaciones
                 getRenovacionesByFicha(ficha);
+                //traemos a las vacaciones
+                getVacaciones(ficha);
+
+                //luego calculamos sus dias de vacciones por cada contrato
+                calculeDiasAcumuladosVacaciones();
+
             }
 
             function getRenovacionesByFicha(f) {
@@ -275,6 +326,32 @@
                             }
 
                             $scope.renovaciones = data;
+
+                        }).error(function(data) {
+                    console.log('Error contrato'+data);
+                });
+            }
+
+            function getVacaciones(f) {
+
+                //traemos las renovaciones
+                $http.get('{{ URL::route('modRH') }}/api/getVacacionesByFicha/'+f)
+                        .success(function(data){
+
+                            for(var i = 0;i<data.length; i++){
+
+                                data[i].FEC_FINSOL_F = ch_format_YMD_DMY(data[i].FEC_FINSOL);
+                                data[i].FEC_INISOL_F = ch_format_YMD_DMY(data[i].FEC_INISOL);
+                                data[i].d_transcurrido = getCantDiasBetweendates(data[i].FEC_INISOL,data[i].FEC_FINSOL);
+                            }
+
+                            $scope.vacaciones = data;
+
+                            //luego calculamos si en cada periodo de contratos cuantos dias de vacaciones an acumulado
+
+
+
+
 
                         }).error(function(data) {
                     console.log('Error contrato'+data);
@@ -378,7 +455,7 @@
                     var dias = actual - fecha_inicio;
                     dias = Math.floor(dias / (1000 * 60 * 60 * 24));
 
-                    console.log(item.f_fin_cambiada);
+                    //console.log(item.f_fin_cambiada);
 
                     if(dias<15){
 
@@ -393,7 +470,6 @@
                                 })
                                 .success(function(data){
                                     getDataInit();
-
 
                                 }).error(function(data) {
                             console.log(data);
@@ -411,6 +487,30 @@
                 }
 
             };
+
+            function calculeDiasAcumuladosVacaciones() {
+
+                console.log($scope.vacaciones);
+                for (var i=0;i<$scope.vacaciones.length;i++){
+
+                    //por cada una de las vacaciones verificamos si pertenece al rango de
+                    for (var j=0;j<$scope.contratos.length;j++){
+
+                        var bandera = getStateRangeDates( $scope.vaciones[i].FEC_INISOL,$scope.vaciones[i].FEC_FINSOL,
+                                $scope.contratos[j].fecha_inicio,$scope.contratos[j].fecha_fin);
+
+                        console.log(bandera);
+
+                        if(badera==1){
+
+                            $scope.contratos[j].d_acumulados += $scope.vaciones[i].d_transcurrido;
+                        }
+
+                    }
+
+                }
+
+            }
 
 
             /*funcion helper*/
@@ -467,7 +567,22 @@
                 }
 
                 return bandera;
+
+
             }
+
+            function getCantDiasBetweendates(f_i,f_f){
+
+                f_i = new Date(f_i);
+                f_f = new Date(f_f);
+
+                var dias = f_f - f_i;
+                dias = Math.floor(dias / (1000 * 60 * 60 * 24));
+
+               return dias;
+
+            }
+
         });
     </script>
 @stop
