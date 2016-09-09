@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layoutRH.blade.php" afterPath="$PROJECT_DIR$/resources/views/layoutRH.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewHistoryContract.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewHistoryContract.blade.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -38,7 +37,7 @@
       <file leaf-file-name="RecursoshController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
+            <state relative-caret-position="495">
               <caret line="96" column="40" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="40" />
               <folding />
             </state>
@@ -48,22 +47,22 @@
       <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="128" column="40" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="40" />
+            <state relative-caret-position="328">
+              <caret line="141" column="19" selection-start-line="141" selection-start-column="19" selection-end-line="141" selection-end-column="19" />
               <folding>
-                <marker date="1473354225922" expanded="true" signature="919:973" ph="select * fro... v_allTrabajadores" />
-                <marker date="1473354225922" expanded="true" signature="1078:1408" ph="SELECT FICHA... PER_REM_HIS" />
-                <marker date="1473354225922" expanded="true" signature="1078:1435" ph="SELECT FICHA... PER_REM_HIS" />
-                <marker date="1473354225922" expanded="true" signature="1549:1661" ph="select * fro... renov_contract" />
-                <marker date="1473354225922" expanded="true" signature="2261:2477" ph="INSERT INTO renov_contract... " />
-                <marker date="1473354225922" expanded="true" signature="2615:2731" ph="UPDATE flexl... " />
-                <marker date="1473354225922" expanded="true" signature="2615:2739" ph="UPDATE flexl... " />
-                <marker date="1473354225922" expanded="true" signature="2770:2891" ph="UPDATE flexl... " />
-                <marker date="1473354225922" expanded="true" signature="3301:3361" ph="DELETE FROM " />
-                <marker date="1473354225922" expanded="true" signature="3301:3364" ph="DELETE FROM " />
-                <marker date="1473354225922" expanded="true" signature="3395:3519" ph="UPDATE flexl... " />
-                <marker date="1473354225922" expanded="true" signature="3550:3671" ph="UPDATE flexl... " />
-                <marker date="1473354225922" expanded="true" signature="3791:4138" ph="SELECT TIPO_... PER_VACACIONES" />
+                <marker date="1473450159356" expanded="true" signature="909:963" ph="select * fro... v_allTrabajadores" />
+                <marker date="1473450159356" expanded="true" signature="1104:1434" ph="SELECT FICHA... PER_REM_HIS" />
+                <marker date="1473450159356" expanded="true" signature="1104:1461" ph="SELECT FICHA... PER_REM_HIS" />
+                <marker date="1473450159356" expanded="true" signature="1565:1617" ph="select * fro... renov_contract" />
+                <marker date="1473450159356" expanded="true" signature="2253:2469" ph="INSERT INTO renov_contract... " />
+                <marker date="1473450159356" expanded="true" signature="2607:2723" ph="UPDATE flexl... " />
+                <marker date="1473450159356" expanded="true" signature="2607:2731" ph="UPDATE flexl... " />
+                <marker date="1473450159356" expanded="true" signature="2762:2883" ph="UPDATE flexl... " />
+                <marker date="1473450159356" expanded="true" signature="3293:3353" ph="DELETE FROM " />
+                <marker date="1473450159356" expanded="true" signature="3293:3356" ph="DELETE FROM " />
+                <marker date="1473450159356" expanded="true" signature="3387:3511" ph="UPDATE flexl... " />
+                <marker date="1473450159356" expanded="true" signature="3542:3663" ph="UPDATE flexl... " />
+                <marker date="1473450159356" expanded="true" signature="3774:4121" ph="SELECT TIPO_... PER_VACACIONES" />
               </folding>
             </state>
           </provider>
@@ -72,31 +71,16 @@
       <file leaf-file-name="viewHistoryContract.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewHistoryContract.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="492" column="47" selection-start-line="492" selection-start-column="47" selection-end-line="492" selection-end-column="47" />
+            <state relative-caret-position="302">
+              <caret line="149" column="80" selection-start-line="149" selection-start-column="80" selection-end-line="149" selection-end-column="80" />
               <folding>
-                <element signature="e#4811#4851#0#HTML" expanded="true" />
-                <element signature="e#7127#7167#0#HTML" expanded="true" />
-                <element signature="e#8972#8993#0#HTML" expanded="true" />
-                <element signature="e#9059#9099#0#HTML" expanded="true" />
-                <element signature="e#14610#15292#0#HTML" expanded="false" />
-                <element signature="e#16281#16442#0#HTML" expanded="false" />
-                <element signature="e#16494#19016#0#HTML" expanded="false" />
-                <element signature="e#19073#20543#0#HTML" expanded="false" />
-                <element signature="e#21443#21613#0#HTML" expanded="false" />
-                <element signature="e#21661#21832#0#HTML" expanded="false" />
-                <element signature="e#21890#22109#0#HTML" expanded="false" />
+                <element signature="e#4101#4127#0#HTML" expanded="true" />
+                <element signature="e#6860#6886#0#HTML" expanded="true" />
+                <element signature="e#9217#9243#0#HTML" expanded="true" />
+                <element signature="e#15087#15769#0#HTML" expanded="false" />
+                <element signature="e#16967#19489#0#HTML" expanded="false" />
+                <element signature="e#19545#21015#0#HTML" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="viewPersonal.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="207" column="143" selection-start-line="207" selection-start-column="143" selection-end-line="207" selection-end-column="143" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -104,11 +88,21 @@
       <file leaf-file-name="recursos_humanos.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="39" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="39" />
+            <state relative-caret-position="170">
+              <caret line="10" column="53" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="53" />
               <folding>
                 <element signature="e#6#95#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="93" column="25" selection-start-line="89" selection-start-column="18" selection-end-line="93" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,7 +133,6 @@
         <option value="$PROJECT_DIR$/resources/views/comercial/viewOrdenCompra.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ComercialController.php" />
         <option value="$PROJECT_DIR$/resources/views/comercial/viewDocumentos.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layoutRH.blade.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RutinaController.php" />
         <option value="$PROJECT_DIR$/storage/logs/reg_accion_divide_provee.log" />
@@ -148,10 +141,11 @@
         <option value="$PROJECT_DIR$/resources/views/comercial/viewProductos.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+        <option value="$PROJECT_DIR$/resources/views/layoutRH.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewHistoryContract.blade.php" />
       </list>
     </option>
@@ -202,6 +196,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -392,7 +387,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -481,16 +475,17 @@
       <workItem from="1473083635479" duration="25236000" />
       <workItem from="1473171105210" duration="19811000" />
       <workItem from="1473257157472" duration="618000" />
-      <workItem from="1473346948145" duration="16662000" />
+      <workItem from="1473346948145" duration="16825000" />
+      <workItem from="1473429728444" duration="13669000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108961000" />
+    <option name="totallyTimeSpent" value="122793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2137628" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -713,20 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layoutRH.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="98" column="18" selection-start-line="98" selection-start-column="18" selection-end-line="98" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/plugins/daterangepicker/daterangepicker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -855,48 +836,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="207" column="143" selection-start-line="207" selection-start-column="143" selection-end-line="207" selection-end-column="143" />
+        <state relative-caret-position="495">
+          <caret line="96" column="40" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="128" column="40" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="40" />
+        <state relative-caret-position="328">
+          <caret line="141" column="19" selection-start-line="141" selection-start-column="19" selection-end-line="141" selection-end-column="19" />
           <folding>
-            <marker date="1473354225922" expanded="true" signature="919:973" ph="select * fro... v_allTrabajadores" />
-            <marker date="1473354225922" expanded="true" signature="1078:1408" ph="SELECT FICHA... PER_REM_HIS" />
-            <marker date="1473354225922" expanded="true" signature="1078:1435" ph="SELECT FICHA... PER_REM_HIS" />
-            <marker date="1473354225922" expanded="true" signature="1549:1661" ph="select * fro... renov_contract" />
-            <marker date="1473354225922" expanded="true" signature="2261:2477" ph="INSERT INTO renov_contract... " />
-            <marker date="1473354225922" expanded="true" signature="2615:2731" ph="UPDATE flexl... " />
-            <marker date="1473354225922" expanded="true" signature="2615:2739" ph="UPDATE flexl... " />
-            <marker date="1473354225922" expanded="true" signature="2770:2891" ph="UPDATE flexl... " />
-            <marker date="1473354225922" expanded="true" signature="3301:3361" ph="DELETE FROM " />
-            <marker date="1473354225922" expanded="true" signature="3301:3364" ph="DELETE FROM " />
-            <marker date="1473354225922" expanded="true" signature="3395:3519" ph="UPDATE flexl... " />
-            <marker date="1473354225922" expanded="true" signature="3550:3671" ph="UPDATE flexl... " />
-            <marker date="1473354225922" expanded="true" signature="3791:4138" ph="SELECT TIPO_... PER_VACACIONES" />
+            <marker date="1473450159356" expanded="true" signature="909:963" ph="select * fro... v_allTrabajadores" />
+            <marker date="1473450159356" expanded="true" signature="1104:1434" ph="SELECT FICHA... PER_REM_HIS" />
+            <marker date="1473450159356" expanded="true" signature="1104:1461" ph="SELECT FICHA... PER_REM_HIS" />
+            <marker date="1473450159356" expanded="true" signature="1565:1617" ph="select * fro... renov_contract" />
+            <marker date="1473450159356" expanded="true" signature="2253:2469" ph="INSERT INTO renov_contract... " />
+            <marker date="1473450159356" expanded="true" signature="2607:2723" ph="UPDATE flexl... " />
+            <marker date="1473450159356" expanded="true" signature="2607:2731" ph="UPDATE flexl... " />
+            <marker date="1473450159356" expanded="true" signature="2762:2883" ph="UPDATE flexl... " />
+            <marker date="1473450159356" expanded="true" signature="3293:3353" ph="DELETE FROM " />
+            <marker date="1473450159356" expanded="true" signature="3293:3356" ph="DELETE FROM " />
+            <marker date="1473450159356" expanded="true" signature="3387:3511" ph="UPDATE flexl... " />
+            <marker date="1473450159356" expanded="true" signature="3542:3663" ph="UPDATE flexl... " />
+            <marker date="1473450159356" expanded="true" signature="3774:4121" ph="SELECT TIPO_... PER_VACACIONES" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="96" column="40" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="40" />
+        <state relative-caret-position="-1353">
+          <caret line="212" column="0" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="93" column="25" selection-start-line="89" selection-start-column="18" selection-end-line="93" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layoutRH.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="94" column="16" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="39" />
+        <state relative-caret-position="170">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="53" />
           <folding>
             <element signature="e#6#95#0#PHP" expanded="true" />
           </folding>
@@ -905,20 +902,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewHistoryContract.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="492" column="47" selection-start-line="492" selection-start-column="47" selection-end-line="492" selection-end-column="47" />
+        <state relative-caret-position="302">
+          <caret line="149" column="80" selection-start-line="149" selection-start-column="80" selection-end-line="149" selection-end-column="80" />
           <folding>
-            <element signature="e#4811#4851#0#HTML" expanded="true" />
-            <element signature="e#7127#7167#0#HTML" expanded="true" />
-            <element signature="e#8972#8993#0#HTML" expanded="true" />
-            <element signature="e#9059#9099#0#HTML" expanded="true" />
-            <element signature="e#14610#15292#0#HTML" expanded="false" />
-            <element signature="e#16281#16442#0#HTML" expanded="false" />
-            <element signature="e#16494#19016#0#HTML" expanded="false" />
-            <element signature="e#19073#20543#0#HTML" expanded="false" />
-            <element signature="e#21443#21613#0#HTML" expanded="false" />
-            <element signature="e#21661#21832#0#HTML" expanded="false" />
-            <element signature="e#21890#22109#0#HTML" expanded="false" />
+            <element signature="e#4101#4127#0#HTML" expanded="true" />
+            <element signature="e#6860#6886#0#HTML" expanded="true" />
+            <element signature="e#9217#9243#0#HTML" expanded="true" />
+            <element signature="e#15087#15769#0#HTML" expanded="false" />
+            <element signature="e#16967#19489#0#HTML" expanded="false" />
+            <element signature="e#19545#21015#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

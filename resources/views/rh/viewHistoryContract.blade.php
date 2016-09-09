@@ -78,8 +78,8 @@
             <div class="row">
                 <div class="col-lg-6" >
                     <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
+                    <div class="box box-success" id="box_maestro">
+                        <div class="box-header" style="padding-left: 15px">
                             <h4>Renovación de Contratos</h4>
                         </div><!-- /.box-header -->
                         <div class="box-body ">
@@ -125,9 +125,10 @@
                 </div>
                 <div class="col-lg-6" >
                     <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
+                    <div class="box box-warning" id="box_maestro">
+                        <div class="box-header"  style="padding-left: 15px">
                             <h4>Contratos Asignados (FlexLine)</h4>
+                            <button class="btn btn-default" ng-click="calculeDiasAcumuladosVacaciones();calcCantidadDiasVacaciones();">Calcular</button>
                         </div><!-- /.box-header -->
                         <div class="box-body ">
                             <div class="row" style="padding: 15px" >
@@ -138,6 +139,8 @@
                                             <th>FICHA</th>
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Fin</th>
+                                            <th>D. Dados</th>
+                                            <th>Adeuda. a Hoy</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -147,6 +150,7 @@
                                             <td>@{{ item.f_inicio_format }}</td>
                                             <td>@{{ item.f_fin_format }}</td>
                                             <td>@{{ item.d_acumulados }}</td>
+                                            <td>@{{ item.d_asignados - item.d_acumulados }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -165,7 +169,7 @@
                 <div class="col-lg-6" >
                     <!-- Box (with bar chart) -->
                     <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
+                        <div class="box-header" style="padding-left: 15px">
                             <h4>Vacaciones </h4>
                         </div><!-- /.box-header -->
                         <div class="box-body ">
@@ -249,6 +253,9 @@
         /*----*/
 
 
+
+
+
         var app = angular.module("app", ['ui.bootstrap']);
         app.controller("PruebaController", function($scope,$http,$window) {
 
@@ -266,7 +273,9 @@
             getDataInit();
 
 
-            function getDataInit()
+
+
+             function getDataInit()
             {
 
                 var token = $('#_token').val();
@@ -281,7 +290,6 @@
                             $scope.personal.F_INICIO_FORMAT = ch_format_DateTime_DateDMY($scope.personal.FECHA_INICIO);
                             $scope.personal.F_TERMINO_FORMAT = ch_format_DateTime_DateDMY($scope.personal.FECHA_TERMINO);
 
-
                             }).error(function(data) {
                                 console.log('Error trabajador'+data);
                     });
@@ -295,6 +303,7 @@
                                 data[i].f_inicio_format = ch_format_YMD_DMY(data[i].fecha_inicio);
                                 data[i].f_fin_format = ch_format_YMD_DMY(data[i].fecha_fin);
                                 data[i].d_acumulados = 0;
+                                data[i].d_asignados = 0;
                             }
 
                             $scope.contratos = data;
@@ -307,9 +316,7 @@
                 getRenovacionesByFicha(ficha);
                 //traemos a las vacaciones
                 getVacaciones(ficha);
-
                 //luego calculamos sus dias de vacciones por cada contrato
-                calculeDiasAcumuladosVacaciones();
 
             }
 
@@ -338,6 +345,7 @@
                 $http.get('{{ URL::route('modRH') }}/api/getVacacionesByFicha/'+f)
                         .success(function(data){
 
+
                             for(var i = 0;i<data.length; i++){
 
                                 data[i].FEC_FINSOL_F = ch_format_YMD_DMY(data[i].FEC_FINSOL);
@@ -348,11 +356,6 @@
                             $scope.vacaciones = data;
 
                             //luego calculamos si en cada periodo de contratos cuantos dias de vacaciones an acumulado
-
-
-
-
-
                         }).error(function(data) {
                     console.log('Error contrato'+data);
                 });
@@ -439,7 +442,6 @@
 
             };
 
-
             $scope.eliminarContrato =function (item) {
 
                 var token = $('#_token').val();
@@ -488,29 +490,73 @@
 
             };
 
-            function calculeDiasAcumuladosVacaciones() {
+            $scope.calculeDiasAcumuladosVacaciones = function () {
 
-                console.log($scope.vacaciones);
+
+                //limpiamos los dias acumulados
+                for(var x=0;x<$scope.contratos.length;x++){
+                    $scope.contratos[x].d_acumulados = 0;
+                }
+
+                //luego asignamos en cada uno cuantas dias tiene acumulado por contrato
+
                 for (var i=0;i<$scope.vacaciones.length;i++){
 
                     //por cada una de las vacaciones verificamos si pertenece al rango de
                     for (var j=0;j<$scope.contratos.length;j++){
 
-                        var bandera = getStateRangeDates( $scope.vaciones[i].FEC_INISOL,$scope.vaciones[i].FEC_FINSOL,
+                        var bandera = getStateRangeDates( $scope.vacaciones[i].FEC_INISOL,$scope.vacaciones[i].FEC_FINSOL,
                                 $scope.contratos[j].fecha_inicio,$scope.contratos[j].fecha_fin);
 
-                        console.log(bandera);
+                        if(bandera==1){
 
-                        if(badera==1){
-
-                            $scope.contratos[j].d_acumulados += $scope.vaciones[i].d_transcurrido;
+                            $scope.contratos[j].d_acumulados += $scope.vacaciones[i].d_transcurrido;
                         }
 
                     }
 
                 }
 
-            }
+
+
+            };
+
+
+            //esta funcion sirve para ver cuatos dias de vacaciones tiene
+            $scope.calcCantidadDiasVacaciones = function () {
+
+
+                var fecha = moment().format('YYYY-M-D');
+
+                var bandera = getCantDiasBetweendates($scope.contratos[0].fecha_fin,fecha);
+                var dias;
+
+                if(bandera > 0){
+                    dias = getCantDiasBetweendates($scope.contratos[0].fecha_inicio,$scope.contratos[0].fecha_fin);
+                }else
+                    dias = getCantDiasBetweendates($scope.contratos[0].fecha_inicio,fecha);
+
+
+
+                    //EMPLEADO
+                    var tipo = $scope.personal.TIPO_TRABAJADOR;
+
+                    if(tipo=='EMPLEADO'){
+
+                        $scope.contratos[0].d_asignados = dias * 0.082;
+
+                        $scope.contratos[0].d_asignados =  Math.round($scope.contratos[0].d_asignados * 100) / 100
+
+
+                    }else{
+
+                        $scope.contratos[0].d_asignados = dias * 0.041;
+
+                        $scope.contratos[0].d_asignados =  Math.round($scope.contratos[0].d_asignados * 100) / 100
+
+                    }
+                
+            };
 
 
             /*funcion helper*/
@@ -582,6 +628,7 @@
                return dias;
 
             }
+
 
         });
     </script>
