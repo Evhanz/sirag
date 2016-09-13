@@ -7,6 +7,7 @@
  */
 
 namespace sirag\Repositories;
+use Carbon\Carbon;
 
 
 class PersonalRep
@@ -151,6 +152,28 @@ class PersonalRep
         $fecha = $fecha[2].$fecha[1].$fecha[0];
         return $fecha;
     }
+
+
+    public function getContratosPorVencer()
+    {
+
+        $now = Carbon::now();
+        $hoy = $now->format('d-m-Y');
+        $nowAdd = $now->addDay(5)->format('d-m-Y');
+
+
+        $query = "SELECT FICHA, EMPLEADO DNI, NOMBRE,
+         CONVERT(VARCHAR,FECHA_INICIO,103) AS FECHA_INICIO, 
+         CONVERT(VARCHAR,FECHA_TERMINO,103) AS FECHA_TERMINO 
+         FROM v_allTrabajadores where FECHA_TERMINO <= '$nowAdd'  AND FECHA_TERMINO >= '$hoy' ";
+
+        $contratos = \DB::select($query);
+
+        return $contratos;
+
+
+    }
+
 
 
 

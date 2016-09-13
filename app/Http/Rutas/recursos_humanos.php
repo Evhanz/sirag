@@ -20,3 +20,30 @@ Route::get('rh/api/getContratos/{ficha}',['as'=>'getContratos','uses'=>'Recursos
 Route::get('rh/api/getRenovacionesByFicha/{ficha}',['as'=>'getRenovacionesByFicha','uses'=>'RecursoshController@getRenovacionesByFicha']);
 Route::get('rh/api/getVacacionesByFicha/{ficha}',['as'=>'getVacacionesByFicha','uses'=>'RecursoshController@getVacacionesByFicha']);
 
+//solo pruebas
+Route::get('pruebas',function (){
+
+
+    $data['body'] = "prueba de contenido";
+
+
+    //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
+    \Mail::send('email', $data, function($message)
+    {
+        //remitente
+        $message->from('ehernandez@agrograce.com.pe', 'Sistema Sirag');
+
+        //asunto
+        $message->subject('Contratos por vencer');
+
+        //receptor
+        $message->to('eidelhs@gmail.com','Eidelman ');
+
+    });
+
+
+    echo 'si salio';
+
+});
+
+Route::get('pruebas/api',['as'=>'pruebaApi','uses'=>'RecursoshController@getContratosPorVencer']);

@@ -14,9 +14,18 @@ return [
     |
     */
 
+
+    /*
+     * esto es del mailgun
+     * ener en cuenta que se esta haciendo pruebas
+     * 'domain' => 'sandbox4e536a6b002645d6869ce2b5a790abc4.mailgun.org',
+        'secret' => env('MAILGUN_PASS'),
+     *
+     * */
+
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'sandbox4e536a6b002645d6869ce2b5a790abc4.mailgun.org',
+        'secret' => env('MAILGUN_PASS'),
     ],
 
     'mandrill' => [

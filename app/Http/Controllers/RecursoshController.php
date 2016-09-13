@@ -102,6 +102,36 @@ class RecursoshController extends Controller
 
     }
 
+    public function getContratosPorVencer()
+    {
+        $res = $this->personalRep->getContratosPorVencer();
+
+        //return \Response::Json($res);
+
+        $data['body'] = "prueba de contenido";
+
+        $res['contratos'] = $res;
+
+
+        //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
+        \Mail::send('email', $res, function($message)
+        {
+            //remitente
+            $message->from('ehernandez@agrograce.com.pe', 'Sistema Sirag');
+
+            //asunto
+            $message->subject('Contratos por vencer');
+
+            //receptor
+            $message->to('eidelhs@gmail.com','Eidelman ');
+
+        });
+
+
+        echo 'si salio';
+
+    }
+
 
 
 }

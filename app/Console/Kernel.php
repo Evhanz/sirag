@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\Inspire::class,
         Commands\d_desc_pro::class,
+        Commands\SendMailContract::class,
     ];
 
     /**
@@ -28,6 +29,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')
                  ->hourly();
         $schedule->command('divide:proveedor')
+            ->daily();
+        $schedule->command('alert:ContractDefeated')
             ->daily();
     }
 }

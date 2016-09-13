@@ -11,12 +11,11 @@ return [
     | sending of e-mail. You may specify which one you're using throughout
     | your application here. By default, Laravel is setup for SMTP mail.
     |
-    | Supported: "smtp", "mail", "sendmail", "mailgun", "mandrill", "log"
+    | Supported: "smtp", "mail", "sendmail", "mailgun", "mandrill", "ses", "log"
     |
     */
 
-    'driver' => 'smtp',
-    //'driver' => env('MAIL_DRIVER'),-- esto funciono con mailgun
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,8 +28,7 @@ return [
     |
     */
 
-    //'host' => 'smtp.mailgun.org', --> esto funciono con mailgun
-    'host' => 'agrograce.com.pe',
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,8 +41,7 @@ return [
     |
     */
 
-    //'port' => 587, --> esto funciono con mailgun
-    'port' => 25,
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -70,8 +67,7 @@ return [
     |
     */
 
-    //'encryption' => 'tls', -->esto funciono con mailgun
-    'encryption' => null,
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,8 +80,8 @@ return [
     |
     */
 
-    //'username' => null, --> funciono con mailgun
-    'username' => 'ehernandez@agrograce.com.pe',
+    'username' => env('MAIL_USERNAME'),
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Password
@@ -97,8 +93,7 @@ return [
     |
     */
 
-    //'password' => null,
-    'password' => '47085011',
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
@@ -124,6 +119,6 @@ return [
     |
     */
 
-    'pretend' => false,
+    'pretend' => env('MAIL_PRETEND', false),
 
 ];
