@@ -59,8 +59,8 @@ class SendMailContract extends Command
                 $message->subject('Contratos por vencer');
 
                 //receptor
-               // $message->to(['atejada@agrograce.com.pe','jmiranda@agrograce.com.pe','yjimenez@agrograce.com.pe']);
-                $message->to(['eidelhs@gmail.com','ehernandez@agrograce.com.pe']);
+                $message->to(['atejada@agrograce.com.pe','jmiranda@agrograce.com.pe','yjimenez@agrograce.com.pe']);
+                //$message->to(['eidelhs@gmail.com','ehernandez@agrograce.com.pe']);
 
             });
 
