@@ -1,0 +1,17 @@
+table.pvtTable thead tr th, table.pvtTable tbody tr th {
+    background-color: #2aabd2;
+    border: 1px solid #CDCDCD;
+    font-size: 6pt;
+    padding: 2px;
+    color: white;
+}
+
+table.pvtTable tbody tr td {
+    color: #3D3D3D;
+    padding: 5px;
+    background-color: #FFF;
+    border: 1px solid #CDCDCD;
+    vertical-align: top;
+    font-size: 6pt;
+    text-align: right;
+}

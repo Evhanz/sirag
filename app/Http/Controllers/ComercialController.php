@@ -154,9 +154,7 @@ class ComercialController extends Controller
         return \Response::Json($res);
 
     }
-
-
-
+    
 
     /*esto es para reportes en PDF*/
     public function getPDFProductProveedor($glosa,$subfamilia,$familia)
