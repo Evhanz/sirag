@@ -137,12 +137,6 @@
 
          });*/
 
-        $("body").on('change','#output',function () {
-                    alert('hola');
-
-                }
-
-        );
 
 
 
@@ -152,9 +146,16 @@
 
         function imprimir()  {
 
+            var fecha = $('input[name="daterange"]').val();
+
+            fecha = fecha.split('-');
+            var f_i = changeFormat(fecha[0]);
+            var f_f = changeFormat(fecha[1]);
+
             $(".pvtTable").printThis({
                 importCSS: true,
-                loadCSS: "{{ asset('css/table_export.css')}}"
+                loadCSS: "{{ asset('css/table_export.css')}}",
+                header: "<h2>Reporte de centro de costos del :"+f_i+" al" +f_f+"  </h2>"
             });
         }
 

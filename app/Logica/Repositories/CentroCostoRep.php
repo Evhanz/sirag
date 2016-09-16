@@ -19,7 +19,7 @@ class CentroCostoRep
         $f_i = $data['f_i'];
         $f_f = $data['f_f'];
 
-        $query = "select CT.CUENTA,CT.ALIAS_CUENTA,CT.DESCRIPCION,
+        $query = "select CT.ALIAS_CUENTA AS CUENTA,CT.DESCRIPCION,
                 (SUM(MV.DEBE_ORIGEN) - SUM(MV.HABER_ORIGEN)) AS SALDO, MV.AUX_VALOR1 AS 'CENTRO DE COSTO'
                 from flexline.CON_CTACON as CT inner join 
                 flexline.CON_MOVCOM as MV ON 
