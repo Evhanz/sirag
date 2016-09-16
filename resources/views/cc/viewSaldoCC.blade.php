@@ -44,6 +44,8 @@
                                                 <br>
                                                 <button href="" class="btn btn-default" onclick="imprimir()">
                                                     <i class="fa fa-print fa-lg"></i> Imprimir </button>
+
+
                                             </div>
 
                                         </div>
@@ -92,20 +94,9 @@
                             <script type="text/javascript" src="{{ asset('js/plugins/pivottable/export_renderers.js')}}"></script>
                             <script type="text/javascript" src="{{ asset('js/plugins/printThis/printThis.js')}}"></script>
 
-                            <script type="text/javascript">
-                                // When using the 'TSV Export' Renderer, you can
-                                // copy from this textarea straight into Excel.
 
 
-
-
-                                $(function(){
-
-
-                                });
-                            </script>
-
-                            <div id="output" style="margin: 30px;overflow: auto"></div>
+                            <div id="output" style="margin: 30px;overflow: auto" ></div>
 
 
 
@@ -132,6 +123,9 @@
     <script src="{{ asset('js/plugins/angular/angular-ui-bootstrap-0.3.0.min.js') }}"></script>
     <script>
 
+
+
+
         /*funciones de jquery*/
 
         $('input[name="daterange"]').daterangepicker({
@@ -143,7 +137,18 @@
 
          });*/
 
+        $("body").on('change','#output',function () {
+                    alert('hola');
+
+                }
+
+        );
+
+
+
         /*----*/
+
+
 
         function imprimir()  {
 
@@ -175,7 +180,9 @@
                         $("#output").pivotUI(mps, {
                             renderers: renderers,
                             cols: ["CENTRO DE COSTO"], rows: ["CUENTA","DESCRIPCION"],
-                            rendererName: "Table"
+                            rendererName: "Table",
+                            aggregatorName: "Sum",
+                            vals: ["SALDO"]
                         });
                     });
 
@@ -189,6 +196,37 @@
             fecha = fecha[0]+"-"+fecha[1]+"-"+fecha[2];
 
             return fecha;
+
+        }
+
+        function ver() {
+
+
+
+            $(".pvtTable tbody tr").each(function (index) {
+
+                var tx = '';
+                var bandera ;
+
+                console.log("Entro");
+
+                $(this).children("td").each(function (index2)
+                {
+                    bandera = parseFloat($(this).text());
+
+                    if(bandera<0){
+                        $(this).css("background-color", "#ff6666");
+
+                    }
+
+                });
+
+
+
+            });
+
+
+
 
         }
 
