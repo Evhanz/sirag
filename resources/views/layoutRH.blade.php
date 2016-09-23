@@ -89,6 +89,9 @@
 
                     <ul class="treeview-menu">
                         <li><a href="{{ URL::route('viewPersonal') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Personal</a></li>
+                        <li><a href="{{ URL::route('viewTelecredito') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Telecrédito</a></li>
+
+
 
                     </ul>
                 </li><!--Personal-->

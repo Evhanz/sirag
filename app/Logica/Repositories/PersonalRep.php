@@ -175,6 +175,42 @@ class PersonalRep
     }
 
 
+    public function getTelecredito($data){
+
+        $periodo = $data['periodo'];
+        $nombre = $data['nombre'];
+        $t_pago = $data['t_pago'];
+
+
+        if($t_pago == 'q'){
+            $sq = "QUINCENA AS MONTO";
+            $gq = "QUINCENA";
+        }else{
+            $sq = "FIN_MES AS MONTO";
+            $gq = "FIN_MES";
+        }
+
+
+
+        $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+                    DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
+                    VALIDACION_IDC,TIPO_MONEDA,$sq
+                    FROM v_telecredito
+                    WHERE PERIODO = '$periodo'
+                    AND Nombre like '%$nombre%'
+                    AND $gq >0
+                    GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+                    DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
+                    VALIDACION_IDC,TIPO_MONEDA,$gq";
+
+        $telecredito = \DB::select($query);
+
+
+        return $telecredito;
+
+    }
+
+
 
 
 }
