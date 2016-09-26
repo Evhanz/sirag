@@ -237,7 +237,12 @@ class RecursoshController extends Controller
             //8.- e coloca 001 y al finl S
             $row .='0001';
             $m = number_format($i->MONTO, 2, ".", "");
-            $row  =$row.$this->getceros(strlen($m),17).number_format($i->MONTO, 2, ".", "").'S'."\r\n";
+
+            if($x==(count($res)-1)){
+                $row  =$row.$this->getceros(strlen($m),17).number_format($i->MONTO, 2, ".", "").'S';
+            }else{
+                $row  =$row.$this->getceros(strlen($m),17).number_format($i->MONTO, 2, ".", "").'S'."\r\n";
+            }
 
             $body = $row."\r";
 
