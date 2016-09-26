@@ -76,14 +76,23 @@
                                                     <label for="">Referencia de Planilla</label><br>
                                                     <input class="form-control" name="ref_planilla" type="text" id="ref_planilla" required>
                                                 </div>
-
-
                                                 <div class="form-group">
                                                     <label for=""></label><br>
                                                     <button class="btn btn-default" id="btnBuscarDoc">
                                                         <i class="fa fa-download fa-lg"></i>
                                                     </button>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for=""> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><br>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for=""> Monto Total</label><br>
+                                                    <h2>@{{ total_abonado }}</h2>
+                                                </div>
+
+
+
 
                                             </form>
 
@@ -307,6 +316,17 @@
                             .success(function(data){
 
                                 $scope.Documentos = data;
+
+                                var suma = 0;
+                                angular.forEach($scope.Documentos,function (item) {
+                                    suma += parseFloat( item.MONTO);
+                                });
+
+                                $scope.total_abonado = suma;
+
+
+                                //total_abonado
+
                                 console.log(data);
 
                                 $('#btnBuscarDoc').attr("disabled", false);

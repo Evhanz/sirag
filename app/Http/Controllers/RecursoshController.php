@@ -202,7 +202,7 @@ class RecursoshController extends Controller
         $ceros = $this->getceros(9,17);
         $cabecera = $cabecera.$ceros.$sumaMonto;
         //9.-se agrega la referencia de planilla
-        $cabecera = $cabecera.$data['ref_planilla'].'              ';
+        $cabecera = $cabecera.$data['ref_planilla'].$this->getEspacioBlanco(strlen($data['ref_planilla']),40);
         //10.-sumamos todas las cuentas de abono
         $suma_cta_abono = $this->getSumaCuentaAbonados($res,$c_cargo);
         $suma_cta_abono = $this->getceros(strlen($suma_cta_abono),15).$suma_cta_abono;
@@ -213,37 +213,47 @@ class RecursoshController extends Controller
         //damos inicio al body
         $body = "";
         $row = "";
+        $error = "";
 
-        foreach ($res as $i){
 
+        for ($x=0;$x< count($res);$x++){
+
+            $i = $res[$x];
 
             //1.- primero se coloca valor fijo 2
-            $row .='2';
+            $row = $row.'2';
             //2.- se asigna valor fijo A
-            $row .= 'A';
+            $row = $row.'A';
             //3.- se agrega la cuenta
-            $row .= $i->CUENTAS_ABONO.'      ';
-            //4.- e coloca el valor fijo 1 seguido del DNI
+            $row = $row.$i->CUENTAS_ABONO.$this->getEspacioBlanco(strlen($i->CUENTAS_ABONO),20);
+            //4.- e coloca el valor fijo tipo de DNI(1,3,5) seguido del DNI
+            $row = $row.$i->TIPO_DOCUMENTO.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),15);
+            //5.- se coloca el nombre 75 max
+            $row = $row.$i->Nombre.$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),75);
+            //6.- referencia Beneficiario
+            $row = $row.'Referencia Beneficiario '.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),16);
+            //7.- referencia del empleado
+            $row =$row.'Ref Emp '.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),12);
+            //8.- e coloca 001 y al finl S
+            $row .='0001';
+            $m = number_format($i->MONTO, 2, ".", "");
+            $row  =$row.$this->getceros(strlen($m),17).number_format($i->MONTO, 2, ".", "").'S'."\r\n";
 
-
+            $body = $row."\r";
 
         }
 
 
+        $f['cabecera'] = $cabecera."\r\n";
+        $f['body'] = $body;
 
+        $file = fopen(base_path()."/storage/logs/telecredito.txt", "w");
+        fputs($file,$f['cabecera'] );
+        fputs($file,$f['body'] );
+        fclose($file);
 
+        return response()->download(base_path()."/storage/logs/telecredito.txt", "telecredito.txt");
 
-
-
-
-
-
-
-
-        $fileText = "$cabecera - This is some text\r\nThis test belongs to my file download\nBooyah";
-        $myName = "ThisDownload.txt";
-        $headers = ['Content-type'=>'text/plain', 'test'=>'YoYo', 'Content-Disposition'=>sprintf('attachment; filename="%s"', $myName),'X-BooYAH'=>'WorkyWorky','Content-Length'=>sizeof($fileText)];
-        return \Response::make($fileText, 200, $headers);
 
     }
 
@@ -298,5 +308,15 @@ class RecursoshController extends Controller
 
     }
 
+    public function getEspacioBlanco($cant,$bandera){
+
+        $espacios = '';
+
+        for ($i=0;$i<$bandera-$cant;$i++){
+            $espacios.=' ';
+        }
+
+        return $espacios;
+    }
 
 }

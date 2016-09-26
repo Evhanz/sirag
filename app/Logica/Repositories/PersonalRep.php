@@ -199,6 +199,7 @@ class PersonalRep
                     WHERE PERIODO = '$periodo'
                     AND Nombre like '%$nombre%'
                     AND $gq >0
+                    AND LEN(CUENTAS_ABONO) > 0
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$gq";
