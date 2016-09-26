@@ -88,7 +88,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for=""> Monto Total</label><br>
-                                                    <h2>@{{ total_abonado }}</h2>
+                                                    <h2>@{{ total_abonado | number:2 }}</h2>
                                                 </div>
 
 
