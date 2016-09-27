@@ -23,6 +23,9 @@ Route::get('rh/api/getVacacionesByFicha/{ficha}',['as'=>'getVacacionesByFicha','
 Route::post('rh/api/getTelecredito',['as'=>'getTelecredito','uses'=>'RecursoshController@getTelecredito']);
 
 
+//para descargar archivos o visualizar fotos
+Route::get('archivo/getTeecredito',['as'=>'getTxtTelecredito','uses'=>'RecursoshController@getTxtTelecredito']);
+
 
 
 //solo pruebas

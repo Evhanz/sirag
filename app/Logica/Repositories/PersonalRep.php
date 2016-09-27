@@ -177,10 +177,16 @@ class PersonalRep
 
     public function getTelecredito($data){
 
+        if(!isset($data['nombre'])){
+            $data['nombre'] = '';
+        }
+
         $periodo = $data['periodo'];
         $nombre = $data['nombre'];
         $t_pago = $data['t_pago'];
+        $sq1="";
 
+        $error="";
 
         if($t_pago == 'q'){
             $sq = "QUINCENA AS MONTO";
@@ -188,6 +194,27 @@ class PersonalRep
         }else{
             $sq = "FIN_MES AS MONTO";
             $gq = "FIN_MES";
+        }
+        //aca para los subquerys 1 por que es para
+
+        try{
+        if (isset($data['data_include'])){
+
+            $sq1 = "AND ( ";
+
+            for ($i = 0;$i<count($data['data_include']);$i++){
+                if($i==0){
+                    $sq1 .= " DNI = '".$data['data_include'][$i]."'";
+                }else{
+                    $sq1 .= " OR DNI = '".$data['data_include'][$i]."'";
+                }
+            }
+            $sq1 .= " ) ";
+
+
+        }
+        }catch (\Exception $e){
+            $error = $e;
         }
 
 
@@ -198,13 +225,21 @@ class PersonalRep
                     FROM v_telecredito
                     WHERE PERIODO = '$periodo'
                     AND Nombre like '%$nombre%'
-                    AND $gq >0
-                    AND LEN(CUENTAS_ABONO) > 0
+                    AND $gq >0  $sq1
+                    --AND LEN(CUENTAS_ABONO) > 0 
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$gq";
 
         $telecredito = \DB::select($query);
+
+
+        $i = 0;
+
+        foreach ($telecredito as $item){
+            $item->correlativo = $i;
+            $i++;
+        }
 
 
         return $telecredito;

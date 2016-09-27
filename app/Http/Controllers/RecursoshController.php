@@ -164,6 +164,8 @@ class RecursoshController extends Controller
 
         $res = $this->personalRep->getTelecredito($data);
 
+
+
         $cabecera = '';
 
 
@@ -252,15 +254,31 @@ class RecursoshController extends Controller
         $f['cabecera'] = $cabecera."\r\n";
         $f['body'] = $body;
 
+        $url =base_path()."/storage/logs/telecredito.txt";
+
         $file = fopen(base_path()."/storage/logs/telecredito.txt", "w");
         fputs($file,$f['cabecera'] );
         fputs($file,$f['body'] );
         fclose($file);
 
-        return response()->download(base_path()."/storage/logs/telecredito.txt", "telecredito.txt");
+        //return response()->download(base_path()."/storage/logs/telecredito.txt", "telecredito.txt");
 
+        return \Response::json(\URL::route('getTxtTelecredito'));
 
     }
+
+    public function getTxtTelecredito(){
+        return response()->download(base_path()."/storage/logs/telecredito.txt", "telecredito.txt");
+    }
+
+
+
+
+
+
+
+
+
 
     /*funciiones helpers */
     public function getSumaAbonados($data){

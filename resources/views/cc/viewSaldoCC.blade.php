@@ -98,13 +98,7 @@
 
                             <div id="output" style="margin: 30px;overflow: auto" ></div>
 
-
-
-
                         </div><!-- /.box-body -->
-
-
-
                     </div><!-- /.box -->
 
                 </div>

@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
 
@@ -19,12 +21,10 @@
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
                                         <div class="row">
-                                            <form class="form-inline" style="padding: 15px" method="post" action="{{ URL::route('txt') }}">
+                                            <form id="frmFiltro" class="form-inline" style="padding: 15px" method="post" action="{{ URL::route('txt') }}">
                                                 <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
-                                                <div class="form-group">
-                                                    <label for="" >Nombre</label><br>
-                                                    <input name="nombre" type="text" class="form-control" id="filNombre">
-                                                </div>
+                                                <input type="hidden" name="data_include" id="data_include" required>
+
                                                 <div class="form-group">
                                                     <label for="" >Año</label><br>
                                                     <select name="filAnio" class="form-control" id="filAnio" required>
@@ -88,12 +88,20 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for=""> Monto Total</label><br>
-                                                    <h2>@{{ total_abonado | number:2 }}</h2>
+                                                    <h4>@{{ total_abonado | number:2 }}</h4>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label for=""> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label><br>
 
+                                                </div>
 
-
+                                                <div class="form-group">
+                                                    <label for="">Cantidad de Errores</label><br>
+                                                   <label for="" class="label label-danger">
+                                                            @{{  cant_error }}
+                                                        </label>
+                                                </div>
                                             </form>
 
                                         </div>
@@ -155,10 +163,34 @@
 
 
                             <div class="row">
-                                <div class=" col-lg-12 form-inline">
-
-
+                                <div class=" col-lg-2">
+                                    <label for="">Seleccionar a :</label>  <br>
+                                    <select class="form-control" ng-model="a" ng-change="allSelect()" >
+                                        <option value="1">Todos</option>
+                                        <option value="0">Nadie</option>
+                                    </select>
                                 </div>
+                                <div class="col-lg-4">
+                                    <label for="" >Nombre</label><br>
+                                    <input name="nombre" type="text" class="form-control" id="nombre" ng-model="filtro.Nombre">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label for="">Filtrar por  :</label>  <br>
+                                    <select class="form-control" ng-model="filtro.habil"  >
+                                        <option value="">-------</option>
+                                        <option value="1">Habil</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label for="">Filtrar por error :</label>  <br>
+                                    <select class="form-control" ng-model="filtro.e"  >
+                                        <option value="">-------</option>
+                                        <option value="error">Si</option>
+
+                                    </select>
+                                </div>
+
                             </div>
 
 
@@ -183,13 +215,22 @@
                                         </tr>
                                         </thead>
                                         <tbody >
-                                        <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ $index }}">
-                                            <td>@{{ $index }}</td>
+                                        <tr  ng-repeat=" item in Documentos  | filter:filtro  " id="tr_Doc_@{{ $index }}" data-style="@{{ item.e }}">
+                                            <td>
+                                                <button ng-show="item.habil == 0" class="btn btn-danger" ng-click="changeHabil(item.correlativo)"
+                                                        style="padding: 3px;">
+                                                    <i class="fa fa-check-circle fa-1x" aria-hidden="true"></i>
+                                                </button>
+                                                <button ng-show="item.habil == 1" class="btn btn-success" ng-click="changeHabil(item.correlativo)"
+                                                        style="padding: 3px;">
+                                                    <i class="fa fa-check-circle fa-1x" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
                                             <td>@{{ item.TIPO_REGISTRO }}</td>
                                             <td>@{{ item.TIPO_CUENTA_ABONO }}</td>
-                                            <td>@{{ item.CUENTAS_ABONO }}</td>
+                                            <td data-style="@{{ item.e_cuenta }}">@{{ item.CUENTAS_ABONO }}</td>
                                             <td>@{{ item.TIPO_DOCUMENTO }}</td>
-                                            <td>@{{ item.DNI }}</td>
+                                            <td data-style="@{{ item.e_dni }}">@{{ item.DNI }}</td>
                                             <td>@{{ item.Nombre }}</td>
                                             <td>@{{ item.TIPO_MONEDA }}</td>
                                             <td>@{{ item.MONTO }}</td>
@@ -215,63 +256,28 @@
 
 
 
-        <!-- modal modUbigeo-->
-        <div class="modal fade" id="modUbigeo" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                    </div>
-                    <div class="modal-body">
-
-                        <h3>Dirección</h3>
-                        <p>@{{ ubigeo.DIRECCION }}</p>
-                        <h3>Ubigeo</h3>
-                        <p>@{{ ubigeo.PAIS }} - @{{ ubigeo.DEPARTAMENTO }} - @{{ ubigeo.PROVINCIA }} -@{{ ubigeo.DISTRITO }}</p>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--./ modal Detail-->
 
 
 
     </div>
 
-
-    <!-- Daterangepicker css -->
-    <link rel="stylesheet" href="{{asset('css/daterangepicker/daterangepicker-bs3.css')}}">
-    <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
-
-    <script src="{{ asset('js/plugins/angular/angular-ui-bootstrap-0.3.0.min.js') }}"></script>
     <script>
 
-        /*funciones de jquery*/
-
-        $('input[name="daterange"]').daterangepicker({
-            format : "DD/MM/YYYY"
-        });
-        $('[data-toggle="tooltip"]').tooltip();
-        /*
-         $(document).ready(function(){
-
-         });*/
-
-        /*----*/
 
 
-        var app = angular.module("app", ['ui.bootstrap']);
+
+        var app = angular.module("app", []);
         app.controller("PruebaController", function($scope,$http,$window) {
 
-            $scope.s = "a";
+
             //Declaraciones
 
 
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
+            $scope.a="";
+            $scope.cant_error = 0;
 
             var ruta = '';
 
@@ -289,6 +295,8 @@
 
             $scope.getDataAll = function()
             {
+
+                $scope.cant_error = 0;
 
                 var token = $('#_token').val();
 
@@ -319,15 +327,33 @@
 
                                 var suma = 0;
                                 angular.forEach($scope.Documentos,function (item) {
+
                                     suma += parseFloat( item.MONTO);
+                                    item.habil = false;
+
+                                    var bandera = reviewError(item);
+
+                                    if(bandera.res==0){
+                                        item.e="";
+                                        item.e_dni="";
+                                        item.e_cuenta="";
+                                    }else {
+                                        item.e = "error";
+                                        if(bandera.dni == 1)
+                                        item.e_dni="error";
+                                        if(bandera.cuenta == 1)
+                                        item.e_cuenta="error";
+                                        $scope.cant_error ++;
+
+                                    }
                                 });
 
                                 $scope.total_abonado = suma;
 
 
-                                //total_abonado
 
-                                console.log(data);
+
+                                //total_abonado
 
                                 $('#btnBuscarDoc').attr("disabled", false);
 
@@ -374,6 +400,130 @@
 
             };
 
+            $scope.allSelect = function () {
+
+                angular.forEach($scope.Documentos,function (item,key) {
+
+                    $scope.Documentos[key].habil = $scope.a;
+                });
+                /*
+                if($scope.a==1){
+                    //si es que es uno entonces llenamos todos los datos para el hidden y poder filtrar
+                    fillHidData();
+                }else{
+                    $("#data_include").val();
+                }
+                */
+                getAbonado();
+            };
+
+            $scope.changeHabil = function (index) {
+
+
+                if($scope.Documentos[index].habil == 0){
+                    $scope.Documentos[index].habil = 1;
+                }else {
+                    $scope.Documentos[index].habil = 0;
+                }
+
+                //cambio el estado
+                getAbonado();
+            };
+            
+            function fillHidData() {
+
+                var valores ="";
+                $("#data_include").val();
+
+                angular.forEach($scope.Documentos,function (item,key) {
+
+                    if($scope.Documentos.length == (key+1)){
+                        valores += item.DNI;
+
+                    }else{
+                        valores += item.DNI+',';
+                    }
+
+
+                });
+
+                $("#data_include").val(valores);
+            }
+
+            function getAbonado() {
+
+                $scope.total_abonado = 0;
+                var suma = 0;
+
+                angular.forEach($scope.Documentos,function (item,key) {
+
+                    if(item.habil == 1){
+                        suma += parseFloat(item.MONTO);
+                    }
+
+
+                });
+
+
+                $scope.total_abonado = suma;
+
+            }
+
+
+            $("#frmFiltro").submit(function (e) {
+
+                e.preventDefault();
+                
+                var data_include = getHabilHaber();
+
+                if(data_include.length >0){
+
+                    $.ajax({
+                        url: "{{ URL::route('txt') }}",
+                        method: "POST",
+                        data: {
+                            _token  : $('#_token').val(),
+                            filAnio : $("#filAnio").val(),
+                            filMes  : $("#filMes").val(),
+                            t_pago  : $("#f_tipo_pago").val(),
+                            nombre  : '',
+                            ref_planilla : $("#ref_planilla").val(),
+                            data_include: data_include
+                        },
+                        success: function(res) {
+                            window.location = res;
+                            //console.log(res);
+                        }
+                    });
+
+                }else{
+                    alert("Tiene que elegir alguno");
+                }
+
+
+            });
+            
+            
+            function getHabilHaber() {
+
+                var filters = [];
+
+                angular.forEach($scope.Documentos,function (item,key) {
+
+                  if(item.habil == 1){
+                      filters.push(item.DNI);
+                  }
+
+                });
+
+                return filters;
+
+            }
+
+
+
+
+
 
 
 
@@ -416,12 +566,50 @@
                 fecha = fecha[2]+"-"+fecha[0]+"-"+fecha[1];
 
                 return fecha;
-
             }
 
 
+            function reviewError(item) {
+
+                var bandera ={
+                    res:0,
+                    dni:0,
+                    cuenta:0
+                };
+
+                //validamos su dni
+
+                if(item.DNI.length != 8){
+                    bandera.res = 1;
+                    bandera.dni = 1;
+                }
+
+                //validamos cuenta de abono
+
+                if(item.CUENTAS_ABONO.length != 14){
+                    bandera.res = 1;
+                    bandera.cuenta =1 ;
+                }
+
+                return bandera;
+
+            }
+
         });
     </script>
+
+    <style>
+        tr[data-style|="error"] { /* data-years attribute starts with 1900 as the only value or first in a dash-separated list */
+            background-color: #ff8c6a;
+            color: white;
+        }
+        td[data-style|="error"] { /* data-years attribute starts with 1900 as the only value or first in a dash-separated list */
+
+            color: yellow;
+        }
+
+
+    </style>
 
 
 @stop
