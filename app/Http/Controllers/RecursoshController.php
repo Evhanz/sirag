@@ -201,12 +201,13 @@ class RecursoshController extends Controller
         $cabecera = $cabecera."$c_cargo       ";
         //8.- sumamos la cantidad abonada y llenamos hasta tenener
         $sumaMonto = str_replace(',','.',number_format($this->getSumaAbonados($res),2,',','')) ;
-        $ceros = $this->getceros(9,17);
+        $ceros = $this->getceros(strlen($sumaMonto),17);
         $cabecera = $cabecera.$ceros.$sumaMonto;
         //9.-se agrega la referencia de planilla
         $cabecera = $cabecera.$data['ref_planilla'].$this->getEspacioBlanco(strlen($data['ref_planilla']),40);
         //10.-sumamos todas las cuentas de abono
         $suma_cta_abono = $this->getSumaCuentaAbonados($res,$c_cargo);
+        $suma_cta_abono .= $this->getSumaDigitoControl($res,$c_cargo);
         $suma_cta_abono = $this->getceros(strlen($suma_cta_abono),15).$suma_cta_abono;
         $cabecera = $cabecera.$suma_cta_abono;
 
@@ -321,14 +322,27 @@ class RecursoshController extends Controller
 
         foreach ($data as $i){
 
-            $suma += floatval(substr($i->CUENTAS_ABONO, 3, 8)) ;
+            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 3, 8)) ;
         }
 
         //sumamos primero las cuentas de abono
-        $suma = $suma + floatval(substr($c_cargo, 3, 8));
+        $suma = $suma + floatval(substr($c_cargo, 3, 7));
 
         return $suma;
+    }
 
+
+    public function getSumaDigitoControl($data,$c_cargo){
+        $suma = 0;
+        foreach ($data as $i){
+
+            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 13, 2)) ;
+        }
+
+        //sumamos primero las cuentas de abono
+        $suma = $suma + floatval(substr($c_cargo, 12, 2));
+
+        return $suma;
     }
 
     public function getEspacioBlanco($cant,$bandera){
