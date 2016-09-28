@@ -229,7 +229,7 @@ class PersonalRep
                     --AND LEN(CUENTAS_ABONO) > 0 
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
-                    VALIDACION_IDC,TIPO_MONEDA,$gq";
+                    VALIDACION_IDC,TIPO_MONEDA,$gq     order by Nombre";
 
         $telecredito = \DB::select($query);
 

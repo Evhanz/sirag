@@ -233,7 +233,7 @@
                                             <td data-style="@{{ item.e_dni }}">@{{ item.DNI }}</td>
                                             <td>@{{ item.Nombre }}</td>
                                             <td>@{{ item.TIPO_MONEDA }}</td>
-                                            <td>@{{ item.MONTO }}</td>
+                                            <td>@{{ item.MONTO | number:2 }}</td>
                                             <td>@{{ item.VALIDACION_IDC }}</td>
                                         </tr>
 
@@ -475,8 +475,10 @@
                 e.preventDefault();
                 
                 var data_include = getHabilHaber();
+                var data_with_error = getErrorInHabil();
 
-                if(data_include.length >0){
+
+                if(data_include.length >0 && data_with_error.length <1){
 
                     $.ajax({
                         url: "{{ URL::route('txt') }}",
@@ -497,7 +499,10 @@
                     });
 
                 }else{
-                    alert("Tiene que elegir alguno");
+                    if(data_include.length <=0)
+                        alert("Tiene que elegir alguno para descargar el txt");
+                    if(data_with_error.length >0)
+                        alert("Existe empleados con errores");
                 }
 
 
@@ -513,6 +518,22 @@
                   if(item.habil == 1){
                       filters.push(item.DNI);
                   }
+
+                });
+
+                return filters;
+
+            }
+
+            function getErrorInHabil() {
+
+                var filters = [];
+
+                angular.forEach($scope.Documentos,function (item,key) {
+
+                    if(item.habil == 1 && item.e == "error"){
+                        filters.push(item.DNI);
+                    }
 
                 });
 
@@ -579,7 +600,8 @@
 
                 //validamos su dni
 
-                if(item.DNI.length != 8){
+                if( (item.TIPO_DOCUMENTO == 1 && item.DNI.length != 8) ||
+                        (item.TIPO_DOCUMENTO == 3 && item.DNI.length != 9)){
                     bandera.res = 1;
                     bandera.dni = 1;
                 }
