@@ -273,6 +273,14 @@ class RecursoshController extends Controller
     }
 
 
+    public function getCargos(){
+
+        $res = $this->personalRep->getCargos();
+
+        return \Response::json($res);
+    }
+
+
 
 
 

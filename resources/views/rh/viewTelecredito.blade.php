@@ -4,6 +4,8 @@
 
 
 
+
+
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
 
@@ -163,14 +165,26 @@
 
 
                             <div class="row">
+                                <div class="col-lg-3">
+                                    <label for="cargo">Filtrar por Cargo </label>  <br>
+                                    <select  multiple class="form-control" id="select" ng-model="filcargo" >
+                                        <option value="">------ Todos ------</option>
+                                        <option ng-repeat="dato in cargos" value="@{{dato.CODIGO}}">
+                                            @{{dato.CODIGO}}
+                                        </option>
+                                    </select> <br>
+
+                                </div>
+
+                                <!--
                                 <div class=" col-lg-2">
                                     <label for="">Seleccionar a :</label>  <br>
                                     <select class="form-control" ng-model="a" ng-change="allSelect()" >
                                         <option value="1">Todos</option>
                                         <option value="0">Nadie</option>
                                     </select>
-                                </div>
-                                <div class="col-lg-4">
+                                </div>-->
+                                <div class="col-lg-3">
                                     <label for="" >Nombre</label><br>
                                     <input name="nombre" type="text" class="form-control" id="nombre" ng-model="filtro.Nombre">
                                 </div>
@@ -190,10 +204,7 @@
 
                                     </select>
                                 </div>
-
                             </div>
-
-
 
 
                             <div class="row" style="padding: 15px">
@@ -201,13 +212,18 @@
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
-                                            <th>I</th>
+                                            <th style="text-align: center"> I
+                                                <span class="label label-warning" style="cursor: pointer" ng-click="changeAllFilter()">
+                                                    <i class="fa fa-circle-o fa-1x"></i>
+                                                </span>
+                                            </th>
                                             <th>T. Registro</th>
                                             <th>T. Cuenta Abono</th>
                                             <th>Cuenta de Abono</th>
                                             <th>T. Doc. de Identidad</th>
                                             <th>DNI</th>
                                             <th>Nombre</th>
+                                            <th>CARGO</th>
                                             <th>T. Moneda Abono</th>
                                             <th>Monto Abono</th>
                                             <th>Validación IDC del proveedor vs Cuenta</th>
@@ -215,7 +231,7 @@
                                         </tr>
                                         </thead>
                                         <tbody >
-                                        <tr  ng-repeat=" item in Documentos  | filter:filtro  " id="tr_Doc_@{{ $index }}" data-style="@{{ item.e }}">
+                                        <tr  ng-repeat=" item in (filteredItems = ( Documentos  | filter:filterCargo | filter:filtro ))  " id="tr_Doc_@{{ $index }}" data-style="@{{ item.e }}">
                                             <td>
                                                 <button ng-show="item.habil == 0" class="btn btn-danger" ng-click="changeHabil(item.correlativo)"
                                                         style="padding: 3px;">
@@ -232,6 +248,7 @@
                                             <td>@{{ item.TIPO_DOCUMENTO }}</td>
                                             <td data-style="@{{ item.e_dni }}">@{{ item.DNI }}</td>
                                             <td>@{{ item.Nombre }}</td>
+                                            <td>@{{ item.CARGO }}</td>
                                             <td>@{{ item.TIPO_MONEDA }}</td>
                                             <td>@{{ item.MONTO | number:2 }}</td>
                                             <td>@{{ item.VALIDACION_IDC }}</td>
@@ -243,32 +260,22 @@
 
                             </div><!-- /.row - inside box -->
                         </div><!-- /.box-body -->
-
-
-
                     </div><!-- /.box -->
 
                 </div>
-
             </div>
-
         </div>
-
-
-
-
-
-
-
     </div>
+
+    <script src="{{asset('js/plugins/angular/angular-bootstrap-multiselect.min.js')}}"></script>
 
     <script>
 
 
 
 
-        var app = angular.module("app", []);
-        app.controller("PruebaController", function($scope,$http,$window) {
+        var app = angular.module("app", ['btorfs.multiselect']);
+        app.controller("PruebaController", function($scope,$http,$q, $timeout) {
 
 
             //Declaraciones
@@ -276,12 +283,19 @@
 
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
+            $scope.cargos = [{}];
             $scope.a="";
             $scope.cant_error = 0;
+            $scope.filcargo=[];
 
             var ruta = '';
 
+            $scope.Options = [ ];
+
+
             //funcioines que inician la pagina
+
+            getCargos();
 
 
 
@@ -352,7 +366,7 @@
 
 
 
-
+                                getCargos();
                                 //total_abonado
 
                                 $('#btnBuscarDoc').attr("disabled", false);
@@ -374,6 +388,26 @@
 
             };
 
+
+            $scope.fnOptions = function () {
+                return $q(function (resolve, reject) {
+                    $timeout(function () {
+                        resolve([$scope.searchFilter + '1', $scope.searchFilter + '2'])
+                    }, 1000);
+                });
+            };
+
+            function getCargos() {
+
+                $http.get('{{ URL::route('getCargos') }}')
+                        .success(function(data){
+
+                            $scope.cargos = data;
+                        }).error(function(data) {
+                    console.log('Error cargos'+data);
+                });
+
+            }
 
             $scope.getTxt = function () {
 
@@ -469,7 +503,6 @@
 
             }
 
-
             $("#frmFiltro").submit(function (e) {
 
                 e.preventDefault();
@@ -507,8 +540,7 @@
 
 
             });
-            
-            
+
             function getHabilHaber() {
 
                 var filters = [];
@@ -541,10 +573,30 @@
 
             }
 
+            //-- para los filtros
 
 
+            $scope.filterCargo = function(i) {
 
+                if ($scope.filcargo.length > 0)
 
+                    if ($scope.filcargo[0] != "")
+                        return ($scope.filcargo.indexOf(i.CARGO) != -1);
+                    else
+                        return true;
+                else
+                    return true;
+
+            };
+
+            $scope.changeAllFilter = function () {
+
+                angular.forEach($scope.filteredItems,function (item,key) {
+
+                    $scope.changeHabil(item.correlativo);
+                });
+
+            };
 
 
 
@@ -617,6 +669,8 @@
 
             }
 
+
+
         });
     </script>
 
@@ -629,7 +683,6 @@
 
             color: yellow;
         }
-
 
     </style>
 

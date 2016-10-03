@@ -221,7 +221,7 @@ class PersonalRep
 
         $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
-                    VALIDACION_IDC,TIPO_MONEDA,$sq
+                    VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO
                     FROM v_telecredito
                     WHERE PERIODO = '$periodo'
                     AND Nombre like '%$nombre%'
@@ -229,7 +229,7 @@ class PersonalRep
                     --AND LEN(CUENTAS_ABONO) > 0 
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
-                    VALIDACION_IDC,TIPO_MONEDA,$gq     order by Nombre";
+                    VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO     order by Nombre";
 
         $telecredito = \DB::select($query);
 
@@ -244,6 +244,19 @@ class PersonalRep
 
         return $telecredito;
 
+    }
+
+    public function getCargos ()
+    {
+
+        $query = "select CARGO AS CODIGO from 
+                    v_telecredito
+                    GROUP BY CARGO
+                    ";
+
+        $res = \DB::select($query);
+
+        return $res;
     }
 
 
