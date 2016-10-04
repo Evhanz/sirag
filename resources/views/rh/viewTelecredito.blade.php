@@ -178,7 +178,7 @@
 
                                 <div class="col-lg-2">
                                     <label for="cargo">Filtrar por Departamento </label>  <br>
-                                    <select class="form-control"  ng-model="filtro.DEPARTAMENTO" >
+                                    <select class="form-control"  ng-model="fildepartamento" >
                                         <option value="">------ Todos ------</option>
                                         <option ng-repeat="dato in departamentos" value="@{{dato.CODIGO}}">
                                             @{{dato.ALIAS}}
@@ -241,7 +241,7 @@
                                         </tr>
                                         </thead>
                                         <tbody >
-                                        <tr  ng-repeat=" item in (filteredItems = ( Documentos  | filter:filterCargo | filter:filtro ))  " id="tr_Doc_@{{ $index }}" data-style="@{{ item.e }}">
+                                        <tr  ng-repeat=" item in (filteredItems = ( Documentos  | filter:filterCargo | filter:filterDepartamento | filter:filtro ))  " id="tr_Doc_@{{ $index }}" data-style="@{{ item.e }}">
                                             <td>
                                                 <button ng-show="item.habil == 0" class="btn btn-danger" ng-click="changeHabil(item.correlativo)"
                                                         style="padding: 3px;">
@@ -261,7 +261,7 @@
                                             <td>@{{ item.CARGO }}</td>
                                             <td>@{{ item.TIPO_MONEDA }}</td>
                                             <td>@{{ item.MONTO | number:2 }}</td>
-                                            <td>@{{ item.VALIDACION_IDC }}</td>
+                                            <td>@{{ item.VALIDACION_IDC }} @{{ item.DEPARTAMENTO }}</td>
                                         </tr>
 
                                         </tbody>
@@ -297,6 +297,7 @@
             $scope.a="";
             $scope.cant_error = 0;
             $scope.filcargo=[];
+            $scope.fildepartamento="";
 
             var ruta = '';
 
@@ -611,6 +612,33 @@
                     return true;
 
             };
+
+
+            $scope.filterDepartamento = function(i) {
+
+                /*
+                if ($scope.fildepartamento.length > 0)
+
+                    if ($scope.fildepartamento[0] != "")
+                        return ($scope.fildepartamento == i.DEPARTAMENTO );
+                    else
+                        return true;
+                else
+                    return true;
+
+                    */
+
+                if ($scope.fildepartamento == i.DEPARTAMENTO)
+                    return true;
+                else if($scope.fildepartamento == "")
+                    return true;
+                else
+                    return false;
+
+
+            };
+
+
 
             $scope.changeAllFilter = function () {
 

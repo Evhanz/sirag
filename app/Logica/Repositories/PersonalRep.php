@@ -264,7 +264,7 @@ class PersonalRep
     {
 
         $query = "SELECT CODIGO,ALIAS FROM flexline.PER_DEPARTAMENTO 
-                  WHERE EMPRESA='E01'";
+                  WHERE EMPRESA='E01' ORDER BY ALIAS";
 
         $res = \DB::select($query);
 
