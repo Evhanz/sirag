@@ -281,6 +281,14 @@ class RecursoshController extends Controller
     }
 
 
+    public function getDepartamentos(){
+
+        $res = $this->personalRep->getDepartamentos();
+
+        return \Response::json($res);
+    }
+
+
 
 
 

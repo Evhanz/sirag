@@ -221,7 +221,7 @@ class PersonalRep
 
         $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
-                    VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO
+                    VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO,DEPARTAMENTO
                     FROM v_telecredito
                     WHERE PERIODO = '$periodo'
                     AND Nombre like '%$nombre%'
@@ -229,7 +229,7 @@ class PersonalRep
                     --AND LEN(CUENTAS_ABONO) > 0 
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
-                    VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO     order by Nombre";
+                    VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO,DEPARTAMENTO     order by Nombre";
 
         $telecredito = \DB::select($query);
 
@@ -253,6 +253,18 @@ class PersonalRep
                     v_telecredito
                     GROUP BY CARGO
                     ";
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
+
+    public function getDepartamentos ()
+    {
+
+        $query = "SELECT CODIGO,ALIAS FROM flexline.PER_DEPARTAMENTO 
+                  WHERE EMPRESA='E01'";
 
         $res = \DB::select($query);
 

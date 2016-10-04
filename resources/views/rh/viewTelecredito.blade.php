@@ -176,6 +176,17 @@
 
                                 </div>
 
+                                <div class="col-lg-2">
+                                    <label for="cargo">Filtrar por Departamento </label>  <br>
+                                    <select class="form-control"  ng-model="filtro.DEPARTAMENTO" >
+                                        <option value="">------ Todos ------</option>
+                                        <option ng-repeat="dato in departamentos" value="@{{dato.CODIGO}}">
+                                            @{{dato.ALIAS}}
+                                        </option>
+                                    </select> <br>
+
+                                </div>
+
                                 <!--
                                 <div class=" col-lg-2">
                                     <label for="">Seleccionar a :</label>  <br>
@@ -212,7 +223,7 @@
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
-                                            <th style="text-align: center"> I
+                                            <th style="text-align: center"> I <br>
                                                 <span class="label label-warning" style="cursor: pointer" ng-click="changeAllFilter()">
                                                     <i class="fa fa-circle-o fa-1x"></i>
                                                 </span>
@@ -226,8 +237,7 @@
                                             <th>CARGO</th>
                                             <th>T. Moneda Abono</th>
                                             <th>Monto Abono</th>
-                                            <th>Validación IDC del proveedor vs Cuenta</th>
-
+                                            <th>V. IDC del proveedor vs Cuenta</th>
                                         </tr>
                                         </thead>
                                         <tbody >
@@ -296,6 +306,7 @@
             //funcioines que inician la pagina
 
             getCargos();
+            getDepartamentos();
 
 
 
@@ -405,6 +416,18 @@
                             $scope.cargos = data;
                         }).error(function(data) {
                     console.log('Error cargos'+data);
+                });
+
+            }
+
+            function getDepartamentos() {
+
+                $http.get('{{ URL::route('getDepartamentos') }}')
+                        .success(function(data){
+
+                            $scope.departamentos = data;
+                        }).error(function(data) {
+                    console.log('Error departamentos'+data);
                 });
 
             }
