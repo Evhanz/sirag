@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -35,8 +34,8 @@
       <file leaf-file-name="viewTelecredito.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="633" column="32" selection-start-line="633" selection-start-column="32" selection-end-line="633" selection-end-column="32" />
+            <state relative-caret-position="331">
+              <caret line="268" column="38" selection-start-line="268" selection-start-column="38" selection-end-line="268" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -731,15 +730,15 @@
       <workItem from="1475159638984" duration="1159000" />
       <workItem from="1475258468105" duration="7136000" />
       <workItem from="1475504631904" duration="16911000" />
-      <workItem from="1475615528056" duration="4978000" />
+      <workItem from="1475615528056" duration="5379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339113000" />
+    <option name="totallyTimeSpent" value="339514000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1158,8 +1157,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="633" column="32" selection-start-line="633" selection-start-column="32" selection-end-line="633" selection-end-column="32" />
+        <state relative-caret-position="331">
+          <caret line="268" column="38" selection-start-line="268" selection-start-column="38" selection-end-line="268" selection-end-column="38" />
           <folding />
         </state>
       </provider>

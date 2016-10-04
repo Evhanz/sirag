@@ -261,7 +261,7 @@
                                             <td>@{{ item.CARGO }}</td>
                                             <td>@{{ item.TIPO_MONEDA }}</td>
                                             <td>@{{ item.MONTO | number:2 }}</td>
-                                            <td>@{{ item.VALIDACION_IDC }} @{{ item.DEPARTAMENTO }}</td>
+                                            <td>@{{ item.VALIDACION_IDC }} </td>
                                         </tr>
 
                                         </tbody>
