@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/routes.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" charset="UTF-16" />
     <file url="file://$PROJECT_DIR$/resources/views/comercial/viewOrdenCompra.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/layout.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/layoutRH.blade.php" charset="UTF-8" />

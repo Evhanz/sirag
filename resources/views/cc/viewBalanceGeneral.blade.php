@@ -319,7 +319,7 @@
                 // body...
 
                 fecha = fecha.split("/");
-                fecha = "'"+fecha[2].trim()+""+fecha[1].trim()+""+fecha[0].trim()+"'";
+                fecha = fecha[2].trim()+""+fecha[1].trim()+""+fecha[0].trim();
                 return fecha;
 
             }
