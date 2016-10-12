@@ -24,9 +24,9 @@ class ContabilidadRep
         $nivel = $data['nivel'];
 
 
-        $query = "exec dbo.sp_getBalanceByNiveles @fi='$fi',@ff='$ff',@nivel=$nivel";
+        $res_query = \DB::select("exec dbo.sp_getBalanceByNiveles @fi='$fi',@ff='$ff',@nivel=$nivel;");
 
-        $res_query = \DB::select($query);
+     
         /*
        foreach ($res_query as $item) {
            $item->DESCRIPCION = utf8_decode($item->DESCRIPCION);

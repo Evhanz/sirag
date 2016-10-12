@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +34,42 @@
       <file leaf-file-name="ContabilidadRep.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+            <state relative-caret-position="289">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocumentoRep.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="47" column="29" selection-start-line="43" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
+              <folding>
+                <marker date="1476309803941" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
+                <marker date="1476309803941" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
+                <marker date="1476309803941" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contabilidad.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="11" column="47" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.env">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -113,8 +144,8 @@
         <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
       </list>
     </option>
   </component>
@@ -684,12 +715,12 @@
       <workItem from="1475258468105" duration="7136000" />
       <workItem from="1475504631904" duration="16911000" />
       <workItem from="1475615528056" duration="5840000" />
-      <workItem from="1476309913006" duration="310000" />
+      <workItem from="1476309913006" duration="747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340285000" />
+    <option name="totallyTimeSpent" value="340722000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -734,13 +765,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="96" column="64" selection-start-line="96" selection-start-column="64" selection-end-line="96" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProveedorRep.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -902,20 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="156" column="4" selection-start-line="156" selection-start-column="4" selection-end-line="156" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/plugins/pivottable/export_renderers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -987,13 +997,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/telecredito" />
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4355">
@@ -1026,6 +1029,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1106,10 +1110,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="47" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="47" column="29" selection-start-line="43" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
+          <folding>
+            <marker date="1476309803941" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
+            <marker date="1476309803941" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
+            <marker date="1476309803941" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        <state relative-caret-position="289">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding />
         </state>
       </provider>
