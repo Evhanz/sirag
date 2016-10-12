@@ -58,7 +58,20 @@ class ProveedorRep
                                     where CtaCte = '$ruc'
                                     group by GLOSA");
 
-        return $productos;
+        $p = [];
+        
+
+
+
+        foreach ($productos as $item) {
+
+            $proveedor = new Proveedores();
+            $proveedor->GLOSA = utf8_decode($item->GLOSA);
+
+            array_push($p, $proveedor);
+        }
+
+        return $p;
 
     }
 

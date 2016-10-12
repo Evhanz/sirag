@@ -1,0 +1,10 @@
+para instalar ubuntu para que funcione sql server instale el 
+paquete 
+
+sudo apt-get install php7.0-sybase freetds-common libsybdb5
+sudo apt-get install php7.0-odbc
+
+//revisar por siacaso estos link 
+http://www.lapipaplena.net/conectar-a-servidor-microsoft-sql-server-desde-ubuntu-con-php-y-apache/
+
+https://www.digitalocean.com/community/tutorials/como-instalar-linux-apache-mysql-php-lamp-en-ubuntu-14-04-es

@@ -57,7 +57,7 @@ Route::get('comercial/api/getDetailOrden/{id}',['as'=>'getDetailOrden','uses'=>'
 require __DIR__ . '/Rutas/recursos_humanos.php';
 
 require __DIR__ . '/Rutas/centro_costo.php';
-
+require __DIR__ . '/Rutas/contabilidad.php';
 
 //----para traer todos los trabajadores
 Route::post('rh/api/getAllTrabajadoresByParameter',['as'=>'getAllTrabajadoresByParameter',

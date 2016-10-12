@@ -24,8 +24,7 @@ class ComercialController extends Controller
     protected $productoRep;
     protected $proveedorRep;
 
-    public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep,
-                                ProveedorRep $proveedorRep){
+    public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep,ProveedorRep $proveedorRep){
         $this->documentoRep = $documentoRep;
         $this->tipoDocuementoRep = $tipoDocumentoRep;
         $this->productoRep = $productoRep;
@@ -133,6 +132,11 @@ class ComercialController extends Controller
         $res = $this->proveedorRep->getProductosComercioProveedor($ruc);
 
         return \Response::Json($res);
+
+
+
+        //var_dump($res);
+        
     }
 
     //API para las sordenes de compra

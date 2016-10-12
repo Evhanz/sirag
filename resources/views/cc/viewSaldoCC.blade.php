@@ -45,7 +45,6 @@
                                                 <button href="" class="btn btn-default" onclick="imprimir()">
                                                     <i class="fa fa-print fa-lg"></i> Imprimir </button>
 
-
                                             </div>
 
                                         </div>
@@ -116,8 +115,6 @@
 
     <script src="{{ asset('js/plugins/angular/angular-ui-bootstrap-0.3.0.min.js') }}"></script>
     <script>
-
-
 
 
         /*funciones de jquery*/
