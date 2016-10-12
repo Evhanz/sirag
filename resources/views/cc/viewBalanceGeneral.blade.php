@@ -284,7 +284,7 @@
                         .success(function(data){
 
                             $scope.Documentos = data.items;
-                            //console.log(data);
+                            console.log(data);
 
                             $scope.totales.total_SI_DEUDOR = data.total_SI_DEUDOR;
                             $scope.totales.total_SI_ACREEDOR = data.total_SI_ACREEDOR;
