@@ -25,9 +25,9 @@ class ContabilidadRep
 
 
         $query = "exec dbo.sp_getBalanceByNiveles @fi='$fi',@ff='$ff',@nivel=$nivel";
-        /*
+       
         $res_query = \DB::select($query);
-
+         /*
         foreach ($res_query as $item) {
             $item->DESCRIPCION = utf8_decode($item->DESCRIPCION);
         }
@@ -43,7 +43,7 @@ class ContabilidadRep
         $data->total_SF_ACREEDOR = $res->sum('SF_H');
         $data->items = $res;
         */
-        return $query;
+        return $res_query;
     }
 
 
