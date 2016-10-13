@@ -17,6 +17,7 @@ class ContabilidadRep
     public function getBalanceByNiveles($data)
     {
 
+
         //el formato de las fechas es de
         //paara pasar se verifico con mes dia año
         $fi = $data['f_i'];
@@ -24,26 +25,38 @@ class ContabilidadRep
         $nivel = $data['nivel'];
 
 
-        $res_query = \DB::select("exec dbo.sp_getBalanceByNiveles @fi='$fi',@ff='$ff',@nivel=$nivel;");
+        //$sql = "EXEC sp_getBalanceByNiveles @fi = '$fi', @ff = '$ff',	@nivel = 1";
 
-     
-        /*
+        $res_query = \DB::statement("EXEC sp_getBalanceByNiveles @fi = '$fi', @ff = '$ff',	@nivel = $nivel");
+
+        $res_query = \DB::select("select * from temp_balance_general");
+
+        $data = new DocumentoDTO();
+
+
+        $res = collect($res_query);
+        $data->total_SI_DEUDOR = number_format($res->sum('SI_DEUDOR'),2,'.',',');
+        $data->total_SI_ACREEDOR = number_format($res->sum('SI_ACREEDOR'),2,'.',',');
+        $data->total_MOV_DEBE = number_format($res->sum('MOV_DEBE'),2,'.',',');
+        $data->total_MOV_HABER = number_format($res->sum('MOV_HABER'),2,'.',',');
+        $data->total_SF_DEUDOR = number_format($res->sum('SF_D'),2,'.',',');
+        $data->total_SF_ACREEDOR = number_format($res->sum('SF_H'),2,'.',',');
+
        foreach ($res_query as $item) {
-           $item->DESCRIPCION = utf8_decode($item->DESCRIPCION);
+           $item->DESCRIPCION = utf8_encode($item->DESCRIPCION);
+           $item->SI_DEUDOR = number_format($item->SI_DEUDOR, 2, '.', ',');
+           $item->SI_ACREEDOR = number_format($item->SI_ACREEDOR, 2, '.', ',');
+           $item->MOV_DEBE = number_format($item->MOV_DEBE, 2, '.', ',');
+           $item->MOV_HABER = number_format($item->MOV_HABER, 2, '.', ',');
+           $item->SF_D = number_format($item->SF_D, 2, '.', ',');
+           $item->SF_H = number_format($item->SF_H, 2, '.', ',');
        }
 
-       $data = new DocumentoDTO();
 
-       $res = collect($res_query);
-       $data->total_SI_DEUDOR = $res->sum('SI_DEUDOR');
-       $data->total_SI_ACREEDOR = $res->sum('SI_ACREEDOR');
-       $data->total_MOV_DEBE = $res->sum('MOV_DEBE');
-       $data->total_MOV_HABER = $res->sum('MOV_HABER');
-       $data->total_SF_DEUDOR = $res->sum('SF_D');
-       $data->total_SF_ACREEDOR = $res->sum('SF_H');
+
        $data->items = $res;
-       */
-        return $res_query;
+
+        return $data;
     }
 
 

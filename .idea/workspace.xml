@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,43 +37,12 @@
       <file leaf-file-name="ContabilidadRep.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentoRep.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="47" column="29" selection-start-line="43" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
+            <state relative-caret-position="257">
+              <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
               <folding>
-                <marker date="1476309803941" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
-                <marker date="1476309803941" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
-                <marker date="1476309803941" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
+                <marker date="1476398766967" expanded="true" signature="438:502" ph="select * fro... v_telecredito" />
+                <marker date="1476398766967" expanded="true" signature="651:685" ph="select * fro... temp_balance_general" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contabilidad.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="47" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -78,8 +50,8 @@
       <file leaf-file-name="viewBalanceGeneral.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="320" column="41" selection-start-line="320" selection-start-column="41" selection-end-line="320" selection-end-column="41" />
+            <state relative-caret-position="226">
+              <caret line="286" column="30" selection-start-line="286" selection-start-column="30" selection-end-line="286" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -144,8 +116,8 @@
         <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
+        <option value="$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php" />
       </list>
     </option>
   </component>
@@ -153,11 +125,6 @@
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-    <gulpfiles>
-      <GulpfileState>
-        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
-      </GulpfileState>
-    </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
@@ -715,18 +682,19 @@
       <workItem from="1475258468105" duration="7136000" />
       <workItem from="1475504631904" duration="16911000" />
       <workItem from="1475615528056" duration="5840000" />
-      <workItem from="1476309913006" duration="747000" />
+      <workItem from="1476309913006" duration="2521000" />
+      <workItem from="1476370263046" duration="11000" />
+      <workItem from="1476373513903" duration="9887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340722000" />
+    <option name="totallyTimeSpent" value="352394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27232796" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -741,6 +709,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -989,13 +958,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="13094" column="38" selection-start-line="13094" selection-start-column="38" selection-end-line="13094" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/telecredito" />
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1044,7 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="64" selection-start-line="16" selection-start-column="4" selection-end-line="19" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,7 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4709">
           <caret line="283" column="36" selection-start-line="283" selection-start-column="20" selection-end-line="283" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1060,9 +1020,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#1786#2274#1#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1070,35 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="266" column="52" selection-start-line="266" selection-start-column="52" selection-end-line="266" selection-end-column="52" />
-          <folding>
-            <marker date="1476309803977" expanded="true" signature="928:982" ph="select * fro... v_allTrabajadores" />
-            <marker date="1476309803977" expanded="true" signature="1123:1480" ph="SELECT FICHA... PER_REM_HIS" />
-            <marker date="1476309803977" expanded="true" signature="1584:1636" ph="select * fro... renov_contract" />
-            <marker date="1476309803977" expanded="true" signature="2272:2488" ph="INSERT INTO renov_contract... " />
-            <marker date="1476309803977" expanded="true" signature="2626:2750" ph="UPDATE flexl... " />
-            <marker date="1476309803977" expanded="true" signature="2781:2902" ph="UPDATE flexl... " />
-            <marker date="1476309803977" expanded="true" signature="3312:3372" ph="DELETE FROM " />
-            <marker date="1476309803977" expanded="true" signature="3406:3530" ph="UPDATE flexl... " />
-            <marker date="1476309803977" expanded="true" signature="3561:3682" ph="UPDATE flexl... " />
-            <marker date="1476309803977" expanded="true" signature="3793:4140" ph="SELECT TIPO_... PER_VACACIONES" />
-            <marker date="1476309803977" expanded="true" signature="4588:4840" ph="SELECT FICHA... v_allTrabajadores" />
-            <marker date="1476309803977" expanded="true" signature="5939:6537" ph="SELECT Nombr... v_telecredito" />
-            <marker date="1476309803977" expanded="true" signature="5939:6540" ph="SELECT * FRO... v_telecredito" />
-            <marker date="1476309803977" expanded="true" signature="5939:6579" ph="SELECT Nombr... v_telecredito" />
-            <marker date="1476309803977" expanded="true" signature="6849:6857" ph="SELECT TIPO_... PER_VACACIONES" />
-            <marker date="1476309803977" expanded="true" signature="6849:6946" ph="select CODIG... gen_tabcod" />
-            <marker date="1476309803977" expanded="true" signature="6849:6991" ph="select CODIG... gen_tabcod" />
-            <marker date="1476309803977" expanded="true" signature="6991:7005" ph="select(${$qu... " />
-            <marker date="1476309803977" expanded="true" signature="7102:7206" ph="SELECT CODIG... PER_DEPARTAMENTO" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="320" column="41" selection-start-line="320" selection-start-column="41" selection-end-line="320" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1106,23 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="340" column="31" selection-start-line="340" selection-start-column="31" selection-end-line="340" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1130,14 +1041,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="47" column="29" selection-start-line="43" selection-start-column="8" selection-end-line="47" selection-end-column="29" />
+        <state relative-caret-position="221">
+          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
           <folding>
             <marker date="1476309803941" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
             <marker date="1476309803941" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
@@ -1146,11 +1056,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15882">
+          <caret line="19397" column="94" selection-start-line="18251" selection-start-column="57" selection-end-line="18251" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="286" column="30" selection-start-line="286" selection-start-column="30" selection-end-line="286" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="257">
+          <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+          <folding>
+            <marker date="1476398766967" expanded="true" signature="438:502" ph="select * fro... v_telecredito" />
+            <marker date="1476398766967" expanded="true" signature="651:685" ph="select * fro... temp_balance_general" />
+          </folding>
         </state>
       </provider>
     </entry>
