@@ -8,6 +8,7 @@
 
 namespace sirag\Repositories;
 use Carbon\Carbon;
+use DateTime;
 
 
 class PersonalRep
@@ -32,6 +33,95 @@ class PersonalRep
         $vigencia = $data['vigencia'];
 
         $res = \DB::select("EXEC sp_getTrabajadoresByParamOutDates @categoria = '%$categoria%' , @vigencia = '$vigencia' ;");
+
+
+
+        foreach ($res as $item) {
+            
+            $item->NOMBRE = utf8_encode($item->NOMBRE);
+            $item->DIRECCION = utf8_encode($item->DIRECCION);
+            $item->PAIS = utf8_encode($item->PAIS);
+            $item->DEPARTAMENTO = utf8_encode($item->DEPARTAMENTO);
+            $item->PROVINCIA = utf8_encode($item->PROVINCIA);
+            $item->CARGO = utf8_encode($item->CARGO);
+            $item->CATEGORIA = utf8_encode($item->CATEGORIA);
+            $item->DISTRITO = utf8_encode($item->DISTRITO);
+            $item->CTA_CENTRA = utf8_encode($item->CTA_CENTRA);
+            $item->CENTRO_COSTO = utf8_encode($item->CENTRO_COSTO);
+            $item->MOTIVO_SALIDA = utf8_encode($item->MOTIVO_SALIDA);
+            $item->FECHA_RENOVA_1 = utf8_encode($item->FECHA_RENOVA_1);
+            $item->FECHA_RENOVA_2 = utf8_encode($item->FECHA_RENOVA_2);
+            $item->FECHA_RENOVA_3 = utf8_encode($item->FECHA_RENOVA_3);
+            $item->TIPO_TRABAJADOR = utf8_encode($item->TIPO_TRABAJADOR);
+
+            $vac_acumuladas = $item->vac;
+
+            
+            if ($item->TIPO_TRABAJADOR == 'EMPLEADO') {
+
+                $f_i  = explode("/", $item->FECHA_INICIO);
+                $f_f  = explode("/", $item->FECHA_TERMINO);
+               
+                $datetime1 = new DateTime($f_i[2].'-'.$f_i[1].'-'.$f_i[0]);
+
+                //sacar condicion si es que a la fecha de hoy se le adeuda 
+                $datetime2 = new DateTime($f_f[2].'-'.$f_f[1].'-'.$f_f[0]);
+
+                $now = new DateTime("now");
+                $bandera = $datetime2->diff($now);
+                if ($bandera->format('%R%a')>0) {
+                    $datetime2 = $datetime2;
+                }else{
+                    $datetime2 = $now;
+                }
+                
+                
+
+                $interval = $datetime1->diff($datetime2);
+                $interval = round($interval->format('%a')*0.082,1);
+
+                $item->cant_vac = $interval;
+
+                $item->CANTIDA_DIF = $interval-$vac_acumuladas;
+
+                $item->now =$datetime2->diff($now);
+
+
+            } else {
+               
+                $f_i  = explode("/", $item->FECHA_INICIO);
+                $f_f  = explode("/", $item->FECHA_TERMINO);
+               
+                $datetime1 = new DateTime($f_i[2].'-'.$f_i[1].'-'.$f_i[0]);
+
+                //sacar condicion si es que a la fecha de hoy se le adeuda 
+                $datetime2 = new DateTime($f_f[2].'-'.$f_f[1].'-'.$f_f[0]);
+
+                $now = new DateTime("now");
+                $bandera = $datetime2->diff($now);
+                if ($bandera->format('%R%a')>0) {
+                    $datetime2 = $datetime2;
+                }else{
+                    $datetime2 = $now;
+                }
+                
+                
+
+                $interval = $datetime1->diff($datetime2);
+                $interval = round($interval->format('%a')*0.041,1);
+
+                $item->cant_vac = $interval;
+
+                $item->CANTIDA_DIF = $interval-$vac_acumuladas;
+
+                $item->now =$datetime2->diff($now);
+
+
+            }
+            
+
+
+        }
 
         return $res;
 

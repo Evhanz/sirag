@@ -162,6 +162,8 @@
                                             <th>AFP/ONP</th>
                                             <th>T. COMI AFP</th>
                                             <th>FINIQUITO</th>
+                                            <th>VAC. ACUMULADAS</th>
+                                            <th>VAC. ADEUDADAS</th>
                                             <th>V</th>
                                             <th>Dirección</th>
                                             <th>*</th>
@@ -184,6 +186,8 @@
                                             <td>@{{ item.AFP_ONP }}</td>
                                             <td>@{{ item.TIPO_COMI_AFP }}</td>
                                             <td>@{{ item.MOTIVO_SALIDA }}</td>
+                                            <td>@{{ item.vac}}</td>
+                                            <td>@{{ item.CANTIDA_DIF}}</td>
                                             <td> <div class="animate-switch-container"
                                                       ng-switch on="item.VIGENCIA">
                                                     <div  ng-switch-when="A">

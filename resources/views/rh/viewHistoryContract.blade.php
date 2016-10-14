@@ -150,7 +150,7 @@
                                             <td>@{{ item.f_inicio_format }}</td>
                                             <td>@{{ item.f_fin_format }}</td>
                                             <td>@{{ item.d_acumulados }}</td>
-                                            <td>@{{ item.d_asignados - item.d_acumulados }}</td>
+                                            <td>@{{ item.d_asignados - item.d_acumulados | number:2}}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -527,34 +527,42 @@
 
 
                 var fecha = moment().format('YYYY-M-D');
+                var bandera ;
+                var dias ;
+                var tipo
 
-                var bandera = getCantDiasBetweendates($scope.contratos[0].fecha_fin,fecha);
-                var dias;
+                for(var i = 0;i<$scope.contratos.length;i++){
 
-                if(bandera > 0){
-                    dias = getCantDiasBetweendates($scope.contratos[0].fecha_inicio,$scope.contratos[0].fecha_fin);
-                }else
-                    dias = getCantDiasBetweendates($scope.contratos[0].fecha_inicio,fecha);
+                    bandera = getCantDiasBetweendates($scope.contratos[i].fecha_fin,fecha);
+                    dias;
+
+                    if(bandera > 0){
+                        dias = getCantDiasBetweendates($scope.contratos[i].fecha_inicio,$scope.contratos[i].fecha_fin);
+                    }else
+                        dias = getCantDiasBetweendates($scope.contratos[i].fecha_inicio,fecha);
 
 
 
                     //EMPLEADO
-                    var tipo = $scope.personal.TIPO_TRABAJADOR;
+                    tipo = $scope.personal.TIPO_TRABAJADOR;
 
                     if(tipo=='EMPLEADO'){
 
-                        $scope.contratos[0].d_asignados = dias * 0.082;
-
-                        $scope.contratos[0].d_asignados =  Math.round($scope.contratos[0].d_asignados * 100) / 100
-
-
+                        $scope.contratos[i].d_asignados = dias * 0.082;
+                        $scope.contratos[i].d_asignados =  Math.round($scope.contratos[i].d_asignados * 100) / 100
                     }else{
 
-                        $scope.contratos[0].d_asignados = dias * 0.041;
-
-                        $scope.contratos[0].d_asignados =  Math.round($scope.contratos[0].d_asignados * 100) / 100
+                        $scope.contratos[i].d_asignados = dias * 0.041;
+                        $scope.contratos[i].d_asignados =  Math.round($scope.contratos[i].d_asignados * 100) / 100
 
                     }
+
+
+                }
+
+                    
+
+
                 
             };
 
@@ -625,7 +633,7 @@
                 var dias = f_f - f_i;
                 dias = Math.floor(dias / (1000 * 60 * 60 * 24));
 
-               return dias;
+               return dias+1;
 
             }
 
