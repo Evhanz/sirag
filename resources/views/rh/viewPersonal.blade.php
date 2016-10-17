@@ -1,6 +1,9 @@
 @extends('layoutRH')
 
 @section('content')
+    
+    <script type="text/javascript" src="{{ asset('js/plugins/table2excel/jquery.table2excel.min.js') }} "></script>
+ 
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
@@ -130,23 +133,21 @@
 
                                 <div class="form-group">
 
-                                    <!--
+                                   
                                     <label for="">Exportar</label><br>
-                                    <a href="" class="btn btn-success btn-xs" ng-click="export_all_excel()" title="Reporte Totalizado Excel">
+                                    <a href="#" class="btn btn-success btn-xs" onClick ="print_excel()" title="Reporte Totalizado Excel">
                                         <i class="fa fa-file-excel-o fa-lg"></i></a>
-                                    <a href="" ng-click="export_all_pdf()"
-                                       class="btn btn-default btn-xs"  title="Reporte Totalizado PDF">
-                                        <i class="fa fa-file-pdf-o fa-lg" ></i>
-                                    </a>
-                                    -->
+                                    
+                                   
                                 </div>
                             </form>
 
                             <div class="row" style="padding: 15px">
-                                <div class="table-responsive" style="overflow: auto">
+                                <div class="table-responsive" style="overflow: auto" id="cont_tabla">
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
+                                            <th class="noExl">I</th>
                                             <th>CODIGO</th>
                                             <th>DNI</th>
                                             <th>Nombre</th>
@@ -164,14 +165,15 @@
                                             <th>FINIQUITO</th>
                                             <th>VAC. ACUMULADAS</th>
                                             <th>VAC. ADEUDADAS</th>
-                                            <th>V</th>
-                                            <th>Dirección</th>
-                                            <th>*</th>
+                                            <th class="noExl">V</th>
+                                            <th class="noExl">Dirección</th>
+                                            <th class="noExl">*</th>
                                         </tr>
                                         </thead>
                                         <tbody >
                                         <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
-                                            <th>@{{ item.FICHA }}</th>
+                                            <td class="noExl">@{{ $index}}</td>
+                                            <td >@{{ item.FICHA }}</td>
                                             <td>@{{ item.EMPLEADO }}</td>
                                             <td>@{{ item.NOMBRE }}</td>
                                             <td>@{{ item.SEXO | limitTo:1 }}</td>
@@ -188,7 +190,7 @@
                                             <td>@{{ item.MOTIVO_SALIDA }}</td>
                                             <td>@{{ item.vac}}</td>
                                             <td>@{{ item.CANTIDA_DIF}}</td>
-                                            <td> <div class="animate-switch-container"
+                                            <td class="noExl"> <div class="animate-switch-container"
                                                       ng-switch on="item.VIGENCIA">
                                                     <div  ng-switch-when="A">
                                                         <label  class="label label-success">
@@ -202,13 +204,13 @@
                                                     </div>
 
                                                 </div></td>
-                                            <td>
+                                            <td class="noExl">
                                                 <a class="btn btn-default" ng-click="viewDireccion(item)">
                                                     <i class="fa fa-map-marker fa-lg" ></i>
                                                 </a>
 
                                             </td>
-                                            <td>
+                                            <td class="noExl">
                                                 <a class="btn btn-default" href="{{ URL::route('modRH') }}/rep/HistorialContrato/@{{ item.FICHA }}">
                                                     <i class="fa fa-eye fa-lg"></i>
                                                 </a>
@@ -279,6 +281,22 @@
 
         });*/
 
+
+        function print_excel() {
+                    
+
+            $("#table_data_op1").table2excel({
+                exclude: ".noExl",
+                name: "export_personal",
+                filename: "export_personal",
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+                  
+        }
+
         /*----*/
 
 
@@ -293,7 +311,7 @@
 
             var ruta = '';
 
-            //funcioines que inician la pagina
+            //funciones que inician la pagina
 
 
 
@@ -357,7 +375,7 @@
                         .success(function(data){
 
                             $scope.Documentos = data;
-                            console.log(data);
+                            //console.log(data);
 
                             $('#btnBuscarDoc').attr("disabled", false);
 

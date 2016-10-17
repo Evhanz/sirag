@@ -17,7 +17,8 @@
     <!-- customize css -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- jQuery 2.0.2 -->
-    <script src="{{ asset('js/jquery-2.0.2.min.js')}}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!--<script src="{{ asset('js/jquery-2.0.2.min.js')}}"></script>-->
 
     <!--Angular JS 1.2.19 -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
