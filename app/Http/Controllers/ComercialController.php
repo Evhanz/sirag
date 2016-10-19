@@ -53,6 +53,11 @@ class ComercialController extends Controller
         return view('comercial/viewOrdenCompra');
     }
 
+    public function viewControlOrdenCompra()
+    {
+       return view('comercial/viewControlOrdenCompra');
+    }
+
 
     /*funciones para el rest de los documentos*/
     public function getAllDocumentosByParameters()

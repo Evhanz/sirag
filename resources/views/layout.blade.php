@@ -41,7 +41,7 @@
 <body class="skin-black">
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-    <a href="../../index.html" class="logo">
+    <a href="#" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
         Agro Grace
     </a>
@@ -90,6 +90,8 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ URL::route('viewRepProductos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Costo de Productos </a></li>
                         <li><a href="{{ URL::route('viewOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Ordenes Compra </a></li>
+
+                         <li><a href="{{ URL::route('viewControlOrdenCompraComercial') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
 
                     </ul>
                 </li><!--Personal-->
