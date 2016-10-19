@@ -66,7 +66,7 @@ class ProveedorRep
         foreach ($productos as $item) {
 
             $proveedor = new Proveedores();
-            $proveedor->GLOSA = utf8_decode($item->GLOSA);
+            $proveedor->GLOSA = utf8_encode($item->GLOSA);
 
             array_push($p, $proveedor);
         }
