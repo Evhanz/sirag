@@ -40,7 +40,7 @@
 <body class="skin-black">
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-    <a href="#" class="logo">
+    <a href="{{ URL::route('home') }}" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
         Agro Grace
     </a>
@@ -60,7 +60,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i>
-                        <span>Evhanz <i class="caret"></i></span>
+                        <span>{{Auth::user()->USR}} <i class="caret"></i></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -102,7 +102,7 @@
                     <img src="{{ asset('img/avatar3.png')}}" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>Bienvenido , Usuario</p>
+                    <p>Bienvenido ,Usuario</p>
 
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>

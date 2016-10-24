@@ -163,12 +163,18 @@
             var f_i = changeFormat(fecha[0]);
             var f_f = changeFormat(fecha[1]);
 
+            $('#btnBuscarDoc').attr("disabled", true);
+               
+            $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
             $.post("{{ URL::route('getSaldoCCByCuentaAndPeriodo') }}"
                     , { _token: token,
                         f_i: f_i,
                         f_f: f_f
                     })
                     .done( function(mps) {
+                        $('#btnBuscarDoc').attr("disabled", false);
+
                         $("#output").pivotUI(mps, {
                             renderers: renderers,
                             cols: ["CENTRO DE COSTO"], rows: ["CUENTA","DESCRIPCION"],
@@ -176,6 +182,17 @@
                             aggregatorName: "Sum",
                             vals: ["SALDO"]
                         });
+
+                        $( "div" ).remove( ".overlay" );
+                        $( "div" ).remove( ".loading-img" );
+
+                    }).error(function (error) {
+
+                         $('#btnBuscarDoc').attr("disabled", false);
+                        alert("error _>");
+                        console.log(error);
+                        $( "div" ).remove( ".overlay" );
+                        $( "div" ).remove( ".loading-img" );
                     });
 
         }
@@ -310,8 +327,9 @@
 
                         }).error(function(data) {
                     console.log(data);
-                    $("#box_maestro").remove(".overlay");
-                    $("#box_maestro").remove(".loading-img");
+                    $('#btnBuscarDoc').attr("disabled", false);
+                    $("div").remove(".overlay");
+                    $("div").remove(".loading-img");
                 });
             };
 

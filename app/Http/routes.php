@@ -16,7 +16,7 @@
 Route::get('/', function () {
     return view('welcome');
 });*/
-Route::get('/','WelcomeController@index'); //ruta de inicio
+Route::get('/',['as'=>'home','uses'=>'WelcomeController@index']); //ruta de inicio
 
 Route::group(['middleware' => 'roles','roles'=>['Admin','COMERCIAL']], function () {
     require __DIR__ . '/Rutas/comercial.php';
