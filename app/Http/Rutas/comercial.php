@@ -24,3 +24,7 @@ Route::get('comercial/api/getDetalByIdDoc/{id}',['as'=>'api_getDetalByIdDoc',
     'uses'=>'ComercialController@getDetalleByIdDoc']);
 Route::get('comercial/api/getAllTipoDocumentos',['as'=>'api_getAllTipoDocumentos',
     'uses'=>'ComercialController@getAllDocumentos']);
+
+//esta ruta se comparte con contabilidad
+Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraForControl',
+    'uses'=>'ContabilidadController@getOrdenCompraForControl']);

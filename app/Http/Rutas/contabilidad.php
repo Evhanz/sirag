@@ -18,7 +18,8 @@ Route::get('contabilidad/rep/viewControlOrdenCompra',
 
 Route::post('contabilidad/api/getBalanceByNiveles',['as'=>'getBalanceByNivelesApi',
     'uses'=>'ContabilidadController@getBalanceByNiveles']);
+/*
 Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraForControl',
-    'uses'=>'ContabilidadController@getOrdenCompraForControl']);
+    'uses'=>'ContabilidadController@getOrdenCompraForControl']);*/
 Route::post('contabilidad/api/getGuiasAtendidasOfOC',['as'=>'getGuiasAtendidasOfOC',
     'uses'=>'ContabilidadController@getGuiasAtendidasOfOC']);

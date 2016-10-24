@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
+use Redirect;
 
 class WelcomeController extends Controller
 {
@@ -18,6 +20,10 @@ class WelcomeController extends Controller
     {
         //
 
+
+        if ( Auth::user()== null) {
+            return Redirect::to('/inicio');
+        }
         return view('main/saludo');
     }
 

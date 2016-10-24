@@ -2,8 +2,9 @@
 <html >
   <head>
       <meta charset="UTF-8">
-      <title>Animated login form</title>
+      <title>.:Login : AgroGrace :.</title>
       <link href='{{asset('css/font_login.css')}}' rel='stylesheet' type='text/css'>
+      
       <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}" />
       <link rel="stylesheet" href="{{asset('js/plugins/login/css/normalize.css')}}">
       <style>
@@ -177,18 +178,27 @@
 
         {!!Form::open(['route'=>'log.store', 'method'=>'POST','class'=>'login'])!!}
             <p class="title">Log in</p>
-            {!!Form::label('usuario','usuario:')!!}
+            {!!Form::label('Usuario','usuario:')!!}
             {!!Form::text('usuario',null,['class'=>'form-control', 'placeholder'=>'Ingresa tu Usuario','autofocus'=>'autofocus'])!!}
             <i class="fa fa-user"></i>
             {!!Form::label('pwd','Contraseña:')!!}
             {!!Form::password('pwd',['class'=>'form-control', 'placeholder'=>'Ingresa tu contraseña'])!!}
             <i class="fa fa-key"></i>
 
+            @if( isset($error) )
+            <p class="bg-danger" style="color:red">
+              *Error: {{utf8_decode($error)}}
+            </p>
+
+            @endif
+
             <button>
                 <i class="spinner"></i>
                 <span class="state">Log in</span>
             </button>
         {!!Form::close()!!}
+
+        
 
         <!--
         <form class="login" method="post" action="{{url('log.store')}}">
@@ -201,7 +211,7 @@
             <a href="#">Forgot your password?</a>
 
         </form> -->
-      <footer><a target="blank" href="http://boudra.me/">boudra.me</a></footer>
+      <footer><a target="blank" href="#">Agro Exportaciones Grace Copyright©</a></footer>
       </p>
     </div>
     <script src='{{asset('js/jquery-2.0.2.min.js')}}'></script>

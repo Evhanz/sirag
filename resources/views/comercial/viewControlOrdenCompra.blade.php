@@ -244,8 +244,8 @@
 
             $("#table_data_op1").table2excel({
                 exclude: ".noExl",
-                name: "export_personal",
-                filename: "export_personal",
+                name: "Control Orden de Compra",
+                filename: "Control Orden de Compra",
                 fileext: ".xls",
                 exclude_img: true,
                 exclude_links: true,

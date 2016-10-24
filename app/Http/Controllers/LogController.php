@@ -51,11 +51,16 @@ class LogController extends Controller
             //echo Auth::user()->USR."-";
             return Redirect::to('/');
         }else{
-            echo "error";
+            
+            $error = "Usuario o Contraseña Incorrectas";
+
+            return view('login',compact('error'));
         }
 
+        /*
         Session::flash('message-error','Datos Incorrectos');
         return dd($request);
+        */
 
     }
 
