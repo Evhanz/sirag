@@ -16,26 +16,11 @@
 Route::get('/', function () {
     return view('welcome');
 });*/
+Route::get('/','WelcomeController@index'); //ruta de inicio
 
-Route::get('/','WelcomeController@index');
-
-
-/*empieza las rutas par alos reportes de comercial*/
-Route::get('comercial/',['as'=>'modComercial']);
-Route::get('comercial/rep/viewDocumentos',['as'=>'viewDocumentos','uses'=>'ComercialController@viewDocumentos']);
-Route::get('comercial/rep/viewRepProductos',['as'=>'viewRepProductos','uses'=>'ComercialController@viewRepProductos']);
-Route::get('comercial/rep/viewOrdenCompra',['as'=>'viewOrdenCompra','uses'=>'ComercialController@viewOrdenCompra']);
-Route::get('comercial/rep/viewControlOrdenCompraComercial',['as'=>'viewControlOrdenCompraComercial','uses'=>'ComercialController@viewControlOrdenCompra']);
-
-
-
-/*API para treer todos los documentos de acuerdos a sus parametros*/
-Route::post('comercial/ap/getDocsByParameters',['as'=>'api_getDocsByParameters',
-    'uses'=>'ComercialController@getAllDocumentosByParameters']);
-Route::get('comercial/api/getDetalByIdDoc/{id}',['as'=>'api_getDetalByIdDoc',
-    'uses'=>'ComercialController@getDetalleByIdDoc']);
-Route::get('comercial/api/getAllTipoDocumentos',['as'=>'api_getAllTipoDocumentos',
-    'uses'=>'ComercialController@getAllDocumentos']);
+Route::group(['middleware' => 'roles','roles'=>['Admin','COMERCIAL']], function () {
+    require __DIR__ . '/Rutas/comercial.php';
+});
 
 /*API  para los proveedores*/
 Route::post('comercial/api/getProveedoresByRazonAndRUC',['as'=>'getProveedoresByRazonAndRUC',
@@ -56,10 +41,21 @@ Route::post('comercial/api/getOrdenesCompra',['as'=>'getOrdenesCompra','uses'=>'
 Route::get('comercial/api/getDetailOrden/{id}',['as'=>'getDetailOrden','uses'=>'ComercialController@getDetailOrden']);
 
 
-require __DIR__ . '/Rutas/recursos_humanos.php';
+/*Estas son de Recursos Humanos*/
 
-require __DIR__ . '/Rutas/centro_costo.php';
-require __DIR__ . '/Rutas/contabilidad.php';
+Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
+    require __DIR__ . '/Rutas/recursos_humanos.php';
+});
+
+
+
+/*Estas dos son de contabilidad*/
+Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], function () {
+    require __DIR__ . '/Rutas/centro_costo.php';
+    require __DIR__ . '/Rutas/contabilidad.php';
+});
+
+
 
 //----para traer todos los trabajadores
 Route::post('rh/api/getAllTrabajadoresByParameter',['as'=>'getAllTrabajadoresByParameter',
@@ -73,7 +69,30 @@ Route::get('comercial/pdf/getPDFProductProveedor/{glosa}/{subfamilia}/{familia}'
     'uses'=>'ComercialController@getPDFProductProveedor']);
 
 
-//para rutinas de emergencia
+//para rutinas de emergencia // no usar
+
+/*
 
 Route::get('rutina/changeProveedores',['as'=>'changeProveedores',
-    'uses'=>'RutinaController@changeProveedores']);
+    'uses'=>'RutinaController@changeProveedores']);*/
+
+
+/*para los usuarios ----------------------*/
+
+Route::get('administracion/usuarios',['as'=>'usuarios','uses'=>'AdministracionUserController@index']);
+
+//para el login
+Route::resource('log','LogController');
+Route::get('inicio',['as'=>'inicio','uses'=>'AdministracionUserController@inicio']);
+Route::get('outLogin',['as'=>'outLogin','uses'=>'LogController@logOut']);
+
+
+//pruebas de inicio de sesion
+
+Route::group(['middleware' => 'roles','roles'=>'ADMIN'], function () {
+    Route::get('prueba/user',function (){
+        echo "Bienvenido Usuario";
+    });
+});
+
+

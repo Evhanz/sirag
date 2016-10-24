@@ -17,7 +17,7 @@
                 <h1>Bienvenido a SIRAG </h1>
                 <p>Sirag es un <strong>S</strong>istema <strong>I</strong>ntegral de
                     <strong>R</strong>eportes <strong>A</strong>gro <strong>G</strong>race</p>
-
+                    <strong>{!! var_dump(Auth::user()->USR) !!}</strong>
             </div>
         </div>
     </div>

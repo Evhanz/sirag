@@ -335,6 +335,7 @@
 
                             }).error(function(data) {
                                 console.log(data);
+                                $('#btnBuscarDoc').attr("disabled", false);
                                 $("div").remove(".overlay");
                                 $("div").remove(".loading-img");
                                 alert('Error: :>');
@@ -348,11 +349,6 @@
                     alert('Debe ingresar primero una fecha');
 
                 }
-
-
-
-
-
 
             };
 

@@ -347,8 +347,9 @@
 
                             }).error(function(data) {
                                 console.log(data);
-                                $("#box_maestro").remove(".overlay");
-                                $("#box_maestro").remove(".loading-img");
+                                alert("Error Revisar");
+                                $( "div" ).remove( ".overlay" );
+                                $( "div" ).remove( ".loading-img" );
                             });
 
 

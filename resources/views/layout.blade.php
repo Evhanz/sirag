@@ -7,9 +7,8 @@
     <!-- bootstrap 3.0.2 -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
 
-    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
@@ -57,7 +56,38 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav">
 
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>Evhanz <i class="caret"></i></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header bg-light-blue">
+                            <img src="{{ asset('img/avatar3.png') }}" class="img-circle" alt="User Image" />
+                            <p>
+                                @if (Auth::guest())
+                                    oublic
+                                @else
+                                    Usuario:{{Auth::user()->USR}}
+                                @endif
+
+                                <small>  * Agro Exportaciones Grace</small>
+                            </p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+
+                            <div class="pull-right">
+                                <a href="{{ URL::route('outLogin') }}" class="btn btn-default btn-flat">Desconectar</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
             </ul>
+
+
         </div>
     </nav>
 </header>
@@ -80,6 +110,8 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <!--Menu right: option list-->
             <ul class="sidebar-menu">
+
+                @if(Auth::user()->hasAnyRole(['ADMIN','COMERCIAL']))
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-cubes"></i>
@@ -92,9 +124,45 @@
                         <li><a href="{{ URL::route('viewOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Ordenes Compra </a></li>
 
                          <li><a href="{{ URL::route('viewControlOrdenCompraComercial') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
+                    </ul>
+                </li><!--Comercial-->
+                @endif
+
+
+                @if(Auth::user()->hasAnyRole(['ADMIN','CONTABILIDAD']))
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span>Contabilidad</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="{{ URL::route('viewCentroCosto') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Centro Costo</a></li>
+                        <li><a href="{{ URL::route('viewControlOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
 
                     </ul>
-                </li><!--Personal-->
+                </li><!--Contabilidad-->
+                @endif
+
+
+                @if(Auth::user()->hasAnyRole(['ADMIN','RH']))
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-universal-access" aria-hidden="true"></i>
+                        <span>Recursos Humanos</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="{{ URL::route('viewPersonal') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Personal</a></li>
+                        <li><a href="{{ URL::route('viewTelecredito') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Telecrédito</a></li>
+
+
+
+                    </ul>
+                </li><!--RECURSOS HUMANOS-->
+                @endif
                 
 
 

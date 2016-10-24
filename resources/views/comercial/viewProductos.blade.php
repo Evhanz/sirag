@@ -498,8 +498,9 @@
 
                         }).error(function(data) {
                             console.log(data);
-                            $("#box_maestro").remove(".overlay");
-                            $("#box_maestro").remove(".loading-img");
+                            alert("Error _>");
+                            $("div").remove(".overlay");
+                            $("div").remove(".loading-img");
                         });
             };
 
@@ -724,8 +725,11 @@
 
                 $http.get(ruta)
                         .success(function(data){
+                             
                             $scope.prod_active.productos = data;
+
                         }).error(function (data) {
+                            alert("Error _> proveedor");
                             console.log("error en :"+data);
                         });
 

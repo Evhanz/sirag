@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c11587225e55d012cc6b9359b1b92d65",
-    "content-hash": "3a177304cb0ed1949f671b05b2d0d376",
+    "hash": "93826fbb39b7b86b444cbc340ead7680",
+    "content-hash": "29c56b2049da0b74b7f0a03a8223be41",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -719,17 +719,67 @@
             "time": "2016-09-29 13:45:07"
         },
         {
-            "name": "league/flysystem",
-            "version": "1.0.31",
+            "name": "laravelcollective/html",
+            "version": "v5.1.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "521a233642773505222a5dd53231ccf5b0607d5a"
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "f62269629b2a1093039733517bd7e75b3f98dffb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/521a233642773505222a5dd53231ccf5b0607d5a",
-                "reference": "521a233642773505222a5dd53231ccf5b0607d5a",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/f62269629b2a1093039733517bd7e75b3f98dffb",
+                "reference": "f62269629b2a1093039733517bd7e75b3f98dffb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.1.*",
+                "illuminate/routing": "5.1.*",
+                "illuminate/session": "5.1.*",
+                "illuminate/support": "5.1.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "time": "2015-11-28 08:27:09"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "1.0.32",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +849,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-10-19 13:15:54"
+            "time": "2016-10-19 20:38:46"
         },
         {
             "name": "monolog/monolog",

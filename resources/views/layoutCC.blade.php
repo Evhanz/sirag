@@ -7,9 +7,7 @@
     <!-- bootstrap 3.0.2 -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
     <!-- Ionicons -->
     <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->

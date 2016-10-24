@@ -338,7 +338,19 @@
 
                 var bandera = validator();
 
+
                 if(bandera==0){
+
+                    //
+
+                    $('#btnBuscarDoc').attr("disabled", true);
+
+                    $scope.Documentos = [];
+
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+                    //
+
+
                     ruta = '{{ URL::route('getTelecredito') }}';
 
                     $http.post(ruta,
@@ -375,9 +387,6 @@
                                 });
 
                                 $scope.total_abonado = suma;
-
-
-
                                 getCargos();
                                 //total_abonado
 
@@ -385,12 +394,11 @@
 
                                 $( "div" ).remove( ".overlay" );
                                 $( "div" ).remove( ".loading-img" );
-
-
                             }).error(function(data) {
-                        console.log(data);
-                        $("#box_maestro").remove(".overlay");
-                        $("#box_maestro").remove(".loading-img");
+                                console.log(data);
+                                $('#btnBuscarDoc').attr("disabled", false);
+                                $("div").remove(".overlay");
+                                $("div").remove(".loading-img");
                     });
 
                 }else{

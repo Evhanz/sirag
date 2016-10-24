@@ -149,6 +149,12 @@ return [
         /*las a puesto Evhanz*/
         Barryvdh\DomPDF\ServiceProvider::class,
 
+
+        /*
+         * Laravel Collective Service Providers...
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -199,6 +205,8 @@ return [
         //los arego evhanz
 
         'PDF'       => Barryvdh\DomPDF\Facade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
