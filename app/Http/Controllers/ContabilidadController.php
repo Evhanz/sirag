@@ -33,6 +33,11 @@ class ContabilidadController extends Controller
         return view('cc/viewControlOrdenCompra');
     }
 
+    public function viewPDB()
+    {
+        return view('cc/viewPDB');
+    }
+
 
     
     //APIS
@@ -73,6 +78,69 @@ class ContabilidadController extends Controller
         return \Response::json($res);
 
 
+    }
+
+
+    // -- esto es para el txt
+
+    public function pdbTxtCompras()
+    {
+
+        //aumente el timpo
+
+            set_time_limit (180);
+        //
+
+        $data  = \Input::all();
+
+        
+        // traemos la data de acuerdo a la fecha 
+
+        $res = $this->contabilidadRep->pdbCompras($data['periodo']);
+        $row = "";
+        $body = "";
+
+        foreach ($res as $item) {
+
+           foreach ($item as $val){
+
+               if ($val != '|')
+                   $row.=$val.'|';
+               else
+                   $row.=$val;
+
+           }
+
+           $row .= "\r\n";
+        }
+
+
+        $name_file= "C20518803078".$data['periodo'].".txt";
+
+
+        $f['body'] = $row;
+        $url ="C20518803078".$data['periodo'];
+
+        try {
+            $file = fopen(base_path()."/storage/logs/$name_file", "w");
+            fputs($file,$f['body'] );
+            fclose($file);
+
+
+
+
+            return "correcto";
+            
+        } catch (\Exception $e) {
+            return "error :-";
+        }
+
+        
+
+    }
+
+    public function getTxtCompras($periodo){
+        return response()->download(base_path()."/storage/logs/C20518803078$periodo.txt");
     }
 
     

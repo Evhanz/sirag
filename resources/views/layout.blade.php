@@ -140,6 +140,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ URL::route('viewCentroCosto') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Centro Costo</a></li>
                         <li><a href="{{ URL::route('viewControlOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
+                        <li><a href="{{ URL::route('viewPDB') }}"><i class="fa fa-angle-double-right"></i> Exportados PDB</a></li>
 
                     </ul>
                 </li><!--Contabilidad-->

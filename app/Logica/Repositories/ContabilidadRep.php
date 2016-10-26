@@ -17,7 +17,6 @@ class ContabilidadRep
     public function getBalanceByNiveles($data)
     {
 
-
         //el formato de las fechas es de
         //paara pasar se verifico con mes dia año
         $fi = $data['f_i'];
@@ -120,6 +119,18 @@ class ContabilidadRep
       }
 
        return $doc;
+    }
+
+
+    public function pdbCompras($periodo)
+    {
+
+      //primero traemos a la data y luego las separamos por '|'
+
+      $ruta = "EXECUTE dbo.sp_getPDBCompras @periodo='$periodo'";
+      $res = \DB::select($ruta);
+      
+      return $res;
 
     }
 
