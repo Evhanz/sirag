@@ -170,12 +170,7 @@
 
 
         <span id="dnw"> </span>
-
-
     </div>
-
-
-
 
     <script src="{{ asset('js/plugins/angular/angular-ui-bootstrap-0.3.0.min.js') }}"></script>
     <script>
