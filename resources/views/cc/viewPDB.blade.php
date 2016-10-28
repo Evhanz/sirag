@@ -23,9 +23,14 @@
                             <div class="col-lg-12">
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
+                                        
+                                        <div class="row">
+                                            <h4>PDB Compras</h4>
+                                        </div>
+
                                         <div class="row">
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
-                                            <div class="col-md-1">
+                                            <div class="col-md-2">
                                                 <label for="">Año</label><br>
                                                 <select name="" id="anio" class="form-control">
                                                     <option value="">----------</option>
@@ -56,15 +61,89 @@
                                                     <option value="12">Diciembre</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-1">
+                                            <div class="col-md-2">
                                                 <br>
                                                 <button href="" class="btn btn-default" ng-click="getData()" id="btnExportar" >
                                                     <i class="fa fa-print fa-lg"></i> Exportar TXT </button>
 
 
                                             </div>
-
                                         </div>
+
+                                        <!-- para pdb ventas -->
+                                        <div class="row">
+                                            <h4>PDB Ventas</h4>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <label for="">Año</label><br>
+                                                <select name="" id="anioVentas" class="form-control">
+                                                    <option value="">----------</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="">Mes</label><br>
+                                                <select name="" id="mesVentas" class="form-control">
+                                                    <option value="">----------</option>
+                                                    <option value="01">Enero</option>
+                                                    <option value="02">Febrero</option>
+                                                    <option value="03">Marzo</option>
+                                                    <option value="04">Abril</option>
+                                                    <option value="05">Mayo</option>
+                                                    <option value="06">Junio</option>
+                                                    <option value="07">Julio</option>
+                                                    <option value="08">Agosto</option>
+                                                    <option value="09">Septiembre</option>
+                                                    <option value="10">Octubre</option>
+                                                    <option value="11">Noviembre</option>
+                                                    <option value="12">Diciembre</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br>
+                                                <button href="" class="btn btn-default" ng-click="getPDBVentas()" id="btnExportarVentas" >
+                                                    <i class="fa fa-print fa-lg"></i> Exportar TXT </button>
+
+
+                                            </div>
+                                        </div>
+
+                                        <!-- -->
+
+                                        <!-- pdb tipo de cambio -->
+
+                                        <div class="row">
+                                            <h4>PDB Ventas</h4>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="">Rango de Fecha</label><br>
+                                                <input class="form-control " name="daterange" id="reservation" type="text">
+                                                
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br>
+                                                <button href="" class="btn btn-default" ng-click="getPDBTipoCambio()" id="btnExportarTipoCambio" >
+                                                    <i class="fa fa-print fa-lg"></i> Exportar TXT </button>
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- -->
 
                                     </div>
                                     <!-- Tab filtro documento -->
@@ -86,88 +165,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
-                            <!-- tools box -->
-                        </div><!-- /.box-header -->
-                        <div class="box-body ">
-                         
-                             <div class="row" style="padding: 15px">
-                                <div class="table-responsive" style="overflow: auto">
-                                    <table class="table table-bordered" id="table_data_op1">
-                                        <thead style="text-align: center;">
-                                        <tr>
-                                            <th rowspan="3 "> <p>CODIGO</p></th>
-                                            <th rowspan="3">DENOMINACION</th>
-                                            <th rowspan="2" colspan="2">SALDOS INICIALES</th>
-                                            <th rowspan="2" colspan="2">MOVIMIENTO</th>
-                                            <th rowspan="2" colspan="2">SALDOS FINALES</th>
-                                            <th colspan="2">SALDOS FINALES DEL BALANCE GENERAL</th>
-                                            <th colspan="2">SALDOS ESTADO DE PERDIDAS Y GANANCIAS</th>
-                                            <th colspan="2">SALDOS ESTADO DE PERDIDAS Y GANANCIAS</th>
-                                            
-                                        </tr>
-                                        <tr style="font-size: 10px; ">
-                                            <th colspan="2" style="text-align: center;">PASIVO Y</th>
-                                            <th colspan="2">FUNCION</th>
-                                            <th colspan="2">NATURALEZA</th>
-                                        </tr>
-                                        <tr>
-                                            <th>DEUDOR</th>
-                                            <th>ACEEDOR</th>
-                                            <th>DEBE</th>
-                                            <th>HABER</th>
-                                            <th>DEUDOR</th>
-                                            <th>ACEEDOR</th>
-                                            <th>ACTIVO</th>
-                                            <th>PATRIMONIO</th>
-                                            <th>PÉRDIDAS</th>
-                                            <th>GANANCIAS</th>
-                                            <th>PÉRDIDAS</th>
-                                            <th>GANANCIAS</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody >
-
-
-                                        <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
-                                            <td>@{{ item.CUENTA }}</td>
-                                            <td>@{{ item.DESCRIPCION }}</td>
-                                            <td>@{{ item.SI_DEUDOR }}</td>
-                                            <td>@{{ item.SI_ACREEDOR }}</td>
-                                            <td>@{{ item.MOV_DEBE }}</td>
-                                            <td>@{{ item.MOV_HABER }}</td>
-                                            <td>@{{ item.SF_D }}</td>
-                                            <td>@{{ item.SF_H }}</td>                                
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                TOTALES
-                                            </td>
-                                            <td>@{{ totales.total_SI_DEUDOR }}</td>
-                                            <td>@{{ totales.total_SI_ACREEDOR}}</td>
-                                            <td>@{{ totales.total_MOV_DEBE}}</td>
-                                            <td>@{{ totales.total_MOV_HABER }}</td>
-                                            <td>@{{ totales.total_SF_DEUDOR }}</td>
-                                            <td>@{{ totales.total_SF_ACREEDOR }}</td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div><!-- /.row - inside box -->
-
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-
-                </div>
-
-            </div>
 
         </div>
 
@@ -287,18 +284,137 @@
                 
             };
 
+
+            $scope.getPDBVentas =  function ()
+            {
+
+                var token = $('#_token').val();
+                var anio  = $('#anioVentas').val();
+                var mes  = $('#mesVentas').val();
+
+                var periodo = anio+''+mes;                
+
+                var ruta = '{{ URL::route('pdbTxtVentas') }}';
+
+                $('#btnExportarVentas').attr("disabled", true);
+                $scope.Documentos = [];
+                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                $http.post(ruta,{_token : token,
+                            periodo:periodo
+                        })
+                        .success(function(data){
+                            $('#btnExportarVentas').attr("disabled", false);
+                            console.log(data);
+
+                            if (data=='correcto') {
+
+                                var url = '{{ URL::route('modContabilidad') }}/txt/getPdbTxtVentas/'+periodo;
+
+                             //  window.location = 'http://localhost:200/sirag/storage/logs/C20518803078'+periodo+'.txt';
+                               // window.location.href = 'data:text/plain;charset=utf-8,'+ encodeURIComponent('http://localhost:200/sirag/storage/logs/C20518803078'+periodo+'.txt');
+
+                                window.location = url;
+
+
+
+                            }
+
+                        }).error(function(data) {
+                            $('#btnExportarVentas').attr("disabled", false);
+                            console.log(data);
+                            $("#box_maestro").remove(".overlay");
+                            $("#box_maestro").remove(".loading-img");
+                        });
+                
+            };
+
+
+
+
+            $scope.getPDBTipoCambio = function () {
+
+
+                var token = $('#_token').val();
+
+                var fecha = $('input[name="daterange"]').val();
+
+                fecha = fecha.split('-');
+                var f_i = changeFormat(fecha[0]);
+                var f_f = changeFormat(fecha[1]);
+                      
+
+                var ruta = '{{ URL::route('getTipoCambio') }}';
+
+                $('#btnExportarTipoCambio').attr("disabled", true);
+                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                console.log(ruta);
+
+                $http.post(ruta,{
+                            _token : token,
+                            f_i:f_i,
+                            f_f:f_f
+
+                        })
+                        .success(function(data){
+                            $('#btnExportarTipoCambio').attr("disabled", false);
+                            console.log(data);
+
+                            if (data=='correcto') {
+
+                                var url = '{{ URL::route('modContabilidad') }}/txt/getTxtTipoCambio';
+
+                                window.location = url;
+
+                            }
+
+                        }).error(function(data) {
+                            $('#btnExportarTipoCambio').attr("disabled", false);
+                            console.log(data);
+                            $("#box_maestro").remove(".overlay");
+                            $("#box_maestro").remove(".loading-img");
+                        });
+
+                
+
+
+            };
+
+            
+
+
+            $scope.exportExcelCompras = function () {
+                
+
+                alert('llego');
+
+                $('#btnExportExcel').attr("disabled", true);
+
+                var anio  = $('#anio').val();
+                var mes  = $('#mes').val();
+
+                var periodo = anio+''+mes;
+
+                var url = '{{ URL::route('modContabilidad') }}/excel/pdbExcelCompras/'+periodo;
+                 window.location = url;
+                
+                $('#btnExportExcel').attr("disabled", false);
+
+            };
+
             
 
 
 
-            /*funcion helper*/
+            /*funcion helper de d/m/a  a a/M/D*/
 
 
-            function formatDateToText(fecha) {
+            function changeFormat(fecha) {
                 // body...
 
                 fecha = fecha.split("/");
-                fecha = fecha[2].trim()+""+fecha[1].trim()+""+fecha[0].trim();
+                fecha = fecha[2].trim()+"-"+fecha[1].trim()+"-"+fecha[0].trim();
                 return fecha;
 
             }

@@ -127,10 +127,41 @@ class ContabilidadRep
 
       //primero traemos a la data y luego las separamos por '|'
 
-      $ruta = "EXECUTE dbo.sp_getPDBCompras @periodo='$periodo'";
-      $res = \DB::select($ruta);
+      $query = "EXECUTE dbo.sp_getPDBCompras @periodo='$periodo'";
+      $res = \DB::select($query);
       
       return $res;
+
+    }
+
+    public function pdbVentas($periodo)
+    {
+
+      //primero traemos a la data y luego las separamos por '|'
+
+      $query = "EXECUTE dbo.sp_getPDBVentas @periodo='$periodo'";
+      $res = \DB::select($query);
+      
+      return $res;
+
+    }
+
+    public function getTipoCambio($data)
+    {
+      $f_i = $data['f_i'];
+      $f_f = $data['f_f'];
+
+     $query = "select convert(date,FECHA) as c1,convert(decimal(3,2),VALOR) as c2 from 
+                flexline.GEN_TASCAM
+                where EMPRESA = 'e01'
+                and FECHA between '$f_i' and '$f_f'
+                order by FECHA ASC ";
+
+      $res = \DB::select($query);
+
+      
+
+      return $res ;
 
     }
 
