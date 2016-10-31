@@ -340,7 +340,7 @@ class RecursoshController extends Controller
 
         foreach ($data as $i){
 
-            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 3, 8)) ;
+            $suma = floatval(substr($i->CUENTAS_ABONO, 3, 8)).' / ' ;
         }
 
         //sumamos primero las cuentas de abono
