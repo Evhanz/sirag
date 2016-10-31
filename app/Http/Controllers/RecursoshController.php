@@ -205,9 +205,9 @@ class RecursoshController extends Controller
         $cabecera = $cabecera.$ceros.$sumaMonto;
         //9.-se agrega la referencia de planilla
         $cabecera = $cabecera.$data['ref_planilla'].$this->getEspacioBlanco(strlen($data['ref_planilla']),40);
-        //10.-sumamos todas las cuentas de abono
+        //10.-sumamos todas las cuentas de abono checksum
         $suma_cta_abono = $this->getSumaCuentaAbonados($res,$c_cargo);
-        $suma_cta_abono += $this->getSumaDigitoControl($res,$c_cargo);
+        //$suma_cta_abono .= $this->getSumaDigitoControl($res,$c_cargo);
         $suma_cta_abono = $this->getceros(strlen($suma_cta_abono),15);
         $cabecera = $cabecera.$suma_cta_abono;
 
