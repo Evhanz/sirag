@@ -103,7 +103,6 @@ class ContabilidadController extends Controller
         $body = "";
 
 
-
         foreach ($res as $item) {
 
             $bandera = 0;
@@ -124,10 +123,10 @@ class ContabilidadController extends Controller
             $row.=trim($item->c14).'|';
             $row.=trim($item->c15).'|';
             $row.=trim($item->c16).'|';
-            $row.=number_format(trim($item->c17), 2, ".", "").'|';
+            $row.=number_format(trim($item->c17),2, ".", "").'|';
             $row.=trim($item->c18).'|';
-            $row.=number_format(trim($item->c19), 2, ".", "").'|';
-            $row.=number_format(trim($item->c20), 2, ".", "").'|';
+            $row.=number_format(trim($item->c19),2, ".", "").'|';
+            $row.=number_format(trim($item->c20),2, ".", "").'|';
             $row.=trim($item->c21).'|';
             $row.=trim($item->c22).'|';
             $row.=trim($item->c23).'|';
@@ -321,6 +320,23 @@ class ContabilidadController extends Controller
         return response()->download(base_path()."/storage/logs/20518803078.tc");
     }
 
+
+    public function getConsumoByFechas($data) 
+    {
+        $f_i = $data['f_i'];
+        $f_f = $data['f_f'];
+
+        $query = "EXEC SP_getConsumo '2016-09-01','2016-10-01';";
+
+        $res = \DB::select();
+
+
+    }
+
+
+
+
+    
 
 
 

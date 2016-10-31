@@ -154,7 +154,7 @@ class RecursoshController extends Controller
     }
 
 
-    //--- esto es para exportar
+    //--- esto es para exportar telecredito
     public function gettxt(){
 
         $data = \Input::all();
@@ -207,8 +207,8 @@ class RecursoshController extends Controller
         $cabecera = $cabecera.$data['ref_planilla'].$this->getEspacioBlanco(strlen($data['ref_planilla']),40);
         //10.-sumamos todas las cuentas de abono
         $suma_cta_abono = $this->getSumaCuentaAbonados($res,$c_cargo);
-        $suma_cta_abono .= $this->getSumaDigitoControl($res,$c_cargo);
-        $suma_cta_abono = $this->getceros(strlen($suma_cta_abono),15).$suma_cta_abono;
+        $suma_cta_abono += $this->getSumaDigitoControl($res,$c_cargo);
+        $suma_cta_abono = $this->getceros(strlen($suma_cta_abono),15);
         $cabecera = $cabecera.$suma_cta_abono;
 
         //---- se termina la cabecera
@@ -352,11 +352,11 @@ class RecursoshController extends Controller
         $suma =0;
         foreach ($data as $i){
 
-            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 11, 3));
+            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 11, 2));
         }
 
         //sumamos primero las cuentas de abono
-        $suma = $suma + floatval(substr($c_cargo, 11, 3));
+        $suma = $suma + floatval(substr($c_cargo, 12, 2));
 
         return $suma;
     }
