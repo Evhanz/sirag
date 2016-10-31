@@ -124,10 +124,10 @@ class ContabilidadController extends Controller
             $row.=trim($item->c14).'|';
             $row.=trim($item->c15).'|';
             $row.=trim($item->c16).'|';
-            $row.=trim($item->c17).'|';
+            $row.=number_format(trim($item->c17), 2, ".", "").'|';
             $row.=trim($item->c18).'|';
-            $row.=trim($item->c19).'|';
-            $row.=trim($item->c20).'|';
+            $row.=number_format(trim($item->c19), 2, ".", "").'|';
+            $row.=number_format(trim($item->c20), 2, ".", "").'|';
             $row.=trim($item->c21).'|';
             $row.=trim($item->c22).'|';
             $row.=trim($item->c23).'|';
