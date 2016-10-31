@@ -25,7 +25,10 @@
                                     <div id="home" class="tab-pane fade in active">
                                         
                                         <div class="row">
-                                            <h4>PDB Compras</h4>
+                                            <div class="col-md-12">
+                                                <h4>PDB Compras</h4>
+                                            </div>
+                                            
                                         </div>
 
                                         <div class="row">
@@ -72,7 +75,11 @@
 
                                         <!-- para pdb ventas -->
                                         <div class="row">
-                                            <h4>PDB Ventas</h4>
+
+                                            <div class="col-md-12">
+                                                <h4>PDB Ventas</h4>
+                                            </div>
+                                            
                                         </div>
 
 
@@ -122,7 +129,9 @@
                                         <!-- pdb tipo de cambio -->
 
                                         <div class="row">
-                                            <h4>PDB Ventas</h4>
+                                            <div class="col-md-12">
+                                                <h4>PDB tipo de Cambio</h4>
+                                            </div>
                                         </div>
 
 
@@ -241,9 +250,13 @@
                 var anio  = $('#anio').val();
                 var mes  = $('#mes').val();
 
-                var periodo = anio+''+mes;                
+                var periodo = anio+''+mes;
 
-                var ruta = '{{ URL::route('pdbTxtCompras') }}';
+
+               if (periodo.length == 6 ) {
+
+
+                     var ruta = '{{ URL::route('pdbTxtCompras') }}';
 
                 $('#btnExportar').attr("disabled", true);
                 $scope.Documentos = [];
@@ -260,14 +273,7 @@
                             if (data=='correcto') {
 
                                 var url = '{{ URL::route('modContabilidad') }}/txt/getPdbTxtCompras/'+periodo;
-
-                             //  window.location = 'http://localhost:200/sirag/storage/logs/C20518803078'+periodo+'.txt';
-                               // window.location.href = 'data:text/plain;charset=utf-8,'+ encodeURIComponent('http://localhost:200/sirag/storage/logs/C20518803078'+periodo+'.txt');
-
                                 window.location = url;
-
-
-
                             }
 
                         }).error(function(data) {
@@ -276,7 +282,12 @@
                             $("#box_maestro").remove(".overlay");
                             $("#box_maestro").remove(".loading-img");
                         });
-                
+
+               } else {
+
+                    alert("Se tiene que ingresar , Año y mes");
+
+               }      
             };
 
 
@@ -287,15 +298,18 @@
                 var anio  = $('#anioVentas').val();
                 var mes  = $('#mesVentas').val();
 
-                var periodo = anio+''+mes;                
+                var periodo = anio+''+mes;   
 
-                var ruta = '{{ URL::route('pdbTxtVentas') }}';
 
-                $('#btnExportarVentas').attr("disabled", true);
-                $scope.Documentos = [];
-                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+                if (periodo.length == 6) {
 
-                $http.post(ruta,{_token : token,
+                    var ruta = '{{ URL::route('pdbTxtVentas') }}';
+
+                    $('#btnExportarVentas').attr("disabled", true);
+                    $scope.Documentos = [];
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                    $http.post(ruta,{_token : token,
                             periodo:periodo
                         })
                         .success(function(data){
@@ -321,11 +335,13 @@
                             $("#box_maestro").remove(".overlay");
                             $("#box_maestro").remove(".loading-img");
                         });
-                
+
+                } else {
+
+                    alert("Se tiene que ingresar , Año y mes");
+
+                }                 
             };
-
-
-
 
             $scope.getPDBTipoCambio = function () {
 
@@ -335,22 +351,22 @@
                 var fecha = $('input[name="daterange"]').val();
 
                 fecha = fecha.split('-');
-                var f_i = changeFormat(fecha[0]);
-                var f_f = changeFormat(fecha[1]);
-                      
+                
 
-                var ruta = '{{ URL::route('getTipoCambio') }}';
+                if (fecha.length > 1) {
 
-                $('#btnExportarTipoCambio').attr("disabled", true);
-                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+                    var f_i = changeFormat(fecha[0]);
+                    var f_f = changeFormat(fecha[1]);
 
-                console.log(ruta);
+                    var ruta = '{{ URL::route('getTipoCambio') }}';
 
-                $http.post(ruta,{
+                    $('#btnExportarTipoCambio').attr("disabled", true);
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                    $http.post(ruta,{
                             _token : token,
                             f_i:f_i,
                             f_f:f_f
-
                         })
                         .success(function(data){
                             $('#btnExportarTipoCambio').attr("disabled", false);
@@ -371,9 +387,10 @@
                             $("#box_maestro").remove(".loading-img");
                         });
 
-                
+                } else {
 
-
+                    alert("Debe Ingresar una fecha correcta");
+                }
             };
 
             
@@ -397,10 +414,6 @@
                 $('#btnExportExcel').attr("disabled", false);
 
             };
-
-            
-
-
 
             /*funcion helper de d/m/a  a a/M/D*/
 
