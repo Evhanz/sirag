@@ -344,13 +344,13 @@ class RecursoshController extends Controller
         }
 
         //sumamos primero las cuentas de abono
-        $suma = $suma + floatval(substr($c_cargo, 3, 7));
+        //$suma = $suma + floatval(substr($c_cargo, 3, 7));
         
 
 
         
         //return $suma;
-        return count($data)+1;
+        return $suma;
     }
 
 
