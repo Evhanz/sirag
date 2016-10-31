@@ -233,7 +233,7 @@ class ContabilidadController extends Controller
             $row.=trim($item->c14).'|';
             $row.=trim($item->c15).'|';
             $row.=trim($item->c16).'|';
-            $row.=trim($item->c17).'|';
+            $row.=number_format(trim($item->c17), 2,".", "").'|';
             $row.=trim($item->c18).'|';
             $row.=trim($item->c19).'|';
             $row.=trim($item->c20).'|';
@@ -246,8 +246,8 @@ class ContabilidadController extends Controller
             $row.=trim($item->c27).'|';
             $row.= ($item->c28='' || is_null($item->c28)) ? ''.'|' : $this->changeFormatFecha($item->c28).'|' ;
             //$row.=$this->changeFormatFecha($item->c28).'|';
-            $row.=trim($item->c29).'|';
-            $row.=trim($item->c30).'|';
+            $row.=number_format(trim($item->c29), 2, ".", "").'|';
+            $row.=number_format(trim($item->c30), 2, ".", "").'|';
 
            $row .= "\r\n";
         }
@@ -364,7 +364,14 @@ class ContabilidadController extends Controller
         
         $fecha = explode("-", $fecha);
 
+        if(count($fecha)== 3){
+
         $fecha = $fecha[2]."/".$fecha[1]."/".$fecha[0];
+
+        }else{
+            $fecha = "** no hay fecha **";
+        }
+
 
         return $fecha;
 
