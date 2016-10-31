@@ -336,7 +336,7 @@ class RecursoshController extends Controller
 
         $suma = 0;
 
-       
+       /*
 
         foreach ($data as $i){
 
@@ -345,9 +345,11 @@ class RecursoshController extends Controller
 
         //sumamos primero las cuentas de abono
         $suma = $suma + floatval(substr($c_cargo, 3, 7));
+        */
+
         
         //return $suma;
-        return $suma;
+        return $suma=floatval(substr($c_cargo, 3, 7));
     }
 
 
