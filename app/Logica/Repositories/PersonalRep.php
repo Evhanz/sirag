@@ -287,7 +287,7 @@ class PersonalRep
         }
         //aca para los subquerys 1 por que es para
 
-        try{
+       
         if (isset($data['data_include'])){
 
             $sq1 = "AND ( ";
@@ -300,16 +300,11 @@ class PersonalRep
                 }
             }
             $sq1 .= " ) ";
-
-
-        }
-        }catch (\Exception $e){
-            $error = $e;
         }
 
 
-
-        $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+          
+            $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO,DEPARTAMENTO
                     FROM v_telecredito
@@ -321,13 +316,17 @@ class PersonalRep
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO,DEPARTAMENTO     order by Nombre";
 
-        $telecredito = \DB::select($query);
 
 
+            $telecredito = \DB::select($query);
+
+           
+       
         $i = 0;
 
         foreach ($telecredito as $item){
             $item->correlativo = $i;
+            $item->Nombre = utf8_encode($item->Nombre);
             $i++;
         }
 

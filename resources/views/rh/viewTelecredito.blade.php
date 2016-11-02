@@ -334,7 +334,8 @@
 
                 var ultimoDia = new Date(anio,mes, 0);
 
-                ultimoDia = ultimoDia.getDate()+'/'+(ultimoDia.getMonth()+1)+'/'+ultimoDia.getFullYear();
+                //ultimoDia = ultimoDia.getDate()+'/'+(ultimoDia.getMonth()+1)+'/'+ultimoDia.getFullYear();
+                ultimoDia = ultimoDia.getFullYear()+'-'+(ultimoDia.getMonth()+1)+'-'+ultimoDia.getDate();
 
                 var bandera = validator();
 
@@ -361,6 +362,8 @@
                             })
                             .success(function(data){
 
+                                //console.log(data);
+
                                 $scope.Documentos = data;
 
                                 var suma = 0;
@@ -385,16 +388,18 @@
 
                                     }
                                 });
-
+                                
                                 $scope.total_abonado = suma;
                                 getCargos();
                                 //total_abonado
+                               
 
                                 $('#btnBuscarDoc').attr("disabled", false);
 
                                 $( "div" ).remove( ".overlay" );
                                 $( "div" ).remove( ".loading-img" );
                             }).error(function(data) {
+                                alert("error");
                                 console.log(data);
                                 $('#btnBuscarDoc').attr("disabled", false);
                                 $("div").remove(".overlay");
@@ -559,7 +564,11 @@
                         },
                         success: function(res) {
                             window.location = res;
-                            //console.log(res);
+                            console.log(res);
+                        },
+                        error: function (res) {
+                            console.log("error");
+                            console.log(res);
                         }
                     });
 

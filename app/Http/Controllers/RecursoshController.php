@@ -159,7 +159,7 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-        $data['periodo']= $this->getUltimoDiaMes($data['filAnio'],$data['filMes']).'/'.$data['filMes'].'/'.$data['filAnio'];
+        $data['periodo']= $data['filAnio'].'-'.$data['filMes'].'-'.$this->getUltimoDiaMes($data['filAnio'],$data['filMes']);
 
 
         $res = $this->personalRep->getTelecredito($data);
@@ -206,11 +206,20 @@ class RecursoshController extends Controller
         //9.-se agrega la referencia de planilla
         $cabecera = $cabecera.$data['ref_planilla'].$this->getEspacioBlanco(strlen($data['ref_planilla']),40);
         //10.-sumamos todas las cuentas de abono
-        $suma_cta_abono = $this->getSumaCuentaAbonados($res,$c_cargo);
-        //$suma_cta_abono .= $this->getSumaDigitoControl($res,$c_cargo);
-        //$suma_cta_abono = $this->getceros(strlen($suma_cta_abono),15);
-        $cabecera = $cabecera.$suma_cta_abono;
 
+        /*
+        $suma_cta_abono = $this->getSumaCuentaAbonados($res,$c_cargo);
+        $suma_cta_abono .= $this->getSumaDigitoControl($res,$c_cargo);
+        $ceros = $this->getceros(strlen($suma_cta_abono),15);
+
+        $suma_cta_abono = trim($ceros.$suma_cta_abono);
+
+        $cabecera = $cabecera.$suma_cta_abono;
+        */
+
+
+
+        $cabecera = $cabecera.$this->getCheckSum($this->getSumaCuentaAbonados($res,$c_cargo),$this->getSumaDigitoControl($res,$c_cargo));
         //---- se termina la cabecera
 
         //damos inicio al body
@@ -325,7 +334,6 @@ class RecursoshController extends Controller
     public function getSumaCuentas(){
 
         $suma = 0;
-
     }
 
     public function getUltimoDiaMes($elAnio,$elMes) {
@@ -336,33 +344,29 @@ class RecursoshController extends Controller
 
         $suma = 0;
 
-       
-
         foreach ($data as $i){
 
             $suma +=floatval(substr($i->CUENTAS_ABONO, 3, 8)) ;
         }
 
         //sumamos primero las cuentas de abono
-        //$suma = $suma + floatval(substr($c_cargo, 3, 7));
-        
-
-
-        
-        //return $suma;
+        $suma = $suma + floatval(substr($c_cargo, 3, 7));
+    
         return $suma;
     }
 
 
     public function getSumaDigitoControl($data,$c_cargo){
         $suma =0;
+       
         foreach ($data as $i){
 
-            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 11, 2));
+            $suma = $suma + floatval(substr($i->CUENTAS_ABONO, 12, 2));
         }
+       
 
         //sumamos primero las cuentas de abono
-        $suma = $suma + floatval(substr($c_cargo, 12, 2));
+        $suma = $suma + floatval(substr($c_cargo, 11, 2));
 
         return $suma;
     }
@@ -376,6 +380,41 @@ class RecursoshController extends Controller
         }
 
         return $espacios;
+    }
+
+    public function getCheckSum($val_cuenta,$val_control)
+    {
+        
+        //para realizar este algoritmo se toma lo siguiente
+        // Para el valor de $a se obtine todos los primeros digitos excepto los 2 últimos 
+        // Para el valor de $b son los dos ultimos digitos de val_cuenta
+        // Para el valor de $c  son los primeros dígitos menos los 3 ultimos val_control
+        // para el valor de $d son los 3 ultimos digitos de val control
+         
+        $a = substr($val_cuenta, 0, (strlen($val_cuenta)-2));
+        
+        $b = substr($val_cuenta, (strlen($val_cuenta)-2), 2);
+        $cant_len_val_control = strlen($val_control);
+
+        if ($cant_len_val_control <3) {
+            
+            $c = 0;
+
+        } else {
+            
+           $c = substr($val_control, 0,-3);
+        }
+
+        $d = substr($val_control,$cant_len_val_control-3,3);
+
+
+        $val = $a.($b+$c).$d;
+        
+
+        return $val;
+
+
+
     }
 
 }
