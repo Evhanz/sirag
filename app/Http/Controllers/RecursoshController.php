@@ -217,9 +217,10 @@ class RecursoshController extends Controller
         $cabecera = $cabecera.$suma_cta_abono;
         */
 
+        $checksum = $this->getCheckSum($this->getSumaCuentaAbonados($res,$c_cargo),$this->getSumaDigitoControl($res,$c_cargo));
+        $checksum = $this->getceros(strlen($checksum),15).$checksum;
 
-
-        $cabecera = $cabecera.$this->getCheckSum($this->getSumaCuentaAbonados($res,$c_cargo),$this->getSumaDigitoControl($res,$c_cargo));
+        $cabecera = $cabecera.$checksum;
         //---- se termina la cabecera
 
         //damos inicio al body
