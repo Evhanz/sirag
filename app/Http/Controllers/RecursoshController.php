@@ -222,7 +222,7 @@ class RecursoshController extends Controller
 
         $cabecera = $cabecera.$checksum;
         //---- se termina la cabecera
-
+        
         //damos inicio al body
         $body = "";
         $row = "";

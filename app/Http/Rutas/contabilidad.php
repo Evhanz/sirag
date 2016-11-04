@@ -14,6 +14,7 @@ Route::get('contabilidad/rep/viewBalanceGeneral',
 Route::get('contabilidad/rep/viewControlOrdenCompra',
 	['as'=>'viewControlOrdenCompra','uses'=>'ContabilidadController@viewControlOrdenCompra']);
 Route::get('contabilidad/rep/viewPDB',['as'=>'viewPDB','uses'=>'ContabilidadController@viewPDB']);
+Route::get('contabilidad/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundo','uses'=>'ContabilidadController@viewConsumoByFundo']);
 
 
 
@@ -26,6 +27,12 @@ Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraFo
     'uses'=>'ContabilidadController@getOrdenCompraForControl']);*/
 Route::post('contabilidad/api/getGuiasAtendidasOfOC',['as'=>'getGuiasAtendidasOfOC',
     'uses'=>'ContabilidadController@getGuiasAtendidasOfOC']);
+
+Route::get('contabilidad/api/getFamiliasProductos',['as'=>'getFamiliasProductos','uses'=>'ContabilidadController@getFamiliasProductos']);
+Route::get('contabilidad/api/getAllSubFamiliasProductos',['as'=>'getAllSubFamiliasProductos','uses'=>'ContabilidadController@getAllSubFamiliasProductos']);
+
+Route::get('contabilidad/api/getAllInitDataConsumoReporte',['as'=>'getAllInitDataConsumoReporte','uses'=>'ContabilidadController@getAllInitDataConsumoReporte']);
+
 
 // ----- para los txt
 

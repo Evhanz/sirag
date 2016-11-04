@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use sirag\Repositories\ContabilidadRep;
+use sirag\Repositories\ProductoRep;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -15,11 +16,13 @@ class ContabilidadController extends Controller
 {
 
     protected $contabilidadRep;
+    protected $productoRep;
 
 
-    function __construct(ContabilidadRep $contabilidadRep)
+    function __construct(ContabilidadRep $contabilidadRep,ProductoRep $productoRep)
     {
         $this->contabilidadRep = $contabilidadRep;
+        $this->productoRep = $productoRep;
     }
 
 
@@ -41,6 +44,12 @@ class ContabilidadController extends Controller
     }
 
 
+    public function viewConsumoByFundo()
+    {
+        return view('cc/viewConsumoByFundo');
+    }
+
+
     
     //APIS
 
@@ -56,6 +65,42 @@ class ContabilidadController extends Controller
         return \Response::json($res);
 
     }
+
+
+
+
+    public function getFamiliasProductos()
+    {
+        $res = $this->productoRep->getAllFamilias();
+
+        return  \Response::json($res);
+    }
+
+    public function getAllSubFamiliasProductos()
+    {
+        $res = $this->productoRep->getAllSubFamilias();
+    }
+
+    public function getAllInitDataConsumoReporte()
+    {
+
+       $familias = $this->productoRep->getAllFamilias();
+       $subFamilias = $this->productoRep->getAllSubFamilias();
+       $fundos = $this->contabilidadRep->getFundos();
+
+      // $data['familias'] = $familias;
+      // $data['subFamilias'] = $subFamilias;
+       $data['fundos'] = $fundos;
+
+
+
+
+       return \Response::json($data);
+
+    }
+
+
+
     //funcion para el control de las ordenes de compras 
     public function getOrdenCompraForControl()
     {
@@ -364,10 +409,7 @@ class ContabilidadController extends Controller
  
             });
         })->export('csv');
-            
-       
-         
-       
+              
     }
 
 

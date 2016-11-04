@@ -165,6 +165,19 @@ class ContabilidadRep
 
     }
 
+    public function getFundos()
+    {
+      $query ="SELECT CODIGO FROM flexline.GEN_TABCOD
+              WHERE EMPRESA='E01'
+              AND TIPO='GEN_FUNDO'
+              AND VIGENCIA NOT IN('N','S') ";
+
+      $res = \DB::select($query);
+
+      return $res;
+
+    }
+
 
 
 
