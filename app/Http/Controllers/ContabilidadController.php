@@ -50,6 +50,39 @@ class ContabilidadController extends Controller
     }
 
 
+    public function sendDataForExcelConsumo()
+    {
+        $data = \Input::all();
+
+        $res = $this->contabilidadRep->sendDataForExcelConsumo($data);
+        $res['fundo'] = $data['fundo'];
+
+        $ruta =base_path()."/storage/contabilidad/excel/";
+
+        Excel::create('consumo_por_fundo', function($excel) use ($res){
+
+            $excel->sheet('resultado', function($sheet) use ($res){
+
+                $parrones   =   $res['parrones'] ;
+                $productos  =   collect($res['productos']) ;
+                $fundo      =   $res['fundo'];
+
+                $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo'));
+            });
+
+        })->store('xls',$ruta);
+
+
+        return \Response::json("correcto");
+    }
+
+
+    public function getExcelConsumoByFundo(){
+        return response()->download(base_path()."/storage/contabilidad/excel/consumo_por_fundo.xls");
+    }
+
+
+
     
     //APIS
 
@@ -100,11 +133,20 @@ class ContabilidadController extends Controller
     }
 
 
+    public function getParronByFundo($fundo)
+    {
+        
+        $res = $this->contabilidadRep->getParronByFundo($fundo);
+
+        return \Response::json($res);
+    }
+
+
 
     //funcion para el control de las ordenes de compras 
     public function getOrdenCompraForControl()
     {
-        # code...
+       
 
         $data = \Input::all();
 
@@ -133,7 +175,7 @@ class ContabilidadController extends Controller
     public function pdbTxtCompras()
     {
 
-        //aumente el timpo
+        //aumente el tiempo de espera del servidor
 
             set_time_limit (180);
         //

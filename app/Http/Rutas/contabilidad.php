@@ -33,6 +33,12 @@ Route::get('contabilidad/api/getAllSubFamiliasProductos',['as'=>'getAllSubFamili
 
 Route::get('contabilidad/api/getAllInitDataConsumoReporte',['as'=>'getAllInitDataConsumoReporte','uses'=>'ContabilidadController@getAllInitDataConsumoReporte']);
 
+Route::get('contabilidad/api/getParronByFundo/{fundo}',['as'=>'getParronByFundo','uses'=>'ContabilidadController@getParronByFundo']);
+
+Route::post('contabilidad/sendDataForExcelConsumo',['as'=>'sendDataForExcelConsumo','uses'=>'ContabilidadController@sendDataForExcelConsumo']);
+
+
+
 
 // ----- para los txt
 
@@ -47,3 +53,5 @@ Route::get('contabilidad/txt/getTxtTipoCambio',['as'=>'getTxtTipoCambio','uses'=
 
 //----- para los excel
 Route::get('contabilidad/excel/pdbExcelCompras/{periodo}',['as'=>'pdbExcelCompras','uses'=>'ContabilidadController@pdbExcelCompras']);
+
+Route::get('contabilidad/excel/getExcelConsumoByFundo',['as'=>'getExcelConsumoByFundo','uses'=>'ContabilidadController@getExcelConsumoByFundo']);

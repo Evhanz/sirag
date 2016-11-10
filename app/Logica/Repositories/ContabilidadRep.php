@@ -178,7 +178,93 @@ class ContabilidadRep
 
     }
 
+    public function getParronByFundo($fundo)
+    {
+      
+      $query = "SELECT CODIGO,VALOR1 FROM flexline.GEN_TABCOD
+                WHERE EMPRESA='E01'
+                AND TIPO='GEN_PARRON'
+                AND VIGENCIA <> 'N'
+                AND CODIGO LIKE '%$fundo'";
+      $res = \DB::select($query);
 
+      return $res;
+
+    }
+
+
+    public function sendDataForExcelConsumo($data)
+    {
+
+      //primero traemos a todos los productos de materia prima
+
+      $query = "SELECT PRODUCTO,GLOSA,SUBFAMILIA from flexline.PRODUCTO
+                where FAMILIA = 'MATERIA PRIMA' 
+                and EMPRESA = 'e01'
+                ORDER by SUBFAMILIA";
+
+      $productos = \DB::select($query);
+
+
+      //traemos a los consumos de cada producto  de acuerdo a su parron por cada fecha
+
+      foreach ($productos as $item) {
+
+        $item->GLOSA = utf8_encode($item->GLOSA);
+
+
+        $p = [];
+
+
+        foreach ($data['parrones'] as $parron) {
+
+
+          $dto = new DocumentoDTO();
+          $consumo = $this->getConsumoByFechasAndProducto($parron['startDate'],$parron['endDate'],$item->PRODUCTO,$parron['CODIGO']);
+
+          $dto->name_parron = $parron['CODIGO'];
+          $dto->area = $parron['VALOR1'];
+          $dto->total_cantidad_consumo = $consumo->cantidad;
+          $dto->total_precio_consumo = $consumo->total;
+          $dto->precio_ha = number_format($consumo->total/$parron['VALOR1'],2,'.','');
+
+          /*
+          $dto->costo = $consumo->costo;
+          $dto->cantidad = $consumo->cantidad;
+          */
+
+          array_push($p, $dto);
+        }
+
+        $item->analisis_parron = $p;
+
+      }
+
+      $res = [];
+
+      $res['parrones'] = $data['parrones'] ;
+      $res['productos'] = $productos;
+
+
+      return $res;
+    }
+
+
+    public function getConsumoByFechasAndProducto($fecha_i,$fecha_f,$producto,$parron)
+    {
+     
+      $query = " SELECT CONVERT(DECIMAL(12,2),SUM(CANTIDAD)) cantidad, CONVERT(DECIMAL(12,2),SUM(TOTAL)) total 
+      FROM dbo.v_getConsumoMateriaPrima  
+      where PRODUCTO = '$producto' 
+      and FECHA BETWEEN '$fecha_i' and '$fecha_f'  
+      and PARRON = '$parron'  ";
+
+      $res = \DB::select($query);
+
+
+      return $res[0];
+
+    }
 
 
 

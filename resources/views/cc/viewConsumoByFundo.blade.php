@@ -2,9 +2,18 @@
 
 @section('content')
 
+
+
+    
+    <script src="{{ asset('js/plugins/moment/moment.js') }}"></script>
+
     <!-- Daterangepicker css -->
     <link rel="stylesheet" href="{{asset('css/daterangepicker/daterangepicker-bs3.css')}}">
     <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/plugins/angular/angular-daterangepicker/angular-daterangepicker.js') }}"></script>
+    
+
+
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
@@ -24,7 +33,6 @@
                                     <div id="home" class="tab-pane fade in active">
                                         <div class="row">
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
-
 
                                             <!--
                                             <div class="col-md-2">
@@ -46,9 +54,8 @@
                                                     </option>
                                                 </select>
                                             </div>
-
-
                                             -->
+
 
                                             <div class="col-md-2">
                                                 <label for="">Fundo</label>
@@ -60,21 +67,34 @@
                                                     </option>
                                                 </select>
                                             </div>
+                                            <div class="col-md-8">
+                                                <label for="">*Las fechas se encuentran en MM-DD-YYYY</label>
+                                            </div>
 
 
                                         </div>
 
+                                        <br><br>
+
                                         <div class="row">
-                                            <div ng-repeat="parron in parrones" class="col-md-2">
-                                                <label for="">Parron @{{ $index }}</label>
-                                                <input class="form-control " name="daterange" id="reservation" type="text">
+
+                                           
+                                            <div ng-repeat="parron in parrones" class="col-md-3">
+                                                <label for="">@{{  parron.CODIGO }}</label>
+                                                <input  name="data_range" date-range-picker class="form-control date-picker" type="text" ng-model="parron.fecha" ng-init="parron.fecha={startDate: null, endDate: null}" />
                                                 
                                             </div>
-                                            <div class="col-md-1">
-                                                <br>
-                                                <button href="" class="btn btn-success" onclick="imprimir()">
-                                                    <i class=""></i> guardar </button>
+                                        </div>
+                                        
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <button href="" class="btn btn-success" id="btnExcel" ng-click="sentData()">
+                                                    <i class="fa fa-file-excel-o"></i> 
+                                                    <strong>Generar Excel</strong> </button>
                                             </div>
+                                           
                                         </div>
 
                                     </div>
@@ -116,10 +136,23 @@
 
         /*funciones de jquery*/
 
-        $('input[name="daterange"]').daterangepicker({
+        $('input[name="data_range"]').daterangepicker({
             format : "DD/MM/YYYY"
         });
         $('[data-toggle="tooltip"]').tooltip();
+
+
+        /*
+        $('input[name="data_range"]').daterangepicker(
+        {
+            {
+              //format: 'YYYY-MM-DD'
+              format: 'DD-MM-YYYY'
+            }
+        }
+        */
+
+
         /*
          $(document).ready(function(){
 
@@ -153,7 +186,7 @@
         /**/
 
 
-        var app = angular.module("app", []);
+        var app = angular.module("app",['daterangepicker']);
         app.controller("PruebaController", function($scope,$http,$window) {
 
             $scope.s = "a";
@@ -186,6 +219,7 @@
                     //$scope.familias = data.familias;
                     //$scope.subfamilias = data.subFamilias;
                     $scope.fundos = data.fundos;
+
                     
                 })
                 .error(function (data) {
@@ -194,82 +228,124 @@
 
             };
 
-
             
 
 
-
-
-
-
-            $scope.getFamilias = function() {
-
+            $("#f_fundo").change(function(){
                 
+                var fundo = $(this).val();
 
-                
+                var bandera = fundo.indexOf("FUNDO");
 
+                if (bandera>-1) {
 
+                    var f = "F"+fundo.substring(8,9);
+                    var ruta = "{{ URL::route('modContabilidad') }}/api/getParronByFundo/"+f;
+                    
 
-            };
+                    $http.get(ruta)
+                    .success(function(data){
 
+                        //console.log(data);
+                        $scope.parrones = data;
 
+                    })
+                    .error(function(data){
+                        console.log(data);
+                    });
 
-           
-            $scope.getData =  function ()
-            {
+                    
 
-                var token = $('#_token').val();
-                var f_inicio ="";
-                var f_fin = "";
-                var nivel = $("#nivel").val();
-
-                var fecha_s_format = $('#reservation').val();
-
-                fecha_s_format=fecha_s_format.split("-");
-
-                f_inicio = formatDateToText(fecha_s_format[0]);
-                f_fin = formatDateToText(fecha_s_format[1]);
-
-                var ruta = '{{ URL::route('getBalanceByNivelesApi') }}';
-
-                $('#btnBuscarDoc').attr("disabled", true);
-                $scope.Documentos = [];
-                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
-
-                
-                $http.post(ruta,{_token : token,
-                            f_i:f_inicio,
-                            f_f: f_fin,
-                            nivel:nivel
-                        })
-                        .success(function(data){
-
-                            $scope.Documentos = data.items;
-                            //console.log(data);
-
-                            $scope.totales.total_SI_DEUDOR = data.total_SI_DEUDOR;
-                            $scope.totales.total_SI_ACREEDOR = data.total_SI_ACREEDOR;
-                            $scope.totales.total_MOV_DEBE = data.total_MOV_DEBE;
-                            $scope.totales.total_MOV_HABER = data.total_MOV_HABER;
-                            $scope.totales.total_SF_DEUDOR = data.total_SF_DEUDOR;
-                            $scope.totales.total_SF_ACREEDOR = data.total_SF_ACREEDOR;
+                } else {
 
 
-                            $('#btnBuscarDoc').attr("disabled", false);
 
-                            $( "div" ).remove( ".overlay" );
-                            $( "div" ).remove( ".loading-img" );
+                }
 
 
-                        }).error(function(data) {
-                    console.log(data);
-                    $("#box_maestro").remove(".overlay");
-                    $("#box_maestro").remove(".loading-img");
+               // alert("Fundo: "+fundo);
+
+            });
+
+
+            $scope.sentData = function (){
+
+               
+
+                var bandera=0;
+
+                //primero formateamos las fechas para determinar si estan en el rango
+
+                angular.forEach($scope.parrones,function(item){
+
+                    var fecha = item.fecha;
+
+                    if (fecha.endDate == null || fecha.startDate == null) {
+                        bandera = 1;
+                    }else{
+
+                        var f = new Date(fecha.endDate);
+                        item.endDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+
+
+                        var f = new Date(fecha.startDate);
+                        item.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+                    }
+
                 });
-                
-            };
 
             
+
+
+                //si la bandera = a 0 entonces se envia la data
+               if(bandera == 0){
+
+                    /*
+                        fundo : modeloFundo,
+                        parrones: $scope.parrones (parrones[endDate,starDate,CODIGO])
+
+
+                    */
+
+                    $('#btnExcel').attr("disabled", true);
+
+                    var ruta = "{{ URL::route('sendDataForExcelConsumo') }}";
+                    var token = $('#_token').val();
+
+                    $http.post(ruta,{
+                        _token   : token,
+                        parrones : $scope.parrones,
+                        fundo    : $("#f_fundo").val()    
+
+                    }).success(function (data) {
+
+                        if (data=="correcto") {
+                            //habilitar el button
+
+                           // $("#downloadExcel").disabled(false);
+
+                            var url = '{{ URL::route('getExcelConsumoByFundo') }}';
+                            window.location = url;
+                            $('#btnExcel').attr("disabled", false);
+                        }else{
+                        alert("Ocurrio un error, llamar al area de soporte");
+                        $('#btnExcel').attr("disabled", false);
+                        }
+                        
+                    }).error(function (data) {
+                        alert("Ocurrio un error, llamar al area de soporte");
+                        $('#btnExcel').attr("disabled", false);
+                        console.log(data);
+                    });
+
+
+               }else{
+
+                    alert("Todos los parrones tienen que tener fecha");
+               }
+
+            };
+
 
 
 
@@ -293,3 +369,4 @@
 
 
 @stop
+
