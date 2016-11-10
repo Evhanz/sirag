@@ -52,6 +52,14 @@ class ContabilidadController extends Controller
 
     public function sendDataForExcelConsumo()
     {
+
+
+          //aumente el tiempo de espera del servidor
+
+            set_time_limit (180);
+        //
+
+
         $data = \Input::all();
 
         $res = $this->contabilidadRep->sendDataForExcelConsumo($data);
