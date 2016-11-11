@@ -240,10 +240,30 @@ class ContabilidadRep
 
       }
 
+      //se trae la data de los parrones que no an sido asignados 
+      $fundo      = $data['fundo'];
+      $otros      = $data['otros'];
+      $otros_f_i  = $otros['startDate'];
+      $otros_f_f  = $otros['endDate'];
+
+      $query = "SELECT PRODUCTO,DESCRIPCION,SUM(CANTIDAD) cantidad ,SUM(TOTAL) total
+                from dbo.v_getConsumoMateriaPrima
+                WHERE FUNDO = '$fundo'
+                and FECHA BETWEEN '$otros_f_i' and '$otros_f_f'  
+                AND PARRON NOT LIKE '%PARRON%' 
+                GROUP BY PRODUCTO,DESCRIPCION ";
+      $res_otros = \DB::select($query);
+
+      //
+
       $res = [];
 
-      $res['parrones'] = $data['parrones'] ;
+      $res['parrones']  = $data['parrones'] ;
       $res['productos'] = $productos;
+      $res['otros']     = collect($res_otros);
+      $res['f_otros_i'] = $otros_f_i;//fecha de los productos que no registran parron
+      $res['f_otros_f'] = $otros_f_f;
+
 
 
       return $res;

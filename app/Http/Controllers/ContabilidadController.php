@@ -62,8 +62,9 @@ class ContabilidadController extends Controller
 
         $data = \Input::all();
 
-        $res = $this->contabilidadRep->sendDataForExcelConsumo($data);
-        $res['fundo'] = $data['fundo'];
+        $res            = $this->contabilidadRep->sendDataForExcelConsumo($data);
+        $res['fundo']   = $data['fundo'];
+        $res['f_otros'] = $data['otros']; 
 
         $ruta =base_path()."/storage/contabilidad/excel/";
 
@@ -74,8 +75,11 @@ class ContabilidadController extends Controller
                 $parrones   =   $res['parrones'] ;
                 $productos  =   collect($res['productos']) ;
                 $fundo      =   $res['fundo'];
+                $otros      =   $res['otros'];
+                $f_otros_i  =   $res['f_otros_i'];//fecha de los productos que no registran parron
+                $f_otros_f  =   $res['f_otros_f'];
 
-                $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo'));
+                $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo','otros','f_otros_i','f_otros_f'));
             });
 
         })->store('xls',$ruta);
