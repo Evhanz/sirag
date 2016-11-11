@@ -68,6 +68,34 @@
 		</tr>
 		@endforeach
 		
+		<hr>
+		<tr>
+			<td> </td>
+		</tr>
+
+		<tr>
+			<td><h4>PARRONES NO ASIGNADOS</h4></td>
+			<td>en fecha {{ $f_otros_i }} al {{ $f_otros_f }}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>CODIGO</td>
+			<td>DESCRIPCION</td>
+			<td>CANTIDAD</td>
+			<td>TOTAL</td>
+		</tr>
+		@foreach ($otros as $p)
+		<tr class="">
+			<td></td>
+			<td>{{ $p->PRODUCTO }}</td>
+			<td>{{ $p->DESCRIPCION }}</td>
+			<td>{{ $p->cantidad }}</td>
+			<td>{{ $p->total }}</td>
+		</tr>
+		@endforeach
+
+		
+		
 	</table>
 
 	<style>

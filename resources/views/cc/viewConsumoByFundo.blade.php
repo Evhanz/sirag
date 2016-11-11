@@ -84,6 +84,12 @@
                                                 <input  name="data_range" date-range-picker class="form-control date-picker" type="text" ng-model="parron.fecha" ng-init="parron.fecha={startDate: null, endDate: null}" />
                                                 
                                             </div>
+
+                                            <div class="col-md-3"> 
+                                                <label for="">Otros</label>
+                                                <input  name="data_range2" date-range-picker class="form-control date-picker" type="text" ng-model="fecha_otros" ng-init="fecha_otros={startDate: null, endDate: null}"  />
+
+                                            </div>
                                         </div>
                                         
                                         <hr>
@@ -194,10 +200,13 @@
 
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
+            $scope.otros = {}
 
             $scope.totales = {};
 
             var ruta = '';
+
+          //  $scope.fecha_otros = {startDate: null, endDate: null};
 
 
             //funcioines que inician la pagina
@@ -284,9 +293,8 @@
                         bandera = 1;
                     }else{
 
-                        var f = new Date(fecha.endDate);
-                        item.endDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
-
+                        var f           = new Date(fecha.endDate);
+                        item.endDate    = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
 
                         var f = new Date(fecha.startDate);
                         item.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
@@ -294,7 +302,17 @@
 
                 });
 
-            
+
+                var fecha = $scope.fecha_otros;
+
+                if (fecha.endDate == null || fecha.startDate == null) {
+                    bandera = 1;
+                }else{
+                    var f = new Date(fecha.endDate);
+                    $scope.otros.endDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+                    var f = new Date(fecha.startDate);
+                    $scope.otros.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+                }
 
 
                 //si la bandera = a 0 entonces se envia la data
@@ -315,18 +333,17 @@
                     $http.post(ruta,{
                         _token   : token,
                         parrones : $scope.parrones,
-                        fundo    : $("#f_fundo").val()    
+                        fundo    : $("#f_fundo").val(),
+                        otros    : $scope.otros    
 
                     }).success(function (data) {
 
                         if (data=="correcto") {
-                            //habilitar el button
-
-                           // $("#downloadExcel").disabled(false);
-
-                            var url = '{{ URL::route('getExcelConsumoByFundo') }}';
+                           
+                            var url         = '{{ URL::route('getExcelConsumoByFundo') }}';
                             window.location = url;
                             $('#btnExcel').attr("disabled", false);
+
                         }else{
                         alert("Ocurrio un error, llamar al area de soporte");
                         $('#btnExcel').attr("disabled", false);
