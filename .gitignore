@@ -4,3 +4,5 @@ Homestead.yaml
 Homestead.json
 .env
 .idea/workspace.xml
+*.xls
+storage/contabilidad/excel/consumo_por_fundo.xls
