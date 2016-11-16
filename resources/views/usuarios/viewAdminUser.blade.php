@@ -2,6 +2,17 @@
 
 @section('content')
 
+    <style>
+        tr[data-style^="body_table1"]:hover{
+            background: #0970A8;
+            color: white;
+        }
+
+        tr[data-style^="body_table1"] td input[type^="checkbox"]:hover{
+           /* outline: 2px solid #F00; */
+        }
+    </style>
+
 	
 
     <div ng-app="app" ng-controller="PruebaController">
@@ -22,33 +33,32 @@
                             <div class="row" style="padding-left: 15px;padding-right: 15px;">
 
                                 <div class="col-lg-8">
-                                     <table class="table table-bordered">
-                                    <tr>
-                                        <td> <h4>Personal</h4></td>
-                                        <td  ng-repeat=" item in roles">
-                                            @{{item.name}}
-                                        </td>
-                                        <td>
-                                            *
-                                        </td>
+                                    <table class="table table-bordered" data-style="tabla1">
+                                        <tr>
+                                            <td> <h4>Personal</h4></td>
+                                            <td  ng-repeat=" item in roles">
+                                                @{{item.name}}
+                                            </td>
+                                            <td>
+                                                *
+                                            </td>
 
-                                    </tr>
+                                        </tr>
 
-                                    <tr  ng-repeat=" u in usuarios">
-                                        <td>
-                                            @{{ u.usr }}
-                                        </td>
-                                        <td  ng-repeat=" d in u.detail" >
-                                           <input type="checkbox" ng-model="d.res" ng-change="changeState(u,d)">
-                                        </td>   
-                                        <td>
-                                            <div  ng-show="u.change">
-                                              <button class="btn btn-success btn-xs" ng-click="update_roles(u)"> <i class="fa fa-floppy-o" ></i> </button>
-                                            </div>
-                                           
-                                        </td>
-                                    </tr>
-
+                                        <tr  ng-repeat=" u in usuarios" data-style="body_table1"> 
+                                            <td>
+                                                @{{ u.usr }}
+                                            </td>
+                                            <td  ng-repeat=" d in u.detail" >
+                                               <input type="checkbox" ng-model="d.res" ng-change="changeState(u,d)">
+                                            </td>   
+                                            <td>
+                                                <div  ng-show="u.change">
+                                                  <button class="btn btn-success btn-xs" ng-click="update_roles(u)"> <i class="fa fa-floppy-o" ></i> </button>
+                                                </div>
+                                               
+                                            </td>
+                                        </tr>
                                     </table>
                                     
                                 </div>
