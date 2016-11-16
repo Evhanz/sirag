@@ -120,6 +120,20 @@ class ComercialController extends Controller
     }
 
 
+
+    public function apiGetKardexSalida()
+    {
+        
+
+        $res = $this->productoRep->getKardexSalida("");
+
+        return \Response::Json($res);
+
+
+
+    }
+
+
     /*API REST para los proveedores*/
 
     public function getProveedoresByRazonAndRUC()

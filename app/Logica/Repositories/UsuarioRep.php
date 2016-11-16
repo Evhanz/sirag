@@ -22,6 +22,7 @@ class UsuarioRep
         $usuarios = \DB::select("SELECT  usr 
                     from security.SEG_USUARIO 
                     where EMPRESA = 'e01'
+                    AND LOCKED = 0
                     ORDER by USR");
 
 

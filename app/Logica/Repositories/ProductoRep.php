@@ -98,6 +98,75 @@ class ProductoRep
 
 
 
+    //funcion para traer a el kardex de consumo 
+
+
+    public function getKardexSalida($data)
+    {
+
+        /*
+        $f_i = $data['f_i'];
+        $f_f = $data['f_f'];
+*/
+
+        //primero llamaremos a el 
+
+        $query = "SELECT dd.Fecha fecha,p.GLOSA glosa,dd.Cantidad cantidad
+        FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
+        where
+        dd.Empresa=p.EMPRESA
+        and dd.Producto = p.PRODUCTO
+        AND dd.EMPRESA = tp.Empresa
+        AND dd.TipoDocto = tp.TipoDocto
+        and dd.Empresa='e01'
+        AND dd.Bodega <> '' 
+        AND tp.Sistema IN ('Inventario','Produccion') 
+        AND tp.FactorInventario='-1' 
+        --AND dd.Fecha BETWEEN '2016-01-01' and '2016-30-11'
+        ORDER by Fecha";
+
+        try {
+
+            $res = \DB::select($query);
+            foreach ($res as $i) {
+                # code...
+                $i->glosa = utf8_decode($i->glosa);
+
+            }
+
+            $res = collect($res);
+
+
+            $result = $res->groupBy('glosa');
+
+
+
+            return $result;
+            
+        } catch (\Exception $e) {
+            return $e;
+            
+        }
+
+        
+
+        /*
+
+        $result = $res->groupBy('glosa')->map(function ($item) {
+                return $item->sum(function ($item) {
+                    return ($item['cantidad']);
+                });
+            })->toArray();
+
+        */
+
+
+        
+
+    }
+
+
+
 
 
 }
