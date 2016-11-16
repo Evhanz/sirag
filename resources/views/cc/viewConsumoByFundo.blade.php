@@ -358,7 +358,7 @@
 
                }else{
 
-                    alert("Todos los parrones tienen que tener fecha");
+                alert("Todos los parrones tienen que tener fecha");
                }
 
             };
