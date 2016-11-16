@@ -245,7 +245,13 @@ class RecursoshController extends Controller
             //$row = $row.$i->Nombre.$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),75); -- esto era anterior y se reemplazo por la siguiente linea
             //$row = $row.utf8_decode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),75);
 
-            $row = $row.mb_detect_encoding($i->Nombre, 'UTF-8', true).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),75);
+            if (mb_detect_encoding($i->Nombre)=='UTF-8') {
+                # code...
+                $row = $row.utf8_decode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),76);
+            } else {
+                 $row = $row.$i->Nombre.$this->getEspacioBlanco(strlen($i->Nombre),75);
+            }
+            
 
             //6.- referencia Beneficiario
             $row = $row.'Referencia Beneficiario '.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),16);
