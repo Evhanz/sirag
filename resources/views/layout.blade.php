@@ -126,7 +126,15 @@
                         <li><a href="{{ URL::route('viewRepProductos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Costo de Productos </a></li>
                         <li><a href="{{ URL::route('viewOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Ordenes Compra </a></li>
 
-                         <li><a href="{{ URL::route('viewControlOrdenCompraComercial') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
+                        <li><a href="{{ URL::route('viewControlOrdenCompraComercial') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
+                        
+                        <li>
+                        <a href="{{ URL::route('viewKardex') }}" class="item sub">
+                            <i class="fa fa-angle-double-right"></i> Reporte Kardex</a></li>
+                        </a>
+                            
+                        </li>
+
                     </ul>
                 </li><!--Comercial-->
                 @endif

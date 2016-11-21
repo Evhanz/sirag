@@ -86,8 +86,7 @@ class ProductoRep
     public function getAllSubFamilias(){
         $sub = new SubFamilia();
 
-        $sub = \DB::select("select CODIGO,DESCRIPCION,RELACIONCODIGO1 from flexline.gen_tabcod where EMPRESA='e01'
-                            and TIPO='producto.subfamilia' AND VIGENCIA <> 'N'");
+        $sub = \DB::select("select CODIGO,DESCRIPCION,RELACIONCODIGO1 from flexline.gen_tabcod where EMPRESA='e01'  and TIPO='producto.subfamilia' AND VIGENCIA <> 'N'");
 
         return $sub;
 
@@ -104,14 +103,17 @@ class ProductoRep
     public function getKardexSalida($data)
     {
 
-        /*
-        $f_i = $data['f_i'];
-        $f_f = $data['f_f'];
-*/
+       
+        $f_i        = $data['f_i'];
+        $f_f        = $data['f_f'];
+        $producto   = $data['producto'];
+        $familia    = $data['familia'];
+
+
 
         //primero llamaremos a el 
 
-        $query = "SELECT dd.Fecha fecha,p.GLOSA glosa,dd.Cantidad cantidad
+        $query = "SELECT dd.Fecha fecha,p.GLOSA glosa,dd.Cantidad cantidad,dd.UnidadIngreso unidad
         FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
         where
         dd.Empresa=p.EMPRESA
@@ -122,6 +124,9 @@ class ProductoRep
         AND dd.Bodega <> '' 
         AND tp.Sistema IN ('Inventario','Produccion') 
         AND tp.FactorInventario='-1' 
+        AND dd.Fecha BETWEEN '$f_i' and '$f_f'
+        AND p.GLOSA like '%$producto%'
+        AND p.FAMILIA like '%$familia%'
         --AND dd.Fecha BETWEEN '2016-01-01' and '2016-30-11'
         ORDER by Fecha";
 
@@ -140,8 +145,27 @@ class ProductoRep
             $result = $res->groupBy('glosa');
 
 
+            //primero sacaremos los key de cada uno de los elementos del array y lo asignaremos a un array 
+            //donde estara formateada la data de acuerdo a lo requerido
 
-            return $result;
+            $dataFormated = array();
+
+            foreach ($result as $item) {
+
+                $obj = new ProductoDTO();
+                $obj->producto_name = $item[0]->glosa;
+                $obj->cantidad_total = $item->sum("cantidad");
+                $obj->unidad = $item[0]->unidad;
+                $obj->detalle = $item;
+
+                array_push($dataFormated, $obj);
+
+            }
+
+
+
+            //return $result;
+            return $dataFormated;
             
         } catch (\Exception $e) {
             return $e;

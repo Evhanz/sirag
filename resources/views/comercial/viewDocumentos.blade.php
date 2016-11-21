@@ -37,7 +37,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Rano de Fechas</label>
+                                                    <label>Rango de Fechas</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>

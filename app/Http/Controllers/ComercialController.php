@@ -58,6 +58,11 @@ class ComercialController extends Controller
        return view('comercial/viewControlOrdenCompra');
     }
 
+    public function viewKardex()
+    {
+        return view('comercial/viewKardex');
+    }
+
 
     /*funciones para el rest de los documentos*/
     public function getAllDocumentosByParameters()
@@ -124,8 +129,9 @@ class ComercialController extends Controller
     public function apiGetKardexSalida()
     {
         
+        $data = \Input::all();
 
-        $res = $this->productoRep->getKardexSalida("");
+        $res = $this->productoRep->getKardexSalida($data);
 
         return \Response::Json($res);
 
@@ -152,10 +158,7 @@ class ComercialController extends Controller
 
         return \Response::Json($res);
 
-
-
-        //var_dump($res);
-        
+        //var_dump($res);        
     }
 
     //API para las sordenes de compra
