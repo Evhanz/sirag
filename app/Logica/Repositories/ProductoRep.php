@@ -130,62 +130,41 @@ class ProductoRep
         --AND dd.Fecha BETWEEN '2016-01-01' and '2016-30-11'
         ORDER by Fecha";
 
-        try {
-
-            $res = \DB::select($query);
-            foreach ($res as $i) {
+       
+        
+        $res = \DB::select($query);
+        foreach ($res as $i) {
                 # code...
-                $i->glosa = utf8_decode($i->glosa);
+            $i->glosa = utf8_decode($i->glosa);
 
-            }
-
-            $res = collect($res);
-
-
-            $result = $res->groupBy('glosa');
-
-
-            //primero sacaremos los key de cada uno de los elementos del array y lo asignaremos a un array 
-            //donde estara formateada la data de acuerdo a lo requerido
-
-            $dataFormated = array();
-
-            foreach ($result as $item) {
-
-                $obj = new ProductoDTO();
-                $obj->producto_name = $item[0]->glosa;
-                $obj->cantidad_total = $item->sum("cantidad");
-                $obj->unidad = $item[0]->unidad;
-                $obj->detalle = $item;
-
-                array_push($dataFormated, $obj);
-
-            }
-
-
-
-            //return $result;
-            return $dataFormated;
-            
-        } catch (\Exception $e) {
-            return $e;
-            
         }
 
-        
-
-        /*
-
-        $result = $res->groupBy('glosa')->map(function ($item) {
-                return $item->sum(function ($item) {
-                    return ($item['cantidad']);
-                });
-            })->toArray();
-
-        */
+        $res = collect($res);
+        $result = $res->groupBy('glosa');
 
 
-        
+        //primero sacaremos los key de cada uno de los elementos del array y lo asignaremos a un array 
+        //donde estara formateada la data de acuerdo a lo requerido
+
+        $dataFormated = array();
+
+        foreach ($result as $item) {
+
+            $obj = new ProductoDTO();
+            $obj->producto_name = $item[0]->glosa;
+            $obj->cantidad_total = $item->sum("cantidad");
+            $obj->unidad = $item[0]->unidad;
+            $obj->detalle = $item;
+             array_push($dataFormated, $obj);
+
+        }
+
+
+
+        //return $result;
+        return $dataFormated;
+            
+       
 
     }
 

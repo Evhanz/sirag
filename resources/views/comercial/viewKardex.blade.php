@@ -511,9 +511,9 @@
 
                     var fecha_s_format = $("#reservation").val().split('-');
 
-
-                    var f_i = formatDateDMYtoMDY(fecha_s_format[0]);
-                    var f_f = formatDateDMYtoMDY(fecha_s_format[1]);
+                    //se cambia a este formato por que es lo que se necesita por el sql server y el hdp que hizo flexline
+                    var f_i = formatDateDMYtoYDM(fecha_s_format[0],"/");
+                    var f_f = formatDateDMYtoYDM(fecha_s_format[1],"/");
 
                     var ruta = '{{ URL::route('api_getKardexSalida') }}';
 
@@ -592,7 +592,17 @@
 
                 fecha = fecha.split('/');
 
-                fecha = fecha[1]+"-"+fecha[0]+"-"+fecha[2];
+                fecha = fecha[1].trim()+"-"+fecha[0].trim()+"-"+fecha[2].trim();
+
+                return fecha;
+
+            }
+
+            function formatDateDMYtoYDM(fecha,separador) {
+
+                fecha = fecha.split(separador);
+
+                fecha = fecha[2]+"-"+fecha[0]+"-"+fecha[1];
 
                 return fecha;
 
