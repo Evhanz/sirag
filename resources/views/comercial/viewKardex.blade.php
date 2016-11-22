@@ -2,6 +2,9 @@
 
 @section('content')
 
+
+    <script type="text/javascript" src="{{ asset('js/plugins/table2excel/jquery.table2excel.min.js') }} "></script>
+
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
 
@@ -55,9 +58,9 @@
                                                 
 
                                                 <div class="col-xs-2">
-                                                    <label for=""> </label><br>
-                                                    <a href="" class="btn btn-success" ng-click="getProduct()">
-                                                        <i class="fa fa-search"></i>
+                                                    <label for="" style="margin-bottom: 20px"> </label><br>
+                                                    <a href="" class="btn btn-info" ng-click="getProduct()">
+                                                        Buscar <i class="fa fa-search"></i>
                                                     </a>
 
                                                 </div>
@@ -73,12 +76,21 @@
                                                 <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
 
+                                                        <div class="row">
+
+                                                            <div class="col-xs-1  col-md-offset-11">
+                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printPrincipal()">
+                                                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
                                                     </div><!-- /.box-header -->
                                                     <div class="box-body ">
 
                                                         <div class="row" style="padding: 15px">
                                                             <div class="table-responsive">
-                                                                <table class="table table-bordered" id="table_data_op1">
+                                                                <table class="table table-bordered table-hover" id="table_data_op1">
                                                                     <thead >
                                                                     <tr>
                                                                         <th>i</th>
@@ -115,13 +127,21 @@
                                              <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
+                                                     <div class="row">
+
+                                                            <div class="col-xs-2  col-md-offset-10">
+                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printSecundario()" style="margin-left: 15px;">
+                                                                    <i class="fa fa-file-excel-o" ></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
 
                                                     </div><!-- /.box-header -->
                                                     <div class="box-body ">
 
                                                         <div class="row" style="padding: 15px">
                                                             <div class="table-responsive">
-                                                                <table class="table table-bordered" id="table_data_op1">
+                                                                <table class="table table-bordered" id="table_data_op2">
                                                                     <thead >
                                                                     <tr>
                                                                         <th>*</th>
@@ -396,6 +416,45 @@
             format : "DD/MM/YYYY"
         });
         /*----*/
+
+
+
+        function printSecundario() {
+            
+            $("#table_data_op2").table2excel({
+                exclude: ".noExl",
+                name: "tabla_detalle",
+                filename: "tabla_detalle",
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+
+        }
+
+        function printPrincipal() {
+            // body...
+
+             $("#table_data_op1").table2excel({
+                exclude: ".noExl",
+                name: "tabla_general",
+                filename: "tabla_general",
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+        }
+
+
+
+        function print_excel() {
+                    
+
+            
+                  
+        }
 
 
         var app = angular.module("app", []);
