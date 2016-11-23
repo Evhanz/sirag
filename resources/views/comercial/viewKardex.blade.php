@@ -228,7 +228,7 @@
                                         <!--./ Filro Principal-->
                                         <!-- data procesada  -->
                                         <div class="row">
-                                            <div class="col-lg-7">
+                                            <div class="col-lg-6">
                                                 <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
@@ -279,7 +279,7 @@
 
                                             </div>
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-6">
 
                                                 <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
@@ -287,7 +287,7 @@
                                                         <div class="row">
 
                                                             <div class="col-xs-2  col-md-offset-10">
-                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printSecundario()" style="margin-left: 15px;">
+                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printExcel('2')" style="margin-left: 15px;">
                                                                     <i class="fa fa-file-excel-o" ></i>
                                                                 </button>
                                                             </div>
@@ -302,6 +302,7 @@
                                                                     <thead >
                                                                     <tr>
                                                                         <th>*</th>
+                                                                        <th>Num. Doc</th>
                                                                         <th>Fecha</th>
                                                                         <th>Producto</th>
                                                                         <th>Cantidad</th>
@@ -312,9 +313,10 @@
                                                                     <tbody  ng-repeat=" item in detallesEntrada | filter:search">
                                                                     <tr >
                                                                         <td>@{{ $index }}</td>
+                                                                        <td>@{{ item.numero }}</td>
                                                                         <td>@{{ item.fecha   }}</td>
                                                                         <td>@{{ item.glosa }}</td>
-                                                                        <td>@{{ item.cantidad }}</td>
+                                                                        <td>@{{ item.cantidad | number:2}}</td>
                                                                         <td>@{{ item.unidad }}</td>
                                                                     </tr>
                                                                     </tbody>
@@ -408,13 +410,26 @@
 
 
 
-        function print_excel() {
-                    
+        function printExcel(id) {
 
+            var selector = "*[data-id='"+id+"']";
+
+           console.log(selector);
+
+
+                    
+             $(selector).table2excel({
+                exclude: ".noExl",
+                name: "tabla_general",
+                filename: "tabla_general",
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+        }
             
                   
-        }
-
 
         var app = angular.module("app", []);
         app.controller("PruebaController", function($scope,$http,$window) {
@@ -423,6 +438,7 @@
             //Declaraciones
 
             $scope.detalles             =   [];
+            $scope.detallesEntrada      =   [];
             $scope.familias             =   [];
             $scope.ProductosDTO         =   [];
             $scope.ProductosDTOEntrada  =   [];
@@ -608,6 +624,25 @@
 
 
             };
+
+            $scope.viewDetalleEntrada = function (item)
+            {
+
+                angular.forEach(item.detalle,function (val) {
+
+                    val.fecha = val.fecha.split(" ");
+                    val.fecha = formatDateYMDtoDMY(val.fecha[0],'-');
+
+                });
+
+
+                $scope.detallesEntrada = item.detalle;
+
+
+            };
+
+
+            
 
        
             function getAllFamilias(){
