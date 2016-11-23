@@ -169,6 +169,75 @@ class ProductoRep
     }
 
 
+    //luego unir la funcion en una sola de entrada y salida
+
+    public function getKardexEntrada($data)
+    {
+
+
+        $f_i        = $data['f_i'];
+        $f_f        = $data['f_f'];
+        $producto   = $data['producto'];
+        $familia    = $data['familia'];
+
+
+
+        //primero llamaremos a el
+
+        $query = "select A.Fecha fecha ,A.Numero numero,
+                  C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad
+                  from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
+                  where
+                  A.idDocto=B.idDocto
+                  AND B.Empresa=C.EMPRESA
+                  and B.Producto=C.PRODUCTO
+                  AND A.TipoDocto='N/I ALMACEN (A)'
+                  and A.Empresa='e01'
+                  AND B.Fecha BETWEEN '$f_i' and '$f_f'
+                  AND C.GLOSA like '%$producto%'
+                  AND C.FAMILIA like '%$familia%'
+                  ORDER BY A.Fecha";
+
+
+
+        $res = \DB::select($query);
+        foreach ($res as $i) {
+            # code...
+            $i->glosa = utf8_decode($i->glosa);
+
+        }
+
+        $res = collect($res);
+        $result = $res->groupBy('glosa');
+
+
+        //primero sacaremos los key de cada uno de los elementos del array y lo asignaremos a un array
+        //donde estara formateada la data de acuerdo a lo requerido
+
+        $dataFormated = array();
+
+        foreach ($result as $item) {
+
+            $obj = new ProductoDTO();
+            $obj->producto_name = $item[0]->glosa;
+            $obj->cantidad_total = $item->sum("cantidad");
+            $obj->unidad = $item[0]->unidad;
+            $obj->detalle = $item;
+            array_push($dataFormated, $obj);
+
+        }
+
+
+
+        //return $result;
+        return $dataFormated;
+
+
+
+    }
+
+
+
 
 
 

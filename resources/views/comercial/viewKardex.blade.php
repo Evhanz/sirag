@@ -181,197 +181,156 @@
                                     </div>
                                     <!-- Tab filtro proveedor -->
                                     <div id="entradas" class="tab-pane fade">
-                                        <!--Filtro Principal opcion proveedor-->
+                                        <!--Filtro Principal de productos-->
                                         <div class="row">
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                            <form class="form-inline" style="padding: 15px">
 
-                                            <!--filtro de cabecera-->
-                                            <div class="col-lg-5">
-                                                <form class="form-inline" style="padding: 15px">
-                                                    <div class="form-group">
-                                                        <label for="">Razon Social</label>
-                                                        <input class="form-control" type="text" ng-keyup="$event.keyCode == 13 && getProveedor()"
-                                                               ng-model="razon_social">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">RUC</label>
-                                                        <input class="form-control" ng-keyup="$event.keyCode == 13 && getProveedor()" type="number"  ng-model="fil_ruc">
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                            <!--Datos Pronósticos-->
-                                            <div class="col-lg-7">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" data-tipo="process_1" id="table_data_op1">
-                                                        <thead >
-                                                        <tr>
-                                                            <th>Razón Social</th>
-                                                            <th>RUC</th>
-                                                            <th>Email</th>
-                                                            <th>Telefono</th>
-                                                            <th>*</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr ng-repeat=" item in proveedores | filter:fil_ruc" id="tr_Doc_@{{ $index }}">
-                                                            <td>@{{ item.razon }}</td>
-                                                            <td>@{{ item.ruc }}</td>
-                                                            <td>@{{ item.Email | limitTo:30 }}</td>
-                                                            <td>@{{ item.Telefono }}</td>
-                                                            <td>
-
-                                                                <a href="" class="btn btn-default btn-xs" ng-click="getActiveProveedor($index)">
-                                                                    <i class="fa fa-eye fa-lg"></i>
-                                                                </a>
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
+                                                <div class="col-xs-3">
+                                                    <label>Rango de Fechas</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input class="form-control " name="daterange" id="reservationEntrada" type="text">
+                                                    </div><!-- /.input group -->
                                                 </div>
-                                            </div>
 
+                                                <div class="col-xs-3">
+                                                    <label for="" >Familia </label><br>
+                                                    <select class="form-control" ng-model="familiaFilterEntrada" id="f_familia_entrada" ng-init="familiaFilterEntrada='MATERIA PRIMA'">
+                                                        <option value="">---------</option>
+                                                        <option ng-repeat="familia in familias "
+                                                                value="@{{familia.CODIGO}}">
+                                                            @{{familia.CODIGO}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-xs-3">
+                                                    <label for="">Producto</label>
+                                                    <input class="form-control" type="text"  ng-model="producto_glosa_entrada">
+                                                </div>
+
+
+
+                                                <div class="col-xs-2">
+                                                    <label for="" style="margin-bottom: 20px"> </label><br>
+                                                    <a href="" class="btn btn-info" ng-click="getProductEntrada()">
+                                                        Buscar <i class="fa fa-search"></i>
+                                                    </a>
+
+                                                </div>
+
+                                            </form>
                                         </div>
+                                        <br><br>
                                         <!--./ Filro Principal-->
-
-                                        <hr>
-
-                                        <!-- data procesada  opcion proveedor-->
+                                        <!-- data procesada  -->
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <!-- Box  detalle-->
-                                                <div class="box box-primary" id="box_maestro">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Datos del Proveedor</h3>
-                                                    </div><!-- /.box-header -->
-                                                    <div class="box-body ">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <form action="">
-                                                                    <div class="col-md-8">
-                                                                        <label for=""> Razon</label>
-                                                                        <input ng-model="prod_active.razon" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <label for=""> Ruc</label>
-                                                                        <input ng-model="prod_active.ruc" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for=""> Direccion</label>
-                                                                        <input ng-model="prod_active.Direccion" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-7">
-                                                                        <label for=""> Email</label>
-                                                                        <input ng-model="prod_active.Email" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-5">
-                                                                        <label for=""> Telefono</label>
-                                                                        <input ng-model="prod_active.Telefono" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for=""> Contacto</label>
-                                                                        <input ng-model="prod_active.Contacto" class="form-control" type="text" readonly>
-                                                                    </div>
-
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Pais</label>
-                                                                        <input ng-model="prod_active.Pais" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Departamento</label>
-                                                                        <input ng-model="prod_active.departamento" class="form-control" type="text" readonly>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Distrito</label>
-                                                                        <input ng-model="prod_active.distrito" class="form-control" type="text" readonly >
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label for="">Provincia</label>
-                                                                        <input ng-model="prod_active.provincia" class="form-control" type="text" readonly>
-
-                                                                    </div>
-
-                                                                </form>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <h5>Otros</h5>
-                                                            </div>
-
-                                                            <div class="col-md-12">
-                                                                <table class="table table-bordered">
-                                                                    
-                                                                    <tr>
-                                                                        <td>Direccion</td>
-                                                                        <td>Telefono</td>
-                                                                        <td>Email</td>
-                                                                        <td>Locat.</td>
-                                                                    </tr>
-
-                                                                    <tr ng-repeat="item in prod_active.sucursales">
-                                                                        <td>@{{ item.Direccion }}</td>
-                                                                        <td>@{{ item.Telefono }}</td>
-                                                                        <td>@{{ item.email }}</td>
-                                                                        <td>@{{ item.Pais | limitTo:3 }}-
-                                                                            @{{ item.Estado | limitTo:3 }}-
-                                                                            @{{ item.Ciudad | limitTo:3 }}-
-                                                                            @{{ item.Comuna | limitTo:3 }}
-                                                                        </td>
-
-                                                                    </tr>
-
-                                                                </table>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <!-- /.row - inside box -->
-                                                    </div><!-- /.box-body -->
-                                                </div><!-- /.box -->
-
-                                            </div>
-
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-7">
                                                 <!-- Box (with bar chart) -->
-                                                <div class="box box-warning" id="box_maestro">
+                                                <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
-                                                        <h3 class="box-title">Producto</h3>
+
+                                                        <div class="row">
+
+                                                            <div class="col-xs-1  col-md-offset-11">
+                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printExcel('1')">
+                                                                    <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
 
                                                     </div><!-- /.box-header -->
                                                     <div class="box-body ">
 
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label for="">Filtro</label>
-                                                                <input ng-model="fil_glosa" type="text" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <table class="ui table" id="">
+                                                        <div class="row" style="padding: 15px">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered table-hover" id="table_data_op1" data-id="1">
                                                                     <thead >
                                                                     <tr>
-                                                                        <th>I</th>
-                                                                        <th>Glosa</th>
+                                                                        <th>i</th>
+                                                                        <th>GLOSA</th>
+                                                                        <th>CANTIDAD</th>
+                                                                        <th>UNIDAD</th>
+                                                                        <th>*</th>
                                                                     </tr>
+
                                                                     </thead>
-                                                                    <tbody>
-                                                                    <tr ng-repeat="item in prod_active.productos | filter:fil_glosa">
+                                                                    <tbody  ng-repeat=" item in ProductosDTOEntrada | filter:search">
+                                                                    <tr id="tr_Doc_@{{ $index }}">
                                                                         <td>@{{ $index }}</td>
-                                                                        <td>@{{ item.GLOSA }}</td>
+                                                                        <td>@{{ item.producto_name }}</td>
+                                                                        <td>@{{ item.cantidad_total }}</td>
+                                                                        <td>@{{ item.unidad }}</td>
+                                                                        <td>
+                                                                            <a class="btn btn-default" ng-click="viewDetalleEntrada(item)">
+                                                                                <i class="fa fa-bullseye"></i>
+                                                                            </a>
+                                                                        </td>
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                        </div>
-                                                        <!-- /.row - inside box -->
+                                                        </div><!-- /.row - inside box -->
                                                     </div><!-- /.box-body -->
                                                 </div><!-- /.box -->
+
                                             </div>
+
+                                            <div class="col-lg-5">
+
+                                                <!-- Box (with bar chart) -->
+                                                <div class="box box-info" id="box_maestro">
+                                                    <div class="box-header">
+                                                        <div class="row">
+
+                                                            <div class="col-xs-2  col-md-offset-10">
+                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printSecundario()" style="margin-left: 15px;">
+                                                                    <i class="fa fa-file-excel-o" ></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div><!-- /.box-header -->
+                                                    <div class="box-body ">
+
+                                                        <div class="row" style="padding: 15px">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered" id="table_data_op2" data-id="2">
+                                                                    <thead >
+                                                                    <tr>
+                                                                        <th>*</th>
+                                                                        <th>Fecha</th>
+                                                                        <th>Producto</th>
+                                                                        <th>Cantidad</th>
+                                                                        <th>Unidad</th>
+                                                                    </tr>
+
+                                                                    </thead>
+                                                                    <tbody  ng-repeat=" item in detallesEntrada | filter:search">
+                                                                    <tr >
+                                                                        <td>@{{ $index }}</td>
+                                                                        <td>@{{ item.fecha   }}</td>
+                                                                        <td>@{{ item.glosa }}</td>
+                                                                        <td>@{{ item.cantidad }}</td>
+                                                                        <td>@{{ item.unidad }}</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div><!-- /.row - inside box -->
+                                                    </div><!-- /.box-body -->
+                                                </div><!-- /.box -->
+
+
+
+
+                                            </div><!--detalle de la data -->
+
+
                                         </div>
-                                        <!-- ./data procesada  -->
                                     </div>
                                     <div id="menu2" class="tab-pane fade">
                                         <h3>Menu 2</h3>
@@ -463,9 +422,10 @@
             $scope.s = "a";
             //Declaraciones
 
-            $scope.detalles     =   [];
-            $scope.familias     =   [];
-            $scope.ProductosDTO =   [];
+            $scope.detalles             =   [];
+            $scope.familias             =   [];
+            $scope.ProductosDTO         =   [];
+            $scope.ProductosDTOEntrada  =   [];
 
             $scope.proveedores  =   [];
             $scope.prov_active  =   {};
@@ -552,6 +512,84 @@
 
 
             };
+
+
+            $scope.getProductEntrada = function () {
+                var token = $('#_token').val();
+
+                /*--- Procedimiento que se haga mientras no termine  */
+
+
+                $scope.search               = {};
+                $scope.ProductosDTOEntrada  = [];
+
+                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                /*-----------------*/
+
+                // console.log($scope.TipoDoct);
+                if($scope.producto_glosa_entrada == null || $scope.producto_glosa_entrada.length == 0){
+
+                    $scope.producto_glosa_entrada = '';
+                }
+                if($scope.familiaFilterEntrada == null || $scope.familiaFilterEntrada.length == 0){
+
+                    $scope.familiaFilterEntrada = '';
+                }
+
+
+                if ( $("#reservationEntrada").val().length > 0 ) {
+
+
+                    var fecha_s_format = $("#reservationEntrada").val().split('-');
+
+                    //se cambia a este formato por que es lo que se necesita por el sql server y el hdp que hizo flexline
+                    var f_i = formatDateDMYtoYDM(fecha_s_format[0],"/");
+                    var f_f = formatDateDMYtoYDM(fecha_s_format[1],"/");
+
+                    var ruta = '{{ URL::route('api_getKardexEntrada') }}';
+
+                    $http.post(ruta,
+                            {   _token : token,
+                                producto: $scope.producto_glosa_entrada,
+                                f_i: f_i,
+                                f_f: f_f,
+                                familia:$scope.familiaFilterEntrada
+
+                            })
+                            .success(function(data){
+
+                                $scope.ProductosDTOEntrada = data;
+
+                                //console.log(data);
+
+                                $( "div" ).remove( ".overlay" );
+                                $( "div" ).remove( ".loading-img" );
+
+
+                            }).error(function(data) {
+                        console.log(data);
+                        alert("Error _>");
+                        $("div").remove(".overlay");
+                        $("div").remove(".loading-img");
+                    });
+
+
+                } else {
+
+
+
+                    alert("El campo de fecha es obligatorio");
+                }
+
+
+            };
+
+
+
+
+
+
 
             //reutilizar esta funcion para insertar los detalles
 

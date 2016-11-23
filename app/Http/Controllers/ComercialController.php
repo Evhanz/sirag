@@ -138,6 +138,21 @@ class ComercialController extends Controller
 
 
     }
+    public function apiGetKardexEntrada()
+    {
+
+        $data = \Input::all();
+
+        $res = $this->productoRep->getKardexEntrada($data);
+
+        return \Response::Json($res);
+
+
+
+    }
+
+
+
 
 
     /*API REST para los proveedores*/
