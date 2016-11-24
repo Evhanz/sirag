@@ -230,7 +230,7 @@ class ProductoRep
 
 
         //return $result;
-        return $dataFormated;
+        return $query;
 
 
 
