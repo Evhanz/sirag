@@ -203,7 +203,7 @@ class ProductoRep
         $res = \DB::select($query);
         foreach ($res as $i) {
             # code...
-            $i->glosa = utf8_decode($i->glosa);
+            $i->glosa = utf8_encode($i->glosa);
 
         }
 
