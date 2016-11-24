@@ -49,16 +49,16 @@
       <file leaf-file-name="ProductoRep.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+            <state relative-caret-position="133">
+              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding>
-                <marker date="1479999507111" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-                <marker date="1479999507111" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-                <marker date="1479999507111" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-                <marker date="1479999507111" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-                <marker date="1479999507111" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-                <marker date="1479999507111" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-                <marker date="1479999507111" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1479999596903" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
+                <marker date="1479999596903" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
+                <marker date="1479999596903" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
+                <marker date="1479999596903" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
+                <marker date="1479999596903" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
+                <marker date="1479999596903" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1479999596903" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
               </folding>
             </state>
           </provider>
@@ -646,7 +646,7 @@
       <workItem from="1479901313121" duration="1248000" />
       <workItem from="1479903847095" duration="278000" />
       <workItem from="1479904454169" duration="12319000" />
-      <workItem from="1479998493650" duration="1017000" />
+      <workItem from="1479998493650" duration="1107000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -697,11 +697,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479999420572</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="rev">
+      <created>1479999515094</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1479999515094</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430556000" />
+    <option name="totallyTimeSpent" value="430646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
@@ -1086,16 +1093,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+        <state relative-caret-position="133">
+          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding>
-            <marker date="1479999507111" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1479999507111" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-            <marker date="1479999507111" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1479999507111" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999507111" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999507111" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1479999507111" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1479999596903" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
+            <marker date="1479999596903" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
+            <marker date="1479999596903" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
+            <marker date="1479999596903" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
+            <marker date="1479999596903" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
+            <marker date="1479999596903" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1479999596903" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
           </folding>
         </state>
       </provider>

@@ -135,7 +135,7 @@ class ProductoRep
         $res = \DB::select($query);
         foreach ($res as $i) {
                 # code...
-            $i->glosa = utf8_decode($i->glosa);
+            $i->glosa = utf8_encode($i->glosa);
 
         }
 
@@ -203,7 +203,7 @@ class ProductoRep
         $res = \DB::select($query);
         foreach ($res as $i) {
             # code...
-            $i->glosa = utf8_encode($i->glosa);
+            $i->glosa = utf8_decode($i->glosa);
 
         }
 
@@ -219,10 +219,10 @@ class ProductoRep
         foreach ($result as $item) {
 
             $obj = new ProductoDTO();
-            //$obj->producto_name = utf8_decode($item[0]->glosa);
+            $obj->producto_name = $item[0]->glosa;
             $obj->cantidad_total = $item->sum("cantidad");
             $obj->unidad = $item[0]->unidad;
-            //$obj->detalle = $item;
+            $obj->detalle = $item;
             array_push($dataFormated, $obj);
 
         }
@@ -230,7 +230,7 @@ class ProductoRep
 
 
         //return $result;
-        return utf8_decode($query);
+        return $dataFormated;
 
 
 
