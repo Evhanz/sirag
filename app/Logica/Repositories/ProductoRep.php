@@ -222,7 +222,7 @@ class ProductoRep
             //$obj->producto_name = utf8_decode($item[0]->glosa);
             $obj->cantidad_total = $item->sum("cantidad");
             $obj->unidad = $item[0]->unidad;
-            $obj->detalle = $item;
+            //$obj->detalle = $item;
             array_push($dataFormated, $obj);
 
         }
