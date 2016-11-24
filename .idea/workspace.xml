@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +48,8 @@
       <file leaf-file-name="ProductoRep.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="127" column="38" selection-start-line="127" selection-start-column="38" selection-end-line="127" selection-end-column="38" />
+            <state relative-caret-position="329">
+              <caret line="164" column="29" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
               <folding>
                 <marker date="1479999653175" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
                 <marker date="1479999653175" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
@@ -646,7 +645,7 @@
       <workItem from="1479901313121" duration="1248000" />
       <workItem from="1479903847095" duration="278000" />
       <workItem from="1479904454169" duration="12319000" />
-      <workItem from="1479998493650" duration="1166000" />
+      <workItem from="1479998493650" duration="1232000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -711,11 +710,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479999604631</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="rev_full_kardex">
+      <created>1479999672311</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1479999672311</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430705000" />
+    <option name="totallyTimeSpent" value="430771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
@@ -757,7 +763,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="agregado rep entrada kardex" />
     <MESSAGE value="rev" />
-    <option name="LAST_COMMIT_MESSAGE" value="rev" />
+    <MESSAGE value="rev_full_kardex" />
+    <option name="LAST_COMMIT_MESSAGE" value="rev_full_kardex" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6474359" />
   </component>
   <component name="XDebuggerManager">
@@ -1100,8 +1107,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="127" column="38" selection-start-line="127" selection-start-column="38" selection-end-line="127" selection-end-column="38" />
+        <state relative-caret-position="329">
+          <caret line="164" column="29" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
           <folding>
             <marker date="1479999653175" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
             <marker date="1479999653175" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
