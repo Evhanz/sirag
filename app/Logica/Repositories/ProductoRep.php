@@ -230,7 +230,7 @@ class ProductoRep
 
 
         //return $result;
-        return $query;
+        return utf8_decode($query);
 
 
 

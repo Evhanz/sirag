@@ -49,16 +49,16 @@
       <file leaf-file-name="ProductoRep.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
               <folding>
-                <marker date="1479999403891" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-                <marker date="1479999403891" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-                <marker date="1479999403891" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-                <marker date="1479999403891" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-                <marker date="1479999403891" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-                <marker date="1479999403891" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-                <marker date="1479999403891" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1479999507111" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
+                <marker date="1479999507111" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
+                <marker date="1479999507111" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
+                <marker date="1479999507111" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
+                <marker date="1479999507111" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
+                <marker date="1479999507111" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1479999507111" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
               </folding>
             </state>
           </provider>
@@ -440,6 +440,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Logica" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DTO" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Http" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -624,7 +646,7 @@
       <workItem from="1479901313121" duration="1248000" />
       <workItem from="1479903847095" duration="278000" />
       <workItem from="1479904454169" duration="12319000" />
-      <workItem from="1479998493650" duration="923000" />
+      <workItem from="1479998493650" duration="1017000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -668,11 +690,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479999343822</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="rev">
+      <created>1479999420572</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1479999420572</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430462000" />
+    <option name="totallyTimeSpent" value="430556000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
@@ -724,7 +753,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Role.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1021,6 +1049,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="29" column="73" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="73" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,18 +1076,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/DTO/ProductoDTO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
+        <state relative-caret-position="308">
+          <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
           <folding>
-            <marker date="1479999403891" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1479999403891" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-            <marker date="1479999403891" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1479999403891" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999403891" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999403891" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1479999403891" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1479999507111" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
+            <marker date="1479999507111" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
+            <marker date="1479999507111" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
+            <marker date="1479999507111" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
+            <marker date="1479999507111" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
+            <marker date="1479999507111" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1479999507111" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
           </folding>
         </state>
       </provider>
