@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use sirag\Helpers\HelpFunct;
 use sirag\Repositories\ContabilidadRep;
 use sirag\Repositories\ProductoRep;
 
@@ -214,11 +215,11 @@ class ContabilidadController extends Controller
             $row.=trim($item->c6).'|';
             $row.=trim($item->c7).'|';
             $row.=trim($item->c8).'|';
-            $row.=trim($item->c9).'|';
-            $row.=trim($item->c10).'|';
-            $row.=trim($item->c11).'|';
-            $row.=trim($item->c12).'|';
-            $row.=trim($item->c13).'|';
+            $row.=trim(HelpFunct::sanear_string($item->c9)).'|';
+            $row.=trim(HelpFunct::sanear_string($item->c10)).'|';
+            $row.=trim(HelpFunct::sanear_string($item->c11)).'|';
+            $row.=trim(HelpFunct::sanear_string($item->c12)).'|';
+            $row.=trim(HelpFunct::sanear_string($item->c13)).'|';
             $row.=trim($item->c14).'|';
             $row.=trim($item->c15).'|';
             $row.=trim($item->c16).'|';
