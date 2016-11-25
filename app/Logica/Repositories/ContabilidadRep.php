@@ -154,7 +154,7 @@ class ContabilidadRep
      $query = "select convert(date,FECHA) as c1,convert(decimal(3,2),VALOR) as c2 from 
                 flexline.GEN_TASCAM
                 where EMPRESA = 'e01'
-                and FECHA between '$f_i' and '$f_f'
+                and convert(date,FECHA) between '$f_i' and '$f_f'
                 order by FECHA ASC ";
 
       $res = \DB::select($query);

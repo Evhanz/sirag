@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,41 +35,24 @@
     <favorites_list name="sirag" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AdministracionUserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdministracionUserController.php">
+    <leaf>
+      <file leaf-file-name="ContabilidadRep.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="42" column="56" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductoRep.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="164" column="29" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
+            <state relative-caret-position="285">
+              <caret line="156" column="54" selection-start-line="156" selection-start-column="54" selection-end-line="156" selection-end-column="54" />
               <folding>
-                <marker date="1479999653175" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-                <marker date="1479999653175" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-                <marker date="1479999653175" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-                <marker date="1479999653175" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-                <marker date="1479999653175" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-                <marker date="1479999653175" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-                <marker date="1479999653175" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1480069344335" expanded="true" signature="650:684" ph="select * fro... temp_balance_general" />
+                <marker date="1480069344335" expanded="true" signature="2421:3576" ph="SELECT v.Num... v_ordenCompra_details" />
+                <marker date="1480069344335" expanded="true" signature="2605:3087" ph="select CONVE... DocumentoD" />
+                <marker date="1480069344335" expanded="true" signature="5022:5269" ph="select conve... GEN_TASCAM" />
+                <marker date="1480069344335" expanded="true" signature="5398:5548" ph="SELECT CODIG... GEN_TABCOD" />
+                <marker date="1480069344335" expanded="true" signature="5689:5886" ph="SELECT CODIG... GEN_TABCOD" />
+                <marker date="1480069344335" expanded="true" signature="6090:6266" ph="SELECT PRODU... PRODUCTO" />
+                <marker date="1480069344335" expanded="true" signature="7469:7786" ph="SELECT PRODU... v_getConsumoMateriaPrima" />
+                <marker date="1480069344335" expanded="true" signature="8260:8513" ph="SELECT CONVE... v_getConsumoMateriaPrima" />
+                <marker date="1480069344335" expanded="true" signature="9158:9789" ph="select CONVE... DocumentoD" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="viewKardex.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="324" column="74" selection-start-line="324" selection-start-column="74" selection-end-line="324" selection-end-column="74" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -131,7 +115,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/LogController.php" />
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/contabilidad.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewPDB.blade.php" />
@@ -139,6 +122,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ComercialController.php" />
         <option value="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
       </list>
     </option>
   </component>
@@ -183,6 +167,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -512,18 +508,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests" />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -645,7 +629,9 @@
       <workItem from="1479901313121" duration="1248000" />
       <workItem from="1479903847095" duration="278000" />
       <workItem from="1479904454169" duration="12319000" />
-      <workItem from="1479998493650" duration="1232000" />
+      <workItem from="1479998493650" duration="1339000" />
+      <workItem from="1480066751767" duration="248000" />
+      <workItem from="1480069124178" duration="267000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -717,11 +703,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479999672311</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="rev_full_kardex">
+      <created>1479999729104</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1479999729104</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430771000" />
+    <option name="totallyTimeSpent" value="431393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
@@ -774,13 +767,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/PasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -898,6 +884,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -999,6 +986,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4770">
           <caret line="271" column="100" selection-start-line="271" selection-start-column="8" selection-end-line="271" selection-end-column="100" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,13 +1008,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,14 +1060,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Logica/DTO/ProductoDTO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="324" column="74" selection-start-line="324" selection-start-column="74" selection-end-line="324" selection-end-column="74" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1097,26 +1086,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/DTO/ProductoDTO.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="327">
+          <caret line="324" column="74" selection-start-line="324" selection-start-column="74" selection-end-line="324" selection-end-column="74" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
+    <entry file="file://$PROJECT_DIR$/app/Logica/DTO/DetalleDocDTO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="164" column="29" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
+        <state relative-caret-position="162">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="156" column="54" selection-start-line="156" selection-start-column="54" selection-end-line="156" selection-end-column="54" />
           <folding>
-            <marker date="1479999653175" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1479999653175" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-            <marker date="1479999653175" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1479999653175" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999653175" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999653175" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1479999653175" expanded="true" signature="5243:5872" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1480069344335" expanded="true" signature="650:684" ph="select * fro... temp_balance_general" />
+            <marker date="1480069344335" expanded="true" signature="2421:3576" ph="SELECT v.Num... v_ordenCompra_details" />
+            <marker date="1480069344335" expanded="true" signature="2605:3087" ph="select CONVE... DocumentoD" />
+            <marker date="1480069344335" expanded="true" signature="5022:5269" ph="select conve... GEN_TASCAM" />
+            <marker date="1480069344335" expanded="true" signature="5398:5548" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1480069344335" expanded="true" signature="5689:5886" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1480069344335" expanded="true" signature="6090:6266" ph="SELECT PRODU... PRODUCTO" />
+            <marker date="1480069344335" expanded="true" signature="7469:7786" ph="SELECT PRODU... v_getConsumoMateriaPrima" />
+            <marker date="1480069344335" expanded="true" signature="8260:8513" ph="SELECT CONVE... v_getConsumoMateriaPrima" />
+            <marker date="1480069344335" expanded="true" signature="9158:9789" ph="select CONVE... DocumentoD" />
           </folding>
         </state>
       </provider>
