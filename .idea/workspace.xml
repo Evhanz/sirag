@@ -839,7 +839,7 @@
       <workItem from="1479998493650" duration="1339000" />
       <workItem from="1480066751767" duration="248000" />
       <workItem from="1480069124178" duration="6863000" />
-      <workItem from="1480094397743" duration="2667000" />
+      <workItem from="1480094397743" duration="2754000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -995,11 +995,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480097011004</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="rev">
+      <created>1480097069083</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1480097069083</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440656000" />
+    <option name="totallyTimeSpent" value="440743000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="0" />
