@@ -63,8 +63,6 @@ class d_desc_pro extends Command
                 //$ra = "cumple-$item->cant";
             }else if (count($a)==4){
 
-
-
                 $ra = \DB::update("UPDATE flexline.gen_tabcod SET TEXTO2='$a[0]',TEXTO3='$a[1]',TEXTO4='$a[2]',TEXTO5='$a[3]' WHERE EMPRESA='e01' 
                                 and TIPO='CON_PROVEE'
                                 AND CODIGO LIKE '$item->CODIGO'");
