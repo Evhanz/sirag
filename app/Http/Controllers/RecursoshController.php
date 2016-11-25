@@ -413,7 +413,20 @@ class RecursoshController extends Controller
         $d = substr($val_control,$cant_len_val_control-3,3);
 
 
-        $val = $a.($b+$c).$d;
+        /*SI EN CASO $B + $C ES MAYOR A 99 SE TIENE QUE QUITAR EL PRIMER DIGITO DE LA SUMA*/
+        //p_cambio : fzelada
+        //dia: 25/11/16
+
+        $suma_a_b = $b+$c;
+
+        if ($suma_a_b > 99) {
+            # code...
+             $val = ($a+1).(($b+$c)-100).$d;
+
+        } else {
+            # code...
+             $val = $a.($b+$c).$d;
+        }
         
 
         return $val;
