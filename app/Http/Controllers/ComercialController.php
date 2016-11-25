@@ -146,9 +146,7 @@ class ComercialController extends Controller
         $res = $this->productoRep->getKardexEntrada($data);
 
         return \Response::Json($res);
-
-
-
+        
     }
 
 
