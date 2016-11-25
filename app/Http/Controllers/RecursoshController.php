@@ -250,7 +250,7 @@ class RecursoshController extends Controller
                 $espacios = 75;
             }
 
-            $row = $row.utf8_decode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),$espacios);
+            $row = $row.utf8_decode($i->Nombre).$espacios.$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),$espacios);
             //6.- referencia Beneficiario
             $row = $row.'Referencia Beneficiario '.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),16);
             //7.- referencia del empleado
