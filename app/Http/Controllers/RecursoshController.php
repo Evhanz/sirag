@@ -244,13 +244,9 @@ class RecursoshController extends Controller
             $row = $row.$i->TIPO_DOCUMENTO.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),15);
             //5.- se coloca el nombre 75 max
 
-            if (mb_detect_encoding($i->Nombre, 'UTF-8', true)){
-                $espacios = 75;
-            }else{
-                $espacios = 76;
-            }
+            $espacios = 75;
 
-            $row = $row.utf8_decode($i->Nombre).$espacios.$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),$espacios);
+            $row = $row.utf8_decode($i->Nombre).mb_detect_encoding($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),$espacios);
             //6.- referencia Beneficiario
             $row = $row.'Referencia Beneficiario '.$i->DNI.$this->getEspacioBlanco(strlen($i->DNI),16);
             //7.- referencia del empleado
