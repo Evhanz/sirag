@@ -272,7 +272,8 @@ class RecursoshController extends Controller
         fputs($file,$f['cabecera'] );
         //esto es desde hasya osea desde UTF-7 a EUC-JP
         //ejemplo mb_convert_encoding($str, "UTF-7", "EUC-JP");*/
-        fputs($file,mb_convert_encoding($f['body'], 'UTF-8'));
+        //fputs($file,mb_convert_encoding($f['body'], 'UTF-8'));
+        fputs($file,$f['body']);
         fclose($file);
 
         //return response()->download(base_path()."/storage/logs/telecredito.txt", "telecredito.txt");
