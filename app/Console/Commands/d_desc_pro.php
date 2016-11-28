@@ -44,7 +44,8 @@ class d_desc_pro extends Command
                 from flexline.gen_tabcod
                 where EMPRESA='e01'
                 and TIPO='CON_PROVEE'
-                AND CODIGO LIKE '10%'");
+                AND CODIGO LIKE '10%'
+                AND LEN(TEXTO2) = 0");
 
 
 

@@ -191,6 +191,19 @@
                     </ul>
                 </li><!--cONFIGURACION SUPER ADMIN-->
                 @endif
+                @if(Auth::user()->hasAnyRole(['ADMIN']))
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-universal-access" aria-hidden="true"></i>
+                            <span>Sistemas</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ URL::route('viewPersonal') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Packing</a></li>
+                        </ul>
+                    </li><!--Acceso a subsistemas-->
+                @endif
 
                 
 
