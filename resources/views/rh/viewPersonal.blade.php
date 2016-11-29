@@ -147,7 +147,7 @@
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
-
+                                            <th>*</th>
                                             <th>CODIGO</th>
                                             <th>DNI</th>
                                             <th>Nombre</th>
@@ -176,8 +176,8 @@
                                         </thead>
                                         <tbody >
                                         <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
-
-                                            <td >@{{ item.FICHA }}</td>
+                                            <td>@{{ $index+1 }}</td>
+                                            <td>@{{ item.FICHA }}</td>
                                             <td>@{{ item.EMPLEADO }}</td>
                                             <td>@{{ item.NOMBRE }}</td>
                                             <td>@{{ item.CUENTA_CORRIENTE }}</td>

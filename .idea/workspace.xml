@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="se agregó la arquitectura de inicio para el sistema packing">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Logica/Entities/Obj.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/mods/packing/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php" />
+    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,8 +96,8 @@
       <file leaf-file-name="viewPersonal.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="221" column="185" selection-start-line="221" selection-start-column="185" selection-end-line="221" selection-end-column="185" />
+            <state relative-caret-position="306">
+              <caret line="181" column="50" selection-start-line="181" selection-start-column="50" selection-end-line="181" selection-end-column="50" />
               <folding>
                 <element signature="e#7586#7624#0#HTML" expanded="true" />
               </folding>
@@ -840,7 +831,7 @@
       <workItem from="1480069124178" duration="6863000" />
       <workItem from="1480094397743" duration="3151000" />
       <workItem from="1480325369260" duration="22478000" />
-      <workItem from="1480410895670" duration="22162000" />
+      <workItem from="1480410895670" duration="23155000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -1031,11 +1022,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480357445471</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add_rep_planillan and rev_rep_view_personal">
+      <created>1480439552890</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1480439552890</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="485780000" />
+    <option name="totallyTimeSpent" value="486773000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1367" height="744" extended-state="0" />
@@ -1080,7 +1078,8 @@
     <MESSAGE value="rev_pdb_tipo_cambio" />
     <MESSAGE value="rev" />
     <MESSAGE value="se agregó la arquitectura de inicio para el sistema packing" />
-    <option name="LAST_COMMIT_MESSAGE" value="se agregó la arquitectura de inicio para el sistema packing" />
+    <MESSAGE value="Add_rep_planillan and rev_rep_view_personal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add_rep_planillan and rev_rep_view_personal" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6474359" />
   </component>
   <component name="XDebuggerManager">
@@ -1512,8 +1511,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="221" column="185" selection-start-line="221" selection-start-column="185" selection-end-line="221" selection-end-column="185" />
+        <state relative-caret-position="306">
+          <caret line="181" column="50" selection-start-line="181" selection-start-column="50" selection-end-line="181" selection-end-column="50" />
           <folding>
             <element signature="e#7586#7624#0#HTML" expanded="true" />
           </folding>
