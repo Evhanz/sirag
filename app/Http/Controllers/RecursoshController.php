@@ -38,6 +38,10 @@ class RecursoshController extends Controller
     }
 
 
+    public function viewPlanilla(){
+
+        return view('rh/viewPlanilla');
+    }
 
 
     //API para traer a los trbajadores
@@ -313,10 +317,14 @@ class RecursoshController extends Controller
 
 
 
+    public function getPlanilla(){
 
+        $data = \Input::all();
 
+        $res = $this->personalRep->getPlanilla($data['periodo']);
+        return \Response::json($res);
 
-
+    }
 
 
 

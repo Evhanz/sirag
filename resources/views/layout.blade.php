@@ -39,6 +39,7 @@
     <script src="{{ asset('js/AdminLTE/ej.js')}}" type="text/javascript"></script>
 
 
+
 </head>
 <body class="skin-black">
 <!-- header logo: style can be found in header.less -->
@@ -170,7 +171,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ URL::route('viewPersonal') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Personal</a></li>
                         <li><a href="{{ URL::route('viewTelecredito') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Telecrédito</a></li>
-
+                        <li><a href="{{ URL::route('viewPlanilla') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Planilla </a></li>
 
 
                     </ul>

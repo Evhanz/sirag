@@ -1,4 +1,4 @@
-@extends('layoutRH')
+@extends('layout')
 
 @section('content')
     
@@ -142,15 +142,19 @@
                                 </div>
                             </form>
 
-                            <div class="row" style="padding: 15px">
+                            <div class="row" style="padding: 15px; font-size: 10px">
                                 <div class="table-responsive" style="overflow: auto" id="cont_tabla">
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
-                                            <th class="noExl">I</th>
+
                                             <th>CODIGO</th>
                                             <th>DNI</th>
                                             <th>Nombre</th>
+                                            <th>CUENTA CORRIENTE</th>
+                                            <th>BANCO</th>
+                                            <th>T. IDENTIDAD</th>
+                                            <th>U. Negocio</th>
                                             <th>Sexo</th>
                                             <th>F. Nac.</th>
                                             <th>Fecha Ini</th>
@@ -172,10 +176,14 @@
                                         </thead>
                                         <tbody >
                                         <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
-                                            <td class="noExl">@{{ $index}}</td>
+
                                             <td >@{{ item.FICHA }}</td>
                                             <td>@{{ item.EMPLEADO }}</td>
                                             <td>@{{ item.NOMBRE }}</td>
+                                            <td>@{{ item.CUENTA_CORRIENTE }}</td>
+                                            <td>@{{ item.BANCO }}</td>
+                                            <td>@{{ item.TIPO_IDENTIDAD }}</td>
+                                            <td>@{{ item.UNIDAD_NEGOCIO }}</td>
                                             <td>@{{ item.SEXO | limitTo:1 }}</td>
                                             <td>@{{ item.FECHA_NACIMIENTO }}</td>
                                             <td>@{{ item.FECHA_INICIO }}</td>
@@ -205,14 +213,14 @@
 
                                                 </div></td>
                                             <td class="noExl">
-                                                <a class="btn btn-default" ng-click="viewDireccion(item)">
-                                                    <i class="fa fa-map-marker fa-lg" ></i>
+                                                <a class="btn btn-default btn-xs" ng-click="viewDireccion(item)" title="ver direccion">
+                                                    <i class="fa fa-map-marker" ></i>
                                                 </a>
 
                                             </td>
                                             <td class="noExl">
-                                                <a class="btn btn-default" href="{{ URL::route('modRH') }}/rep/HistorialContrato/@{{ item.FICHA }}">
-                                                    <i class="fa fa-eye fa-lg"></i>
+                                                <a class="btn btn-default btn-xs" href="{{ URL::route('modRH') }}/rep/HistorialContrato/@{{ item.FICHA }}" title="ver detalle de empleado">
+                                                    <i class="fa fa-eye"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -405,11 +413,11 @@
 
             function changeFormat(fecha)
             {
-                //original dd/mm/yyyy en funcion yy/dd/mm
+                //original dd/mm/yyyy en funcion yy-dd-mm
 
                 fecha = fecha.split('/');
 
-                fecha = fecha[2]+"-"+fecha[0]+"-"+fecha[1];
+                fecha = fecha[2].trim()+"-"+fecha[0].trim()+"-"+fecha[1].trim();
 
                 return fecha;
 

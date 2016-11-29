@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Producción  | Packing</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -78,7 +78,6 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('templates/lte2/dist/js/demo.js')}}"></script>
 
-
     <!--Fin de Scripts-->
 
 
@@ -88,7 +87,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo" title="Agro Exportaciones Grace">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b></b>AEG</span>
             <!-- logo for regular state and mobile devices -->
@@ -97,7 +96,7 @@
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" id="togle_navigation">
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
@@ -374,7 +373,7 @@
         <section class="content-header">
             <h1>
                 Dashboard
-                <small>Control panel</small>
+                <small>Control de Procesos</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -474,6 +473,8 @@
 </div>
 <!-- ./wrapper -->
 
-
+<!--Main Script-->
+<script src="{{asset('js/mods/packing/main.js')}}"></script>
+<!-- ./ main Script -->
 </body>
 </html>

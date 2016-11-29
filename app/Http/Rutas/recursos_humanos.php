@@ -13,6 +13,7 @@ Route::get('rh/rep/HistorialContrato/{ficha}',['as'=>'viewHistoryContract','uses
 Route::post('rh/addNewRenovacion',['as'=>'addNewRenovacion','uses'=>'RecursoshController@addNewRenovacion']);
 Route::post('rh/deleteRenovacion',['as'=>'deleteRenovacion','uses'=>'RecursoshController@deleteRenovacion']);
 Route::get('rh/rep/viewTelecredito',['as'=>'viewTelecredito','uses'=>'RecursoshController@viewTelecredito']);
+Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshController@viewPlanilla']);
 
 
 //llamada a API
@@ -23,6 +24,7 @@ Route::get('rh/api/getVacacionesByFicha/{ficha}',['as'=>'getVacacionesByFicha','
 Route::post('rh/api/getTelecredito',['as'=>'getTelecredito','uses'=>'RecursoshController@getTelecredito']);
 Route::get('rh/api/getCargos',['as'=>'getCargos','uses'=>'RecursoshController@getCargos']);
 Route::get('rh/api/getDepartamentos',['as'=>'getDepartamentos','uses'=>'RecursoshController@getDepartamentos']);
+Route::post('rh/api/getPlanilla',['as'=>'getPlanilla','uses'=>'RecursoshController@getPlanilla']);
 
 
 //para descargar archivos o visualizar fotos

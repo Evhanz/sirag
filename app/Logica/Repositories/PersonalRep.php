@@ -9,6 +9,7 @@
 namespace sirag\Repositories;
 use Carbon\Carbon;
 use DateTime;
+use sirag\Entities\Obj;
 
 
 class PersonalRep
@@ -78,7 +79,7 @@ class PersonalRep
                 
 
                 $interval = $datetime1->diff($datetime2);
-                $interval = round($interval->format('%a')*0.082,1);
+                $interval = round($interval->format('%a')*0.082,1);//el valor 0.082 es que por año se le da 30 dias
 
                 $item->cant_vac = $interval;
 
@@ -358,6 +359,96 @@ class PersonalRep
         $res = \DB::select($query);
 
         return $res;
+    }
+
+
+    public function getPlanilla($periodo)
+    {
+
+        $data = [];
+
+
+        $query = "select FICHA, VALOR , MOVIMIENTO
+                    FROM flexline.PER_DET_LIQ
+                    WHERE EMPRESA='e01'
+                    and periodo='$periodo' --- FILTRAR POR PERIODO
+                    AND MOVIMIENTO in ('10505','100001','10535') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    ORDER by FICHA";
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+
+        //primero agrupamos por las ficha
+
+        $result = $res->groupBy('FICHA')->toArray();
+
+        foreach ($result as $item)
+        {
+
+            //sacamos primero el trabajador
+
+            //var_dump($item[0]);
+
+            $first = $item[0];
+
+
+            $q = "SELECT TOP 1 *
+                    from dbo.v_allTrabajadores
+                    where FICHA = '$first->FICHA'";
+
+            $q = \DB::select($q);
+
+            $q = $q[0];
+
+            $obj = new Obj();
+            $obj->FICHA = $q->FICHA;
+            $obj->NOMBRE = utf8_encode($q->NOMBRE);
+
+            //modelamos el resultado
+
+            $item = collect($item);
+
+            $QUINCENA = $item->where('MOVIMIENTO','10505')->first();
+            $F_MES = $item->where('MOVIMIENTO','100001')->first();
+            $LIQUIDACION = $item->where('MOVIMIENTO','10535')->first();
+
+            if ($QUINCENA == null){
+                $QUINCENA=0;
+
+            }else{
+                $QUINCENA = $QUINCENA->VALOR;
+            }
+
+            if ($F_MES == null){
+                $F_MES = 0;
+            }else{
+                $F_MES = $F_MES->VALOR;
+            }
+            if ($LIQUIDACION == null){
+                $LIQUIDACION =0;
+
+            }else{
+                $LIQUIDACION = $LIQUIDACION->VALOR;
+
+            }
+
+
+
+            $obj->QUINCENA = $QUINCENA;
+            $obj->F_MES = $F_MES;
+            $obj->LIQUIDACION = $LIQUIDACION;
+
+
+            array_push($data,$obj);
+
+        }
+
+
+        return $data;
+
+
+
     }
 
 
