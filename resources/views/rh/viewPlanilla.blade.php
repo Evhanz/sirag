@@ -132,21 +132,32 @@
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
+                                            <th>*</th>
                                             <th>FICHA</th>
                                             <th>NOMBRE</th>
                                             <th>QUINCENA</th>
                                             <th>FIN DE MES</th>
                                             <th>LIQUIDACION </th>
+                                            <th>TOTAL</th>
 
                                         </tr>
                                         </thead>
                                         <tbody >
                                         <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
-                                            <td >@{{ item.FICHA}}</td>
-                                            <td >@{{ item.NOMBRE }}</td>
+                                            <td>@{{ $index + 1}}</td>
+                                            <td>@{{ item.FICHA}}</td>
+                                            <td>@{{ item.NOMBRE }}</td>
                                             <td>@{{ item.QUINCENA }}</td>
                                             <td>@{{ item.F_MES }}</td>
                                             <td>@{{ item.LIQUIDACION }}</td>
+                                            <td>@{{ item.TOTAL }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><H2>TOTALES</H2></td>
+                                            <td>@{{ totales.t_quincena }}</td>
+                                            <td>@{{ totales.t_f_mes }}</td>
+                                            <td>@{{ totales.t_liquidacion }}</td>
+                                            <td>@{{ totales.total }}</td>
                                         </tr>
 
                                         </tbody>
@@ -219,6 +230,7 @@
 
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
+            $scope.totales = {};
 
             var ruta = '';
 
@@ -259,7 +271,12 @@
                         })
                         .success(function(data){
 
-                            $scope.Documentos = data;
+                            $scope.Documentos = data.data;
+                            $scope.totales.t_liquidacion = data.t_liquidacion;
+                            $scope.totales.t_f_mes = data.t_f_mes;
+                            $scope.totales.t_quincena = data.t_quincena;
+                            $scope.totales.total = data.total;
+
                             console.log(data);
 
                             $('#btnBuscarDoc').attr("disabled", false);

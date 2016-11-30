@@ -364,8 +364,14 @@ class PersonalRep
 
     public function getPlanilla($periodo)
     {
+        $response       = new Obj();
+        $totales        = new Obj();
+        $data           = [];
+        $t_quincena     = 0;
+        $t_f_mes        = 0;
+        $t_liquidacion  = 0;
 
-        $data = [];
+
 
 
         $query = "select FICHA, VALOR , MOVIMIENTO
@@ -409,6 +415,7 @@ class PersonalRep
 
             $item = collect($item);
 
+
             $QUINCENA = $item->where('MOVIMIENTO','10505')->first();
             $F_MES = $item->where('MOVIMIENTO','100001')->first();
             $LIQUIDACION = $item->where('MOVIMIENTO','10535')->first();
@@ -433,19 +440,28 @@ class PersonalRep
 
             }
 
+            $t_liquidacion += $LIQUIDACION;
+            $t_f_mes += $F_MES;
+            $t_quincena += $QUINCENA;
 
 
-            $obj->QUINCENA = $QUINCENA;
-            $obj->F_MES = $F_MES;
-            $obj->LIQUIDACION = $LIQUIDACION;
-
+            $obj->QUINCENA = number_format($QUINCENA,2,'.',',');
+            $obj->F_MES = number_format($F_MES,2,'.',',');
+            $obj->LIQUIDACION = number_format($LIQUIDACION,2,'.',',');
+            $obj->TOTAL = number_format($item->sum('VALOR'),2,'.',',');
 
             array_push($data,$obj);
 
         }
 
+        $response->t_liquidacion = number_format($t_liquidacion,2,'.',',');
+        $response->t_f_mes = number_format($t_f_mes,2,'.',',');
+        $response->t_quincena = number_format($t_quincena,2,'.',',');
+        $response->total = number_format(($t_liquidacion+$t_f_mes+$t_quincena),2,'.',',');
+        $response->data = $data;
 
-        return $data;
+
+        return $response;
 
 
 
