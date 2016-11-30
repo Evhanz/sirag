@@ -249,9 +249,12 @@ class RecursoshController extends Controller
             //5.- se coloca el nombre 75 max
 
             if (mb_detect_encoding($i->Nombre) == "UTF-8"){
-                $row = $row.utf8_decode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),76);
+                //$row = $row.utf8_encode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),76);
+                $nom = HelpFunct::sanear_string($i->Nombre);
+
+                $row = $row.$nom.$this->getEspacioBlanco(strlen($nom),75);
             }else{
-                $row = $row.utf8_decode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),75);
+                $row = $row.utf8_encode($i->Nombre).$this->getEspacioBlanco(strlen(utf8_decode($i->Nombre)),75);
             }
 
 
