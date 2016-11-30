@@ -16,7 +16,7 @@ class InicioController extends Controller
 {
 
     public function index(){
-        return view('layouts/packing');
+        return view('packing/main');
     }
 
 }

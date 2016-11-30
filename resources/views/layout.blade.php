@@ -201,7 +201,7 @@
                         </a>
 
                         <ul class="treeview-menu">
-                            <li><a href="{{ URL::route('viewPersonal') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Packing</a></li>
+                            <li><a href="{{ URL::route('inicioPacking') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Packing</a></li>
                         </ul>
                     </li><!--Acceso a subsistemas-->
                 @endif
