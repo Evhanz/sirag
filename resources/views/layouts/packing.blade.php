@@ -403,7 +403,12 @@
 <!-- ./wrapper -->
 
 <!--Main Script-->
-<script src="{{asset('js/mods/packing/main.js')}}"></script>
+
 <!-- ./ main Script -->
+
+<!--more Scripts -->
+@yield('scripts');
+
+<!-- ./ more scripts -->
 </body>
 </html>

@@ -5,4 +5,3 @@
 
 $("#togle_navigation").click();
 
-console.log("mandé datos");

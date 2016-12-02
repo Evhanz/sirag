@@ -15,6 +15,30 @@ use sirag\Entities\Obj;
 class PersonalRep
 {
 
+    public function getAllTrabajadores(){
+
+        $query = "SELECT EMPLEADO dni,(APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre
+                    FROM flexline.PER_TRABAJADOR
+                    where EMPRESA = 'e01'
+                    AND VIGENCIA = 'ACTIVO'
+                    ORDER BY nombre";
+
+        $res = \DB::select($query);
+
+        foreach ($res as $i){
+            $i->nombre = utf8_encode( $i->nombre);
+        }
+
+        return $res;
+
+    }
+
+
+
+
+
+    //esto funcion con procedimiento almacenado
+    //para data formateada
     public function getAllTrabajadoresByParameter($data)
     {
 
@@ -27,7 +51,8 @@ class PersonalRep
 
         return $res;
     }
-
+    //esto funcion con procedimiento almacenado
+    //para data formateada
     public function getTrabajadoresByParamOutDates ($data)
     {
         $categoria = $data['categoria'];
