@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="packing_layout">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Rutas/packing/materia_prima.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Logica/Repositories/packing/MateriaPrimaRep.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Logica/Repositories/packing/base" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/packing/base" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/packing/materia_prima/viewIndex.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/packing/materia_prima/viewStore.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sirag.iml" afterPath="$PROJECT_DIR$/.idea/sirag.iml" />
+    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/main.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/comercial/viewProductos.blade.php" afterPath="$PROJECT_DIR$/resources/views/comercial/viewProductos.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" afterPath="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +40,7 @@
       <file leaf-file-name="MateriaPrimaRep.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/packing/MateriaPrimaRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
+            <state relative-caret-position="594">
               <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
               <folding>
                 <element signature="e#297#420#0#PHP" expanded="false" />
@@ -93,36 +82,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="packing.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/packing.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6358">
-              <caret line="400" column="0" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MateriaPrimaController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="viewNew.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-              <folding>
-                <element signature="e#1501#1521#0#HTML" expanded="true" />
-                <element signature="e#2281#2301#0#HTML" expanded="true" />
-                <element signature="e#2561#2581#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="186">
+              <caret line="207" column="22" selection-start-line="207" selection-start-column="22" selection-end-line="207" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -130,7 +95,7 @@
       <file leaf-file-name="materia_prima.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Rutas/packing/materia_prima.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
+            <state relative-caret-position="324">
               <caret line="23" column="27" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="27" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="true" />
@@ -160,7 +125,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Role.php" />
         <option value="$PROJECT_DIR$/database/seeds/RoleTableSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/usuarios.blade.php" />
         <option value="$PROJECT_DIR$/app/UserRole.php" />
@@ -210,6 +174,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+        <option value="$PROJECT_DIR$/resources/views/comercial/viewProductos.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" />
       </list>
     </option>
@@ -255,19 +220,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests" />
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -393,6 +345,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comercial" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cc" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -796,11 +792,24 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests" />
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../AdminLTE2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vuejs" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
@@ -929,7 +938,11 @@
       <workItem from="1480498247684" duration="3068000" />
       <workItem from="1480505875484" duration="12639000" />
       <workItem from="1480602904345" duration="14644000" />
-      <workItem from="1480670674736" duration="25759000" />
+      <workItem from="1480670674736" duration="26446000" />
+      <workItem from="1480931945382" duration="9360000" />
+      <workItem from="1480942443343" duration="5949000" />
+      <workItem from="1481018270146" duration="3448000" />
+      <workItem from="1481026346444" duration="118000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -1155,14 +1168,21 @@
       <option name="project" value="LOCAL" />
       <updated>1480529273863</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="architecture_and_firstmod_MateriaPrima">
+      <created>1480703535910</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1480703535910</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="546583000" />
+    <option name="totallyTimeSpent" value="566145000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
+    <frame x="-1" y="25" width="1368" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1207,7 +1227,8 @@
     <MESSAGE value="Add_rep_planillan and rev_rep_view_personal" />
     <MESSAGE value="rev_viewPersonal" />
     <MESSAGE value="packing_layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="packing_layout" />
+    <MESSAGE value="architecture_and_firstmod_MateriaPrima" />
+    <option name="LAST_COMMIT_MESSAGE" value="architecture_and_firstmod_MateriaPrima" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6474359" />
   </component>
   <component name="XDebuggerManager">
@@ -1217,45 +1238,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/Inspire.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/reg_accion_divide_provee.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="30" column="44" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="217" column="32" selection-start-line="217" selection-start-column="23" selection-end-line="217" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/d_desc_pro.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -1302,7 +1284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1311,7 +1292,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,7 +1313,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,7 +1320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1349,7 +1327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1360,18 +1337,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="181" column="50" selection-start-line="181" selection-start-column="50" selection-end-line="181" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Entities/Proveedores.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1379,7 +1348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1387,9 +1355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1475764053812" expanded="true" signature="320:491" ph="SELECT TipoD... TipoDocumento" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1397,11 +1362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-849">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1477475392083" expanded="true" signature="428:1030" ph="select top 3... CtaCte" />
-            <marker date="1477475392083" expanded="true" signature="1111:1369" ph="SELECT * FRO... CtaCteDirecciones" />
-            <marker date="1477475392083" expanded="true" signature="1555:1709" ph="SELECT GLOSA... v_allProductsAndProveedores" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1409,15 +1369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2736">
           <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
-          <folding>
-            <marker date="1479999653175" expanded="true" signature="652:1065" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1479999653175" expanded="true" signature="1196:1593" ph="SELECT top 1... " />
-            <marker date="1479999653175" expanded="true" signature="1970:2352" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1479999653175" expanded="true" signature="2530:2676" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999653175" expanded="true" signature="2812:2950" ph="select CODIG... gen_tabcod" />
-            <marker date="1479999653175" expanded="true" signature="3372:4054" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1479999653175" expanded="true" signature="5243:5872" ph="select A.Fec... Documento" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1425,18 +1376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="113" column="72" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="72" />
-          <folding>
-            <marker date="1480069344335" expanded="true" signature="650:684" ph="select * fro... temp_balance_general" />
-            <marker date="1480069344335" expanded="true" signature="2421:3576" ph="SELECT v.Num... v_ordenCompra_details" />
-            <marker date="1480069344335" expanded="true" signature="2605:3087" ph="select CONVE... DocumentoD" />
-            <marker date="1480069344335" expanded="true" signature="5022:5269" ph="select conve... GEN_TASCAM" />
-            <marker date="1480069344335" expanded="true" signature="5398:5548" ph="SELECT CODIG... GEN_TABCOD" />
-            <marker date="1480069344335" expanded="true" signature="5689:5886" ph="SELECT CODIG... GEN_TABCOD" />
-            <marker date="1480069344335" expanded="true" signature="6090:6266" ph="SELECT PRODU... PRODUCTO" />
-            <marker date="1480069344335" expanded="true" signature="7469:7786" ph="SELECT PRODU... v_getConsumoMateriaPrima" />
-            <marker date="1480069344335" expanded="true" signature="8260:8513" ph="SELECT CONVE... v_getConsumoMateriaPrima" />
-            <marker date="1480069344335" expanded="true" signature="9158:9789" ph="select CONVE... DocumentoD" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1444,11 +1383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2433">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1479147409483" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
-            <marker date="1479147409483" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
-            <marker date="1479147409483" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1456,7 +1390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1475,25 +1408,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="222" column="12" selection-start-line="222" selection-start-column="12" selection-end-line="222" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1278">
           <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="275" column="66" selection-start-line="275" selection-start-column="66" selection-end-line="275" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -1501,9 +1419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="35" />
-          <folding>
-            <marker date="1475764053812" expanded="true" signature="294:1020" ph="select CT.AL... CON_CTACON" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1511,7 +1426,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-255">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1540,7 +1454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1556,7 +1469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1564,7 +1476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1578,7 +1489,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/packing/materia_prima.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
+        <state relative-caret-position="324">
           <caret line="23" column="27" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="27" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
@@ -1586,17 +1497,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/packing/MateriaPrimaRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
+        <state relative-caret-position="594">
           <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
           <folding>
             <element signature="e#297#420#0#PHP" expanded="false" />
@@ -1610,9 +1513,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding>
-            <element signature="e#1209#1229#0#HTML" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2930">
+          <caret line="181" column="50" selection-start-line="181" selection-start-column="50" selection-end-line="181" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/excelConsumoByFundoAndParron.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-159">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewControlOrdenCompra.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/packing.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="400" column="0" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1552">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewProductos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="421" column="0" selection-start-line="421" selection-start-column="0" selection-end-line="421" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1645,31 +1623,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/packing.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6358">
-          <caret line="400" column="0" selection-start-line="400" selection-start-column="0" selection-end-line="400" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding>
-            <element signature="e#1501#1521#0#HTML" expanded="true" />
-            <element signature="e#2281#2301#0#HTML" expanded="true" />
-            <element signature="e#2561#2581#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="186">
+          <caret line="207" column="22" selection-start-line="207" selection-start-column="22" selection-end-line="207" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

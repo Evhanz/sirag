@@ -12,7 +12,6 @@
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Producto</a></li>
                             <li ><a data-toggle="tab" href="#proveedor">Proveedores</a></li>
-
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">

@@ -10,6 +10,26 @@
         <li class="active">New</li>
     </ol>
 
+
+    <span id="prueba">
+        <h1>Bienvenido, @{{ name}}</h1>
+
+        <input type="text" v-model="name">
+
+        <hr>
+
+        <pre>
+
+        @{{ $data | json }}
+        </pre>
+
+    </span>
+
+
+
+
+
+
 @stop
 
 @section('head_options')
@@ -91,6 +111,56 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">DETALLE UVA</a></li>
+                    <li><a data-toggle="tab" href="#menu1">DETALLE DESCARTE</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+
+                        <div class="row">
+                            <div class="col-lg-12 table-responsive">
+                                <table class="table table-bordered table-hover" >
+                                    <thead>
+                                    <tr>
+                                        <th>I</th>
+                                        <th>N° Pesadas</th>
+                                        <th>Guia</th>
+                                        <th>Variedad</th>
+                                        <th>FP</th>
+                                        <th>L Produccion</th>
+                                        <th>N° Jaba</th>
+                                        <th>Tara Jaba</th>
+                                        <th>Tara Parihuela</th>
+                                        <th>Peso Bruto</th>
+                                        <th> <button class="btn btn-info btn-sm"> + </button> </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><input class="form-control" type="text"></td>
+                                        <td><button class="btn btn-default btn-sm"> - </button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <h3>Menu 1</h3>
+                        <p>Some content in menu 1.</p>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -143,28 +213,44 @@
                // console.log( data );
                 fillDataSelects(data);
             });
-
-            function fillDataSelects(data)
-            {
-                data.forEach(function (item) {
-                    item.id = item.dni;
-                    item.text = item.nombre;
-                });
-
-
-                $("#selChofer").select2({
-                    data: data
-                });
-                $("#selResponsable").select2({
-                    data: data
-                });
-                $("#selControlador").select2({
-                    data: data
-                });
-            }
-
         }
 
+        function fillDataSelects(data)
+        {
+            data.forEach(function (item) {
+                item.id = item.dni;
+                item.text = item.nombre;
+            });
+
+            $("#selChofer").select2({
+                data: data
+            });
+            $("#selResponsable").select2({
+                data: data
+            });
+            $("#selControlador").select2({
+                data: data
+            });
+        }
+
+
+
+
+    </script>
+
+    <!-- vue JS -->
+    <script  src="{{asset('js/vue.js')}}"></script>
+
+    <script>
+
+        new Vue({
+
+            el:"#prueba",
+            data: {
+                name: "eidelman"
+            }
+
+        });
 
     </script>
 
