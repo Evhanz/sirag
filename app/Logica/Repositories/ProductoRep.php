@@ -59,7 +59,7 @@ class ProductoRep
 
 
         $p = \DB::select("SELECT Fecha,Numero,TipoDocto,UnidadIngreso,ANO,
-                        CAST(CONVERT(FLOAT,ROUND(Precio,2,1)) AS VARCHAR) AS Precio
+                        CAST(CONVERT(FLOAT,ROUND(Precio,4,1)) AS VARCHAR) AS Precio
                         FROM v_allProductsAndProveedores
                         WHERE GLOSA = '$glosa'
                         AND RazonSocial = '$proveedor'
