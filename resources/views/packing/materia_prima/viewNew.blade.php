@@ -10,7 +10,7 @@
         <li class="active">New</li>
     </ol>
 
-
+    <!--
     <span id="prueba">
         <h1>Bienvenido, @{{ name}}</h1>
 
@@ -25,7 +25,7 @@
 
     </span>
 
-
+    -->
 
 
 
@@ -38,7 +38,7 @@
 @section('content')
 
     <!-- Row Filter-->
-    <div class="row">
+    <div class="row" id="content">
 
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
@@ -166,6 +166,17 @@
         </div>
         <!-- /.box -->
 
+
+        <div class="col-lg-12">
+
+            <pre>
+                 @{{ $data | json }}
+            </pre>
+
+        </div>
+
+
+
     </div>
     <!-- /.row (Row Filter) -->
 
@@ -245,9 +256,22 @@
 
         new Vue({
 
-            el:"#prueba",
+            el:"#content",
             data: {
-                name: "eidelman"
+                name: "eidelman",
+                detalleUva:[
+                        {
+                            n_pesadas:'',
+                            guia:'',
+                            variedad:'',
+                            fundo: '',
+                            parron: '',
+                            l_produccion:'',
+                            n_jaba: '',
+                            tara_jaba: '',
+                            tara_parihuela: '',
+                            peso_bruto: ''
+                        }]
             }
 
         });

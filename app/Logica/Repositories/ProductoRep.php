@@ -26,7 +26,7 @@ class ProductoRep
         $p = new ProductoDTO();
 
         $p = \DB::select("SELECT RazonSocial,Moneda,GLOSA,SUBFAMILIA,
-                          CAST(CONVERT(FLOAT,ROUND(AVG(Precio),2,1)) AS VARCHAR) as Promedio
+                          CAST(CONVERT(FLOAT,ROUND(AVG(Precio),4,1)) AS VARCHAR) as Promedio
                           FROM v_allProductsAndProveedores
                           where SUBFAMILIA like '%$subfamilia%' AND FAMILIA like '%$familia%'
                           AND GLOSA like  '%$glosa%'
@@ -36,7 +36,7 @@ class ProductoRep
         foreach($p as $item)
         {
 
-            $last = \DB::select("SELECT top 1 CAST(CONVERT(FLOAT,ROUND(Precio,2,1)) AS VARCHAR) as Precio, UnidadIngreso
+            $last = \DB::select("SELECT top 1 CAST(CONVERT(FLOAT,ROUND(Precio,4,1)) AS VARCHAR) as Precio, UnidadIngreso
                                 FROM v_allProductsAndProveedores
                                 WHERE GLOSA = '$item->GLOSA'
                                 AND RazonSocial = '$item->RazonSocial'
