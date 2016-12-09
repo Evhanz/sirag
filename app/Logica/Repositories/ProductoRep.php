@@ -8,6 +8,7 @@
 
 namespace sirag\Repositories;
 use sirag\Entities\Familia;
+use sirag\Entities\Obj;
 use sirag\Entities\SubFamilia;
 use sirag\DTO\ProductoDTO;
 
@@ -235,6 +236,125 @@ class ProductoRep
 
 
     }
+
+
+    public function getKardex()
+    {
+
+
+        //primero sacamos a toda la data general
+
+        $query = "select A.Fecha fecha ,A.Numero numero,'entrada' as tipo,
+        C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad
+        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
+        where
+        A.idDocto=B.idDocto
+        AND B.Empresa=C.EMPRESA
+        and B.Producto=C.PRODUCTO
+        AND A.TipoDocto='N/I ALMACEN (A)'
+        and A.Empresa='e01'
+        AND B.Fecha BETWEEN '2016-01-12' and '2016-07-12'
+        UNION
+        SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
+        p.GLOSA glosa,dd.Cantidad cantidad,dd.UnidadIngreso unidad
+        FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
+        where
+        dd.Empresa=p.EMPRESA
+        and dd.Producto = p.PRODUCTO
+        AND dd.EMPRESA = tp.Empresa
+        AND dd.TipoDocto = tp.TipoDocto
+        and dd.Empresa='e01'
+        AND dd.Bodega <> '' 
+        AND tp.Sistema IN ('Inventario','Produccion') 
+        AND tp.FactorInventario='-1' 
+        AND dd.Fecha BETWEEN '2016-01-12' and '2016-07-12'
+        ORDER BY A.Fecha";
+
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+
+        $result = $res->groupBy('glosa');
+
+        $dataFormated = [];
+
+
+        foreach ($result as $item){
+
+
+            $producto = $item[0];
+
+            $obj = new Obj();
+            $obj->glosa = $producto->glosa;
+            $obj->saldo = $this->getSaldoFinal('2016-01-12','2016-07-12',$producto->glosa);
+
+
+            array_push($dataFormated,$obj);
+
+        }
+
+
+
+
+        return $dataFormated;
+
+
+    }
+
+
+    public function getSaldoFinal($f_i,$f_f,$glosa)
+    {
+
+        $query = "select (select 
+                SUM(B.Cantidad) entrada
+                from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento tp
+                where
+                A.idDocto=B.idDocto
+                AND B.Empresa=C.EMPRESA
+                and B.Producto=C.PRODUCTO
+                AND B.TipoDocto = tp.TipoDocto
+                --AND A.TipoDocto IN('N/I ALMACEN (A)','INVENTARIO INICIAL','NOTA DE VENTA')
+                AND tp.Sistema IN ('Compras','Inventario','Produccion') 
+                AND tp.FactorInventario='1' 
+                and A.Empresa='e01'
+                AND B.Fecha < '$f_i'
+                AND C.GLOSA = '$glosa') -
+                (SELECT sum(dd.Cantidad)salida
+                FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
+                where
+                dd.Empresa=p.EMPRESA
+                and dd.Producto = p.PRODUCTO
+                AND dd.EMPRESA = tp.Empresa
+                AND dd.TipoDocto = tp.TipoDocto
+                and dd.Empresa='e01'
+                AND dd.Bodega <> '' 
+                AND tp.Sistema IN ('Inventario','Produccion') 
+                AND tp.FactorInventario='-1' 
+                AND dd.Fecha < '$f_i'
+                AND p.GLOSA = '$glosa') saldo";
+
+
+        $res = \DB::select($query);
+
+
+        return $res[0]->saldo;
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 
