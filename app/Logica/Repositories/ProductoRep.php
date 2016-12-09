@@ -238,10 +238,15 @@ class ProductoRep
     }
 
 
-    public function getKardex()
+    public function getKardex($data)
     {
 
+        //sacaremos la fecha
 
+        $f_i    =   $data['f_i'];
+        $f_f    =   $data['f_f'];
+        $glosa  =   $data['producto'];
+        $familia = $data['familia'];
         //primero sacamos a toda la data general
 
         $query = "select A.Fecha fecha ,A.Numero numero,'entrada' as tipo,
@@ -249,11 +254,13 @@ class ProductoRep
         from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
         where
         A.idDocto=B.idDocto
-        AND B.Empresa=C.EMPRESA
-        and B.Producto=C.PRODUCTO
+        AND B.Empresa= C.EMPRESA
+        and B.Producto= C.PRODUCTO
         AND A.TipoDocto='N/I ALMACEN (A)'
         and A.Empresa='e01'
-        AND B.Fecha BETWEEN '2016-01-12' and '2016-07-12'
+        AND B.Fecha BETWEEN '$f_i' and '$f_f'
+        AND C.GLOSA like '%$glosa%'
+        AND C.FAMILIA like '%$familia%'
         UNION
         SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
         p.GLOSA glosa,dd.Cantidad cantidad,dd.UnidadIngreso unidad
@@ -267,7 +274,9 @@ class ProductoRep
         AND dd.Bodega <> '' 
         AND tp.Sistema IN ('Inventario','Produccion') 
         AND tp.FactorInventario='-1' 
-        AND dd.Fecha BETWEEN '2016-01-12' and '2016-07-12'
+        AND dd.Fecha BETWEEN '$f_i' and '$f_f'
+        AND p.GLOSA like '%$glosa%'
+        AND p.FAMILIA like '%$familia%'
         ORDER BY A.Fecha";
 
 
@@ -286,8 +295,26 @@ class ProductoRep
             $producto = $item[0];
 
             $obj = new Obj();
-            $obj->glosa = $producto->glosa;
-            $obj->saldo = $this->getSaldoFinal('2016-01-12','2016-07-12',$producto->glosa);
+            $obj->producto_name  = $producto->glosa;
+            $obj->unidad = $producto->unidad;
+            $obj->saldo  = $this->getSaldoFinal($f_i,$f_f,$producto->glosa);
+
+            $saldo_inicial = $obj->saldo;
+
+            foreach ($item as $i){
+
+                if($i->tipo == 'entrada'){
+                   $saldo_inicial += $i->cantidad;
+                }else{
+                    $saldo_inicial -= $i->cantidad;
+                }
+                $i->saldo = $saldo_inicial;
+            }
+
+            //el ultimo saldo se considera como saldo final o actul
+            $obj->saldo_final = $saldo_inicial;
+
+            $obj->detalle = $item;
 
 
             array_push($dataFormated,$obj);
@@ -302,22 +329,22 @@ class ProductoRep
 
     }
 
-
+    //esta funcion saca el saldo del producto
+    // a un dia antes de los seleccionado, par asacar su saldo inicial
     public function getSaldoFinal($f_i,$f_f,$glosa)
     {
 
         $query = "select (select 
                 SUM(B.Cantidad) entrada
-                from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento tp
+                from  flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento tp
                 where
-                A.idDocto=B.idDocto
-                AND B.Empresa=C.EMPRESA
+                B.Empresa=C.EMPRESA
                 and B.Producto=C.PRODUCTO
                 AND B.TipoDocto = tp.TipoDocto
-                --AND A.TipoDocto IN('N/I ALMACEN (A)','INVENTARIO INICIAL','NOTA DE VENTA')
+                AND B.Empresa = tp.Empresa
                 AND tp.Sistema IN ('Compras','Inventario','Produccion') 
-                AND tp.FactorInventario='1' 
-                and A.Empresa='e01'
+                AND tp.FactorInventario=1 
+                and B.Empresa='e01'
                 AND B.Fecha < '$f_i'
                 AND C.GLOSA = '$glosa') -
                 (SELECT sum(dd.Cantidad)salida
@@ -339,11 +366,6 @@ class ProductoRep
 
 
         return $res[0]->saldo;
-
-
-
-
-
 
     }
 

@@ -191,13 +191,14 @@ class ComercialController extends Controller
         $res = $this->documentoRep->getDetailOrden($id);
 
         return \Response::Json($res);
-
     }
 
 
     public function getKardex(){
 
-        $res = $this->productoRep->getKardex();
+        $data = \Input::all();
+
+        $res = $this->productoRep->getKardex($data);
 
         return \Response::Json($res);
 
