@@ -128,7 +128,8 @@
                                         <th>N° Pesadas</th>
                                         <th>Guia</th>
                                         <th>Variedad</th>
-                                        <th>FP</th>
+                                        <th>Fundo</th>
+                                        <th>Parron</th>
                                         <th>L Produccion</th>
                                         <th>N° Jaba</th>
                                         <th>Tara Jaba</th>
@@ -140,6 +141,7 @@
                                     <tbody>
                                     <tr>
                                         <td>1</td>
+                                        <td><input class="form-control" type="text"></td>
                                         <td><input class="form-control" type="text"></td>
                                         <td><input class="form-control" type="text"></td>
                                         <td><input class="form-control" type="text"></td>
@@ -249,10 +251,40 @@
 
     </script>
 
+    <!-- Templates -->
+
+    <script type="text/template" id="detUva_template">
+
+        <td>@{{$index}}</td>
+        <td><input v-model="n_pesadas" class="form-control" type="text"></td>
+        <td><input v-model="guia" class="form-control" type="text"></td>
+        <td><input v-model="variedad" class="form-control" type="text"></td>
+        <td><input v-model="fundo" class="form-control" type="text"></td>
+        <td><input v-model="parron" class="form-control" type="text"></td>
+        <td><input v-model="l_produccion" class="form-control" type="text"></td>
+        <td><input v-model="n_jaba" class="form-control" type="text"></td>
+        <td><input v-model="tara_jaba" class="form-control" type="text"></td>
+        <td><input v-model="tara_parihuela" class="form-control" type="text"></td>
+        <td><input v-model="peso_bruto" class="form-control" type="text"></td>
+        <td><button v-model="n_pesadas" class="btn btn-default btn-sm"> - </button></td>
+
+    </script>
+
+
+
+    <!-- ./ Templates -->
+
+
+
+
     <!-- vue JS -->
     <script  src="{{asset('js/vue.js')}}"></script>
 
     <script>
+
+        Vue.component('detUva_template',{
+
+        });
 
         new Vue({
 
