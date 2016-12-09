@@ -25,6 +25,7 @@ Route::post('rh/api/getTelecredito',['as'=>'getTelecredito','uses'=>'RecursoshCo
 Route::get('rh/api/getCargos',['as'=>'getCargos','uses'=>'RecursoshController@getCargos']);
 Route::get('rh/api/getDepartamentos',['as'=>'getDepartamentos','uses'=>'RecursoshController@getDepartamentos']);
 Route::post('rh/api/getPlanilla',['as'=>'getPlanilla','uses'=>'RecursoshController@getPlanilla']);
+Route::post('rh/api/getPlanillaAgrario',['as'=>'getPlanillaAgrario','uses'=>'RecursoshController@getPlanillaAgrario']);
 
 
 //para descargar archivos o visualizar fotos

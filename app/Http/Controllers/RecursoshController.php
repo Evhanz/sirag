@@ -329,6 +329,12 @@ class RecursoshController extends Controller
 
     }
 
+    public function getPlanillaAgrario(){
+        $data = \Input::all();
+
+        $res = $this->personalRep->getPlanillaAgrario($data['periodo']);
+        return \Response::json($res);
+    }
 
 
     /*funciiones helpers */
