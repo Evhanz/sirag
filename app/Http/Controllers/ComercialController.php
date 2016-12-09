@@ -193,6 +193,16 @@ class ComercialController extends Controller
         return \Response::Json($res);
 
     }
+
+
+    public function getKardex(){
+
+        $res = $this->productoRep->getKardex();
+
+        return \Response::Json($res);
+
+
+    }
     
 
     /*esto es para reportes en PDF*/

@@ -30,6 +30,10 @@ Route::post('comercial/api/getKardexSalida',['as'=>'api_getKardexSalida',
 Route::post('comercial/api/getKardexEntrada',['as'=>'api_getKardexEntrada',
     'uses'=>'ComercialController@apiGetKardexEntrada']);
 
+//esta ruta solo se usa para ver como se accede en el kardex
+Route::get('comercial/api/getKardex',['as'=>'getKardex',
+    'uses'=>'ComercialController@getKardex']);
+
 //esta ruta se comparte con contabilidad
 Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraForControl',
     'uses'=>'ContabilidadController@getOrdenCompraForControl']);
