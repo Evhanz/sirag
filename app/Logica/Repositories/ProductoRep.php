@@ -238,6 +238,9 @@ class ProductoRep
     }
 
 
+
+    //esta es la funcion que se encarga de traer al krdex
+    //convinando la entrada con las salidas
     public function getKardex($data)
     {
 

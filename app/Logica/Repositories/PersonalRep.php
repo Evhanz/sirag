@@ -297,9 +297,10 @@ class PersonalRep
             $data['nombre'] = '';
         }
 
-        $periodo = $data['periodo'];
-        $nombre = $data['nombre'];
-        $t_pago = $data['t_pago'];
+        $periodo    =   $data['periodo'];
+        $nombre     =   $data['nombre'];
+        $t_pago     =   $data['t_pago'];
+        $tipo       =   $data['tipo'];
         $sq1="";
 
         $error="";
@@ -307,9 +308,17 @@ class PersonalRep
         if($t_pago == 'q'){
             $sq = "QUINCENA AS MONTO";
             $gq = "QUINCENA";
-        }else{
+        }elseif ($t_pago == 'f'){
             $sq = "FIN_MES AS MONTO";
             $gq = "FIN_MES";
+        }
+        else  if($t_pago == 's'){
+            $sq = "SEMANAL AS MONTO";
+            $gq = "SEMANAL";
+        }
+        else{
+            $sq = "LIQUIDACION AS MONTO";
+            $gq = "LIQUIDACION";
         }
         //aca para los subquerys 1 por que es para
 
@@ -329,7 +338,8 @@ class PersonalRep
         }
 
 
-          
+        //vemos que tipo de empleado es apra llamar a la vistta corresppndoente
+        if ($tipo == 'empleado'){
             $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO,DEPARTAMENTO
@@ -341,6 +351,22 @@ class PersonalRep
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO,DEPARTAMENTO     order by Nombre";
+        }else{
+            $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+                    DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
+                    VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO,DEPARTAMENTO
+                    FROM v_telecreditoOperario
+                    WHERE PERIODO = '$periodo'
+                    AND Nombre like '%$nombre%'
+                    AND $gq >0  $sq1
+                    --AND LEN(CUENTAS_ABONO) > 0 
+                    GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+                    DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
+                    VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO,DEPARTAMENTO     order by Nombre";
+        }
+
+
+
 
 
 
