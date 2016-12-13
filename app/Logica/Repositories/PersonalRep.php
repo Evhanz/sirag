@@ -297,9 +297,10 @@ class PersonalRep
             $data['nombre'] = '';
         }
 
-        $periodo = $data['periodo'];
-        $nombre = $data['nombre'];
-        $t_pago = $data['t_pago'];
+        $periodo    =   $data['periodo'];
+        $nombre     =   $data['nombre'];
+        $t_pago     =   $data['t_pago'];
+        $tipo       =   $data['tipo'];
         $sq1="";
 
         $error="";
@@ -307,9 +308,17 @@ class PersonalRep
         if($t_pago == 'q'){
             $sq = "QUINCENA AS MONTO";
             $gq = "QUINCENA";
-        }else{
+        }elseif ($t_pago == 'f'){
             $sq = "FIN_MES AS MONTO";
             $gq = "FIN_MES";
+        }
+        else  if($t_pago == 's'){
+            $sq = "SEMANAL AS MONTO";
+            $gq = "SEMANAL";
+        }
+        else{
+            $sq = "LIQUIDACION AS MONTO";
+            $gq = "LIQUIDACION";
         }
         //aca para los subquerys 1 por que es para
 
@@ -329,7 +338,8 @@ class PersonalRep
         }
 
 
-          
+        //vemos que tipo de empleado es apra llamar a la vistta corresppndoente
+        if ($tipo == 'empleado'){
             $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO,DEPARTAMENTO
@@ -341,6 +351,22 @@ class PersonalRep
                     GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
                     DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
                     VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO,DEPARTAMENTO     order by Nombre";
+        }else{
+            $query = "SELECT Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+                    DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
+                    VALIDACION_IDC,TIPO_MONEDA,$sq,CARGO,DEPARTAMENTO
+                    FROM v_telecreditoOperario
+                    WHERE PERIODO = '$periodo'
+                    AND Nombre like '%$nombre%'
+                    AND $gq >0  $sq1
+                    --AND LEN(CUENTAS_ABONO) > 0 
+                    GROUP BY Nombre,CUENTAS_ABONO,TIPO_DOCUMENTO,CATEGORIA,
+                    DNI,PERIODO,TIPO_REGISTRO,TIPO_CUENTA_ABONO,
+                    VALIDACION_IDC,TIPO_MONEDA,$gq,CARGO,DEPARTAMENTO     order by Nombre";
+        }
+
+
+
 
 
 
@@ -388,6 +414,114 @@ class PersonalRep
 
 
     public function getPlanilla($periodo)
+{
+    $response       = new Obj();
+    $totales        = new Obj();
+    $data           = [];
+    $t_quincena     = 0;
+    $t_f_mes        = 0;
+    $t_liquidacion  = 0;
+
+
+
+
+    $query = "select FICHA, VALOR , MOVIMIENTO
+                    FROM flexline.PER_DET_LIQ
+                    WHERE EMPRESA='e01'
+                    and periodo='$periodo' --- FILTRAR POR PERIODO
+                    AND MOVIMIENTO in ('10505','100001','10535') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    ORDER by FICHA";
+
+    $res = \DB::select($query);
+
+    $res = collect($res);
+
+    //primero agrupamos por las ficha
+
+    $result = $res->groupBy('FICHA')->toArray();
+
+    foreach ($result as $item)
+    {
+
+        //sacamos primero el trabajador
+
+        //var_dump($item[0]);
+
+        $first = $item[0];
+
+
+        $q = "SELECT TOP 1 *
+                    from dbo.v_allTrabajadores
+                    where FICHA = '$first->FICHA'";
+
+        $q = \DB::select($q);
+
+        $q = $q[0];
+
+        $obj = new Obj();
+        $obj->FICHA = $q->FICHA;
+        $obj->NOMBRE = utf8_encode($q->NOMBRE);
+
+        //modelamos el resultado
+
+        $item = collect($item);
+
+
+        $QUINCENA = $item->where('MOVIMIENTO','10505')->first();
+        $F_MES = $item->where('MOVIMIENTO','100001')->first();
+        $LIQUIDACION = $item->where('MOVIMIENTO','10535')->first();
+
+        if ($QUINCENA == null){
+            $QUINCENA=0;
+
+        }else{
+            $QUINCENA = $QUINCENA->VALOR;
+        }
+
+        if ($F_MES == null){
+            $F_MES = 0;
+        }else{
+            $F_MES = $F_MES->VALOR;
+        }
+        if ($LIQUIDACION == null){
+            $LIQUIDACION =0;
+
+        }else{
+            $LIQUIDACION = $LIQUIDACION->VALOR;
+
+        }
+
+        $t_liquidacion += $LIQUIDACION;
+        $t_f_mes += $F_MES;
+        $t_quincena += $QUINCENA;
+
+
+        $obj->QUINCENA = number_format($QUINCENA,2,'.',',');
+        $obj->F_MES = number_format($F_MES,2,'.',',');
+        $obj->LIQUIDACION = number_format($LIQUIDACION,2,'.',',');
+        $obj->TOTAL = number_format($item->sum('VALOR'),2,'.',',');
+
+        array_push($data,$obj);
+
+    }
+
+    $response->t_liquidacion = number_format($t_liquidacion,2,'.',',');
+    $response->t_f_mes = number_format($t_f_mes,2,'.',',');
+    $response->t_quincena = number_format($t_quincena,2,'.',',');
+    $response->total = number_format(($t_liquidacion+$t_f_mes+$t_quincena),2,'.',',');
+    $response->data = $data;
+
+
+    return $response;
+
+
+
+}
+
+    //esto es la planilla para los chamberos
+    //arreglar para que se una sola funcion
+    //
+    public function getPlanillaAgrario($periodo)
     {
         $response       = new Obj();
         $totales        = new Obj();
@@ -395,6 +529,7 @@ class PersonalRep
         $t_quincena     = 0;
         $t_f_mes        = 0;
         $t_liquidacion  = 0;
+        $t_semanal      = 0;
 
 
 
@@ -403,7 +538,7 @@ class PersonalRep
                     FROM flexline.PER_DET_LIQ
                     WHERE EMPRESA='e01'
                     and periodo='$periodo' --- FILTRAR POR PERIODO
-                    AND MOVIMIENTO in ('10505','100001','10535') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and MOVIMIENTO='99005' --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     ORDER by FICHA";
 
         $res = \DB::select($query);
@@ -440,7 +575,17 @@ class PersonalRep
 
             $item = collect($item);
 
+            $semanal = $item->where('MOVIMIENTO','99005')->first();
 
+            if ($semanal == null){
+                $semanal=0;
+
+            }else{
+                $semanal = $semanal->VALOR;
+            }
+
+
+            /*
             $QUINCENA = $item->where('MOVIMIENTO','10505')->first();
             $F_MES = $item->where('MOVIMIENTO','100001')->first();
             $LIQUIDACION = $item->where('MOVIMIENTO','10535')->first();
@@ -475,14 +620,27 @@ class PersonalRep
             $obj->LIQUIDACION = number_format($LIQUIDACION,2,'.',',');
             $obj->TOTAL = number_format($item->sum('VALOR'),2,'.',',');
 
-            array_push($data,$obj);
+            */
 
+            $t_semanal += $semanal;
+            $obj->semanal = number_format($semanal,2,'.',',');
+            array_push($data,$obj);
         }
 
-        $response->t_liquidacion = number_format($t_liquidacion,2,'.',',');
+
+        //para ordenar la colecion
+        $data = collect($data);
+        $data = $data->sortBy('NOMBRE');
+        $data = $data->values()->all();
+
+
+
+        $response->t_semanal = number_format($t_semanal,2,'.',',');
+        /*
         $response->t_f_mes = number_format($t_f_mes,2,'.',',');
         $response->t_quincena = number_format($t_quincena,2,'.',',');
         $response->total = number_format(($t_liquidacion+$t_f_mes+$t_quincena),2,'.',',');
+        */
         $response->data = $data;
 
 

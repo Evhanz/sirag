@@ -2,6 +2,11 @@
 
 @section('content')
 
+    <!-- datepicker -->
+    <script src="{{asset('templates/lte2/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{asset('templates/lte2/plugins/datepicker/datepicker3.css')}}">
+
     <script type="text/javascript" src="{{ asset('js/plugins/table2excel/jquery.table2excel.min.js') }} "></script>
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
@@ -11,7 +16,8 @@
                 <div class="box box-default" >
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
-                            <li class="active"><a data-toggle="tab" href="#home">Documento</a></li>
+                            <li class="active"><a data-toggle="tab" href="#home">Personal</a></li>
+                            <li ><a data-toggle="tab" href="#agraria">Agrario</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -19,7 +25,7 @@
                             <div class="col-lg-12">
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
-                                        <div class="row">
+                                        <div class="row" id="box_maestro">
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
                                             <form class="form-inline" style="padding: 15px">
                                                 <div class="form-group">
@@ -58,27 +64,126 @@
                                                 </div>
                                             </form>
 
+                                            <form class="form-inline" style="padding: 15px">
+
+                                                <div class="form-group">
+                                                    <label for="">Nombre</label>
+                                                    <input type="text" class="form-control" ng-model="search.NOMBRE">
+                                                </div>
+                                                <div class="form-group">
+
+
+                                                    <label for="">Exportar</label><br>
+                                                    <a href="#" class="btn btn-success btn-xs" onClick ="print_excel()" title="Reporte Totalizado Excel">
+                                                        <i class="fa fa-file-excel-o fa-lg"></i>
+                                                    </a>
+                                                </div>
+                                            </form>
+
+                                            <div class="col-lg-12" style="padding: 15px">
+                                                <div class="table-responsive" style="overflow: auto" id="cont_tabla">
+                                                    <table class="table table-bordered" id="table_data_op1">
+                                                        <thead >
+                                                        <tr>
+                                                            <th>*</th>
+                                                            <th>FICHA</th>
+                                                            <th>NOMBRE</th>
+                                                            <th>QUINCENA</th>
+                                                            <th>FIN DE MES</th>
+                                                            <th>LIQUIDACION </th>
+                                                            <th>TOTAL</th>
+
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody >
+                                                        <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }} ">
+                                                            <td>@{{ $index + 1}}</td>
+                                                            <td>@{{ item.FICHA}}</td>
+                                                            <td>@{{ item.NOMBRE }}</td>
+                                                            <td>@{{ item.QUINCENA }}</td>
+                                                            <td>@{{ item.F_MES }}</td>
+                                                            <td>@{{ item.LIQUIDACION }}</td>
+                                                            <td>@{{ item.TOTAL }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3"><H2>TOTALES</H2></td>
+                                                            <td>@{{ totales.t_quincena }}</td>
+                                                            <td>@{{ totales.t_f_mes }}</td>
+                                                            <td>@{{ totales.t_liquidacion }}</td>
+                                                            <td>@{{ totales.total }}</td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div><!-- /.row - inside box -->
+
+
                                         </div>
 
                                     </div>
                                     <!-- Tab filtro documento -->
-                                    <div id="menu1" class="tab-pane fade">
-                                        <h3>Menu 1</h3>
-                                        <p>Some content in menu 1.</p>
-
-                                        <label>Date range:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                    <div id="agraria" class="tab-pane fade">
+                                       <h2>Agraria</h2>
+                                        <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                        <form class="form-inline" style="padding: 15px">
+                                            <div class="form-group">
+                                                <label for="">Fecha</label>
+                                                <input id="periodo_agrario" class="form-control datepicker">
                                             </div>
-                                            <input class="form-control " name="daterange" id="reservation" type="text">
-                                        </div><!-- /.input group -->
+                                            <div class="form-group">
+                                                <label for=""></label><br>
+                                                <button class="btn btn-success" id="btnBuscarDocAgraria" ng-click="getDataAllAgraria()">
+                                                    <i class="fa fa-search fa-lg"></i>
+                                                </button>
+                                            </div>
+                                        </form>
 
+                                        <form class="form-inline" style="padding: 15px">
 
-                                    </div>
-                                    <div id="menu2" class="tab-pane fade">
-                                        <h3>Menu 2</h3>
-                                        <p>Some content in menu 2.</p>
+                                            <div class="form-group">
+                                                <label for="">Nombre</label>
+                                                <input type="text" class="form-control" ng-model="searchA.NOMBRE">
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="">Exportar</label><br>
+                                                <a href="#" class="btn btn-success btn-xs" onClick ="print_excel_agraria()" title="Reporte Totalizado Excel">
+                                                    <i class="fa fa-file-excel-o fa-lg"></i>
+                                                </a>
+                                            </div>
+                                        </form>
+
+                                        <div class="row" style="padding: 15px">
+                                            <div class="table-responsive" style="overflow: auto" id="cont_tabla">
+                                                <table class="table table-bordered" id="table_data_op1" data-table="1">
+                                                    <thead >
+                                                    <tr>
+                                                        <th>*</th>
+                                                        <th>FICHA</th>
+                                                        <th>NOMBRE</th>
+                                                        <th>SEMANAL</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody >
+                                                    <tr  ng-repeat=" item in DocAgraria | filter:searchA" id="tr_Doc_@{{ item.FICHA }}">
+                                                        <td>@{{ $index + 1}}</td>
+                                                        <td>@{{ item.FICHA}}</td>
+                                                        <td>@{{ item.NOMBRE }}</td>
+                                                        <td>@{{ item.semanal }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3"><H2>TOTALES</H2></td>
+                                                        <td>@{{ totalesAgraria.t_semanal }}</td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div><!-- /.row - inside box -->
                                     </div>
                                 </div>
                             </div>
@@ -88,100 +193,9 @@
 
                     </div><!-- /.box-footer -->
                 </div><!-- /.box -->
-
-
-                <div class="col-lg-12">
-
-
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
-                            <!-- tools box -->
-                        </div><!-- /.box-header -->
-                        <div class="box-body ">
-
-                            <!--
-                            <label>
-                                Any: <input ng-model="search.$">
-                            </label> <br> -->
-
-                            <form class="form-inline" style="padding: 15px">
-
-                                <div class="form-group">
-                                    <label for="">Nombre</label>
-                                    <input type="text" class="form-control" ng-model="search.NOMBRE">
-                                </div>
-                                <div class="form-group">
-
-
-                                    <label for="">Exportar</label><br>
-                                    <a href="#" class="btn btn-success btn-xs" onClick ="print_excel()" title="Reporte Totalizado Excel">
-                                        <i class="fa fa-file-excel-o fa-lg"></i>
-                                    </a>
-                                </div>
-                            </form>
-
-                            <div class="row" style="padding: 15px">
-                                <div class="table-responsive" style="overflow: auto" id="cont_tabla">
-                                    <table class="table table-bordered" id="table_data_op1">
-                                        <thead >
-                                        <tr>
-                                            <th>*</th>
-                                            <th>FICHA</th>
-                                            <th>NOMBRE</th>
-                                            <th>QUINCENA</th>
-                                            <th>FIN DE MES</th>
-                                            <th>LIQUIDACION </th>
-                                            <th>TOTAL</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody >
-                                        <tr  ng-repeat=" item in Documentos | filter:search" id="tr_Doc_@{{ item.FICHA }}">
-                                            <td>@{{ $index + 1}}</td>
-                                            <td>@{{ item.FICHA}}</td>
-                                            <td>@{{ item.NOMBRE }}</td>
-                                            <td>@{{ item.QUINCENA }}</td>
-                                            <td>@{{ item.F_MES }}</td>
-                                            <td>@{{ item.LIQUIDACION }}</td>
-                                            <td>@{{ item.TOTAL }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3"><H2>TOTALES</H2></td>
-                                            <td>@{{ totales.t_quincena }}</td>
-                                            <td>@{{ totales.t_f_mes }}</td>
-                                            <td>@{{ totales.t_liquidacion }}</td>
-                                            <td>@{{ totales.total }}</td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div><!-- /.row - inside box -->
-                        </div><!-- /.box-body -->
-
-
-
-                    </div><!-- /.box -->
-
-                </div>
-
             </div>
 
         </div>
-
-
-
-
-
-
     </div>
 
 
@@ -198,6 +212,10 @@
             format : "DD/MM/YYYY"
         });
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('#periodo_agrario').datepicker({
+            format: 'dd/mm/yyyy'
+        });
         /*
          $(document).ready(function(){
 
@@ -219,6 +237,24 @@
 
         }
 
+        function print_excel_agraria() {
+
+
+            $('*[data-table="1"]').table2excel({
+                exclude: ".noExl",
+                name: "export_personal_agraria",
+                filename: "export_personal_agraria",
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+
+        }
+
+
+
+
         /*----*/
 
 
@@ -230,6 +266,8 @@
 
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
+            $scope.totalesAgraria = {};
+            $scope.DocAgraria = [{}];
             $scope.totales = {};
 
             var ruta = '';
@@ -288,6 +326,60 @@
                     $( "div" ).remove( ".overlay" );
                     $( "div" ).remove( ".loading-img" );
                 });
+            };
+
+            $scope.getDataAllAgraria = function()
+            {
+
+                var token = $('#_token').val();
+
+                var periodo= $("#periodo_agrario").val();
+
+
+                if(periodo.length > 0){
+                    var ruta = "{{URL::route('getPlanillaAgrario')}}";
+
+
+                    $("#btnBuscarDocAgraria").attr("disabled", true);
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+
+                    periodo = periodo.split('/');
+                    periodo = periodo[2]+''+periodo[1]+''+periodo[0];
+
+                    console.log(periodo);
+
+
+                     $http.post(ruta, {_token : token, periodo:periodo })
+                     .success(function(data){
+                                $scope.DocAgraria = data.data;
+                                $scope.totalesAgraria.t_semanal = data.t_semanal;
+
+                                 console.log(data);
+
+                                $('#btnBuscarDocAgraria').attr("disabled", false);
+                                $( "div" ).remove( ".overlay" );
+                                $( "div" ).remove( ".loading-img" );
+                     }).error(function(data) {
+                            alert("Se encontró un error en el sistema , contacte con el área de soporte.");
+                            $( "div" ).remove( ".overlay" );
+                            $( "div" ).remove( ".loading-img" );
+                     });
+
+
+
+                }
+                else{
+                    alert("Debe ingresar primero una fecha");
+                }
+
+
+
+
+
+
+
+
             };
 
 

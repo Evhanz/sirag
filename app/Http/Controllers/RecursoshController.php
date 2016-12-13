@@ -164,7 +164,25 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-        $data['periodo']= $data['filAnio'].'-'.$data['filMes'].'-'.$this->getUltimoDiaMes($data['filAnio'],$data['filMes']);
+
+        if($data['tipo']=='empleado'){
+            $data['periodo']= $data['filAnio'].'-'.$data['filMes'].'-'.$this->getUltimoDiaMes($data['filAnio'],$data['filMes']);
+        }else{
+
+
+            if($data['filDia']<10){
+
+                $data['filDia'] = '0'.$data['filDia'];
+            }
+            if($data['filMes']<10){
+
+                $data['filMes'] = '0'.$data['filMes'];
+            }
+
+            $data['periodo'] =  $data['filAnio'].'-'.$data['filMes'].'-'.$data['filDia'];
+        }
+
+
 
 
         $res = $this->personalRep->getTelecredito($data);
@@ -329,6 +347,12 @@ class RecursoshController extends Controller
 
     }
 
+    public function getPlanillaAgrario(){
+        $data = \Input::all();
+
+        $res = $this->personalRep->getPlanillaAgrario($data['periodo']);
+        return \Response::json($res);
+    }
 
 
     /*funciiones helpers */

@@ -1,7 +1,6 @@
-@extends('layoutRH')
+@extends('layout')
 
 @section('content')
-
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
@@ -51,11 +50,56 @@
                                                         <option value="12">Diciembre</option>
                                                     </select>
                                                 </div>
+                                                <div class="form-group" ng-show="tEmpleado!='empleado'">
+                                                    <label for="" >Día</label><br>
+                                                    <select  name="filDia" class="form-control" id="filDia" required>
+                                                        <option value="">--------</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                        <option value="31">31</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Tipo Empleado</label><br>
+                                                    <select id="t_empleado"  name="t_empleado" ng-model="tEmpleado"  class="form-control"  required>
+                                                        <option value="empleado" >Empleado</option>
+                                                        <option value="operario" >Operario</option>
+                                                    </select>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="">Tipo Abono</label><br>
                                                     <select  name="t_pago" id="f_tipo_pago" class="form-control"  required>
-                                                        <option value="q" >Quincena</option>
-                                                        <option value="f">F. Mes</option>
+                                                        <option ng-repeat="item in tAbono" value="@{{ item.val }}">
+                                                            @{{ item.text }}
+                                                        </option>
                                                     </select>
                                                 </div>
 
@@ -295,6 +339,10 @@
             $scope.cant_error = 0;
             $scope.filcargo=[];
             $scope.fildepartamento="";
+            $scope.tAbono = [];
+
+
+            $scope.tEmpleado = 'empleado';
 
             var ruta = '';
 
@@ -326,13 +374,28 @@
                 var nombre = $("#filNombre").val();
 
                 var t_pago = $("#f_tipo_pago").val();
-                var mes = $("#filMes").val();
-                var anio = $("#filAnio").val();
 
-                var ultimoDia = new Date(anio,mes, 0);
 
-                //ultimoDia = ultimoDia.getDate()+'/'+(ultimoDia.getMonth()+1)+'/'+ultimoDia.getFullYear();
-                ultimoDia = ultimoDia.getFullYear()+'-'+(ultimoDia.getMonth()+1)+'-'+ultimoDia.getDate();
+                if ($scope.tEmpleado == 'empleado'){
+
+                    var mes = $("#filMes").val();
+                    var anio = $("#filAnio").val();
+
+                    var ultimoDia = new Date(anio,mes, 0);
+
+                    //ultimoDia = ultimoDia.getDate()+'/'+(ultimoDia.getMonth()+1)+'/'+ultimoDia.getFullYear();
+                    ultimoDia = ultimoDia.getFullYear()+'-'+(ultimoDia.getMonth()+1)+'-'+ultimoDia.getDate();
+
+                }else{
+
+                    var mes  = $("#filMes").val();
+                    var anio = $("#filAnio").val();
+                    var dia  = $("#filDia").val();
+                    var ultimoDia = anio+'-'+mes+'-'+dia;
+                }
+
+
+
 
                 var bandera = validator();
 
@@ -355,11 +418,12 @@
                             {_token : token,
                                 periodo:ultimoDia,
                                 nombre:nombre,
-                                t_pago:t_pago
+                                t_pago:t_pago,
+                                tipo:$scope.tEmpleado
                             })
                             .success(function(data){
 
-                                //console.log(data);
+                                console.log(data);
 
                                 $scope.Documentos = data;
 
@@ -409,7 +473,6 @@
 
 
             };
-
 
             $scope.fnOptions = function () {
                 return $q(function (resolve, reject) {
@@ -554,10 +617,12 @@
                             _token  : $('#_token').val(),
                             filAnio : $("#filAnio").val(),
                             filMes  : $("#filMes").val(),
+                            filDia  : $("#filDia").val(),
                             t_pago  : $("#f_tipo_pago").val(),
                             nombre  : '',
                             ref_planilla : $("#ref_planilla").val(),
-                            data_include: data_include
+                            data_include: data_include,
+                            tipo    :  $('#t_empleado').val()
                         },
                         success: function(res) {
                             window.location = res;
@@ -613,7 +678,6 @@
 
             //-- para los filtros
 
-
             $scope.filterCargo = function(i) {
 
                 if ($scope.filcargo.length > 0)
@@ -626,7 +690,6 @@
                     return true;
 
             };
-
 
             $scope.filterDepartamento = function(i) {
 
@@ -652,8 +715,6 @@
 
             };
 
-
-
             $scope.changeAllFilter = function () {
 
                 angular.forEach($scope.filteredItems,function (item,key) {
@@ -663,10 +724,7 @@
 
             };
 
-
-
             /*funcion helper*/
-
 
             function validator() {
 
@@ -733,6 +791,20 @@
                 return bandera;
 
             }
+
+
+            //funciones watch
+            $scope.$watch('tEmpleado', function() {
+                if($scope.tEmpleado == 'empleado'){
+                    var tAbono = [{val:'q',text:'Quincena'},{val:'f',text:'F. Mes'}];
+                    $scope.tAbono = tAbono;
+                }else{
+                    var tAbono = [{val:'s',text:'Semanal'},{val:'l',text:'Liquidacion'}];
+                    $scope.tAbono = tAbono;
+                }
+            });
+
+
 
 
 

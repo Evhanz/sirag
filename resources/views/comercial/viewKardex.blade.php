@@ -14,7 +14,7 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#salidas">Salidas</a></li>
-                            <li ><a data-toggle="tab" href="#entradas">Entradas</a></li>
+                           <!-- <li ><a data-toggle="tab" href="#entradas">Entradas</a></li>-->
 
                         </ul>
                     </div><!-- /.box-header -->
@@ -71,7 +71,7 @@
                                         <!--./ Filro Principal-->
                                         <!-- data procesada  -->
                                         <div class="row">
-                                            <div class="col-lg-7">
+                                            <div class="col-lg-5">
                                                 <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
@@ -95,7 +95,7 @@
                                                                     <tr>
                                                                         <th>i</th>
                                                                         <th>GLOSA</th>
-                                                                        <th>CANTIDAD</th>
+                                                                        <th>SALDO ACTUAL</th>
                                                                         <th>UNIDAD</th>
                                                                         <th>*</th>
                                                                     </tr>
@@ -103,9 +103,9 @@
                                                                     </thead>
                                                                     <tbody  ng-repeat=" item in ProductosDTO | filter:search">
                                                                     <tr id="tr_Doc_@{{ $index }}">
-                                                                        <td>@{{ $index }}</td>
+                                                                        <td>@{{ $index + 1 }}</td>
                                                                         <td>@{{ item.producto_name }}</td>
-                                                                        <td>@{{ item.cantidad_total }}</td>
+                                                                        <td>@{{ item.saldo_final }}</td>
                                                                         <td>@{{ item.unidad }}</td>
                                                                         <td>
                                                                             <a class="btn btn-default" ng-click="viewDetalle(item)">
@@ -121,20 +121,25 @@
                                                 </div><!-- /.box -->
 
                                             </div>
+                                            <!-- ./ panel izquierdo -->
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-7">
 
                                              <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
-                                                     <div class="row">
+                                                         <div class="row">
 
-                                                            <div class="col-xs-2  col-md-offset-10">
-                                                                <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printSecundario()" style="margin-left: 15px;">
-                                                                    <i class="fa fa-file-excel-o" ></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                                             <div class="col-xs-4" style="padding-left: 20px;">
+                                                                 <h3>Saldo Inicial: @{{ saldo_inicial_selected | number:3 }}</h3>
+                                                             </div>
+
+                                                             <div class="col-xs-2  col-md-offset-6">
+                                                                 <button class="btn btn-success btn-xs" title="Exportar Excel" onclick="printSecundario()" style="margin-left: 15px;">
+                                                                     <i class="fa fa-file-excel-o" ></i>
+                                                                 </button>
+                                                             </div>
+                                                         </div>
 
                                                     </div><!-- /.box-header -->
                                                     <div class="box-body ">
@@ -146,9 +151,11 @@
                                                                     <tr>
                                                                         <th>*</th>
                                                                         <th>Fecha</th>
+                                                                        <th>Tipo</th>
                                                                         <th>Producto</th>
                                                                         <th>Cantidad</th>
-                                                                        <th>Unidad</th>
+                                                                        <th>Saldo</th>
+                                                                        <th>Fundo</th>
                                                                     </tr>
 
                                                                     </thead>
@@ -156,9 +163,11 @@
                                                                     <tr >
                                                                         <td>@{{ $index }}</td>
                                                                         <td>@{{ item.fecha   }}</td>
+                                                                        <td>@{{ item.tipo }}</td>
                                                                         <td>@{{ item.glosa }}</td>
-                                                                        <td>@{{ item.cantidad }}</td>
-                                                                        <td>@{{ item.unidad }}</td>
+                                                                        <td>@{{ item.cantidad | number:3 }}</td>
+                                                                        <td>@{{ item.saldo }}</td>
+                                                                        <td>@{{ item.FUNDO_PARRON }}</td>
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>
@@ -252,7 +261,7 @@
                                                                     <tr>
                                                                         <th>i</th>
                                                                         <th>GLOSA</th>
-                                                                        <th>CANTIDAD</th>
+                                                                        <th>SALDO ACTUAL</th>
                                                                         <th>UNIDAD</th>
                                                                         <th>*</th>
                                                                     </tr>
@@ -262,7 +271,7 @@
                                                                     <tr id="tr_Doc_@{{ $index }}">
                                                                         <td>@{{ $index }}</td>
                                                                         <td>@{{ item.producto_name }}</td>
-                                                                        <td>@{{ item.cantidad_total }}</td>
+                                                                        <td>@{{ item.saldo_final }}</td>
                                                                         <td>@{{ item.unidad }}</td>
                                                                         <td>
                                                                             <a class="btn btn-default" ng-click="viewDetalleEntrada(item)">
@@ -442,10 +451,12 @@
             $scope.familias             =   [];
             $scope.ProductosDTO         =   [];
             $scope.ProductosDTOEntrada  =   [];
+            $scope.saldo_inicial_selected = 0;
 
             $scope.proveedores  =   [];
             $scope.prov_active  =   {};
             $scope.prod_provee  =   [];
+
 
 
 
@@ -491,7 +502,7 @@
                     var f_i = formatDateDMYtoYDM(fecha_s_format[0],"/");
                     var f_f = formatDateDMYtoYDM(fecha_s_format[1],"/");
 
-                    var ruta = '{{ URL::route('api_getKardexSalida') }}';
+                    var ruta = '{{ URL::route('api_getKardex') }}';
 
                      $http.post(ruta,
                         {   _token : token,
@@ -505,7 +516,7 @@
 
                             $scope.ProductosDTO = data;
 
-                            //console.log(data);
+                           // console.log(data);
 
                             $( "div" ).remove( ".overlay" );
                             $( "div" ).remove( ".loading-img" );
@@ -619,7 +630,7 @@
 
                 });
 
-
+                $scope.saldo_inicial_selected = item.saldo;
                 $scope.detalles = item.detalle;
 
 
