@@ -284,6 +284,8 @@
 
         Vue.component('detUva_template',{
 
+            template:''
+
         });
 
         new Vue({
@@ -291,7 +293,8 @@
             el:"#content",
             data: {
                 name: "eidelman",
-                detalleUva:[
+                detallesUva:[],
+                new_detalleUva:[
                         {
                             n_pesadas:'',
                             guia:'',
@@ -304,6 +307,11 @@
                             tara_parihuela: '',
                             peso_bruto: ''
                         }]
+            },
+            methods:{
+                createDetalleUva: function () {
+                    this.detallesUva.push(this.new_detalleUva);
+                }
             }
 
         });

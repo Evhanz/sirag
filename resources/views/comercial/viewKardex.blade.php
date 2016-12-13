@@ -155,7 +155,7 @@
                                                                         <th>Producto</th>
                                                                         <th>Cantidad</th>
                                                                         <th>Saldo</th>
-                                                                        <th>Fundo</th>
+                                                                        <th>C.C.I.</th>
                                                                     </tr>
 
                                                                     </thead>
