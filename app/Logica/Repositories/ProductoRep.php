@@ -253,7 +253,7 @@ class ProductoRep
         //primero sacamos a toda la data general
 
         $query = "select A.Fecha fecha ,A.Numero numero,'entrada' as tipo,
-        C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad
+        C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON
         from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
         where
         A.idDocto=B.idDocto
@@ -266,7 +266,7 @@ class ProductoRep
         AND C.FAMILIA like '%$familia%'
         UNION
         SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
-        p.GLOSA glosa,dd.Cantidad cantidad,dd.UnidadIngreso unidad
+        p.GLOSA glosa,dd.Cantidad cantidad,dd.UnidadIngreso unidad, coalesce(dd.aux_valor19,'-') FUNDO_PARRON
         FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
         where
         dd.Empresa=p.EMPRESA
@@ -302,7 +302,7 @@ class ProductoRep
             $obj->unidad = $producto->unidad;
             $obj->saldo  = $this->getSaldoFinal($f_i,$f_f,$producto->glosa);
 
-            $saldo_inicial = $obj->saldo;
+            $saldo_inicial = round($obj->saldo,3);
 
             foreach ($item as $i){
 
@@ -315,7 +315,7 @@ class ProductoRep
             }
 
             //el ultimo saldo se considera como saldo final o actul
-            $obj->saldo_final = $saldo_inicial;
+            $obj->saldo_final = round($saldo_inicial,3);
 
             $obj->detalle = $item;
 

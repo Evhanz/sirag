@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="agregado al telecredito de operario">
+    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" afterPath="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -39,82 +38,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="viewTelecredito.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php">
+      <file leaf-file-name="ProductoRep.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="73">
+              <caret line="260" column="34" selection-start-line="260" selection-start-column="34" selection-end-line="260" selection-end-column="34" />
               <folding>
-                <element signature="e#8794#8800#0#HTML" expanded="true" />
-                <element signature="e#8801#8807#0#HTML" expanded="true" />
-                <element signature="e#8808#8814#0#HTML" expanded="true" />
-                <element signature="e#8815#8821#0#HTML" expanded="true" />
-                <element signature="e#8822#8828#0#HTML" expanded="true" />
-                <element signature="e#8829#8835#0#HTML" expanded="true" />
-                <element signature="e#25189#25440#0#HTML" expanded="false" />
-                <element signature="e#25476#25776#0#HTML" expanded="false" />
-                <element signature="e#25818#26139#0#HTML" expanded="false" />
-                <element signature="e#27027#27524#0#HTML" expanded="false" />
-                <element signature="e#27577#27871#0#HTML" expanded="false" />
-                <element signature="e#27921#28363#0#HTML" expanded="false" />
-                <element signature="e#28399#28750#0#HTML" expanded="false" />
-                <element signature="e#30456#30740#0#HTML" expanded="false" />
-                <element signature="e#30564#30690#0#HTML" expanded="false" />
-                <element signature="e#30781#31092#0#HTML" expanded="false" />
-                <element signature="e#31174#31479#0#HTML" expanded="false" />
-                <element signature="e#31534#32138#0#HTML" expanded="false" />
-                <element signature="e#32190#32361#0#HTML" expanded="false" />
-                <element signature="e#32429#33087#0#HTML" expanded="false" />
-                <element signature="e#33142#33350#0#HTML" expanded="false" />
-                <element signature="e#33392#34049#0#HTML" expanded="false" />
-                <element signature="e#33905#34001#0#HTML" expanded="false" />
+                <marker date="1481644493303" expanded="true" signature="676:1089" ph="SELECT Razon... v_allProductsAndProveedores" />
+                <marker date="1481644493303" expanded="true" signature="1220:1617" ph="SELECT top 1... " />
+                <marker date="1481644493303" expanded="true" signature="1994:2376" ph="SELECT Fecha... v_allProductsAndProveedores" />
+                <marker date="1481644493303" expanded="true" signature="2554:2700" ph="select CODIG... gen_tabcod" />
+                <marker date="1481644493303" expanded="true" signature="2836:2974" ph="select CODIG... gen_tabcod" />
+                <marker date="1481644493303" expanded="true" signature="3396:4078" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1481644493303" expanded="true" signature="5267:5896" ph="select A.Fec... Documento" />
+                <marker date="1481644493303" expanded="true" signature="7112:7558" ph="select A.Fec... Documento" />
+                <marker date="1481644493303" expanded="true" signature="7112:7594" ph="select A.Fec... Documento" />
+                <marker date="1481644493303" expanded="true" signature="7112:7634" ph="select A.Fec... Documento" />
+                <marker date="1481644493303" expanded="true" signature="7112:7648" ph="select A.Fec... Documento" />
+                <marker date="1481644493303" expanded="true" signature="7112:8259" ph="select A.Fec... " />
+                <marker date="1481644493303" expanded="true" signature="7112:8360" ph="select A.Fec... " />
+                <marker date="1481644493303" expanded="true" signature="7657:8259" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1481644493303" expanded="true" signature="9575:10740" ph="select (sele... " />
+                <marker date="1481644493303" expanded="true" signature="9575:10746" ph="select (sele... " />
+                <marker date="1481644493303" expanded="true" signature="9583:10140" ph="select SUM(B... DocumentoD" />
+                <marker date="1481644493303" expanded="true" signature="10050:10140" ph="select SUM(B... Documento" />
+                <marker date="1481644493303" expanded="true" signature="10161:10739" ph="SELECT sum(d... DocumentoD" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+      <file leaf-file-name="viewKardex.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="49" column="37" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="37" />
+            <state relative-caret-position="365">
+              <caret line="635" column="0" selection-start-line="635" selection-start-column="0" selection-end-line="635" selection-end-column="0" />
               <folding>
-                <element signature="e#1218#4694#0#PHP" expanded="false" />
-                <element signature="e#11747#11986#0#PHP" expanded="false" />
-                <element signature="e#11993#12225#0#PHP" expanded="false" />
-                <element signature="e#12232#14752#0#PHP" expanded="false" />
-                <element signature="e#16396#17446#0#PHP" expanded="false" />
-                <marker date="1481581947681" expanded="true" signature="268:516" ph="SELECT EMPLE... PER_TRABAJADOR" />
-                <marker date="1481581947681" expanded="true" signature="4770:4824" ph="select * fro... v_allTrabajadores" />
-                <marker date="1481581947681" expanded="true" signature="4965:5322" ph="SELECT FICHA... PER_REM_HIS" />
-                <marker date="1481581947681" expanded="true" signature="5426:5478" ph="select * fro... renov_contract" />
-                <marker date="1481581947681" expanded="true" signature="6114:6330" ph="INSERT INTO renov_contract... " />
-                <marker date="1481581947681" expanded="true" signature="6468:6592" ph="UPDATE flexl... " />
-                <marker date="1481581947681" expanded="true" signature="6623:6744" ph="UPDATE flexl... " />
-                <marker date="1481581947681" expanded="true" signature="7154:7214" ph="DELETE FROM " />
-                <marker date="1481581947681" expanded="true" signature="7248:7372" ph="UPDATE flexl... " />
-                <marker date="1481581947681" expanded="true" signature="7403:7524" ph="UPDATE flexl... " />
-                <marker date="1481581947681" expanded="true" signature="7635:7982" ph="SELECT TIPO_... PER_VACACIONES" />
-                <marker date="1481581947681" expanded="true" signature="8430:8682" ph="SELECT FICHA... v_allTrabajadores" />
-                <marker date="1481581947681" expanded="true" signature="10109:10749" ph="SELECT Nombr... v_telecredito" />
-                <marker date="1481581947681" expanded="true" signature="10789:11437" ph="SELECT Nombr... v_telecreditoOperario" />
-                <marker date="1481581947681" expanded="true" signature="11801:11898" ph="select CARGO... v_telecredito" />
-                <marker date="1481581947681" expanded="true" signature="12054:12158" ph="SELECT CODIG... PER_DEPARTAMENTO" />
-                <marker date="1481581947681" expanded="true" signature="12457:12788" ph="select FICHA... PER_DET_LIQ" />
-                <marker date="1481581947681" expanded="true" signature="13094:13205" ph="SELECT TOP 1... v_allTrabajadores" />
-                <marker date="1481581947681" expanded="true" signature="15147:15456" ph="select FICHA... PER_DET_LIQ" />
-                <marker date="1481581947681" expanded="true" signature="15802:15913" ph="SELECT TOP 1... v_allTrabajadores" />
+                <element signature="e#4591#8214#0#HTML" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="recursos_humanos.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="63" column="45" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="45" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -186,11 +147,11 @@
         <option value="$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ComercialController.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/comercial.php" />
-        <option value="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
       </list>
     </option>
   </component>
@@ -236,6 +197,18 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -624,18 +597,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests" />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -777,7 +738,8 @@
       <workItem from="1481036383997" duration="8933000" />
       <workItem from="1481103229381" duration="6409000" />
       <workItem from="1481296436716" duration="24039000" />
-      <workItem from="1481556378823" duration="16552000" />
+      <workItem from="1481556378823" duration="17202000" />
+      <workItem from="1481638123429" duration="5345000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -1045,19 +1007,25 @@
       <option name="project" value="LOCAL" />
       <updated>1481325059965</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="agregado al telecredito de operario">
+      <created>1481583111614</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1481583111614</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="622440000" />
+    <option name="totallyTimeSpent" value="628435000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21558245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21860817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32766616" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2797527" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1065,6 +1033,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28641573" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1366,16 +1335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="539" column="14" selection-start-line="539" selection-start-column="14" selection-end-line="539" selection-end-column="14" />
-          <folding>
-            <element signature="e#12736#23634#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1392,34 +1351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="245" column="0" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
-          <folding>
-            <marker date="1481561586565" expanded="true" signature="676:1089" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1481561586565" expanded="true" signature="1220:1617" ph="SELECT top 1... " />
-            <marker date="1481561586565" expanded="true" signature="1994:2376" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1481561586565" expanded="true" signature="2554:2700" ph="select CODIG... gen_tabcod" />
-            <marker date="1481561586565" expanded="true" signature="2836:2974" ph="select CODIG... gen_tabcod" />
-            <marker date="1481561586565" expanded="true" signature="3396:4078" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1481561586565" expanded="true" signature="5267:5896" ph="select A.Fec... Documento" />
-            <marker date="1481561586565" expanded="true" signature="7112:7537" ph="select A.Fec... Documento" />
-            <marker date="1481561586565" expanded="true" signature="7112:7573" ph="select A.Fec... Documento" />
-            <marker date="1481561586565" expanded="true" signature="7112:7613" ph="select A.Fec... Documento" />
-            <marker date="1481561586565" expanded="true" signature="7112:7627" ph="select A.Fec... Documento" />
-            <marker date="1481561586565" expanded="true" signature="7112:8195" ph="select A.Fec... " />
-            <marker date="1481561586565" expanded="true" signature="7112:8296" ph="select A.Fec... " />
-            <marker date="1481561586565" expanded="true" signature="7636:8195" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1481561586565" expanded="true" signature="9493:10658" ph="select (sele... " />
-            <marker date="1481561586565" expanded="true" signature="9493:10664" ph="select (sele... " />
-            <marker date="1481561586565" expanded="true" signature="9501:10058" ph="select SUM(B... DocumentoD" />
-            <marker date="1481561586565" expanded="true" signature="9968:10058" ph="select SUM(B... Documento" />
-            <marker date="1481561586565" expanded="true" signature="10079:10657" ph="SELECT sum(d... DocumentoD" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -1428,9 +1359,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3009">
+          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding>
+            <element signature="e#8829#8951#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
+        <state relative-caret-position="17">
           <caret line="49" column="37" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="37" />
           <folding>
             <element signature="e#1218#4694#0#PHP" expanded="false" />
@@ -1462,52 +1411,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="63" column="45" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="45" />
+        <state relative-caret-position="209">
+          <caret line="646" column="38" selection-start-line="646" selection-start-column="38" selection-end-line="646" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3009">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+        <state relative-caret-position="365">
+          <caret line="635" column="0" selection-start-line="635" selection-start-column="0" selection-end-line="635" selection-end-column="0" />
           <folding>
-            <element signature="e#8829#8951#0#PHP" expanded="false" />
+            <element signature="e#4591#8214#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        <state relative-caret-position="73">
+          <caret line="260" column="34" selection-start-line="260" selection-start-column="34" selection-end-line="260" selection-end-column="34" />
           <folding>
-            <element signature="e#8794#8800#0#HTML" expanded="true" />
-            <element signature="e#8801#8807#0#HTML" expanded="true" />
-            <element signature="e#8808#8814#0#HTML" expanded="true" />
-            <element signature="e#8815#8821#0#HTML" expanded="true" />
-            <element signature="e#8822#8828#0#HTML" expanded="true" />
-            <element signature="e#8829#8835#0#HTML" expanded="true" />
-            <element signature="e#25189#25440#0#HTML" expanded="false" />
-            <element signature="e#25476#25776#0#HTML" expanded="false" />
-            <element signature="e#25818#26139#0#HTML" expanded="false" />
-            <element signature="e#27027#27524#0#HTML" expanded="false" />
-            <element signature="e#27577#27871#0#HTML" expanded="false" />
-            <element signature="e#27921#28363#0#HTML" expanded="false" />
-            <element signature="e#28399#28750#0#HTML" expanded="false" />
-            <element signature="e#30456#30740#0#HTML" expanded="false" />
-            <element signature="e#30564#30690#0#HTML" expanded="false" />
-            <element signature="e#30781#31092#0#HTML" expanded="false" />
-            <element signature="e#31174#31479#0#HTML" expanded="false" />
-            <element signature="e#31534#32138#0#HTML" expanded="false" />
-            <element signature="e#32190#32361#0#HTML" expanded="false" />
-            <element signature="e#32429#33087#0#HTML" expanded="false" />
-            <element signature="e#33142#33350#0#HTML" expanded="false" />
-            <element signature="e#33392#34049#0#HTML" expanded="false" />
-            <element signature="e#33905#34001#0#HTML" expanded="false" />
+            <marker date="1481644493303" expanded="true" signature="676:1089" ph="SELECT Razon... v_allProductsAndProveedores" />
+            <marker date="1481644493303" expanded="true" signature="1220:1617" ph="SELECT top 1... " />
+            <marker date="1481644493303" expanded="true" signature="1994:2376" ph="SELECT Fecha... v_allProductsAndProveedores" />
+            <marker date="1481644493303" expanded="true" signature="2554:2700" ph="select CODIG... gen_tabcod" />
+            <marker date="1481644493303" expanded="true" signature="2836:2974" ph="select CODIG... gen_tabcod" />
+            <marker date="1481644493303" expanded="true" signature="3396:4078" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1481644493303" expanded="true" signature="5267:5896" ph="select A.Fec... Documento" />
+            <marker date="1481644493303" expanded="true" signature="7112:7558" ph="select A.Fec... Documento" />
+            <marker date="1481644493303" expanded="true" signature="7112:7594" ph="select A.Fec... Documento" />
+            <marker date="1481644493303" expanded="true" signature="7112:7634" ph="select A.Fec... Documento" />
+            <marker date="1481644493303" expanded="true" signature="7112:7648" ph="select A.Fec... Documento" />
+            <marker date="1481644493303" expanded="true" signature="7112:8259" ph="select A.Fec... " />
+            <marker date="1481644493303" expanded="true" signature="7112:8360" ph="select A.Fec... " />
+            <marker date="1481644493303" expanded="true" signature="7657:8259" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1481644493303" expanded="true" signature="9575:10740" ph="select (sele... " />
+            <marker date="1481644493303" expanded="true" signature="9575:10746" ph="select (sele... " />
+            <marker date="1481644493303" expanded="true" signature="9583:10140" ph="select SUM(B... DocumentoD" />
+            <marker date="1481644493303" expanded="true" signature="10050:10140" ph="select SUM(B... Documento" />
+            <marker date="1481644493303" expanded="true" signature="10161:10739" ph="SELECT sum(d... DocumentoD" />
           </folding>
         </state>
       </provider>

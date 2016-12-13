@@ -155,7 +155,7 @@
                                                                         <th>Producto</th>
                                                                         <th>Cantidad</th>
                                                                         <th>Saldo</th>
-
+                                                                        <th>Fundo</th>
                                                                     </tr>
 
                                                                     </thead>
@@ -167,6 +167,7 @@
                                                                         <td>@{{ item.glosa }}</td>
                                                                         <td>@{{ item.cantidad | number:3 }}</td>
                                                                         <td>@{{ item.saldo }}</td>
+                                                                        <td>@{{ item.FUNDO_PARRON }}</td>
                                                                     </tr>
                                                                     </tbody>
                                                                 </table>

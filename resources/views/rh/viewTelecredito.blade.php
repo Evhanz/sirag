@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
 
