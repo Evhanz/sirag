@@ -300,7 +300,7 @@ class ContabilidadRep
 
       }else{
           $query = "SELECT CONVERT(DECIMAL(12,2),SUM(CANTIDAD)) cantidad, CONVERT(DECIMAL(12,2),SUM(TOTAL)) total 
-          FROM dbo.v_getConsumoMateriaPrima  
+          FROM dbo.v_getConsumoGif  
           where PRODUCTO = '$producto' 
           and FECHA BETWEEN '$fecha_i' and '$fecha_f'  
           and PARRON = '$parron'  ";
