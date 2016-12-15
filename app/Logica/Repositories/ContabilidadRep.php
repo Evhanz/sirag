@@ -198,10 +198,18 @@ class ContabilidadRep
 
       //primero traemos a todos los productos de materia prima
 
-      $query = "SELECT PRODUCTO,GLOSA,SUBFAMILIA from flexline.PRODUCTO
+      if ($data['cc']=='materiaPrima'){
+
+          $query = "SELECT PRODUCTO,GLOSA,SUBFAMILIA from flexline.PRODUCTO
                 where FAMILIA = 'MATERIA PRIMA' 
                 and EMPRESA = 'e01'
                 ORDER by SUBFAMILIA";
+      }else{
+
+          $query = "SELECT PRODUCTO,DESCRIPCION AS GLOSA,SUBFAMILIA from dbo.v_getConsumoGif
+                    GROUP BY PRODUCTO,DESCRIPCION,SUBFAMILIA 
+                    ORDER by SUBFAMILIA,DESCRIPCION";
+      }
 
       $productos = \DB::select($query);
 
@@ -220,7 +228,7 @@ class ContabilidadRep
 
 
           $dto = new DocumentoDTO();
-          $consumo = $this->getConsumoByFechasAndProducto($parron['startDate'],$parron['endDate'],$item->PRODUCTO,$parron['CODIGO']);
+          $consumo = $this->getConsumoByFechasAndProducto($parron['startDate'],$parron['endDate'],$item->PRODUCTO,$parron['CODIGO'],$data['cc']);
 
           $dto->name_parron = $parron['CODIGO'];
           $dto->area = $parron['VALOR1'];
@@ -246,12 +254,22 @@ class ContabilidadRep
       $otros_f_i  = $otros['startDate'];
       $otros_f_f  = $otros['endDate'];
 
-      $query = "SELECT PRODUCTO,DESCRIPCION,SUM(CANTIDAD) cantidad ,SUM(TOTAL) total
+      //se valida si el cento de costo para manejar la consulta
+      if ($data['cc']=='materiaPrima'){
+        $query = "SELECT PRODUCTO,DESCRIPCION,SUM(CANTIDAD) cantidad ,SUM(TOTAL) total
                 from dbo.v_getConsumoMateriaPrima
                 WHERE FUNDO = '$fundo'
                 and FECHA BETWEEN '$otros_f_i' and '$otros_f_f'  
                 AND PARRON NOT LIKE '%PARRON%' 
                 GROUP BY PRODUCTO,DESCRIPCION ";
+      }else{
+          $query = "SELECT PRODUCTO,DESCRIPCION,SUM(CANTIDAD) cantidad ,SUM(TOTAL) total
+                from dbo.v_getConsumoGif
+                WHERE FUNDO = '$fundo'
+                and FECHA BETWEEN '$otros_f_i' and '$otros_f_f'  
+                AND PARRON NOT LIKE '%PARRON%' 
+                GROUP BY PRODUCTO,DESCRIPCION ";
+      }
       $res_otros = \DB::select($query);
 
       //
@@ -270,17 +288,28 @@ class ContabilidadRep
     }
 
 
-    public function getConsumoByFechasAndProducto($fecha_i,$fecha_f,$producto,$parron)
+    public function getConsumoByFechasAndProducto($fecha_i,$fecha_f,$producto,$parron,$cc)
     {
+
+      if ($cc =='materiaPrima'){
+          $query = " SELECT CONVERT(DECIMAL(12,2),SUM(CANTIDAD)) cantidad, CONVERT(DECIMAL(12,2),SUM(TOTAL)) total 
+          FROM dbo.v_getConsumoMateriaPrima  
+          where PRODUCTO = '$producto' 
+          and FECHA BETWEEN '$fecha_i' and '$fecha_f'  
+          and PARRON = '$parron'  ";
+
+      }else{
+          $query = "SELECT CONVERT(DECIMAL(12,2),SUM(CANTIDAD)) cantidad, CONVERT(DECIMAL(12,2),SUM(TOTAL)) total 
+          FROM dbo.v_getConsumoMateriaPrima  
+          where PRODUCTO = '$producto' 
+          and FECHA BETWEEN '$fecha_i' and '$fecha_f'  
+          and PARRON = '$parron'  ";
+
+      }
      
-      $query = " SELECT CONVERT(DECIMAL(12,2),SUM(CANTIDAD)) cantidad, CONVERT(DECIMAL(12,2),SUM(TOTAL)) total 
-      FROM dbo.v_getConsumoMateriaPrima  
-      where PRODUCTO = '$producto' 
-      and FECHA BETWEEN '$fecha_i' and '$fecha_f'  
-      and PARRON = '$parron'  ";
+
 
       $res = \DB::select($query);
-
 
       return $res[0];
 

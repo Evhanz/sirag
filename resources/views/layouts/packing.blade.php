@@ -404,6 +404,8 @@
 
 <!--Main Script-->
 
+<script src="{{asset('templates/lte2/dist/js/main.js')}}"></script>
+
 <!-- ./ main Script -->
 
 <!--more Scripts -->

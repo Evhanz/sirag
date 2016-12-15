@@ -33,7 +33,6 @@
                                     <div id="home" class="tab-pane fade in active">
                                         <div class="row">
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
-
                                             <!--
                                             <div class="col-md-2">
                                                 <label for="" >Familia </label><br>
@@ -55,6 +54,13 @@
                                                 </select>
                                             </div>
                                             -->
+                                            <div class="col-md-2">
+                                                <label for="">Centro de Costo</label>
+                                                <select name="" id="selCentroCosto" class="form-control">
+                                                    <option value="materiaPrima">Materia Prima</option>
+                                                    <option value="gif">G.I.F.</option>
+                                                </select>
+                                            </div>
 
 
                                             <div class="col-md-2">
@@ -200,7 +206,7 @@
 
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
-            $scope.otros = {}
+            $scope.otros = {};
 
             $scope.totales = {};
 
@@ -314,6 +320,14 @@
                     $scope.otros.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
                 }
 
+                //verificamos el centro de costo
+                var cc = $("#selCentroCosto").val();
+
+                if(cc.length == 0 || cc == null){
+                    bandera = 1;
+                    alert("tienes que elegir centro de costo");
+                }
+
 
                 //si la bandera = a 0 entonces se envia la data
                if(bandera == 0){
@@ -334,7 +348,8 @@
                         _token   : token,
                         parrones : $scope.parrones,
                         fundo    : $("#f_fundo").val(),
-                        otros    : $scope.otros    
+                        otros    : $scope.otros,
+                        cc       : cc
 
                     }).success(function (data) {
 

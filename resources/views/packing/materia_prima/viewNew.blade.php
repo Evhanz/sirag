@@ -1,7 +1,7 @@
 @extends('layouts/packing')
 
 @section('header')
-    <h1>
+    <h1 xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
         Dashboard
         <small>Módulo Materia Prima</small>
     </h1>
@@ -10,23 +10,7 @@
         <li class="active">New</li>
     </ol>
 
-    <!--
-    <span id="prueba">
-        <h1>Bienvenido, @{{ name}}</h1>
-
-        <input type="text" v-model="name">
-
-        <hr>
-
-        <pre>
-
-        @{{ $data | json }}
-        </pre>
-
-    </span>
-
-    -->
-
+   
 
 
 
@@ -66,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label>N° PLACA</label>
-                            <input class="form-control input-sm" type="text" >
+                            <input class="form-control input-sm" type="text" id="n_placa">
                         </div>
                     </div>
 
@@ -104,7 +88,6 @@
                     </div>
 
 
-
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -121,37 +104,45 @@
 
                         <div class="row">
                             <div class="col-lg-12 table-responsive">
-                                <table class="table table-bordered table-hover" >
+                                <table class="table table-bordered table-hover" id="detUva">
                                     <thead>
                                     <tr>
-                                        <th>I</th>
-                                        <th>N° Pesadas</th>
-                                        <th>Guia</th>
+                                        <th >I</th>
+                                        <th>Pesadas</th>
+                                        <th>Guia </th>
                                         <th>Variedad</th>
-                                        <th>Fundo</th>
-                                        <th>Parron</th>
-                                        <th>L Produccion</th>
+                                        <th>F.</th>
+                                        <th>P.</th>
+                                        <th>L Prod.</th>
                                         <th>N° Jaba</th>
                                         <th>Tara Jaba</th>
                                         <th>Tara Parihuela</th>
                                         <th>Peso Bruto</th>
-                                        <th> <button class="btn btn-info btn-sm"> + </button> </th>
+                                        <th> <button class="btn btn-info btn-sm" v-on:click="addDetalleUva()"> + </button> </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><input class="form-control" type="text"></td>
-                                        <td><button class="btn btn-default btn-sm"> - </button></td>
+                                    <tr v-for=" item in detallesUva" >
+                                        <td>@{{ item.correlativo }}</td>
+                                        <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
+                                        <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
+                                        <td>
+                                            <select class="form-control input-sm" v-model="item.variedad">
+                                                <option value="Superior">Superior</option>
+                                                <option value="Red Globe">Red Globe</option>
+                                                <option value="Red Globe">Crimson</option>
+                                            </select>
+
+                                        </td>
+                                        <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
+                                        <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
+                                        <td><input v-model="item.l_produccion" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.n_jaba" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.tara_jaba" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.tara_parihuela" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.peso_bruto" step="any" min="0.00" class="form-control input-sm" type="text" ></td>
+                                        <td><button class="btn btn-default btn-sm" v-on:click="deteleDetail(item.correlativo)"> - </button></td>
+                                        <!-- por aqui se guarda esto: @keyup.tab="addDetalleUva()" -->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -159,8 +150,52 @@
                         </div>
                     </div>
                     <div id="menu1" class="tab-pane fade">
-                        <h3>Menu 1</h3>
-                        <p>Some content in menu 1.</p>
+                        <div class="row">
+                            <div class="col-lg-12 table-responsive">
+                                <table class="table table-bordered table-hover" id="detUva">
+                                    <thead>
+                                    <tr>
+                                        <th >I</th>
+                                        <th>Pesadas</th>
+                                        <th>Guia </th>
+                                        <th>Variedad</th>
+                                        <th>F.</th>
+                                        <th>P.</th>
+                                        <th>L Prod.</th>
+                                        <th>N° Jaba</th>
+                                        <th>Tara Jaba</th>
+                                        <th>Tara Parihuela</th>
+                                        <th>Peso Bruto</th>
+                                        <th> <button class="btn btn-info btn-sm" v-on:click="addDetalleUva()"> + </button> </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for=" item in detallesUva" >
+                                        <td>@{{ item.correlativo }}</td>
+                                        <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
+                                        <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
+                                        <td>
+                                            <select class="form-control input-sm" v-model="item.variedad">
+                                                <option value="Superior">Superior</option>
+                                                <option value="Red Globe">Red Globe</option>
+                                                <option value="Red Globe">Crimson</option>
+                                            </select>
+
+                                        </td>
+                                        <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
+                                        <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
+                                        <td><input v-model="item.l_produccion" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.n_jaba" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.tara_jaba" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.tara_parihuela" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.peso_bruto" step="any" min="0.00" class="form-control input-sm" type="text" ></td>
+                                        <td><button class="btn btn-default btn-sm" v-on:click="deteleDetail(item.correlativo)"> - </button></td>
+                                    <!-- por aqui se guarda esto: @keyup.tab="addDetalleUva()" -->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -172,7 +207,7 @@
         <div class="col-lg-12">
 
             <pre>
-                 @{{ $data | json }}
+                 @{{ $data }}
             </pre>
 
         </div>
@@ -213,6 +248,10 @@
         });
 
 
+        function validar() {
+            alert("as");
+        }
+
         //primero traeremos toda la data de las personas
 
         var ruta = "{{ route('getTrabajadores') }}";
@@ -251,30 +290,6 @@
 
     </script>
 
-    <!-- Templates -->
-
-    <script type="text/template" id="detUva_template">
-
-        <td>@{{$index}}</td>
-        <td><input v-model="n_pesadas" class="form-control" type="text"></td>
-        <td><input v-model="guia" class="form-control" type="text"></td>
-        <td><input v-model="variedad" class="form-control" type="text"></td>
-        <td><input v-model="fundo" class="form-control" type="text"></td>
-        <td><input v-model="parron" class="form-control" type="text"></td>
-        <td><input v-model="l_produccion" class="form-control" type="text"></td>
-        <td><input v-model="n_jaba" class="form-control" type="text"></td>
-        <td><input v-model="tara_jaba" class="form-control" type="text"></td>
-        <td><input v-model="tara_parihuela" class="form-control" type="text"></td>
-        <td><input v-model="peso_bruto" class="form-control" type="text"></td>
-        <td><button v-model="n_pesadas" class="btn btn-default btn-sm"> - </button></td>
-
-    </script>
-
-
-
-    <!-- ./ Templates -->
-
-
 
 
     <!-- vue JS -->
@@ -283,34 +298,97 @@
     <script>
 
         Vue.component('detUva_template',{
-
             template:''
-
         });
 
         new Vue({
 
             el:"#content",
             data: {
-                name: "eidelman",
-                detallesUva:[],
-                new_detalleUva:[
-                        {
-                            n_pesadas:'',
-                            guia:'',
-                            variedad:'',
-                            fundo: '',
-                            parron: '',
-                            l_produccion:'',
-                            n_jaba: '',
-                            tara_jaba: '',
-                            tara_parihuela: '',
-                            peso_bruto: ''
-                        }]
+                formValidate:0,
+                detallesUva:[
+                    {
+                        correlativo:1,
+                        n_pesadas:'',
+                        guia:'',
+                        variedad:'',
+                        fundo: '',
+                        parron: '',
+                        l_produccion:'',
+                        n_jaba: '',
+                        tara_jaba: '',
+                        tara_parihuela: '',
+                        peso_bruto: ''
+                    }
+                ]
             },
             methods:{
-                createDetalleUva: function () {
-                    this.detallesUva.push(this.new_detalleUva);
+                addDetalleUva: function () {
+
+                    var detalle  = {
+                        correlativo:0,
+                        n_pesadas:'',
+                        guia:'',
+                        variedad:'',
+                        fundo: '',
+                        parron: '',
+                        l_produccion:'',
+                        n_jaba: '',
+                        tara_jaba: '',
+                        tara_parihuela: '',
+                        peso_bruto: ''
+                    };
+                    detalle.correlativo = (this.detallesUva.length)+1;
+                    this.detallesUva.push(detalle);
+                },
+                validateInput: function (ubicacion,dato,type,len) {
+
+                    var bandera = 0;
+                    ubicacion --;
+
+                    if (type=='number'){
+
+                        var bandera_tipo = 0;
+                        //si dato es un numero tirará falso
+                        if(!isNaN(dato) ) {
+
+                            //primero generamos 9's para validar la cantidad
+                            //máxima de número
+                            var num = '';
+                            for(var i=0;i<len;i++){
+                                num += '9'+'';
+                            }
+                            //mayor (pasar eso a otra funcion)
+                            if(Number(dato) > Number(num)){
+                                bandera=1;
+                            }
+
+                        }else{
+                            bandera = 1;
+                        }
+
+                    }
+
+                    if(bandera == 1){
+
+                        $("#detUva tbody").find('tr:eq('+ubicacion+')').css({"background-color":"rgb(255, 107, 107)","color":"white"});
+
+                    }else {
+                        $("#detUva tbody").find('tr:eq('+ubicacion+')').css({"background-color":"#FFF","color":"black"});
+                    }
+
+
+                    this.formValidate = bandera;
+                    
+                },
+                deteleDetail : function (correlativo) {
+                    var r = confirm("Seguro que quieres eliminar esta fila ?");
+                    if (r == true) {
+                        correlativo--;
+                        this.detallesUva.splice(correlativo, 1);
+                    }
+
+
                 }
             }
 

@@ -63,7 +63,16 @@ class ContabilidadController extends Controller
 
         $data = \Input::all();
 
-        $res            = $this->contabilidadRep->sendDataForExcelConsumo($data);
+
+        if($data['cc']=='materiaPrima')
+        {
+            $res            = $this->contabilidadRep->sendDataForExcelConsumo($data);
+        }else{
+            $res            = $this->contabilidadRep->sendDataForExcelConsumo($data);
+        }
+
+
+
         $res['fundo']   = $data['fundo'];
         $res['f_otros'] = $data['otros']; 
 
