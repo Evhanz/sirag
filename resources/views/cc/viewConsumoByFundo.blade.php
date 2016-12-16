@@ -59,14 +59,12 @@
                                                 <select name="" id="selCentroCosto" class="form-control">
                                                     <option value="materiaPrima">Materia Prima</option>
 
-                                                    @if(Auth::user()->hasAnyRole(['CONTABILIDAD']))
+                                                    @if(Auth::user()->hasAnyRole(['ADMIN','CONTABILIDAD']))
                                                         <option value="gif">G.I.F.</option>
                                                     @endif
 
                                                 </select>
                                             </div>
-
-
                                             <div class="col-md-2">
                                                 <label for="">Fundo</label>
                                                 <select class="form-control" ng-model="f_fundo" id="f_fundo">
