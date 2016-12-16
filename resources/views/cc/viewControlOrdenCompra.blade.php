@@ -1,4 +1,4 @@
-@extends('layoutCC')
+@extends('layout')
 
 @section('content')
 
@@ -12,7 +12,6 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Orden Compra</a></li>
-
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">

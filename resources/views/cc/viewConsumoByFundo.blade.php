@@ -77,7 +77,6 @@
                                                 <label for="">*Las fechas se encuentran en MM-DD-YYYY</label>
                                             </div>
 
-
                                         </div>
 
                                         <br><br>

@@ -50,11 +50,16 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
 
 
 /*Estas dos son de contabilidad*/
+require __DIR__ . '/Rutas/centro_costo.php';
+require __DIR__ . '/Rutas/contabilidad.php';
+
+/*se comento por que las vistas seran las filtradas pero las API's  serán públicas
 Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], function () {
     require __DIR__ . '/Rutas/centro_costo.php';
     require __DIR__ . '/Rutas/contabilidad.php';
 });
 
+*/
 
 
 //----para traer todos los trabajadores
