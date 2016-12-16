@@ -58,7 +58,11 @@
                                                 <label for="">Centro de Costo</label>
                                                 <select name="" id="selCentroCosto" class="form-control">
                                                     <option value="materiaPrima">Materia Prima</option>
-                                                    <option value="gif">G.I.F.</option>
+
+                                                    @if(Auth::user()->hasAnyRole(['CONTABILIDAD']))
+                                                        <option value="gif">G.I.F.</option>
+                                                    @endif
+
                                                 </select>
                                             </div>
 

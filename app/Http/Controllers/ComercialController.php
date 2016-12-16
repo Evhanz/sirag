@@ -63,6 +63,12 @@ class ComercialController extends Controller
         return view('comercial/viewKardex');
     }
 
+    public function viewConsumoByFundoComercial(){
+        return view('cc/viewConsumoByFundo');
+    }
+
+
+
 
     /*funciones para el rest de los documentos*/
     public function getAllDocumentosByParameters()

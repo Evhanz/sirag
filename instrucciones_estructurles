@@ -1,0 +1,9 @@
+La estructura esta basada en una arquitectura , modelo , vista, controlador
+el modelo se a subdividido , en varias capas , se encuentraa en la carpeta
+lógica, allí se encuentra las capas de DTO, entities y repositorios.
+
+1.- Sobre las rutas
+Las rutas deben ser colocadas separadas por cada módulo
+en el cao de las vistas deben ser filtradas por el control de roles
+pero en el caso de las API's deben estaar abiertas a onsultas
+

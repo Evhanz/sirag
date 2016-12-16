@@ -132,9 +132,13 @@
                         <li>
                         <a href="{{ URL::route('viewKardex') }}" class="item sub">
                             <i class="fa fa-angle-double-right"></i> Reporte Kardex</a></li>
-                        </a>
-                            
+
+                        <li>
+                            <a href="{{ route('viewConsumoByFundoComercial') }}">
+                                <i class="fa fa-angle-double-right"></i> Reporte Cosumo x Fundo
+                            </a>
                         </li>
+
 
                     </ul>
                 </li><!--Comercial-->

@@ -6,16 +6,19 @@
  * Time: 05:41 PM
  */
 
-//------ llamada a las views de contabiidad ----------------- contabilidad
-Route::get('contabilidad/',['as'=>'modContabilidad']);
-Route::get('contabilidad/rep/viewSaldoCCByCuentaAndPeriodo',['as'=>'viewCentroCosto','uses'=>'CentroCostoController@viewSaldoCCByCuentaAndPeriodo']);
-Route::get('contabilidad/rep/viewBalanceGeneral',
-	['as'=>'viewBalanceGeneral','uses'=>'ContabilidadController@viewBalanceGeneral']);
-Route::get('contabilidad/rep/viewControlOrdenCompra',
-	['as'=>'viewControlOrdenCompra','uses'=>'ContabilidadController@viewControlOrdenCompra']);
-Route::get('contabilidad/rep/viewPDB',['as'=>'viewPDB','uses'=>'ContabilidadController@viewPDB']);
-Route::get('contabilidad/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundo','uses'=>'ContabilidadController@viewConsumoByFundo']);
 
+Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], function () {
+    //------ llamada a las views de contabiidad ----------------- contabilidad
+    Route::get('contabilidad/',['as'=>'modContabilidad']);
+    Route::get('contabilidad/rep/viewSaldoCCByCuentaAndPeriodo',['as'=>'viewCentroCosto','uses'=>'CentroCostoController@viewSaldoCCByCuentaAndPeriodo']);
+    Route::get('contabilidad/rep/viewBalanceGeneral',
+        ['as'=>'viewBalanceGeneral','uses'=>'ContabilidadController@viewBalanceGeneral']);
+    Route::get('contabilidad/rep/viewControlOrdenCompra',
+        ['as'=>'viewControlOrdenCompra','uses'=>'ContabilidadController@viewControlOrdenCompra']);
+    Route::get('contabilidad/rep/viewPDB',['as'=>'viewPDB','uses'=>'ContabilidadController@viewPDB']);
+    Route::get('contabilidad/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundo','uses'=>'ContabilidadController@viewConsumoByFundo']);
+
+});
 
 
 //------ API

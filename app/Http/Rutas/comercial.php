@@ -8,18 +8,14 @@
 
 
 
-Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], function () {
-    /*empieza las rutas par alos reportes de comercial*/
-    //aca solo estas las vistas
-    Route::get('comercial/',['as'=>'modComercial']);
-    Route::get('comercial/rep/viewDocumentos',['as'=>'viewDocumentos','uses'=>'ComercialController@viewDocumentos']);
-    Route::get('comercial/rep/viewRepProductos',['as'=>'viewRepProductos','uses'=>'ComercialController@viewRepProductos']);
-    Route::get('comercial/rep/viewOrdenCompra',['as'=>'viewOrdenCompra','uses'=>'ComercialController@viewOrdenCompra']);
-    Route::get('comercial/rep/viewControlOrdenCompraComercial',['as'=>'viewControlOrdenCompraComercial','uses'=>'ComercialController@viewControlOrdenCompra']);
-    Route::get('comercial/rep/viewKardex',['as'=>'viewKardex','uses'=>'ComercialController@viewKardex']);
-});
-
-
+/*empieza las rutas par alos reportes de comercial*/
+Route::get('comercial/',['as'=>'modComercial']);
+Route::get('comercial/rep/viewDocumentos',['as'=>'viewDocumentos','uses'=>'ComercialController@viewDocumentos']);
+Route::get('comercial/rep/viewRepProductos',['as'=>'viewRepProductos','uses'=>'ComercialController@viewRepProductos']);
+Route::get('comercial/rep/viewOrdenCompra',['as'=>'viewOrdenCompra','uses'=>'ComercialController@viewOrdenCompra']);
+Route::get('comercial/rep/viewControlOrdenCompraComercial',['as'=>'viewControlOrdenCompraComercial','uses'=>'ComercialController@viewControlOrdenCompra']);
+Route::get('comercial/rep/viewKardex',['as'=>'viewKardex','uses'=>'ComercialController@viewKardex']);
+Route::get('comercial/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundoComercial','uses'=>'ComercialController@viewConsumoByFundoComercial']);
 
 
 
