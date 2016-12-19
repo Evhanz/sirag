@@ -459,8 +459,10 @@ class PersonalRep
         $q = $q[0];
 
         $obj = new Obj();
-        $obj->FICHA = $q->FICHA;
-        $obj->NOMBRE = utf8_encode($q->NOMBRE);
+        $obj->FICHA     = $q->FICHA;
+        $obj->NOMBRE    = utf8_encode($q->NOMBRE);
+        $obj->BANCO     = $q->BANCO;
+        $obj->DNI       = $q->EMPLEADO;
 
         //modelamos el resultado
 
@@ -597,6 +599,8 @@ class PersonalRep
             $obj = new Obj();
             $obj->FICHA = $q->FICHA;
             $obj->NOMBRE = utf8_encode($q->NOMBRE);
+            $obj->BANCO     = $q->BANCO;
+            $obj->DNI       = $q->EMPLEADO;
 
             //modelamos el resultado
 

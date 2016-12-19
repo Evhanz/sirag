@@ -70,6 +70,7 @@
                                                     <label for="">Nombre</label>
                                                     <input type="text" class="form-control" ng-model="search.NOMBRE">
                                                 </div>
+
                                                 <div class="form-group">
 
 
@@ -147,6 +148,16 @@
                                                 <input type="text" class="form-control" ng-model="searchA.NOMBRE">
                                             </div>
                                             <div class="form-group">
+                                                <label for="">Banco</label><BR>
+                                                <select class="form-control" ng-model="searchA.BANCO">
+                                                    <option value="">-------</option>
+                                                    <option value="CREDITO">CREDITO</option>
+                                                    <option value="CONTINENTAL">CONTINENTAL</option>
+
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group">
 
                                                 <label for="">Exportar</label><br>
                                                 <a href="#" class="btn btn-success btn-xs" onClick ="print_excel_agraria()" title="Reporte Totalizado Excel">
@@ -161,7 +172,7 @@
                                                     <thead >
                                                     <tr>
                                                         <th>*</th>
-                                                        <th>FICHA</th>
+                                                        <th>DNI</th>
                                                         <th>NOMBRE</th>
                                                         <th>Remuneracion Basica</th>
                                                         <th>Asignacion Familiar</th>
@@ -192,7 +203,7 @@
                                                     <tbody >
                                                     <tr  ng-repeat=" item in DocAgraria | filter:searchA" id="tr_Doc_@{{ item.FICHA }}">
                                                         <td>@{{ $index + 1}}</td>
-                                                        <td>@{{ item.FICHA}}</td>
+                                                        <td>@{{ item.DNI}}</td>
                                                         <td>@{{ item.NOMBRE }}</td>
                                                         <td>@{{ item.remuneracion_basica }}</td>
                                                         <td>@{{ item.asignacion_familiar }}</td>
