@@ -923,6 +923,7 @@ class PersonalRep
             $t_desc_venta += $desc_venta;
             $t_essalud += $essalud;
             $t_descuentos += $descuentos;
+            $t_comision_afp += $comision_afp;
 
             $obj->semanal               = number_format($semanal,2,'.',',');
             $obj->remuneracion_basica   = number_format($remuneracion_basica,2,'.',',');
@@ -948,6 +949,7 @@ class PersonalRep
             $obj->desc_venta            = number_format($desc_venta,2,'.',',');
             $obj->essalud               = number_format($essalud,2,'.',',');
             $obj->descuentos            = number_format($descuentos,2,'.',',');
+
 
 
             array_push($data,$obj);
@@ -993,6 +995,7 @@ class PersonalRep
         $totales['t_desc_venta']            = number_format($t_desc_venta,2,'.',',');
         $totales['t_essalud']               = number_format($t_essalud,2,'.',',');
         $totales['t_descuentos']            = number_format($t_descuentos,2,'.',',');
+        $totales['t_comision_afp']          = number_format($t_comision_afp ,2,'.',',');
 
 
         /*

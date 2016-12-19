@@ -164,29 +164,29 @@
                                                         <th>FICHA</th>
                                                         <th>NOMBRE</th>
                                                         <th>Remuneracion Basica</th>
-                                                        <th>Haber Movilidad</th>
                                                         <th>Asignacion Familiar</th>
+                                                        <th>Importe HS Extras 25%</th>
+                                                        <th>Importe HS Extras 100%</th>
+                                                        <th>CTS LEY 27360</th>
+                                                        <th>Gratificacion LEY 27360</th>
+                                                        <th>Bonificacion Extraordinaria</th>
+                                                        <th>Haber Movilidad</th>
                                                         <th>Reintegros</th>
                                                         <th>Vacaciones Gozadas</th>
-                                                        <th>H.100%</th>
                                                         <th>Vacaciones Truncas</th>
-                                                        <th>CTS</th>
-                                                        <th>Gratificacion</th>
-                                                        <th>Movilidad Condicion</th>
-                                                        <th>Bonificacion Extraor</th>
+                                                        <th>Movilidad Condicion Trabajo</th>
                                                         <th>Total Haber</th>
                                                         <th>SNP</th>
-                                                        <th>AFP</th>
+                                                        <th>Fondo AFP</th>
                                                         <th>Comision AFP</th>
                                                         <th>Seguro AFP</th>
                                                         <th>Liquidacion</th>
-                                                        <th>Desc Movilidad_con </th>
+                                                        <th>Descuento por Venta </th>
+                                                        <th>Desco Movilidad Condicion Trabajo </th>
                                                         <th>Reembolso Movilidad </th>
-                                                        <th>Desc Venta </th>
+                                                        <th>Total Descuentos</th>
+                                                        <th>Neto  Pagar</th>
                                                         <th>Essalud </th>
-                                                        <th>Descuentos</th>
-                                                        <th>SEMANAL</th>
-
                                                     </tr>
                                                     </thead>
                                                     <tbody >
@@ -195,32 +195,57 @@
                                                         <td>@{{ item.FICHA}}</td>
                                                         <td>@{{ item.NOMBRE }}</td>
                                                         <td>@{{ item.remuneracion_basica }}</td>
-                                                        <td>@{{ item.haber_movilidad }}</td>
                                                         <td>@{{ item.asignacion_familiar }}</td>
-                                                        <td>@{{ item.reintegros }}</td>
-                                                        <td>@{{ item.vacaciones_gozadas }}</td>
+                                                        <td>@{{ item.importe_hs_extras_25 }}</td>
                                                         <td>@{{ item.importe_hs_100 }}</td>
-                                                        <td>@{{ item.vacaciones_truncas }}</td>
                                                         <td>@{{ item.cts_ley }}</td>
                                                         <td>@{{ item.gratificacion }}</td>
-                                                        <td>@{{ item.movilidad_condicion }}</td>
                                                         <td>@{{ item.bonificacion_extraor }}</td>
+                                                        <td>@{{ item.haber_movilidad }}</td>
+                                                        <td>@{{ item.reintegros }}</td>
+                                                        <td>@{{ item.vacaciones_gozadas }}</td>
+                                                        <td>@{{ item.vacaciones_truncas }}</td>
+                                                        <td>@{{ item.movilidad_condicion }}</td>
                                                         <td>@{{ item.total_haber }}</td>
                                                         <td>@{{ item.snp }}</td>
                                                         <td>@{{ item.fondo_afp }}</td>
                                                         <td>@{{ item.comision_afp }}</td>
                                                         <td>@{{ item.seguro_afp }}</td>
                                                         <td>@{{ item.liquidacion }}</td>
+                                                        <td>@{{ item.desc_venta }}</td>
                                                         <td>@{{ item.desc_movilidad_con }}</td>
                                                         <td>@{{ item.reembolso_movilidad }}</td>
-                                                        <td>@{{ item.desc_venta }}</td>
-                                                        <td>@{{ item.essalud }}</td>
                                                         <td>@{{ item.descuentos }}</td>
                                                         <td>@{{ item.semanal }}</td>
+                                                        <td>@{{ item.essalud }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3"><H2>TOTALES</H2></td>
+                                                        <td>@{{ totales_agraria.t_remuneracion_basica }}</td>
+                                                        <td>@{{ totales_agraria.t_asignacion_familiar }}</td>
+                                                        <td>@{{ totales_agraria.t_importe_hs_extras_25 }}</td>
+                                                        <td>@{{ totales_agraria.t_importe_hs_100 }}</td>
+                                                        <td>@{{ totales_agraria.t_cts_ley }}</td>
+                                                        <td>@{{ totales_agraria.t_gratificacion }}</td>
+                                                        <td>@{{ totales_agraria.t_bonificacion_extraor }}</td>
+                                                        <td>@{{ totales_agraria.t_haber_movilidad }}</td>
+                                                        <td>@{{ totales_agraria.t_reintegros }}</td>
+                                                        <td>@{{ totales_agraria.t_vacaciones_gozadas }}</td>
+                                                        <td>@{{ totales_agraria.t_vacaciones_truncas }}</td>
+                                                        <td>@{{ totales_agraria.t_movilidad_condicion }}</td>
+                                                        <td>@{{ totales_agraria.t_total_haber }}</td>
+                                                        <td>@{{ totales_agraria.t_snp }}</td>
+                                                        <td>@{{ totales_agraria.t_fondo_afp }}</td>
+                                                        <td>@{{ totales_agraria.t_comision_afp }}</td>
+                                                        <td>@{{ totales_agraria.t_seguro_afp }}</td>
+                                                        <td>@{{ totales_agraria.t_liquidacion }}</td>
+                                                        <td>@{{ totales_agraria.t_desc_venta }}</td>
+                                                        <td>@{{ totales_agraria.t_desc_movilidad_con }}</td>
+                                                        <td>@{{ totales_agraria.t_reembolso_movilidad }}</td>
+                                                        <td>@{{ totales_agraria.t_descuentos }}</td>
                                                         <td>@{{ totalesAgraria.t_semanal }}</td>
+                                                        <td>@{{ totales_agraria.t_essalud }}</td>
+
                                                     </tr>
 
                                                     </tbody>
@@ -313,7 +338,7 @@
             $scope.totalesAgraria = {};
             $scope.DocAgraria = [{}];
             $scope.totales = {};
-            $scope.totales_agraria=[];
+            $scope.totales_agraria={};
 
             var ruta = '';
 
