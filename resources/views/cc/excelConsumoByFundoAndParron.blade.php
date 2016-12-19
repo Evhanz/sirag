@@ -63,8 +63,14 @@
 			<td>{{ $analisis->sum('total_cantidad_consumo') }}</td>
 			<td>{{ $analisis->sum('total_precio_consumo') }}</td>
 			<!--cantidad por hecarea y costo por hectareas-->
+			@if($fundo != 'COSTO IND. X ASIGNAR')
+
 			<td>{{ number_format($analisis->sum('total_cantidad_consumo')/$suma_parron,2,'.',',') }}</td>
 			<td>{{ number_format($analisis->sum('total_precio_consumo')/$suma_parron,2,'.',',') }}</td>
+			@else
+				<td>-</td>
+				<td>-</td>
+			@endif
 		</tr>
 		@endforeach
 		

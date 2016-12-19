@@ -524,7 +524,7 @@ class PersonalRep
     public function getPlanillaAgrario($periodo)
     {
         $response       = new Obj();
-        $totales        = new Obj();
+        $totales        = [];
         $data           = [];
         $t_quincena     = 0;
         $t_f_mes        = 0;
@@ -860,10 +860,6 @@ class PersonalRep
                 $descuentos = $descuentos->VALOR;
             }
 
-
-
-
-
             /**/
 
 
@@ -917,7 +913,6 @@ class PersonalRep
             $t_gratificacion += $gratificacion;
             $t_movilidad_condicion += $movilidad_condicion;
             $t_bonificacion_extraor += $bonificacion_extraor;
-            $t_semanal += $semanal;
             $t_total_haber += $total_haber;
             $t_snp += $snp;
             $t_fondo_afp += $fondo_afp;
@@ -975,35 +970,29 @@ class PersonalRep
          * */
 
 
-        $totales['t_remuneracion_basica']=$t_remuneracion_basica ;
+        $totales['t_remuneracion_basica']   = number_format($t_remuneracion_basica,2,'.',',');
 
-        /*
-        $t_importe_hs_extras_25;
-        $t_haber_movilidad ;
-        $t_asignacion_familiar ;
-        $t_reintegros ;
-        $t_vacaciones_gozadas ;
-        $t_importe_hs_100 ;
-        $t_vacaciones_truncas ;
-        $t_cts_ley ;
-        $t_gratificacion ;
-        $t_movilidad_condicion ;
-        $t_bonificacion_extraor ;
-        $t_semanal ;
-        $t_total_haber ;
-        $t_snp ;
-        $t_fondo_afp ;
-        $t_seguro_afp ;
-        $t_liquidacion ;
-        $t_desc_movilidad_con ;
-        $t_reembolso_movilidad ;
-        $t_desc_venta ;
-        $t_essalud ;
-        $t_descuentos ;
-
-        */
-
-
+        $totales['t_importe_hs_extras_25']  = number_format($t_importe_hs_extras_25,2,'.',',');
+        $totales['t_haber_movilidad']       = number_format($t_haber_movilidad,2,'.',',');
+        $totales['t_asignacion_familiar']   = number_format($t_asignacion_familiar,2,'.',',');
+        $totales['t_reintegros']            = number_format($t_reintegros,2,'.',',');
+        $totales['t_vacaciones_gozadas']    = number_format($t_vacaciones_gozadas,2,'.',',');
+        $totales['t_importe_hs_100']        = number_format($t_importe_hs_100,2,'.',',');
+        $totales['t_vacaciones_truncas']    = number_format($t_vacaciones_truncas,2,'.',',');
+        $totales['t_cts_ley']               = number_format($t_cts_ley,2,'.',',');
+        $totales['t_gratificacion']         = number_format($t_gratificacion,2,'.',',');
+        $totales['t_movilidad_condicion']   = number_format($t_movilidad_condicion,2,'.',',');
+        $totales['t_bonificacion_extraor']  = number_format($t_bonificacion_extraor,2,'.',',');
+        $totales['t_total_haber']           = number_format($t_total_haber,2,'.',',');
+        $totales['t_snp']                   = number_format($t_snp,2,'.',',');
+        $totales['t_fondo_afp']             = number_format($t_fondo_afp,2,'.',',');
+        $totales['t_seguro_afp']            = number_format($t_seguro_afp,2,'.',',');
+        $totales['t_liquidacion']           = number_format($t_liquidacion,2,'.',',');
+        $totales['t_desc_movilidad_con']    = number_format($t_desc_movilidad_con,2,'.',',');
+        $totales['t_reembolso_movilidad']   = number_format($t_reembolso_movilidad,2,'.',',');
+        $totales['t_desc_venta']            = number_format($t_desc_venta,2,'.',',');
+        $totales['t_essalud']               = number_format($t_essalud,2,'.',',');
+        $totales['t_descuentos']            = number_format($t_descuentos,2,'.',',');
 
 
         /*
@@ -1012,6 +1001,7 @@ class PersonalRep
         $response->total = number_format(($t_liquidacion+$t_f_mes+$t_quincena),2,'.',',');
         */
         $response->data = $data;
+        $response->totales = $totales;
 
 
         return $response;

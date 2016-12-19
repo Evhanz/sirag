@@ -163,6 +163,28 @@
                                                         <th>*</th>
                                                         <th>FICHA</th>
                                                         <th>NOMBRE</th>
+                                                        <th>Remuneracion Basica</th>
+                                                        <th>Haber Movilidad</th>
+                                                        <th>Asignacion Familiar</th>
+                                                        <th>Reintegros</th>
+                                                        <th>Vacaciones Gozadas</th>
+                                                        <th>H.100%</th>
+                                                        <th>Vacaciones Truncas</th>
+                                                        <th>CTS</th>
+                                                        <th>Gratificacion</th>
+                                                        <th>Movilidad Condicion</th>
+                                                        <th>Bonificacion Extraor</th>
+                                                        <th>Total Haber</th>
+                                                        <th>SNP</th>
+                                                        <th>AFP</th>
+                                                        <th>Comision AFP</th>
+                                                        <th>Seguro AFP</th>
+                                                        <th>Liquidacion</th>
+                                                        <th>Desc Movilidad_con </th>
+                                                        <th>Reembolso Movilidad </th>
+                                                        <th>Desc Venta </th>
+                                                        <th>Essalud </th>
+                                                        <th>Descuentos</th>
                                                         <th>SEMANAL</th>
 
                                                     </tr>
@@ -172,6 +194,28 @@
                                                         <td>@{{ $index + 1}}</td>
                                                         <td>@{{ item.FICHA}}</td>
                                                         <td>@{{ item.NOMBRE }}</td>
+                                                        <td>@{{ item.remuneracion_basica }}</td>
+                                                        <td>@{{ item.haber_movilidad }}</td>
+                                                        <td>@{{ item.asignacion_familiar }}</td>
+                                                        <td>@{{ item.reintegros }}</td>
+                                                        <td>@{{ item.vacaciones_gozadas }}</td>
+                                                        <td>@{{ item.importe_hs_100 }}</td>
+                                                        <td>@{{ item.vacaciones_truncas }}</td>
+                                                        <td>@{{ item.cts_ley }}</td>
+                                                        <td>@{{ item.gratificacion }}</td>
+                                                        <td>@{{ item.movilidad_condicion }}</td>
+                                                        <td>@{{ item.bonificacion_extraor }}</td>
+                                                        <td>@{{ item.total_haber }}</td>
+                                                        <td>@{{ item.snp }}</td>
+                                                        <td>@{{ item.fondo_afp }}</td>
+                                                        <td>@{{ item.comision_afp }}</td>
+                                                        <td>@{{ item.seguro_afp }}</td>
+                                                        <td>@{{ item.liquidacion }}</td>
+                                                        <td>@{{ item.desc_movilidad_con }}</td>
+                                                        <td>@{{ item.reembolso_movilidad }}</td>
+                                                        <td>@{{ item.desc_venta }}</td>
+                                                        <td>@{{ item.essalud }}</td>
+                                                        <td>@{{ item.descuentos }}</td>
                                                         <td>@{{ item.semanal }}</td>
                                                     </tr>
                                                     <tr>
@@ -269,6 +313,7 @@
             $scope.totalesAgraria = {};
             $scope.DocAgraria = [{}];
             $scope.totales = {};
+            $scope.totales_agraria=[];
 
             var ruta = '';
 
@@ -354,6 +399,7 @@
                      .success(function(data){
                                 $scope.DocAgraria = data.data;
                                 $scope.totalesAgraria.t_semanal = data.t_semanal;
+                                $scope.totales_agraria = data.totales;
 
                                  console.log(data);
 

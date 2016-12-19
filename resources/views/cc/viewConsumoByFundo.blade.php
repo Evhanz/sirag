@@ -275,7 +275,7 @@
                 } else {
 
 
-
+                    $scope.parrones =[];
                 }
 
 

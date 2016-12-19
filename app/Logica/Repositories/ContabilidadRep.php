@@ -196,6 +196,8 @@ class ContabilidadRep
     public function sendDataForExcelConsumo($data)
     {
 
+
+
       //primero traemos a todos los productos de materia prima
 
       if ($data['cc']=='materiaPrima'){
@@ -219,6 +221,7 @@ class ContabilidadRep
       foreach ($productos as $item) {
 
         $item->GLOSA = utf8_encode($item->GLOSA);
+
 
 
         $p = [];
@@ -281,7 +284,6 @@ class ContabilidadRep
       $res['otros']     = collect($res_otros);
       $res['f_otros_i'] = $otros_f_i;//fecha de los productos que no registran parron
       $res['f_otros_f'] = $otros_f_f;
-
 
 
       return $res;
