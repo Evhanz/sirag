@@ -531,14 +531,41 @@ class PersonalRep
         $t_liquidacion  = 0;
         $t_semanal      = 0;
 
+        //estos conceptos se agregaron ra si total
+        $t_remuneracion_basica  =   0;
+        $t_importe_hs_extras_25 =   0;
+        $t_haber_movilidad      =   0;
+        $t_asignacion_familiar  =   0;
+        $t_reintegros           =   0;
+        $t_vacaciones_gozadas   =   0;
+        $t_importe_hs_100       =   0;
+        $t_vacaciones_truncas   =   0;
+        $t_cts_ley              =   0;
+        $t_gratificacion        =   0;
+        $t_movilidad_condicion  =   0;
+        $t_bonificacion_extraor =   0;
+        $t_total_haber          =   0;
+        $t_snp                  =   0;
+        $t_fondo_afp            =   0;
+        $t_comision_afp         =   0;
+        $t_seguro_afp           =   0;
+        $t_liquidacion          =   0;
+        $t_desc_movilidad_con   =   0;
+        $t_reembolso_movilidad  =   0;
+        $t_desc_venta           =   0;
+        $t_descuentos           =   0;
+        $t_essalud              =   0;
 
 
-
+        /*
+         * Se quito eso del siguiente query
+         * and MOVIMIENTO='99005'
+         * */
         $query = "select FICHA, VALOR , MOVIMIENTO
                     FROM flexline.PER_DET_LIQ
                     WHERE EMPRESA='e01'
                     and periodo='$periodo' --- FILTRAR POR PERIODO
-                    and MOVIMIENTO='99005' --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and MOVIMIENTO IN ('10','10001','10002','10004','10007','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10504','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     ORDER by FICHA";
 
         $res = \DB::select($query);
@@ -585,6 +612,261 @@ class PersonalRep
             }
 
 
+            /*Se agrega conceptos necesarios para lo necesario*/
+
+            //10001
+            $remuneracion_basica = $item->where('MOVIMIENTO','10001')->first();
+
+            if ($remuneracion_basica == null){
+                $remuneracion_basica=0;
+
+            }else{
+                $remuneracion_basica = $remuneracion_basica->VALOR;
+            }
+
+            //10002
+            $importe_hs_extras_25 = $item->where('MOVIMIENTO','10002')->first();
+
+            if ($importe_hs_extras_25 == null){
+                $importe_hs_extras_25=0;
+
+            }else{
+                $importe_hs_extras_25 = $importe_hs_extras_25->VALOR;
+            }
+
+            //10004
+            $haber_movilidad = $item->where('MOVIMIENTO','10004')->first();
+
+            if ($haber_movilidad == null){
+                $haber_movilidad=0;
+
+            }else{
+                $haber_movilidad = $haber_movilidad->VALOR;
+            }
+
+
+            //10007
+            $asignacion_familiar = $item->where('MOVIMIENTO','10007')->first();
+
+            if ($asignacion_familiar == null){
+                $asignacion_familiar=0;
+
+            }else{
+                $asignacion_familiar = $asignacion_familiar->VALOR;
+            }
+
+
+            //10010
+            $reintegros = $item->where('MOVIMIENTO','10010')->first();
+
+            if ($reintegros == null){
+                $reintegros=0;
+
+            }else{
+                $reintegros = $reintegros->VALOR;
+            }
+
+
+            //10016
+            $vacaciones_gozadas = $item->where('MOVIMIENTO','10016')->first();
+
+            if ($vacaciones_gozadas == null){
+                $vacaciones_gozadas=0;
+
+            }else{
+                $vacaciones_gozadas = $vacaciones_gozadas->VALOR;
+            }
+
+
+            //10020
+            $importe_hs_100 = $item->where('MOVIMIENTO','10020')->first();
+
+            if ($importe_hs_100 == null){
+                $importe_hs_100=0;
+
+            }else{
+                $importe_hs_100 = $importe_hs_100->VALOR;
+            }
+
+
+            //10025
+            $vacaciones_truncas = $item->where('MOVIMIENTO','10025')->first();
+
+            if ($vacaciones_truncas == null){
+                $vacaciones_truncas=0;
+
+            }else{
+                $vacaciones_truncas = $vacaciones_truncas->VALOR;
+            }
+
+
+
+            //10032
+            $cts_ley = $item->where('MOVIMIENTO','10032')->first();
+
+            if ($cts_ley == null){
+                $cts_ley=0;
+
+            }else{
+                $cts_ley = $cts_ley->VALOR;
+            }
+
+
+            //10033
+            $gratificacion = $item->where('MOVIMIENTO','10033')->first();
+
+            if ($gratificacion == null){
+                $gratificacion=0;
+
+            }else{
+                $gratificacion = $gratificacion->VALOR;
+            }
+
+
+            //10036
+            $movilidad_condicion = $item->where('MOVIMIENTO','10036')->first();
+
+            if ($movilidad_condicion == null){
+                $movilidad_condicion=0;
+
+            }else{
+                $movilidad_condicion = $movilidad_condicion->VALOR;
+            }
+
+
+            //10041
+            $bonificacion_extraor = $item->where('MOVIMIENTO','10001')->first();
+
+            if ($bonificacion_extraor == null){
+                $bonificacion_extraor=0;
+
+            }else{
+                $bonificacion_extraor = $bonificacion_extraor->VALOR;
+            }
+
+
+            //10
+            $total_haber = $item->where('MOVIMIENTO','10')->first();
+
+            if ($total_haber == null){
+                $total_haber=0;
+
+            }else{
+                $total_haber = $total_haber->VALOR;
+            }
+
+
+            //10501
+            $snp = $item->where('MOVIMIENTO','10501')->first();
+
+            if ($snp == null){
+                $snp=0;
+
+            }else{
+                $snp = $snp->VALOR;
+            }
+
+
+            //10502
+            $fondo_afp = $item->where('MOVIMIENTO','10502')->first();
+
+            if ($fondo_afp == null){
+                $fondo_afp=0;
+
+            }else{
+                $fondo_afp = $fondo_afp->VALOR;
+            }
+
+
+            //10503
+            $comision_afp = $item->where('MOVIMIENTO','10503')->first();
+
+            if ($comision_afp == null){
+                $comision_afp=0;
+
+            }else{
+                $comision_afp = $comision_afp->VALOR;
+            }
+
+
+            //10504
+            $seguro_afp = $item->where('MOVIMIENTO','10504')->first();
+
+            if ($seguro_afp == null){
+                $seguro_afp=0;
+
+            }else{
+                $seguro_afp = $seguro_afp->VALOR;
+            }
+
+
+            //10535
+            $liquidacion = $item->where('MOVIMIENTO','10535')->first();
+
+            if ($liquidacion == null){
+                $liquidacion=0;
+
+            }else{
+                $liquidacion = $liquidacion->VALOR;
+            }
+
+            //10542
+            $desc_movilidad_con = $item->where('MOVIMIENTO','10542')->first();
+
+            if ($desc_movilidad_con == null){
+                $desc_movilidad_con=0;
+
+            }else{
+                $desc_movilidad_con = $desc_movilidad_con->VALOR;
+            }
+
+            //10545
+            $reembolso_movilidad = $item->where('MOVIMIENTO','10545')->first();
+
+            if ($reembolso_movilidad == null){
+                $reembolso_movilidad=0;
+            }else{
+                $reembolso_movilidad = $reembolso_movilidad->VALOR;
+            }
+
+            //10547
+            $desc_venta = $item->where('MOVIMIENTO','10547')->first();
+
+            if ($desc_venta == null){
+                $desc_venta=0;
+
+            }else{
+                $desc_venta = $desc_venta->VALOR;
+            }
+
+
+            //10804
+            $essalud = $item->where('MOVIMIENTO','10804')->first();
+
+            if ($essalud == null){
+                $essalud=0;
+
+            }else{
+                $essalud = $essalud->VALOR;
+            }
+
+            //11
+            $descuentos = $item->where('MOVIMIENTO','11')->first();
+
+            if ($descuentos == null){
+                $descuentos=0;
+
+            }else{
+                $descuentos = $descuentos->VALOR;
+            }
+
+
+
+
+
+            /**/
+
+
             /*
             $QUINCENA = $item->where('MOVIMIENTO','10505')->first();
             $F_MES = $item->where('MOVIMIENTO','100001')->first();
@@ -623,7 +905,56 @@ class PersonalRep
             */
 
             $t_semanal += $semanal;
-            $obj->semanal = number_format($semanal,2,'.',',');
+            $t_remuneracion_basica += $remuneracion_basica;
+            $t_importe_hs_extras_25 += $importe_hs_extras_25;
+            $t_haber_movilidad += $haber_movilidad;
+            $t_asignacion_familiar += $asignacion_familiar;
+            $t_reintegros += $reintegros;
+            $t_vacaciones_gozadas += $vacaciones_gozadas;
+            $t_importe_hs_100 += $importe_hs_100;
+            $t_vacaciones_truncas += $vacaciones_truncas;
+            $t_cts_ley += $cts_ley;
+            $t_gratificacion += $gratificacion;
+            $t_movilidad_condicion += $movilidad_condicion;
+            $t_bonificacion_extraor += $bonificacion_extraor;
+            $t_semanal += $semanal;
+            $t_total_haber += $total_haber;
+            $t_snp += $snp;
+            $t_fondo_afp += $fondo_afp;
+            $t_seguro_afp += $seguro_afp;
+            $t_liquidacion += $liquidacion;
+            $t_desc_movilidad_con += $desc_movilidad_con;
+            $t_reembolso_movilidad += $reembolso_movilidad;
+            $t_desc_venta += $desc_venta;
+            $t_essalud += $essalud;
+            $t_descuentos += $descuentos;
+
+            $obj->semanal               = number_format($semanal,2,'.',',');
+            $obj->remuneracion_basica   = number_format($remuneracion_basica,2,'.',',');
+            $obj->importe_hs_extras_25  = number_format($importe_hs_extras_25,2,'.',',');
+            $obj->haber_movilidad       = number_format($haber_movilidad,2,'.',',');
+            $obj->asignacion_familiar   = number_format($asignacion_familiar,2,'.',',');
+            $obj->reintegros            = number_format($reintegros,2,'.',',');
+            $obj->vacaciones_gozadas    = number_format($vacaciones_gozadas,2,'.',',');
+            $obj->importe_hs_100        = number_format($importe_hs_100,2,'.',',');
+            $obj->vacaciones_truncas    = number_format($vacaciones_truncas,2,'.',',');
+            $obj->cts_ley               = number_format($cts_ley,2,'.',',');
+            $obj->gratificacion         = number_format($gratificacion,2,'.',',');
+            $obj->movilidad_condicion   = number_format($movilidad_condicion,2,'.',',');
+            $obj->bonificacion_extraor  = number_format($bonificacion_extraor,2,'.',',');
+            $obj->total_haber           = number_format($total_haber,2,'.',',');
+            $obj->snp                   = number_format($snp,2,'.',',');
+            $obj->fondo_afp             = number_format($fondo_afp,2,'.',',');
+            $obj->comision_afp          = number_format($comision_afp,2,'.',',');
+            $obj->seguro_afp            = number_format($seguro_afp,2,'.',',');
+            $obj->liquidacion           = number_format($liquidacion,2,'.',',');
+            $obj->desc_movilidad_con    = number_format($desc_movilidad_con,2,'.',',');
+            $obj->reembolso_movilidad   = number_format($reembolso_movilidad,2,'.',',');
+            $obj->desc_venta            = number_format($desc_venta,2,'.',',');
+            $obj->essalud               = number_format($essalud,2,'.',',');
+            $obj->descuentos            = number_format($descuentos,2,'.',',');
+
+
             array_push($data,$obj);
         }
 
@@ -636,6 +967,45 @@ class PersonalRep
 
 
         $response->t_semanal = number_format($t_semanal,2,'.',',');
+
+        /*Se Agregan los totales
+         *
+         *
+         *
+         * */
+
+
+        $totales['t_remuneracion_basica']=$t_remuneracion_basica ;
+
+        /*
+        $t_importe_hs_extras_25;
+        $t_haber_movilidad ;
+        $t_asignacion_familiar ;
+        $t_reintegros ;
+        $t_vacaciones_gozadas ;
+        $t_importe_hs_100 ;
+        $t_vacaciones_truncas ;
+        $t_cts_ley ;
+        $t_gratificacion ;
+        $t_movilidad_condicion ;
+        $t_bonificacion_extraor ;
+        $t_semanal ;
+        $t_total_haber ;
+        $t_snp ;
+        $t_fondo_afp ;
+        $t_seguro_afp ;
+        $t_liquidacion ;
+        $t_desc_movilidad_con ;
+        $t_reembolso_movilidad ;
+        $t_desc_venta ;
+        $t_essalud ;
+        $t_descuentos ;
+
+        */
+
+
+
+
         /*
         $response->t_f_mes = number_format($t_f_mes,2,'.',',');
         $response->t_quincena = number_format($t_quincena,2,'.',',');

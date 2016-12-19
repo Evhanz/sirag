@@ -57,7 +57,7 @@ class ContabilidadController extends Controller
 
           //aumente el tiempo de espera del servidor
 
-            set_time_limit (180);
+            set_time_limit (360);
         //
 
 

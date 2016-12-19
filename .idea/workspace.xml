@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,51 +37,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-413">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="385">
+              <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewConsumoByFundo.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="viewPlanilla.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2972">
+              <caret line="311" column="42" selection-start-line="311" selection-start-column="42" selection-end-line="311" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="994" column="22" selection-start-line="994" selection-start-column="22" selection-end-line="994" selection-end-column="22" />
+              <folding>
+                <element signature="e#23790#24840#0#PHP" expanded="false" />
+                <marker date="1482144852068" expanded="true" signature="268:516" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1482144852068" expanded="true" signature="4770:4824" ph="select * fro... v_allTrabajadores" />
+                <marker date="1482144852068" expanded="true" signature="4965:5322" ph="SELECT FICHA... PER_REM_HIS" />
+                <marker date="1482144852068" expanded="true" signature="5426:5478" ph="select * fro... renov_contract" />
+                <marker date="1482144852068" expanded="true" signature="6114:6330" ph="INSERT INTO renov_contract... " />
+                <marker date="1482144852068" expanded="true" signature="6468:6592" ph="UPDATE flexl... " />
+                <marker date="1482144852068" expanded="true" signature="6623:6744" ph="UPDATE flexl... " />
+                <marker date="1482144852068" expanded="true" signature="7154:7214" ph="DELETE FROM " />
+                <marker date="1482144852068" expanded="true" signature="7248:7372" ph="UPDATE flexl... " />
+                <marker date="1482144852068" expanded="true" signature="7403:7524" ph="UPDATE flexl... " />
+                <marker date="1482144852068" expanded="true" signature="7635:7982" ph="SELECT TIPO_... PER_VACACIONES" />
+                <marker date="1482144852068" expanded="true" signature="8430:8682" ph="SELECT FICHA... v_allTrabajadores" />
+                <marker date="1482144852068" expanded="true" signature="10109:10749" ph="SELECT Nombr... v_telecredito" />
+                <marker date="1482144852068" expanded="true" signature="10789:11437" ph="SELECT Nombr... v_telecreditoOperario" />
+                <marker date="1482144852068" expanded="true" signature="11801:11898" ph="select CARGO... v_telecredito" />
+                <marker date="1482144852068" expanded="true" signature="12054:12158" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+                <marker date="1482144852068" expanded="true" signature="12457:12788" ph="select FICHA... PER_DET_LIQ" />
+                <marker date="1482144852068" expanded="true" signature="13094:13205" ph="SELECT TOP 1... v_allTrabajadores" />
+                <marker date="1482144852068" expanded="true" signature="16197:16689" ph="select FICHA... PER_DET_LIQ" />
+                <marker date="1482144852068" expanded="true" signature="17035:17146" ph="SELECT TOP 1... v_allTrabajadores" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewConsumoByFundo.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComercialController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1062">
-              <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contabilidad.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="9" column="69" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="comercial.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/comercial.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="17" column="81" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="81" />
+            <state relative-caret-position="245">
+              <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -107,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/seeds/RoleTableSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/usuarios.blade.php" />
         <option value="$PROJECT_DIR$/app/UserRole.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
@@ -147,7 +159,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
         <option value="$PROJECT_DIR$/public/templates/lte2/dist/js/main.js" />
         <option value="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewSaldoCC.blade.php" />
@@ -158,6 +169,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ComercialController.php" />
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
       </list>
     </option>
   </component>
@@ -268,6 +281,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="rh" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="cc" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -297,6 +332,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Logica" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Repositories" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Logica" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -510,7 +585,8 @@
       <workItem from="1481706065064" duration="26759000" />
       <workItem from="1481793944092" duration="22760000" />
       <workItem from="1481879920493" duration="7849000" />
-      <workItem from="1481889692177" duration="1466000" />
+      <workItem from="1481889692177" duration="15363000" />
+      <workItem from="1482139030532" duration="4664000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -820,11 +896,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481887882144</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="rev">
+      <created>1481891169020</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1481891169020</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="655840000" />
+    <option name="totallyTimeSpent" value="674401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
@@ -876,9 +959,9 @@
     <MESSAGE value="revision de reporte de kardex se juntó en uno solo" />
     <MESSAGE value="agregado al telecredito de operario" />
     <MESSAGE value="centro de costo consumo por fundo" />
-    <MESSAGE value="rev" />
     <MESSAGE value="add_rep_consumoByParron_for_comercial" />
-    <option name="LAST_COMMIT_MESSAGE" value="add_rep_consumoByParron_for_comercial" />
+    <MESSAGE value="rev" />
+    <option name="LAST_COMMIT_MESSAGE" value="rev" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6474359" />
   </component>
   <component name="XDebuggerManager">
@@ -895,13 +978,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Logica/DTO/DetalleDocDTO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/TipoDocumentoRep.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1030,13 +1106,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3655">
           <caret line="215" column="56" selection-start-line="215" selection-start-column="56" selection-end-line="215" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="152" column="92" selection-start-line="152" selection-start-column="92" selection-end-line="152" selection-end-column="92" />
         </state>
       </provider>
     </entry>
@@ -1191,14 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/usuarios.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1235,7 +1296,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="147" column="53" selection-start-line="147" selection-start-column="46" selection-end-line="147" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1247,18 +1307,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-413">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2972">
+          <caret line="311" column="42" selection-start-line="311" selection-start-column="42" selection-end-line="311" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="994" column="22" selection-start-line="994" selection-start-column="22" selection-end-line="994" selection-end-column="22" />
+          <folding>
+            <element signature="e#23790#24840#0#PHP" expanded="false" />
+            <marker date="1482144852068" expanded="true" signature="268:516" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1482144852068" expanded="true" signature="4770:4824" ph="select * fro... v_allTrabajadores" />
+            <marker date="1482144852068" expanded="true" signature="4965:5322" ph="SELECT FICHA... PER_REM_HIS" />
+            <marker date="1482144852068" expanded="true" signature="5426:5478" ph="select * fro... renov_contract" />
+            <marker date="1482144852068" expanded="true" signature="6114:6330" ph="INSERT INTO renov_contract... " />
+            <marker date="1482144852068" expanded="true" signature="6468:6592" ph="UPDATE flexl... " />
+            <marker date="1482144852068" expanded="true" signature="6623:6744" ph="UPDATE flexl... " />
+            <marker date="1482144852068" expanded="true" signature="7154:7214" ph="DELETE FROM " />
+            <marker date="1482144852068" expanded="true" signature="7248:7372" ph="UPDATE flexl... " />
+            <marker date="1482144852068" expanded="true" signature="7403:7524" ph="UPDATE flexl... " />
+            <marker date="1482144852068" expanded="true" signature="7635:7982" ph="SELECT TIPO_... PER_VACACIONES" />
+            <marker date="1482144852068" expanded="true" signature="8430:8682" ph="SELECT FICHA... v_allTrabajadores" />
+            <marker date="1482144852068" expanded="true" signature="10109:10749" ph="SELECT Nombr... v_telecredito" />
+            <marker date="1482144852068" expanded="true" signature="10789:11437" ph="SELECT Nombr... v_telecreditoOperario" />
+            <marker date="1482144852068" expanded="true" signature="11801:11898" ph="select CARGO... v_telecredito" />
+            <marker date="1482144852068" expanded="true" signature="12054:12158" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+            <marker date="1482144852068" expanded="true" signature="12457:12788" ph="select FICHA... PER_DET_LIQ" />
+            <marker date="1482144852068" expanded="true" signature="13094:13205" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1482144852068" expanded="true" signature="16197:16689" ph="select FICHA... PER_DET_LIQ" />
+            <marker date="1482144852068" expanded="true" signature="17035:17146" ph="SELECT TOP 1... v_allTrabajadores" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="245">
+          <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
           <folding />
         </state>
       </provider>
