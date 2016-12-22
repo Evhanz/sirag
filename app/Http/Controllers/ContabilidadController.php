@@ -219,6 +219,7 @@ class ContabilidadController extends Controller
             $row.=trim($item->c1).'|';
             $row.=trim($item->c2).'|';
             $row.=$this->changeFormatFecha($item->c3).'|';
+            $item->c4 = str_replace('-','',$item->c4);
             $row.=trim($item->c4).'|';
             $row.=trim($item->c5).'|';
             $row.=trim($item->c6).'|';
