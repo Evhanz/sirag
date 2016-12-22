@@ -83,4 +83,21 @@ class HelpFunct
         
     }
 
+    static public function orderArrayNumberAsc($arreglo){
+
+        for ($i=0;$i<count($arreglo)-1;$i++){
+            for ($x=$i+1;$x<count($arreglo);$x++){
+                if ($arreglo[$i]>$arreglo[$x]){
+
+                    $aux = $arreglo[$i];
+                    $arreglo[$i]=$arreglo[$x];
+                    $arreglo[$x] = $aux;
+                }
+            }
+        }
+
+        return $arreglo;
+
+    }
+
 }

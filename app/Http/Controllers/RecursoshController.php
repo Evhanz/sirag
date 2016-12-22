@@ -159,6 +159,18 @@ class RecursoshController extends Controller
     }
 
 
+    public function getCostoMOPorFundo(){
+
+        $data = \Input::all();
+
+
+        $res = $this->personalRep->getCostoMOPorFundo($data);
+
+        return \Response::Json($res);
+
+    }
+
+
     //--- esto es para exportar telecredito
     public function gettxt(){
 

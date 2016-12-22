@@ -10,6 +10,7 @@ namespace sirag\Repositories;
 use Carbon\Carbon;
 use DateTime;
 use sirag\Entities\Obj;
+use sirag\Helpers\HelpFunct;
 
 
 class PersonalRep
@@ -1018,6 +1019,66 @@ class PersonalRep
     }
 
 
+
+    //para traer el consumo de mano de obra
+    //por fundo y parro de acuerdo a una fecha esablecido
+
+    public function getCostoMOPorFundo($data){
+
+        //$fecha      =   $data['fecha'];
+
+        $query      =   "
+        --esta fecha se usará para saber que dia se consultará el detalle 
+        DECLARE @fecha date;
+        
+        --luego se sacara la fecha de inicio para sacar el rango de consulta
+        DECLARE @fecha_inicio DATE;
+        -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
+        SET @fecha = '2016-12-14';
+        SET @fecha_inicio= DATEADD(day,-6,@fecha); 
+        select GC.CODIGO, GT.descripcion, GC.RELACIONTIPO1,GC.RELACIONCODIGO1,DT.CANTIDAD,DT.FECHA
+        ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
+            WHERE EMPRESA='E01'
+            AND TIPO_COMPROBANTE='PLANILLAS'
+            AND PERIODO='2016'
+            AND CONVERT(DATE,FECHA) = @fecha
+            AND AUX_VALOR19 = GC.CODIGO
+            AND AUX_VALOR19 IS NOT NULL) MONTO
+        from
+        dbo.GEN_TABLA as GT INNER JOIN 
+        flexline.PER_DETALLETRATO DT 
+        ON GT.codigo1=DT.AUX_VALOR16 AND GT.empresa = DT.EMPRESA INNER JOIN
+        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO
+        where 
+        DT.EMPRESA='e01'
+        AND GC.TIPO = 'CON_CCOSTO_INTERNO'
+        and GT.vigencia='S'
+        and GT.cod_tabla='per_labor'
+        and DT.TRATO='TRATO_HORA'
+        AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha";
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+
+
+        //sacamos los codigos para que sean nuestra scolumnas a cruzar
+        //$keys = $res->groupBy('CODIGO')->sortByDesc('CODIGO')->keys();
+        $keys =  $res->groupBy('CODIGO')->keys()->toArray();
+
+
+
+        $a = HelpFunct::orderArrayNumberAsc($keys);
+
+        $personal = $res->groupBy('descripcion');
+
+
+
+
+        return $a;
+
+
+    }
 
 
 }
