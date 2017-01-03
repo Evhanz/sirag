@@ -7,8 +7,7 @@
  */
 
 namespace sirag\Helpers;
-
-
+use sirag\Entities\Obj;
 
 class HelpFunct
 {
@@ -97,6 +96,90 @@ class HelpFunct
         }
 
         return $arreglo;
+
+    }
+
+    static public function getItemsByLenOfArray($len, $arreglo)
+    {
+        $response = array();
+
+        for ($i=0;$i<count($arreglo);$i++){
+            $var = $arreglo[$i];
+            if(strlen("$var")==$len){
+                array_push($response,$var);
+            }
+        }
+
+        return $response;
+    }
+
+    /**
+     * la funcion saca los valores unicos de los elementos del array
+     * desde un inicio a un fin de cada valor :
+     * ----------------Respuesta--------------------
+     * @return $response
+     * ----------------Necesita-------------------
+     * int $inicio : desde donde empezara a sacar el valor
+     * int $fin: cuantos caracteres sacaremos
+     * array $arreglo
+     *
+     */
+
+    static public function getPartValuesUniquesOfArray($inicio,$fin,$arreglo){
+
+        $reponse = array();
+
+        for ($i= 0;$i<count($arreglo);$i++)
+        {
+            $val = $arreglo[$i];
+            $val = substr($val,$inicio,$fin);
+
+            if(!in_array($val,$reponse)){
+                array_push($reponse,$val);
+            }
+        }
+
+        return $reponse;
+
+    }
+
+    /**
+     * esta funcion es para sacar los items que perenecen a el parron y al fundo
+     * correspondiente , tener en consideracion que
+     *
+     * ----------------Respuesta-----------------
+     * @return $response : es un array de objetos que tendra los codigos formateados
+     * -----------------Requiere----------------
+     * array $arreglo : donde estan los items
+     */
+    static public function getItemsByFundoAndParron($arreglo){
+
+        $response = array();
+        $codigos  = array();
+
+        //primero separamos las campañas
+        $campañas = self::getPartValuesUniquesOfArray(0,2,$arreglo);
+
+        //recorremos cada campaña para sacar sus códigos
+        for ($i=0;$i<count($campañas);$i++){
+
+            $val = new Obj();
+            $codigos = [];
+
+            for($x = 0;$x<count($arreglo);$x++){
+
+                $a = $arreglo[$x];
+
+                if(substr($a,0,2)== $campañas[$i]){
+                    array_push($codigos,$arreglo[$x]);
+                }
+
+            }
+            $val->campain = $campañas[$i];
+            $val->codigos = $codigos;
+            array_push($response,$val);
+        }
+        return $response;
 
     }
 

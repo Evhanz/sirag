@@ -366,6 +366,17 @@ class RecursoshController extends Controller
         return \Response::json($res);
     }
 
+    public function getPlameRem(){
+
+        $data = \Input::all();
+
+        $res = $this->personalRep->getPlameRem($data);
+
+        return \Response::json($res);
+
+    }
+
+
 
     /*funciiones helpers */
     public function getSumaAbonados($data){

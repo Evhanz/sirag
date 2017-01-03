@@ -26,7 +26,9 @@ Route::get('rh/api/getCargos',['as'=>'getCargos','uses'=>'RecursoshController@ge
 Route::get('rh/api/getDepartamentos',['as'=>'getDepartamentos','uses'=>'RecursoshController@getDepartamentos']);
 Route::post('rh/api/getPlanilla',['as'=>'getPlanilla','uses'=>'RecursoshController@getPlanilla']);
 Route::post('rh/api/getPlanillaAgrario',['as'=>'getPlanillaAgrario','uses'=>'RecursoshController@getPlanillaAgrario']);
-Route::get('8',['as'=>'getCostoMOPorFundo','uses'=>'RecursoshController@getCostoMOPorFundo']);
+Route::get('rh/api/getCostoMOPorFundo',['as'=>'getCostoMOPorFundo','uses'=>'RecursoshController@getCostoMOPorFundo']);
+Route::get('rh/api/getPlameRem',['as'=>'getPlameRem','uses'=>'RecursoshController@getPlameRem']);
+
 
 
 //para descargar archivos o visualizar fotos

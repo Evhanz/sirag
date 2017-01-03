@@ -1019,7 +1019,6 @@ class PersonalRep
     }
 
 
-
     //para traer el consumo de mano de obra
     //por fundo y parro de acuerdo a una fecha esablecido
 
@@ -1055,6 +1054,7 @@ class PersonalRep
         and GT.vigencia='S'
         and GT.cod_tabla='per_labor'
         and DT.TRATO='TRATO_HORA'
+        AND GC.CODIGO <> '696969'
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha";
 
         $res = \DB::select($query);
@@ -1066,9 +1066,16 @@ class PersonalRep
         //$keys = $res->groupBy('CODIGO')->sortByDesc('CODIGO')->keys();
         $keys =  $res->groupBy('CODIGO')->keys()->toArray();
 
-
-
+        //sacamos los codigos de fundo y parron , para ordenarlos
         $a = HelpFunct::orderArrayNumberAsc($keys);
+        //luego sacamos solo los que tinen 6 dígitos , por que son lo que tienen normal
+        $a = HelpFunct::getItemsByLenOfArray(6,$a);
+        //obtenemos los codigos ordenados por campaña , fundo y parron
+        $a = HelpFunct::getItemsByFundoAndParron($a);
+        //por cada
+
+
+
 
         $personal = $res->groupBy('descripcion');
 
@@ -1077,6 +1084,86 @@ class PersonalRep
 
         return $a;
 
+
+    }
+
+    /**
+     * Plame :REM
+     * en la siguiente funcion se trae a los datos formateados para generar
+     * el txt del PLAME
+     */
+
+    public function getPlameRem($data){
+
+
+        $response = array();
+
+        $query = "SELECT FICHA, MOVIMIENTO, DESCRIPCION, SUM(VALOR) MONTO
+                ,(SELECT top 1 CODIGO FROM flexline.GEN_TABCOD
+                WHERE EMPRESA='E01'
+                AND TIPO='PER_CONCEPTO_REM'
+                AND TEXTO IS NOT NULL AND TEXTO <> ''
+                AND (TEXTO2 LIKE '%'+flexline.PER_DET_LIQ.MOVIMIENTO+'%' 
+                or TEXTO3 LIKE '%'+flexline.PER_DET_LIQ.MOVIMIENTO+'%')) CODIGO
+                ,( SELECT EMPLEADO FROM 
+					flexline.PER_TRABAJADOR
+					WHERE FICHA = flexline.PER_DET_LIQ.FICHA) DNI
+                FROM flexline.PER_DET_LIQ
+                WHERE EMPRESA='E01'
+                AND PERIODO LIKE '201612%' --aca insertar la fecha que viene de la data
+                AND (TIPO_MOVTO IN ('H','D'))
+                AND MOVIMIENTO <> '10501'
+                GROUP BY FICHA, MOVIMIENTO,DESCRIPCION
+                ORDER BY MOVIMIENTO";
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+        //primero agrupamos los resultados por DNI
+        $res = $res->groupBy('DNI');
+        //luego de cada uno agrupamos los resultados por codigo
+        foreach ($res as $item){
+
+            $obj = new Obj();
+
+            $i = collect($item);
+            //agrupamos por codigo , el codigo el es codigo del PLEM
+            $i = $i->groupBy('CODIGO');
+
+            $movs = 0;
+            //por cada item
+            foreach ($i as $x){
+
+                $row = new Obj();
+
+                $val = collect($x);
+                $sum_monto_codigo = $val->sum('MONTO');
+
+                $row->FICHA = $x[0]->FICHA;
+                $row->DNI = $x[0]->DNI;
+                $row->CODIGO = $x[0]->CODIGO;
+                $row->sum_monto_codigo  =   $sum_monto_codigo;
+                array_push($response, $row);
+            }
+
+            /*
+            $obj->FICHA = $item[0]->FICHA;
+            $obj->DNI = $item[0]->DNI;
+            $obj->CODIGO = $item[0]->CODIGO;
+            $obj->MOVS  =   $i;
+            array_push($response, $obj);
+
+            */
+
+
+            //var_dump($item);
+
+
+        }
+
+
+
+        return $response;
 
     }
 
