@@ -1110,7 +1110,7 @@ class PersonalRep
 					WHERE FICHA = flexline.PER_DET_LIQ.FICHA) DNI
                 FROM flexline.PER_DET_LIQ
                 WHERE EMPRESA='E01'
-                AND PERIODO LIKE '201612%' --aca insertar la fecha que viene de la data
+                AND PERIODO LIKE '$data%' --aca insertar la fecha que viene de la data
                 AND (TIPO_MOVTO IN ('H','D'))
                 AND MOVIMIENTO <> '10501'
                 GROUP BY FICHA, MOVIMIENTO,DESCRIPCION
@@ -1142,8 +1142,11 @@ class PersonalRep
                 $row->FICHA = $x[0]->FICHA;
                 $row->DNI = $x[0]->DNI;
                 $row->CODIGO = $x[0]->CODIGO;
-                $row->sum_monto_codigo  =   $sum_monto_codigo;
+                $row->sum_monto_codigo = HelpFunct::fillZerosLeft(9,number_format($sum_monto_codigo,2,'.',''))  ;
                 array_push($response, $row);
+
+                //number_format($t_movilidad_condicion,2,'.',',');
+
             }
 
             /*
@@ -1154,8 +1157,6 @@ class PersonalRep
             array_push($response, $obj);
 
             */
-
-
             //var_dump($item);
 
 

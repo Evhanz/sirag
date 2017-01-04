@@ -43,6 +43,10 @@ class RecursoshController extends Controller
         return view('rh/viewPlanilla');
     }
 
+    public function viewPlame(){
+        return view('rh/viewPlame');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -369,11 +373,37 @@ class RecursoshController extends Controller
     public function getPlameRem(){
 
         $data = \Input::all();
+        $periodo = $data['periodo'];
 
-        $res = $this->personalRep->getPlameRem($data);
+        $res = $this->personalRep->getPlameRem($periodo);
 
-        return \Response::json($res);
 
+        $text = '';
+
+        foreach ($res as $i){
+
+            $row = '01|'.$i->DNI.'|'.$i->CODIGO.'|'.$i->sum_monto_codigo.'|'.$i->sum_monto_codigo.'|';
+
+            $text = $text.$row."\r\n";
+        }
+
+
+        $file = fopen(base_path()."/storage/logs/plame.txt", "w");
+        fputs($file,$text);
+        fclose($file);
+
+
+        return \Response::json(\URL::route('getTxtPlameRem',['periodo'=>$periodo]));
+        //return \Response::json($data);
+
+    }
+
+    public function getTxtPlameRem($periodo){
+
+
+        $name_txt = '0601'.$periodo.'20518803078';
+
+        return response()->download(base_path()."/storage/logs/plame.txt", $name_txt.'.rem');
     }
 
 

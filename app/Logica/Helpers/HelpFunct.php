@@ -183,4 +183,24 @@ class HelpFunct
 
     }
 
+    /**
+     * la funcion llena con ceros de acuerdo a la cantidad que sean necesarias al
+     * lado izquierdo
+     * @return $response
+     * ------------Necesita--------------------
+     * int $limit: de acuerdo al limite llenara de ceros
+     * string $item: la cadena a modificar
+     */
+    static public function fillZerosLeft($limit,$item){
+
+        $cant_zero = $limit - strlen($item);
+        $zeros = '';
+        for($i=0;$i<$cant_zero;$i++){
+            $zeros .= '0';
+        }
+
+        $response = $zeros.$item;
+        return $response;
+    }
+
 }

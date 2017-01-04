@@ -14,6 +14,7 @@ Route::post('rh/addNewRenovacion',['as'=>'addNewRenovacion','uses'=>'RecursoshCo
 Route::post('rh/deleteRenovacion',['as'=>'deleteRenovacion','uses'=>'RecursoshController@deleteRenovacion']);
 Route::get('rh/rep/viewTelecredito',['as'=>'viewTelecredito','uses'=>'RecursoshController@viewTelecredito']);
 Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshController@viewPlanilla']);
+Route::get('rh/rep/viewPlame',['as'=>'viewPlame','uses'=>'RecursoshController@viewPlame']);
 
 
 //llamada a API
@@ -27,12 +28,16 @@ Route::get('rh/api/getDepartamentos',['as'=>'getDepartamentos','uses'=>'Recursos
 Route::post('rh/api/getPlanilla',['as'=>'getPlanilla','uses'=>'RecursoshController@getPlanilla']);
 Route::post('rh/api/getPlanillaAgrario',['as'=>'getPlanillaAgrario','uses'=>'RecursoshController@getPlanillaAgrario']);
 Route::get('rh/api/getCostoMOPorFundo',['as'=>'getCostoMOPorFundo','uses'=>'RecursoshController@getCostoMOPorFundo']);
-Route::get('rh/api/getPlameRem',['as'=>'getPlameRem','uses'=>'RecursoshController@getPlameRem']);
+Route::post('rh/api/getPlameRem',['as'=>'getPlameRem','uses'=>'RecursoshController@getPlameRem']);
 
 
 
 //para descargar archivos o visualizar fotos
 Route::get('archivo/getTeecredito',['as'=>'getTxtTelecredito','uses'=>'RecursoshController@getTxtTelecredito']);
+
+
+//esto e para los txt
+Route::get('archivo/getTxtPlameRem/{periodo}',['as'=>'getTxtPlameRem','uses'=>'RecursoshController@getTxtPlameRem']);
 
 
 
