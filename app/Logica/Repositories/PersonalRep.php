@@ -740,7 +740,7 @@ class PersonalRep
 
 
             //10041
-            $bonificacion_extraor = $item->where('MOVIMIENTO','10001')->first();
+            $bonificacion_extraor = $item->where('MOVIMIENTO','10041')->first();
 
             if ($bonificacion_extraor == null){
                 $bonificacion_extraor=0;
