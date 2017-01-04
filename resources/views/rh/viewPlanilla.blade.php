@@ -196,6 +196,7 @@
                                                         <th>Descuento por Venta </th>
                                                         <th>Desco Movilidad Condicion Trabajo </th>
                                                         <th>Reembolso Movilidad </th>
+                                                        <th>Adelanto Remuneracion </th>
                                                         <th>Total Descuentos</th>
                                                         <th>Neto  Pagar</th>
                                                         <th>Essalud </th>
@@ -228,6 +229,7 @@
                                                         <td>@{{ item.desc_venta }}</td>
                                                         <td>@{{ item.desc_movilidad_con }}</td>
                                                         <td>@{{ item.reembolso_movilidad }}</td>
+                                                        <td>@{{ item.adelanto_remuneraci }}</td>
                                                         <td>@{{ item.descuentos }}</td>
                                                         <td>@{{ item.semanal }}</td>
                                                         <td>@{{ item.essalud }}</td>
@@ -256,6 +258,7 @@
                                                         <td>@{{ totales_agraria.t_desc_venta }}</td>
                                                         <td>@{{ totales_agraria.t_desc_movilidad_con }}</td>
                                                         <td>@{{ totales_agraria.t_reembolso_movilidad }}</td>
+                                                        <td>@{{ totales_agraria.t_adelanto_remuneraci }}</td>
                                                         <td>@{{ totales_agraria.t_descuentos }}</td>
                                                         <td>@{{ totalesAgraria.t_semanal }}</td>
                                                         <td>@{{ totales_agraria.t_essalud }}</td>

@@ -843,9 +843,21 @@ class PersonalRep
 
             if ($reembolso_movilidad == null){
                 $reembolso_movilidad=0;
+
             }else{
                 $reembolso_movilidad = $reembolso_movilidad->VALOR;
             }
+
+            //10534
+            $adelanto_remuneraci = $item->where('MOVIMIENTO','10534')->first(); // FZ 040117
+
+            if ($adelanto_remuneraci == null){
+                $adelanto_remuneraci=0;
+
+            }else{
+                $adelanto_remuneraci = $adelanto_remuneraci->VALOR;
+            }
+
 
             //10547
             $desc_venta = $item->where('MOVIMIENTO','10547')->first();
@@ -939,6 +951,7 @@ class PersonalRep
             $t_liquidacion += $liquidacion;
             $t_desc_movilidad_con += $desc_movilidad_con;
             $t_reembolso_movilidad += $reembolso_movilidad;
+            $t_adelanto_remuneraci += $adelanto_remuneraci; //FZ 041217
             $t_desc_venta += $desc_venta;
             $t_essalud += $essalud;
             $t_descuentos += $descuentos;
@@ -966,6 +979,7 @@ class PersonalRep
             $obj->liquidacion           = number_format($liquidacion,2,'.',',');
             $obj->desc_movilidad_con    = number_format($desc_movilidad_con,2,'.',',');
             $obj->reembolso_movilidad   = number_format($reembolso_movilidad,2,'.',',');
+            $obj->adelanto_remuneraci   = number_format($adelanto_remuneraci,2,'.',','); // FZ 040117
             $obj->desc_venta            = number_format($desc_venta,2,'.',',');
             $obj->essalud               = number_format($essalud,2,'.',',');
             $obj->descuentos            = number_format($descuentos,2,'.',',');
@@ -1003,7 +1017,7 @@ class PersonalRep
         $totales['t_vacaciones_truncas']    = number_format($t_vacaciones_truncas,2,'.',',');
         $totales['t_cts_ley']               = number_format($t_cts_ley,2,'.',',');
         $totales['t_gratificacion']         = number_format($t_gratificacion,2,'.',',');
-        $totales['t_gratificacio_extraor']  = number_format($t_gratificacio_extraor,2,'.',','); // frank zelada
+        $totales['t_gratificacio_extraor']  = number_format($t_gratificacio_extraor,2,'.',','); // FZ 040117
         $totales['t_movilidad_condicion']   = number_format($t_movilidad_condicion,2,'.',',');
         $totales['t_bonificacion_extraor']  = number_format($t_bonificacion_extraor,2,'.',',');
         $totales['t_total_haber']           = number_format($t_total_haber,2,'.',',');
@@ -1013,6 +1027,7 @@ class PersonalRep
         $totales['t_liquidacion']           = number_format($t_liquidacion,2,'.',',');
         $totales['t_desc_movilidad_con']    = number_format($t_desc_movilidad_con,2,'.',',');
         $totales['t_reembolso_movilidad']   = number_format($t_reembolso_movilidad,2,'.',',');
+        $totales['t_adelanto_remuneraci']   = number_format($t_adelanto_remuneraci,2,'.',','); // FZ 040117
         $totales['t_desc_venta']            = number_format($t_desc_venta,2,'.',',');
         $totales['t_essalud']               = number_format($t_essalud,2,'.',',');
         $totales['t_descuentos']            = number_format($t_descuentos,2,'.',',');
