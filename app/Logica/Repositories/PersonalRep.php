@@ -545,6 +545,7 @@ class PersonalRep
         $t_vacaciones_truncas   =   0;
         $t_cts_ley              =   0;
         $t_gratificacion        =   0;
+        $t_gratificacio_extraor =   0; //agregado por frank zelada 04/01/2017
         $t_movilidad_condicion  =   0;
         $t_bonificacion_extraor =   0;
         $t_total_haber          =   0;
@@ -555,6 +556,7 @@ class PersonalRep
         $t_liquidacion          =   0;
         $t_desc_movilidad_con   =   0;
         $t_reembolso_movilidad  =   0;
+        $t_adelanto_remuneraci  =   0; //agregado por frank zelada 04/01/2017
         $t_desc_venta           =   0;
         $t_descuentos           =   0;
         $t_essalud              =   0;
@@ -567,8 +569,8 @@ class PersonalRep
         $query = "select FICHA, VALOR , MOVIMIENTO
                     FROM flexline.PER_DET_LIQ
                     WHERE EMPRESA='e01'
-                    and periodo='$periodo' --- FILTRAR POR PERIODO
-                    and MOVIMIENTO IN ('10','10001','10002','10004','10007','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10504','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and periodo='20161221' --- FILTRAR POR PERIODO
+                    and MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     ORDER by FICHA";
 
         $res = \DB::select($query);
@@ -728,6 +730,17 @@ class PersonalRep
             }
 
 
+            //10011
+            $gratificacio_extraor = $item->where('MOVIMIENTO','10011')->first(); //frank zelada 04/01/2017
+
+            if ($gratificacio_extraor == null){
+                $gratificacio_extraor=0;
+
+            }else{
+                $gratificacio_extraor = $gratificacio_extraor->VALOR;
+            }
+
+
             //10036
             $movilidad_condicion = $item->where('MOVIMIENTO','10036')->first();
 
@@ -740,7 +753,7 @@ class PersonalRep
 
 
             //10041
-            $bonificacion_extraor = $item->where('MOVIMIENTO','10001')->first();
+            $bonificacion_extraor = $item->where('MOVIMIENTO','10041')->first();
 
             if ($bonificacion_extraor == null){
                 $bonificacion_extraor=0;
@@ -916,6 +929,7 @@ class PersonalRep
             $t_vacaciones_truncas += $vacaciones_truncas;
             $t_cts_ley += $cts_ley;
             $t_gratificacion += $gratificacion;
+            $t_gratificacio_extraor += $gratificacio_extraor; //frank zelada 04/01/2017
             $t_movilidad_condicion += $movilidad_condicion;
             $t_bonificacion_extraor += $bonificacion_extraor;
             $t_total_haber += $total_haber;
@@ -941,6 +955,7 @@ class PersonalRep
             $obj->vacaciones_truncas    = number_format($vacaciones_truncas,2,'.',',');
             $obj->cts_ley               = number_format($cts_ley,2,'.',',');
             $obj->gratificacion         = number_format($gratificacion,2,'.',',');
+            $obj->gratificacio_extraor  = number_format($gratificacio_extraor,2,'.',','); //frank zelada 04/01/2017
             $obj->movilidad_condicion   = number_format($movilidad_condicion,2,'.',',');
             $obj->bonificacion_extraor  = number_format($bonificacion_extraor,2,'.',',');
             $obj->total_haber           = number_format($total_haber,2,'.',',');
@@ -988,6 +1003,7 @@ class PersonalRep
         $totales['t_vacaciones_truncas']    = number_format($t_vacaciones_truncas,2,'.',',');
         $totales['t_cts_ley']               = number_format($t_cts_ley,2,'.',',');
         $totales['t_gratificacion']         = number_format($t_gratificacion,2,'.',',');
+        $totales['t_gratificacio_extraor']  = number_format($t_gratificacio_extraor,2,'.',','); // frank zelada
         $totales['t_movilidad_condicion']   = number_format($t_movilidad_condicion,2,'.',',');
         $totales['t_bonificacion_extraor']  = number_format($t_bonificacion_extraor,2,'.',',');
         $totales['t_total_haber']           = number_format($t_total_haber,2,'.',',');
