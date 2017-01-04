@@ -180,7 +180,7 @@
                                                         <th>Importe HS Extras 100%</th>
                                                         <th>CTS LEY 27360</th>
                                                         <th>Gratificacion LEY 27360</th>
-                                                        <th>Bonificacion Extraordinaria</th>
+                                                        <th>BONI. GRATIFI. LEY 29351</th>
                                                         <th>Haber Movilidad</th>
                                                         <th>Reintegros</th>
                                                         <th>Vacaciones Gozadas</th>
