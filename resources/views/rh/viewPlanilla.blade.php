@@ -180,9 +180,10 @@
                                                         <th>Importe HS Extras 100%</th>
                                                         <th>CTS LEY 27360</th>
                                                         <th>Gratificacion LEY 27360</th>
-                                                        <th>BONI. GRATIFI. LEY 29351</th>
+                                                        <th>Boni. Grati. LEY 29351</th>
                                                         <th>Haber Movilidad</th>
                                                         <th>Reintegros</th>
+                                                        <th>Gratificacion Extraordinaria</th>
                                                         <th>Vacaciones Gozadas</th>
                                                         <th>Vacaciones Truncas</th>
                                                         <th>Movilidad Condicion Trabajo</th>
@@ -214,6 +215,7 @@
                                                         <td>@{{ item.bonificacion_extraor }}</td>
                                                         <td>@{{ item.haber_movilidad }}</td>
                                                         <td>@{{ item.reintegros }}</td>
+                                                        <td>@{{ item.gratificacio_extraor }}</td>   <!-- FZ 040117-->
                                                         <td>@{{ item.vacaciones_gozadas }}</td>
                                                         <td>@{{ item.vacaciones_truncas }}</td>
                                                         <td>@{{ item.movilidad_condicion }}</td>
@@ -241,6 +243,7 @@
                                                         <td>@{{ totales_agraria.t_bonificacion_extraor }}</td>
                                                         <td>@{{ totales_agraria.t_haber_movilidad }}</td>
                                                         <td>@{{ totales_agraria.t_reintegros }}</td>
+                                                        <td>@{{ totales_agraria.t_gratificacio_extraor }}</td>
                                                         <td>@{{ totales_agraria.t_vacaciones_gozadas }}</td>
                                                         <td>@{{ totales_agraria.t_vacaciones_truncas }}</td>
                                                         <td>@{{ totales_agraria.t_movilidad_condicion }}</td>
