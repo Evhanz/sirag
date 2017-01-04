@@ -382,7 +382,7 @@ class RecursoshController extends Controller
 
         foreach ($res as $i){
 
-            $row = '01|'.$i->DNI.'|'.$i->CODIGO.'|'.$i->sum_monto_codigo.'|'.$i->sum_monto_codigo.'|';
+            $row = $i->C1.'|'.$i->DNI.'|'.$i->CODIGO.'|'.$i->sum_monto_codigo.'|'.$i->sum_monto_codigo.'|';
 
             $text = $text.$row."\r\n";
         }

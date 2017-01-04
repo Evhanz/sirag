@@ -28,7 +28,6 @@
                                             <div class="col-md-12">
                                                 <h4>PLAME REM</h4>
                                             </div>
-                                            
                                         </div>
 
                                         <div class="row">

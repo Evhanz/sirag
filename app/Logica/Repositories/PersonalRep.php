@@ -1139,6 +1139,14 @@ class PersonalRep
                 ,( SELECT EMPLEADO FROM 
 					flexline.PER_TRABAJADOR
 					WHERE FICHA = flexline.PER_DET_LIQ.FICHA) DNI
+				,(select 
+					CASE   
+						WHEN CONVERT(INT,(SELECT EMPLEADO FROM 
+							flexline.PER_TRABAJADOR
+							WHERE FICHA = flexline.PER_DET_LIQ.FICHA)) < 999999 THEN '04'   
+						ELSE '01'   
+					END
+				)C1	
                 FROM flexline.PER_DET_LIQ
                 WHERE EMPRESA='E01'
                 AND PERIODO LIKE '$data%' --aca insertar la fecha que viene de la data
@@ -1173,6 +1181,7 @@ class PersonalRep
                 $row->FICHA = $x[0]->FICHA;
                 $row->DNI = $x[0]->DNI;
                 $row->CODIGO = $x[0]->CODIGO;
+                $row->C1 = $x[0]->C1;
                 $row->sum_monto_codigo = HelpFunct::fillZerosLeft(9,number_format($sum_monto_codigo,2,'.',''))  ;
                 array_push($response, $row);
 
