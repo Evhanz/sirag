@@ -29,6 +29,7 @@ Route::post('rh/api/getPlanilla',['as'=>'getPlanilla','uses'=>'RecursoshControll
 Route::post('rh/api/getPlanillaAgrario',['as'=>'getPlanillaAgrario','uses'=>'RecursoshController@getPlanillaAgrario']);
 Route::get('rh/api/getCostoMOPorFundo',['as'=>'getCostoMOPorFundo','uses'=>'RecursoshController@getCostoMOPorFundo']);
 Route::post('rh/api/getPlameRem',['as'=>'getPlameRem','uses'=>'RecursoshController@getPlameRem']);
+Route::post('rh/api/getPlameRemSNL',['as'=>'getPlameRemSNL','uses'=>'RecursoshController@getPlameRemSNL']);
 
 
 
@@ -38,6 +39,7 @@ Route::get('archivo/getTeecredito',['as'=>'getTxtTelecredito','uses'=>'Recursosh
 
 //esto e para los txt
 Route::get('archivo/getTxtPlameRem/{periodo}',['as'=>'getTxtPlameRem','uses'=>'RecursoshController@getTxtPlameRem']);
+Route::get('archivo/getTxtPlameSNL/{periodo}',['as'=>'getTxtPlameSNL','uses'=>'RecursoshController@getTxtPlameSNL']);
 
 
 

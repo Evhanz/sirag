@@ -1208,5 +1208,177 @@ class PersonalRep
 
     }
 
+    public function getPlameSnl($data){
+
+
+        /*
+         * El perioo tiene que estar en formato YYYYMM
+         * */
+
+        $f_inicio = $data['f_inicio'];
+        $f_fin = $data['f_fin'];
+        $periodo = $data['periodo'];
+
+        $query = "
+        
+        /**
+        la siguiente query nos trae de cada trabajador 
+        los dias laborados y lo dias de acaciones
+        para btener las faltas que tubo en el periodo
+        dado, eso se usara para la plame 
+        LA FECHA TIENE QUE ESTAR EN FORMATO YYYY-MM-DD
+        */
+        
+        
+        SELECT TRABAJADOR, COUNT( DISTINCT (CONVERT(DATE,FECHA,113))) DLABORADOS
+        ,(SELECT dbo.DiasEnMes('$f_inicio')) dias       --aca entra la fecha de inicio
+        ,(SELECT dbo.DiasLaboralesObligtoriosByMes('$f_fin',TRABAJADOR)) DIAS_NO_DEBE_TRABAJAR --aca entra la fecha_fin
+        ,CASE WHEN (SELECT dbo.DiasLaboralesObligtoriosByMes('$f_fin',TRABAJADOR)) < 0 --aca entra la fecha_fin
+            THEN  (SELECT dbo.DiasEnMes('$f_inicio')) --aca va f_inicio
+            ELSE ((SELECT dbo.DiasEnMes('$f_inicio')) - (SELECT dbo.DiasLaboralesObligtoriosByMes('$f_fin',TRABAJADOR))) --aca entra la fecha_fin
+        END  AS DIAS_OBLIGATORIO_TRABAJAR
+        ,coalesce ( (SELECT SUM(valor) from flexline.PER_DET_LIQ
+        where EMPRESA='e01'
+        and periodo like '$periodo%' --se modifica por periodo
+        and MOVIMIENTO='110899'  -- dato estatico
+        and FICHA = TRABAJADOR
+        ),0)vacaciones
+        ,(SELECT EMPLEADO FROM 
+        flexline.PER_TRABAJADOR
+        WHERE EMPRESA = 'E01'
+        AND FICHA = TRABAJADOR) DNI
+        FROM flexline.PER_DETALLETRATO
+        WHERE EMPRESA='E01' 
+        AND CONVERT(DATE,FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'  --aqui cambiar por fecha inicio y fin
+        AND LEN(TRABAJADOR) >1
+        GROUP BY TRABAJADOR
+        HAVING COUNT( DISTINCT (CONVERT(DATE,FECHA,113))) <> (SELECT dbo.DiasEnMes('$f_inicio')) --colocar la fecha inicio
+        ORDER BY TRABAJADOR";
+
+
+
+        $res = \DB::select($query);
+
+        /*
+         * primero evaluamos al personal agrario
+         * codigo 07 insasistencia , 23 vacaciones
+         * */
+
+        $response = [];
+
+        foreach ($res as $item)
+        {
+            $obj = new Obj();
+            $vacaciones  = 0;
+
+            if($item->vacaciones > 0)
+            {
+                $o = new Obj();
+
+                $o->C1 = '01';
+                $o->DNI = $item->DNI;
+                $o->CODIGO = '23';
+                $o->CANTIDAD = intval($item->vacaciones) ;
+
+                $vacaciones =  $item->vacaciones;
+
+                array_push($response,$o);
+            }
+
+            //ACA ENTRA EL CALCULO
+            $t_dias_laborados = $item->DLABORADOS + $vacaciones;
+
+            $faltas = $item->DIAS_OBLIGATORIO_TRABAJAR - $t_dias_laborados;
+
+            if($faltas > 0){
+
+                /*se llena lso datos del objeto*/
+                $obj->C1 = '01';
+                $obj->DNI = $item->DNI;
+                $obj->CODIGO = '07';
+                $obj->CANTIDAD = $faltas;
+
+                array_push($response,$obj);
+            }
+
+
+        }
+
+        //ESTA QUERY ES PARA UNIRLOS CON LOS EMPLEADOS
+
+        $query_empleado = "select A.FICHA,B.EMPLEADO DNI, SUM(VALOR) CANTIDAD ,
+        '07' CODIGO
+        from 
+        flexline.PER_DET_LIQ A,
+        FLEXLINE.PER_TRABAJADOR B
+        where 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='e01'
+        AND B.VIGENCIA='ACTIVO'
+        AND B.CATEGORIA='EMPLEADO'
+        AND A.PERIODO like '$periodo%'
+        AND A.MOVIMIENTO IN ('20011','20012')
+        GROUP BY A.FICHA,B.EMPLEADO
+        UNION
+        select A.FICHA,B.EMPLEADO DNI, SUM(VALOR) CANTIDAD 
+        ,'05' CODIGO
+        from 
+        flexline.PER_DET_LIQ A,
+        FLEXLINE.PER_TRABAJADOR B
+        where 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='e01'
+        AND B.VIGENCIA='ACTIVO'
+        AND B.CATEGORIA='EMPLEADO'
+        AND A.PERIODO like '$periodo%'
+        AND A.MOVIMIENTO IN ('20013','20014')
+        GROUP BY A.FICHA,B.EMPLEADO
+        UNION
+        select 
+         A.FICHA,B.EMPLEADO DNI, SUM(VALOR) CANTIDAD 
+        ,'23' CODIGO
+        from 
+        flexline.PER_DET_LIQ A,
+        FLEXLINE.PER_TRABAJADOR B
+        where 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='e01'
+        AND B.VIGENCIA='ACTIVO'
+        AND B.CATEGORIA='EMPLEADO'
+        and a.MOVIMIENTO='119999'
+        AND A.PERIODO like '$periodo%'
+        GROUP BY A.FICHA,B.EMPLEADO
+        ";
+
+        $r = \DB::select($query_empleado);
+
+        foreach ($r as $item){
+
+            $c1 = '01';
+
+            if($item->DNI < 999999){
+                $c1 = '04';
+            }
+
+            $obj = new Obj();
+
+            $obj->C1 = $c1;
+            $obj->DNI = $item->DNI;
+            $obj->CODIGO = $item->CODIGO;
+            $obj->CANTIDAD = intval($item->CANTIDAD) ;
+
+            array_push($response,$obj);
+
+        }
+
+
+        return $response;
+
+
+    }
+
 
 }

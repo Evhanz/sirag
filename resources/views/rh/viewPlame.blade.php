@@ -70,6 +70,54 @@
                                                     <i class="fa fa-print fa-lg"></i> Exportar TXT </button>
                                             </div>
                                         </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4>PLAME REM SNL</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                            <div class="col-md-2">
+                                                <label for="">Año</label><br>
+                                                <select name="" id="anioSNL" class="form-control">
+                                                    <option value="">----------</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label for="">Mes</label><br>
+                                                <select name="" id="mesSNL" class="form-control">
+                                                    <option value="">----------</option>
+                                                    <option value="01">Enero</option>
+                                                    <option value="02">Febrero</option>
+                                                    <option value="03">Marzo</option>
+                                                    <option value="04">Abril</option>
+                                                    <option value="05">Mayo</option>
+                                                    <option value="06">Junio</option>
+                                                    <option value="07">Julio</option>
+                                                    <option value="08">Agosto</option>
+                                                    <option value="09">Septiembre</option>
+                                                    <option value="10">Octubre</option>
+                                                    <option value="11">Noviembre</option>
+                                                    <option value="12">Diciembre</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br>
+                                                <button href="" class="btn btn-default" ng-click="getDataSNL()" id="btnExportarSNL" >
+                                                    <i class="fa fa-print fa-lg"></i> Exportar TXT </button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <!-- Tab filtro documento -->
                                 </div>
@@ -198,6 +246,57 @@
 
                }      
             };
+
+            $scope.getDataSNL =  function ()
+            {
+
+                var token = $('#_token').val();
+                var anio  = $('#anioSNL').val();
+                var mes  = $('#mesSNL').val();
+
+                var periodo = anio+''+mes;
+
+
+                if (periodo.length == 6 ) {
+
+                    var ruta = '{{ URL::route('getPlameRemSNL') }}';
+
+                    $('#btnExportarSNL').attr("disabled", true);
+                    $scope.Documentos = [];
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                    var f_inicio = anio + '-' + mes + '-01';
+
+                    var f_fin = new Date(anio, mes , 0);
+                    f_fin = anio + '-' + mes + '-'+f_fin.getDate();
+
+
+                    $http.post(ruta,{_token : token,
+                        periodo:periodo,
+                        f_inicio:f_inicio,
+                        f_fin:f_fin
+                    })
+                            .success(function(data){
+                                $('#btnExportarSNL').attr("disabled", false);
+                                console.log(data);
+                                var url = data;
+                                window.location = url;
+
+                            }).error(function(data) {
+                        $('#btnExportarSNL').attr("disabled", false);
+                        console.log(data);
+                        $("#box_maestro").remove(".overlay");
+                        $("#box_maestro").remove(".loading-img");
+                    });
+
+                } else {
+
+                    alert("Se tiene que ingresar , Año y mes");
+
+                }
+            };
+
+
 
 
 
