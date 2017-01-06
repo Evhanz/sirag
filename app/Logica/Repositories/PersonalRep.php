@@ -1381,4 +1381,11 @@ class PersonalRep
     }
 
 
+    public function getPlameJOR(){
+
+
+
+    }
+
+
 }
