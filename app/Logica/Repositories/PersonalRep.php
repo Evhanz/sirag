@@ -569,7 +569,7 @@ class PersonalRep
         $query = "select FICHA, VALOR , MOVIMIENTO
                     FROM flexline.PER_DET_LIQ
                     WHERE EMPRESA='e01'
-                    and periodo='$periodo' --- FILTRAR POR PERIODO
+                    and periodo='$periodo' --- FILTRAR POR PERIODO '$periodo'
                     and MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     ORDER by FICHA";
 
