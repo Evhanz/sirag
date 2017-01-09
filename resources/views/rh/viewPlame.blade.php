@@ -277,7 +277,7 @@
                         })
                         .success(function(data){
                             $('#btnExportar').attr("disabled", false);
-                           //console.log(data);
+                           console.log(data);
                             var url = data;
                             window.location = url;
 

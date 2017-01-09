@@ -377,6 +377,7 @@ class RecursoshController extends Controller
 
         $res = $this->personalRep->getPlameRem($periodo);
 
+      //  return \Response::json($res);
 
         $text = '';
 

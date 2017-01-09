@@ -1157,6 +1157,8 @@ class PersonalRep
 
         $res = \DB::select($query);
 
+        HelpFunct::writeQuery($query);
+
         $res = collect($res);
         //primero agrupamos los resultados por DNI
         $res = $res->groupBy('DNI');
@@ -1178,6 +1180,7 @@ class PersonalRep
                 $val = collect($x);
                 $sum_monto_codigo = $val->sum('MONTO');
 
+                $row->DESCRIPCION = $x[0]->DESCRIPCION;
                 $row->FICHA = $x[0]->FICHA;
                 $row->DNI = $x[0]->DNI;
                 $row->CODIGO = $x[0]->CODIGO;
@@ -1186,8 +1189,38 @@ class PersonalRep
                 array_push($response, $row);
 
                 //number_format($t_movilidad_condicion,2,'.',',');
-
             }
+
+            //-----------------------------
+            $quinta = collect($item);
+
+            $quinta = $quinta->where('CODIGO','0605')->first();
+
+            $obj = new Obj();
+            $obj->DESCRIPCION = '5° CATEGORIA';
+            $obj->FICHA = $item[0]->FICHA;
+            $obj->DNI = $item[0]->DNI;
+            $obj->C1 = $item[0]->C1;
+
+            if( count($quinta) > 0){
+
+               // $obj->CODIGO = $quinta;
+                $obj->sum_monto_codigo = HelpFunct::fillZerosLeft(9,number_format($quinta->MONTO,2,'.',''))  ;
+                $obj->DESCRIPCION .= '_*';
+                $obj->CODIGO = $quinta->CODIGO;
+            }else{
+
+                //$obj->CODIGO = $item;
+                $obj->sum_monto_codigo = HelpFunct::fillZerosLeft(9,number_format(0.00,2,'.',''))  ;
+                $obj->CODIGO = '0605';
+            }
+
+            array_push($response, $obj);
+
+
+            //---------------------
+
+
 
             /*
             $obj->FICHA = $item[0]->FICHA;
