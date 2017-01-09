@@ -79,17 +79,18 @@ class HelpFunct
 
 
         return $string;
-        
+
     }
 
-    static public function orderArrayNumberAsc($arreglo){
+    static public function orderArrayNumberAsc($arreglo)
+    {
 
-        for ($i=0;$i<count($arreglo)-1;$i++){
-            for ($x=$i+1;$x<count($arreglo);$x++){
-                if ($arreglo[$i]>$arreglo[$x]){
+        for ($i = 0; $i < count($arreglo) - 1; $i++) {
+            for ($x = $i + 1; $x < count($arreglo); $x++) {
+                if ($arreglo[$i] > $arreglo[$x]) {
 
                     $aux = $arreglo[$i];
-                    $arreglo[$i]=$arreglo[$x];
+                    $arreglo[$i] = $arreglo[$x];
                     $arreglo[$x] = $aux;
                 }
             }
@@ -103,10 +104,10 @@ class HelpFunct
     {
         $response = array();
 
-        for ($i=0;$i<count($arreglo);$i++){
+        for ($i = 0; $i < count($arreglo); $i++) {
             $var = $arreglo[$i];
-            if(strlen("$var")==$len){
-                array_push($response,$var);
+            if (strlen("$var") == $len) {
+                array_push($response, $var);
             }
         }
 
@@ -125,17 +126,17 @@ class HelpFunct
      *
      */
 
-    static public function getPartValuesUniquesOfArray($inicio,$fin,$arreglo){
+    static public function getPartValuesUniquesOfArray($inicio, $fin, $arreglo)
+    {
 
         $reponse = array();
 
-        for ($i= 0;$i<count($arreglo);$i++)
-        {
+        for ($i = 0; $i < count($arreglo); $i++) {
             $val = $arreglo[$i];
-            $val = substr($val,$inicio,$fin);
+            $val = substr($val, $inicio, $fin);
 
-            if(!in_array($val,$reponse)){
-                array_push($reponse,$val);
+            if (!in_array($val, $reponse)) {
+                array_push($reponse, $val);
             }
         }
 
@@ -152,32 +153,33 @@ class HelpFunct
      * -----------------Requiere----------------
      * array $arreglo : donde estan los items
      */
-    static public function getItemsByFundoAndParron($arreglo){
+    static public function getItemsByFundoAndParron($arreglo)
+    {
 
         $response = array();
-        $codigos  = array();
+        $codigos = array();
 
         //primero separamos las campañas
-        $campañas = self::getPartValuesUniquesOfArray(0,2,$arreglo);
+        $campañas = self::getPartValuesUniquesOfArray(0, 2, $arreglo);
 
         //recorremos cada campaña para sacar sus códigos
-        for ($i=0;$i<count($campañas);$i++){
+        for ($i = 0; $i < count($campañas); $i++) {
 
             $val = new Obj();
             $codigos = [];
 
-            for($x = 0;$x<count($arreglo);$x++){
+            for ($x = 0; $x < count($arreglo); $x++) {
 
                 $a = $arreglo[$x];
 
-                if(substr($a,0,2)== $campañas[$i]){
-                    array_push($codigos,$arreglo[$x]);
+                if (substr($a, 0, 2) == $campañas[$i]) {
+                    array_push($codigos, $arreglo[$x]);
                 }
 
             }
             $val->campain = $campañas[$i];
             $val->codigos = $codigos;
-            array_push($response,$val);
+            array_push($response, $val);
         }
         return $response;
 
@@ -191,16 +193,43 @@ class HelpFunct
      * int $limit: de acuerdo al limite llenara de ceros
      * string $item: la cadena a modificar
      */
-    static public function fillZerosLeft($limit,$item){
+    static public function fillZerosLeft($limit, $item)
+    {
 
         $cant_zero = $limit - strlen($item);
         $zeros = '';
-        for($i=0;$i<$cant_zero;$i++){
+        for ($i = 0; $i < $cant_zero; $i++) {
             $zeros .= '0';
         }
 
-        $response = $zeros.$item;
+        $response = $zeros . $item;
         return $response;
+    }
+
+    /**
+     * la funcion necesita de un string que sera separado  por la bandera
+     * luego unido en la misma posicion
+     * */
+    static public function divideStringForBanderaAndUnite($string, $bandera)
+    {
+
+        $response = explode($bandera, $string);
+        $response = $response[0] . $response[1] . $response[2];
+
+        return $response;
+    }
+
+    /**
+     * la funcion necesita una query para escribirla en un txt
+     * */
+    static public function writeQuery($query)
+    {
+
+        $file = fopen(base_path()."/storage/logs/query_temp.txt", "w");
+        fputs($file,$query);
+        fclose($file);
+
+
     }
 
 }

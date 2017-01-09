@@ -1233,10 +1233,13 @@ class PersonalRep
         SELECT TRABAJADOR, COUNT( DISTINCT (CONVERT(DATE,FECHA,113))) DLABORADOS
         ,(SELECT dbo.DiasEnMes('$f_inicio')) dias       --aca entra la fecha de inicio
         ,(SELECT dbo.DiasLaboralesObligtoriosByMes('$f_fin',TRABAJADOR)) DIAS_NO_DEBE_TRABAJAR --aca entra la fecha_fin
-        ,CASE WHEN (SELECT dbo.DiasLaboralesObligtoriosByMes('$f_fin',TRABAJADOR)) < 0 --aca entra la fecha_fin
-            THEN  (SELECT dbo.DiasEnMes('$f_inicio')) --aca va f_inicio
-            ELSE ((SELECT dbo.DiasEnMes('$f_inicio')) - (SELECT dbo.DiasLaboralesObligtoriosByMes('$f_fin',TRABAJADOR))) --aca entra la fecha_fin
+        ,(SELECT dbo.diasLaboralesByContrato('$f_inicio','$f_fin',TRABAJADOR)) AS DIAS_OBLIGATORIO_TRABAJAR
+        /*
+        CASE WHEN (SELECT dbo.DiasLaboralesObligtoriosByMes('2016-12-31',TRABAJADOR)) < 0 --aca entra la fecha_fin
+            THEN  (SELECT dbo.DiasEnMes('2016-12-01')) --aca va f_inicio
+            ELSE ((SELECT dbo.DiasEnMes('2016-12-01')) - (SELECT dbo.DiasLaboralesObligtoriosByMes('2016-12-31',TRABAJADOR))) --aca entra la fecha_fin
         END  AS DIAS_OBLIGATORIO_TRABAJAR
+        */
         ,coalesce ( (SELECT SUM(valor) from flexline.PER_DET_LIQ
         where EMPRESA='e01'
         and periodo like '$periodo%' --se modifica por periodo
@@ -1254,7 +1257,6 @@ class PersonalRep
         GROUP BY TRABAJADOR
         HAVING COUNT( DISTINCT (CONVERT(DATE,FECHA,113))) <> (SELECT dbo.DiasEnMes('$f_inicio')) --colocar la fecha inicio
         ORDER BY TRABAJADOR";
-
 
 
         $res = \DB::select($query);
@@ -1381,7 +1383,97 @@ class PersonalRep
     }
 
 
-    public function getPlameJOR(){
+    public function getPlameJOR($data){
+
+        $f_inicio = $data['f_inicio'];
+        $f_fin = $data['f_fin'];
+        $periodo = $data['periodo'];
+        $fomat_f_inicio = HelpFunct::divideStringForBanderaAndUnite($f_inicio,'-');
+        $fomat_f_fin = HelpFunct::divideStringForBanderaAndUnite($f_fin,'-');
+
+        $query = "
+--Es para agrario
+SELECT TRABAJADOR,SUM(CANTIDAD) AS H_L_ORDINARIAS --- SUMA DE HORAS ORDINARIAS
+,coalesce ((
+SELECT SUM(CANTIDAD)H_L_EXTRAS 
+FROM flexline.PER_DETALLETRATO --- SUMA DE HORAR EXTRAS
+WHERE EMPRESA='E01'
+AND TRATO='TRATO_HORA'
+AND CODACTIVIDAD IN ('HORA-EXTRA-25%','HORA-EXTRA-35%','HORA-EXTRA-100%','HORA-FERIADO')
+AND CONVERT(DATE,FECHA,113) BETWEEN '$f_inicio' AND '$f_fin' --ACA VA LA FECHA INICIO Y EL FIN
+AND TRABAJADOR = D.TRABAJADOR),0) H_L_EXTRAS
+,(SELECT EMPLEADO 
+FROM flexline.PER_TRABAJADOR
+ WHERE EMPRESA='E01'
+ AND FICHA = D.TRABAJADOR
+) DNI
+FROM flexline.PER_DETALLETRATO D
+WHERE D.EMPRESA='E01'
+AND D.TRATO='TRATO_HORA'
+AND D.CODACTIVIDAD='HORA-NORMAL'
+AND CONVERT(DATE,D.FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'--ACA VA LA FECHA INICIO Y EL FIN
+GROUP BY D.TRABAJADOR
+
+UNION
+
+--ESTO ES PARA EMPLEADO
+select B.FICHA TRABAJADOR,
+((select COUNT(CODIGO) AS H_OBLIGATORIA
+from FLEXLINE.gen_tabcod 
+where empresa = 'E01' 
+and tipo = 'GEN_CALEND'
+AND VALOR1<>1 --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
+and codigo >= '$fomat_f_inicio' and codigo <= '$fomat_f_fin') -
+COALESCE(
+(select SUM(PD.VALOR) CANTIDAD_FALTAS 
+        from 
+        flexline.PER_DET_LIQ PD,
+        FLEXLINE.PER_TRABAJADOR PT
+        where 
+        PD.EMPRESA=PT.EMPRESA
+        AND PD.FICHA=PT.FICHA
+        AND PD.EMPRESA='e01'
+        AND PT.VIGENCIA='ACTIVO'
+        AND PT.CATEGORIA='EMPLEADO'
+        AND PD.PERIODO like '$periodo%' --aca va el periodo
+        AND PD.MOVIMIENTO IN ('20011','20012','119999')
+		AND PD.FICHA = B.FICHA
+),0)  )*8 H_L_ORDINARIAS
+,SUM(A.VALOR) H_L_EXTRAS --H EXTRAS
+,B.EMPLEADO DNI
+from 
+flexline.PER_DET_LIQ A,
+FLEXLINE.PER_TRABAJADOR B
+where 
+A.EMPRESA=B.EMPRESA
+AND A.FICHA=B.FICHA
+AND A.EMPRESA='e01'
+AND B.VIGENCIA='ACTIVO'
+AND B.CATEGORIA='EMPLEADO'
+AND A.PERIODO='$fomat_f_fin' --- SE COLOCA FORMATO YYYYMMDD / FECHA FINAL
+and a.MOVIMIENTO IN ('20101','20102','20103')
+GROUP BY B.FICHA,B.EMPLEADO
+";
+
+        $res = \DB::select($query);
+
+
+        foreach ($res as $item){
+
+
+            if($item->DNI < 999999){
+                $item->C1 = '04';
+            }else{
+                $item->C1 = '01';
+            }
+
+            $item->H_L_ORDINARIAS = intval($item->H_L_ORDINARIAS);
+            $item->H_L_EXTRAS = intval($item->H_L_EXTRAS);
+
+        }
+
+
+        return $res;
 
 
 

@@ -419,7 +419,6 @@ class RecursoshController extends Controller
 
         $res = $this->personalRep->getPlameSnl($data);
 
-
         $text = '';
 
         foreach ($res as $i){
@@ -447,6 +446,46 @@ class RecursoshController extends Controller
 
         return response()->download(base_path()."/storage/logs/plamesnl.txt", $name_txt.'.snl');
     }
+
+    public function getPlameJOR(){
+
+        $data = \Input::all();
+        /*
+        $data['periodo'] = '201612';
+        $data['f_inicio'] = '2016-12-01';
+        $data['f_fin'] = '2016-12-31';
+        */
+
+        $res = $this->personalRep->getPlameJOR($data);
+
+
+        $text = '';
+
+        foreach ($res as $i){
+
+            $row = $i->C1.'|'.$i->DNI.'|'.$i->H_L_ORDINARIAS.'|0|'.$i->H_L_EXTRAS.'|0|';
+            $text = $text.$row."\r\n";
+        }
+
+
+        $file = fopen(base_path()."/storage/logs/plameJOR.txt", "w");
+        fputs($file,$text);
+        fclose($file);
+
+
+        return \Response::json(\URL::route('getTxtPlameJOR',['periodo'=>$data['periodo']]));
+        //return \Response::json($res);
+
+    }
+
+    public function getTxtPlameJOR($periodo){
+
+
+        $name_txt = '0601'.$periodo.'20518803078';
+
+        return response()->download(base_path()."/storage/logs/plameJOR.txt", $name_txt.'.jor');
+    }
+
 
 
 
