@@ -1157,7 +1157,7 @@ class PersonalRep
 
         $res = \DB::select($query);
 
-        HelpFunct::writeQuery($query);
+
 
         $res = collect($res);
         //primero agrupamos los resultados por DNI
@@ -1448,7 +1448,6 @@ AND CONVERT(DATE,D.FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'--ACA VA LA FECHA 
 GROUP BY D.TRABAJADOR
 
 UNION
-
 --ESTO ES PARA EMPLEADO
 select B.FICHA TRABAJADOR,
 ((select COUNT(CODIGO) AS H_OBLIGATORIA
@@ -1469,24 +1468,26 @@ COALESCE(
         AND PT.VIGENCIA='ACTIVO'
         AND PT.CATEGORIA='EMPLEADO'
         AND PD.PERIODO like '$periodo%' --aca va el periodo
-        AND PD.MOVIMIENTO IN ('20011','20012','119999')
-		AND PD.FICHA = B.FICHA
+        AND PD.MOVIMIENTO IN ('20011','20012','119999')--datos fijos
+            AND PD.FICHA = B.FICHA
 ),0)  )*8 H_L_ORDINARIAS
-,SUM(A.VALOR) H_L_EXTRAS --H EXTRAS
+,COALESCE((select SUM(valor) from flexline.PER_DET_LIQ
+where EMPRESA=b.EMPRESA
+and FICHA=b.FICHA
+and MOVIMIENTO IN ('20101','20102','20103') 
+and periodo='$fomat_f_fin'),0) as H_L_EXTRAS --- SE DEBE COLOCAR FECHA FIN PERIODO
 ,B.EMPLEADO DNI
 from 
-flexline.PER_DET_LIQ A,
 FLEXLINE.PER_TRABAJADOR B
 where 
-A.EMPRESA=B.EMPRESA
-AND A.FICHA=B.FICHA
-AND A.EMPRESA='e01'
+b.EMPRESA='e01'
 AND B.VIGENCIA='ACTIVO'
 AND B.CATEGORIA='EMPLEADO'
-AND A.PERIODO='$fomat_f_fin' --- SE COLOCA FORMATO YYYYMMDD / FECHA FINAL
-and a.MOVIMIENTO IN ('20101','20102','20103')
-GROUP BY B.FICHA,B.EMPLEADO
+GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 ";
+
+
+        HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
