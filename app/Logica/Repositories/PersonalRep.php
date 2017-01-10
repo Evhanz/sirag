@@ -1527,7 +1527,6 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
         }
 
 
-        /*
         foreach ($res_empleado as $item){
 
             $obj = new Obj();
@@ -1548,8 +1547,6 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 
             array_push($response,$obj);
         }
-
-        */
 
 
         return $response;
