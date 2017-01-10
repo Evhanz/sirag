@@ -1485,13 +1485,13 @@ where
 B.EMPRESA=P.EMPRESA
 AND B.FICHA=P.FICHA
 AND b.EMPRESA='e01'
-AND P.PERIODO='$periodo' -- ACA VA EL PERIODO
+AND P.PERIODO='$fomat_f_fin' -- ACA COLOCAR F_FIN_FORMATEADA
 AND B.CATEGORIA='EMPLEADO'
 GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 ";
 
 
-        //HelpFunct::writeQuery($query);
+
 
         $response = [];
 
@@ -1501,7 +1501,7 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 
        // array_push($res,$res_empleado);
 
-        HelpFunct::writeQuery($query);
+       
         foreach ($res as $item){
 
             $obj = new Obj();
