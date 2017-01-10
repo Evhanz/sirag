@@ -1440,6 +1440,7 @@ FROM flexline.PER_DETALLETRATO D inner join
 flexline.PER_TRABAJADOR P ON D.EMPRESA = P.EMPRESA AND P.FICHA = D.TRABAJADOR
 WHERE D.EMPRESA='E01'
 AND D.TRATO='TRATO_HORA'
+AND P.CATEGORIA = 'OPERARIO'
 AND D.CODACTIVIDAD='HORA-NORMAL'
 AND CONVERT(DATE,D.FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'--ACA VA LA FECHA INICIO Y EL FIN
 GROUP BY D.TRABAJADOR,P.EMPLEADO
@@ -1500,7 +1501,7 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 
        // array_push($res,$res_empleado);
 
-
+        HelpFunct::writeQuery($query);
         foreach ($res as $item){
 
             $obj = new Obj();
