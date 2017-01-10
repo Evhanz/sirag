@@ -1447,7 +1447,11 @@ AND D.CODACTIVIDAD='HORA-NORMAL'
 AND CONVERT(DATE,D.FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'--ACA VA LA FECHA INICIO Y EL FIN
 GROUP BY D.TRABAJADOR
 
-UNION
+";
+
+
+
+        $query_empleado = " /* UNION */
 --ESTO ES PARA EMPLEADO
 select B.FICHA TRABAJADOR,
 ((select COUNT(CODIGO) AS H_OBLIGATORIA
@@ -1483,16 +1487,23 @@ where
 b.EMPRESA='e01'
 AND B.VIGENCIA='ACTIVO'
 AND B.CATEGORIA='EMPLEADO'
-GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
-";
+GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA";
 
 
-        HelpFunct::writeQuery($query);
+        //HelpFunct::writeQuery($query);
+
+        $response = [];
 
         $res = \DB::select($query);
 
+        $res_empleado = \DB::select($query_empleado);
+
+       // array_push($res,$res_empleado);
+
 
         foreach ($res as $item){
+
+            $obj = new Obj();
 
 
             if($item->DNI < 999999){
@@ -1501,13 +1512,45 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
                 $item->C1 = '01';
             }
 
+            /*
             $item->H_L_ORDINARIAS = intval($item->H_L_ORDINARIAS);
             $item->H_L_EXTRAS = intval($item->H_L_EXTRAS);
+            */
 
+            $obj->C1 = $item->C1;
+            $obj->DNI = $item->DNI;
+            $obj->H_L_ORDINARIAS = intval($item->H_L_ORDINARIAS);
+            $obj->H_L_EXTRAS = intval($item->H_L_EXTRAS);
+
+            array_push($response,$obj);
+        }
+
+        foreach ($res_empleado as $item){
+
+            $obj = new Obj();
+
+
+            if($item->DNI < 999999){
+                $item->C1 = '04';
+            }else{
+                $item->C1 = '01';
+            }
+
+            /*
+            $item->H_L_ORDINARIAS = intval($item->H_L_ORDINARIAS);
+            $item->H_L_EXTRAS = intval($item->H_L_EXTRAS);
+            */
+
+            $obj->C1 = $item->C1;
+            $obj->DNI = $item->DNI;
+            $obj->H_L_ORDINARIAS = intval($item->H_L_ORDINARIAS);
+            $obj->H_L_EXTRAS = intval($item->H_L_EXTRAS);
+
+            array_push($response,$obj);
         }
 
 
-        return $res;
+        return $response;
 
 
 
