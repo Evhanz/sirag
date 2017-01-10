@@ -1525,6 +1525,8 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
             array_push($response,$obj);
         }
 
+
+        /*
         foreach ($res_empleado as $item){
 
             $obj = new Obj();
@@ -1536,10 +1538,7 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
                 $item->C1 = '01';
             }
 
-            /*
-            $item->H_L_ORDINARIAS = intval($item->H_L_ORDINARIAS);
-            $item->H_L_EXTRAS = intval($item->H_L_EXTRAS);
-            */
+
 
             $obj->C1 = $item->C1;
             $obj->DNI = $item->DNI;
@@ -1548,6 +1547,8 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 
             array_push($response,$obj);
         }
+
+        */
 
 
         return $response;
