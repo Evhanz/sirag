@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/rh/pdf/liquidacionPdf.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -35,53 +39,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+      <file leaf-file-name="liquidacionPdf.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/liquidacionPdf.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="1503" column="7" selection-start-line="1503" selection-start-column="7" selection-end-line="1503" selection-end-column="7" />
+            <state relative-caret-position="345">
+              <caret line="306" column="5" selection-start-line="306" selection-start-column="5" selection-end-line="306" selection-end-column="5" />
               <folding>
-                <element signature="e#127#145#0#PHP" expanded="true" />
-                <marker date="1484068347682" expanded="true" signature="297:545" ph="SELECT EMPLE... PER_TRABAJADOR" />
-                <marker date="1484068347682" expanded="true" signature="4799:4853" ph="select * fro... v_allTrabajadores" />
-                <marker date="1484068347682" expanded="true" signature="4994:5351" ph="SELECT FICHA... PER_REM_HIS" />
-                <marker date="1484068347682" expanded="true" signature="5455:5507" ph="select * fro... renov_contract" />
-                <marker date="1484068347682" expanded="true" signature="6143:6359" ph="INSERT INTO renov_contract... " />
-                <marker date="1484068347682" expanded="true" signature="6497:6621" ph="UPDATE flexl... " />
-                <marker date="1484068347682" expanded="true" signature="6652:6773" ph="UPDATE flexl... " />
-                <marker date="1484068347682" expanded="true" signature="7183:7243" ph="DELETE FROM " />
-                <marker date="1484068347682" expanded="true" signature="7277:7401" ph="UPDATE flexl... " />
-                <marker date="1484068347682" expanded="true" signature="7432:7553" ph="UPDATE flexl... " />
-                <marker date="1484068347682" expanded="true" signature="7664:8011" ph="SELECT TIPO_... PER_VACACIONES" />
-                <marker date="1484068347682" expanded="true" signature="8459:8711" ph="SELECT FICHA... v_allTrabajadores" />
-                <marker date="1484068347682" expanded="true" signature="10138:10778" ph="SELECT Nombr... v_telecredito" />
-                <marker date="1484068347682" expanded="true" signature="10818:11466" ph="SELECT Nombr... v_telecreditoOperario" />
-                <marker date="1484068347682" expanded="true" signature="11830:11927" ph="select CARGO... v_telecredito" />
-                <marker date="1484068347682" expanded="true" signature="12083:12187" ph="SELECT CODIG... PER_DEPARTAMENTO" />
-                <marker date="1484068347682" expanded="true" signature="12486:12817" ph="select FICHA... PER_DET_LIQ" />
-                <marker date="1484068347682" expanded="true" signature="13123:13234" ph="SELECT TOP 1... v_allTrabajadores" />
-                <marker date="1484068347682" expanded="true" signature="16459:16994" ph="select FICHA... PER_DET_LIQ" />
-                <marker date="1484068347682" expanded="true" signature="17340:17451" ph="SELECT TOP 1... v_allTrabajadores" />
-                <marker date="1484068347682" expanded="true" signature="34900:35984" ph="SELECT FICHA... PER_DET_LIQ" />
-                <marker date="1484068347682" expanded="true" signature="34974:35298" ph="SELECT top 1... GEN_TABCOD" />
-                <marker date="1484068347682" expanded="true" signature="35326:35422" ph="SELECT EMPLE... PER_TRABAJADOR" />
-                <marker date="1484068347682" expanded="true" signature="35434:35631" ph="select CASE " />
-                <marker date="1484068347682" expanded="true" signature="35479:35579" ph="SELECT EMPLE... PER_TRABAJADOR" />
-                <marker date="1484068347682" expanded="true" signature="41682:42121" ph="select A.FIC... PER_DET_LIQ" />
-                <marker date="1484068347682" expanded="true" signature="41682:43043" ph="select A.FIC... " />
-                <marker date="1484068347682" expanded="true" signature="42144:42583" ph="select A.FIC... PER_DET_LIQ" />
-                <marker date="1484068347682" expanded="true" signature="42606:43043" ph="select A.FIC... PER_DET_LIQ" />
+                <element signature="e#1640#1646#0#HTML" expanded="true" />
+                <element signature="e#1784#1790#0#HTML" expanded="true" />
+                <element signature="e#1929#1935#0#HTML" expanded="true" />
+                <element signature="e#2803#2809#0#HTML" expanded="true" />
+                <element signature="e#2809#2815#0#HTML" expanded="true" />
+                <element signature="e#2815#2821#0#HTML" expanded="true" />
+                <element signature="e#3107#3113#1#HTML" expanded="true" />
+                <element signature="e#3420#3426#1#HTML" expanded="true" />
+                <element signature="e#3722#3728#1#HTML" expanded="true" />
+                <element signature="e#4471#4477#1#HTML" expanded="true" />
+                <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewPlame.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlame.blade.php">
+      <file leaf-file-name="RecursoshController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="281" column="28" selection-start-line="281" selection-start-column="28" selection-end-line="281" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="304">
+              <caret line="456" column="38" selection-start-line="456" selection-start-column="38" selection-end-line="456" selection-end-column="38" />
+              <folding>
+                <element signature="e#11321#11519#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recursos_humanos.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="38" />
+              <folding>
+                <element signature="e#3138#3626#1#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -117,7 +116,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/CheckRole.php" />
         <option value="$PROJECT_DIR$/public/js/plugins/login/js/index.js" />
@@ -162,12 +160,13 @@
         <option value="$PROJECT_DIR$/resources/views/cc/excelConsumoByFundoAndParron.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewPlanilla.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
         <option value="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
         <option value="$PROJECT_DIR$/storage/logs/query_temp.txt" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewPlame.blade.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+        <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/pdf/liquidacionPdf.blade.php" />
       </list>
     </option>
   </component>
@@ -212,6 +211,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests" />
+      </pane>
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -300,6 +311,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rh" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rh" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pdf" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -479,18 +516,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests" />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -647,7 +672,8 @@
       <workItem from="1483711922321" duration="16458000" />
       <workItem from="1483972128914" duration="2626000" />
       <workItem from="1483982408551" duration="8971000" />
-      <workItem from="1484059069704" duration="7572000" />
+      <workItem from="1484059069704" duration="13463000" />
+      <workItem from="1484144300807" duration="23520000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -996,13 +1022,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="759160000" />
+    <option name="totallyTimeSpent" value="788571000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27609682" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2806354" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32766616" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1067,14 +1093,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/main.js" />
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPersonal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2930">
-          <caret line="181" column="50" selection-start-line="181" selection-start-column="50" selection-end-line="181" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/cc/viewBalanceGeneral.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-159">
@@ -1380,16 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="42" column="68" selection-start-line="42" selection-start-column="68" selection-end-line="42" selection-end-column="68" />
-          <folding>
-            <element signature="e#3002#3490#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdministracionUserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -1402,25 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="468" column="9" selection-start-line="468" selection-start-column="9" selection-end-line="468" selection-end-column="9" />
-          <folding>
-            <element signature="e#11321#11519#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlame.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="281" column="28" selection-start-line="281" selection-start-column="28" selection-end-line="281" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1434,39 +1423,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="1503" column="7" selection-start-line="1503" selection-start-column="7" selection-end-line="1503" selection-end-column="7" />
+        <state relative-caret-position="262">
+          <caret line="1490" column="2" selection-start-line="1490" selection-start-column="2" selection-end-line="1490" selection-end-column="2" />
           <folding>
-            <element signature="e#127#145#0#PHP" expanded="true" />
-            <marker date="1484068347682" expanded="true" signature="297:545" ph="SELECT EMPLE... PER_TRABAJADOR" />
-            <marker date="1484068347682" expanded="true" signature="4799:4853" ph="select * fro... v_allTrabajadores" />
-            <marker date="1484068347682" expanded="true" signature="4994:5351" ph="SELECT FICHA... PER_REM_HIS" />
-            <marker date="1484068347682" expanded="true" signature="5455:5507" ph="select * fro... renov_contract" />
-            <marker date="1484068347682" expanded="true" signature="6143:6359" ph="INSERT INTO renov_contract... " />
-            <marker date="1484068347682" expanded="true" signature="6497:6621" ph="UPDATE flexl... " />
-            <marker date="1484068347682" expanded="true" signature="6652:6773" ph="UPDATE flexl... " />
-            <marker date="1484068347682" expanded="true" signature="7183:7243" ph="DELETE FROM " />
-            <marker date="1484068347682" expanded="true" signature="7277:7401" ph="UPDATE flexl... " />
-            <marker date="1484068347682" expanded="true" signature="7432:7553" ph="UPDATE flexl... " />
-            <marker date="1484068347682" expanded="true" signature="7664:8011" ph="SELECT TIPO_... PER_VACACIONES" />
-            <marker date="1484068347682" expanded="true" signature="8459:8711" ph="SELECT FICHA... v_allTrabajadores" />
-            <marker date="1484068347682" expanded="true" signature="10138:10778" ph="SELECT Nombr... v_telecredito" />
-            <marker date="1484068347682" expanded="true" signature="10818:11466" ph="SELECT Nombr... v_telecreditoOperario" />
-            <marker date="1484068347682" expanded="true" signature="11830:11927" ph="select CARGO... v_telecredito" />
-            <marker date="1484068347682" expanded="true" signature="12083:12187" ph="SELECT CODIG... PER_DEPARTAMENTO" />
-            <marker date="1484068347682" expanded="true" signature="12486:12817" ph="select FICHA... PER_DET_LIQ" />
-            <marker date="1484068347682" expanded="true" signature="13123:13234" ph="SELECT TOP 1... v_allTrabajadores" />
-            <marker date="1484068347682" expanded="true" signature="16459:16994" ph="select FICHA... PER_DET_LIQ" />
-            <marker date="1484068347682" expanded="true" signature="17340:17451" ph="SELECT TOP 1... v_allTrabajadores" />
-            <marker date="1484068347682" expanded="true" signature="34900:35984" ph="SELECT FICHA... PER_DET_LIQ" />
-            <marker date="1484068347682" expanded="true" signature="34974:35298" ph="SELECT top 1... GEN_TABCOD" />
-            <marker date="1484068347682" expanded="true" signature="35326:35422" ph="SELECT EMPLE... PER_TRABAJADOR" />
-            <marker date="1484068347682" expanded="true" signature="35434:35631" ph="select CASE " />
-            <marker date="1484068347682" expanded="true" signature="35479:35579" ph="SELECT EMPLE... PER_TRABAJADOR" />
-            <marker date="1484068347682" expanded="true" signature="41682:42121" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1484068347682" expanded="true" signature="41682:43043" ph="select A.FIC... " />
-            <marker date="1484068347682" expanded="true" signature="42144:42583" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1484068347682" expanded="true" signature="42606:43043" ph="select A.FIC... PER_DET_LIQ" />
+            <element signature="e#127#145#0#PHP" expanded="false" />
+            <marker date="1484068918372" expanded="true" signature="297:545" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1484068918372" expanded="true" signature="4799:4853" ph="select * fro... v_allTrabajadores" />
+            <marker date="1484068918372" expanded="true" signature="4994:5351" ph="SELECT FICHA... PER_REM_HIS" />
+            <marker date="1484068918372" expanded="true" signature="5455:5507" ph="select * fro... renov_contract" />
+            <marker date="1484068918372" expanded="true" signature="6143:6359" ph="INSERT INTO renov_contract... " />
+            <marker date="1484068918372" expanded="true" signature="6497:6621" ph="UPDATE flexl... " />
+            <marker date="1484068918372" expanded="true" signature="6652:6773" ph="UPDATE flexl... " />
+            <marker date="1484068918372" expanded="true" signature="7183:7243" ph="DELETE FROM " />
+            <marker date="1484068918372" expanded="true" signature="7277:7401" ph="UPDATE flexl... " />
+            <marker date="1484068918372" expanded="true" signature="7432:7553" ph="UPDATE flexl... " />
+            <marker date="1484068918372" expanded="true" signature="7664:8011" ph="SELECT TIPO_... PER_VACACIONES" />
+            <marker date="1484068918372" expanded="true" signature="8459:8711" ph="SELECT FICHA... v_allTrabajadores" />
+            <marker date="1484068918372" expanded="true" signature="10138:10778" ph="SELECT Nombr... v_telecredito" />
+            <marker date="1484068918372" expanded="true" signature="10818:11466" ph="SELECT Nombr... v_telecreditoOperario" />
+            <marker date="1484068918372" expanded="true" signature="11830:11927" ph="select CARGO... v_telecredito" />
+            <marker date="1484068918372" expanded="true" signature="12083:12187" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+            <marker date="1484068918372" expanded="true" signature="12486:12817" ph="select FICHA... PER_DET_LIQ" />
+            <marker date="1484068918372" expanded="true" signature="13123:13234" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1484068918372" expanded="true" signature="16459:16994" ph="select FICHA... PER_DET_LIQ" />
+            <marker date="1484068918372" expanded="true" signature="17340:17451" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1484068918372" expanded="true" signature="34900:35984" ph="SELECT FICHA... PER_DET_LIQ" />
+            <marker date="1484068918372" expanded="true" signature="34974:35298" ph="SELECT top 1... GEN_TABCOD" />
+            <marker date="1484068918372" expanded="true" signature="35326:35422" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1484068918372" expanded="true" signature="35434:35631" ph="select CASE " />
+            <marker date="1484068918372" expanded="true" signature="35479:35579" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1484068918372" expanded="true" signature="41682:42121" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1484068918372" expanded="true" signature="41682:43043" ph="select A.FIC... " />
+            <marker date="1484068918372" expanded="true" signature="42144:42583" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1484068918372" expanded="true" signature="42606:43043" ph="select A.FIC... PER_DET_LIQ" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewPlame.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/tables.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="217" column="16" selection-start-line="217" selection-start-column="16" selection-end-line="217" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="38" />
+          <folding>
+            <element signature="e#3138#3626#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/liquidacionPdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="306" column="5" selection-start-line="306" selection-start-column="5" selection-end-line="306" selection-end-column="5" />
+          <folding>
+            <element signature="e#1640#1646#0#HTML" expanded="true" />
+            <element signature="e#1784#1790#0#HTML" expanded="true" />
+            <element signature="e#1929#1935#0#HTML" expanded="true" />
+            <element signature="e#2803#2809#0#HTML" expanded="true" />
+            <element signature="e#2809#2815#0#HTML" expanded="true" />
+            <element signature="e#2815#2821#0#HTML" expanded="true" />
+            <element signature="e#3107#3113#1#HTML" expanded="true" />
+            <element signature="e#3420#3426#1#HTML" expanded="true" />
+            <element signature="e#3722#3728#1#HTML" expanded="true" />
+            <element signature="e#4471#4477#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="456" column="38" selection-start-line="456" selection-start-column="38" selection-end-line="456" selection-end-column="38" />
+          <folding>
+            <element signature="e#11321#11519#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

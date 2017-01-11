@@ -615,4 +615,18 @@ class RecursoshController extends Controller
 
     }
 
+    public function getLiquidacion(){
+
+
+
+        $view =  \View::make('rh.pdf.liquidacionPdf')->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('invoice');
+
+
+       //return view('rh.pdf.liquidacionPdf');
+
+    }
+
 }

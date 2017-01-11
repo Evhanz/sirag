@@ -1501,7 +1501,7 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 
        // array_push($res,$res_empleado);
 
-       
+
         foreach ($res as $item){
 
             $obj = new Obj();

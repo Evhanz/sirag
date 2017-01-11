@@ -44,6 +44,9 @@ Route::get('archivo/getTxtPlameSNL/{periodo}',['as'=>'getTxtPlameSNL','uses'=>'R
 Route::get('archivo/getTxtPlameJOR/{periodo}',['as'=>'getTxtPlameJOR','uses'=>'RecursoshController@getTxtPlameJOR']);
 
 
+//esto es para los pdf
+Route::get('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
+
 
 //solo pruebas
 Route::get('pruebas',function (){
