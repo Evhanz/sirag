@@ -1456,7 +1456,7 @@ select B.FICHA TRABAJADOR,
 from FLEXLINE.gen_tabcod 
 where empresa = 'E01' 
 and tipo = 'GEN_CALEND'
-AND VALOR1<>1 --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
+AND VALOR3 is null --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
 and codigo >= '$fomat_f_inicio' and codigo <= '$fomat_f_fin') -
 COALESCE(
 (select SUM(PD.VALOR) CANTIDAD_FALTAS 
