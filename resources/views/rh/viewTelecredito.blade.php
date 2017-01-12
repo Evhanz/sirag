@@ -27,7 +27,7 @@
                                                     <label for="" >Año</label><br>
                                                     <select name="filAnio" class="form-control" id="filAnio" required>
                                                         <option value="">--------</option>
-                                                        <option value="2016">2017</option>
+                                                        <option value="2017">2017</option>
                                                         <option value="2016">2016</option>
                                                         <option value="2015">2015</option>
                                                         <option value="2014">2014</option>
@@ -37,15 +37,15 @@
                                                     <label for="" >Mes</label><br>
                                                     <select name="filMes" class="form-control" id="filMes" required>
                                                         <option value="">--------</option>
-                                                        <option value="1">Enero</option>
-                                                        <option value="2">Febrero</option>
-                                                        <option value="3">Marzo</option>
-                                                        <option value="4">Abril</option>
-                                                        <option value="5">Mayo</option>
-                                                        <option value="6">Junio</option>
-                                                        <option value="7">Julio</option>
-                                                        <option value="8">Agosto</option>
-                                                        <option value="9">Septiembre</option>
+                                                        <option value="01">Enero</option>
+                                                        <option value="02">Febrero</option>
+                                                        <option value="03">Marzo</option>
+                                                        <option value="04">Abril</option>
+                                                        <option value="05">Mayo</option>
+                                                        <option value="06">Junio</option>
+                                                        <option value="07">Julio</option>
+                                                        <option value="08">Agosto</option>
+                                                        <option value="09">Septiembre</option>
                                                         <option value="10">Octubre</option>
                                                         <option value="11">Noviembre</option>
                                                         <option value="12">Diciembre</option>
@@ -55,15 +55,15 @@
                                                     <label for="" >Día</label><br>
                                                     <select  name="filDia" class="form-control" id="filDia" required>
                                                         <option value="">--------</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
+                                                        <option value="01">1</option>
+                                                        <option value="02">2</option>
+                                                        <option value="03">3</option>
+                                                        <option value="04">4</option>
+                                                        <option value="05">5</option>
+                                                        <option value="06">6</option>
+                                                        <option value="07">7</option>
+                                                        <option value="08">8</option>
+                                                        <option value="09">9</option>
                                                         <option value="10">10</option>
                                                         <option value="11">11</option>
                                                         <option value="12">12</option>

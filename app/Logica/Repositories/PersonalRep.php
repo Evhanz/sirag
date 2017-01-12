@@ -383,7 +383,8 @@ class PersonalRep
             $i++;
         }
 
-
+        $obj = new Obj();
+        $obj->query = $query;
         return $telecredito;
 
     }
@@ -1425,72 +1426,70 @@ class PersonalRep
         $fomat_f_fin = HelpFunct::divideStringForBanderaAndUnite($f_fin,'-');
 
         $query = "
---Es para agrario
-SELECT TRABAJADOR,SUM(CANTIDAD) AS H_L_ORDINARIAS --- SUMA DE HORAS ORDINARIAS
-,coalesce ((
-SELECT SUM(CANTIDAD)H_L_EXTRAS 
-FROM flexline.PER_DETALLETRATO --- SUMA DE HORAR EXTRAS
-WHERE EMPRESA='E01'
-AND TRATO='TRATO_HORA'
-AND CODACTIVIDAD IN ('HORA-EXTRA-25%','HORA-EXTRA-35%','HORA-EXTRA-100%','HORA-FERIADO')
-AND CONVERT(DATE,FECHA,113) BETWEEN '$f_inicio' AND '$f_fin' --ACA VA LA FECHA INICIO Y EL FIN
-AND TRABAJADOR = D.TRABAJADOR),0) H_L_EXTRAS
-,P.EMPLEADO DNI
-FROM flexline.PER_DETALLETRATO D inner join 
-flexline.PER_TRABAJADOR P ON D.EMPRESA = P.EMPRESA AND P.FICHA = D.TRABAJADOR
-WHERE D.EMPRESA='E01'
-AND D.TRATO='TRATO_HORA'
-AND P.CATEGORIA = 'OPERARIO'
-AND D.CODACTIVIDAD='HORA-NORMAL'
-AND CONVERT(DATE,D.FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'--ACA VA LA FECHA INICIO Y EL FIN
-GROUP BY D.TRABAJADOR,P.EMPLEADO
-
-";
+        --Es para agrario
+        SELECT TRABAJADOR,SUM(CANTIDAD) AS H_L_ORDINARIAS --- SUMA DE HORAS ORDINARIAS
+        ,coalesce ((
+        SELECT SUM(CANTIDAD)H_L_EXTRAS 
+        FROM flexline.PER_DETALLETRATO --- SUMA DE HORAR EXTRAS
+        WHERE EMPRESA='E01'
+        AND TRATO='TRATO_HORA'
+        AND CODACTIVIDAD IN ('HORA-EXTRA-25%','HORA-EXTRA-35%','HORA-EXTRA-100%','HORA-FERIADO')
+        AND CONVERT(DATE,FECHA,113) BETWEEN '$f_inicio' AND '$f_fin' --ACA VA LA FECHA INICIO Y EL FIN
+        AND TRABAJADOR = D.TRABAJADOR),0) H_L_EXTRAS
+        ,P.EMPLEADO DNI
+        FROM flexline.PER_DETALLETRATO D inner join 
+        flexline.PER_TRABAJADOR P ON D.EMPRESA = P.EMPRESA AND P.FICHA = D.TRABAJADOR
+        WHERE D.EMPRESA='E01'
+        AND D.TRATO='TRATO_HORA'
+        AND P.CATEGORIA = 'OPERARIO'
+        AND D.CODACTIVIDAD='HORA-NORMAL'
+        AND CONVERT(DATE,D.FECHA,113) BETWEEN '$f_inicio' AND '$f_fin'--ACA VA LA FECHA INICIO Y EL FIN
+        GROUP BY D.TRABAJADOR,P.EMPLEADO
+        
+        ";
 
 
 
         $query_empleado = " /* UNION */
---ESTO ES PARA EMPLEADO
-select B.FICHA TRABAJADOR,
-((select COUNT(CODIGO) AS H_OBLIGATORIA
-from FLEXLINE.gen_tabcod 
-where empresa = 'E01' 
-and tipo = 'GEN_CALEND'
-AND VALOR1<>1 --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
-and codigo >= '$fomat_f_inicio' and codigo <= '$fomat_f_fin') -
-COALESCE(
-(select SUM(PD.VALOR) CANTIDAD_FALTAS 
-        from 
-        flexline.PER_DET_LIQ PD,
-        FLEXLINE.PER_TRABAJADOR PT
-        where 
-        PD.EMPRESA=PT.EMPRESA
-        AND PD.FICHA=PT.FICHA
-        AND PD.EMPRESA='e01'
-        AND PT.CATEGORIA='EMPLEADO'
-        AND PD.PERIODO like '$periodo%' --aca va el periodo
-        AND PD.MOVIMIENTO IN ('20011','20012','119999')
-            AND PD.FICHA = B.FICHA
-),0)  )*8 H_L_ORDINARIAS
-,COALESCE((select SUM(valor) from flexline.PER_DET_LIQ
-where EMPRESA=b.EMPRESA
-and FICHA=b.FICHA
-and MOVIMIENTO IN ('20101','20102','20103') 
-and periodo='$periodo'),0) as H_L_EXTRAS --- SE DEBE COLOCAR EL PERIODO
-,B.EMPLEADO DNI
-from
-FLEXLINE.PER_DET_LIQ P,
-FLEXLINE.PER_TRABAJADOR B
-where
-B.EMPRESA=P.EMPRESA
-AND B.FICHA=P.FICHA
-AND b.EMPRESA='e01'
-AND P.PERIODO='$fomat_f_fin' -- ACA COLOCAR F_FIN_FORMATEADA
-AND B.CATEGORIA='EMPLEADO'
-GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
-";
-
-
+        --ESTO ES PARA EMPLEADO
+        select B.FICHA TRABAJADOR,
+        ((select COUNT(CODIGO) AS H_OBLIGATORIA
+        from FLEXLINE.gen_tabcod 
+        where empresa = 'E01' 
+        and tipo = 'GEN_CALEND'
+        AND VALOR1<>1 --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
+        and codigo >= '$fomat_f_inicio' and codigo <= '$fomat_f_fin') -
+        COALESCE(
+        (select SUM(PD.VALOR) CANTIDAD_FALTAS 
+                from 
+                flexline.PER_DET_LIQ PD,
+                FLEXLINE.PER_TRABAJADOR PT
+                where 
+                PD.EMPRESA=PT.EMPRESA
+                AND PD.FICHA=PT.FICHA
+                AND PD.EMPRESA='e01'
+                AND PT.CATEGORIA='EMPLEADO'
+                AND PD.PERIODO like '$periodo%' --aca va el periodo
+                AND PD.MOVIMIENTO IN ('20011','20012','119999')
+                    AND PD.FICHA = B.FICHA
+        ),0)  )*8 H_L_ORDINARIAS
+        ,COALESCE((select SUM(valor) from flexline.PER_DET_LIQ
+        where EMPRESA=b.EMPRESA
+        and FICHA=b.FICHA
+        and MOVIMIENTO IN ('20101','20102','20103') 
+        and periodo='$periodo'),0) as H_L_EXTRAS --- SE DEBE COLOCAR EL PERIODO
+        ,B.EMPLEADO DNI
+        from
+        FLEXLINE.PER_DET_LIQ P,
+        FLEXLINE.PER_TRABAJADOR B
+        where
+        B.EMPRESA=P.EMPRESA
+        AND B.FICHA=P.FICHA
+        AND b.EMPRESA='e01'
+        AND P.PERIODO='$fomat_f_fin' -- ACA COLOCAR F_FIN_FORMATEADA
+        AND B.CATEGORIA='EMPLEADO'
+        GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
+        ";
 
 
         $response = [];
@@ -1554,6 +1553,66 @@ GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
 
 
     }
+
+
+    public function getDetailLiquidacion($data){
+
+        $periodo = '20170104';
+        $inicio_periodo = '20170101';
+
+        $query = "select 
+        (E.APELLIDO_PATERNO+' '+E.APELLIDO_MATERNO+', '+E.NOMBRE) NOMBRE,
+        E.FECHA_INICIO,
+        E.FECHA_TERMINO,
+        A.FICHA,
+        A.VALOR AS VT,
+        B.VALOR AS AFP,
+        D.VALOR AS FLUJO_MIXTO,
+        ROUND(CASE WHEN B.VALOR='ONP' THEN A.VALOR*0.13 ELSE A.VALOR*0.10 END,2) AS FONDO,
+        ROUND(CASE WHEN B.VALOR='ONP' THEN 0 ELSE(C.valor3/100)*A.VALOR END,2) AS SEGURO_AFP,
+        ROUND(CASE WHEN D.VALOR='FLUJO' THEN (C.valor1/100)*A.VALOR ELSE 0 END,2) AS CO_FLUJO,
+        ROUND(CASE WHEN D.VALOR='MIXTA' THEN (C.valor2/100)*A.VALOR ELSE 0 END,2) AS CO_MIXTO
+        FROM
+        flexline.PER_DET_LIQ A,
+        flexline.PER_ATRIB_TRAB B,
+        DBO.GEN_TABLA C,
+        flexline.PER_ATRIB_TRAB D,
+        flexline.PER_TRABAJADOR E
+        WHERE
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND B.EMPRESA=C.empresa
+        AND B.VALOR=C.codigo2
+        AND A.EMPRESA=D.EMPRESA
+        AND A.FICHA=D.FICHA
+        AND A.FICHA = E.FICHA
+        AND A.EMPRESA = E.EMPRESA
+        AND A.EMPRESA='E01'
+        AND A.MOVIMIENTO='10025'
+        AND B.ATRIBUTO='AFP'
+        AND D.ATRIBUTO='TIPCOMAFP'
+        AND A.PERIODO='$periodo' -- ACA VA EL PERIODO
+        ORDER BY A.FICHA
+        ";
+
+
+
+        $res = \DB::select($query);
+
+        foreach ($res as $item)
+        {
+            $item->FECHA_INICIO = HelpFunct::transformStringToDate($item->FECHA_INICIO,'103');
+            $item->FECHA_TERMINO = HelpFunct::transformStringToDate($item->FECHA_TERMINO,'103');
+        }
+
+
+        return $res;
+
+
+    }
+
+
+
 
 
 }

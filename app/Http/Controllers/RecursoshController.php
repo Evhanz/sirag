@@ -488,6 +488,19 @@ class RecursoshController extends Controller
     }
 
 
+    public function getDetailLiquidacion(){
+
+
+        $data  = \Input::all();
+
+        $res = $this->personalRep->getDetailLiquidacion($data);
+
+        return \Response::json($res);
+
+
+    }
+
+
 
 
 

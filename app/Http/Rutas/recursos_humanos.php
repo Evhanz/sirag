@@ -31,6 +31,7 @@ Route::get('rh/api/getCostoMOPorFundo',['as'=>'getCostoMOPorFundo','uses'=>'Recu
 Route::post('rh/api/getPlameRem',['as'=>'getPlameRem','uses'=>'RecursoshController@getPlameRem']);
 Route::post('rh/api/getPlameRemSNL',['as'=>'getPlameRemSNL','uses'=>'RecursoshController@getPlameRemSNL']);
 Route::post('rh/api/getPlameJOR',['as'=>'getPlameJOR','uses'=>'RecursoshController@getPlameJOR']);
+Route::get('rh/api/getDetailLiquidacion',['as'=>'getDetailLiquidacion','uses'=>'RecursoshController@getDetailLiquidacion']);
 
 
 
