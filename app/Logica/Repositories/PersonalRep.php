@@ -1447,17 +1447,15 @@ class PersonalRep
         GROUP BY D.TRABAJADOR,P.EMPLEADO
         
         ";
-
-
-
+        
         $query_empleado = " /* UNION */
-        --ESTO ES PARA EMPLEADO
+        ESTO ES PARA EMPLEADO
         select B.FICHA TRABAJADOR,
         ((select COUNT(CODIGO) AS H_OBLIGATORIA
         from FLEXLINE.gen_tabcod 
         where empresa = 'E01' 
         and tipo = 'GEN_CALEND'
-        AND VALOR1<>1 --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
+        AND VALOR3 is null --aca acontinuacion en el codigo se coloca la f_inicio y fecha fin en formato yyyymmdd
         and codigo >= '$fomat_f_inicio' and codigo <= '$fomat_f_fin') -
         COALESCE(
         (select SUM(PD.VALOR) CANTIDAD_FALTAS 
@@ -1489,7 +1487,9 @@ class PersonalRep
         AND P.PERIODO='$fomat_f_fin' -- ACA COLOCAR F_FIN_FORMATEADA
         AND B.CATEGORIA='EMPLEADO'
         GROUP BY B.FICHA,B.EMPLEADO,B.EMPRESA
+
         ";
+
 
 
         $response = [];
