@@ -663,8 +663,6 @@ class RecursoshController extends Controller
         // return $pdf->stream('invoice');
         return $pdf->stream('comprobante_egreso');
 
-
-
         //return view('rh.pdf.comprobanteEgresoPdf');
 
     }
