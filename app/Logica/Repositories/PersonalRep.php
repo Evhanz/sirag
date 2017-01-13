@@ -1689,7 +1689,12 @@ class PersonalRep
 
             $item->neto = $item->VT -  $item->deducciones;
 
-            $item->monto = NumberToLetter::convert( round($item->neto,2));
+            if($item->neto > 0){
+                $item->monto =NumberToLetter::convert( round($item->neto,2));
+            }else{
+                $item->monto = 'CERO';
+            }
+
 
         }
 
