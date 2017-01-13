@@ -108,25 +108,25 @@
                 <td><strong>Valor</strong></td>
             </tr>
             <tr>
-                <td>CTS LEY 27360 </td>
-                <td class="valor">36.00</td>
-            </tr>
-            <tr>
                 <td>REMUNERACION BASICA (TC) </td>
-                <td class="valor">850.00</td>
+                <td class="valor">{{ $item->SUELDO  }}</td>
             </tr>
             <tr>
                 <td>ASIGNACION FAMILIAR (TC)</td>
-                <td class="valor">0.00</td>
+                <td class="valor">{{ $item->ASIG_FAMILIAR  }}</td>
             </tr>
             <tr>
                 <td>GRATIFICACION LEY 27360 </td>
-                <td class="valor">109.00</td>
+                <td class="valor">{{ $item->GRATI_LEY_27360  }}</td>
+            </tr>
+            <tr>
+                <td>CTS LEY 27360 </td>
+                <td class="valor">{{ $item->CTS_LEY_27360  }}</td>
             </tr>
 
             <tr>
                 <td><strong>TOTAL, REMUNERCION COMPUTABLE</strong> &nbsp;&nbsp;&nbsp; </td>
-                <td class="sub_total"><strong>995.00</strong></td>
+                <td class="sub_total"><strong>{{ $item->total_remune  }}</strong></td>
             </tr>
 
         </table>

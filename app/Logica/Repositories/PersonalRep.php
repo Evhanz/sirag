@@ -1587,13 +1587,18 @@ class PersonalRep
         AND TIPO_TRANS = 'APROBACION'
         AND ESTADO = 'A'),0 )VACACIONES_GOZADAS,
         DATEDIFF(DAY,CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_INICIO),103),
-        CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_TERMINO),103)) DIAS_CONTRATO
+        CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_TERMINO),103)) DIAS_CONTRATO,
+        E.REMUNERACION AS SUELDO,
+        ROUND((E.REMUNERACION * 0.042635),2) AS CTS_LEY_27360,
+        ROUND((E.REMUNERACION * 0.127905),2) AS GRATI_LEY_27360,
+        ROUND(CASE WHEN F.VALOR='CONASIGFAM' THEN '85.00' ELSE '0.00' END,2) AS ASIG_FAMILIAR
         FROM
         flexline.PER_DET_LIQ A,
         flexline.PER_ATRIB_TRAB B,
         DBO.GEN_TABLA C,
         flexline.PER_ATRIB_TRAB D,
-        flexline.PER_TRABAJADOR E
+        flexline.PER_TRABAJADOR E,
+        flexline.PER_ATRIB_TRAB F
         WHERE
         A.EMPRESA=B.EMPRESA
         AND A.FICHA=B.FICHA
@@ -1603,10 +1608,13 @@ class PersonalRep
         AND A.FICHA=D.FICHA
         AND A.FICHA = E.FICHA
         AND A.EMPRESA = E.EMPRESA
+        AND A.EMPRESA=F.EMPRESA
+        AND A.FICHA=F.FICHA
         AND A.EMPRESA='E01'
         AND A.MOVIMIENTO='10025'
         AND B.ATRIBUTO='AFP'
         AND D.ATRIBUTO='TIPCOMAFP'
+        AND F.ATRIBUTO='ASIGFAM'
         AND C.codigo1='$inicio_periodo' -- INICIO DE MES DE LA SEMANA QUE SE CONSULTA
         AND A.PERIODO='$periodo' -- ACA VA EL PERIODO
         ORDER BY A.FICHA  ";
@@ -1648,8 +1656,15 @@ class PersonalRep
             $aux = $aux%30;
             $item->dias_VG = $aux;
 
+            /*CONCEPTOS DE REMUNERACION COMPUTABLE*/ // FZ
 
-            $item->ONP = round(($item->VT*13)/100,2);
+            $item->CTS_LEY_27360 = round($item->CTS_LEY_27360,2);//FZ
+            $item->GRATI_LEY_27360 = round($item->GRATI_LEY_27360,2);//FZ
+            $item->ASIG_FAMILIAR = round($item->ASIG_FAMILIAR,2);//FZ
+            $item->SUELDO = round($item->SUELDO,2);//FZ
+
+
+            $item->ONP = round(($item->VT*13)/100,2); 
             $item->VT = round($item->VT,2);
             $item->FONDO = round($item->FONDO,2);
             $item->SEGURO_AFP = round($item->SEGURO_AFP,2);
@@ -1658,11 +1673,17 @@ class PersonalRep
                 $item->FONDO = round(0.00,2);
             }
 
+            if($item->AFP != 'ONP'){
+                $item->ONP = round(0.00,2);
+            }
+
             if($item->FLUJO_MIXTO == 'MIXTA'){
                 $item->COMISION_AFP = round($item->CO_MIXTO,2);
             }else{
                 $item->COMISION_AFP = round($item->CO_FLUJO,2);
             }
+
+            $item->total_remune = $item->CTS_LEY_27360+ $item->GRATI_LEY_27360+$item->ASIG_FAMILIAR+$item->SUELDO;//fFZ
 
             $item->deducciones = $item->ONP+ $item->FONDO+$item->COMISION_AFP+$item->SEGURO_AFP;
 
