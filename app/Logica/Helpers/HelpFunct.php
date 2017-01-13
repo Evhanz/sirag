@@ -306,5 +306,32 @@ class HelpFunct
     }
 
 
+    /**
+     * la funcion te trae el nombre del año de acuerdo al numero
+    */
+    static public function NameMonth($mes){
+
+        switch ($mes){
+
+            case 1: $response='ENERO'; break;
+            case 2: $response='FEBRERO'; break;
+            case 3: $response='MARZO'; break;
+            case 4: $response='ABRIL'; break;
+            case 5: $response='MAYO'; break;
+            case 6: $response='JUNIO'; break;
+            case 7: $response='JULIO'; break;
+            case 8: $response='AGOSTO'; break;
+            case 9: $response='SEPTIEMBRE'; break;
+            case 10: $response='OCTUBRE'; break;
+            case 11: $response='NOVIEMBRE'; break;
+            case 12: $response='DICIEMBRE'; break;
+            default: $response = 'error'; break;
+        }
+
+        return $response;
+
+    }
+
+
 
 }

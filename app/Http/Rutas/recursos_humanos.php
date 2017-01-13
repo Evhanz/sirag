@@ -15,6 +15,7 @@ Route::post('rh/deleteRenovacion',['as'=>'deleteRenovacion','uses'=>'RecursoshCo
 Route::get('rh/rep/viewTelecredito',['as'=>'viewTelecredito','uses'=>'RecursoshController@viewTelecredito']);
 Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshController@viewPlanilla']);
 Route::get('rh/rep/viewPlame',['as'=>'viewPlame','uses'=>'RecursoshController@viewPlame']);
+Route::get('rh/rep/viewGetLiquidacion',['as'=>'viewGetLiquidacion','uses'=>'RecursoshController@viewGetLiquidacion']);
 
 
 //llamada a API
@@ -46,7 +47,7 @@ Route::get('archivo/getTxtPlameJOR/{periodo}',['as'=>'getTxtPlameJOR','uses'=>'R
 
 
 //esto es para los pdf
-Route::get('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
+Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
 
 
 //solo pruebas

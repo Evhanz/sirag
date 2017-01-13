@@ -47,6 +47,10 @@ class RecursoshController extends Controller
         return view('rh/viewPlame');
     }
 
+    public function viewGetLiquidacion(){
+        return view('rh/viewGetLiquidacion');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -630,13 +634,20 @@ class RecursoshController extends Controller
 
     public function getLiquidacion(){
 
+        $input = \Input::all();
 
+        $periodo = explode("/", $input['fecha']);
 
-        $view =  \View::make('rh.pdf.liquidacionPdf')->render();
+        $input['periodo'] = $periodo[2].$periodo[1].$periodo[0];
+        $input['inicio_periodo'] = $periodo[2].$periodo[1].'01';
+
+        $data = $this->personalRep->getDetailLiquidacion($input);
+
+        $view =  \View::make('rh.pdf.liquidacionPdf',compact('data'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('invoice');
-
+       // return $pdf->stream('invoice');
+        return $pdf->download('liquidaciones:'.$input['fecha']);
 
        //return view('rh.pdf.liquidacionPdf');
 

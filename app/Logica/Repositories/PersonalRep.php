@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use DateTime;
 use sirag\Entities\Obj;
 use sirag\Helpers\HelpFunct;
+use sirag\Helpers\NumberToLetter;
 
 
 class PersonalRep
@@ -1447,7 +1448,7 @@ class PersonalRep
         GROUP BY D.TRABAJADOR,P.EMPLEADO
         
         ";
-        
+
         $query_empleado = " /* UNION */
         ESTO ES PARA EMPLEADO
         select B.FICHA TRABAJADOR,
@@ -1557,13 +1558,16 @@ class PersonalRep
 
     public function getDetailLiquidacion($data){
 
-        $periodo = '20170104';
-        $inicio_periodo = '20170101';
+       // $periodo = '20170104';
+        //$inicio_periodo = '20170101';
+        $periodo = $data['periodo'];
+        $inicio_periodo = $data['inicio_periodo'];
 
         $query = "select 
         (E.APELLIDO_PATERNO+' '+E.APELLIDO_MATERNO+', '+E.NOMBRE) NOMBRE,
         E.FECHA_INICIO,
         E.FECHA_TERMINO,
+        E.EMPLEADO DNI,
         A.FICHA,
         A.VALOR AS VT,
         B.VALOR AS AFP,
@@ -1571,7 +1575,19 @@ class PersonalRep
         ROUND(CASE WHEN B.VALOR='ONP' THEN A.VALOR*0.13 ELSE A.VALOR*0.10 END,2) AS FONDO,
         ROUND(CASE WHEN B.VALOR='ONP' THEN 0 ELSE(C.valor3/100)*A.VALOR END,2) AS SEGURO_AFP,
         ROUND(CASE WHEN D.VALOR='FLUJO' THEN (C.valor1/100)*A.VALOR ELSE 0 END,2) AS CO_FLUJO,
-        ROUND(CASE WHEN D.VALOR='MIXTA' THEN (C.valor2/100)*A.VALOR ELSE 0 END,2) AS CO_MIXTO
+        ROUND(CASE WHEN D.VALOR='MIXTA' THEN (C.valor2/100)*A.VALOR ELSE 0 END,2) AS CO_MIXTO,
+        coalesce( (select SUM(DIAS_EFE) 
+        from flexline.PER_VACACIONES 
+        where EMPRESA = 'e01'
+        AND FICHA = '10145'
+        AND ( CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_INICIO),103) <= CONVERT(date,CONVERT(VARCHAR(8),FEC_INIEFE),103)
+            AND CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_TERMINO),103) >= CONVERT(date,CONVERT(VARCHAR(8),FEC_INIEFE),103)) AND 
+            ( CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_INICIO),103) <= CONVERT(date,CONVERT(VARCHAR(8),FEC_FINEFE),103)
+            AND CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_TERMINO),103) >= CONVERT(date,CONVERT(VARCHAR(8),FEC_FINEFE),103))
+        AND TIPO_TRANS = 'APROBACION'
+        AND ESTADO = 'A'),0 )VACACIONES_GOZADAS,
+        DATEDIFF(DAY,CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_INICIO),103),
+        CONVERT(date,CONVERT(VARCHAR(8),E.FECHA_TERMINO),103)) DIAS_CONTRATO
         FROM
         flexline.PER_DET_LIQ A,
         flexline.PER_ATRIB_TRAB B,
@@ -1591,10 +1607,9 @@ class PersonalRep
         AND A.MOVIMIENTO='10025'
         AND B.ATRIBUTO='AFP'
         AND D.ATRIBUTO='TIPCOMAFP'
+        AND C.codigo1='$inicio_periodo' -- INICIO DE MES DE LA SEMANA QUE SE CONSULTA
         AND A.PERIODO='$periodo' -- ACA VA EL PERIODO
-        ORDER BY A.FICHA
-        ";
-
+        ORDER BY A.FICHA  ";
 
 
         $res = \DB::select($query);
@@ -1603,12 +1618,57 @@ class PersonalRep
         {
             $item->FECHA_INICIO = HelpFunct::transformStringToDate($item->FECHA_INICIO,'103');
             $item->FECHA_TERMINO = HelpFunct::transformStringToDate($item->FECHA_TERMINO,'103');
+
+            /*calculo para las vacaciones ESTO ES EL CASO DE EMPLEADO*/
+            $vacaciones_ganadas = $item->DIAS_CONTRATO * 0.042;
+
+            $item->vacaciones_truncas = round($vacaciones_ganadas)-$item->VACACIONES_GOZADAS;
+
+            $item->periodo = HelpFunct::NameMonth(intval(substr($periodo,4,2))).' '.substr($periodo,0,4);
+
+            /*TENEMOS QUE SACAR CUANTOS AÑOS DIAS Y MESES TRABAJO EL EMPLEADO*/
+            $aux = $item->DIAS_CONTRATO;
+            $item->anio_contratado = intval($aux/360);
+            $aux = $aux%360;
+            $item->mes_contratado = intval($aux / 30);
+            $aux = $aux%30;
+            $item->dias_contratado = $aux;
+
+            /*luego sacamos lo de la cantidad de vacaciones truncas */
+            $aux = $item->vacaciones_truncas;
+            $item->anio_VT = intval($aux/360);
+            $aux = $aux%360;
+            $item->mes_VT = intval($aux / 30);
+            $aux = $aux%30;
+            $item->dias_VT = $aux;
+
+            /*luego sacamos lo de la cantidad de vacaciones GOZADAS */
+            $aux = $item->VACACIONES_GOZADAS;
+            $item->mes_VG = intval($aux / 30);
+            $aux = $aux%30;
+            $item->dias_VG = $aux;
+
+
+            $item->ONP = round(($item->VT*13)/100,2);
+            $item->VT = round($item->VT,2);
+            $item->FONDO = round($item->FONDO,2);
+            $item->SEGURO_AFP = round($item->SEGURO_AFP,2);
+
+            if($item->FLUJO_MIXTO == 'MIXTA'){
+                $item->COMISION_AFP = round($item->CO_MIXTO,2);
+            }else{
+                $item->COMISION_AFP = round($item->CO_FLUJO,2);
+            }
+
+            $item->deducciones = $item->ONP+ $item->FONDO+$item->COMISION_AFP+$item->SEGURO_AFP;
+
+            $item->neto = $item->VT -  $item->deducciones;
+
+            $item->monto = NumberToLetter::convert( round($item->neto,2));
+
         }
 
-
         return $res;
-
-
     }
 
 
