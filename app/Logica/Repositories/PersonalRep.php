@@ -1615,6 +1615,7 @@ class PersonalRep
         AND B.ATRIBUTO='AFP'
         AND D.ATRIBUTO='TIPCOMAFP'
         AND F.ATRIBUTO='ASIGFAM'
+        AND A.VALOR > 0
         AND C.codigo1='$inicio_periodo' -- INICIO DE MES DE LA SEMANA QUE SE CONSULTA
         AND A.PERIODO='$periodo' -- ACA VA EL PERIODO
         ORDER BY A.FICHA  ";
