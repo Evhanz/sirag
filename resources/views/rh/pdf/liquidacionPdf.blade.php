@@ -160,8 +160,6 @@
             <td>Meses,</td>
             <td>{{$item->dias_VG}}</td>
             <td>Días</td>
-            <td class="space_1">-------></td>
-            <td class="valor">0.00</td>
         </tr>
         <tr>
             <td colspan="4"><strong>TOTAL, INGRESOS</strong></td>
