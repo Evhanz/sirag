@@ -1654,6 +1654,10 @@ class PersonalRep
             $item->FONDO = round($item->FONDO,2);
             $item->SEGURO_AFP = round($item->SEGURO_AFP,2);
 
+            if($item->AFP == 'ONP'){
+                $item->FONDO = round(0.00,2);
+            }
+
             if($item->FLUJO_MIXTO == 'MIXTA'){
                 $item->COMISION_AFP = round($item->CO_MIXTO,2);
             }else{
