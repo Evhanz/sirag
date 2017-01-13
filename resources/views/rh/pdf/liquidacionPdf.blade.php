@@ -217,8 +217,32 @@
     <br>
     <hr>
 
+    SON:  {{$item->monto}}
 
-    {{$item->monto}}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table class="firmas">
+        <tr class="lineas">
+            <td class="linea"> &nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td class="linea">&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="concepto">
+            <td class="linea"> V°B° EMPLEADOR</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td class="linea">V°B° TRABAJADOR</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
 
     <div class="page-break"></div>
 
@@ -243,6 +267,19 @@
         font-size: 11px;
         text-align: center;
     }
+
+    .firmas .lineas td{
+        width: 170px;
+    }
+
+    .firmas .lineas .linea{
+        border-bottom: 1px solid black;
+    }
+
+    .firmas .concepto .linea{
+        text-align: center;
+    }
+
 
     hr{
         size: 1px;
