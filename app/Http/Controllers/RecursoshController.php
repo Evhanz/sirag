@@ -653,4 +653,20 @@ class RecursoshController extends Controller
 
     }
 
+    public function getComprobanteDeEgresoPdf(){
+
+
+
+        $view =  \View::make('rh.pdf.comprobanteEgresoPdf')->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        // return $pdf->stream('invoice');
+        return $pdf->stream('comprobante_egreso');
+
+
+
+        //return view('rh.pdf.comprobanteEgresoPdf');
+
+    }
+
 }
