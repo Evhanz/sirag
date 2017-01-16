@@ -158,6 +158,7 @@
                         <li><a href="{{ URL::route('viewControlOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
                         <li><a href="{{ URL::route('viewPDB') }}"><i class="fa fa-angle-double-right"></i> Exportados PDB</a></li>
                         <li><a href="{{ URL::route('viewConsumoByFundo') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Reporte por consumo</a></li>
+                        <li><a href="{{ URL::route('viewComprobanteEgreso') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Comprobante Egreso</a></li>
 
                     </ul>
                 </li><!--Contabilidad-->
