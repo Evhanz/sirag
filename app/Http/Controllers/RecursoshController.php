@@ -52,6 +52,11 @@ class RecursoshController extends Controller
     }
 
 
+    public  function viewGetAFPNet(){
+        return view('rh/viewGetAFPNet');
+    }
+
+
     //API para traer a los trbajadores
 
     public function getAllTrabajadoresByParameter()
@@ -650,6 +655,29 @@ class RecursoshController extends Controller
         return $pdf->download('liquidaciones:'.$input['fecha']);
 
        //return view('rh.pdf.liquidacionPdf');
+
+    }
+
+
+    public function getExcelAFPNet(){
+
+        $data = \Input::all();
+
+        $res = $this->personalRep->getAFPNet($data);
+
+
+        \Excel::create('AFP NET ', function($excel) use($res) {
+
+            $excel->sheet('Datos', function($sheet) use($res) {
+
+                $sheet->fromArray($res);
+
+            });
+
+        })->export('xls');
+
+
+     //  return \Response::json($res);
 
     }
 

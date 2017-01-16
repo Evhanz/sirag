@@ -179,6 +179,7 @@
                         <li><a href="{{ URL::route('viewPlanilla') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Planilla </a></li>
                         <li><a href="{{ URL::route('viewPlame') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Plame </a></li>
                         <li><a href="{{ URL::route('viewGetLiquidacion') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Liquidacion </a></li>
+                        <li><a href="{{ URL::route('viewGetAFPNet') }}" class="item sub"><i class="fa fa-angle-double-right"></i> AFP Net </a></li>
 
                     </ul>
                 </li><!--RECURSOS HUMANOS-->

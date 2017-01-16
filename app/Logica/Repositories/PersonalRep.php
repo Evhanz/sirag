@@ -1705,6 +1705,99 @@ class PersonalRep
 
 
 
+    public function getAFPNet($data)
+    {
+        $anio = $data['anio'];
+        $mes = $data['mes'];
+        //$anio = 2016;
+        //$mes = 12;
+
+        $query = "SELECT 
+ROW_NUMBER() OVER (ORDER BY P.EMPLEADO) 'Secuencia',
+'' as 'Codigo_CUSPP',
+(SELECT 
+CASE (Valor) WHEN '01' THEN '0'
+WHEN '04' THEN '4' ELSE 'SIN_TIPO' END
+FROM
+flexline.PER_ATRIB_TRAB
+WHERE EMPRESA=L.EMPRESA
+AND FICHA=L.FICHA
+and Atributo='TIPDOCTOI') AS 'TIPO_DOCUM',
+P.EMPLEADO as 'DNI_Trabajador',
+P.APELLIDO_PATERNO as 'Apellido_Paterno',
+P.APELLIDO_MATERNO as 'Apellido_Materno',
+P.NOMBRE as 'Nombres',
+'S' as 'RELACION_LABORAL',
+MAX(case SUBSTRING (CONVERT (CHAR , L.PERIODO), 1, 6 ) when SUBSTRING (CONVERT (CHAR , P.FECHA_INICIO), 1, 6 ) then 'S' else 'N' end ) AS 'INICIO_DE_RL',
+MAX(case SUBSTRING (CONVERT (CHAR , L.PERIODO), 1, 6 ) when SUBSTRING (CONVERT (CHAR , P.FECHA_TERMINO), 1, 6 ) then 'S' else 'N' end ) AS 'CESE_DE_RL',
+'' AS 'EXCEPCION_DE_APORTAR',
+Sum(L.Valor) as 'Remuneracion_Asegurable',
+'0' as 'Aporte_Voluntario_c/fin_Previsional',
+'0' as 'Aporte_Voluntario_s/fin_Previsional',
+'0' as 'Aporte_Voluntario_del_Empleador',
+'N' as 'TIPO_DE_TRABAJADOR',
+' ' as 'AFP'
+FROM 
+flexline.PER_DET_LIQ L,
+flexline.PER_TRABAJADOR P,
+FLEXLINE.PER_ATRIB_TRAB A
+WHERE 
+L.EMPRESA=P.EMPRESA
+AND L.FICHA=P.FICHA
+AND L.EMPRESA=A.EMPRESA
+AND L.FICHA=A.FICHA
+AND P.EMPRESA=A.EMPRESA
+AND P.FICHA=A.FICHA
+and A.Atributo='AFP'
+and A.VALOR<>'ONP'
+AND L.EMPRESA='E01'
+AND L.Movimiento in ('10001','10007','10002','10003','10020','10030',
+'10031','10037','10021','10016','10034','10010','10027','10025','10044','10040')
+--and L.periodo like '201612%'
+AND SUBSTRING(CONVERT(VARCHAR(20),L.PERIODO),1,4)=$anio ---- COLOCAR AÑO
+AND SUBSTRING(CONVERT(VARCHAR(20),L.PERIODO),5,2)=$mes --- COLCOAR PERIODO DEL MES QUE CORRESPONDE
+GROUP BY P.EMPLEADO,P.APELLIDO_MATERNO,P.APELLIDO_PATERNO,P.NOMBRE,L.EMPRESA,L.FICHA
+ORDER BY P.EMPLEADO
+";
+
+        $res = \DB::select($query);
+
+
+        foreach ($res as $item){
+
+            $item->Apellido_Paterno = utf8_encode($item->Apellido_Paterno);
+            $item->Apellido_Materno = utf8_encode($item->Apellido_Materno);
+            $item->Nombres = utf8_encode($item->Nombres);
+            $item->Remuneracion_Asegurable = floatval($item->Remuneracion_Asegurable);
+
+        }
+
+
+        $response = array();
+
+        foreach ($res as $item)
+        {
+            $i = array();
+
+            foreach ($item as $x){
+                array_push($i,$x);
+            }
+
+            array_push($response,$i);
+
+        }
+
+
+
+        return $response;
+
+
+
+
+
+
+    }
+
 
 
 }

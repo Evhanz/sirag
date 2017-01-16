@@ -16,6 +16,7 @@ Route::get('rh/rep/viewTelecredito',['as'=>'viewTelecredito','uses'=>'RecursoshC
 Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshController@viewPlanilla']);
 Route::get('rh/rep/viewPlame',['as'=>'viewPlame','uses'=>'RecursoshController@viewPlame']);
 Route::get('rh/rep/viewGetLiquidacion',['as'=>'viewGetLiquidacion','uses'=>'RecursoshController@viewGetLiquidacion']);
+Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshController@viewGetAFPNet']);
 
 
 //llamada a API
@@ -50,6 +51,10 @@ Route::get('archivo/getTxtPlameJOR/{periodo}',['as'=>'getTxtPlameJOR','uses'=>'R
 Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
 
 
+//esto es para los archivos excel
+Route::post('rh/archivos/getExcelAFPNet',['as'=>'getExcelAFPNet','uses'=>'RecursoshController@getExcelAFPNet']);
+
+
 //solo pruebas
 Route::get('pruebas',function (){
 
@@ -75,8 +80,6 @@ Route::get('pruebas',function (){
     echo 'si salio';
 
 });
-
 Route::get('pruebas/api',['as'=>'pruebaApi','uses'=>'RecursoshController@getContratosPorVencer']);
-
 Route::post('rh/txt/telecredito/',['as'=>'txt','uses'=>'RecursoshController@gettxt']);
 
