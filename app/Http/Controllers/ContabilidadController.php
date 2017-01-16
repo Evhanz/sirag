@@ -50,6 +50,10 @@ class ContabilidadController extends Controller
         return view('cc/viewConsumoByFundo');
     }
 
+    public function viewComprobanteEgreso(){
+        return view('cc/viewComprobanteEgreso');
+    }
+
 
     public function sendDataForExcelConsumo()
     {
@@ -445,13 +449,6 @@ class ContabilidadController extends Controller
 
 
 
-
-    
-
-
-
-
-
     // -- esto es para excel
 
 
@@ -500,6 +497,40 @@ class ContabilidadController extends Controller
 
     }
 
-    
-    
+
+    public function getComprobanteDeEgresoPdf()
+    {
+
+
+        $data = \Input::all();
+
+        $response = $this->contabilidadRep->getComprobanteEgreso($data);
+
+        $res = $response->data;
+        $totales  = $response->totales;
+
+        $newDate = getdate();
+
+        if($newDate['mon'] < 10){
+
+            $newDate['mon'] = '0'.$newDate['mon'];
+        }
+
+
+        $newDate = $newDate['mday'].'/'.$newDate['mon'].'/'.$newDate['year'];
+
+        $res[0]->fecha_actual = $newDate;
+
+
+
+
+        $view =  \View::make('cc.pdf.comprobanteEgresoPdf',compact('res','totales'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        // return $pdf->stream('invoice');
+        return $pdf->download('comprobante_egreso');
+
+        //return view('rh.pdf.comprobanteEgresoPdf');
+
+    }
 }

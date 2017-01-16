@@ -48,8 +48,6 @@ Route::get('archivo/getTxtPlameJOR/{periodo}',['as'=>'getTxtPlameJOR','uses'=>'R
 
 //esto es para los pdf
 Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
-Route::get('rh/archivos/getComprobanteDeEgresoPdf',['as'=>'getComprobanteDeEgresoPdf',
-    'uses'=>'RecursoshController@getComprobanteDeEgresoPdf']);
 
 
 //solo pruebas

@@ -25,7 +25,7 @@
                <tr>
                    <td>Fecha Emision</td>
                    <td>:</td>
-                   <td>04/01/2017</td>
+                   <td>{{$res[0]->fecha_actual}}</td>
 
                </tr>
 
@@ -37,7 +37,7 @@
 
     <div class="title">
 
-        <p>COMPROBANTE DE EGRESO</p>
+        <p>COMPROBANTE DE EGRESO: {{$res[0]->CORRELATIVO}}</p>
     </div>
     <div class="subTitle">
         <table>
@@ -47,7 +47,7 @@
             </tr>
             <tr class="valor">
                 <td>&nbsp;</td>
-                <td class="monto"> <span class="moneda">S/.</span> <span class="cantidad">116.14</span></td>
+                <td class="monto"> <span class="moneda">S/.</span> <span class="cantidad">{{$totales->t_haber_s}}</span></td>
             </tr>
         </table>
     </div>
@@ -58,13 +58,13 @@
         <table>
             <tr>
                 <td>FECHA:</td>
-                <td colspan="3"> 10/12/2016</td>
+                <td colspan="3"> {{$res[0]->FECHA}}</td>
             </tr>
             <tr>
                 <td style="width: 90px">GIRADO A:</td>
-                <td style="width: 250px">{GLOSA DE GIRADO A ALGUIEN}</td>
+                <td style="width: 250px">{{$res[0]->GIRADO_A}}</td>
                 <td>RUC/DNI:</td>
-                <td>{78986545}</td>
+                <td></td>
             </tr>
         </table>
     </div>
@@ -82,21 +82,32 @@
                 <th>HABER S/.</th>
             </tr>
 
+               <?php $banco = ''; ?>
+            @foreach($res as $item)
             <tr>
-                <td>4119103</td>
-                <td>CHEQUE</td>
-                <td>393</td>
-                <td>VRIOS VARIOS</td>
-                <td class="monto">34.14</td>
-                <td class="monto">0.00</td>
-                <td class="monto">116.14</td>
-                <td class="monto">0.00</td>
+                <td>{{$item->CUENTA}}</td>
+                @if($item->BANCO != null)
+                    <td>CHEQUE</td>
+                    <td>{{$item->N_CHEQUE}}</td>
+                    <?php $banco = $item->BANCO; ?>
+
+                @else
+                    <td></td>
+                    <td></td>
+                @endif
+
+                <td>{{$item->PROVEEDOR}}</td>
+                <td class="monto">{{$item->DEBE_DOLAR}}</td>
+                <td class="monto">{{$item->HABER_DOLAR}}</td>
+                <td class="monto">{{$item->DEBE_S}}</td>
+                <td class="monto">{{$item->HABER_S}}</td>
             </tr>
+            @endforeach
 
             <tr class="resultado">
                 <td colspan="6">&nbsp;</td>
-                <td class="monto">116.14</td>
-                <td class="monto">0.00</td>
+                <td class="monto">{{$totales->t_haber_s}}</td>
+                <td class="monto">{{$totales->t_debe_s}}</td>
             </tr>
 
         </table>
@@ -112,9 +123,9 @@
             </tr>
             <tr>
                 <td><strong> N° CHEQUE/OPERACION: </strong></td>
-                <td >393</td>
+                <td >{{$res[0]->N_CHEQUE}}</td>
                 <td> <strong> BANCO: </strong></td>
-                <td>BBVA M.N. 00025766-85</td>
+                <td>{{$banco}}</td>
             </tr>
         </table>
 
@@ -123,7 +134,7 @@
     <div class="row3">
         <ul>
             <li><strong>PREPARADO</strong></li>
-            <li>CONTADOR 2</li>
+            <li>{{$res[0]->usuario}}</li>
         </ul>
         <ul>
             <li><strong>APROBADO</strong></li>

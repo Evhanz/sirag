@@ -17,6 +17,8 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], functi
         ['as'=>'viewControlOrdenCompra','uses'=>'ContabilidadController@viewControlOrdenCompra']);
     Route::get('contabilidad/rep/viewPDB',['as'=>'viewPDB','uses'=>'ContabilidadController@viewPDB']);
     Route::get('contabilidad/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundo','uses'=>'ContabilidadController@viewConsumoByFundo']);
+    Route::get('contabilidad/rep/viewComprobanteEgreso',['as'=>'viewComprobanteEgreso','uses'=>'ContabilidadController@viewComprobanteEgreso']);
+
 
 });
 
@@ -58,3 +60,8 @@ Route::get('contabilidad/txt/getTxtTipoCambio',['as'=>'getTxtTipoCambio','uses'=
 Route::get('contabilidad/excel/pdbExcelCompras/{periodo}',['as'=>'pdbExcelCompras','uses'=>'ContabilidadController@pdbExcelCompras']);
 
 Route::get('contabilidad/excel/getExcelConsumoByFundo',['as'=>'getExcelConsumoByFundo','uses'=>'ContabilidadController@getExcelConsumoByFundo']);
+
+
+//--- para pdf
+Route::post('contabilidad/archivos/getComprobanteDeEgresoPdf',['as'=>'getComprobanteDeEgresoPdf',
+    'uses'=>'ContabilidadController@getComprobanteDeEgresoPdf']);

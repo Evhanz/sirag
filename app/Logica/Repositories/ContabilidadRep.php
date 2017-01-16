@@ -9,6 +9,7 @@
 namespace sirag\Repositories;
 
 use sirag\DTO\DocumentoDTO;
+use sirag\Entities\Obj;
 
 
 class ContabilidadRep
@@ -354,6 +355,118 @@ class ContabilidadRep
                           and dd.SecuenciaOrigen = $secuencia");
 
         return $r;
+
+    }
+
+
+    public function getComprobanteEgreso($data)
+    {
+
+        $correlativo = $data['correlativo'];
+        $periodo = $data['periodo'];
+
+        $query = "SELECT
+A.CORRELATIVO,
+CONVERT(DATE,A.FECHA,113) AS FECHA,
+A.GLOSA AS PROVEEDOR,
+'' AS DNI,
+(SELECT GLOSA
+FROM 
+flexline.CON_MOVCOM 
+WHERE 
+EMPRESA=A.EMPRESA
+AND TIPO_COMPROBANTE=A.TIPO_COMPROBANTE
+AND CORRELATIVO=A.CORRELATIVO
+AND PERIODO=A.PERIODO
+AND CUENTA LIKE '010%') AS GIRADO_A,
+A.DEBE_CUOTA AS DEBE_DOLAR,
+A.HABER_CUOTA AS HABER_DOLAR,
+A.DEBE_INGRESO AS DEBE_S,
+A.HABER_INGRESO AS HABER_S,
+(SELECT GLOSA
+FROM 
+flexline.CON_ENCCOM
+WHERE 
+EMPRESA=A.EMPRESA
+AND TIPO_COMPROBANTE=A.TIPO_COMPROBANTE
+AND CORRELATIVO=A.CORRELATIVO
+AND PERIODO=A.PERIODO
+) AS CONCEPTO,
+(SELECT REFERENCIA
+FROM 
+flexline.CON_MOVCOM 
+WHERE 
+EMPRESA=A.EMPRESA
+AND TIPO_COMPROBANTE=A.TIPO_COMPROBANTE
+AND CORRELATIVO=A.CORRELATIVO
+AND PERIODO=A.PERIODO
+AND CUENTA LIKE '010%') AS N_CHEQUE,
+(
+SELECT DESCRIPCION
+FROM 
+flexline.CON_CTACON
+WHERE 
+EMPRESA=A.EMPRESA
+AND CUENTA=A.CUENTA
+and CUENTA LIKE '010%') AS BANCO,
+(
+SELECT ALIAS_CUENTA
+FROM 
+flexline.CON_CTACON
+WHERE 
+EMPRESA=A.EMPRESA
+AND CUENTA=A.CUENTA) AS CUENTA,
+(SELECT USUARIO
+FROM 
+flexline.CON_ENCCOM
+WHERE 
+EMPRESA=A.EMPRESA
+AND TIPO_COMPROBANTE=A.TIPO_COMPROBANTE
+AND CORRELATIVO=A.CORRELATIVO
+AND PERIODO=A.PERIODO
+) AS usuario
+
+FROM 
+flexline.CON_MOVCOM A
+WHERE 
+A.EMPRESA='E01'
+AND A.TIPO_COMPROBANTE='EGRESO' --- DEBE COLOCAR USUARIO
+AND A.CORRELATIVO='$correlativo' --- DEBE COLOCAR USUARIO
+AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
+";
+
+        $res = \DB::select($query);
+
+        $totales = new Obj();
+
+        $totales->t_haber_s =0;
+        $totales->t_debe_s =0;
+
+        foreach ($res as $item){
+
+            $item->FECHA = explode('-',$item->FECHA);
+
+            $item->FECHA = $item->FECHA[2].'/'.$item->FECHA[1].'/'.$item->FECHA[0];
+
+            $totales->t_haber_s +=  $item->HABER_S;
+            $totales->t_debe_s +=  $item->DEBE_S;
+
+            $item->DEBE_DOLAR = number_format($item->DEBE_DOLAR ,2,'.',',');
+            $item->HABER_DOLAR = number_format($item->HABER_DOLAR ,2,'.',',');
+            $item->DEBE_S = number_format($item->DEBE_S ,2,'.',',');
+            $item->HABER_S = number_format($item->HABER_S ,2,'.',',');
+
+        }
+
+        $response = new Obj();
+
+        $response->data = $res;
+        $response->totales = $totales;
+
+
+        return $response;
+
+
 
     }
 
