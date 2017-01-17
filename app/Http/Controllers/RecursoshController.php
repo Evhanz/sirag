@@ -670,7 +670,10 @@ class RecursoshController extends Controller
 
             $excel->sheet('Datos', function($sheet) use($res) {
 
-                $sheet->fromArray($res);
+                //$sheet->fromArray($res);
+                //$sheet->fromArray($res, null, 'A1', true);
+                //esto es para que que no salga l fila 1
+                $sheet->fromArray($res, null, 'A1', false, false);
 
             });
 
