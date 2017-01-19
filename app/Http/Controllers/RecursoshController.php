@@ -685,5 +685,33 @@ class RecursoshController extends Controller
     }
 
 
+    public function getExcelCostoMOPorFundo(){
+
+
+        $res = $this->personalRep->getCostoMOPorFundo("");
+
+        \Excel::create('COMSUMO MO FUNDO ', function($excel) use($res) {
+
+            $excel->sheet('Datos', function($sheet) use($res) {
+
+                $res_actividades = $res['res_actividades'];
+                $totales = $res['totales'];
+                $codigos = $res['codigos'];
+
+                $sheet->loadView('rh.excel.costoMOFundoParron',compact('res_actividades','totales','codigos'));
+
+            });
+
+        })->export('xls');
+
+
+
+
+
+
+
+    }
+
+
 
 }

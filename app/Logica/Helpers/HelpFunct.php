@@ -332,6 +332,33 @@ class HelpFunct
 
     }
 
+    /**
+     * la funcion devuelve los valor que no se repiten
+     * de un conjunto de elementos de la posicion n
+     * de cada elemento
+     * necesario : $array array
+     * devuelve : collect()
+     */
+
+    public static function getUniqueValueOfArrayOfNPosition($array)
+    {
+
+        $response = [];
+
+        foreach ($array as $item){
+
+            $val = substr($item,2,1);
+
+            if (!in_array($val,$response)){
+                array_push($response,$val);
+            }
+        }
+
+        return $response;
+
+
+    }
+
 
 
 }

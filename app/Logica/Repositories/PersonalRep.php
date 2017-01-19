@@ -49,7 +49,78 @@ class PersonalRep
         $f_i = $data['f_i'];
         $f_f = $data['f_f'];
 
-        $res = \DB::select("EXEC sp_getTrabajadoresByParametes @categoria = '%$categoria%' , @vigencia = '$vigencia' , @f_i = '$f_i', @f_f = '$f_f'");
+        $query = "EXEC sp_getTrabajadoresByParametes @categoria = '%$categoria%' , @vigencia = '$vigencia' , @f_i = '$f_i', @f_f = '$f_f'";
+
+        $res = \DB::select($query);
+
+
+        foreach ($res as $item){
+            $vac_acumuladas = $item->vac;//estas son las vacaciones que ya gozo
+            if ($item->TIPO_TRABAJADOR == 'EMPLEADO') {
+
+                $f_i  = explode("/", $item->FECHA_INICIO);
+                $f_f  = explode("/", $item->FECHA_TERMINO);
+
+                $datetime1 = new DateTime($f_i[2].'-'.$f_i[1].'-'.$f_i[0]);
+
+                //sacar condicion si es que a la fecha de hoy se le adeuda
+                $datetime2 = new DateTime($f_f[2].'-'.$f_f[1].'-'.$f_f[0]);
+
+                $now = new DateTime("now");
+                $bandera = $datetime2->diff($now);
+                if ($bandera->format('%R%a')>0) {
+                    $datetime2 = $datetime2;
+                }else{
+                    $datetime2 = $now;
+                }
+
+                $interval = $datetime1->diff($datetime2);
+                $interval = round($interval->format('%a')*0.082,1);//el valor 0.082 es que por año se le da 30 dias
+
+                $item->cant_vac = $interval;
+
+                $item->CANTIDA_DIF = $interval-$vac_acumuladas;
+
+                $item->now =$datetime2->diff($now);
+
+
+            }
+            else {
+
+                $f_i  = explode("/", $item->FECHA_INICIO);
+                $f_f  = explode("/", $item->FECHA_TERMINO);
+
+                $datetime1 = new DateTime($f_i[2].'-'.$f_i[1].'-'.$f_i[0]);
+
+                //sacar condicion si es que a la fecha de hoy se le adeuda
+                $datetime2 = new DateTime($f_f[2].'-'.$f_f[1].'-'.$f_f[0]);
+
+                $now = new DateTime("now");
+                $bandera = $datetime2->diff($now);
+                if ($bandera->format('%R%a')>0) {
+                    $datetime2 = $datetime2;
+                }else{
+                    $datetime2 = $now;
+                }
+
+
+
+                $interval = $datetime1->diff($datetime2);
+                $interval = round($interval->format('%a')*0.041,1);
+
+                $item->cant_vac = $interval;
+
+                $item->CANTIDA_DIF = $interval-$vac_acumuladas;
+                // $item->CANTIDA_DIF = $interval;
+
+                $item->now =$datetime2->diff($now);
+
+
+            }
+        }
+
+
+       // HelpFunct::writeQuery($query);
 
         return $res;
     }
@@ -102,8 +173,6 @@ class PersonalRep
                 }else{
                     $datetime2 = $now;
                 }
-                
-                
 
                 $interval = $datetime1->diff($datetime2);
                 $interval = round($interval->format('%a')*0.082,1);//el valor 0.082 es que por año se le da 30 dias
@@ -115,7 +184,8 @@ class PersonalRep
                 $item->now =$datetime2->diff($now);
 
 
-            } else {
+            }
+            else {
                
                 $f_i  = explode("/", $item->FECHA_INICIO);
                 $f_f  = explode("/", $item->FECHA_TERMINO);
@@ -141,6 +211,7 @@ class PersonalRep
                 $item->cant_vac = $interval;
 
                 $item->CANTIDA_DIF = $interval-$vac_acumuladas;
+               // $item->CANTIDA_DIF = $interval;
 
                 $item->now =$datetime2->diff($now);
 
@@ -262,14 +333,7 @@ class PersonalRep
     }
 
 
-    //funciones helpers
-    public function changeFormat ($fecha){
 
-        $fecha = explode("-", $fecha);
-
-        $fecha = $fecha[2].$fecha[1].$fecha[0];
-        return $fecha;
-    }
 
 
     public function getContratosPorVencer()
@@ -1066,16 +1130,22 @@ class PersonalRep
         --luego se sacara la fecha de inicio para sacar el rango de consulta
         DECLARE @fecha_inicio DATE;
         -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
-        SET @fecha = '2016-12-14';
+        SET @fecha = '2016-12-14'; --aca se cambia por la variable
         SET @fecha_inicio= DATEADD(day,-6,@fecha); 
-        select GC.CODIGO, GT.descripcion, GC.RELACIONTIPO1,GC.RELACIONCODIGO1,DT.CANTIDAD,DT.FECHA
+        select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD,CONVERT(DATE,DT.FECHA,113) FECHA
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
             AND TIPO_COMPROBANTE='PLANILLAS'
             AND PERIODO='2016'
             AND CONVERT(DATE,FECHA) = @fecha
             AND AUX_VALOR19 = GC.CODIGO
-            AND AUX_VALOR19 IS NOT NULL) MONTO
+            AND AUX_VALOR19 IS NOT NULL) MONTO,
+            (SELECT SUM(CANTIDAD) FROM flexline.PER_DETALLETRATO
+            WHERE EMPRESA='E01'
+            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio and @fecha
+            AND AUX_VALOR5 = GC.CODIGO
+            ) CANTIDAD_H
+            
         from
         dbo.GEN_TABLA as GT INNER JOIN 
         flexline.PER_DETALLETRATO DT 
@@ -1088,7 +1158,8 @@ class PersonalRep
         and GT.cod_tabla='per_labor'
         and DT.TRATO='TRATO_HORA'
         AND GC.CODIGO <> '696969'
-        AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha";
+        AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
+        GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
 
         $res = \DB::select($query);
 
@@ -1102,21 +1173,125 @@ class PersonalRep
         //sacamos los codigos de fundo y parron , para ordenarlos
         $a = HelpFunct::orderArrayNumberAsc($keys);
         //luego sacamos solo los que tinen 6 dígitos , por que son lo que tienen normal
-        $a = HelpFunct::getItemsByLenOfArray(6,$a);
+        $codigo_ordenados = HelpFunct::getItemsByLenOfArray(6,$a);
         //obtenemos los codigos ordenados por campaña , fundo y parron
-        $a = HelpFunct::getItemsByFundoAndParron($a);
+        $array_codigos = HelpFunct::getItemsByFundoAndParron($codigo_ordenados);
+        /**
+         * Obtenemos de los codigos los fundos que se encuentran las horas registradas
+         */
+        $array_codigos = $this->getFundosParronesFormatedWithAreas($array_codigos);
+
+        foreach ($array_codigos as $item){
+            $item->cant = count($item->codigos);
+        }
+
+
+
         //por cada
 
 
+        $actividades = $res->groupBy('descripcion');
+
+        /*por cada personal vamos a llenar los detalles de su consumo*/
+
+        $res_actividades = [];
+        $totales = [];
+
+        foreach ($actividades as $actividad){
+
+            /**
+             * para poder formatear el array de respuesta
+             * sacamos de cada ctividad que codigos
+             * tienen consumo , para poder obtener el total por
+             * cada codigo
+            */
+            $i = collect($actividad);
+            $codigos_values = $i->groupBy('CODIGO')->keys();
+            $codigos  = HelpFunct::orderArrayNumberAsc($codigos_values);
+            $codigos = $codigos->toArray(); /*esta variable son los codigos de cada actividad*/
+
+            /**
+             * ahora recorremos todos los codigos que se encuntran
+             * si la actividad no registran
+             * colocaar cero
+            */
+
+            $detalles = [];
 
 
-        $personal = $res->groupBy('descripcion');
+            foreach ($codigo_ordenados as $item)
+            {
+
+
+                $obj = new Obj();
+                /*$obj->descripcion = $actividad[0]->descripcion;*/
+                $obj->item = $item;
+
+                if(in_array($item,$codigos)){
+
+                    $cantidad = $i->where('CODIGO',"$item")->sum('CANTIDAD');
+                    $obj->cantidad = $cantidad;
+                    $valor_item = $i->where('CODIGO',"$item")->first();
+                    $obj->valor_x_hora = round(($valor_item->MONTO / $valor_item->CANTIDAD_H)* $cantidad,2);
+
+                    /**
+                     * Obtenemos el rea si del parron encontrado, por su codigo
+                     * */
+
+
+                    $area = $this->getAreaByParron($item,$array_codigos);
+                    $obj->area = $area;
+
+                    /**
+                     * si encontramos el dato,
+                     * como se tiene el valor sumado
+                     * para la fila final de resultados
+                     * se guarda ese valor
+                     */
+
+                    $total = new Obj();
+                    $total->CODIGO = $valor_item->CODIGO;
+                    $total->MONTO = $valor_item->MONTO;
+                    $total->CANTIDAD_H = $valor_item->CANTIDAD_H;
+
+                    array_push($totales,$total);
+
+                }else{
+                    $obj->cantidad = 0;
+                    $obj->valor_x_hora = 0;
+                    $obj->area = 0;
+                }
+
+                array_push( $detalles,$obj);
+            }
 
 
 
+            /**
+             * Ahora agregamos al array formateado la data necesariacon sus detalles
+             *
+             ***/
+            $obj = new Obj();
+            $obj->descripcion = $actividad[0]->descripcion;
+            //$obj->item = $actividad[0];
+            $obj->detalles = $detalles;
+            array_push($res_actividades,$obj);
 
-        return $a;
+        }
 
+
+        $uniques = array();
+        foreach ($totales as $t) {
+            $uniques[$t->CODIGO] = round($t->MONTO,2); // Get unique country by code.
+        }
+
+
+        $response = [];
+        $response['res_actividades'] = $res_actividades;
+        $response['totales'] = $uniques;
+        $response['codigos'] = $array_codigos;
+
+        return $response;
 
     }
 
@@ -1417,7 +1592,6 @@ class PersonalRep
 
     }
 
-
     public function getPlameJOR($data){
 
         $f_inicio = $data['f_inicio'];
@@ -1554,7 +1728,6 @@ class PersonalRep
 
 
     }
-
 
     public function getDetailLiquidacion($data){
 
@@ -1703,8 +1876,6 @@ class PersonalRep
         return $res;
     }
 
-
-
     public function getAFPNet($data)
     {
         $anio = $data['anio'];
@@ -1795,6 +1966,133 @@ ORDER BY P.EMPLEADO
 
 
 
+
+    }
+
+
+
+    //funciones helpers
+    /**
+     * estas funciones sirven solo para este módulo
+     *
+     */
+    public function changeFormat ($fecha){
+
+        $fecha = explode("-", $fecha);
+
+        $fecha = $fecha[2].$fecha[1].$fecha[0];
+        return $fecha;
+    }
+
+
+    public function getFundosParronesFormatedWithAreas($array)
+    {
+        /**
+         * primero obtenemos los periodos que se encuentren
+         */
+
+
+        $formated = [];
+
+        foreach ($array as $periodo){
+
+            $fundos = HelpFunct::getUniqueValueOfArrayOfNPosition($periodo->codigos);
+            $fundos_array  = [];
+
+            foreach ($fundos as $i){
+
+                $parron = [];
+
+                /**
+                 * Recorremos todos los codigos
+                 * para revisar si ese codigo pertenece
+                 * a ese fundo
+                 */
+
+                foreach ($periodo->codigos as $codigo){
+                    if(substr($codigo,2,1)==$i){
+
+
+                        $p = substr($codigo,3,2);
+
+
+                        $f = "PARRON_0".$p."_F".substr($codigo,2,1);
+
+
+                        $contabilidadRep = new ContabilidadRep();
+                        $area = $contabilidadRep->getParronByFundo($f);
+                        if(count($area)>0){
+                            $area = round($area[0]->VALOR1,2);
+                        }else{
+                            $area = 0;
+                        }
+                        $p = $p.'-'.$area;
+
+                        array_push($parron,$p);
+                    }
+                }
+
+                $obj = new Obj();
+                $obj->fundo = $i;
+                $obj->parron = $parron;
+
+
+
+
+                array_push($fundos_array,$obj);
+            }
+
+            $periodo->fundos =$fundos_array;
+
+        }
+
+
+        return $array;
+
+    }
+
+    /**
+     * la siguiente funcion devuelve el area
+     * del parron consultado , de acuerdo a la entrada
+     * y l array que se pase
+     *
+     * C: campaña
+     * F: fundo
+     * P: parron
+     * O: otros
+     * $codigo : CCFPPO
+     */
+    public function getAreaByParron($codigo,$array)
+    {
+        $res = 0;
+
+
+        foreach ($array as $item)
+        {
+            if ($item->campain == substr($codigo,0,2)){
+
+               /* ahra entramos a compar fundos*/
+                foreach ($item->fundos as $f){
+
+                    if(substr($codigo,2,1)== $f->fundo){
+
+                        /*entramos a los parrones*/
+                        foreach ($f->parron as $p){
+
+                            $temp = explode("-",$p);
+                            $parron_num = $temp[0];
+                            $area  = $temp[1];
+
+                            if($parron_num == substr($codigo,3,2)){
+                                $res = $area;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $res;
 
     }
 

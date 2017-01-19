@@ -53,6 +53,8 @@ Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'Recurs
 
 //esto es para los archivos excel
 Route::post('rh/archivos/getExcelAFPNet',['as'=>'getExcelAFPNet','uses'=>'RecursoshController@getExcelAFPNet']);
+Route::get('rh/archivos/getExcelCostoMOPorFundo',['as'=>'getExcelCostoMOPorFundo',
+    'uses'=>'RecursoshController@getExcelCostoMOPorFundo']);
 
 
 //solo pruebas
