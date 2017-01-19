@@ -193,6 +193,7 @@
                                                         <th>Fondo AFP</th>
                                                         <th>Comision AFP</th>
                                                         <th>Seguro AFP</th>
+                                                        <th>Pacifico</th>
                                                         <th>Liquidacion</th>
                                                         <th>Descuento por Venta </th>
                                                         <th>Desco Movilidad Condicion Trabajo </th>
@@ -226,6 +227,7 @@
                                                         <td>@{{ item.fondo_afp }}</td>
                                                         <td>@{{ item.comision_afp }}</td>
                                                         <td>@{{ item.seguro_afp }}</td>
+                                                        <td>@{{ item.pacifico }}</td>
                                                         <td>@{{ item.liquidacion }}</td>
                                                         <td>@{{ item.desc_venta }}</td>
                                                         <td>@{{ item.desc_movilidad_con }}</td>
@@ -255,6 +257,7 @@
                                                         <td>@{{ totales_agraria.t_fondo_afp }}</td>
                                                         <td>@{{ totales_agraria.t_comision_afp }}</td>
                                                         <td>@{{ totales_agraria.t_seguro_afp }}</td>
+                                                        <td>@{{ totales_agraria.t_pacifico }}</td>
                                                         <td>@{{ totales_agraria.t_liquidacion }}</td>
                                                         <td>@{{ totales_agraria.t_desc_venta }}</td>
                                                         <td>@{{ totales_agraria.t_desc_movilidad_con }}</td>

@@ -623,6 +623,7 @@ class PersonalRep
         $t_desc_movilidad_con   =   0;
         $t_reembolso_movilidad  =   0;
         $t_adelanto_remuneraci  =   0; //agregado por frank zelada 04/01/2017
+        $t_pacifico             =   0; //agregado por frank zelada 19/01/2017
         $t_desc_venta           =   0;
         $t_descuentos           =   0;
         $t_essalud              =   0;
@@ -636,7 +637,7 @@ class PersonalRep
                     FROM flexline.PER_DET_LIQ
                     WHERE EMPRESA='e01'
                     and periodo='$periodo' --- FILTRAR POR PERIODO '$periodo'
-                    and MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10514','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     ORDER by FICHA";
 
         $res = \DB::select($query);
@@ -883,6 +884,16 @@ class PersonalRep
                 $seguro_afp = $seguro_afp->VALOR;
             }
 
+             //10514
+            $pacifico = $item->where('MOVIMIENTO','10514')->first();
+
+            if ($pacifico == null){
+                $pacifico=0;
+
+            }else{
+                $pacifico = $pacifico->VALOR;
+            }
+
 
             //10535
             $liquidacion = $item->where('MOVIMIENTO','10535')->first();
@@ -1014,6 +1025,7 @@ class PersonalRep
             $t_snp += $snp;
             $t_fondo_afp += $fondo_afp;
             $t_seguro_afp += $seguro_afp;
+            $t_pacifico += $pacifico; //FZ
             $t_liquidacion += $liquidacion;
             $t_desc_movilidad_con += $desc_movilidad_con;
             $t_reembolso_movilidad += $reembolso_movilidad;
@@ -1042,6 +1054,7 @@ class PersonalRep
             $obj->fondo_afp             = number_format($fondo_afp,2,'.',',');
             $obj->comision_afp          = number_format($comision_afp,2,'.',',');
             $obj->seguro_afp            = number_format($seguro_afp,2,'.',',');
+            $obj->pacifico              = number_format($pacifico,2,'.',','); //FZ
             $obj->liquidacion           = number_format($liquidacion,2,'.',',');
             $obj->desc_movilidad_con    = number_format($desc_movilidad_con,2,'.',',');
             $obj->reembolso_movilidad   = number_format($reembolso_movilidad,2,'.',',');
@@ -1090,6 +1103,7 @@ class PersonalRep
         $totales['t_snp']                   = number_format($t_snp,2,'.',',');
         $totales['t_fondo_afp']             = number_format($t_fondo_afp,2,'.',',');
         $totales['t_seguro_afp']            = number_format($t_seguro_afp,2,'.',',');
+        $totales['t_pacifico']              = number_format($t_pacifico,2,'.',',');//FZ
         $totales['t_liquidacion']           = number_format($t_liquidacion,2,'.',',');
         $totales['t_desc_movilidad_con']    = number_format($t_desc_movilidad_con,2,'.',',');
         $totales['t_reembolso_movilidad']   = number_format($t_reembolso_movilidad,2,'.',',');
