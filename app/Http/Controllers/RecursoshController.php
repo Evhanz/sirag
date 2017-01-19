@@ -56,6 +56,10 @@ class RecursoshController extends Controller
         return view('rh/viewGetAFPNet');
     }
 
+    public function viewGetCostoMOFundoParron(){
+        return view('rh/viewGetCostoMOFundoParron');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -687,8 +691,11 @@ class RecursoshController extends Controller
 
     public function getExcelCostoMOPorFundo(){
 
+        set_time_limit (250);
 
-        $res = $this->personalRep->getCostoMOPorFundo("");
+        $data =  \Input::all();
+
+        $res = $this->personalRep->getCostoMOPorFundo($data);
 
         \Excel::create('COMSUMO MO FUNDO ', function($excel) use($res) {
 

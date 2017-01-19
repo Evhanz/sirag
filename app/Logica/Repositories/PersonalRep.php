@@ -1135,7 +1135,11 @@ class PersonalRep
 
     public function getCostoMOPorFundo($data){
 
-        //$fecha      =   $data['fecha'];
+        $fecha      =   $data['fecha'];
+        $fecha      =   explode('/',$fecha);
+        $fecha      =   $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
+
+        //$fecha = '2016-12-14';
 
         $query      =   "
         --esta fecha se usará para saber que dia se consultará el detalle 
@@ -1144,7 +1148,7 @@ class PersonalRep
         --luego se sacara la fecha de inicio para sacar el rango de consulta
         DECLARE @fecha_inicio DATE;
         -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
-        SET @fecha = '2016-12-14'; --aca se cambia por la variable
+        SET @fecha = '$fecha'; --aca se cambia por la variable
         SET @fecha_inicio= DATEADD(day,-6,@fecha); 
         select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD,CONVERT(DATE,DT.FECHA,113) FECHA
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
@@ -1249,12 +1253,18 @@ class PersonalRep
                     $obj->valor_x_hora = round(($valor_item->MONTO / $valor_item->CANTIDAD_H)* $cantidad,2);
 
                     /**
-                     * Obtenemos el rea si del parron encontrado, por su codigo
+                     * Obtenemos el area si del parron encontrado, por su codigo
                      * */
 
 
                     $area = $this->getAreaByParron($item,$array_codigos);
                     $obj->area = $area;
+
+                    /**
+                     * Para obtener el costo por hcarea al costo / cant. hectareas
+                     * tenemos el resultado
+                     */
+                    $obj->cost_x_hectarea = round($obj->valor_x_hora/$obj->area,2);
 
                     /**
                      * si encontramos el dato,
@@ -1274,6 +1284,7 @@ class PersonalRep
                     $obj->cantidad = 0;
                     $obj->valor_x_hora = 0;
                     $obj->area = 0;
+                    $obj->cost_x_hectarea = 0;
                 }
 
                 array_push( $detalles,$obj);

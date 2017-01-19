@@ -17,6 +17,9 @@ Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshControl
 Route::get('rh/rep/viewPlame',['as'=>'viewPlame','uses'=>'RecursoshController@viewPlame']);
 Route::get('rh/rep/viewGetLiquidacion',['as'=>'viewGetLiquidacion','uses'=>'RecursoshController@viewGetLiquidacion']);
 Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshController@viewGetAFPNet']);
+Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron',
+    'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
+
 
 
 //llamada a API
@@ -53,7 +56,7 @@ Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'Recurs
 
 //esto es para los archivos excel
 Route::post('rh/archivos/getExcelAFPNet',['as'=>'getExcelAFPNet','uses'=>'RecursoshController@getExcelAFPNet']);
-Route::get('rh/archivos/getExcelCostoMOPorFundo',['as'=>'getExcelCostoMOPorFundo',
+Route::post('rh/archivos/getExcelCostoMOPorFundo',['as'=>'getExcelCostoMOPorFundo',
     'uses'=>'RecursoshController@getExcelCostoMOPorFundo']);
 
 

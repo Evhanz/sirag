@@ -15,9 +15,9 @@
 
         <!--Periodos-->
         <tr>
-            <td rowspan="3">-</td>
+            <td rowspan="4"></td>
             @foreach($codigos as $item)
-                <td colspan="{{$item->cant}}">Campaña 200{{$item->campain}}</td>
+                <td colspan="{{($item->cant)*3}}">Campaña 200{{$item->campain}}</td>
             @endforeach
         </tr>
 
@@ -27,7 +27,7 @@
             <td></td>
             @foreach($codigos as $item)
                 @foreach($item->fundos as $i)
-                    <td colspan="{{count($i->parron)}}" >Fundo {{$i->fundo}}</td>
+                    <td colspan="{{(count($i->parron))*3}}" >Fundo {{$i->fundo}}</td>
                 @endforeach
             @endforeach
         </tr>
@@ -38,10 +38,20 @@
             <td></td>
             @foreach($codigos as $item)
                 @foreach($item->codigos as $i)
-                    <td>{{$i}}</td>
+                    <td colspan="3" style="border: 4px solid #0a0a0b">{{$i}}</td>
                 @endforeach
             @endforeach
         </tr>
+
+        <tr>
+            <td></td>
+            @foreach($res_actividades[0]->detalles as $detalle)
+                <td>Cant.</td>
+                <td>V/H</td>
+                <td>C/Ha.</td>
+            @endforeach
+        </tr>
+
         </thead>
         <tbody>
 
@@ -50,14 +60,17 @@
             <td>{{$item->descripcion}}</td>
             @foreach($item->detalles as $detalle)
                 <td>{{$detalle->cantidad}}</td>
+                <td>{{$detalle->valor_x_hora}}</td>
+                <td>{{$detalle->cost_x_hectarea}}</td>
             @endforeach
         </tr>
         @endforeach
 
         <!-- aca los resultados -->
         <tr>
+            <td style="font-weight: bold; font-size: 18PX;text-align: center;">TOTALES</td>
             @foreach($totales as $total)
-                <td>{{$total}}</td>
+                <td style=" border: 2px solid #0a0a0b; font-weight: bold; text-align:right;" colspan="3">{{$total}}</td>
             @endforeach
         </tr>
 
@@ -68,6 +81,7 @@
        .data thead tr td {
            text-align: center;
            font-weight: bold;
+           border: 2px solid #0a0a0b;
        }
     </style>
 
