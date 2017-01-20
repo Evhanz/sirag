@@ -1180,7 +1180,7 @@ class PersonalRep
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
 
-        HelpFunct::writeQuery($query);
+        //HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
@@ -1267,7 +1267,13 @@ class PersonalRep
                      * Para obtener el costo por hcarea al costo / cant. hectareas
                      * tenemos el resultado
                      */
-                    $obj->cost_x_hectarea = round($obj->valor_x_hora/$obj->area,2);
+
+                    if($obj->area == null || $obj->area ==0){
+                        $obj->cost_x_hectarea = round($obj->valor_x_hora/1,2).'N . H . A '. $obj->area;
+                    }else{
+                        $obj->cost_x_hectarea = round($obj->valor_x_hora/$obj->area,2);
+                    }
+
 
                     /**
                      * si encontramos el dato,
@@ -2043,12 +2049,26 @@ ORDER BY P.EMPLEADO
 
                         $p = substr($codigo,3,2);
 
+                        /*
+                        if(substr($codigo,4,1)== 'A' ){
+                            $p = substr($codigo,0,1).'1';
+
+                        }
+
+                        if(substr($codigo,4,1)== 'B' ){
+                            $p = substr($codigo,0,1).'2';
+
+                        }
+                        */
 
                         $f = "PARRON_0".$p."_F".substr($codigo,2,1);
 
 
+
+
                         $contabilidadRep = new ContabilidadRep();
                         $area = $contabilidadRep->getParronByFundo($f);
+                      //  var_dump($area);
                         if(count($area)>0){
                             $area = round($area[0]->VALOR1,2);
                         }else{

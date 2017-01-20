@@ -60,7 +60,7 @@
         <tbody>
 
         @foreach($res_actividades as $item)
-            <?php $t_cantidad = 0;$t_valor_x_hora = 0;$t_cost_x_hectarea = 0; ?>
+            <?php $t_cantidad = 0;$t_valor_x_hora = 0;$t_cost_x_hectarea = 0;     ?>
         <tr>
             <td>{{$item->descripcion}}</td>
             @foreach($item->detalles as $detalle)
