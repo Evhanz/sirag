@@ -1137,6 +1137,7 @@ class PersonalRep
 
         $fecha      =   $data['fecha'];
         $fecha      =   explode('/',$fecha);
+        $periodo    =   $fecha[2];
         $fecha      =   $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
 
         //$fecha = '2016-12-14';
@@ -1154,7 +1155,7 @@ class PersonalRep
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
             AND TIPO_COMPROBANTE='PLANILLAS'
-            AND PERIODO='2016'
+            AND PERIODO='$periodo'
             AND CONVERT(DATE,FECHA) = @fecha
             AND AUX_VALOR19 = GC.CODIGO
             AND AUX_VALOR19 IS NOT NULL) MONTO,
@@ -1179,7 +1180,7 @@ class PersonalRep
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
 
-        //HelpFunct::writeQuery($query);
+        HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
