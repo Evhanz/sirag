@@ -697,6 +697,8 @@ class RecursoshController extends Controller
 
         $res = $this->personalRep->getCostoMOPorFundo($data);
 
+        //return \Response::json($res);
+
         \Excel::create('COMSUMO MO FUNDO ', function($excel) use($res) {
 
             $excel->sheet('Datos', function($sheet) use($res) {

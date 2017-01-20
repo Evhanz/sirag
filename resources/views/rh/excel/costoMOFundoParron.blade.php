@@ -41,6 +41,7 @@
                     <td colspan="3" style="border: 4px solid #0a0a0b">{{$i}}</td>
                 @endforeach
             @endforeach
+            <td colspan="3">TOTALES</td>
         </tr>
 
         <tr>
@@ -50,19 +51,33 @@
                 <td>V/H</td>
                 <td>C/Ha.</td>
             @endforeach
+            <td >T: Cant.</td>
+            <td >T: V/H </td>
+            <td >T: C/Ha.</td>
         </tr>
 
         </thead>
         <tbody>
 
         @foreach($res_actividades as $item)
+            <?php $t_cantidad = 0;$t_valor_x_hora = 0;$t_cost_x_hectarea = 0; ?>
         <tr>
             <td>{{$item->descripcion}}</td>
             @foreach($item->detalles as $detalle)
                 <td>{{$detalle->cantidad}}</td>
                 <td>{{$detalle->valor_x_hora}}</td>
                 <td>{{$detalle->cost_x_hectarea}}</td>
+
+                <?php
+                    $t_cantidad += $detalle->cantidad;
+                    $t_valor_x_hora += $detalle->valor_x_hora;
+                    $t_cost_x_hectarea += $detalle->cost_x_hectarea;
+                ?>
             @endforeach
+            <td>{{ $t_cantidad }}</td>
+            <td>{{ $t_valor_x_hora }}</td>
+            <td>{{ $t_cost_x_hectarea }}</td>
+
         </tr>
         @endforeach
 

@@ -1168,7 +1168,7 @@ class PersonalRep
         dbo.GEN_TABLA as GT INNER JOIN 
         flexline.PER_DETALLETRATO DT 
         ON GT.codigo1=DT.AUX_VALOR16 AND GT.empresa = DT.EMPRESA INNER JOIN
-        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO
+        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA
         where 
         DT.EMPRESA='e01'
         AND GC.TIPO = 'CON_CCOSTO_INTERNO'
@@ -1178,6 +1178,8 @@ class PersonalRep
         AND GC.CODIGO <> '696969'
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
+
+        //HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
