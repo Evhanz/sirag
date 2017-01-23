@@ -1826,7 +1826,7 @@ class PersonalRep
         AND A.VALOR > 0
         AND C.codigo1='$inicio_periodo' -- INICIO DE MES DE LA SEMANA QUE SE CONSULTA
         AND A.PERIODO='$periodo' -- ACA VA EL PERIODO
-        ORDER BY A.FICHA  ";
+        ORDER BY E.APELLIDO_PATERNO,E.APELLIDO_MATERNO  ";
 
 
         $res = \DB::select($query);
