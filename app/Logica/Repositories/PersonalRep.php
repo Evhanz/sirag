@@ -1177,10 +1177,11 @@ class PersonalRep
         and GT.cod_tabla='per_labor'
         and DT.TRATO='TRATO_HORA'
         AND GC.CODIGO <> '696969'
+        AND LEN(GC.CODIGO) = 6
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
 
-        //HelpFunct::writeQuery($query);
+        HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
@@ -1328,6 +1329,163 @@ class PersonalRep
         return $response;
 
     }
+
+    /**
+     * es funcion saca los que son de 5 cci
+    */
+
+    public function getCostoMOPor5CCI($data,$t='general')
+    {
+
+
+        $fecha      =   $data['fecha'];
+        $fecha      =   explode('/',$fecha);
+        $periodo    =   $fecha[2];
+        $fecha      =   $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
+
+        $tipo       =   $t;
+
+        if($tipo == 'general')
+        {
+            $q1 = "AND SUBSTRING(GC.CODIGO, 3, 1) <> '0' ";
+
+        }else{
+            $q1 = "AND SUBSTRING(GC.CODIGO, 3, 1) = '0' ";
+        }
+
+
+        $query = "
+        --esta fecha se usará para saber que dia se consultará el detalle 
+        DECLARE @fecha date;
+        
+        --luego se sacara la fecha de inicio para sacar el rango de consulta
+        DECLARE @fecha_inicio DATE;
+        -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
+        SET @fecha = '$fecha'; --aca se cambia por la variable
+        SET @fecha_inicio= DATEADD(day,-6,@fecha); 
+        select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD
+        ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
+            WHERE EMPRESA='E01'
+            AND TIPO_COMPROBANTE='PLANILLAS'
+            AND PERIODO='$periodo'
+            AND CONVERT(DATE,FECHA) = @fecha
+            AND AUX_VALOR19 = GC.CODIGO
+            AND AUX_VALOR19 IS NOT NULL) MONTO,
+            (SELECT SUM(CANTIDAD) FROM flexline.PER_DETALLETRATO
+            WHERE EMPRESA='E01'
+            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio and @fecha
+            AND AUX_VALOR5 = GC.CODIGO
+            ) CANTIDAD_H
+            
+        from
+        dbo.GEN_TABLA as GT INNER JOIN 
+        flexline.PER_DETALLETRATO DT 
+        ON GT.codigo1=DT.AUX_VALOR16 AND GT.empresa = DT.EMPRESA INNER JOIN
+        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA
+        where 
+        DT.EMPRESA='e01'
+        AND GC.TIPO = 'CON_CCOSTO_INTERNO'
+        and GT.vigencia='S'
+        and GT.cod_tabla='per_labor'
+        and DT.TRATO='TRATO_HORA'
+        AND GC.CODIGO <> '696969'
+        AND LEN(GC.CODIGO) = 5
+        $q1
+        AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
+        GROUP BY GC.CODIGO, GT.descripcion
+        ORDER BY GC.CODIGO";
+
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+        //se saca los codigos que se ncuentran
+
+        $codigos = $res->groupBy('CODIGO')->keys();
+
+        //separamos en actividades
+        $actividades = $res->groupBy('descripcion');
+
+        $a_actividades = array();
+
+        foreach ($actividades as $actividad){
+
+            $act = new Obj();
+            $act->descripcion = $actividad[0]->descripcion;
+            $detalles = array();
+
+
+            foreach ($codigos as $codigo){
+                $detalle = new Obj();
+                //$detalle->monto = '';
+                $detalle->codigo = $codigo;
+                $detalle->horas = 0;
+                $detalle->costo_x_hora = 0;
+                $detalle->area = 0;
+
+                foreach ($actividad as $item){
+
+                    if($codigo == $item->CODIGO){
+                        $detalle->horas = intval($item->CANTIDAD);
+
+                        //calculo
+                        $detalle->costo_x_hora = round(($item->MONTO/$item->CANTIDAD_H)*$item->CANTIDAD,2);
+
+                        /*luego ver por el area del fundo*/
+
+                        if(substr($codigo,2,1) != 0){
+
+                            $detalle->area = $this->getAreaFundo(substr($codigo,2,1));
+                        }
+
+                    }
+                   // $detalle->help  .=  ' '.$item->CANTIDAD.' - '.$item->CODIGO.' : '.$codigo ;
+                }
+
+                array_push($detalles,$detalle);
+            }
+
+            $act->detalles = $detalles;
+
+            array_push($a_actividades,$act);
+        }
+
+
+        $campanias = HelpFunct::getUniqueValueOfArrayOfNPosition($codigos,0,2);
+
+        $f_cabeceras = [];
+
+        foreach ($campanias as $cam)
+        {
+            $obj = new Obj();
+            $obj->cam = $cam;
+            $cabeceras = [];
+
+            foreach ($codigos as $codigo){
+
+                if($cam == substr($codigo,0,2)){
+
+                    array_push($cabeceras,$codigo);
+                }
+            }
+
+            $obj->codigos = $cabeceras;
+            array_push($f_cabeceras,$obj);
+        }
+
+
+        //$cabecera = HelpFunct::getUniqueValueOfArrayOfNPosition($codigos);
+
+        $response = array();
+       // $response['codigos'] = $codigos;
+        $response['actividades'] = $a_actividades;
+        $response['cabecera'] = $f_cabeceras;
+        //$response['campanias'] = $campanias;
+
+        return $response;
+
+    }
+
 
     /**
      * Plame :REM
@@ -2065,7 +2223,6 @@ ORDER BY P.EMPLEADO
 
 
 
-
                         $contabilidadRep = new ContabilidadRep();
                         $area = $contabilidadRep->getParronByFundo($f);
                       //  var_dump($area);
@@ -2145,5 +2302,26 @@ ORDER BY P.EMPLEADO
     }
 
 
+    /**
+     * la funcion trae la cantidad de hectareas
+     * de acuerdo al funo
+     */
+    public function getAreaFundo($fundo){
 
+        $query = "SELECT VALOR1 FROM flexline.GEN_TABCOD
+            WHERE EMPRESA='E01'
+            AND TIPO='GEN_FUNDO'
+            AND VIGENCIA <> 'N'
+            AND CODIGO = 'FUNDO_00$fundo'";
+
+        $response = \DB::select($query);
+
+        if($response != null || count($response)>0){
+
+            return round($response[0]->VALOR1,2);
+        }else{
+            return 0;
+        }
+
+    }
 }

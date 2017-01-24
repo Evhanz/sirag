@@ -334,20 +334,20 @@ class HelpFunct
 
     /**
      * la funcion devuelve los valor que no se repiten
-     * de un conjunto de elementos de la posicion n
+     * de un conjunto de elementos de la posicion n(desde) -  hasta
      * de cada elemento
      * necesario : $array array
      * devuelve : collect()
      */
 
-    public static function getUniqueValueOfArrayOfNPosition($array)
+    public static function getUniqueValueOfArrayOfNPosition($array,$n = 2, $cant = 1)
     {
 
         $response = [];
 
         foreach ($array as $item){
 
-            $val = substr($item,2,1);
+            $val = substr($item,$n,$cant);
 
             if (!in_array($val,$response)){
                 array_push($response,$val);

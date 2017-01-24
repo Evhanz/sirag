@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use sirag\Helpers\HelpFunct;
 use sirag\Repositories\PersonalRep;
@@ -697,11 +698,15 @@ class RecursoshController extends Controller
 
         $res = $this->personalRep->getCostoMOPorFundo($data);
 
-        //return \Response::json($res);
+        $general = $this->personalRep->getCostoMOPor5CCI($data);
 
-        \Excel::create('COMSUMO MO FUNDO ', function($excel) use($res) {
+        $packing = $this->personalRep->getCostoMOPor5CCI($data,'packing');
 
-            $excel->sheet('Datos', function($sheet) use($res) {
+        //return \Response::json($packing);
+
+        Excel::create('COMSUMO MO FUNDO ', function($excel) use($res,$general,$packing) {
+
+            $excel->sheet('Consumo', function($sheet) use($res) {
 
                 $res_actividades = $res['res_actividades'];
                 $totales = $res['totales'];
@@ -709,7 +714,30 @@ class RecursoshController extends Controller
 
                 $sheet->loadView('rh.excel.costoMOFundoParron',compact('res_actividades','totales','codigos'));
 
+
             });
+
+
+            $excel->sheet('General', function($sheet) use($general) {
+
+                $cabecera = $general['cabecera'];
+                $actividades = $general['actividades'];
+
+
+                $sheet->loadView('rh.excel.costoMOFundoParronGeneral',compact('actividades','cabecera'));
+
+            });
+
+            $excel->sheet('packing', function($sheet) use($packing) {
+
+                $cabecera = $packing['cabecera'];
+                $actividades = $packing['actividades'];
+
+
+                $sheet->loadView('rh.excel.costoMOFundoParronPacking',compact('actividades','cabecera'));
+
+            });
+
 
         })->export('xls');
 

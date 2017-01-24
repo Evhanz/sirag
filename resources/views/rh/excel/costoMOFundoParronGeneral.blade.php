@@ -16,8 +16,8 @@
         <!--Periodos-->
         <tr>
             <td rowspan="4"></td>
-            @foreach($codigos as $item)
-                <td colspan="{{($item->cant)*3}}">Campaña 200{{$item->campain}}</td>
+            @foreach($cabecera as $item)
+                <td colspan="{{ count($item->codigos)*3}}">Campaña 200{{$item->cam}}</td>
             @endforeach
         </tr>
 
@@ -25,28 +25,18 @@
 
         <tr>
             <td></td>
-            @foreach($codigos as $item)
-                @foreach($item->fundos as $i)
-                    <td colspan="{{(count($i->parron))*3}}" >Fundo {{$i->fundo}}</td>
-                @endforeach
-            @endforeach
-        </tr>
-
-
-
-        <tr>
-            <td></td>
-            @foreach($codigos as $item)
+            @foreach($cabecera as $item)
                 @foreach($item->codigos as $i)
-                    <td colspan="3" style="border: 4px solid #0a0a0b">{{$i}}</td>
+                    <td colspan="3" >{{$i}}</td>
                 @endforeach
             @endforeach
             <td colspan="3">TOTALES</td>
         </tr>
 
+
         <tr>
             <td></td>
-            @foreach($res_actividades[0]->detalles as $detalle)
+            @foreach($actividades[0]->detalles as $detalle)
                 <td>Cant.</td>
                 <td>V/H</td>
                 <td>C/Ha.</td>
@@ -59,19 +49,20 @@
         </thead>
         <tbody>
 
-        @foreach($res_actividades as $item)
+        @foreach($actividades as $item)
             <?php $t_cantidad = 0;$t_valor_x_hora = 0;$t_cost_x_hectarea = 0;     ?>
         <tr>
             <td>{{$item->descripcion}}</td>
             @foreach($item->detalles as $detalle)
-                <td>{{$detalle->cantidad}}</td>
-                <td>{{$detalle->valor_x_hora}}</td>
-                <td>{{$detalle->cost_x_hectarea}}</td>
+                <td>{{$detalle->horas}}</td>
+                <td>{{$detalle->costo_x_hora}}</td>
+                <td>{{$detalle->area}}</td>
 
                 <?php
-                    $t_cantidad += $detalle->cantidad;
-                    $t_valor_x_hora += $detalle->valor_x_hora;
-                    $t_cost_x_hectarea += $detalle->cost_x_hectarea;
+
+                    $t_cantidad += $detalle->horas;
+                    $t_valor_x_hora += $detalle->costo_x_hora;
+                    $t_cost_x_hectarea += $detalle->area;
                 ?>
             @endforeach
             <td>{{ $t_cantidad }}</td>
@@ -81,16 +72,7 @@
         </tr>
         @endforeach
 
-        <!-- aca los resultados -->
 
-        <!--
-        <tr>
-            <td style="font-weight: bold; font-size: 18PX;text-align: center;">TOTALES</td>
-            @foreach($totales as $total)
-                <td style=" border: 2px solid #0a0a0b; font-weight: bold; text-align:right;" colspan="3">{{$total}}</td>
-            @endforeach
-        </tr>
-        -->
         </tbody>
     </table>
 
