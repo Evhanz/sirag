@@ -48,19 +48,17 @@
         <tbody>
 
         @foreach($actividades as $item)
-            <?php $t_cantidad = 0;$t_valor_x_hora = 0;    ?>
+            <?php $t_cantidad = 0;$t_valor_x_hora = 0;   ?>
         <tr>
             <td>{{$item->descripcion}}</td>
             @foreach($item->detalles as $detalle)
                 <td>{{$detalle->horas}}</td>
                 <td>{{$detalle->costo_x_hora}}</td>
-
                 <?php
-
                     $t_cantidad += $detalle->horas;
                     $t_valor_x_hora += $detalle->costo_x_hora;
-
                 ?>
+
             @endforeach
             <td>{{ $t_cantidad }}</td>
             <td>{{ $t_valor_x_hora }}</td>
