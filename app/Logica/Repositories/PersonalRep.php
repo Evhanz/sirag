@@ -633,12 +633,19 @@ class PersonalRep
          * Se quito eso del siguiente query
          * and MOVIMIENTO='99005'
          * */
-        $query = "select FICHA, VALOR , MOVIMIENTO
-                    FROM flexline.PER_DET_LIQ
-                    WHERE EMPRESA='e01'
-                    and periodo='$periodo' --- FILTRAR POR PERIODO '$periodo'
-                    and MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10514','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
-                    ORDER by FICHA";
+        $query = "select 
+                    A.FICHA, A.VALOR , A.MOVIMIENTO
+                    FROM 
+                    flexline.PER_DET_LIQ A,
+                    flexline.PER_TRABAJADOR B
+                    WHERE 
+                    A.EMPRESA=B.EMPRESA
+                    AND A.FICHA=B.FICHA
+                    AND A.EMPRESA='e01'
+                    AND B.CATEGORIA='OPERARIO'
+                    and A.periodo='$periodo' --- FILTRAR POR PERIODO '$periodo'
+                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10503','10514','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    ORDER by A.FICHA";
 
         $res = \DB::select($query);
 
