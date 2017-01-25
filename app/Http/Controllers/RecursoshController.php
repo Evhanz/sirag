@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use sirag\Entities\Obj;
 use sirag\Helpers\HelpFunct;
 use sirag\Repositories\PersonalRep;
 
@@ -702,9 +703,60 @@ class RecursoshController extends Controller
 
         $packing = $this->personalRep->getCostoMOPor5CCI($data,'packing');
 
-        //return \Response::json($packing);
+        /**
+         * sacaremos por cada
+        */
 
-        Excel::create('COMSUMO MO FUNDO ', function($excel) use($res,$general,$packing) {
+        //solo por prueba -- pasar toda esta orecacion a otra capa
+
+        $a_codigos = [];
+        $codigos = $res['codigos'];
+        $a_actividades = $res['res_actividades'];
+
+        foreach ($codigos as $item){
+
+            $codigo = new Obj();
+            $codigo->campain = $item->campain;
+            $codigo->det_fundos = array();
+
+            foreach ($item->fundos as $fundo){
+                $f = new Obj();
+                $f->fundo = $fundo->fundo;
+                $f->actividades = array();
+                $f->parrones = $fundo->parron;
+                //ahora buscamos por cada actividad los detalles que tiene
+
+                foreach ($a_actividades as $activi){
+
+                    $dellates_actividades = ($activi->detalles);
+                    $o_actividad = new Obj();
+                    $o_actividad->descripcion = $activi->descripcion;
+                    $o_actividad->detalles = array();
+
+                    foreach ($fundo->parron as $parron){
+                        //recorremos por la cantidad de parron buscar los
+                        //formateamos el codigo en ccfppxx = c: campania, f:fundo, p:parron
+                        $p =substr($parron,0,2);
+                        $codigo_format =$item->campain.$fundo->fundo.$p.'1';
+                        $dets = $this->getItemDetalleCodigoParron($dellates_actividades,$codigo_format);
+
+                        //$dets = $dellates_actividades->where('item',$codigo_format);
+                        array_push($o_actividad->detalles,$dets);
+
+                    }
+                    array_push($f->actividades,$o_actividad);
+
+                }
+                array_push($codigo->det_fundos,$f);
+            }
+
+            array_push($a_codigos,$codigo);
+        }
+
+        //return \Response::json($a_codigos);
+
+
+        Excel::create('COMSUMO MO FUNDO ', function($excel) use($res,$general,$packing,$a_codigos) {
 
             $excel->sheet('Consumo', function($sheet) use($res) {
 
@@ -738,6 +790,34 @@ class RecursoshController extends Controller
 
             });
 
+            /* por cada una de las campañas */
+
+            foreach ($a_codigos as $camp){
+
+                foreach ($camp->det_fundos as $fundos){
+
+
+                    $fundo          =   $fundos->fundo;
+                    $campain        =   $camp->campain;
+                    $actividades    =   $fundos->actividades;
+                    $parrones       =   $fundos->parrones;
+                    $codigos        =   collect($actividades[0]->detalles);
+                    $codes        =   $codigos->groupBy('item')->keys()->toArray();
+
+                    $excel->sheet('Fundo'.$fundo, function($sheet) use($fundo,$campain,$actividades,$parrones,$codes) {
+
+                        $sheet->loadView('rh.excel.costoMOFundoParronCU',
+                            compact('fundo','campain','actividades','parrones','codes'));
+
+                    });
+
+
+
+                }
+
+            }
+
+
 
         })->export('xls');
 
@@ -746,6 +826,26 @@ class RecursoshController extends Controller
 
 
 
+
+
+    }
+
+
+    //funcion helper , pasar a la caa helpers
+
+    public function getItemDetalleCodigoParron($detalles , $item){
+
+        $response = '';
+
+        foreach ($detalles as $detalle){
+
+            if ($detalle->item == $item){
+                $response =$detalle;
+                break;
+            }
+        }
+
+        return $response;
 
     }
 
