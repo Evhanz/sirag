@@ -62,6 +62,10 @@ class RecursoshController extends Controller
         return view('rh/viewGetCostoMOFundoParron');
     }
 
+    public function viewRegJornales(){
+        return view('rh/viewRegJornales');
+    }
+
 
     //API para traer a los trbajadores
 

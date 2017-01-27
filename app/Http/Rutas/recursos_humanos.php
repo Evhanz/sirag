@@ -19,6 +19,7 @@ Route::get('rh/rep/viewGetLiquidacion',['as'=>'viewGetLiquidacion','uses'=>'Recu
 Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshController@viewGetAFPNet']);
 Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron',
     'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
+Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
 
 
 
