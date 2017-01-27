@@ -2190,12 +2190,35 @@ ORDER BY P.EMPLEADO
                 and FICHA like '%$ficha%' --- FILTRO POR FICHA
                 and MOVIMIENTO like '%$movimiento%'
                 and convert(date,convert(varchar(8),PERIODO),103)  BETWEEN  '$f_i' AND '$f_f'
+                ORDER BY  PERIODO
                 ";
-
 
         $res = \DB::select($query);
 
+        foreach ($res as $item){
+            $item->FECHA = substr($item->PERIODO,6,2).'-'.substr($item->PERIODO,4,2).'-'.substr($item->PERIODO,0,4);
+        }
+
+
         return $res;
+    }
+
+    public function deleteMovimientoByPeriodoFicha($data){
+
+        $FICHA = $data['FICHA'];
+        $MOVIMIENTO = $data['MOVIMIENTO'];
+        $PERIODO = $data['PERIODO'];
+
+        $query = "DELETE
+                 FROM flexline.PER_MOV_MES
+                where EMPRESA='e01'
+                and FICHA = '$FICHA' --- FILTRO POR FICHA
+                and MOVIMIENTO = '$MOVIMIENTO'
+                and PERIODO = $PERIODO  ";
+        $res = \DB::delete($query);
+
+        return $res;
+
     }
 
 

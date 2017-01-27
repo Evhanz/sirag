@@ -533,6 +533,17 @@ class RecursoshController extends Controller
     }
 
 
+    public function deleteMovimientoByPeriodoFicha(){
+
+        $data = \Input::all();
+
+        $item = $data['item'];
+        $res = $this->personalRep->deleteMovimientoByPeriodoFicha($item);
+        return \Response::json($res);
+
+    }
+
+
 
 
 

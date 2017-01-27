@@ -72,7 +72,7 @@
                          <!--   <img src="{{ asset('img/avatar3.png') }}" class="img-circle" alt="User Image" /> -->
                             <p>
                                 @if (Auth::guest())
-                                    oublic
+                                    public
                                 @else
                                     Usuario:{{Auth::user()->USR}}
                                 @endif
@@ -181,6 +181,10 @@
                         <li><a href="{{ URL::route('viewGetLiquidacion') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Liquidacion </a></li>
                         <li><a href="{{ URL::route('viewGetAFPNet') }}" class="item sub"><i class="fa fa-angle-double-right"></i> AFP Net </a></li>
                         <li><a href="{{ URL::route('viewGetCostoMOFundoParron') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Costo MO x Fundo</a></li>
+                        @if(Auth::user()->USR== 'JMIRANDA' || Auth::user()->hasAnyRole(['ADMIN']) == true )
+                            <li><a href="{{ URL::route('viewDeleteMovimientos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Eliminar Movimientos </a></li>
+                        @endif
+
                     </ul>
                 </li><!--RECURSOS HUMANOS-->
                 @endif

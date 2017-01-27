@@ -41,6 +41,8 @@ Route::post('rh/api/getPlameJOR',['as'=>'getPlameJOR','uses'=>'RecursoshControll
 Route::get('rh/api/getDetailLiquidacion',['as'=>'getDetailLiquidacion','uses'=>'RecursoshController@getDetailLiquidacion']);
 Route::post('rh/api/getMovimientosByFichaAndPeriodo',['as'=>'getMovimientosByFichaAndPeriodo'
     ,'uses'=>'RecursoshController@getMovimientosByFichaAndPeriodo']);
+Route::post('rh/api/deleteMovimientoByPeriodoFicha',['as'=>'deleteMovimientoByPeriodoFicha'
+    ,'uses'=>'RecursoshController@deleteMovimientoByPeriodoFicha']);
 
 
 

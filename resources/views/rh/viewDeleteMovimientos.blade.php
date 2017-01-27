@@ -140,13 +140,13 @@
                                         <tr id="tr_Doc_@{{ item.idDocto }}">
                                             <td>
 
-                                                <a href="" class="btn btn-danger" ng-show="item.ATENDIDO!=0" ng-click="viewGuia(item)" >
+                                                <a href="" class="btn btn-danger"  ng-click="deleteMov(item)" >
                                                     <i class="fa fa-stop-circle-o fa-lg"></i>
                                                 </a>
 
                                             </td>
                                             <td>@{{ item.FICHA }}</td>
-                                            <td>@{{ item.PERIODO }}</td>
+                                            <td>@{{ item.FECHA }}</td>
                                             <td>@{{ item.MOVIMIENTO }}</td>
                                             <td>@{{ item.DESCRIPCION}}</td>
                                             <td>@{{ item.MONTO | number:2 }}</td>
@@ -290,6 +290,40 @@
                 }
             };
 
+            $scope.deleteMov = function (item) {
+
+
+                var r = confirm("Estas Seguro que deseas eliminar este registro ? ");
+                if (r == true) {
+
+                    var token = $('#_token').val();
+
+                    $http.post('{{ URL::route('deleteMovimientoByPeriodoFicha') }}',
+                            {   _token : token,
+                                item:item
+
+                            })
+                            .success(function(data){
+                                if(data>=1){
+                                    alert('Correcto');
+                                    $scope.getDataByDoc();
+                                }
+                            }).error(function(data) {
+                        console.log( data);
+                        alert('Error: :>');
+                    });
+
+
+
+                } else {
+
+
+
+                }
+
+
+
+            };
 
 
 
@@ -314,6 +348,9 @@
 
 
         });
+
+
+
     </script>
 
 
