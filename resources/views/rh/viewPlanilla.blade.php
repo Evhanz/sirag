@@ -154,6 +154,7 @@
                                                     <option value="">-------</option>
                                                     <option value="CREDITO">CREDITO</option>
                                                     <option value="CONTINENTAL">CONTINENTAL</option>
+                                                    <option value="INTERBANK">INTERBANK</option>
 
                                                 </select>
 
