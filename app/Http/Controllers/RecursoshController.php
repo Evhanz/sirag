@@ -66,6 +66,10 @@ class RecursoshController extends Controller
         return view('rh/viewRegJornales');
     }
 
+    public function viewDeleteMovimientos(){
+        return view('rh/viewDeleteMovimientos');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -515,7 +519,13 @@ class RecursoshController extends Controller
         $res = $this->personalRep->getDetailLiquidacion($data);
 
         return \Response::json($res);
+    }
 
+    public function getMovimientosByFichaAndPeriodo(){
+
+        $data = \Input::all();
+
+        return \Response::json($data);
 
     }
 

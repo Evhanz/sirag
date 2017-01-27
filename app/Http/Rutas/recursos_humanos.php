@@ -20,6 +20,7 @@ Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshContr
 Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron',
     'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
 Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
+Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
 
 
 
@@ -38,6 +39,8 @@ Route::post('rh/api/getPlameRem',['as'=>'getPlameRem','uses'=>'RecursoshControll
 Route::post('rh/api/getPlameRemSNL',['as'=>'getPlameRemSNL','uses'=>'RecursoshController@getPlameRemSNL']);
 Route::post('rh/api/getPlameJOR',['as'=>'getPlameJOR','uses'=>'RecursoshController@getPlameJOR']);
 Route::get('rh/api/getDetailLiquidacion',['as'=>'getDetailLiquidacion','uses'=>'RecursoshController@getDetailLiquidacion']);
+Route::post('rh/api/getMovimientosByFichaAndPeriodo',['as'=>'getMovimientosByFichaAndPeriodo'
+    ,'uses'=>'RecursoshController@getMovimientosByFichaAndPeriodo']);
 
 
 
