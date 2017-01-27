@@ -140,8 +140,8 @@
                                         <tr id="tr_Doc_@{{ item.idDocto }}">
                                             <td>
 
-                                                <a href="" class="btn btn-default" ng-show="item.ATENDIDO!=0" ng-click="viewGuia(item)" >
-                                                    <i class="fa fa-eye fa-lg"></i>
+                                                <a href="" class="btn btn-danger" ng-show="item.ATENDIDO!=0" ng-click="viewGuia(item)" >
+                                                    <i class="fa fa-stop-circle-o fa-lg"></i>
                                                 </a>
 
                                             </td>
@@ -149,7 +149,7 @@
                                             <td>@{{ item.PERIODO }}</td>
                                             <td>@{{ item.MOVIMIENTO }}</td>
                                             <td>@{{ item.DESCRIPCION}}</td>
-                                            <td>@{{ item.MONTO }}</td>
+                                            <td>@{{ item.MONTO | number:2 }}</td>
 
 
                                         </tr>
@@ -270,8 +270,8 @@
                             })
                             .success(function(data){
 
-                                //$scope.Documentos = data;
-                                console.log( data);
+                                $scope.Documentos = data;
+                                //console.log( data);
                                 $('#btnBuscarDoc').attr("disabled", false);
 
                                 $( "div" ).remove( ".overlay" );

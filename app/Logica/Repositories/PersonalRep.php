@@ -2174,13 +2174,32 @@ ORDER BY P.EMPLEADO
 
 
         return $response;
-
-
-
-
-
-
     }
+
+
+    public function getMovimientosByFichaAndPeriodo($data){
+
+        $f_i= $data['f_inicio'];
+        $f_f= $data['f_fin'];
+        $movimiento = $data['movimiento'];
+        $ficha = $data['ficha'];
+
+        $query = "SELECT FICHA,PERIODO,MOVIMIENTO,DESCRIPCION,MONTO
+                 FROM flexline.PER_MOV_MES
+                where EMPRESA='e01'
+                and FICHA like '%$ficha%' --- FILTRO POR FICHA
+                and MOVIMIENTO like '%$movimiento%'
+                and convert(date,convert(varchar(8),PERIODO),103)  BETWEEN  '$f_i' AND '$f_f'
+                ";
+
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
+
+
 
 
 

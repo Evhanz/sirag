@@ -525,7 +525,10 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-        return \Response::json($data);
+
+        $res = $this->personalRep->getMovimientosByFichaAndPeriodo($data);
+
+        return \Response::json($res);
 
     }
 
