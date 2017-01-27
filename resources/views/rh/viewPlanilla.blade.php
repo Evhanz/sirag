@@ -197,6 +197,7 @@
                                                         <th>Liquidacion</th>
                                                         <th>Descuento por Venta </th>
                                                         <th>Desco Movilidad Condicion Trabajo </th>
+                                                        <th>Exceso Pago </th>
                                                         <th>Reembolso Movilidad </th>
                                                         <th>Adelanto Remuneracion </th>
                                                         <th>Total Descuentos</th>
@@ -231,6 +232,7 @@
                                                         <td>@{{ item.liquidacion }}</td>
                                                         <td>@{{ item.desc_venta }}</td>
                                                         <td>@{{ item.desc_movilidad_con }}</td>
+                                                        <td>@{{ item.exceso_pago }}</td>
                                                         <td>@{{ item.reembolso_movilidad }}</td>
                                                         <td>@{{ item.adelanto_remuneraci }}</td>
                                                         <td>@{{ item.descuentos }}</td>
@@ -261,6 +263,7 @@
                                                         <td>@{{ totales_agraria.t_liquidacion }}</td>
                                                         <td>@{{ totales_agraria.t_desc_venta }}</td>
                                                         <td>@{{ totales_agraria.t_desc_movilidad_con }}</td>
+                                                        <td>@{{ totales_agraria.t_exceso_pago }}</td>
                                                         <td>@{{ totales_agraria.t_reembolso_movilidad }}</td>
                                                         <td>@{{ totales_agraria.t_adelanto_remuneraci }}</td>
                                                         <td>@{{ totales_agraria.t_descuentos }}</td>
