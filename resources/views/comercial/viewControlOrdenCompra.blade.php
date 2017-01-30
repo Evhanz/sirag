@@ -140,6 +140,7 @@
                                         <tr>
                                             <th>O/C</th>
                                             <th>Fecha</th>
+                                            <th>Fecha de Entrega</th>
                                             <th>Proveedor</th>
                                             <th>UM</th>
                                             <th>Código Producto</th>
@@ -155,6 +156,7 @@
                                         <tr id="tr_Doc_@{{ item.idDocto }}">
                                             <td>@{{ item.Numero }}</td>
                                             <td>@{{ item.FECHA }}</td>
+                                            <td>@{{ item.FECHA_ENTREGA }}</td>
                                             <td>@{{ item.RazonSocial }}</td>
                                             <td>@{{ item.UnidadIngreso }}</td>
                                             <td>@{{ item.cod_producto}}</td>

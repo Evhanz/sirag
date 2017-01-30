@@ -85,6 +85,7 @@ class ContabilidadRep
                           ,v.Correlativo
                           ,v.Secuencia
                           ,v.PrecioIngreso
+                          ,convert(DATE,v.FechaEntrega)AS FECHA_ENTREGA
 
                           FROM v_ordenCompra_details as v
                           where Fecha BETWEEN '$f_inicio' AND '$f_fin'
@@ -116,6 +117,7 @@ class ContabilidadRep
         $item->ATENDIDO      = number_format($item->ATENDIDO,2,'.',',');
         $item->FECHA         = $this->h_chageFormatDate($item->FECHA);
         $item->PrecioIngreso = number_format($item->PrecioIngreso,3,'.',',');
+        $item->FECHA_ENTREGA = $this->h_chageFormatDate($item->FECHA_ENTREGA);
 
       }
 
