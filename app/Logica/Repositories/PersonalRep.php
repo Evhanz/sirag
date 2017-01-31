@@ -19,7 +19,7 @@ class PersonalRep
 
     public function getAllTrabajadores(){
 
-        $query = "SELECT EMPLEADO dni,(APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre
+        $query = "SELECT EMPLEADO dni,(APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre , FICHA ficha
                     FROM flexline.PER_TRABAJADOR
                     where EMPRESA = 'e01'
                     AND VIGENCIA = 'ACTIVO'
@@ -2222,6 +2222,51 @@ ORDER BY P.EMPLEADO
     }
 
 
+    public function getCentroCostoInterno(){
+
+        $query = "select CODIGO,DESCRIPCION from flexline.GEN_TABCOD
+                WHERE EMPRESA = 'E01'
+                AND TIPO = 'CON_CCOSTO_INTERNO'
+                AND VIGENCIA = 'S'";
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
+    public function getLaborByCodigo($codigo){
+
+        $query = "SELECT CODIGO,DESCRIPCION FROM
+                flexline.GEN_TABCOD 
+                WHERE EMPRESA = 'E01'
+                AND TIPO LIKE 'PER_ACTIVIDADES'
+                AND CODIGO = '$codigo'";
+
+        $res = \DB::select($query);
+
+        if(count($res)>0){
+
+            return json_encode($res[0]);
+        }else{
+            return 0;
+        }
+
+
+    }
+
+    public function CodigoActividad(){
+
+        $query = "select (convert(varchar,ROW_NUMBER() OVER(ORDER BY DESCCODIGO ASC))+'-'+DESCCODIGO) as codigo from 
+flexline.PER_TRATOS
+where EMPRESA = 'e01'";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+    }
+
+
 
 
 
@@ -2361,8 +2406,11 @@ ORDER BY P.EMPLEADO
         }
 
         return $res;
-
     }
+
+
+
+
 
 
     /**

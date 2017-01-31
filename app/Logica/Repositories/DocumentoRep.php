@@ -164,6 +164,58 @@ class DocumentoRep
 
     }
 
+    /**
+     * Esta funcion trae sa guias que le faltan las factura
+     */
+    public function getGuiaFaltaFactura($f){
+
+        //$f = '2017-01';
+
+        $query = "SELECT CONVERT(DATE,FECHA_GUIA) FECHA,GUIA,FACTURA
+FROM (
+SELECT 
+B.Fecha AS FECHA_GUIA,
+A.NUMERO AS GUIA,
+(SELECT TOP 1 Y.Numero
+FROM 
+flexline.DocumentoD X,
+FLEXLINE.DOCUMENTO Y
+WHERE 
+X.idDocto=Y.idDocto
+AND X.Empresa=B.Empresa
+AND X.CorrelativoOrigen=B.Correlativo
+AND X.TipoDoctoOrigen=B.TipoDocto
+AND X.SecuenciaOrigen=B.Secuencia
+AND X.TipoDocto in ('01 F/C ALMACEN (A)','01 F/C ALMACEN ELEC','12 TICKETS O CINTA (A)')) AS FACTURA
+FROM 
+flexline.Documento A,
+flexline.DocumentoD B
+WHERE
+A.idDocto=B.idDocto
+AND B.Empresa='E01'
+AND B.TipoDocto='N/I ALMACEN (A)'
+AND CONVERT(date,b.fecha,113) like '$f-%'---- DEBE FILTRAR POR PERIODO
+) AS GUIAS
+WHERE FACTURA IS NULL
+order by FACTURA , FECHA_GUIA
+
+";
+
+        $res = \DB::select($query);
+
+
+        foreach ($res as $item){
+            $fecha = $item->FECHA ;
+            $fecha = explode('-',$fecha);
+            $item->FECHA = $fecha[2].'-'.$fecha[1].'-'.$fecha[0] ;
+        }
+
+
+        return $res;
+
+
+    }
+
 
 
 }

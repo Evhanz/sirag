@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<script type="text/javascript" src="{{ asset('js/plugins/table2excel/jquery.table2excel.min.js') }} "></script>	
-
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
             <div class="row" style="padding-left: 15px; padding-right: 15px;">
@@ -12,6 +10,7 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Orden Compra</a></li>
+
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -24,25 +23,33 @@
                                             <form class="form-inline" style="padding: 15px">
 
                                                 <div class="form-group">
-                                                    <label>Rango de Fechas</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input class="form-control " name="daterange" id="reservation" type="text">
-                                                    </div><!-- /.input group -->
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="">Movimiento</label>
-                                                    <input type="text" class="form-control" ng-model="filMovimiento">
+                                                    <label for="" >Año</label><br>
+                                                    <select name="filAnio" class="form-control" id="filAnio" required>
+                                                        <option value="">--------</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2014">2014</option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Ficha</label>
-                                                    <input type="text" class="form-control" ng-model="filFicha">
+                                                    <label for="" >Mes</label><br>
+                                                    <select name="filMes" class="form-control" id="filMes" required>
+                                                        <option value="">--------</option>
+                                                        <option value="1">Enero</option>
+                                                        <option value="2">Febrero</option>
+                                                        <option value="3">Marzo</option>
+                                                        <option value="4">Abril</option>
+                                                        <option value="5">Mayo</option>
+                                                        <option value="6">Junio</option>
+                                                        <option value="7">Julio</option>
+                                                        <option value="8">Agosto</option>
+                                                        <option value="9">Septiembre</option>
+                                                        <option value="10">Octubre</option>
+                                                        <option value="11">Noviembre</option>
+                                                        <option value="12">Diciembre</option>
+                                                    </select>
                                                 </div>
-
-
 
                                                 <div class="form-group">
                                                     <label for=""></label><br>
@@ -50,24 +57,6 @@
                                                         <i class="fa fa-search fa-lg"></i>
                                                     </button>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="">&nbsp;</label><br>
-                                                   
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label for="">&nbsp;</label><br>
-                                                   
-                                                </div>
-
-                                                <!--
-												<div class="form-group">
-				                                    <label for="">Exportar</label><br>
-				                                    <a href="#" class="btn btn-success btn-sm" onClick ="print_excel()" title="Reporte Totalizado Excel">
-				                                        <i class="fa fa-file-excel-o fa-lg"></i></a>
-				                                </div>
-				                                -->
-
                                             </form>
 
                                         </div>
@@ -127,31 +116,18 @@
                                     <table class="table table-bordered" id="table_data_op1">
                                         <thead >
                                         <tr>
-                                            <th>*</th>
-                                            <th>FICHA</th>
-                                            <th>PERIODO</th>
-                                            <th>MOVIMIENTO</th>
-                                            <th>DESCRIPCION</th>
-                                            <th>MONTO</th>
 
+
+                                            <th>FECHA</th>
+                                            <th>GUIA</th>
+                                            <th>*</th>
                                         </tr>
                                         </thead>
                                         <tbody  ng-repeat=" item in Documentos | filter:search">
                                         <tr id="tr_Doc_@{{ item.idDocto }}">
-                                            <td>
-
-                                                <a href="" class="btn btn-danger"  ng-click="deleteMov(item)" >
-                                                    <i class="fa fa-stop-circle-o fa-lg"></i>
-                                                </a>
-
-                                            </td>
-                                            <td>@{{ item.FICHA }}</td>
                                             <td>@{{ item.FECHA }}</td>
-                                            <td>@{{ item.MOVIMIENTO }}</td>
-                                            <td>@{{ item.DESCRIPCION}}</td>
-                                            <td>@{{ item.MONTO | number:2 }}</td>
-
-
+                                            <td>@{{ item.GUIA }}</td>
+                                            <td>NO SE ENCUENTRA FACTURA</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -159,6 +135,8 @@
 
                             </div><!-- /.row - inside box -->
                         </div><!-- /.box-body -->
+
+
 
                     </div><!-- /.box -->
 
@@ -182,26 +160,7 @@
 
         /*funciones de jquery*/
 
-        $('input[name="daterange"]').daterangepicker({
-            format : "DD/MM/YYYY"
-        });
-
-
-        function print_excel() {
-                    
-
-            $("#table_data_op1").table2excel({
-                exclude: ".noExl",
-                name: "export_personal",
-                filename: "export_personal",
-                fileext: ".xls",
-                exclude_img: true,
-                exclude_links: true,
-                exclude_inputs: true
-            });
-                  
-        }
-        
+        $('input[name="daterange"]').daterangepicker();
         /*----*/
 
 
@@ -223,27 +182,16 @@
 
                 var token = $('#_token').val();
 
-                var fecha_s_format = $('#reservation').val();
-                var movimiento = $scope.filMovimiento;
-                var ficha = $scope.filFicha;
+                var anio = $('#filAnio').val();
+                var mes = $('#filMes').val();
 
 
-                if( fecha_s_format.length >0){
-                    fecha_s_format = fecha_s_format.split('-');
-                    var f_inicio =fecha_s_format[0];
-                    f_inicio = changeFormat(f_inicio);
+                if( anio.length >0 && mes.length >0 ){
 
-                    var f_fin = fecha_s_format[1];
-                    f_fin = changeFormat(f_fin);
-
-
-
-                    if(movimiento == null )
-                        movimiento = '';
-                    if(ficha == null)
-                        ficha = '';
-                    if(f_fin==null)
-                        f_fin ='';
+                    if(mes < 10){
+                        mes = '0'+mes;
+                    }
+                    var fecha = anio+'-'+mes;
 
                     /*--- Procedimiento que se haga mientras no termine  */
 
@@ -253,23 +201,16 @@
 
                     $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
 
-                    /*-----------------*/
 
-                    // console.log($scope.TipoDoct);
-
-
-                    $http.post('{{ URL::route('getMovimientosByFichaAndPeriodo') }}',
+                    $http.post('{{ URL::route('getGuiaFaltaFactura') }}',
                             {   _token : token,
-                                f_inicio:f_inicio,
-                                f_fin: f_fin,
-                                movimiento:movimiento,
-                                ficha:ficha
+                                fecha   : fecha
 
                             })
                             .success(function(data){
 
                                 $scope.Documentos = data;
-                                //console.log( data);
+                                console.log( data);
                                 $('#btnBuscarDoc').attr("disabled", false);
 
                                 $( "div" ).remove( ".overlay" );
@@ -278,50 +219,27 @@
 
                             }).error(function(data) {
                                 console.log(data);
-                                $("div").remove(".overlay");
-                                $("div").remove(".loading-img");
-                                alert('Error: :>');
+                                alert("Error Revisar");
+                                $( "div" ).remove( ".overlay" );
+                                $( "div" ).remove( ".loading-img" );
                             });
+
+
+
+
                 }else{
 
                     alert('Debe ingresar primero una fecha');
-                }
-            };
-
-            $scope.deleteMov = function (item) {
-
-
-                var r = confirm("Estas Seguro que deseas eliminar este registro ? ");
-                if (r == true) {
-
-                    var token = $('#_token').val();
-
-                    $http.post('{{ URL::route('deleteMovimientoByPeriodoFicha') }}',
-                            {   _token : token,
-                                item:item
-
-                            })
-                            .success(function(data){
-                                if(data>=1){
-                                    alert('Correcto');
-                                    $scope.getDataByDoc();
-                                }
-                            }).error(function(data) {
-                        console.log( data);
-                        alert('Error: :>');
-                    });
-
-
-
-                } else {
-
-
 
                 }
 
 
 
+
+
+
             };
+
 
 
 
@@ -333,7 +251,7 @@
             {
                 fecha = fecha.split('/');
 
-                fecha = fecha[2].trim()+"-"+fecha[1].trim()+"-"+fecha[0].trim();
+                fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
 
                 return fecha;
 
@@ -346,9 +264,6 @@
 
 
         });
-
-
-
     </script>
 
 

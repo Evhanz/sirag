@@ -7,6 +7,7 @@
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
+            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
 
             <div class="row" style="padding-left: 15px; padding-right: 15px;">
                 <!-- Box (with bar chart) -->
@@ -40,6 +41,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
+
+                                        <button class="btn btn-success" id="btnNuevo" ng-click="newRegDetails()"> <i class="fa fa-disk"></i> Nuevo </button>
+                                        <button class="btn btn-info" id="btnGuardar" disabled> <i class="fa fa-disk"></i> Guardar </button>
 
                                     </div>
                                     <div class="col-lg-3"></div>
@@ -106,37 +110,41 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        <tr ng-repeat="item in detalles">
                                             <td><button class="btn btn-danger btn-xs">X</button></td>
                                             <td>1</td>
                                             <td>
-                                                <input style="width: 65px" type="date">
+                                                <input class="datepicker" style="width: 65px" ng-click="clickFecha()">
                                             </td>
                                             <!--Ficha del trabajador -->
                                             <td>
-                                                <button class="btn btn-default btn-xs" title="buscar Trabajador">...</button>
+                                                <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado()">
+                                                    ...</button>
                                                 <input  data-type="number" data-max ="6" style="width: 3.5em" >
                                                 <input  type="text" disabled  style="width: 8em">
                                             </td>
                                             <td>
-                                                <button class="btn btn-default btn-xs" >...</button>
+                                                <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno()">...</button>
                                                 <input  data-type="number" data-max ="6" style="width: 3.5em" >
                                                 <input   type="text" disabled  style="width: 8em">
 
                                             </td>
                                             <td>
-                                                <input style="width: 3em;" type="text">
-                                                <input style="width: 12em;" type="text" disabled>
+                                                <input ng-model="codigo" ng-keyup="getLabor($event,codigo)" style="width: 3em;" type="text">
+                                                <input style="width: 12em;" type="text" ng-model="labor_desc" disabled>
                                             </td>
                                             <td><input style="width: 3em;" type="text" disabled>
                                             </td>
                                             <td>
                                                 <select name="" id="">
                                                     <option value="">-----------------------</option>
+                                                    <option ng-repeat="item in codigoActividad" value=" item.codigo">
+                                                        @{{ item.codigo }}
+                                                    </option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <input style="width: 3em;" type="text">
+                                                <input class="number_horas"  style="width: 7em;" type="number">
                                             </td>
 
                                         </tr>
@@ -163,21 +171,56 @@
 
 
 
-        <!-- modal modUbigeo-->
-        <div class="modal fade" id="modUbigeo" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+        <!-- modal modPersonal-->
+        <div class="modal fade " id="modPersonal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" >
                 <div class="modal-content">
                     <div class="modal-header">
+
+                        <h4>Búqueda de trabajadores</h4>
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" >
 
-                        <h3>Dirección</h3>
-                        <p>@{{ ubigeo.DIRECCION }}</p>
-                        <h3>Ubigeo</h3>
-                        <p>@{{ ubigeo.PAIS }} - @{{ ubigeo.DEPARTAMENTO }} - @{{ ubigeo.PROVINCIA }} -@{{ ubigeo.DISTRITO }}</p>
+                        <div class="row">
 
+                            <div class="col-xs-12">
+                                <table class="table table-bordered" id="dataModPersonal">
+                                    <thead>
+                                    <tr>
+                                        <td><input type="text" ng-model="filModEmpleado.ficha"></td>
+                                        <td><input type="text" ng-model="filModEmpleado.dni"></td>
+                                        <td><input type="text" ng-model="filModEmpleado.nombre"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ficha</th>
+                                        <th>Empleado</th>
+                                        <th>Nombre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr ng-repeat="item in modPersonal | filter:filModEmpleado">
+
+                                        <td>@{{item.ficha}}</td>
+                                        <td>@{{item.dni}}</td>
+                                        <td>@{{item.nombre}}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
                     </div>
 
                 </div>
@@ -186,7 +229,59 @@
         <!--./ modal Detail-->
 
 
+        <!-- modal modPersonal-->
+        <div class="modal fade " id="modCCostoInterno" tabindex="-1" role="dialog">
+            <div class="modal-dialog " >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4>Búqueda de Centro Costo Interno</h4>
+                    </div>
+                    <div class="modal-body" >
 
+                        <div class="row">
+
+                            <div class="col-xs-12">
+                                <table class="table table-bordered" id="dataModPersonal">
+                                    <thead>
+                                    <tr>
+                                        <td><input type="text" ng-model="filModCCI.CODIGO"></td>
+                                        <td><input type="text" ng-model="filModCCI.DESCRIPCION"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Descripcion</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr ng-repeat="item in modCCostoInterno | filter:filModCCI">
+                                        <td>@{{item.CODIGO}}</td>
+                                        <td>@{{item.DESCRIPCION}}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--./ modal Detail-->
+    </div>
+
+    <div>
+        <input class="datepicker"  type="text">
     </div>
 
 
@@ -194,14 +289,24 @@
     <link rel="stylesheet" href="{{asset('css/daterangepicker/daterangepicker-bs3.css')}}">
     <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
-    <script src="{{ asset('js/plugins/angular/angular-ui-bootstrap-0.3.0.min.js') }}"></script>
+    <!-- datepicker -->
+    <script src="{{asset('templates/lte2/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{asset('templates/lte2/plugins/datepicker/datepicker3.css')}}">
+
+
+    <script src="{{ asset('js/plugins/angular/ui-bootstrap-tpls-0.12.1.min.js') }}"></script>
     <script>
 
         /*funciones de jquery*/
 
-        $('input[name="daterange"]').daterangepicker({
-            format : "DD/MM/YYYY"
+        $("#data tbody tr td .datepicker").on("load", function(event){
+            alert('a');
         });
+
+
+
+
         $('[data-toggle="tooltip"]').tooltip();
         /*
          $(document).ready(function(){
@@ -258,6 +363,135 @@
 
             //traer la data por el click
             $scope.jornales = [];
+            $scope.modPersonal = [];
+            $scope.codigoActividad = [];
+            $scope.detalles = [];
+
+            getCodigoActividad();
+
+
+            $scope.getModEmpleado = function () {
+
+                $("#modPersonal").modal('show');
+
+                var token = $('#_token').val();
+
+                $http.get('{{ URL::route('getAllTrabajadores') }}',
+                        {   _token : token
+
+                        })
+                        .success(function(data){
+
+                            $scope.modPersonal = data;
+                            //console.log( data);
+
+                        }).error(function(data) {
+                    console.log(data);
+
+                    alert('Error: :>');
+                });
+
+            };
+
+
+            $scope.getModCCostoInterno = function () {
+
+                $("#modCCostoInterno").modal('show');
+
+                var token = $('#_token').val();
+
+                $http.get('{{ URL::route('getCentroCostoInterno') }}',
+                        {   _token : token
+
+                        })
+                        .success(function(data){
+
+                            $scope.modCCostoInterno = data;
+                            //console.log( data);
+
+                        }).error(function(data) {
+                    console.log(data);
+
+                    alert('Error: :>');
+                });
+
+            };
+
+            $scope.getLabor = function(evento,codigo){
+
+                var token = $('#_token').val();
+
+                if(evento.keyCode == 13){
+
+                    $http.post('{{ URL::route('getLaborByCodigo') }}',
+                            {   _token : token,
+                                codigo  : codigo
+                            })
+                            .success(function(data){
+
+
+                                //console.log( data);
+
+                                if(data == 0){
+                                    alert('Valor no Encontrado');
+                                }else{
+                                    $scope.labor_desc = data.DESCRIPCION;
+                                    //console.log( data);
+                                }
+
+
+                            }).error(function(data) {
+                        console.log(data);
+
+                        alert('Error: :>');
+                    });
+                }
+            };
+
+            function getCodigoActividad(){
+
+                $http.get('{{ URL::route('CodigoActividad') }}')
+                        .success(function(data){
+
+                            //console.log( data);
+
+                           $scope.codigoActividad = data;
+
+
+                        }).error(function(data) {
+                    console.log(data);
+
+                    alert('Error: :>');
+                });
+            }
+
+            $scope.newRegDetails = function () {
+
+                var detail = {};
+
+                $("#btnNuevo").attr('disabled',true);
+                $("#btnGuardar").attr('disabled',false);
+
+
+                $scope.detalles.push(detail);
+
+
+
+            };
+
+            $scope.loadFecha = function () {
+
+              //  alert('as');
+
+                $('.datepicker').datepicker({
+                    format: 'dd/mm/yyyy'
+                });
+
+
+            };
+
+
+
 
             
 
@@ -274,6 +508,44 @@
             font-size: 12px;
             font-weight: bold;
         }
+
+        #dataModPersonal > thead > tr > th{
+            background-color: #49829E;
+            color: white;
+
+        }
+
+        #dataModPersonal > thead > tr > th{
+            background-color: #49829E;
+            color: white;
+
+        }
+
+
+        #dataModPersonal > tbody{
+
+
+        }
+
+        #dataModPersonal {
+
+
+        }
+
+        .modal-lg{
+            width: 900px;
+        }
+
+        .modal-body{
+            height: 350px!important;
+            overflow: auto;
+
+        }
+
+
+
+
+
     </style>
 
 

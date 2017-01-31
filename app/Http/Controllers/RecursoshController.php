@@ -143,6 +143,34 @@ class RecursoshController extends Controller
 
     }
 
+    public function getAllTrabajadores(){
+        $res = $this->personalRep->getAllTrabajadores();
+        return \Response::Json($res);
+    }
+
+    public function getCentroCostoInterno(){
+        $res = $this->personalRep->getCentroCostoInterno();
+        return \Response::Json($res);
+    }
+
+    public function getLaborByCodigo(){
+
+        $data = \Input::all();
+        $codigo = $data['codigo'];
+
+        $res = $this->personalRep->getLaborByCodigo($codigo);
+
+        return $res;
+
+    }
+
+    public function CodigoActividad(){
+        $res = $this->personalRep->CodigoActividad();
+        return $res;
+    }
+
+
+
     public function getContratosPorVencer()
     {
         $res = $this->personalRep->getContratosPorVencer();

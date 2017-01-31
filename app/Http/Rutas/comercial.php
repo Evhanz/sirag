@@ -16,6 +16,8 @@ Route::get('comercial/rep/viewOrdenCompra',['as'=>'viewOrdenCompra','uses'=>'Com
 Route::get('comercial/rep/viewControlOrdenCompraComercial',['as'=>'viewControlOrdenCompraComercial','uses'=>'ComercialController@viewControlOrdenCompra']);
 Route::get('comercial/rep/viewKardex',['as'=>'viewKardex','uses'=>'ComercialController@viewKardex']);
 Route::get('comercial/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundoComercial','uses'=>'ComercialController@viewConsumoByFundoComercial']);
+Route::get('comercial/rep/viewSeguimientoGuia',['as'=>'viewSeguimientoGuia','uses'=>'ComercialController@viewSeguimientoGuia']);
+
 
 
 
@@ -30,8 +32,8 @@ Route::post('comercial/api/getKardexSalida',['as'=>'api_getKardexSalida',
     'uses'=>'ComercialController@apiGetKardexSalida']);
 Route::post('comercial/api/getKardexEntrada',['as'=>'api_getKardexEntrada',
     'uses'=>'ComercialController@apiGetKardexEntrada']);
-Route::post('comercial/api/apiGetKardex',['as'=>'api_getKardex',
-    'uses'=>'ComercialController@getKardex']);
+Route::post('comercial/api/apiGetKardex',['as'=>'api_getKardex','uses'=>'ComercialController@getKardex']);
+Route::post('comercial/api/getGuiaFaltaFactura',['as'=>'getGuiaFaltaFactura','uses'=>'ComercialController@getGuiaFaltaFactura']);
 
 //esta ruta se comparte con contabilidad
 Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraForControl',

@@ -260,7 +260,7 @@ class ContabilidadRep
       $otros_f_i  = $otros['startDate'];
       $otros_f_f  = $otros['endDate'];
 
-      //se valida si el cento de costo para manejar la consulta
+      //se valida si el centro de costo para manejar la consulta
       if ($data['cc']=='materiaPrima'){
         $query = "SELECT PRODUCTO,DESCRIPCION,SUM(CANTIDAD) cantidad ,SUM(TOTAL) total
                 from dbo.v_getConsumoMateriaPrima
@@ -468,9 +468,9 @@ AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
 
         return $response;
 
-
-
     }
+
+
 
 
 

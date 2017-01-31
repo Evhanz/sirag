@@ -138,6 +138,11 @@
                                 <i class="fa fa-angle-double-right"></i> Reporte Cosumo x Fundo
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('viewSeguimientoGuia') }}">
+                                <i class="fa fa-angle-double-right"></i> Reporte Seguimiento Guias
+                            </a>
+                        </li>
 
 
                     </ul>

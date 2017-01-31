@@ -43,6 +43,12 @@ Route::post('rh/api/getMovimientosByFichaAndPeriodo',['as'=>'getMovimientosByFic
     ,'uses'=>'RecursoshController@getMovimientosByFichaAndPeriodo']);
 Route::post('rh/api/deleteMovimientoByPeriodoFicha',['as'=>'deleteMovimientoByPeriodoFicha'
     ,'uses'=>'RecursoshController@deleteMovimientoByPeriodoFicha']);
+Route::get('rh/api/getAllTrabajadores',['as'=>'getAllTrabajadores'
+    ,'uses'=>'RecursoshController@getAllTrabajadores']);
+Route::get('rh/api/getCentroCostoInterno',['as'=>'getCentroCostoInterno'
+    ,'uses'=>'RecursoshController@getCentroCostoInterno']);
+Route::post('rh/api/getLaborByCodigo',['as'=>'getLaborByCodigo','uses'=>'RecursoshController@getLaborByCodigo']);
+Route::get('rh/api/CodigoActividad',['as'=>'CodigoActividad','uses'=>'RecursoshController@CodigoActividad']);
 
 
 

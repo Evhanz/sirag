@@ -67,6 +67,10 @@ class ComercialController extends Controller
         return view('cc/viewConsumoByFundo');
     }
 
+    public function viewSeguimientoGuia(){
+        return view('comercial/viewSeguimientoGuia');
+    }
+
 
 
 
@@ -208,6 +212,16 @@ class ComercialController extends Controller
 
         return \Response::Json($res);
 
+
+    }
+
+    public function getGuiaFaltaFactura(){
+        $data = \Input::all();
+
+        $fecha = $data['fecha'];
+
+        $res = $this->documentoRep->getGuiaFaltaFactura($fecha);
+        return \Response::Json($res);
 
     }
     
