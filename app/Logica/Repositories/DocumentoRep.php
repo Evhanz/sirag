@@ -171,7 +171,7 @@ class DocumentoRep
 
         //$f = '2017-01';
 
-        $query = "SELECT CONVERT(DATE,FECHA_GUIA) FECHA,GUIA,FACTURA
+        $query = "SELECT CONVERT(DATE,FECHA_GUIA) FECHA,GUIA
 FROM (
 SELECT 
 B.Fecha AS FECHA_GUIA,
@@ -197,7 +197,8 @@ AND B.TipoDocto='N/I ALMACEN (A)'
 AND CONVERT(date,b.fecha,113) like '$f-%'---- DEBE FILTRAR POR PERIODO
 ) AS GUIAS
 WHERE FACTURA IS NULL
-order by FACTURA , FECHA_GUIA
+GROUP BY FECHA_GUIA , GUIA
+order by FECHA_GUIA
 
 ";
 
