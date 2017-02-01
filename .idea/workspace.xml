@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="rev">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -35,28 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DocumentoRep.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="167" column="59" selection-start-line="167" selection-start-column="59" selection-end-line="167" selection-end-column="59" />
-              <folding>
-                <marker date="1485903901037" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
-                <marker date="1485903901037" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
-                <marker date="1485903901037" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
-                <marker date="1485903901037" expanded="true" signature="4706:5416" ph="SELECT CONVE... Fecha" />
-                <marker date="1485903901037" expanded="true" signature="4756:5307" ph="SELECT B.Fec... Documento" />
-                <marker date="1485903901037" expanded="true" signature="4806:5123" ph="SELECT TOP 1... DocumentoD" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComercialController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ComercialController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3587">
-              <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="237" column="24" selection-start-line="237" selection-start-column="24" selection-end-line="237" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -65,28 +49,8 @@
       <file leaf-file-name="comercial.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Rutas/comercial.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="18" column="45" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="141" column="53" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="viewSeguimientoGuia.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewSeguimientoGuia.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3383">
-              <caret line="199" column="43" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
+            <state relative-caret-position="138">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -785,7 +749,8 @@
       <workItem from="1485557872904" duration="1607000" />
       <workItem from="1485785948785" duration="26964000" />
       <workItem from="1485872729428" duration="21641000" />
-      <workItem from="1485903852226" duration="75000" />
+      <workItem from="1485903852226" duration="675000" />
+      <workItem from="1485959295537" duration="781000" />
     </task>
     <task id="LOCAL-00001" summary="agregado rep entrada kardex">
       <created>1479917212368</created>
@@ -1134,10 +1099,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1096214000" />
+    <option name="totallyTimeSpent" value="1097595000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.284041" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1419,7 +1384,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-640">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1427,11 +1391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding>
-            <marker date="1481129752279" expanded="true" signature="779:996" ph="select CODIG... gen_tabcod" />
-            <marker date="1481129752279" expanded="true" signature="1249:1462" ph="UPDATE flexl... " />
-            <marker date="1481129752279" expanded="true" signature="1586:1815" ph="UPDATE flexl... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1538,9 +1497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="166" column="38" selection-start-line="166" selection-start-column="38" selection-end-line="166" selection-end-column="38" />
-          <folding>
-            <element signature="e#12480#12678#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1548,7 +1504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1559,50 +1514,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewSeguimientoGuia.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3383">
-          <caret line="199" column="43" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
+        <state relative-caret-position="307">
+          <caret line="206" column="35" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
+          <folding>
+            <marker date="1485960293967" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
+            <marker date="1485960293967" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
+            <marker date="1485960293967" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
+            <marker date="1485960293967" expanded="false" signature="4706:5416" ph="SELECT CONVE... Fecha" />
+            <marker date="1485960293967" expanded="true" signature="4756:5307" ph="SELECT B.Fec... Documento" />
+            <marker date="1485960293967" expanded="true" signature="4806:5123" ph="SELECT TOP 1... DocumentoD" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="141" column="53" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewSeguimientoGuia.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="199" column="43" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/comercial.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="45" />
+        <state relative-caret-position="138">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="141" column="53" selection-start-line="141" selection-start-column="53" selection-end-line="141" selection-end-column="53" />
+        <state relative-caret-position="323">
+          <caret line="237" column="24" selection-start-line="237" selection-start-column="24" selection-end-line="237" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/DocumentoRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="167" column="59" selection-start-line="167" selection-start-column="59" selection-end-line="167" selection-end-column="59" />
-          <folding>
-            <marker date="1485903901037" expanded="true" signature="1548:2164" ph="SELECT Razon... v_ordenCompra_details" />
-            <marker date="1485903901037" expanded="true" signature="2309:2543" ph="SELECT Corre... v_ordenCompra_details" />
-            <marker date="1485903901037" expanded="true" signature="3329:3960" ph="select CONVE... DocumentoD" />
-            <marker date="1485903901037" expanded="true" signature="4706:5416" ph="SELECT CONVE... Fecha" />
-            <marker date="1485903901037" expanded="true" signature="4756:5307" ph="SELECT B.Fec... Documento" />
-            <marker date="1485903901037" expanded="true" signature="4806:5123" ph="SELECT TOP 1... DocumentoD" />
-          </folding>
         </state>
       </provider>
     </entry>

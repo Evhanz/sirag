@@ -198,9 +198,7 @@ AND CONVERT(date,b.fecha,113) like '$f-%'---- DEBE FILTRAR POR PERIODO
 ) AS GUIAS
 WHERE FACTURA IS NULL
 GROUP BY FECHA_GUIA , GUIA
-order by FECHA_GUIA
-
-";
+order by FECHA_GUIA";
 
         $res = \DB::select($query);
 
