@@ -1179,6 +1179,7 @@ class PersonalRep
             AND PERIODO='$periodo'
             AND CONVERT(DATE,FECHA) = @fecha
             AND AUX_VALOR19 = GC.CODIGO
+            AND ESTADO='A'
             AND AUX_VALOR19 IS NOT NULL) MONTO,
             (SELECT SUM(CANTIDAD) FROM flexline.PER_DETALLETRATO
             WHERE EMPRESA='E01'
