@@ -1176,8 +1176,10 @@ class PersonalRep
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
             AND TIPO_COMPROBANTE='PLANILLAS'
-            AND PERIODO='$periodo'
-            AND CONVERT(DATE,FECHA) = @fecha
+            --AND PERIODO='$periodo'
+            --AND CONVERT(DATE,FECHA) = @fecha
+            AND AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
+            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
             AND AUX_VALOR19 = GC.CODIGO
             AND ESTADO='A'
             AND AUX_VALOR19 IS NOT NULL) MONTO,

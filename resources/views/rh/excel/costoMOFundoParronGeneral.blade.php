@@ -15,7 +15,7 @@
 
         <!--Periodos-->
         <tr>
-            <td rowspan="4">GENERALES</td>
+            <td rowspan="3">GENERALES</td>
             @foreach($cabecera as $item)
                 <td colspan="{{ count($item->codigos)*3}}">Campaña 200{{$item->cam}}</td>
             @endforeach
