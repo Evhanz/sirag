@@ -120,6 +120,7 @@
 
                                             <th>FECHA</th>
                                             <th>GUIA</th>
+                                            <th>RAZON SOCIAL</th>
                                             <th>*</th>
                                         </tr>
                                         </thead>
@@ -127,6 +128,7 @@
                                         <tr id="tr_Doc_@{{ item.idDocto }}">
                                             <td>@{{ item.FECHA }}</td>
                                             <td>@{{ item.GUIA }}</td>
+                                            <td>@{{ item.RAZON_SOCIAL }}</td>
                                             <td>NO SE ENCUENTRA FACTURA</td>
                                         </tr>
                                         </tbody>

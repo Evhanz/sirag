@@ -171,12 +171,13 @@ class DocumentoRep
 
         //$f = '2017-01';
 
-        $query = "SELECT CONVERT(DATE,FECHA_GUIA) FECHA,GUIA
+        $query = "SELECT CONVERT(DATE,FECHA_GUIA) FECHA,GUIA,RAZON_SOCIAL
 FROM (
 SELECT 
 B.Fecha AS FECHA_GUIA,
 A.NUMERO AS GUIA,
-(SELECT TOP 1 Y.Numero
+C.RazonSocial AS RAZON_SOCIAL,
+(SELECT Y.Numero
 FROM 
 flexline.DocumentoD X,
 FLEXLINE.DOCUMENTO Y
@@ -186,18 +187,23 @@ AND X.Empresa=B.Empresa
 AND X.CorrelativoOrigen=B.Correlativo
 AND X.TipoDoctoOrigen=B.TipoDocto
 AND X.SecuenciaOrigen=B.Secuencia
-AND X.TipoDocto in ('01 F/C ALMACEN (A)','01 F/C ALMACEN ELEC','12 TICKETS O CINTA (A)')) AS FACTURA
+AND X.TipoDocto in ('01 F/C ALMACEN (A)','01 F/C ALMACEN ELEC','12 TICKETS O CINTA (A)')
+GROUP BY Y.NUMERO) AS FACTURA
 FROM 
 flexline.Documento A,
-flexline.DocumentoD B
+flexline.DocumentoD B,
+flexline.CtaCte C
 WHERE
 A.idDocto=B.idDocto
+AND A.Empresa=C.Empresa
+AND A.TipoCtaCte=C.TipoCtaCte
+AND A.IdCtaCte=C.CtaCte 
 AND B.Empresa='E01'
 AND B.TipoDocto='N/I ALMACEN (A)'
 AND CONVERT(date,b.fecha,113) like '$f-%'---- DEBE FILTRAR POR PERIODO
 ) AS GUIAS
 WHERE FACTURA IS NULL
-GROUP BY FECHA_GUIA , GUIA
+GROUP BY FECHA_GUIA , GUIA,RAZON_SOCIAL
 order by FECHA_GUIA";
 
         $res = \DB::select($query);
