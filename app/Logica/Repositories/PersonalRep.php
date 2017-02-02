@@ -1371,10 +1371,11 @@ class PersonalRep
 
         if($tipo == 'general')
         {
-            $q1 = "AND SUBSTRING(GC.CODIGO, 3, 1) <> '0' ";
+           // ESTE CONDICION AGARRA EL CODIGO CCI 17000
+              $q1 = "AND (CONVERT(INT,(SUBSTRING(GC.CODIGO, 3, 1)+ SUBSTRING(GC.CODIGO, 5, 1)))=0 OR CONVERT(INT,( SUBSTRING(GC.CODIGO, 3, 1)+ SUBSTRING(GC.CODIGO, 5, 1)))>9)";
 
-        }else{
-            $q1 = "AND SUBSTRING(GC.CODIGO, 3, 1) = '0' ";
+        }else{ // ESTA CONDICION ES PARA LA CONVERSION DE LOS NUMEROS Y NO COGER EL CODIGO 17000
+            $q1 = "AND (CONVERT(INT,(SUBSTRING(GC.CODIGO, 3, 1)+ SUBSTRING(GC.CODIGO, 5, 1)))>0 AND CONVERT(INT,(SUBSTRING(GC.CODIGO, 3, 1)+ SUBSTRING(GC.CODIGO, 5, 1)))<10)";
         }
 
 
@@ -1391,8 +1392,11 @@ class PersonalRep
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
             AND TIPO_COMPROBANTE='PLANILLAS'
-            AND PERIODO='$periodo'
-            AND CONVERT(DATE,FECHA) = @fecha
+            --AND PERIODO='$periodo'
+            --AND CONVERT(DATE,FECHA) = @fecha
+            AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
+            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
+            AND ESTADO='A'
             AND AUX_VALOR19 = GC.CODIGO
             AND AUX_VALOR19 IS NOT NULL) MONTO,
             (SELECT SUM(CANTIDAD) FROM flexline.PER_DETALLETRATO
