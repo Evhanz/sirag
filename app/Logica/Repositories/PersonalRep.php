@@ -1178,7 +1178,7 @@ class PersonalRep
             AND TIPO_COMPROBANTE='PLANILLAS'
             --AND PERIODO='$periodo'
             --AND CONVERT(DATE,FECHA) = @fecha
-            AND AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
+            AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
             AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
             AND AUX_VALOR19 = GC.CODIGO
             AND ESTADO='A'
