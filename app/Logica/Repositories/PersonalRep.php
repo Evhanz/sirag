@@ -634,7 +634,10 @@ class PersonalRep
          * Se quito eso del siguiente query
          * and MOVIMIENTO='99005'
          * */
-        $query = "select 
+
+        /*
+        $query = "
+                    select 
                     A.FICHA, A.VALOR , A.MOVIMIENTO
                     FROM 
                     flexline.PER_DET_LIQ A,
@@ -647,6 +650,33 @@ class PersonalRep
                     and A.periodo='$periodo' --- FILTRAR POR PERIODO '$periodo'
                     and A.MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     ORDER by A.FICHA";
+                    */
+        $query = "--esta fecha se usará para saber que dia se consultará el detalle 
+                    DECLARE @fecha date;
+
+                  --luego se sacara la fecha de inicio para sacar el rango de consulta
+                    DECLARE @fecha_inicio DATE;
+
+                    SET @fecha = '$periodo'; --aca se cambia por la variable
+                    SET @fecha_inicio= DATEADD(day,-6,@fecha); 
+
+                    select 
+                    A.FICHA, SUM(a.VALOR) AS VALOR , A.MOVIMIENTO
+                    FROM 
+                    flexline.PER_DET_LIQ A,
+                    flexline.PER_TRABAJADOR B
+                    WHERE 
+                    A.EMPRESA=B.EMPRESA
+                    AND A.FICHA=B.FICHA
+                    AND A.EMPRESA='e01'
+                    AND B.CATEGORIA='OPERARIO'
+                    and CONVERT(DATE,CONVERT(VARCHAR(8),A.PERIODO),113) BETWEEN @fecha_inicio AND @fecha --- FILTRAR POR PERIODO '$periodo'
+                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10804','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    GROUP BY A.FICHA, A.MOVIMIENTO
+                    ORDER by A.FICHA
+                    ";
+
+
 
         $res = \DB::select($query);
 
