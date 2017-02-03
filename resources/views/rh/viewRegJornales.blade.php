@@ -1,5 +1,20 @@
 @extends('layout')
 
+@section('content-header')
+
+    <div class="row" id="alertError">
+        <br>
+       <div class="col-lg-12">
+           <div class="alert alert-danger alert-dismissable">
+               <i class="fa fa-ban"></i>
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+               <b>Error!! :</b> <span id="txtError"></span>
+           </div>
+       </div>
+    </div>
+
+@stop
+
 @section('content')
 
     <script type="text/javascript" src="{{ asset('js/plugins/table2excel/jquery.table2excel.min.js') }} "></script>
@@ -42,7 +57,7 @@
                                     </div>
                                     <div class="col-lg-3">
 
-                                        <button class="btn btn-success" id="btnNuevo" ng-click="newRegDetails()"> <i class="fa fa-disk"></i> Nuevo </button>
+                                        <button ng-model="btnNuevo" class="btn btn-success" id="btnNuevo" ng-click="newRegDetails()"> <i class="fa fa-disk"></i> Nuevo </button>
                                         <button class="btn btn-info" id="btnGuardar" disabled> <i class="fa fa-disk"></i> Guardar </button>
 
                                     </div>
@@ -111,32 +126,33 @@
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="item in detalles">
-                                            <td><button class="btn btn-danger btn-xs">X</button></td>
-                                            <td>1</td>
+                                            <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
+                                            <td>@{{ $index + 1 }}</td>
                                             <td>
-                                                <input class="datepicker" style="width: 65px" ng-click="clickFecha()">
+                                                <input id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
                                             </td>
                                             <!--Ficha del trabajador -->
                                             <td>
-                                                <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado()">
+                                                <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado($index)">
                                                     ...</button>
-                                                <input  data-type="number" data-max ="6" style="width: 3.5em" >
-                                                <input  type="text" disabled  style="width: 8em">
+                                                <!-- data-type="number" data-max ="6" -->
+                                                <input  ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item)">
+                                                <input  ng-model="item.trabajador" type="text" disabled  style="width: 10em;">
                                             </td>
                                             <td>
-                                                <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno()">...</button>
-                                                <input  data-type="number" data-max ="6" style="width: 3.5em" >
-                                                <input   type="text" disabled  style="width: 8em">
+                                                <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
+                                                <input  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item)">
+                                                <input  ng-model="item.descCci" type="text" disabled  style="width: 8em">
 
                                             </td>
                                             <td>
-                                                <input ng-model="codigo" ng-keyup="getLabor($event,codigo)" style="width: 3em;" type="text">
-                                                <input style="width: 12em;" type="text" ng-model="labor_desc" disabled>
+                                                <input ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item)" style="width: 3em;" type="text">
+                                                <input style="width: 12em;" type="text" ng-model="item.labor_desc" disabled>
                                             </td>
-                                            <td><input style="width: 3em;" type="text" disabled>
+                                            <td><input style="width: 3em;" type="text" disabled >
                                             </td>
                                             <td>
-                                                <select name="" id="">
+                                                <select name="" id="" ng-model="item.actividad">
                                                     <option value="">-----------------------</option>
                                                     <option ng-repeat="item in codigoActividad" value=" item.codigo">
                                                         @{{ item.codigo }}
@@ -144,7 +160,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input class="number_horas"  style="width: 7em;" type="number">
+                                                <input  class="hora" id="hora@{{ $index }}" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
                                             </td>
 
                                         </tr>
@@ -153,9 +169,6 @@
 
                                 </div>
                             </div>
-
-
-
 
                         </div><!-- /.box-body -->
 
@@ -184,6 +197,8 @@
                     </div>
                     <div class="modal-body" >
 
+                        <input type="hidden" id="indexModPersonal">
+
                         <div class="row">
 
                             <div class="col-xs-12">
@@ -198,6 +213,7 @@
                                         <th>Ficha</th>
                                         <th>Empleado</th>
                                         <th>Nombre</th>
+                                        <th>*</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -205,8 +221,9 @@
                                     <tr ng-repeat="item in modPersonal | filter:filModEmpleado">
 
                                         <td>@{{item.ficha}}</td>
-                                        <td>@{{item.dni}}</td>
+                                        <td>@{{item.EMPLEADO}}</td>
                                         <td>@{{item.nombre}}</td>
+                                        <td><button class="btn btn-default btn-xs" ng-click="selectTrabajador(item)"><i class="fa fa-eye"></i></button></td>
                                     </tr>
 
                                     </tbody>
@@ -227,7 +244,6 @@
             </div>
         </div>
         <!--./ modal Detail-->
-
 
         <!-- modal modPersonal-->
         <div class="modal fade " id="modCCostoInterno" tabindex="-1" role="dialog">
@@ -241,6 +257,8 @@
 
                         <div class="row">
 
+                            <input type="hidden" id="idCodigoCCI">
+
                             <div class="col-xs-12">
                                 <table class="table table-bordered" id="dataModPersonal">
                                     <thead>
@@ -251,6 +269,7 @@
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Descripcion</th>
+                                        <th>*</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -258,6 +277,7 @@
                                     <tr ng-repeat="item in modCCostoInterno | filter:filModCCI">
                                         <td>@{{item.CODIGO}}</td>
                                         <td>@{{item.DESCRIPCION}}</td>
+                                        <td><button class="btn btn-default btn-xs" ng-click="selectCCI(item)"><i class="fa fa-eye"></i></button></td>
                                     </tr>
 
                                     </tbody>
@@ -280,9 +300,7 @@
         <!--./ modal Detail-->
     </div>
 
-    <div>
-        <input class="datepicker"  type="text">
-    </div>
+
 
 
     <!-- Daterangepicker css -->
@@ -300,14 +318,14 @@
 
         /*funciones de jquery*/
 
-        $("#data tbody tr td .datepicker").on("load", function(event){
-            alert('a');
-        });
+
 
 
 
 
         $('[data-toggle="tooltip"]').tooltip();
+        $('#alertError').hide();
+
         /*
          $(document).ready(function(){
 
@@ -370,11 +388,12 @@
             getCodigoActividad();
 
 
-            $scope.getModEmpleado = function () {
+            $scope.getModEmpleado = function (index) {
 
                 $("#modPersonal").modal('show');
 
                 var token = $('#_token').val();
+                $("#indexModPersonal").val(index);
 
                 $http.get('{{ URL::route('getAllTrabajadores') }}',
                         {   _token : token
@@ -394,9 +413,12 @@
             };
 
 
-            $scope.getModCCostoInterno = function () {
+            $scope.getModCCostoInterno = function (index) {
 
                 $("#modCCostoInterno").modal('show');
+
+                $("#idCodigoCCI").val(index);
+
 
                 var token = $('#_token').val();
 
@@ -417,7 +439,7 @@
 
             };
 
-            $scope.getLabor = function(evento,codigo){
+            $scope.getLabor = function(evento,codigo,item){
 
                 var token = $('#_token').val();
 
@@ -435,7 +457,7 @@
                                 if(data == 0){
                                     alert('Valor no Encontrado');
                                 }else{
-                                    $scope.labor_desc = data.DESCRIPCION;
+                                    item.labor_desc = data.DESCRIPCION;
                                     //console.log( data);
                                 }
 
@@ -490,10 +512,216 @@
 
             };
 
+            $scope.selectTrabajador = function (item) {
+
+
+                var position = $("#indexModPersonal").val();
+
+
+                $scope.detalles[position].ficha = parseInt(item.ficha);
+                $scope.detalles[position].trabajador = item.nombre;
+                $scope.detalles[position].dni = item.EMPLEADO;
+
+                $("#modPersonal").modal('hide');
+            };
+
+
+            $scope.getTrabajador = function(evento,ficha,item){
+                var ruta = '{{ URL::route('modRH') }}/api/getTrabajadorBy/'+ficha;
+                if(evento.keyCode == 13){
+
+                    $http.get(ruta)
+                            .success(function(data){
+
+
+                                //console.log( data);
+
+                                if(data == 0){
+                                    alert('Valor no Encontrado');
+                                }else{
+                                    item.trabajador = data.NOMBRE;
+                                    item.dni    = data.EMPLEADO;
+                                    //console.log( data);
+                                }
+
+
+                            }).error(function(data) {
+                        console.log(data);
+
+                        alert('Error: :>');
+                    });
+                }
+            };
+
+            $scope.getCciByCodigo = function (evento,codigo,item) {
+                var ruta = '{{ URL::route('modContabilidad') }}/api/getCciByCodigo/'+codigo;
+
+                if(evento.keyCode == 13){
+
+                    $http.get(ruta)
+                            .success(function(data){
+
+                                console.log(data);
+
+                                if(data == 0){
+                                    alert('Valor no Encontrado');
+                                }else{
+                                    item.descCci = data.DESCRIPCION;
+                                }
+
+
+                            }).error(function(data) {
+                        console.log(data);
+
+                        alert('Error: :>');
+                    });
+                }
+            };
+
+
+            $scope.selectCCI = function (item) {
+
+                var position = $("#idCodigoCCI").val();
+
+                $scope.detalles[position].cci = item.CODIGO;
+                $scope.detalles[position].descCci = item.DESCRIPCION;
+
+                $("#modCCostoInterno").modal('hide');
+            };
+
+            $scope.deleteDetail = function (item) {
+
+                $scope.detalles.splice(item,1);
+
+                if($scope.detalles.length == 0){
+                    $("#btnNuevo").attr('disabled',false);
+                    $("#btnGuardar").attr('disabled',true);
+                }
+
+            };
+
+            $scope.addLine  = function (evento,index) {
+
+
+                //9: es la tecla tab
+                if( evento.keyCode == 9){
+
+                    if($scope.detalles.length == (index+1)){
+                        var detail = {};
+                        $scope.detalles.push(detail);
+                    }
+                }
+
+                //13: es para el enter
+                if(evento.keyCode == 13 ){
+
+                    var item = $scope.detalles[index];
+
+                    var bandera = validarItem(item);
+
+
+                    //quiere decir que hay un error
+                    if(bandera== 1){
+
+                        $("#alertError").show();
+
+                    }else{
+
+                        var usr = $('#nameUser').text();
+
+                        console.log(usr);
+
+
+                        $("#fecha"+(index+1)).focus();
+                    }
+
+                }
+            };
+
+            $scope.prueba = function () {
+                console.log('a');
+
+            };
 
 
 
-            
+
+            function validarItem(item) {
+
+                var bandera = 0 ;
+
+                if (getFotmatDate(item.fecha)==1){
+                    bandera = 1;
+                }
+
+                try{
+
+                    if(item.ficha.length < 0 || item.ficha === undefined){
+                        bandera = 1;
+                    }
+
+                    if(item.cci.length < 0){
+                        bandera = 1;
+                    }
+
+                    if(item.codigo.length < 0){
+                        bandera = 1;
+                    }
+                }catch (err){
+                    bandera=1;
+                }
+
+                return bandera;
+
+            }
+
+
+            /**
+             * esta funcion averigua si tiene un formato fecha
+             */
+
+            function getFotmatDate(cadena) {
+
+                if(cadena  === undefined){
+                    cadena = '';
+                }
+
+                cadena = cadena.split('-');
+                var bandera = 0;
+
+                if(cadena.length!=3){
+                    bandera = 1;
+                }
+                if(cadena[0]<1 || cadena[0]>31){
+                    bandera = 1;
+                }
+
+                if(cadena[1]<1 || cadena[1]>12){
+                    bandera = 1;
+                }
+
+                if(cadena[2]<1998 || cadena[2]>2100){
+                    bandera = 1;
+                }
+
+                return bandera;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         });
     </script>

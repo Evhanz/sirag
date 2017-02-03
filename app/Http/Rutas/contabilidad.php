@@ -6,10 +6,10 @@
  * Time: 05:41 PM
  */
 
-
+Route::get('contabilidad/',['as'=>'modContabilidad']);
 Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], function () {
     //------ llamada a las views de contabiidad ----------------- contabilidad
-    Route::get('contabilidad/',['as'=>'modContabilidad']);
+
     Route::get('contabilidad/rep/viewSaldoCCByCuentaAndPeriodo',['as'=>'viewCentroCosto','uses'=>'CentroCostoController@viewSaldoCCByCuentaAndPeriodo']);
     Route::get('contabilidad/rep/viewBalanceGeneral',
         ['as'=>'viewBalanceGeneral','uses'=>'ContabilidadController@viewBalanceGeneral']);
@@ -39,6 +39,7 @@ Route::get('contabilidad/api/getAllSubFamiliasProductos',['as'=>'getAllSubFamili
 Route::get('contabilidad/api/getAllInitDataConsumoReporte',['as'=>'getAllInitDataConsumoReporte','uses'=>'ContabilidadController@getAllInitDataConsumoReporte']);
 
 Route::get('contabilidad/api/getParronByFundo/{fundo}',['as'=>'getParronByFundo','uses'=>'ContabilidadController@getParronByFundo']);
+Route::get('contabilidad/api/getCciByCodigo/{codigo}',['as'=>'getCciByCodigo','uses'=>'ContabilidadController@getCciByCodigo']);
 
 Route::post('contabilidad/sendDataForExcelConsumo',['as'=>'sendDataForExcelConsumo','uses'=>'ContabilidadController@sendDataForExcelConsumo']);
 
@@ -65,3 +66,7 @@ Route::get('contabilidad/excel/getExcelConsumoByFundo',['as'=>'getExcelConsumoBy
 //--- para pdf
 Route::post('contabilidad/archivos/getComprobanteDeEgresoPdf',['as'=>'getComprobanteDeEgresoPdf',
     'uses'=>'ContabilidadController@getComprobanteDeEgresoPdf']);
+
+//solo para prueba
+
+Route::get('getValuesOfOtherDB',['as'=>'getValuesOfOtherDB','uses'=>'ContabilidadController@getValuesOfOtherDB']);

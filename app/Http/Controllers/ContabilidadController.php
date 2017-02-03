@@ -196,6 +196,16 @@ class ContabilidadController extends Controller
     }
 
 
+
+    public function getCciByCodigo($codigo)
+    {
+        $res = $this->contabilidadRep->getCciByCodigo($codigo);
+
+        return \Response::Json($res);
+
+    }
+
+
     // -- esto es para el txt
 
     public function pdbTxtCompras()
@@ -533,4 +543,14 @@ class ContabilidadController extends Controller
         //return view('rh.pdf.comprobanteEgresoPdf');
 
     }
+
+    public function getValuesOfOtherDB(){
+
+        $res = \DB::select('select * from DICON.dbo.Bancos');
+
+        dd($res);
+
+
+    }
+
 }

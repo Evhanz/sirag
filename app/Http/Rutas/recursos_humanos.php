@@ -52,6 +52,13 @@ Route::get('rh/api/CodigoActividad',['as'=>'CodigoActividad','uses'=>'RecursoshC
 
 
 
+
+//inserts
+Route::post('rh/store/regJornales',['as'=>'regJornales','uses'=>'RecursoshController@regJornales']);
+
+
+
+
 //para descargar archivos o visualizar fotos
 Route::get('archivo/getTeecredito',['as'=>'getTxtTelecredito','uses'=>'RecursoshController@getTxtTelecredito']);
 

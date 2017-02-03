@@ -15,6 +15,27 @@ use sirag\Entities\Obj;
 class ContabilidadRep
 {
 
+
+    public function getCciByCodigo($codigo)
+    {
+
+        $query = "SELECT CODIGO,DESCRIPCION FROM flexline.GEN_TABCOD
+            WHERE EMPRESA = 'E01'
+            AND TIPO = 'CON_CCOSTO_INTERNO'
+            AND CODIGO = '$codigo'";
+
+        $res = \DB::select($query);
+
+        if(count($res)>0){
+            return $res[0];
+        }else{
+            return 0;
+        }
+    }
+
+
+
+
     public function getBalanceByNiveles($data)
     {
 

@@ -19,7 +19,7 @@ class PersonalRep
 
     public function getAllTrabajadores(){
 
-        $query = "SELECT EMPLEADO dni,(APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre , FICHA ficha
+        $query = "SELECT EMPLEADO ,(APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre , FICHA ficha
                     FROM flexline.PER_TRABAJADOR
                     where EMPRESA = 'e01'
                     AND VIGENCIA = 'ACTIVO'
@@ -2302,6 +2302,11 @@ where EMPRESA = 'e01'";
         return $res;
 
     }
+
+
+   
+
+
 
 
 

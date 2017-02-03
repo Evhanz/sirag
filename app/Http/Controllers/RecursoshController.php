@@ -878,13 +878,23 @@ class RecursoshController extends Controller
         })->export('xls');
 
 
+    }
 
 
 
 
+
+
+    //funciones store
+
+    public function regJornales(){
+
+        $data = \Input::all();
 
 
     }
+
+
 
 
     //funcion helper , pasar a la caa helpers
