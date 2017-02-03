@@ -129,14 +129,14 @@
                                             <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
                                             <td>@{{ $index + 1 }}</td>
                                             <td>
-                                                <input id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
+                                                <input ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
                                             </td>
                                             <!--Ficha del trabajador -->
                                             <td>
                                                 <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado($index)">
                                                     ...</button>
                                                 <!-- data-type="number" data-max ="6" -->
-                                                <input  ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item)">
+                                                <input  ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
                                                 <input  ng-model="item.trabajador" type="text" disabled  style="width: 10em;">
                                             </td>
                                             <td>
@@ -409,7 +409,6 @@
 
                     alert('Error: :>');
                 });
-
             };
 
 
@@ -522,34 +521,122 @@
                 $scope.detalles[position].trabajador = item.nombre;
                 $scope.detalles[position].dni = item.EMPLEADO;
 
+
+                if($scope.detalles[position].fecha !== undefined){
+
+                    //console.log(getFotmatDate(item.fecha));
+
+                    if(getFotmatDate($scope.detalles[position].fecha)== 0){
+                        var token = $('#_token').val();
+                        var f = $scope.detalles[position].fecha.split('-');
+                        f = f[2]+''+f[1]+''+f[0];
+
+
+                        $http.post('{{ URL::route('getMarcacionDICONTrabajadorByFecha') }}',
+                                {   _token   : token,
+                                    dni      : item.EMPLEADO,
+                                    fecha    : f
+                                })
+                                .success(function(data){
+
+                                    if(data == 0){
+                                        alert('No se encuentra registrado en el DICON el valor');
+                                        $scope.detalles[position].fecha = '';
+                                        $scope.detalles[position].trabajador = '';
+                                        $scope.detalles[position].ficha = '';
+                                        $("#fecha"+(index)).focus();
+                                    }else {
+
+                                    }
+
+                                }).error(function(data) {
+                            console.log(data);
+
+                            alert('Error: :>');
+                        });
+                    }else{
+                        alert('corrige la fecha de esta fila');
+                    }
+
+                }
+                else{
+                    $scope.detalles[position].ficha ='';
+                    $scope.detalles[position].trabajador = '';
+                    $scope.detalles[position].dni = '';
+                    alert('debe agregar una fecha correcta');
+                }
+
+
                 $("#modPersonal").modal('hide');
             };
 
 
-            $scope.getTrabajador = function(evento,ficha,item){
+            $scope.getTrabajador = function(evento,ficha,item,index){
+
+                var dni = '';
                 var ruta = '{{ URL::route('modRH') }}/api/getTrabajadorBy/'+ficha;
                 if(evento.keyCode == 13){
 
                     $http.get(ruta)
                             .success(function(data){
 
-
-                                //console.log( data);
-
                                 if(data == 0){
                                     alert('Valor no Encontrado');
                                 }else{
                                     item.trabajador = data.NOMBRE;
                                     item.dni    = data.EMPLEADO;
-                                    //console.log( data);
+                                    dni    = data.EMPLEADO;
+
+
+                                    if(item.fecha !== undefined){
+
+                                        //console.log(getFotmatDate(item.fecha));
+
+                                        if(getFotmatDate(item.fecha)== 0){
+                                            var token = $('#_token').val();
+                                            var f = item.fecha.split('-');
+                                            f = f[2]+''+f[1]+''+f[0];
+
+                                            $http.post('{{ URL::route('getMarcacionDICONTrabajadorByFecha') }}',
+                                                    {   _token   : token,
+                                                        dni      : item.dni,
+                                                        fecha    : f
+                                                    })
+                                                    .success(function(data){
+
+                                                        if(data == 0){
+                                                            alert('No se encuentra registrado en el DICON el valor');
+                                                            item.fecha = '';
+                                                            item.trabajador = '';
+                                                            item.ficha = '';
+                                                            $("#fecha"+(index)).focus();
+                                                        }else {
+
+                                                        }
+
+                                                    }).error(function(data) {
+                                                console.log(data);
+
+                                                alert('Error: :>');
+                                            });
+                                        }else{
+                                            alert('corrige la fecha de esta fila');
+                                        }
+
+
+
+
+
+                                    }
+
+
                                 }
-
-
                             }).error(function(data) {
                         console.log(data);
-
                         alert('Error: :>');
                     });
+
+
                 }
             };
 
@@ -692,13 +779,20 @@
                 if(cadena.length!=3){
                     bandera = 1;
                 }
-                if(cadena[0]<1 || cadena[0]>31){
+
+                if((cadena[0]<1 || cadena[0]>31) ){
                     bandera = 1;
                 }
 
-                if(cadena[1]<1 || cadena[1]>12){
+                if((cadena[1]<1 || cadena[1]>12) ) {
                     bandera = 1;
                 }
+
+                if( cadena[0].length == 1 || cadena[1].length == 1){
+                    bandera = 1;
+                }
+
+
 
                 if(cadena[2]<1998 || cadena[2]>2100){
                     bandera = 1;

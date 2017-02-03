@@ -48,6 +48,8 @@ Route::get('rh/api/getAllTrabajadores',['as'=>'getAllTrabajadores'
 Route::get('rh/api/getCentroCostoInterno',['as'=>'getCentroCostoInterno'
     ,'uses'=>'RecursoshController@getCentroCostoInterno']);
 Route::post('rh/api/getLaborByCodigo',['as'=>'getLaborByCodigo','uses'=>'RecursoshController@getLaborByCodigo']);
+Route::post('rh/api/getMarcacionDICONTrabajadorByFecha',['as'=>'getMarcacionDICONTrabajadorByFecha'
+    ,'uses'=>'RecursoshController@getMarcacionDICONTrabajadorByFecha']);
 Route::get('rh/api/CodigoActividad',['as'=>'CodigoActividad','uses'=>'RecursoshController@CodigoActividad']);
 
 

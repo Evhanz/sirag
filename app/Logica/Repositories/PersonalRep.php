@@ -232,7 +232,14 @@ class PersonalRep
         $query = "select * from v_allTrabajadores where FICHA = '$ficha'";
 
         $res = \DB::select($query);
-        return $res[0];
+
+        if(count($res)>0){
+            return $res[0];
+        }else{
+            return 0;
+        }
+
+
     }
 
     public function getContratos($ficha){
@@ -2300,6 +2307,33 @@ where EMPRESA = 'e01'";
         $res = \DB::select($query);
 
         return $res;
+
+    }
+
+
+
+    public function getMarcacionDICONTrabajadorByFecha($data){
+
+
+        $dni = $data['dni'];
+        $fecha = $data['fecha']; //formato yyyymmdd
+
+        $query = "select Documento,CONVERT(DATE,Fecha) Fecha,Estado 
+        from DICON.dbo.Marcaciones m inner join DICON.dbo.Trabajadores t ON
+        m.CodTrabajador = t.CodTrabajador
+        where m.Estado = 'E'
+        AND Fecha = '$fecha'
+        AND Documento = '$dni'";
+
+
+        $res =  \DB::select($query);
+
+        if(count($res)==0){
+            return 0;
+        }else{
+            return 1;
+        }
+
 
     }
 

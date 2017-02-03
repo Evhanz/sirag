@@ -895,6 +895,18 @@ class RecursoshController extends Controller
     }
 
 
+    public function getMarcacionDICONTrabajadorByFecha(){
+
+        $data = \Input::all();
+        $res = $this->personalRep->getMarcacionDICONTrabajadorByFecha($data);
+        return \Response::Json($res);
+
+    }
+
+
+
+
+
 
 
     //funcion helper , pasar a la caa helpers
@@ -914,6 +926,8 @@ class RecursoshController extends Controller
         return $response;
 
     }
+
+
 
 
 
