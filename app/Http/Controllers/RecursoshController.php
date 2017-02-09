@@ -1014,6 +1014,18 @@ class RecursoshController extends Controller
     }
 
 
+    public function getJornalesByFechas(){
+
+        $data = \Input::all();
+
+        $res = $this->personalRep->getJornalesByFechas($data);
+
+        return \Response::Json($res);
+
+
+    }
+
+
 
 
 

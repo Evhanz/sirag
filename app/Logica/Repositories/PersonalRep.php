@@ -2439,8 +2439,8 @@ where EMPRESA = 'e01'";
     public function deleteJornal($data){
 
 
-        $f = explode('-',$data['fecha']);
-        $f = $f[2].'-'.$f[0].'-'.$f[1];
+        $f = explode('-',$data['fecha']);//viene en formato dd-mm-yyyy
+        $f = $f[2].'-'.$f[1].'-'.$f[0];
         $trabajador = $data['ficha'];
         $codactividad = $data['actividad'];
         $codigo = $data['codigo'];
@@ -2450,18 +2450,51 @@ where EMPRESA = 'e01'";
 
         $query = "delete top(1) from 
                     flexline.PER_DETALLETRATO
-                    WHERE FECHA = '$f'
+                    WHERE convert(date,FECHA,113)  = '$f'
                     AND TRABAJADOR = '$trabajador'
                     AND CODACTIVIDAD = '$codactividad'
                     AND AUX_VALOR16 = '$codigo'
                     AND AUX_VALOR5 = '$cci' 
                     AND CANTIDAD = $hora ";
 
+        HelpFunct::writeQuery($query);
+
         $res = \DB::delete($query);
 
         return $res;
 
     }
+
+    public function getJornalesByFechas($data)
+    {
+        $f_i = $data['f_i'];
+        $f_f = $data['f_f'];
+        $codigo = $data['codigo'];
+
+        $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
+actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
+(select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
+         from flexline.PER_TRABAJADOR
+        WHERE FICHA = TRABAJADOR) nombre
+        from 
+        flexline.PER_DETALLETRATO
+        WHERE FECHA  between  '$f_i' and '$f_f'
+        AND TRATO = 'TRATO_HORA'
+        AND TRABAJADOR LIKE '%$codigo%'";
+
+        $res = \DB::select($query);
+
+        foreach ($res as $i){
+
+            $f =  explode('-',$i->fecha) ; //yyyy-mm-dd
+            $i->fecha = $f[2].'-'.$f[1].'-'.$f[0];
+            $i->hora = round($i->hora,2);
+
+        }
+
+        return $res;
+    }
+
 
 
 

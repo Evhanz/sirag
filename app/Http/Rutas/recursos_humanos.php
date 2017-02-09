@@ -51,6 +51,7 @@ Route::post('rh/api/getLaborByCodigo',['as'=>'getLaborByCodigo','uses'=>'Recurso
 Route::post('rh/api/getMarcacionDICONTrabajadorByFecha',['as'=>'getMarcacionDICONTrabajadorByFecha'
     ,'uses'=>'RecursoshController@getMarcacionDICONTrabajadorByFecha']);
 Route::get('rh/api/CodigoActividad',['as'=>'CodigoActividad','uses'=>'RecursoshController@CodigoActividad']);
+Route::post('rh/api/getJornalesByFechas',['as'=>'getJornalesByFechas','uses'=>'RecursoshController@getJornalesByFechas']);
 
 
 

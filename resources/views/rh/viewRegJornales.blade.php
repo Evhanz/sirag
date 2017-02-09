@@ -38,27 +38,19 @@
                             <div id="home" class="tab-pane fade in active" style="padding: 20px">
                                 <div class="row">
 
-                                    <div class="col-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <input type="checkbox" class="form-control" id="codigo_check" style="padding: 0px; margin: 0px;">
-                                                <label for="">Código de Trabajador</label>
-
-                                            </div>
-                                            <div class="col-lg-6">
-
-                                                <input class="form-control" type="radio" id="tipo_periodo" name="tipo_periodo"
-                                                       value="periodo" checked> Perioddo<br>
-                                                <input class="form-control" type="radio" id="tipo_periodo" name="tipo_periodo"
-                                                       value="fechas" checked> Rango de fechas<br>
-
-                                            </div>
-                                        </div>
+                                    <div class="col-lg-2">
+                                        <label for="">Código de trabajador</label><br>
+                                        <input class="form-control" id="codigo_trabajador" type="text">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="">Fecha</label>
+                                        <input class="form-control" name="daterange" id="reservation" type="text">
                                     </div>
                                     <div class="col-lg-3">
 
+                                        <button class="btn btn-info" id="btnBuscar" ng-click="buscarData()">Buscar</button>
                                         <button ng-model="btnNuevo" class="btn btn-success" id="btnNuevo" ng-click="newRegDetails()"> <i class="fa fa-disk"></i> Nuevo </button>
-                                        <button class="btn btn-info" id="btnGuardar" disabled> <i class="fa fa-disk"></i> Guardar </button>
+                                        <!-- <button class="btn btn-info" id="btnGuardar" disabled> <i class="fa fa-disk"></i> Guardar </button>-->
 
                                     </div>
                                     <div class="col-lg-3"></div>
@@ -94,7 +86,7 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" id="dataInsert">
                 <div class="col-lg-12">
                     <!-- Box (with bar chart) -->
                     <div class="box box-info" id="box_maestro">
@@ -179,9 +171,59 @@
                 </div>
 
             </div>
+            <div class="row" id="dataShow">
+                <div class="col-lg-12">
+                    <!-- Box (with bar chart) -->
+                    <div class="box box-info" id="box_maestro">
+                        <div class="box-header">
+                            <!-- tools box -->
+                        </div><!-- /.box-header -->
+                        <div class="box-body ">
 
+                            <div class="row" id="details">
+                                <div class="col-lg-12">
+
+                                    <table class="table table-bordered" id="data">
+                                        <thead>
+                                        <tr>
+                                            <td rowspan="2">E</td>
+                                            <td rowspan="2">N°</td>
+                                            <td rowspan="2">Fecha</td>
+                                            <td rowspan="2">Trabajador</td>
+                                            <td rowspan="2">Centro de Costo Interno</td>
+                                            <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>Labor</td>
+                                            <td>Turno</td>
+                                            <td>Codigo Actividad</td>
+                                            <td>Horas</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="item in dataSelect">
+                                            <td><button ng-click="deleteDetailShow($index)" class="btn btn-danger btn-xs">X</button></td>
+                                            <td>@{{ $index + 1 }}</td>
+                                            <td>@{{item.fecha}}</td>
+                                            <td>@{{ item.nombre }}</td>
+                                            <td>@{{ item.cci }}</td>
+                                            <td>@{{ item.codigo }}</td>
+                                            <td>-</td>
+                                            <td>@{{ item.actividad }}</td>
+                                            <td>@{{ item.hora }}</td>
+
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
         </div>
-
 
 
         <!-- modal modPersonal-->
@@ -318,13 +360,17 @@
 
         /*funciones de jquery*/
 
-
-
-
+        $('input[name="daterange"]').daterangepicker({
+            format : "DD/MM/YYYY"
+        });
 
 
         $('[data-toggle="tooltip"]').tooltip();
         $('#alertError').hide();
+
+
+        $('#dataInsert').hide();
+        $('#dataShow').hide();
 
         /*
          $(document).ready(function(){
@@ -384,6 +430,7 @@
             $scope.modPersonal = [];
             $scope.codigoActividad = [];
             $scope.detalles = [];
+            $scope.dataSelect = [];
 
             getCodigoActividad();
 
@@ -410,7 +457,6 @@
                     alert('Error: :>');
                 });
             };
-
 
             $scope.getModCCostoInterno = function (index) {
 
@@ -491,6 +537,9 @@
 
                 $("#btnNuevo").attr('disabled',true);
                 $("#btnGuardar").attr('disabled',false);
+
+                $('#dataInsert').show();
+                $('#dataShow').hide();
 
                 $scope.detalles.push(detail);
 
@@ -707,6 +756,46 @@
 
             };
 
+
+            $scope.deleteDetailShow = function (item) {
+
+                var r = confirm("Está seguro que eliminará ");
+                if (r == true) {
+
+                    var value = $scope.dataSelect[item];
+                    var token = $('#_token').val();
+                    var ruta = '{{URL::route('deleteJornales')}}';
+
+                    $http.post(ruta,{
+                        _token   : token,
+                        item:value
+                    })
+                            .success(function (data) {
+                                $scope.dataSelect.splice(item,1);
+                                console.log(data);
+
+                            })
+                            .error(function (error) {
+                                alert('error');
+                            });
+
+
+                    if($scope.detalles.length == 0){
+                        $("#btnNuevo").attr('disabled',false);
+                        $("#btnGuardar").attr('disabled',true);
+                    }
+
+                } else {
+
+                }
+
+
+
+
+
+            };
+
+
             $scope.addLine  = function (evento,index) {
 
 
@@ -841,6 +930,66 @@
             }
 
 
+
+            $scope.buscarData = function () {
+
+
+                $("#btnBuscar").attr('disabled',true);
+
+                var fecha = $('input[name="daterange"]').val();
+
+                if(fecha.length > 0 || fecha != null){
+                    fecha = fecha.split('-');
+                    var f_i = changeFormat(fecha[0]);
+                    var f_f = changeFormat(fecha[1]);
+
+                    var token = $('#_token').val();
+                    var codigo = $('#codigo_trabajador').val();
+
+                    if(codigo.length < 1 || codigo == null){
+
+                        codigo = '';
+
+                    }
+
+
+                    $http.post('{{URL::route('getJornalesByFechas')}}',{
+                        _toke:token,
+                        f_i : f_i,
+                        f_f : f_f,
+                        codigo: codigo
+
+                    })
+                    .success(function (data) {
+                        console.log(data);
+                        $scope.dataSelect = data;
+                        $("#btnBuscar").attr('disabled',false);
+                        $("#btnNuevo").attr('disabled',false);
+
+                    })
+                    .error(function (error) {
+                        console.log(error);
+                        $("#btnBuscar").attr('disabled',false);
+                        $("#btnNuevo").attr('disabled',false);
+                    });
+
+
+
+                    $('#dataInsert').hide();
+                    $('#dataShow').show();
+
+                }else{
+
+                    alert('Agrega uan fecha ');
+
+                }
+
+
+               // $("#btnBuscar").attr('disabled',false);
+
+            };
+
+
             /**
              * esta funcion averigua si tiene un formato fecha
              */
@@ -877,6 +1026,17 @@
                 }
 
                 return bandera;
+            }
+
+
+            //cmabiar de ddmmyyyy a yyyyddmm
+            function changeFormat(date) {
+
+                date  = date.split('/');
+                date = date[2]+'-'+date[0]+'-'+date[1];
+
+                return date;
+
             }
 
 
