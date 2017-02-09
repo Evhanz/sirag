@@ -1881,7 +1881,7 @@ class PersonalRep
         ";
 
         $query_empleado = " /* UNION */
-        ESTO ES PARA EMPLEADO
+        --ESTO ES PARA EMPLEADO
         select B.FICHA TRABAJADOR,
         ((select COUNT(CODIGO) AS H_OBLIGATORIA
         from FLEXLINE.gen_tabcod 
