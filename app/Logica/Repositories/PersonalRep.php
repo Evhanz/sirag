@@ -2268,7 +2268,7 @@ ORDER BY P.EMPLEADO
 
     public function getCentroCostoInterno(){
 
-        $query = "select CODIGO,DESCRIPCION from flexline.GEN_TABCOD
+        $query = "select CODIGO,DESCRIPCION,TEXTO1 from flexline.GEN_TABCOD
                 WHERE EMPRESA = 'E01'
                 AND TIPO = 'CON_CCOSTO_INTERNO'
                 AND VIGENCIA = 'S'";
@@ -2300,7 +2300,7 @@ ORDER BY P.EMPLEADO
 
     public function CodigoActividad(){
 
-        $query = "select (convert(varchar,ROW_NUMBER() OVER(ORDER BY DESCCODIGO ASC))+'-'+DESCCODIGO) as codigo from 
+        $query = "select (convert(varchar,ROW_NUMBER() OVER(ORDER BY DESCCODIGO ASC))+'-'+DESCCODIGO) as codigo,  DESCCODIGO value from 
 flexline.PER_TRATOS
 where EMPRESA = 'e01'";
 
@@ -2338,10 +2338,130 @@ where EMPRESA = 'e01'";
     }
 
 
-   
+    public function regJornales($data){
+
+        //--cambiando e formato de dd-mm-yyyy a yyyy-dd-mm
+        $f = explode('-',$data['fecha']);
+        $f = $f[2].'-'.$f[0].'-'.$f[1];
 
 
 
+        $trabajador     =   $data['ficha'];
+        $fecha          =   $f;
+        $trato          =   'TRATO_HORA';
+        $codactividad   =   $data['actividad'];
+        $hinicio        =   0;
+        $hfin           =   0;
+        $thoras         =   null;
+        $monto          =   $data['hora'];
+        $cantidad       =   $data['hora'];
+        $estado         =   'NRPT';
+        $aux_valor5     =   $data['cci'];
+        $aux_valor11    =   'J';
+        $aux_valor16    =   $data['codigo'];
+        $aux_valor19    =   $data['user'];
+        $aux_valor20    =   $data['ubigeo'];
+        $monto_inicial  =   $data['hora'];
+        $tipo_trab      =   'TRABAJADOR';
+        $correlativop   =   0;
+        $correlativoact =   0;
+
+
+
+        $query = "INSERT INTO flexline.PER_DETALLETRATO
+                 (EMPRESA,TRABAJADOR,FECHA,TRATO,CODACTIVIDAD,HINICIO,HFIN,CANTIDAD,MONTO,ESTADO,AUX_VALOR5,AUX_VALOR11
+                 ,AUX_VALOR16,AUX_VALOR19,AUX_VALOR20,MONTO_INICIAL,TIPO_TRAB,CORRELATIVOP,CORRELATIVOACT) 
+                 values 
+                 ('E01','$trabajador','$fecha','$trato','$codactividad','$hinicio','$hfin',$cantidad,$monto,
+                 '$estado','$aux_valor5','$aux_valor11','$aux_valor16','$aux_valor19','$aux_valor20',$monto_inicial,
+                 '$tipo_trab','$correlativop','$correlativoact');";
+
+        $val = \DB::insert($query);
+
+        return $val;
+    }
+
+
+    public function getJornalByParameters($data){
+
+
+        //--cambiando e formato de dd-mm-yyyy a yyyy-dd-mm
+        $f = explode('-',$data['fecha']);
+        $f = $f[2].'-'.$f[0].'-'.$f[1];
+        $trabajador = $data['ficha'];
+        $codactividad = $data['actividad'];
+        $codigo = $data['codigo'];
+        $cci    = $data['cci'];
+
+
+        $query = "select TRABAJADOR,MONTO, * from 
+                    flexline.PER_DETALLETRATO
+                    WHERE FECHA = '$f'
+                    AND TRABAJADOR = '$trabajador'
+                    AND CODACTIVIDAD = '$codactividad'
+                    AND AUX_VALOR16 = '$codigo'
+                    AND AUX_VALOR5 = '$cci'";
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
+    public function getTotalHoras($data,$actividad){
+
+
+        //--cambiando e formato de dd-mm-yyyy a yyyy-dd-mm
+        $f = explode('-',$data['fecha']);
+        $f = $f[2].'-'.$f[0].'-'.$f[1];
+        $trabajador = $data['ficha'];
+
+
+        $query = "select sum(MONTO) MONTO from 
+                    flexline.PER_DETALLETRATO
+                    WHERE FECHA = '$f'
+                    AND TRABAJADOR = '$trabajador'
+                    AND CODACTIVIDAD like '%$actividad%'";
+
+
+        $res = \DB::select($query);
+
+        if(count($res)>0){
+            $monto = round($res[0]->MONTO,2);
+        }else{
+            $monto = 0;
+        }
+
+
+        return $monto;
+    }
+
+
+    public function deleteJornal($data){
+
+
+        $f = explode('-',$data['fecha']);
+        $f = $f[2].'-'.$f[0].'-'.$f[1];
+        $trabajador = $data['ficha'];
+        $codactividad = $data['actividad'];
+        $codigo = $data['codigo'];
+        $cci    = $data['cci'];
+        $hora   = $data['hora'];
+
+
+        $query = "delete top(1) from 
+                    flexline.PER_DETALLETRATO
+                    WHERE FECHA = '$f'
+                    AND TRABAJADOR = '$trabajador'
+                    AND CODACTIVIDAD = '$codactividad'
+                    AND AUX_VALOR16 = '$codigo'
+                    AND AUX_VALOR5 = '$cci' 
+                    AND CANTIDAD = $hora ";
+
+        $res = \DB::delete($query);
+
+        return $res;
+
+    }
 
 
 

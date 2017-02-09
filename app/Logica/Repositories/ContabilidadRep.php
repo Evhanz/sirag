@@ -19,7 +19,7 @@ class ContabilidadRep
     public function getCciByCodigo($codigo)
     {
 
-        $query = "SELECT CODIGO,DESCRIPCION FROM flexline.GEN_TABCOD
+        $query = "SELECT CODIGO,DESCRIPCION,TEXTO1 FROM flexline.GEN_TABCOD
             WHERE EMPRESA = 'E01'
             AND TIPO = 'CON_CCOSTO_INTERNO'
             AND CODIGO = '$codigo'";

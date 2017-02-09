@@ -60,6 +60,11 @@ Route::post('rh/store/regJornales',['as'=>'regJornales','uses'=>'RecursoshContro
 
 
 
+//deletes
+Route::post('rh/delete/deleteJornales',['as'=>'deleteJornales','uses'=>'RecursoshController@deleteJornales']);
+
+
+
 
 //para descargar archivos o visualizar fotos
 Route::get('archivo/getTeecredito',['as'=>'getTxtTelecredito','uses'=>'RecursoshController@getTxtTelecredito']);

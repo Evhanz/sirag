@@ -129,7 +129,7 @@
                                             <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
                                             <td>@{{ $index + 1 }}</td>
                                             <td>
-                                                <input ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
+                                                <input ng-init="prueba($index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
                                             </td>
                                             <!--Ficha del trabajador -->
                                             <td>
@@ -154,13 +154,13 @@
                                             <td>
                                                 <select name="" id="" ng-model="item.actividad">
                                                     <option value="">-----------------------</option>
-                                                    <option ng-repeat="item in codigoActividad" value=" item.codigo">
+                                                    <option ng-repeat="item in codigoActividad" value="@{{ item.value }}">
                                                         @{{ item.codigo }}
                                                     </option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <input  class="hora" id="hora@{{ $index }}" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
+                                                <input ng-model="item.hora" class="hora" id="hora@{{ $index }}" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
                                             </td>
 
                                         </tr>
@@ -206,7 +206,7 @@
                                     <thead>
                                     <tr>
                                         <td><input type="text" ng-model="filModEmpleado.ficha"></td>
-                                        <td><input type="text" ng-model="filModEmpleado.dni"></td>
+                                        <td><input type="text" ng-model="filModEmpleado.EMPLEADO"></td>
                                         <td><input type="text" ng-model="filModEmpleado.nombre"></td>
                                     </tr>
                                     <tr>
@@ -435,7 +435,6 @@
 
                     alert('Error: :>');
                 });
-
             };
 
             $scope.getLabor = function(evento,codigo,item){
@@ -493,10 +492,7 @@
                 $("#btnNuevo").attr('disabled',true);
                 $("#btnGuardar").attr('disabled',false);
 
-
                 $scope.detalles.push(detail);
-
-
 
             };
 
@@ -624,9 +620,6 @@
                                         }
 
 
-
-
-
                                     }
 
 
@@ -648,12 +641,11 @@
                     $http.get(ruta)
                             .success(function(data){
 
-                                console.log(data);
-
                                 if(data == 0){
                                     alert('Valor no Encontrado');
                                 }else{
                                     item.descCci = data.DESCRIPCION;
+                                    item.ubigeo = data.TEXTO1;
                                 }
 
 
@@ -672,18 +664,46 @@
 
                 $scope.detalles[position].cci = item.CODIGO;
                 $scope.detalles[position].descCci = item.DESCRIPCION;
+                $scope.detalles[position].ubigeo = item.TEXTO1;
 
                 $("#modCCostoInterno").modal('hide');
             };
 
             $scope.deleteDetail = function (item) {
 
-                $scope.detalles.splice(item,1);
+                var r = confirm("Está seguro que eliminará ");
+                if (r == true) {
 
-                if($scope.detalles.length == 0){
-                    $("#btnNuevo").attr('disabled',false);
-                    $("#btnGuardar").attr('disabled',true);
+                    var value = $scope.detalles[item];
+                    var token = $('#_token').val();
+                    var ruta = '{{URL::route('deleteJornales')}}';
+
+                    $http.post(ruta,{
+                        _token   : token,
+                        item:value
+                    })
+                            .success(function (data) {
+                                $scope.detalles.splice(item,1);
+                                console.log(data);
+
+                            })
+                            .error(function (error) {
+                                alert('error');
+                            });
+
+
+                    if($scope.detalles.length == 0){
+                        $("#btnNuevo").attr('disabled',false);
+                        $("#btnGuardar").attr('disabled',true);
+                    }
+
+                } else {
+
                 }
+
+
+
+
 
             };
 
@@ -706,56 +726,114 @@
 
                     var bandera = validarItem(item);
 
+                    if($scope.detalles.length == (index+1)){
+                        var detail = {};
+                        $scope.detalles.push(detail);
+
+                    }
+
 
                     //quiere decir que hay un error
                     if(bandera== 1){
 
+
                         $("#alertError").show();
+                        $("#alertError").delay(6000).hide(600);
 
                     }else{
 
                         var usr = $('#nameUser').text();
-
-                        console.log(usr);
-
-
+                        //console.log($scope.detalles[index]);
                         $("#fecha"+(index+1)).focus();
-                    }
+                        var token = $('#_token').val();
+                        $scope.detalles[index].user = usr;
+                        $('#hora'+index).attr('disabled',true);
 
+
+                        $http.post('{{ URL::route('regJornales') }}',
+                                {   _token   : token,
+                                    detalle  : $scope.detalles[index]
+                                })
+                                .success(function(data){
+
+                                   if(data.res == '200'){
+                                       //------
+
+                                       $("#fecha"+(index+1)).focus();
+
+
+
+                                   }else{
+                                       alert('Error:'+data.mensaje);
+                                       $('#hora'+index).attr('disabled',false);
+                                   }
+
+                                })
+                                .error(function(data) {
+                                    $('#hora'+index).attr('disabled',false);
+                                    console.log(data);
+
+                                    alert('Error: :>');
+                        });
+
+
+                    }
                 }
             };
 
-            $scope.prueba = function () {
-                console.log('a');
-
+            $scope.prueba = function (index) {
+                var bandera = index +1;
+                $("#fecha"+(bandera)).focus();
             };
-
 
 
 
             function validarItem(item) {
 
                 var bandera = 0 ;
-
-                if (getFotmatDate(item.fecha)==1){
-                    bandera = 1;
-                }
+                var mensaje = '';
 
                 try{
 
-                    if(item.ficha.length < 0 || item.ficha === undefined){
+                    if (getFotmatDate(item.fecha)==1){
                         bandera = 1;
+                        mensaje += 'La fecha no tiene un formato adecuado \n';
                     }
 
-                    if(item.cci.length < 0){
+                    if(item.ficha.length <= 0 || item.ficha === undefined){
                         bandera = 1;
+                        mensaje = mensaje + ' La ficha no ha sido ingresada \n';
                     }
 
-                    if(item.codigo.length < 0){
+                    if(item.cci.length <= 0 || item.cci === undefined){
                         bandera = 1;
+                        mensaje = mensaje + ' El codigo cci no ha sido ingresada \n';
                     }
+
+                    if((item.codigo.length <= 0 || item.codigo === undefined) &&
+                            (item.labor_desc.length <= 0 || item.labor_desc === undefined)) {
+                        bandera = 1;
+                        mensaje = mensaje + ' La Codigo de Labor no ha sido ingresada \n';
+                    }
+                    if(item.actividad.length <= 0 || item.codigo === undefined) {
+                        bandera = 1;
+                        mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada \n';
+                    }
+
+                    if(item.hora.length <= 0 || item.hora === undefined || item.hora < 0 ) {
+                        bandera = 1;
+                        mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada \n';
+                    }
+
                 }catch (err){
                     bandera=1;
+                    mensaje += "Emos detectado lo siguiente- \n La linea que desea ingresar contiene errores en su ingreso," +
+                            "reingrese todo los campos para continuar , gracias ";
+                }
+
+
+                if(bandera == 1){
+                    $("#txtError").text(mensaje+'ass');
                 }
 
                 return bandera;
@@ -800,19 +878,6 @@
 
                 return bandera;
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
