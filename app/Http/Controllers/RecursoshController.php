@@ -1022,6 +1022,18 @@ class RecursoshController extends Controller
 
         return \Response::Json($res);
 
+    }
+
+    public function processdominical(){
+
+        $data = \Input::all();
+
+
+
+
+
+
+        return \Response::Json();
 
     }
 
