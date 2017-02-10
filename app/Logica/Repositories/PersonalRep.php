@@ -2319,7 +2319,7 @@ where EMPRESA = 'e01'";
         $fecha = $data['fecha']; //formato yyyymmdd
 
         $query = "select Documento,CONVERT(DATE,Fecha) Fecha,Estado 
-        from DICON.dbo.Marcaciones m inner join DICON.dbo.Trabajadores t ON
+        from BDASISTENCIA10_AGROGRACE.dbo.Marcaciones m inner join BDASISTENCIA10_AGROGRACE.dbo.Trabajadores t ON
         m.CodTrabajador = t.CodTrabajador
         where m.Estado = 'E'
         AND Fecha = '$fecha'
