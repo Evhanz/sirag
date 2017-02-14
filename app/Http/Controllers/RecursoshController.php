@@ -1030,10 +1030,127 @@ class RecursoshController extends Controller
 
 
 
+        /*
+        $fechaI = '2017-01-30';
+        $fechaF = '2017-02-04';
+        */
+
+        $f_I = explode('-',$fechaI);
+        $f_F = explode('-',$fechaF);
+
+        $pass = [];
+
+        //quiere decir que abarca dos meses
+        if($f_I[1] != $f_F[1]){
+
+            //hacemos el primer caso del  mes
+
+            //1.- sacamos el ultimo dia del mes de la fecha inicial
+
+            $f_inicio = $fechaI;
+            $f_1_fin = $f_I[0].'-'.$f_I[1].'-'.HelpFunct::getUltimoDiaMes($f_I[0],$f_I[1]);
+            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin);
+
+            //var_dump($res);
+
+            $this->personalRep->deleteJornalVolume($f_1_fin);
+
+            foreach ($res as $item){
+
+                $item->fecha =  $f_1_fin;
+
+                $d['ficha']     =   $item->TRABAJADOR;
+                $d['fecha']     =    $f_1_fin;
+                $d['actividad'] =   'HORA-DOMINICAL';
+                $d['hora']      =   round($item->CANTIDAD,2);
+                $d['cci']       =   '696969';//aux_valor5
+                $d['codigo']    =   '9100';//aux_valor16
+                $d['user']      =   'EHERNANDEZ';//aux_valor16
+                $d['ubigeo']    =   'L02';//aux_valor20
+
+                $reg = $this->personalRep->regJornales($d);
+
+                $p['trabajador'] = $item->TRABAJADOR;
+                $p['res']        = $reg;
+
+                array_push($pass,$p);
+
+            }
+
+            //hacemos el segundo caso del mes
+
+
+            $f_inicio = $f_F[0].'-'.$f_F[1].'-'.'01';
+            $f_1_fin = $fechaF;
+            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin);
+
+            $f = HelpFunct::getNextDia($fechaF);
+
+            $this->personalRep->deleteJornalVolume($f->format('Y-m-d'));
+
+            foreach ($res as $item){
+
+                $item->fecha = $f->format('d-m-Y');
+
+                $d['ficha']     =   $item->TRABAJADOR;
+                $d['fecha']     =   $f->format('d-m-Y');
+                $d['actividad'] =   'HORA-DOMINICAL';
+                $d['hora']      =   round($item->CANTIDAD,2);
+                $d['cci']       =   '696969';//aux_valor5
+                $d['codigo']    =   '9100';//aux_valor16
+                $d['user']      =   'EHERNANDEZ';//aux_valor16
+                $d['ubigeo']    =   'L02';//aux_valor20
+
+                $reg = $this->personalRep->regJornales($d);
+
+                $p['trabajador'] = $item->TRABAJADOR;
+                $p['res']        = $reg;
+
+                array_push($pass,$p);
+
+            }
+
+
+            return \Response::Json($pass);
+
+        }
+        else{
 
 
 
-        return \Response::Json();
+            $res = $this->personalRep->processdominical($fechaI,$fechaF);
+
+            $f = HelpFunct::getNextDia($fechaF);
+
+            $this->personalRep->deleteJornalVolume($f->format('Y-m-d'));
+
+            foreach ($res as $item){
+
+                $item->fecha = $f->format('d-m-Y');
+
+                $d['ficha']     =   $item->TRABAJADOR;
+                $d['fecha']     =   $f->format('d-m-Y');
+                $d['actividad'] =   'HORA-DOMINICAL';
+                $d['hora']      =   round($item->CANTIDAD,2);
+                $d['cci']       =   '696969';//aux_valor5
+                $d['codigo']    =   '9100';//aux_valor16
+                $d['user']      =   'EHERNANDEZ';//aux_valor16
+                $d['ubigeo']    =   'L02';//aux_valor20
+
+                $reg = $this->personalRep->regJornales($d);
+
+                $p['trabajador'] = $item->TRABAJADOR;
+                $p['res']        = $reg;
+
+                array_push($pass,$p);
+
+            }
+
+
+            return \Response::Json($pass);
+
+        }
+
 
     }
 

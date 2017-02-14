@@ -2457,13 +2457,32 @@ where EMPRESA = 'e01'";
                     AND AUX_VALOR5 = '$cci' 
                     AND CANTIDAD = $hora ";
 
-        HelpFunct::writeQuery($query);
 
         $res = \DB::delete($query);
 
         return $res;
 
     }
+
+    //sirve para limpiar los registros ya hechos en es misma fecha para dominicar
+    public function deleteJornalVolume($fecha){
+
+
+        //fecha tiene que estar en formato YYYY-mm-dd
+
+
+        $query = "delete from 
+        flexline.PER_DETALLETRATO
+        where CODACTIVIDAD like '%DOMINICAL%'
+        AND CONVERT(DATE,FECHA,113) = '$fecha'";
+
+
+        $res = \DB::delete($query);
+
+        return $res;
+
+    }
+
 
     public function getJornalesByFechas($data)
     {
@@ -2493,6 +2512,23 @@ actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
         }
 
         return $res;
+    }
+
+
+    public function processdominical($f_i,$f_f){
+
+        $query = "select TRABAJADOR, ROUND(SUM(CANTIDAD)/6,2) CANTIDAD
+        from flexline.PER_DETALLETRATO
+        where CONVERT(DATE,FECHA,113) BETWEEN '$f_i' AND '$f_f'
+        AND CODACTIVIDAD = 'HORA-NORMAL'
+        group by TRABAJADOR";
+
+
+
+        $res = \DB::select($query);
+
+        return $res;
+
     }
 
 

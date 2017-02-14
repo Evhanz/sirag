@@ -359,6 +359,15 @@ class HelpFunct
 
     }
 
+    public static function getUltimoDiaMes($elAnio,$elMes) {
+        return date("d",(mktime(0,0,0,$elMes+1,1,$elAnio)-1));
+    }
 
+    public static function getNextDia($fecha) {
+        $f = new \DateTime($fecha);
+        $f->add(new \DateInterval('P1D'));//para sacar el siguiente dia
+
+        return $f;
+    }
 
 }

@@ -30,6 +30,7 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Jornales</a></li>
+                            <li ><a data-toggle="tab" href="#dominical">Dominical</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -58,19 +59,170 @@
 
 
                                 </div>
+
+                                <div class="row" id="dataInsert">
+                                    <div class="col-lg-12">
+                                        <!-- Box (with bar chart) -->
+                                        <div class="box box-info" id="box_maestro">
+                                            <div class="box-header">
+                                                <!-- tools box -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body ">
+
+                                                <div class="row" id="details">
+                                                    <div class="col-lg-12">
+
+                                                        <table class="table table-bordered" id="data">
+                                                            <thead>
+                                                            <tr>
+                                                                <td rowspan="2">E</td>
+                                                                <td rowspan="2">N°</td>
+                                                                <td rowspan="2">Fecha</td>
+                                                                <td rowspan="2">Trabajador</td>
+                                                                <td rowspan="2">Centro de Costo Interno</td>
+                                                                <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td>Labor</td>
+                                                                <td>Turno</td>
+                                                                <td>Codigo Actividad</td>
+                                                                <td>Horas</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="item in detalles">
+                                                                <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
+                                                                <td>@{{ $index + 1 }}</td>
+                                                                <td>
+                                                                    <input ng-init="prueba($index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
+                                                                </td>
+                                                                <!--Ficha del trabajador -->
+                                                                <td>
+                                                                    <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado($index)">
+                                                                        ...</button>
+                                                                    <!-- data-type="number" data-max ="6" -->
+                                                                    <input  ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
+                                                                    <input  ng-model="item.trabajador" type="text" disabled  style="width: 10em;">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
+                                                                    <input  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item)">
+                                                                    <input  ng-model="item.descCci" type="text" disabled  style="width: 8em">
+
+                                                                </td>
+                                                                <td>
+                                                                    <input ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item)" style="width: 3em;" type="text">
+                                                                    <input style="width: 12em;" type="text" ng-model="item.labor_desc" disabled>
+                                                                </td>
+                                                                <td><input style="width: 3em;" type="text" disabled >
+                                                                </td>
+                                                                <td>
+                                                                    <select name="" id="" ng-model="item.actividad">
+                                                                        <option value="">-----------------------</option>
+                                                                        <option ng-repeat="item in codigoActividad" value="@{{ item.value }}">
+                                                                            @{{ item.codigo }}
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input ng-model="item.hora" class="hora" id="hora@{{ $index }}" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
+                                                                </td>
+
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+
+                                            </div><!-- /.box-body -->
+
+
+
+                                        </div><!-- /.box -->
+
+                                    </div>
+
+                                </div>
+                                <div class="row" id="dataShow">
+                                    <div class="col-lg-12">
+                                        <!-- Box (with bar chart) -->
+                                        <div class="box box-info" id="box_maestro">
+                                            <div class="box-header">
+                                                <!-- tools box -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body ">
+
+                                                <div class="row" id="details">
+                                                    <div class="col-lg-12">
+
+                                                        <table class="table table-bordered" id="data">
+                                                            <thead>
+                                                            <tr>
+                                                                <td rowspan="2">E</td>
+                                                                <td rowspan="2">N°</td>
+                                                                <td rowspan="2">Fecha</td>
+                                                                <td rowspan="2">Trabajador</td>
+                                                                <td rowspan="2">Centro de Costo Interno</td>
+                                                                <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td>Labor</td>
+                                                                <td>Turno</td>
+                                                                <td>Codigo Actividad</td>
+                                                                <td>Horas</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="item in dataSelect">
+                                                                <td><button ng-click="deleteDetailShow($index)" class="btn btn-danger btn-xs">X</button></td>
+                                                                <td>@{{ $index + 1 }}</td>
+                                                                <td>@{{item.fecha}}</td>
+                                                                <td>@{{ item.nombre }}</td>
+                                                                <td>@{{ item.cci }}</td>
+                                                                <td>@{{ item.codigo }}</td>
+                                                                <td>-</td>
+                                                                <td>@{{ item.actividad }}</td>
+                                                                <td>@{{ item.hora }}</td>
+
+
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+                                </div>
+
                             </div>
                             <!-- Tab filtro documento -->
-                            <div id="menu1" class="tab-pane fade">
-                                <h3>Menu 1</h3>
-                                <p>Some content in menu 1.</p>
+                            <div id="dominical" class="tab-pane fade">
 
-                                <label>Date range:</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
+
+                                <div class="row" style="padding: 15px">
+
+                                    <div class="col-xs-4">
+                                        <label>Fecha :</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input id="fecha_dominical" class="form-control datepicker">
+                                        </div><!-- /.input group -->
                                     </div>
-                                    <input class="form-control " name="daterange" id="reservation" type="text">
-                                </div><!-- /.input group -->
+                                    <div class="col-xs-2">
+                                        <label for="">  </label><br>
+                                        <button class="btn btn-success" >Ejecutar</button>
+                                    </div>
+
+
+                                </div>
+
+
 
 
                             </div>
@@ -86,143 +238,7 @@
 
             </div>
 
-            <div class="row" id="dataInsert">
-                <div class="col-lg-12">
-                    <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
-                            <!-- tools box -->
-                        </div><!-- /.box-header -->
-                        <div class="box-body ">
 
-                            <div class="row" id="details">
-                                <div class="col-lg-12">
-
-                                    <table class="table table-bordered" id="data">
-                                        <thead>
-                                        <tr>
-                                            <td rowspan="2">E</td>
-                                            <td rowspan="2">N°</td>
-                                            <td rowspan="2">Fecha</td>
-                                            <td rowspan="2">Trabajador</td>
-                                            <td rowspan="2">Centro de Costo Interno</td>
-                                            <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>Labor</td>
-                                            <td>Turno</td>
-                                            <td>Codigo Actividad</td>
-                                            <td>Horas</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="item in detalles">
-                                            <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
-                                            <td>@{{ $index + 1 }}</td>
-                                            <td>
-                                                <input ng-init="prueba($index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
-                                            </td>
-                                            <!--Ficha del trabajador -->
-                                            <td>
-                                                <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado($index)">
-                                                    ...</button>
-                                                <!-- data-type="number" data-max ="6" -->
-                                                <input  ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
-                                                <input  ng-model="item.trabajador" type="text" disabled  style="width: 10em;">
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
-                                                <input  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item)">
-                                                <input  ng-model="item.descCci" type="text" disabled  style="width: 8em">
-
-                                            </td>
-                                            <td>
-                                                <input ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item)" style="width: 3em;" type="text">
-                                                <input style="width: 12em;" type="text" ng-model="item.labor_desc" disabled>
-                                            </td>
-                                            <td><input style="width: 3em;" type="text" disabled >
-                                            </td>
-                                            <td>
-                                                <select name="" id="" ng-model="item.actividad">
-                                                    <option value="">-----------------------</option>
-                                                    <option ng-repeat="item in codigoActividad" value="@{{ item.value }}">
-                                                        @{{ item.codigo }}
-                                                    </option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input ng-model="item.hora" class="hora" id="hora@{{ $index }}" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
-                                            </td>
-
-                                        </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-
-                        </div><!-- /.box-body -->
-
-
-
-                    </div><!-- /.box -->
-
-                </div>
-
-            </div>
-            <div class="row" id="dataShow">
-                <div class="col-lg-12">
-                    <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
-                            <!-- tools box -->
-                        </div><!-- /.box-header -->
-                        <div class="box-body ">
-
-                            <div class="row" id="details">
-                                <div class="col-lg-12">
-
-                                    <table class="table table-bordered" id="data">
-                                        <thead>
-                                        <tr>
-                                            <td rowspan="2">E</td>
-                                            <td rowspan="2">N°</td>
-                                            <td rowspan="2">Fecha</td>
-                                            <td rowspan="2">Trabajador</td>
-                                            <td rowspan="2">Centro de Costo Interno</td>
-                                            <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>Labor</td>
-                                            <td>Turno</td>
-                                            <td>Codigo Actividad</td>
-                                            <td>Horas</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="item in dataSelect">
-                                            <td><button ng-click="deleteDetailShow($index)" class="btn btn-danger btn-xs">X</button></td>
-                                            <td>@{{ $index + 1 }}</td>
-                                            <td>@{{item.fecha}}</td>
-                                            <td>@{{ item.nombre }}</td>
-                                            <td>@{{ item.cci }}</td>
-                                            <td>@{{ item.codigo }}</td>
-                                            <td>-</td>
-                                            <td>@{{ item.actividad }}</td>
-                                            <td>@{{ item.hora }}</td>
-
-
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
-            </div>
         </div>
 
 
@@ -371,6 +387,10 @@
 
         $('#dataInsert').hide();
         $('#dataShow').hide();
+
+        $('#fecha_dominical').datepicker({
+            format: 'dd/mm/yyyy'
+        });
 
         /*
          $(document).ready(function(){
