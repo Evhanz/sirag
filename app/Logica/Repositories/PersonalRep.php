@@ -2410,15 +2410,15 @@ where EMPRESA = 'e01'";
     public function getTotalHoras($data,$actividad){
 
 
-        //--cambiando e formato de dd-mm-yyyy a yyyy-dd-mm
+        //--cambiando e formato de dd-mm-yyyy a yyyy-mm-dd
         $f = explode('-',$data['fecha']);
-        $f = $f[2].'-'.$f[0].'-'.$f[1];
+        $f = $f[2].'-'.$f[1].'-'.$f[0];
         $trabajador = $data['ficha'];
 
 
         $query = "select sum(MONTO) MONTO from 
                     flexline.PER_DETALLETRATO
-                    WHERE FECHA = '$f'
+                    WHERE convert(date,FECHA,113) = '$f'
                     AND TRABAJADOR = '$trabajador'
                     AND CODACTIVIDAD like '%$actividad%'";
 
