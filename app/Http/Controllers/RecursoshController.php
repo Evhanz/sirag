@@ -1030,6 +1030,10 @@ class RecursoshController extends Controller
 
 
 
+        $fechaI = $data['f_i'];
+        $fechaF = $data['f_f'];
+        $val = '';
+
         /*
         $fechaI = '2017-01-30';
         $fechaF = '2017-02-04';
@@ -1043,7 +1047,7 @@ class RecursoshController extends Controller
         //quiere decir que abarca dos meses
         if($f_I[1] != $f_F[1]){
 
-            //hacemos el primer caso del  mes
+            //1. hacemos el primer caso del  mes
 
             //1.- sacamos el ultimo dia del mes de la fecha inicial
 
@@ -1077,7 +1081,9 @@ class RecursoshController extends Controller
 
             }
 
-            //hacemos el segundo caso del mes
+            $val = $this->personalRep->getJornalesByFechas($f_1_fin,'dominical');
+
+             //2 . hacemos el segundo caso del mes
 
 
             $f_inicio = $f_F[0].'-'.$f_F[1].'-'.'01';
@@ -1110,8 +1116,12 @@ class RecursoshController extends Controller
 
             }
 
+            $temp = $this->personalRep->getJornalesByFechas($f->format('Y-m-d'),'dominical');
+            array_push($val,$temp);
 
-            return \Response::Json($pass);
+
+            //return \Response::Json($pass);
+
 
         }
         else{
@@ -1147,9 +1157,19 @@ class RecursoshController extends Controller
             }
 
 
-            return \Response::Json($pass);
+           // return \Response::Json($pass);
+
+            $val = $this->personalRep->getJornalesByFechas($f->format('d-m-Y'),'dominical');
 
         }
+
+
+
+        //luego obtenemos los valores procesados
+
+        //sacamos el dia siguiente
+
+        return \Response::Json($val);
 
 
     }

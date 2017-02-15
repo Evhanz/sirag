@@ -95,30 +95,30 @@
                                                                 <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
                                                                 <td>@{{ $index + 1 }}</td>
                                                                 <td>
-                                                                    <input ng-init="prueba($index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
+                                                                    <input ng-init="prueba($index)" ng-keyup="keyFecha($event,$index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
                                                                 </td>
                                                                 <!--Ficha del trabajador -->
                                                                 <td>
                                                                     <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado($index)">
                                                                         ...</button>
                                                                     <!-- data-type="number" data-max ="6" -->
-                                                                    <input  ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
+                                                                    <input id="ficha@{{$index}}" ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
                                                                     <input  ng-model="item.trabajador" type="text" disabled  style="width: 10em;">
                                                                 </td>
                                                                 <td>
                                                                     <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
-                                                                    <input  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item)">
+                                                                    <input id="cci@{{$index}}"  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item,$index)">
                                                                     <input  ng-model="item.descCci" type="text" disabled  style="width: 8em">
 
                                                                 </td>
                                                                 <td>
-                                                                    <input ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item)" style="width: 3em;" type="text">
+                                                                    <input id="codigo@{{$index}}" ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item,$index)" style="width: 3em;" type="text">
                                                                     <input style="width: 12em;" type="text" ng-model="item.labor_desc" disabled>
                                                                 </td>
                                                                 <td><input style="width: 3em;" type="text" disabled >
                                                                 </td>
                                                                 <td>
-                                                                    <select name="" id="" ng-model="item.actividad">
+                                                                    <select name="" id="actividad@{{ $index }}" ng-model="item.actividad" ng-change="changeActividad($index)">
                                                                         <option value="">-----------------------</option>
                                                                         <option ng-repeat="item in codigoActividad" value="@{{ item.value }}">
                                                                             @{{ item.codigo }}
@@ -216,10 +216,61 @@
                                     </div>
                                     <div class="col-xs-2">
                                         <label for="">  </label><br>
-                                        <button class="btn btn-success" >Ejecutar</button>
+                                        <button class="btn btn-success" id="btnExecDominical" ng-click="execDominical()">Ejecutar</button>
                                     </div>
 
 
+                                </div>
+
+                                <div class="row" >
+                                    <div class="col-lg-12">
+                                        <!-- Box (with bar chart) -->
+                                        <div class="box box-info" id="box_maestro">
+                                            <div class="box-header">
+                                                <!-- tools box -->
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body ">
+
+                                                <div class="row" id="details">
+                                                    <div class="col-lg-12">
+
+                                                        <table class="table table-bordered" id="data">
+                                                            <thead>
+                                                            <tr>
+                                                                <td rowspan="2">N°</td>
+                                                                <td rowspan="2">Fecha</td>
+                                                                <td rowspan="2">Trabajador</td>
+                                                                <td rowspan="2">Centro de Costo Interno</td>
+                                                                <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td>Labor</td>
+                                                                <td>Turno</td>
+                                                                <td>Codigo Actividad</td>
+                                                                <td>Horas</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="item in dataDominical">
+                                                                <td>@{{ $index + 1 }}</td>
+                                                                <td>@{{item.fecha}}</td>
+                                                                <td>@{{ item.nombre }}</td>
+                                                                <td>@{{ item.cci }}</td>
+                                                                <td>@{{ item.codigo }}</td>
+                                                                <td>-</td>
+                                                                <td>@{{ item.actividad }}</td>
+                                                                <td>@{{ item.hora }}</td>
+
+
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
                                 </div>
 
 
@@ -451,6 +502,7 @@
             $scope.codigoActividad = [];
             $scope.detalles = [];
             $scope.dataSelect = [];
+            $scope.dataDominical =[];
 
             getCodigoActividad();
 
@@ -503,7 +555,7 @@
                 });
             };
 
-            $scope.getLabor = function(evento,codigo,item){
+            $scope.getLabor = function(evento,codigo,item,index){
 
                 var token = $('#_token').val();
 
@@ -514,7 +566,6 @@
                                 codigo  : codigo
                             })
                             .success(function(data){
-
 
                                 //console.log( data);
 
@@ -531,7 +582,12 @@
 
                         alert('Error: :>');
                     });
+
+                   $("#actividad"+index).focus();
+
                 }
+
+
             };
 
             function getCodigoActividad(){
@@ -683,6 +739,7 @@
                                                 console.log(data);
 
                                                 alert('Error: :>');
+                                                item.fecha = '';
                                             });
                                         }else{
                                             alert('corrige la fecha de esta fila');
@@ -696,13 +753,16 @@
                             }).error(function(data) {
                         console.log(data);
                         alert('Error: :>');
+                        item.fecha = '';
+
                     });
 
+                    $('#cci'+index).focus();
 
                 }
             };
 
-            $scope.getCciByCodigo = function (evento,codigo,item) {
+            $scope.getCciByCodigo = function (evento,codigo,item,index) {
                 var ruta = '{{ URL::route('modContabilidad') }}/api/getCciByCodigo/'+codigo;
 
                 if(evento.keyCode == 13){
@@ -723,6 +783,8 @@
 
                         alert('Error: :>');
                     });
+
+                    $("#codigo"+index).focus();
                 }
             };
 
@@ -757,7 +819,9 @@
 
                             })
                             .error(function (error) {
-                                alert('error');
+                              //  alert('error');
+                                $scope.detalles.splice(item,1);
+
                             });
 
 
@@ -867,10 +931,7 @@
 
                                    if(data.res == '200'){
                                        //------
-
                                        $("#fecha"+(index+1)).focus();
-
-
 
                                    }else{
                                        alert('Error:'+data.mensaje);
@@ -894,6 +955,16 @@
                 var bandera = index +1;
                 $("#fecha"+(bandera)).focus();
             };
+
+            $scope.changeActividad = function (index) {
+
+                $("#hora"+(index)).focus();
+
+            };
+
+
+
+
 
 
 
@@ -967,9 +1038,7 @@
                     var codigo = $('#codigo_trabajador').val();
 
                     if(codigo.length < 1 || codigo == null){
-
                         codigo = '';
-
                     }
 
 
@@ -1008,6 +1077,79 @@
                // $("#btnBuscar").attr('disabled',false);
 
             };
+
+
+            $scope.keyFecha = function (evento,index) {
+
+                if(evento.keyCode == 13 ){
+
+                    $("#ficha"+index).focus();
+
+                }
+
+            };
+
+
+
+            $scope.execDominical = function () {
+
+                $('#btnExecDominical').attr('disabled',true);
+
+                var token = $('#_token').val();
+                var fecha_dominical = $('#fecha_dominical').val();//viene en formato dd-mmy-yyy
+
+                fecha_dominical = fecha_dominical.split('/');
+
+                fecha=new Date(fecha_dominical[2]+'-'+fecha_dominical[1]+'-'+fecha_dominical[0]);
+                /*
+                fecha.setDate(fecha_dominical[0]);
+                fecha.setMonth(fecha_dominical[1]);
+                fecha.setYear(fecha_dominical[2]);
+                */
+
+                var numdia = 0;
+                numdia = fecha.getDay();
+
+                if(numdia == 0){
+
+
+                    //scamos la fecha fin
+                    var f_f = sumarDias(fecha,6);
+                    f_f = f_f.getFullYear()+'-'+(f_f.getMonth()+1)+'-'+f_f.getDate();
+                    var f_i = fecha_dominical[2]+'-'+fecha_dominical[1]+'-'+fecha_dominical[0];
+
+                    $http.post('{{URL::route('processdominical')}}',{
+                        _token:token,
+                        f_i:f_i,
+                        f_f:f_f
+
+                    }).success(function (data) {
+
+                       // console.log(data);
+                       // $scope.dataDominical = data ;
+                        alert('El proceso a terminado con exito');
+
+                        $('#btnExecDominical').attr('disabled',false);
+
+                    }).error(function (error) {
+
+                        alert('El proceso tuvo errores , contáctese con el área de sistemas');
+                        console.log(error);
+                        $('#btnExecDominical').attr('disabled',false);
+
+                    });
+
+
+
+                }else{
+                    alert('La fecha que ha ingresado , no es correcta para procesar');
+                    $('#btnExecDominical').attr('disabled',false);
+                }
+
+
+
+            };
+
 
 
             /**
@@ -1057,6 +1199,13 @@
 
                 return date;
 
+            }
+
+
+            function sumarDias(fecha, dias){
+                var f_fin = new Date();
+                f_fin.setDate(fecha.getDate() + dias);
+                return f_fin;
             }
 
 

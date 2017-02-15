@@ -363,6 +363,10 @@ class HelpFunct
         return date("d",(mktime(0,0,0,$elMes+1,1,$elAnio)-1));
     }
 
+    /*
+     * la fecha necesita formato yyyy-mm-dd
+     */
+
     public static function getNextDia($fecha) {
         $f = new \DateTime($fecha);
         $f->add(new \DateInterval('P1D'));//para sacar el siguiente dia

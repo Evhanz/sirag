@@ -2484,26 +2484,43 @@ where EMPRESA = 'e01'";
     }
 
 
-    public function getJornalesByFechas($data)
+    public function getJornalesByFechas($data,$dominical=null)
     {
-        $f_i = $data['f_i'];
-        $f_f = $data['f_f'];
-        $codigo = $data['codigo'];
 
-        $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
-        actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
-        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
-                 from flexline.PER_TRABAJADOR
-                WHERE FICHA = TRABAJADOR) nombre
-                from 
-                flexline.PER_DETALLETRATO
-                WHERE CONVERT(DATE,FECHA,113)  between  '$f_i' and '$f_f'
-                AND TRATO = 'TRATO_HORA'
-                AND TRABAJADOR LIKE '%$codigo%'";
+
+        if($dominical == null){
+            $f_i = $data['f_i'];
+            $f_f = $data['f_f'];
+            $codigo = $data['codigo'];
+            $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
+                        actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
+                        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
+                                 from flexline.PER_TRABAJADOR
+                                WHERE FICHA = TRABAJADOR) nombre
+                                from 
+                                flexline.PER_DETALLETRATO
+                                WHERE CONVERT(DATE,FECHA,113)  between  '$f_i' and '$f_f'
+                                AND TRATO = 'TRATO_HORA'
+                                AND TRABAJADOR LIKE '%$codigo%'";
+        }else{
+            $fecha = $data;
+            $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
+                        actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
+                        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
+                                 from flexline.PER_TRABAJADOR
+                                WHERE FICHA = TRABAJADOR) nombre
+                                from 
+                                flexline.PER_DETALLETRATO
+                                WHERE CONVERT(DATE,FECHA,113)  = '$fecha'
+                                AND TRATO = 'TRATO_HORA'
+                                and CODACTIVIDAD = 'HORA-DOMINICAL'";
+
+            HelpFunct::writeQuery($query);
+        }
+
+
 
         $res = \DB::select($query);
-
-        HelpFunct::writeQuery($query);
 
 
         foreach ($res as $i){
@@ -2516,6 +2533,10 @@ where EMPRESA = 'e01'";
 
         return $res;
     }
+
+
+
+
 
 
     public function processdominical($f_i,$f_f){
