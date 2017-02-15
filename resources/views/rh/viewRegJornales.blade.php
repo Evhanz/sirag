@@ -1049,11 +1049,11 @@
             }
 
 
-            //cmabiar de ddmmyyyy a yyyyddmm
+            //cmabiar de ddmmyyyy a yyyymmdd
             function changeFormat(date) {
 
                 date  = date.split('/');
-                date = date[2]+'-'+date[0]+'-'+date[1];
+                date = date[2]+'-'+date[1]+'-'+date[0];
 
                 return date;
 

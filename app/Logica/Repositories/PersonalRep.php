@@ -2497,7 +2497,7 @@ where EMPRESA = 'e01'";
                 WHERE FICHA = TRABAJADOR) nombre
                 from 
                 flexline.PER_DETALLETRATO
-                WHERE FECHA  between  '$f_i' and '$f_f'
+                WHERE CONVERT(DATE,FECHA,113)  between  '$f_i' and '$f_f'
                 AND TRATO = 'TRATO_HORA'
                 AND TRABAJADOR LIKE '%$codigo%'";
 
