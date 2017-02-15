@@ -53,7 +53,7 @@
                                                 </div>
                                                 <div class="form-group" ng-show="tEmpleado!='empleado'">
                                                     <label for="" >Día</label><br>
-                                                    <select  name="filDia" class="form-control" id="filDia" required>
+                                                    <select  name="filDia" class="form-control" id="filDia" >
                                                         <option value="">--------</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
