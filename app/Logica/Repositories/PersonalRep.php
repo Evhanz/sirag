@@ -2491,17 +2491,20 @@ where EMPRESA = 'e01'";
         $codigo = $data['codigo'];
 
         $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
-actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
-(select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
-         from flexline.PER_TRABAJADOR
-        WHERE FICHA = TRABAJADOR) nombre
-        from 
-        flexline.PER_DETALLETRATO
-        WHERE FECHA  between  '$f_i' and '$f_f'
-        AND TRATO = 'TRATO_HORA'
-        AND TRABAJADOR LIKE '%$codigo%'";
+        actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
+        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
+                 from flexline.PER_TRABAJADOR
+                WHERE FICHA = TRABAJADOR) nombre
+                from 
+                flexline.PER_DETALLETRATO
+                WHERE FECHA  between  '$f_i' and '$f_f'
+                AND TRATO = 'TRATO_HORA'
+                AND TRABAJADOR LIKE '%$codigo%'";
 
         $res = \DB::select($query);
+
+        HelpFunct::writeQuery($query);
+
 
         foreach ($res as $i){
 

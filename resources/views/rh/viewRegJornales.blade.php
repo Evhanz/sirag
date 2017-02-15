@@ -605,7 +605,7 @@
                                 .success(function(data){
 
                                     if(data == 0){
-                                        alert('No se encuentra registrado en el DICON el valor');
+                                        alert('No hay maarcacion de entrada en  el DICON , de este empleado');
                                         $scope.detalles[position].fecha = '';
                                         $scope.detalles[position].trabajador = '';
                                         $scope.detalles[position].ficha = '';
