@@ -92,7 +92,12 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr ng-repeat="item in detalles">
-                                                                <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
+                                                                <td>
+                                                                    @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'RFLORES')
+                                                                        <button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button>
+                                                                    @endif
+
+                                                                </td>
                                                                 <td>@{{ $index + 1 }}</td>
                                                                 <td>
                                                                     <input ng-init="prueba($index)" ng-keyup="keyFecha($event,$index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{2}">
@@ -736,7 +741,16 @@
                                                             var r = '{{ URL::route('modRH') }}/api/getJefeByFicha/'+ficha;
                                                             $http.get(r).success(function (data) {
 
-                                                                console.log(data);
+                                                               if(data == 0){
+
+                                                                   alert('El trabajador no tiene registrado el jefe');
+                                                                   item.fecha = '';
+                                                                   item.trabajador = '';
+                                                                   item.ficha = '';
+                                                                   $("#fecha"+(index)).focus();
+                                                               }else{
+
+                                                               }
 
                                                             }).error(function (error) {
 
