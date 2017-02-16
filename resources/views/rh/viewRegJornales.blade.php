@@ -95,7 +95,7 @@
                                                                 <td><button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button></td>
                                                                 <td>@{{ $index + 1 }}</td>
                                                                 <td>
-                                                                    <input ng-init="prueba($index)" ng-keyup="keyFecha($event,$index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{4}">
+                                                                    <input ng-init="prueba($index)" ng-keyup="keyFecha($event,$index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{2}">
                                                                 </td>
                                                                 <!--Ficha del trabajador -->
                                                                 <td>
@@ -650,7 +650,7 @@
                     if(getFotmatDate($scope.detalles[position].fecha)== 0){
                         var token = $('#_token').val();
                         var f = $scope.detalles[position].fecha.split('-');
-                        f = f[2]+''+f[1]+''+f[0];
+                        f = '20'+''+f[2]+''+f[1]+''+f[0];
 
 
                         $http.post('{{ URL::route('getMarcacionDICONTrabajadorByFecha') }}',
@@ -716,7 +716,7 @@
                                         if(getFotmatDate(item.fecha)== 0){
                                             var token = $('#_token').val();
                                             var f = item.fecha.split('-');
-                                            f = f[2]+''+f[1]+''+f[0];
+                                            f = '20'+''+f[2]+''+f[1]+''+f[0];
 
                                             $http.post('{{ URL::route('getMarcacionDICONTrabajadorByFecha') }}',
                                                     {   _token   : token,
@@ -776,7 +776,6 @@
                                     item.descCci = data.DESCRIPCION;
                                     item.ubigeo = data.TEXTO1;
                                 }
-
 
                             }).error(function(data) {
                         console.log(data);
@@ -1183,7 +1182,7 @@
 
 
 
-                if(cadena[2]<1998 || cadena[2]>2100){
+                if(cadena[2]<10 || cadena[2]>99){
                     bandera = 1;
                 }
 

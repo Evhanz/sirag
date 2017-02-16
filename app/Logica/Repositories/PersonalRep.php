@@ -2342,6 +2342,9 @@ where EMPRESA = 'e01'";
 
         //--cambiando e formato de dd-mm-yyyy a yyyy-dd-mm
         $f = explode('-',$data['fecha']);
+        if( count($f[2]) == 2 ){
+            $f[2]= '20'.$f[2];
+        }
         $f = $f[2].'-'.$f[0].'-'.$f[1];
 
 
