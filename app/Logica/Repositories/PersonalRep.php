@@ -2375,11 +2375,11 @@ where EMPRESA = 'e01'";
                  (EMPRESA,TRABAJADOR,FECHA,TRATO,CODACTIVIDAD,HINICIO,HFIN,CANTIDAD,MONTO,ESTADO,AUX_VALOR5,AUX_VALOR11
                  ,AUX_VALOR16,AUX_VALOR19,AUX_VALOR20,MONTO_INICIAL,TIPO_TRAB,CORRELATIVOP,CORRELATIVOACT,THORAS,AUX_VALOR2,
                  AUX_VALOR3,AUX_VALOR4,AUX_VALOR6,AUX_VALOR7,AUX_VALOR8,AUX_VALOR9,AUX_VALOR10,AUX_VALOR12,AUX_VALOR13,
-                 AUX_VALOR14,AUX_VALOR15,AUX_VALOR17,AUX_VALOR18,TIPODOCTOP,TIPODOCTOACT,COMENTARIO) 
+                 AUX_VALOR14,AUX_VALOR15,AUX_VALOR17,AUX_VALOR18,TIPODOCTOP,TIPODOCTOACT,COMENTARIO,AUX_VALOR1) 
                  values 
                  ('E01','$trabajador','$fecha','$trato','$codactividad','$hinicio','$hfin',$cantidad,$monto,
                  '$estado','$aux_valor5','$aux_valor11','$aux_valor16','$aux_valor19','$aux_valor20',$monto_inicial,
-                 '$tipo_trab','$correlativop','$correlativoact','0','','','','','','','','','','','','','','','','','');";
+                 '$tipo_trab','$correlativop','$correlativoact','0','','','','','','','','','','','','','','','','','','');";
 
         $val = \DB::insert($query);
 
