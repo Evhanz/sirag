@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -52,8 +49,8 @@
       <file leaf-file-name="viewRegJornales.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="738" column="72" selection-start-line="738" selection-start-column="72" selection-end-line="738" selection-end-column="72" />
+            <state relative-caret-position="296">
+              <caret line="735" column="94" selection-start-line="735" selection-start-column="94" selection-end-line="735" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -883,14 +880,7 @@
       <workItem from="1487171281900" duration="1034000" />
       <workItem from="1487172373988" duration="9346000" />
       <workItem from="1487188511784" duration="11426000" />
-      <workItem from="1487254384166" duration="13408000" />
-    </task>
-    <task id="LOCAL-00016" summary="rev">
-      <created>1480095954393</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1480095954393</updated>
+      <workItem from="1487254384166" duration="13747000" />
     </task>
     <task id="LOCAL-00017" summary="rev">
       <created>1480096401066</created>
@@ -1228,11 +1218,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487261603420</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="rev">
+      <created>1487281930826</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1487281930826</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1323018000" />
+    <option name="totallyTimeSpent" value="1323357000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1726,8 +1723,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="738" column="72" selection-start-line="738" selection-start-column="72" selection-end-line="738" selection-end-column="72" />
+        <state relative-caret-position="296">
+          <caret line="735" column="94" selection-start-line="735" selection-start-column="94" selection-end-line="735" selection-end-column="94" />
           <folding />
         </state>
       </provider>

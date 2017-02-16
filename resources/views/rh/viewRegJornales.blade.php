@@ -733,7 +733,7 @@
                                                             $("#fecha"+(index)).focus();
                                                         }else {
 
-                                                            var r = '{{ URL::route('modRH') }}/rh/api/getJefeByFicha/'+ficha;
+                                                            var r = '{{ URL::route('modRH') }}/api/getJefeByFicha/'+ficha;
                                                             $http.get(r).success(function (data) {
 
                                                                 console.log(data);
