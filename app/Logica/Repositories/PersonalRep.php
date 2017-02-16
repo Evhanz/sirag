@@ -251,7 +251,7 @@ class PersonalRep
 
         $res = \DB::select($query);
 
-        return $res;
+        return $res[0]->VALOR;
         
     }
 
