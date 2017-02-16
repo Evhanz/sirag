@@ -1242,7 +1242,7 @@ class PersonalRep
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
 
-        HelpFunct::writeQuery($query);
+
 
         $res = \DB::select($query);
 
@@ -2378,6 +2378,8 @@ where EMPRESA = 'e01'";
 
         $val = \DB::insert($query);
 
+        HelpFunct::writeQuery($query);
+
         return $val;
     }
 
@@ -2515,7 +2517,7 @@ where EMPRESA = 'e01'";
                                 AND TRATO = 'TRATO_HORA'
                                 and CODACTIVIDAD = 'HORA-DOMINICAL'";
 
-            HelpFunct::writeQuery($query);
+
         }
 
 
