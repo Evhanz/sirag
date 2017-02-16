@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,8 +60,8 @@
       <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="2380" column="112" selection-start-line="2380" selection-start-column="112" selection-end-line="2380" selection-end-column="112" />
+            <state relative-caret-position="365">
+              <caret line="2385" column="38" selection-start-line="2385" selection-start-column="38" selection-end-line="2385" selection-end-column="38" />
               <folding>
                 <marker date="1487261267712" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
                 <marker date="1487261267712" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
@@ -867,14 +866,7 @@
       <workItem from="1487171281900" duration="1034000" />
       <workItem from="1487172373988" duration="9346000" />
       <workItem from="1487188511784" duration="11426000" />
-      <workItem from="1487254384166" duration="5724000" />
-    </task>
-    <task id="LOCAL-00014" summary="rev">
-      <created>1480075721764</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1480075721764</updated>
+      <workItem from="1487254384166" duration="6049000" />
     </task>
     <task id="LOCAL-00015" summary="rev">
       <created>1480076471225</created>
@@ -1212,11 +1204,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487260991951</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="rev">
+      <created>1487261280322</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1487261280322</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1315334000" />
+    <option name="totallyTimeSpent" value="1315659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1656,8 +1655,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="2380" column="112" selection-start-line="2380" selection-start-column="112" selection-end-line="2380" selection-end-column="112" />
+        <state relative-caret-position="365">
+          <caret line="2385" column="38" selection-start-line="2385" selection-start-column="38" selection-end-line="2385" selection-end-column="38" />
           <folding>
             <marker date="1487261267712" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
             <marker date="1487261267712" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
