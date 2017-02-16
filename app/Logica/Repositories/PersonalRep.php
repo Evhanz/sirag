@@ -2379,7 +2379,7 @@ where EMPRESA = 'e01'";
                  values 
                  ('E01','$trabajador','$fecha','$trato','$codactividad','$hinicio','$hfin',$cantidad,$monto,
                  '$estado','$aux_valor5','$aux_valor11','$aux_valor16','$aux_valor19','$aux_valor20',$monto_inicial,
-                 '$tipo_trab','$correlativop','$correlativoact','','','','','','','','','','','','','','','','','','');";
+                 '$tipo_trab','$correlativop','$correlativoact','0','','','','','','','','','','','','','','','','','');";
 
         $val = \DB::insert($query);
 
