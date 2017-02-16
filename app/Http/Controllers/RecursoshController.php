@@ -1175,6 +1175,15 @@ class RecursoshController extends Controller
     }
 
 
+    public function getJefeByFicha($ficha){
+
+        $res = $this->personalRep->getJefeByFicha($ficha);
+
+        return \Response::Json($res);
+
+    }
+
+
 
 
 

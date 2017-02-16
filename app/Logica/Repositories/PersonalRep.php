@@ -239,8 +239,23 @@ class PersonalRep
             return 0;
         }
 
-
     }
+
+
+    public function getJefeByFicha($ficha){
+
+        $query = "SELECT coalesce(VALOR,'0')VALOR FROM flexline.PER_ATRIB_TRAB
+            WHERE EMPRESA='e01' 
+            AND FICHA=$ficha
+            AND ATRIBUTO='JEFE_PERSO'";
+
+        $res = \DB::select($query);
+
+        return $res;
+        
+    }
+
+
 
     public function getContratos($ficha){
         $res = \DB::select("SELECT FICHA,CONVERT(decimal(9,2),REMUNERACION) as remuneracion

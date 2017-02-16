@@ -53,6 +53,7 @@ Route::post('rh/api/getMarcacionDICONTrabajadorByFecha',['as'=>'getMarcacionDICO
 Route::get('rh/api/CodigoActividad',['as'=>'CodigoActividad','uses'=>'RecursoshController@CodigoActividad']);
 Route::post('rh/api/getJornalesByFechas',['as'=>'getJornalesByFechas','uses'=>'RecursoshController@getJornalesByFechas']);
 Route::post('rh/api/processdominical',['as'=>'processdominical','uses'=>'RecursoshController@processdominical']);
+Route::get('rh/api/getJefeByFicha/{ficha}',['as'=>'getJefeByFicha','uses'=>'RecursoshController@getJefeByFicha']);
 
 
 

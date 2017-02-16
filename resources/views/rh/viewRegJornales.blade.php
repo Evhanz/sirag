@@ -726,12 +726,21 @@
                                                     .success(function(data){
 
                                                         if(data == 0){
-                                                            alert('No se encuentra registrado en el DICON el valor');
+                                                            alert('El trbajador no tiene registro en el DICON en la fecha ');
                                                             item.fecha = '';
                                                             item.trabajador = '';
                                                             item.ficha = '';
                                                             $("#fecha"+(index)).focus();
                                                         }else {
+
+                                                            var r = '{{ URL::route('modRH') }}/rh/api/getJefeByFicha/'+ficha;
+                                                            $http.get(r).success(function (data) {
+
+                                                                console.log(data);
+
+                                                            }).error(function (error) {
+
+                                                            });
 
                                                         }
 
