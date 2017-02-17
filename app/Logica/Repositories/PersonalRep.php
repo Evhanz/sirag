@@ -1245,7 +1245,8 @@ class PersonalRep
         dbo.GEN_TABLA as GT INNER JOIN 
         flexline.PER_DETALLETRATO DT 
         ON GT.codigo1=DT.AUX_VALOR16 AND GT.empresa = DT.EMPRESA INNER JOIN
-        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA
+        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA,
+        FLEXLINE.PER_TRABAJADOR PT
         where 
         DT.EMPRESA='e01'
         AND GC.TIPO = 'CON_CCOSTO_INTERNO'
@@ -1253,6 +1254,9 @@ class PersonalRep
         and GT.cod_tabla='per_labor'
         and DT.TRATO='TRATO_HORA'
         AND GC.CODIGO <> '696969'
+        AND PT.EMPRESA=DT.EMPRESA
+        AND PT.FICHA=DT.TRABAJADOR
+        AND PT.CATEGORIA='OPERARIO'
         AND LEN(GC.CODIGO) = 6
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
@@ -1461,7 +1465,8 @@ class PersonalRep
         dbo.GEN_TABLA as GT INNER JOIN 
         flexline.PER_DETALLETRATO DT 
         ON GT.codigo1=DT.AUX_VALOR16 AND GT.empresa = DT.EMPRESA INNER JOIN
-        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA
+        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA,
+        FLEXLINE.PER_TRABAJADOR PT
         where 
         DT.EMPRESA='e01'
         AND GC.TIPO = 'CON_CCOSTO_INTERNO'
@@ -1469,6 +1474,9 @@ class PersonalRep
         and GT.cod_tabla='per_labor'
         and DT.TRATO='TRATO_HORA'
         AND GC.CODIGO <> '696969'
+        AND PT.EMPRESA=DT.EMPRESA
+        AND PT.FICHA=DT.TRABAJADOR
+        AND PT.CATEGORIA='OPERARIO'
         AND LEN(GC.CODIGO) = 5
         $q1
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
