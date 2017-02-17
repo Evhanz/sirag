@@ -176,6 +176,7 @@
                                                         <th>*</th>
                                                         <th>DNI</th>
                                                         <th>NOMBRE</th>
+                                                        <th>CARGO</th>
                                                         <th>Remuneracion Basica</th>
                                                         <th>Asignacion Familiar</th>
                                                         <th>Importe HS Extras 25%</th>
@@ -211,6 +212,7 @@
                                                         <td>@{{ $index + 1}}</td>
                                                         <td>@{{ item.DNI}}</td>
                                                         <td>@{{ item.NOMBRE }}</td>
+                                                        <td>@{{ item.CARGO }}</td>
                                                         <td>@{{ item.remuneracion_basica }}</td>
                                                         <td>@{{ item.asignacion_familiar }}</td>
                                                         <td>@{{ item.importe_hs_extras_25 }}</td>
@@ -241,7 +243,7 @@
                                                         <td>@{{ item.essalud }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="3"><H2>TOTALES</H2></td>
+                                                        <td colspan="4"><H2>TOTALES</H2></td>
                                                         <td>@{{ totales_agraria.t_remuneracion_basica }}</td>
                                                         <td>@{{ totales_agraria.t_asignacion_familiar }}</td>
                                                         <td>@{{ totales_agraria.t_importe_hs_extras_25 }}</td>

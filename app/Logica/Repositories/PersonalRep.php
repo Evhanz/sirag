@@ -729,6 +729,7 @@ class PersonalRep
             $obj = new Obj();
             $obj->FICHA = $q->FICHA;
             $obj->NOMBRE = utf8_encode($q->NOMBRE);
+            $obj->CARGO  = utf8_encode($q->CARGO);
             $obj->BANCO     = $q->BANCO;
             $obj->DNI       = $q->EMPLEADO;
 
