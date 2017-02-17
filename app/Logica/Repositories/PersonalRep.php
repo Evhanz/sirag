@@ -1235,10 +1235,15 @@ class PersonalRep
             AND AUX_VALOR19 = GC.CODIGO
             AND ESTADO='A'
             AND AUX_VALOR19 IS NOT NULL) MONTO,
-            (SELECT SUM(CANTIDAD) FROM flexline.PER_DETALLETRATO
-            WHERE EMPRESA='E01'
-            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio and @fecha
-            AND AUX_VALOR5 = GC.CODIGO
+            (SELECT SUM(CANTIDAD) 
+            FROM flexline.PER_DETALLETRATO A,
+            flexline.PER_TRABAJADOR B
+            WHERE A.EMPRESA='E01'
+            AND CONVERT(DATE,A.FECHA) BETWEEN @fecha_inicio and @fecha
+            AND A.AUX_VALOR5 = GC.CODIGO
+            AND B.EMPRESA=A.EMPRESA
+            AND B.FICHA=A.TRABAJADOR
+            AND B.CATEGORIA='OPERARIO'
             ) CANTIDAD_H
             
         from
@@ -1455,10 +1460,15 @@ class PersonalRep
             AND ESTADO='A'
             AND AUX_VALOR19 = GC.CODIGO
             AND AUX_VALOR19 IS NOT NULL) MONTO,
-            (SELECT SUM(CANTIDAD) FROM flexline.PER_DETALLETRATO
-            WHERE EMPRESA='E01'
-            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio and @fecha
-            AND AUX_VALOR5 = GC.CODIGO
+            (SELECT SUM(CANTIDAD) 
+            FROM flexline.PER_DETALLETRATO A,
+            flexline.PER_TRABAJADOR B
+            WHERE A.EMPRESA='E01'
+            AND CONVERT(DATE,A.FECHA) BETWEEN @fecha_inicio and @fecha
+            AND A.AUX_VALOR5 = GC.CODIGO
+            AND B.EMPRESA=A.EMPRESA
+            AND B.FICHA=A.TRABAJADOR
+            AND B.CATEGORIA='OPERARIO'
             ) CANTIDAD_H
             
         from
