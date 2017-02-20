@@ -342,6 +342,16 @@ class ContabilidadRep
     }
 
 
+    /*
+     * esta funcion reemplaza a la funcion anterior por cmbios
+     * en el proceso del ERP
+     */
+
+    public function getDataForExcelConsumo2($data){
+
+    }
+
+
 
     //FUNCION HELPER DE CAMBIO DE FECHA DE YY-MM-DD A DD-MM-YY
 

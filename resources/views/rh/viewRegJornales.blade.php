@@ -919,7 +919,7 @@
 
                     var item = $scope.detalles[index];
 
-                    var bandera = validarItem(item);
+                    var bandera = validarItem(item,index);
 
                     if($scope.detalles.length == (index+1)){
                         var detail = {};
@@ -990,7 +990,7 @@
 
 
 
-            function validarItem(item) {
+            function validarItem(item,index) {
 
                 var bandera = 0 ;
                 var mensaje = '';
@@ -1029,13 +1029,13 @@
 
                 }catch (err){
                     bandera=1;
-                    mensaje += "Emos detectado lo siguiente- \n La linea que desea ingresar contiene errores en su ingreso," +
-                            "reingrese todo los campos para continuar , gracias ";
+                    mensaje += "Emos detectado lo siguiente- \n La linea "+(index+1) +"que desea ingresar contiene errores en su ingreso," +
+                            "reingrese todo los campos para continuar , gracias :"+err;
                 }
 
 
                 if(bandera == 1){
-                    $("#txtError").text(mensaje+'ass');
+                    $("#txtError").text(mensaje);
                 }
 
                 return bandera;
