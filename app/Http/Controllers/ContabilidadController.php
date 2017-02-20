@@ -485,6 +485,17 @@ class ContabilidadController extends Controller
     }
 
 
+
+    public function getDataForExcelConsumo2(){
+
+        $data[''] = '';
+
+
+    }
+
+
+
+
     //funciones helpers
 
     //-- change formato de fechas de yyyy-mm-dd

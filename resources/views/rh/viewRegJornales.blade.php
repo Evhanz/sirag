@@ -976,6 +976,20 @@
             $scope.prueba = function (index) {
                 var bandera = index +1;
                 $("#fecha"+(bandera)).focus();
+
+                if(index==0){
+                    var f = new Date();
+                    var y = f.getFullYear()+'';
+                    //console.log(y);
+                    f_formated = f.getDate()+'-'+(f.getMonth() +1) +'-'+y.substring(2);
+                    $scope.detalles[index].fecha=f_formated;
+                }else{
+                    $scope.detalles[index].fecha=$scope.detalles[index-1].fecha;
+                }
+
+
+
+
             };
 
             $scope.changeActividad = function (index) {

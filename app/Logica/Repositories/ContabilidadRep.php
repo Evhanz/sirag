@@ -349,6 +349,51 @@ class ContabilidadRep
 
     public function getDataForExcelConsumo2($data){
 
+        //primero traemos a todos los productos de materia prima
+
+        if ($data['cc']=='materiaPrima'){
+
+            $query = "SELECT PRODUCTO,GLOSA,SUBFAMILIA from flexline.PRODUCTO
+                where FAMILIA = 'MATERIA PRIMA' 
+                and EMPRESA = 'e01'
+                ORDER by SUBFAMILIA";
+        }else{
+
+            $query = "SELECT PRODUCTO,DESCRIPCION AS GLOSA,SUBFAMILIA from dbo.v_getConsumoGif
+                    GROUP BY PRODUCTO,DESCRIPCION,SUBFAMILIA 
+                    ORDER by SUBFAMILIA,DESCRIPCION";
+        }
+
+
+        $productos = \DB::select($query);
+        //traemos a los consumos de cada producto  de acuerdo a su parron por cada fecha
+
+        foreach ($data['parrones'] as $parron) {
+
+            /*
+
+
+            $dto = new DocumentoDTO();
+            $consumo = $this->getConsumoByFechasAndProducto($parron['startDate'],$parron['endDate'],$item->PRODUCTO,$parron['CODIGO'],$data['cc']);
+
+            $dto->name_parron = $parron['CODIGO'];
+            $dto->area = $parron['VALOR1'];
+            $dto->total_cantidad_consumo = $consumo->cantidad;
+            $dto->total_precio_consumo = $consumo->total;
+            $dto->precio_ha = number_format($consumo->total/$parron['VALOR1'],2,'.','');
+
+            /*
+            $dto->costo = $consumo->costo;
+            $dto->cantidad = $consumo->cantidad;
+            */
+
+
+        }
+
+
+
+        return $res;
+
     }
 
 
