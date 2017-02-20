@@ -980,8 +980,19 @@
                 if(index==0){
                     var f = new Date();
                     var y = f.getFullYear()+'';
+                    var d = f.getDate() + '';
+                    var m = (f.getMonth() +1) + '';
+
+                    if(d < 10){
+                        d = '0'+d+'';
+                    }
+
+                    if(m < 10){
+                        m = '0'+m+'';
+                    }
+
                     //console.log(y);
-                    f_formated = f.getDate()+'-'+(f.getMonth() +1) +'-'+y.substring(2);
+                    f_formated = d+'-'+m+'-'+y.substring(2);
                     $scope.detalles[index].fecha=f_formated;
                 }else{
                     $scope.detalles[index].fecha=$scope.detalles[index-1].fecha;
