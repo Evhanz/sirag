@@ -2314,11 +2314,17 @@ ORDER BY P.EMPLEADO
 
     public function getLaborByCodigo($codigo){
 
-        $query = "SELECT CODIGO,DESCRIPCION FROM
+        /*$query = "SELECT CODIGO,DESCRIPCION FROM
                 flexline.GEN_TABCOD 
                 WHERE EMPRESA = 'E01'
                 AND TIPO LIKE 'PER_ACTIVIDADES'
-                AND CODIGO = '$codigo'";
+                AND CODIGO = '$codigo'";*/
+
+        $query = "SELECT CODIGO1,DESCRIPCION FROM DBO.GEN_TABLA
+                WHERE empresa='E01'
+                AND cod_tabla='PER_LABOR'
+                AND vigencia='S'
+                AND CODIGO1 = '$codigo'";       
 
         $res = \DB::select($query);
 
@@ -2355,7 +2361,7 @@ where EMPRESA = 'e01'";
         $query = "select Documento,CONVERT(DATE,Fecha) Fecha,Estado 
         from BDASISTENCIA10_AGROGRACE.dbo.Marcaciones m inner join BDASISTENCIA10_AGROGRACE.dbo.Trabajadores t ON
         m.CodTrabajador = t.CodTrabajador
-        where m.Estado = 'E'
+        where m.Estado IN ('E','EL','EP','FT','EI','IE')
         AND Fecha = '$fecha'
         AND Documento = '$dni'";
 
