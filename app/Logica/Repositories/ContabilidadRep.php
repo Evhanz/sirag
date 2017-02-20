@@ -349,6 +349,8 @@ class ContabilidadRep
 
     public function getDataForExcelConsumo2($data){
 
+
+        $res =[];
         //primero traemos a todos los productos de materia prima
 
         if ($data['cc']=='materiaPrima'){
@@ -368,27 +370,45 @@ class ContabilidadRep
         $productos = \DB::select($query);
         //traemos a los consumos de cada producto  de acuerdo a su parron por cada fecha
 
-        foreach ($data['parrones'] as $parron) {
+        foreach ($productos as $p)
+        {
+            foreach ($data['parrones'] as $parron) {
 
-            /*
+                //primero obtenemos los periodos
+
+                if(substr($parron['s_date'],0,4)== substr($parron['e_date'],04)){
+
+                    $cci = substr($parron['s_date'],2,2).$data['fundo'].$parron['parron'].'1';
+
+                }
 
 
-            $dto = new DocumentoDTO();
-            $consumo = $this->getConsumoByFechasAndProducto($parron['startDate'],$parron['endDate'],$item->PRODUCTO,$parron['CODIGO'],$data['cc']);
 
-            $dto->name_parron = $parron['CODIGO'];
-            $dto->area = $parron['VALOR1'];
-            $dto->total_cantidad_consumo = $consumo->cantidad;
-            $dto->total_precio_consumo = $consumo->total;
-            $dto->precio_ha = number_format($consumo->total/$parron['VALOR1'],2,'.','');
+                /*
 
-            /*
-            $dto->costo = $consumo->costo;
-            $dto->cantidad = $consumo->cantidad;
-            */
 
+                $dto = new DocumentoDTO();
+                $consumo = $this->getConsumoByFechasAndProducto($parron['startDate'],$parron['endDate'],$item->PRODUCTO,$parron['CODIGO'],$data['cc']);
+
+                $dto->name_parron = $parron['CODIGO'];
+                $dto->area = $parron['VALOR1'];
+                $dto->total_cantidad_consumo = $consumo->cantidad;
+                $dto->total_precio_consumo = $consumo->total;
+                $dto->precio_ha = number_format($consumo->total/$parron['VALOR1'],2,'.','');
+
+                /*
+                $dto->costo = $consumo->costo;
+                $dto->cantidad = $consumo->cantidad;
+                */
+
+
+
+
+
+            }
 
         }
+
 
 
 

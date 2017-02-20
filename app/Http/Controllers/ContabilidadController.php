@@ -488,7 +488,10 @@ class ContabilidadController extends Controller
 
     public function getDataForExcelConsumo2(){
 
-        $data[''] = '';
+        $data['fundo'] = '3';
+        $data['cc'] = 'a';
+        $data['parrones']= [ ['parron'=>'01','s_date'=>'2017-01-01','e_date'=>'2017-01-01'],
+            ['parron'=>'02','s_date'=>'2017-01-01','e_date'=>'2017-01-01']];
 
 
     }
