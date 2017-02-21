@@ -2467,7 +2467,7 @@ where EMPRESA = 'e01'";
                     flexline.PER_DETALLETRATO
                     WHERE convert(date,FECHA,113) = '$f'
                     AND TRABAJADOR = '$trabajador'
-                    AND CODACTIVIDAD like '%$actividad%'";
+                   -- AND CODACTIVIDAD like '%$actividad%'";
 
 
         $res = \DB::select($query);
