@@ -960,6 +960,9 @@
                                        $('#hora'+index).attr('disabled',false);
                                    }
 
+                                   console.log('-');
+                                   console.log(data);
+
                                 })
                                 .error(function(data) {
                                     $('#hora'+index).attr('disabled',false);

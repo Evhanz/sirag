@@ -2423,8 +2423,6 @@ where EMPRESA = 'e01'";
 
         $val = \DB::insert($query);
 
-        HelpFunct::writeQuery($query);
-
         return $val;
     }
 
@@ -2459,6 +2457,9 @@ where EMPRESA = 'e01'";
 
         //--cambiando e formato de dd-mm-yyyy a yyyy-mm-dd
         $f = explode('-',$data['fecha']);
+        if( strlen($f[2]) == 2 ){
+            $f[2]= '20'.$f[2];
+        }
         $f = $f[2].'-'.$f[1].'-'.$f[0];
         $trabajador = $data['ficha'];
 
@@ -2467,8 +2468,9 @@ where EMPRESA = 'e01'";
                     flexline.PER_DETALLETRATO
                     WHERE convert(date,FECHA,113) = '$f'
                     AND TRABAJADOR = '$trabajador'
-                   -- AND CODACTIVIDAD like '%$actividad%'";
+                    AND CODACTIVIDAD like '%$actividad%'";
 
+        //HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 

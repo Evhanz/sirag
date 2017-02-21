@@ -931,6 +931,8 @@ class RecursoshController extends Controller
 
                     $monto_activity = $this->personalRep->getTotalHoras($detalle,$actividad);
 
+
+
                     $pre_cant_horas_activity = $monto_activity + $detalle['hora'];
 
                     if($pre_cant_horas_activity>8){
@@ -969,10 +971,6 @@ class RecursoshController extends Controller
                     //registrar
                     break;
             }
-
-
-
-
 
 
 
