@@ -266,7 +266,7 @@ class ProductoRep
         AND C.FAMILIA like '%$familia%'
         UNION
         SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
-        p.GLOSA glosa,dd.Cantidad cantidad,dd.UnidadIngreso unidad, coalesce(dd.aux_valor19,'-') FUNDO_PARRON
+        p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON
         FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
         where
         dd.Empresa=p.EMPRESA
@@ -280,6 +280,7 @@ class ProductoRep
         AND dd.Fecha BETWEEN '$f_i' and '$f_f'
         AND p.GLOSA like '%$glosa%'
         AND p.FAMILIA like '%$familia%'
+        group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
         ORDER BY A.Fecha";
 
 
