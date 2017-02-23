@@ -171,7 +171,12 @@ class NumberToLetter
         }
         $tex = $neg . substr($tex, 1) . $fin;
         //Zi hack --> return ucfirst($tex);
+        try{
         $ff = $float[1] == '' ? '00':$float[1] ;
+        }catch ( \Exception $e){
+            $ff= '00';
+
+        }
         /**
          * esto modifico Evhanz
          * */

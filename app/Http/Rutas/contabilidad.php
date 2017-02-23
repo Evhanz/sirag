@@ -43,6 +43,7 @@ Route::get('contabilidad/api/getCciByCodigo/{codigo}',['as'=>'getCciByCodigo','u
 
 Route::post('contabilidad/sendDataForExcelConsumo',['as'=>'sendDataForExcelConsumo','uses'=>'ContabilidadController@sendDataForExcelConsumo']);
 
+Route::get('contabilidd/getDataForExcelConsumo2',['as'=>'getDataForExcelConsumo2','uses'=>'ContabilidadController@getDataForExcelConsumo2']);
 
 
 

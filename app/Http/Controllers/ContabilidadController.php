@@ -490,7 +490,7 @@ class ContabilidadController extends Controller
 
         $data['fundo'] = '3';
         $data['cc'] = 'a';
-        $data['parrones']= [ ['parron'=>'01','s_date'=>'2017-01-01','e_date'=>'2017-01-01'],
+        $data['parrones']= [ ['parron'=>'01','s_date'=>'2017-01-01','e_date'=>'2017-01-08'],
             ['parron'=>'02','s_date'=>'2017-01-01','e_date'=>'2017-01-01']];
 
         $this->contabilidadRep->getDataForExcelConsumo2($data);
