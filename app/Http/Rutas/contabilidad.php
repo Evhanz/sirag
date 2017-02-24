@@ -43,7 +43,7 @@ Route::get('contabilidad/api/getCciByCodigo/{codigo}',['as'=>'getCciByCodigo','u
 
 Route::post('contabilidad/sendDataForExcelConsumo',['as'=>'sendDataForExcelConsumo','uses'=>'ContabilidadController@sendDataForExcelConsumo']);
 
-Route::get('contabilidd/getDataForExcelConsumo2',['as'=>'getDataForExcelConsumo2','uses'=>'ContabilidadController@getDataForExcelConsumo2']);
+Route::post('contabilidd/getDataForExcelConsumo2',['as'=>'getDataForExcelConsumo2','uses'=>'ContabilidadController@getDataForExcelConsumo2']);
 
 
 
@@ -62,6 +62,7 @@ Route::get('contabilidad/txt/getTxtTipoCambio',['as'=>'getTxtTipoCambio','uses'=
 Route::get('contabilidad/excel/pdbExcelCompras/{periodo}',['as'=>'pdbExcelCompras','uses'=>'ContabilidadController@pdbExcelCompras']);
 
 Route::get('contabilidad/excel/getExcelConsumoByFundo',['as'=>'getExcelConsumoByFundo','uses'=>'ContabilidadController@getExcelConsumoByFundo']);
+Route::get('contabilidad/excel/getExcelConsumoByFundo2',['as'=>'getExcelConsumoByFundo2','uses'=>'ContabilidadController@getExcelConsumoByFundo2']);
 
 
 //--- para pdf

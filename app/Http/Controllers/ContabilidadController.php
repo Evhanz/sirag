@@ -107,6 +107,9 @@ class ContabilidadController extends Controller
         return response()->download(base_path()."/storage/contabilidad/excel/consumo_por_fundo.xls");
     }
 
+    public function getExcelConsumoByFundo2(){
+        return response()->download(base_path()."/storage/contabilidad/excel/consumo_por_fundo_cci.xls");
+    }
 
 
     
@@ -488,12 +491,51 @@ class ContabilidadController extends Controller
 
     public function getDataForExcelConsumo2(){
 
+        $data = \Input::all();
+
+
+        //test
+
+
+
+        /*
         $data['fundo'] = '3';
         $data['cc'] = 'a';
-        $data['parrones']= [ ['parron'=>'01','s_date'=>'2017-01-01','e_date'=>'2017-01-08'],
-            ['parron'=>'02','s_date'=>'2017-01-01','e_date'=>'2017-01-01']];
+        $data['parrones']= [ ['CODIGO'=>'01','VALOR1'=>'2.58000000','startDate'=>'2017-01-01','endDate'=>'2017-01-08'],
+            ['CODIGO'=>'02','VALOR1'=>'3.09000000','startDate'=>'2017-01-01','endDate'=>'2017-01-01']];
 
-        $this->contabilidadRep->getDataForExcelConsumo2($data);
+        */
+        $res = $this->contabilidadRep->getDataForExcelConsumo2($data);
+
+       // dd($res);
+
+        $res['fundo']   = $data['fundo'];
+
+        $ruta =base_path()."/storage/contabilidad/excel/";
+
+        Excel::create('consumo_por_fundo_cci', function($excel) use ($res){
+
+            $excel->sheet('resultado', function($sheet) use ($res){
+
+                $parrones   =   $res['parrones'] ;
+                $productos  =   collect($res['productos']) ;
+                $fundo      =   $res['fundo'];
+                $cci        =    $res['cci'];
+
+                $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo','cci'));
+            });
+
+        })->store('xls',$ruta);
+
+
+        return \Response::json("correcto");
+
+
+
+
+       // $data = \Input::all();
+
+
 
 
 

@@ -12,12 +12,21 @@
 		<!--cabecera-->
 		<tr class="cabecera">
 			<td colspan="3" style="color: #FFF;background-color: #F08B35 ">Fundo : {{$fundo}} </td>
-			@foreach ($parrones as $parron)
 
-			<td colspan="3">{{ $parron['CODIGO'] }} - en fecha: {{$parron['startDate']}}  al {{ $parron['endDate'] }}</td>
-			<?php $suma_parron +=  $parron['VALOR1'];?>
-			   
-			@endforeach
+			@if(isset($cci))
+				@foreach ($cci as $parron)
+					<td colspan="3"> CCI : {{$parron->cci}}- en fecha: {{$parron->f_ini}}  al {{$parron->f_fin}} </td>
+					<?php $suma_parron +=  $parron->VALOR1;?>
+				@endforeach
+			@else
+				@foreach ($parrones as $parron)
+					<td colspan="3">{{ $parron['CODIGO'] }} - en fecha: {{$parron['startDate']}}  al {{ $parron['endDate'] }}</td>
+					<?php $suma_parron +=  $parron['VALOR1'];?>
+				@endforeach
+			@endif
+
+
+
 			<td colspan="2" style="color: #FFF;background-color: #FFBD00 ">TOTAL DE HAS. {{$fundo}}</td>
 			<td colspan="2" style="color: #FFF;background-color: #FFBD00 ">{{$suma_parron }}  HAS </td>
 		</tr>
@@ -47,7 +56,7 @@
 			<td style="color: #FFF;background-color: #FFBD00 ">GTO. HA.</td>
 		</tr>
 
-				
+
 		<!--Cuerpo de la data-->
 		@foreach ($productos as $p)
 		<tr class="data">
@@ -55,8 +64,8 @@
 			<td>{{ $p->PRODUCTO }}</td>
 			<td>{{ $p->GLOSA }}</td>
 			@foreach($p->analisis_parron as $item)
-			<td>{{ $item->total_cantidad_consumo }}</td>
-			<td>{{ $item->total_precio_consumo }}</td>
+			<td>{{ isset($item->total_cantidad_consumo) ? $item->total_cantidad_consumo : 0  }}</td>
+			<td>{{ isset($item->total_precio_consumo) ? $item->total_precio_consumo : 0   }}</td>
 			<td>{{ $item->precio_ha }}</td>
 			@endforeach
 			<?php $analisis = collect($p->analisis_parron); ?>
@@ -73,6 +82,9 @@
 			@endif
 		</tr>
 		@endforeach
+
+
+		@if(isset($otros))
 		
 		<hr>
 		<tr>
@@ -99,7 +111,7 @@
 			<td>{{ $p->total }}</td>
 		</tr>
 		@endforeach
-
+		@endif
 		
 		
 	</table>

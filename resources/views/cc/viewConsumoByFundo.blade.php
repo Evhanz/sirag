@@ -16,14 +16,15 @@
 
 
     <div ng-app="app" ng-controller="PruebaController">
-        <div class="content"  >
+        <div class="content">
 
             <div class="row" style="padding-left: 15px; padding-right: 15px;">
                 <!-- Box (with bar chart) -->
                 <div class="box box-default" >
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
-                            <li class="active"><a data-toggle="tab" href="#home">Consumo </a></li>
+                            <li class="active"><a ng-click="changeOption('consumo')"  data-toggle="tab" href="#home">Consumo </a></li>
+                            <li ><a  ng-click="changeOption('cci')" data-toggle="tab" href="#home"> Consumo Por CCI </a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -54,7 +55,7 @@
                                                 </select>
                                             </div>
                                             -->
-                                            <div class="col-md-2">
+                                            <div class="col-md-2" id="mdCentroCosto">
                                                 <label for="">Centro de Costo</label>
                                                 <select name="" id="selCentroCosto" class="form-control">
                                                     <option value="materiaPrima">Materia Prima</option>
@@ -92,7 +93,7 @@
                                                 
                                             </div>
 
-                                            <div class="col-md-3"> 
+                                            <div class="col-md-3" id="mdOtros">
                                                 <label for="">Otros</label>
                                                 <input  name="data_range2" date-range-picker class="form-control date-picker" type="text" ng-model="fecha_otros" ng-init="fecha_otros={startDate: null, endDate: null}"  />
 
@@ -208,6 +209,7 @@
             $scope.Documentos= [{}];
             $scope.tipodocts = [{}];
             $scope.otros = {};
+            $scope.opcion = 'consumo';
 
             $scope.totales = {};
 
@@ -310,16 +312,25 @@
                 });
 
 
-                var fecha = $scope.fecha_otros;
 
-                if (fecha.endDate == null || fecha.startDate == null) {
-                    bandera = 1;
-                }else{
-                    var f = new Date(fecha.endDate);
-                    $scope.otros.endDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
-                    var f = new Date(fecha.startDate);
-                    $scope.otros.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+
+                if($scope.opcion == 'consumo'){
+
+                    var fecha = $scope.fecha_otros;
+
+                    if (fecha.endDate == null || fecha.startDate == null) {
+                        bandera = 1;
+                    }else{
+                        var f = new Date(fecha.endDate);
+                        $scope.otros.endDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+                        var f = new Date(fecha.startDate);
+                        $scope.otros.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
+                    }
+
                 }
+
+
+
 
                 //verificamos el centro de costo
                 var cc = $("#selCentroCosto").val();
@@ -342,30 +353,46 @@
 
                     $('#btnExcel').attr("disabled", true);
 
-                    var ruta = "{{ URL::route('sendDataForExcelConsumo') }}";
+                    var fundo = $("#f_fundo").val();
+                   if($scope.opcion=='consumo'){
+                       var ruta = "{{ URL::route('sendDataForExcelConsumo') }}";
+                       var url         = '{{ URL::route('getExcelConsumoByFundo') }}';
+                   }
+                   else{
+                       var ruta = "{{ URL::route('getDataForExcelConsumo2') }}";
+                       var url         = '{{ URL::route('getExcelConsumoByFundo2') }}';
+                       fundo = fundo.substring(8,9);
+                   }
+
+
+
+
                     var token = $('#_token').val();
 
                     $http.post(ruta,{
                         _token   : token,
                         parrones : $scope.parrones,
-                        fundo    : $("#f_fundo").val(),
+                        fundo    : fundo,
                         otros    : $scope.otros,
                         cc       : cc
 
-                    }).success(function (data) {
+                    })
+                            .success(function (data) {
 
                         if (data=="correcto") {
                            
-                            var url         = '{{ URL::route('getExcelConsumoByFundo') }}';
+
                             window.location = url;
                             $('#btnExcel').attr("disabled", false);
 
                         }else{
                         alert("Ocurrio un error, llamar al area de soporte");
                         $('#btnExcel').attr("disabled", false);
+                            console.log(data);
                         }
                         
-                    }).error(function (data) {
+                    })
+                            .error(function (data) {
                         alert("Ocurrio un error, llamar al area de soporte");
                         $('#btnExcel').attr("disabled", false);
                         console.log(data);
@@ -380,7 +407,23 @@
             };
 
 
+            $scope.changeOption = function (option) {
 
+                if(option == 'cci'){
+
+                    $('#mdOtros').hide();
+                    $('#mdCentroCosto').hide();
+                    $scope.opcion = 'cci';
+
+
+
+                }else{
+                    $('#mdOtros').show();
+                    $('#mdCentroCosto').show();
+                    $scope.opcion = 'consumo';
+                }
+
+            };
 
             /*funcion helper*/
 

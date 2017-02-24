@@ -343,30 +343,30 @@ class ContabilidadRep
 
     public function getDataForExcelConsumo2($data)
     {
-
         $codigos = [];
+        $cci = [];
         $parrones = $data['parrones'];
         $fundo = $data['fundo'];
 
 
-       // $codigos = $codigos->;
+        // $codigos = $codigos->;
         $a_fechas_ini = [];
         $a_fechas_fin = [];
 
         //primero obtenemos a las fechas de los parrones
-        foreach ($parrones as $i){
+        foreach ($parrones as $i) {
 
-            if(!in_array($i['s_date'],$a_fechas_ini)){
-                array_push($a_fechas_ini,$i['s_date']);
+            if (!in_array($i['startDate'], $a_fechas_ini)) {
+                array_push($a_fechas_ini, $i['startDate']);
             }
-            if(!in_array($i['e_date'],$a_fechas_fin)){
-                array_push($a_fechas_fin,$i['e_date']);
+            if (!in_array($i['endDate'], $a_fechas_fin)) {
+                array_push($a_fechas_fin, $i['endDate']);
             }
 
         }
 
-        $menor_fecha_ini = date_format($this->getDatePositionByArray($a_fechas_ini,'date','menor'), 'Y-m-d');
-        $mayor_fecha_fin = date_format($this->getDatePositionByArray($a_fechas_fin,'date','mayor'), 'Y-m-d');
+        $menor_fecha_ini = date_format($this->getDatePositionByArray($a_fechas_ini, 'date', 'menor'), 'Y-m-d');
+        $mayor_fecha_fin = date_format($this->getDatePositionByArray($a_fechas_fin, 'date', 'mayor'), 'Y-m-d');
 
         //obtenemos los cci que intervienen aqui
 
@@ -374,7 +374,7 @@ class ContabilidadRep
                     FROM flexline.DocumentoD 
                     where CONVERT(date,Fecha) BETWEEN '$menor_fecha_ini' AND '$mayor_fecha_fin'
                     AND TipoDocto = 'SALIDA ALMACEN'
-                    AND LEN(coalesce( AUX_VALOR19,Analisis15)) > 0
+                    AND LEN(Analisis15) = 6
                     and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
                     group by  Analisis15
                     ORDER BY cci";
@@ -383,16 +383,72 @@ class ContabilidadRep
 
         //obtenemos solo los codigos
 
-        foreach ($res_codigos as $item){
-            array_push($codigos,$item->cci);
+        foreach ($res_codigos as $item) {
+            array_push($codigos, $item->cci);
+        }
+
+        //luego sacamos a los producos
+
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+                        FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
+                        on D.Producto = P.PRODUCTO 
+                        AND  D.Empresa = P.Empresa
+                        where CONVERT(date,D.Fecha) BETWEEN '$menor_fecha_ini' AND '$mayor_fecha_fin'
+                        AND D.TipoDocto = 'SALIDA ALMACEN'
+                        AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) > 0
+                        and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
+                        group by p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+                        ORDER BY P.SUBFAMILIA,p.GLOSA";
+
+        $productos = \DB::select($q_productos);
+
+        //formateamos los cci
+
+        foreach ($res_codigos as $c) {
+
+            $o = new Obj();
+
+            try{
+            $fundo_detalle_fechas = $this->getObjectsFundos($parrones, $c);
+            $o->cci = $c->cci;
+            $o->f_ini = $fundo_detalle_fechas['startDate'];
+            $o->f_fin = $fundo_detalle_fechas['endDate'];
+            $o->VALOR1 = $fundo_detalle_fechas['VALOR1'];
+
+            array_push($cci, $o);
+            }
+            catch (\Exception $e){
+                return $res_codigos;
+            }
         }
 
 
+        //recorremos cada produo para obetener la matriz
 
+        foreach ($productos as $p) {
+            $detalles = [];
 
+            foreach ($cci as $codigo) {
 
+                $det = $this->getConsumoByParronAnCCI($codigo->f_ini, $codigo->f_fin, $codigo->cci, $p->PRODUCTO);
 
-        dd($codigos);
+                $obj_det = new Obj();
+                $obj_det->total_cantidad_consumo =  $det->cantidad ;
+                $obj_det->total_precio_consumo = $det->total;
+                $obj_det->precio_ha = number_format($det->total /  $codigo->VALOR1, 2, '.', '') ;
+
+                array_push($detalles,$obj_det);
+            }
+
+            $p->analisis_parron = $detalles;
+        }
+
+        $response_all = [];
+        $response_all['productos'] = $productos;
+        $response_all['parrones'] = $parrones;
+        $response_all['cci']    = $cci;
+
+        return $response_all;
 
     }
 
@@ -546,27 +602,26 @@ AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
     }
 
 
-
-
-    public function getDatePositionByArray($array,$tipo,$orden){
+    public function getDatePositionByArray($array, $tipo, $orden)
+    {
 
         $res = '';
 
-        if($orden == 'mayor'){
+        if ($orden == 'mayor') {
 
-            $mayor ='';
+            $mayor = '';
 
-            switch ($tipo){
+            switch ($tipo) {
 
                 case 'date':
 
                     $mayor = date_create_from_format('Y-m-d', $array[0]);
 
-                    foreach ($array as $i){
+                    foreach ($array as $i) {
 
                         $val = date_create_from_format('Y-m-d', $i);
 
-                        if($val > $mayor){
+                        if ($val > $mayor) {
                             $mayor = $val;
                         }
                     }
@@ -576,23 +631,22 @@ AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
 
             $res = $mayor;
 
-        }
-        else{
+        } else {
 
-            $menor ='';
+            $menor = '';
 
 
-            switch ($tipo){
+            switch ($tipo) {
 
                 case 'date':
 
                     $menor = date_create_from_format('Y-m-d', $array[0]);
 
-                    foreach ($array as $i){
+                    foreach ($array as $i) {
 
                         $val = date_create_from_format('Y-m-d', $i);
 
-                        if($val < $menor){
+                        if ($val < $menor) {
                             $menor = $val;
                         }
                     }
@@ -605,11 +659,51 @@ AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
         }
 
 
-
         return $res;
 
     }
 
+
+    /**
+     * la funcion manda al el item que tien el coidgo que se necesita
+     * @param $array
+     * @param $codigo
+     *
+     */
+    public function getObjectsFundos($array, $codigo)
+    {
+
+        $res = '';
+        foreach ($array as $item) {
+            $temp = substr($codigo->cci, 3, 2);
+            $code = substr($item['CODIGO'], 7, 3);
+
+            if ($temp == $code) {
+                $res = $item;
+                break;
+            }
+        }
+
+        return $res;
+    }
+
+
+    public function getConsumoByParronAnCCI($f_ini, $f_fin, $cci, $producto)
+    {
+
+        $query = "SELECT SUM( Cantidad) cantidad,SUM(costo*Cantidad) total, '$cci' cci
+                    FROM flexline.DocumentoD 
+                    where CONVERT(date,Fecha) BETWEEN '$f_ini' AND '$f_fin'
+                    AND TipoDocto = 'SALIDA ALMACEN'
+                    AND Analisis15 = '$cci'
+                    AND Producto = '$producto'";
+
+        $res = \DB::select($query);
+
+
+
+        return $res[0];
+    }
 
 
 
