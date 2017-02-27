@@ -314,7 +314,6 @@
 
 
 
-                if($scope.opcion == 'consumo'){
 
                     var fecha = $scope.fecha_otros;
 
@@ -327,7 +326,11 @@
                         $scope.otros.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
                     }
 
+                /*
+                if($scope.opcion == 'consumo'){
+
                 }
+                */
 
 
 
@@ -353,7 +356,7 @@
 
                     $('#btnExcel').attr("disabled", true);
 
-                    var fundo = $("#f_fundo").val();
+                   var fundo = $("#f_fundo").val();
                    if($scope.opcion=='consumo'){
                        var ruta = "{{ URL::route('sendDataForExcelConsumo') }}";
                        var url         = '{{ URL::route('getExcelConsumoByFundo') }}';
@@ -363,9 +366,6 @@
                        var url         = '{{ URL::route('getExcelConsumoByFundo2') }}';
                        fundo = fundo.substring(8,9);
                    }
-
-
-
 
                     var token = $('#_token').val();
 
@@ -411,14 +411,27 @@
 
                 if(option == 'cci'){
 
-                    $('#mdOtros').hide();
+                   // $('#mdOtros').hide();
                     $('#mdCentroCosto').hide();
                     $scope.opcion = 'cci';
+                    var fundo = {};
+                    fundo.CODIGO = 'TODOS';
 
+                    var bandera = 0;
 
+                    angular.forEach( $scope.fundos, function(value, key) {
+
+                        if(value.CODIGO == 'TODOS'){
+                            bandera = 1;
+                        }
+                    });
+
+                    if(bandera == 0){
+                        $scope.fundos.push(fundo);
+                    }
 
                 }else{
-                    $('#mdOtros').show();
+                    //$('#mdOtros').show();
                     $('#mdCentroCosto').show();
                     $scope.opcion = 'consumo';
                 }

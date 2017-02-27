@@ -85,14 +85,14 @@
 
 
 		@if(isset($otros))
-		
+
 		<hr>
 		<tr>
 			<td> </td>
 		</tr>
 
 		<tr>
-			<td><h4>PARRONES NO ASIGNADOS</h4></td>
+			<td><h4>PARRONES NO ASIGNADOS O GENERICO {{ substr($f_otros_i,2,2) }}{{$fundo}}00</h4></td>
 			<td>en fecha {{ $f_otros_i }} al {{ $f_otros_f }}</td>
 		</tr>
 		<tr>

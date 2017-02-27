@@ -493,42 +493,59 @@ class ContabilidadController extends Controller
 
         $data = \Input::all();
 
-
-        //test
-
+        //return \Response::Json($data);
 
 
-        /*
-        $data['fundo'] = '3';
-        $data['cc'] = 'a';
-        $data['parrones']= [ ['CODIGO'=>'01','VALOR1'=>'2.58000000','startDate'=>'2017-01-01','endDate'=>'2017-01-08'],
-            ['CODIGO'=>'02','VALOR1'=>'3.09000000','startDate'=>'2017-01-01','endDate'=>'2017-01-01']];
+        if($data['fundo'] != ''){
+            $res = $this->contabilidadRep->getDataForExcelConsumo2($data);
 
-        */
-        $res = $this->contabilidadRep->getDataForExcelConsumo2($data);
+            $res['fundo']   = $data['fundo'];
 
-       // dd($res);
+            $ruta =base_path()."/storage/contabilidad/excel/";
 
-        $res['fundo']   = $data['fundo'];
+            Excel::create('consumo_por_fundo_cci', function($excel) use ($res){
 
-        $ruta =base_path()."/storage/contabilidad/excel/";
+                $excel->sheet('resultado', function($sheet) use ($res){
 
-        Excel::create('consumo_por_fundo_cci', function($excel) use ($res){
+                    $parrones   =   $res['parrones'] ;
+                    $productos  =   collect($res['productos']) ;
+                    $fundo      =   $res['fundo'];
+                    $cci        =    $res['cci'];
+                    $otros      =   $res['otros'];
+                    $f_otros_i  =   $res['f_otros_i'];
+                    $f_otros_f  =   $res['f_otros_f'];
 
-            $excel->sheet('resultado', function($sheet) use ($res){
+                    $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo','cci','otros','f_otros_i','f_otros_f'));
+                });
 
-                $parrones   =   $res['parrones'] ;
-                $productos  =   collect($res['productos']) ;
-                $fundo      =   $res['fundo'];
-                $cci        =    $res['cci'];
-
-                $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo','cci'));
-            });
-
-        })->store('xls',$ruta);
+            })->store('xls',$ruta);
 
 
-        return \Response::json("correcto");
+            return \Response::json("correcto");
+        }else{
+
+            $res = $this->contabilidadRep->getDataForExcelConsumoAll($data);
+
+            $ruta =base_path()."/storage/contabilidad/excel/";
+
+            Excel::create('consumo_por_fundo_cci', function($excel) use ($res){
+
+                $excel->sheet('resultado', function($sheet) use ($res){
+
+                    $otros      =   $res['otros'];
+                    $f_otros_i  =   $res['f_otros_i'];
+                    $f_otros_f  =   $res['f_otros_f'];
+
+                    $sheet->loadView('cc/excel/consumoFundoParronTodo',compact('otros','f_otros_i','f_otros_f'));
+                });
+
+            })->store('xls',$ruta);
+
+
+            return \Response::json("correcto");
+        }
+
+
 
 
        // $data = \Input::all();

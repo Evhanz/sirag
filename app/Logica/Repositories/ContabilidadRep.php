@@ -423,7 +423,7 @@ class ContabilidadRep
         }
 
 
-        //recorremos cada produo para obetener la matriz
+        //recorremos cada producto para obetener la matriz
 
         foreach ($productos as $p) {
             $detalles = [];
@@ -443,12 +443,126 @@ class ContabilidadRep
             $p->analisis_parron = $detalles;
         }
 
+
+
+        //3.- aca es parascar a los otros
+
+        $otros = $data['otros'];
+        $startDate = $otros['startDate'];
+        $endDate = $otros['endDate'];
+
+
+        $query = "SELECT Analisis15 cci
+                    FROM flexline.DocumentoD 
+                    where CONVERT(date,Fecha) BETWEEN '$startDate' AND '$endDate'
+                    AND TipoDocto = 'SALIDA ALMACEN'
+                    AND LEN(Analisis15) = 5
+                    and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
+                    group by  Analisis15
+                    ORDER BY cci";
+
+        $res_cci_otros = \DB::select($query);
+
+
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
+        on D.Producto = P.PRODUCTO 
+        AND  D.Empresa = P.Empresa
+        where CONVERT(date,D.Fecha)  BETWEEN '$startDate' AND '$endDate'
+        AND D.TipoDocto = 'SALIDA ALMACEN'
+        AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) = 5
+        and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
+        group by p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        ORDER BY P.SUBFAMILIA,p.GLOSA";
+
+        $productos_otros = \DB::select($q_productos);
+
+
+        $otros = [];
+
+
+        foreach ($productos_otros as $p){
+
+            foreach ($res_cci_otros as $c){
+
+
+                $det = $this->getConsumoByParronAnCCI($startDate, $endDate, $c->cci, $p->PRODUCTO);
+
+                $obj_det = new Obj();
+                $obj_det->PRODUCTO =  $p->PRODUCTO ;
+                $obj_det->DESCRIPCION = $p->GLOSA;
+                $obj_det->cantidad = $det->cantidad;
+                $obj_det->total = $det->total;
+
+                array_push($otros,$obj_det);
+
+            }
+
+        }
+
+
+
         $response_all = [];
         $response_all['productos'] = $productos;
         $response_all['parrones'] = $parrones;
         $response_all['cci']    = $cci;
+        $response_all['otros']    = $otros;
+        $response_all['f_otros_i']    = $startDate;
+        $response_all['f_otros_f']    = $endDate;
 
         return $response_all;
+
+    }
+
+
+
+    public function getDataForExcelConsumoAll($data){
+
+        //3.- aca es parascar a los otros
+
+        $otros = $data['otros'];
+        $startDate = $otros['startDate'];
+        $endDate = $otros['endDate'];
+
+
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
+        on D.Producto = P.PRODUCTO 
+        AND  D.Empresa = P.Empresa
+        where CONVERT(date,D.Fecha)  BETWEEN '$startDate' AND '$endDate'
+        AND D.TipoDocto = 'SALIDA ALMACEN'
+        AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) = 5
+        and  D.Analisis15 =  17000
+        group by p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        ORDER BY P.SUBFAMILIA,p.GLOSA";
+
+        $productos_otros = \DB::select($q_productos);
+
+
+        $otros = [];
+
+
+        foreach ($productos_otros as $p){
+
+                $det = $this->getConsumoByParronAnCCI($startDate, $endDate, '17000', $p->PRODUCTO);
+
+                $obj_det = new Obj();
+                $obj_det->PRODUCTO =  $p->PRODUCTO ;
+                $obj_det->DESCRIPCION = $p->GLOSA;
+                $obj_det->cantidad = $det->cantidad;
+                $obj_det->total = $det->total;
+
+                array_push($otros,$obj_det);
+        }
+
+
+        $response['otros'] = $otros;
+        $response['f_otros_i']    = $startDate;
+        $response['f_otros_f']    = $endDate;
+
+        return $response;
+
+
 
     }
 
