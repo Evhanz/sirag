@@ -531,14 +531,7 @@ class ContabilidadController extends Controller
         return \Response::json("correcto");
 
 
-
-
        // $data = \Input::all();
-
-
-
-
-
 
 
     }

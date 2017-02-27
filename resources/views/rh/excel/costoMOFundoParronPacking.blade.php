@@ -36,10 +36,13 @@
 
         <tr>
             <td></td>
-            @foreach($actividades[0]->detalles as $detalle)
-                <td>Cant.</td>
-                <td>V/H</td>
-            @endforeach
+            @if(isset($actividades[0]->detalles))
+                @foreach($actividades[0]->detalles as $detalle)
+                    <td>Cant.</td>
+                    <td>V/H</td>
+                @endforeach
+            @endif
+
             <td >T: Cant.</td>
             <td >T: V/H </td>
         </tr>

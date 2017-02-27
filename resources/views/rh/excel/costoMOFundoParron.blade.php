@@ -46,6 +46,7 @@
 
         <tr>
             <td></td>
+
             @foreach($res_actividades[0]->detalles as $detalle)
                 <td>Cant.</td>
                 <td>V/H</td>
