@@ -1729,7 +1729,7 @@ class PersonalRep
         dado, eso se usara para la plame 
         LA FECHA TIENE QUE ESTAR EN FORMATO YYYY-MM-DD
         */
-        
+        --PER_MOV_MES
         
         SELECT TRABAJADOR, COUNT( DISTINCT (CONVERT(DATE,FECHA,113))) DLABORADOS
         ,(SELECT dbo.DiasEnMes('$f_inicio')) dias       --aca entra la fecha de inicio
@@ -1747,6 +1747,24 @@ class PersonalRep
         and MOVIMIENTO='110899'  -- dato estatico
         and FICHA = TRABAJADOR
         ),0)vacaciones
+        ,coalesce ( (SELECT SUM(MONTO) from flexline.PER_MOV_MES
+        where EMPRESA='e01'
+        and periodo like '$periodo%' --se modifica por periodo
+        and MOVIMIENTO='20007'  -- dato estatico
+        and FICHA = TRABAJADOR
+        ),0)descanso_medico
+        ,coalesce ( (SELECT SUM(MONTO) from flexline.PER_MOV_MES
+        where EMPRESA='e01'
+        and periodo like '$periodo%' --se modifica por periodo
+        and MOVIMIENTO='20006'  -- dato estatico
+        and FICHA = TRABAJADOR
+        ),0)subsidio_enfermedad
+        ,coalesce ( (SELECT SUM(MONTO) from flexline.PER_MOV_MES
+        where EMPRESA='e01'
+        and periodo like '$periodo%' --se modifica por periodo
+        and MOVIMIENTO='20005'  -- dato estatico
+        and FICHA = TRABAJADOR
+        ),0)subsidio_maternidad
         ,(SELECT EMPLEADO FROM 
         flexline.PER_TRABAJADOR
         WHERE EMPRESA = 'E01'
@@ -1764,7 +1782,7 @@ class PersonalRep
 
         /*
          * primero evaluamos al personal agrario
-         * codigo 07 insasistencia , 23 vacaciones
+         * codigo 07 insasistencia , 23 vacaciones , 20 DESCANSO MEDICO, 21 SUBSIDIO ENFERMEDAD , 22 SUB. MATERNIDAD
          * */
 
         $response = [];
@@ -1773,6 +1791,9 @@ class PersonalRep
         {
             $obj = new Obj();
             $vacaciones  = 0;
+            $descanso_medico = 0;
+            $subsidio_enfermedad = 0;
+            $subsidio_maternidad = 0;
 
             if($item->vacaciones > 0)
             {
@@ -1788,8 +1809,51 @@ class PersonalRep
                 array_push($response,$o);
             }
 
+            if($item->descanso_medico > 0)
+            {
+                $o = new Obj();
+
+                $o->C1 = '01';
+                $o->DNI = $item->DNI;
+                $o->CODIGO = '20';
+                $o->CANTIDAD = intval($item->descanso_medico) ;
+
+                $descanso_medico =  $item->descanso_medico;
+
+                array_push($response,$o);
+            }
+
+            if($item->subsidio_enfermedad > 0)
+            {
+                $o = new Obj();
+
+                $o->C1 = '01';
+                $o->DNI = $item->DNI;
+                $o->CODIGO = '21';
+                $o->CANTIDAD = intval($item->subsidio_enfermedad) ;
+
+                $subsidio_enfermedad =  $item->subsidio_enfermedad;
+
+                array_push($response,$o);
+            }
+
+            if($item->subsidio_maternidad > 0)
+            {
+                $o = new Obj();
+
+                $o->C1 = '01';
+                $o->DNI = $item->DNI;
+                $o->CODIGO = '22';
+                $o->CANTIDAD = intval($item->subsidio_maternidad) ;
+
+                $subsidio_maternidad =  $item->subsidio_maternidad;
+
+                array_push($response,$o);
+            }
+
             //ACA ENTRA EL CALCULO
-            $t_dias_laborados = $item->DLABORADOS + $vacaciones;
+            $t_dias_laborados = $item->DLABORADOS + $vacaciones + $descanso_medico + $subsidio_enfermedad + 
+            $subsidio_maternidad;
 
             $faltas = $item->DIAS_OBLIGATORIO_TRABAJAR - $t_dias_laborados;
 
@@ -1853,6 +1917,54 @@ class PersonalRep
         AND B.CATEGORIA='EMPLEADO'
         and a.MOVIMIENTO='119999'
         AND A.PERIODO like '$periodo%'
+        GROUP BY A.FICHA,B.EMPLEADO
+        UNION
+        select 
+         A.FICHA,B.EMPLEADO DNI, SUM(VALOR) CANTIDAD 
+        ,'20' CODIGO
+        from 
+        flexline.PER_DET_LIQ A,
+        FLEXLINE.PER_TRABAJADOR B
+        where 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='e01'
+        AND B.VIGENCIA='ACTIVO'
+        AND B.CATEGORIA='EMPLEADO'
+        and a.MOVIMIENTO='20007'
+        AND A.PERIODO like '%periodo%'
+        GROUP BY A.FICHA,B.EMPLEADO
+        UNION
+        select 
+         A.FICHA,B.EMPLEADO DNI, SUM(VALOR) CANTIDAD 
+        ,'21' CODIGO
+        from 
+        flexline.PER_DET_LIQ A,
+        FLEXLINE.PER_TRABAJADOR B
+        where 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='e01'
+        AND B.VIGENCIA='ACTIVO'
+        AND B.CATEGORIA='EMPLEADO'
+        and a.MOVIMIENTO='20006'
+        AND A.PERIODO like '%periodo%'
+        GROUP BY A.FICHA,B.EMPLEADO
+         UNION
+        select 
+         A.FICHA,B.EMPLEADO DNI, SUM(VALOR) CANTIDAD 
+        ,'22' CODIGO
+        from 
+        flexline.PER_DET_LIQ A,
+        FLEXLINE.PER_TRABAJADOR B
+        where 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='e01'
+        AND B.VIGENCIA='ACTIVO'
+        AND B.CATEGORIA='EMPLEADO'
+        and a.MOVIMIENTO='20005'
+        AND A.PERIODO like '%periodo%'
         GROUP BY A.FICHA,B.EMPLEADO
         ";
 
