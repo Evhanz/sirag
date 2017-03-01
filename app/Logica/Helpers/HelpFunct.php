@@ -145,7 +145,7 @@ class HelpFunct
     }
 
     /**
-     * esta funcion es para sacar los items que perenecen a el parron y al fundo
+     * esta funcion es para sacar los items que pertenecen a el parron y al fundo
      * correspondiente , tener en consideracion que
      *
      * ----------------Respuesta-----------------

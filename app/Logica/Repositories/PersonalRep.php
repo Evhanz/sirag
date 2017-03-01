@@ -1285,7 +1285,7 @@ class PersonalRep
         //obtenemos los codigos ordenados por campaña , fundo y parron
         $array_codigos = HelpFunct::getItemsByFundoAndParron($codigo_ordenados);
         /**
-         * Obtenemos de los codigos los fundos que se encuentran las horas registradas
+         * Obtenemos de los codigos los fundos que se encuentran las horas registradas, con el area de cada parron
          */
         $array_codigos = $this->getFundosParronesFormatedWithAreas($array_codigos);
 
@@ -1348,7 +1348,22 @@ class PersonalRep
 
 
                     $area = $this->getAreaByParron($item,$array_codigos);
-                    $obj->area = $area;
+
+                    //esto se agrego el 28/02/2017
+
+                    //$obj->area = $area;
+
+                    if($area == 0){
+                        $obj->area = $area;
+                        $obj->plantas = 0;
+                    }else{
+
+                        $temp_val = explode('-',$area);
+                        $obj->area = $temp_val[0];
+                        $obj->plantas = $temp_val[1];
+
+                    }
+
 
                     /**
                      * Para obtener el costo por hcarea al costo / cant. hectareas
@@ -1381,6 +1396,7 @@ class PersonalRep
                     $obj->valor_x_hora = 0;
                     $obj->area = 0;
                     $obj->cost_x_hectarea = 0;
+                    $obj->plantas = 0;
                 }
 
                 array_push( $detalles,$obj);
@@ -1521,6 +1537,7 @@ class PersonalRep
                 $detalle->horas = 0;
                 $detalle->costo_x_hora = 0;
                 $detalle->area = 0;
+                $detalle->plantas = 0;
 
                 foreach ($actividad as $item){
 
@@ -1535,6 +1552,7 @@ class PersonalRep
                         if(substr($codigo,2,1) != 0){
 
                             $detalle->area = $this->getAreaFundo(substr($codigo,2,1));
+                            $detalle->plantas = $this->getCantidadPlantasByFundo(substr($codigo,2,1));
                         }
 
                     }
@@ -2366,7 +2384,6 @@ ORDER BY P.EMPLEADO
         return $response;
     }
 
-
     public function getMovimientosByFichaAndPeriodo($data){
 
         $f_i= $data['f_inicio'];
@@ -2785,11 +2802,15 @@ where EMPRESA = 'e01'";
                         $area = $contabilidadRep->getParronByFundo($f);
                       //  var_dump($area);
                         if(count($area)>0){
+                            $plantas = round($area[0]->VALOR2,2);
                             $area = round($area[0]->VALOR1,2);
+                          //  $plantas = round($area[0]->VALOR2,2);
+
                         }else{
                             $area = 0;
+                            $plantas =  0;
                         }
-                        $p = $p.'-'.$area;
+                        $p = $p.'-'.$area.'-'.$plantas;
 
                         array_push($parron,$p);
                     }
@@ -2845,9 +2866,12 @@ where EMPRESA = 'e01'";
                             $temp = explode("-",$p);
                             $parron_num = $temp[0];
                             $area  = $temp[1];
+                            $plantas = $temp[2];
 
                             if($parron_num == substr($codigo,3,2)){
-                                $res = $area;
+
+                                //esto se cambio para probar el anexo de las plantas
+                                $res = $area.'-'.$plantas;
                             }
                         }
                     }
@@ -2865,7 +2889,7 @@ where EMPRESA = 'e01'";
 
     /**
      * la funcion trae la cantidad de hectareas
-     * de acuerdo al funo
+     * de acuerdo al fundo
      */
     public function getAreaFundo($fundo){
 
@@ -2885,4 +2909,32 @@ where EMPRESA = 'e01'";
         }
 
     }
+
+
+    /**
+     * la funcion a continuacion nos da la sumatoria de todas las plantas
+     * que se siembran en un funo
+     */
+
+    public function getCantidadPlantasByFundo($fundo){
+
+
+        $query = "SELECT sum(VALOR2) VALOR2 FROM flexline.GEN_TABCOD
+            WHERE EMPRESA='E01'
+            AND TIPO='GEN_PARRON'
+            AND VIGENCIA <> 'N'
+            AND SUBSTRING(CODIGO,12,2)  = 'F$fundo'";
+
+        $response = \DB::select($query);
+
+        if($response != null || count($response)>0){
+
+            return round($response[0]->VALOR2,2);
+        }else{
+            return 0;
+        }
+
+    }
+
+
 }

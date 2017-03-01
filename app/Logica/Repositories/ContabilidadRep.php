@@ -202,7 +202,7 @@ class ContabilidadRep
     public function getParronByFundo($fundo)
     {
 
-        $query = "SELECT CODIGO,VALOR1 FROM flexline.GEN_TABCOD
+        $query = "SELECT CODIGO,VALOR1 ,VALOR2  FROM flexline.GEN_TABCOD
                 WHERE EMPRESA='E01'
                 AND TIPO='GEN_PARRON'
                 AND VIGENCIA <> 'N'

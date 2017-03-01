@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/cc/excel/consumoFundoParronTodo.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" afterPath="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/excelConsumoByFundoAndParron.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/excelConsumoByFundoAndParron.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParron.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParron.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronCU.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronCU.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronGeneral.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronGeneral.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronPacking.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronPacking.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +42,75 @@
     <favorites_list name="sirag" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="1538" column="35" selection-start-line="1538" selection-start-column="35" selection-end-line="1538" selection-end-column="35" />
+              <folding>
+                <element signature="e#51453#54968#0#PHP" expanded="false" />
+                <element signature="e#54974#60155#0#PHP" expanded="false" />
+                <element signature="e#60161#64393#0#PHP" expanded="false" />
+                <element signature="e#64399#70370#0#PHP" expanded="false" />
+                <element signature="e#70376#72928#0#PHP" expanded="false" />
+                <element signature="e#72934#73766#0#PHP" expanded="false" />
+                <marker date="1488389496884" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1488389496884" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
+                <marker date="1488389496884" expanded="true" signature="7365:7525" ph="SELECT coale... PER_ATRIB_TRAB" />
+                <marker date="1488389496884" expanded="true" signature="7685:8042" ph="SELECT FICHA... PER_REM_HIS" />
+                <marker date="1488389496884" expanded="true" signature="8146:8198" ph="select * fro... renov_contract" />
+                <marker date="1488389496884" expanded="true" signature="8834:9050" ph="INSERT INTO renov_contract... " />
+                <marker date="1488389496884" expanded="true" signature="9188:9312" ph="UPDATE flexl... " />
+                <marker date="1488389496884" expanded="true" signature="9343:9464" ph="UPDATE flexl... " />
+                <marker date="1488389496884" expanded="true" signature="9874:9934" ph="DELETE FROM " />
+                <marker date="1488389496884" expanded="true" signature="9968:10092" ph="UPDATE flexl... " />
+                <marker date="1488389496884" expanded="true" signature="10123:10244" ph="UPDATE flexl... " />
+                <marker date="1488389496884" expanded="true" signature="10355:10717" ph="SELECT TIPO_... PER_VACACIONES" />
+                <marker date="1488389496884" expanded="true" signature="10981:11233" ph="SELECT FICHA... v_allTrabajadores" />
+                <marker date="1488389496884" expanded="true" signature="12660:13300" ph="SELECT Nombr... v_telecredito" />
+                <marker date="1488389496884" expanded="true" signature="13340:13988" ph="SELECT Nombr... v_telecreditoOperario" />
+                <marker date="1488389496884" expanded="true" signature="14407:14504" ph="select CARGO... v_telecredito" />
+                <marker date="1488389496884" expanded="true" signature="14660:14764" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+                <marker date="1488389496884" expanded="true" signature="15063:15394" ph="select FICHA... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="15700:15811" ph="SELECT TOP 1... v_allTrabajadores" />
+                <marker date="1488389496884" expanded="true" signature="21761:21872" ph="SELECT TOP 1... v_allTrabajadores" />
+                <marker date="1488389496884" expanded="true" signature="51539:52623" ph="SELECT FICHA... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="51613:51937" ph="SELECT top 1... GEN_TABCOD" />
+                <marker date="1488389496884" expanded="true" signature="51965:52061" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1488389496884" expanded="true" signature="52073:52270" ph="select CASE " />
+                <marker date="1488389496884" expanded="true" signature="52118:52218" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1488389496884" expanded="true" signature="58321:58760" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="58321:59682" ph="select A.FIC... " />
+                <marker date="1488389496884" expanded="true" signature="58783:59222" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="59245:59682" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="64625:67442" ph="select (E.AP... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="65308:65977" ph="select SUM(D... PER_VACACIONES" />
+                <marker date="1488389496884" expanded="true" signature="70539:72274" ph="SELECT ROW_N... PER_DET_LIQ" />
+                <marker date="1488389496884" expanded="true" signature="70623:70797" ph="SELECT CASE PER_ATRIB_TRAB" />
+                <marker date="1488389496884" expanded="true" signature="73149:73520" ph="SELECT FICHA... PER_MOV_MES" />
+                <marker date="1488389496884" expanded="true" signature="73960:74181" ph="DELETE FROM " />
+                <marker date="1488389496884" expanded="true" signature="74325:74503" ph="select CODIG... GEN_TABCOD" />
+                <marker date="1488389496884" expanded="true" signature="74856:75052" ph="SELECT CODIG... GEN_TABLA" />
+                <marker date="1488389496884" expanded="true" signature="75283:75443" ph="select (conv... " />
+                <marker date="1488389496884" expanded="true" signature="75680:76003" ph="select Docum... Marcaciones" />
+                <marker date="1488389496884" expanded="true" signature="77233:78122" ph="INSERT INTO flexline.PER_DETALLETRATO... " />
+                <marker date="1488389496884" expanded="true" signature="78555:78870" ph="select TRABA... PER_DETALLETRATO" />
+                <marker date="1488389496884" expanded="true" signature="79268:79508" ph="select sum(M... PER_DETALLETRATO" />
+                <marker date="1488389496884" expanded="true" signature="80743:80882" ph="delete from " />
+                <marker date="1488389496884" expanded="true" signature="81184:81850" ph="select CONVE... PER_DETALLETRATO" />
+                <marker date="1488389496884" expanded="true" signature="81361:81535" ph="select NOMBR... PER_TRABAJADOR" />
+                <marker date="1488389496884" expanded="true" signature="81918:82572" ph="select CONVE... PER_DETALLETRATO" />
+                <marker date="1488389496884" expanded="true" signature="82095:82269" ph="select NOMBR... PER_TRABAJADOR" />
+                <marker date="1488389496884" expanded="true" signature="82921:83145" ph="select TRABA... PER_DETALLETRATO" />
+                <marker date="1488389496884" expanded="true" signature="87012:87189" ph="SELECT VALOR... GEN_TABCOD" />
+                <marker date="1488389496884" expanded="true" signature="87595:87795" ph="SELECT VALOR... GEN_TABCOD" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -84,8 +155,6 @@
         <option value="$PROJECT_DIR$/resources/views/rh/viewGetAFPNet.blade.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewGetCostoMOFundoParron.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronGeneral.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronCU.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewRegTareo.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewDeleteMovimientos.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/comercial.php" />
@@ -95,23 +164,25 @@
         <option value="$PROJECT_DIR$/app/Logica/Repositories/CentroCostoRep.php" />
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewTelecredito.blade.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewPDB.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
         <option value="$PROJECT_DIR$/storage/logs/query_temp.txt" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
         <option value="$PROJECT_DIR$/app/Logica/Helpers/NumberToLetter.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/contabilidad.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParron.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronPacking.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/excelConsumoByFundoAndParron.blade.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/excel/consumoFundoParronTodo.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewConsumoByFundo.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronPacking.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParron.blade.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronGeneral.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronCU.blade.php" />
       </list>
     </option>
   </component>
@@ -156,6 +227,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -610,7 +682,6 @@
         </subPane>
         <subPane subId="Tests" />
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -821,14 +892,9 @@
       <workItem from="1487861936284" duration="18243000" />
       <workItem from="1487945609034" duration="22871000" />
       <workItem from="1487978039146" duration="431000" />
-      <workItem from="1488206222881" duration="10651000" />
-    </task>
-    <task id="LOCAL-00027" summary="se agregó la arquitectura de inicio para el sistema packing">
-      <created>1480357445471</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1480357445471</updated>
+      <workItem from="1488206222881" duration="26120000" />
+      <workItem from="1488292019734" duration="18800000" />
+      <workItem from="1488378788024" duration="12875000" />
     </task>
     <task id="LOCAL-00028" summary="Add_rep_planillan and rev_rep_view_personal">
       <created>1480439552890</created>
@@ -1166,17 +1232,24 @@
       <option name="project" value="LOCAL" />
       <updated>1487880472057</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="rev_consumo_cci">
+      <created>1488216893707</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1488216893708</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1434373000" />
+    <option name="totallyTimeSpent" value="1481517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25402635" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2693997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32492113" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1330,13 +1403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronGeneral.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/SendMailContract.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-640">
@@ -1449,13 +1515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="366" column="43" selection-start-line="366" selection-start-column="43" selection-end-line="366" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/cc/viewPDB.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1499,13 +1558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="2459" column="33" selection-start-line="2459" selection-start-column="33" selection-end-line="2459" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/query_temp.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1517,7 +1569,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="82" column="71" selection-start-line="82" selection-start-column="71" selection-end-line="82" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1529,43 +1580,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronPacking.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParron.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronCU.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="64" column="144" selection-start-line="64" selection-start-column="144" selection-end-line="64" selection-end-column="144" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1965">
-          <caret line="891" column="30" selection-start-line="891" selection-start-column="30" selection-end-line="891" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1573,56 +1591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="815" column="0" selection-start-line="815" selection-start-column="0" selection-end-line="815" selection-end-column="0" />
-          <folding>
-            <element signature="e#17676#17859#0#PHP" expanded="false" />
-            <element signature="e#17941#18856#0#PHP" expanded="false" />
-            <element signature="e#18863#21298#0#PHP" expanded="false" />
-            <element signature="e#21305#22454#0#PHP" expanded="false" />
-            <element signature="e#22461#22592#0#PHP" expanded="false" />
-            <marker date="1488216273064" expanded="true" signature="277:447" ph="SELECT CODIG... GEN_TABCOD" />
-            <marker date="1488216273064" expanded="true" signature="1071:1105" ph="select * fro... temp_balance_general" />
-            <marker date="1488216273064" expanded="true" signature="2886:4113" ph="SELECT v.Num... v_ordenCompra_details" />
-            <marker date="1488216273064" expanded="true" signature="3070:3552" ph="select CONVE... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="5671:5918" ph="select conve... GEN_TASCAM" />
-            <marker date="1488216273064" expanded="true" signature="6046:6196" ph="SELECT CODIG... GEN_TABCOD" />
-            <marker date="1488216273064" expanded="true" signature="6337:6534" ph="SELECT CODIG... GEN_TABCOD" />
-            <marker date="1488216273064" expanded="true" signature="6797:6973" ph="SELECT PRODU... PRODUCTO" />
-            <marker date="1488216273064" expanded="true" signature="7016:7202" ph="SELECT PRODU... v_getConsumoGif" />
-            <marker date="1488216273064" expanded="true" signature="8651:8968" ph="SELECT PRODU... v_getConsumoMateriaPrima" />
-            <marker date="1488216273064" expanded="true" signature="9011:9319" ph="SELECT PRODU... v_getConsumoGif" />
-            <marker date="1488216273064" expanded="true" signature="9860:10129" ph="SELECT CONVE... v_getConsumoMateriaPrima" />
-            <marker date="1488216273064" expanded="true" signature="10174:10434" ph="SELECT CONVE... v_getConsumoGif" />
-            <marker date="1488216273064" expanded="true" signature="11559:11959" ph="SELECT Anali... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="12209:12859" ph="SELECT p.GLO... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="14307:14693" ph="SELECT Anali... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="14769:15262" ph="SELECT p.GLO... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="16440:16912" ph="SELECT p.GLO... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="18185:18816" ph="select CONVE... DocumentoD" />
-            <marker date="1488216273064" expanded="true" signature="19015:20397" ph="SELECT A.COR... CON_MOVCOM" />
-            <marker date="1488216273064" expanded="true" signature="19107:19292" ph="SELECT TOP 1... CON_MOVCOM" />
-            <marker date="1488216273064" expanded="true" signature="19420:19575" ph="SELECT GLOSA... CON_ENCCOM" />
-            <marker date="1488216273064" expanded="true" signature="19592:19782" ph="SELECT TOP 1... CON_MOVCOM" />
-            <marker date="1488216273064" expanded="true" signature="19799:19917" ph="SELECT TOP 1... CON_CTACON" />
-            <marker date="1488216273064" expanded="true" signature="19931:20021" ph="SELECT ALIAS... CON_CTACON" />
-            <marker date="1488216273064" expanded="true" signature="20035:20192" ph="SELECT USUAR... CON_ENCCOM" />
-            <marker date="1488216273064" expanded="true" signature="23052:23386" ph="SELECT SUM( DocumentoD" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cc/excel/consumoFundoParronTodo.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1630,7 +1598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
           <caret line="368" column="0" selection-start-line="368" selection-start-column="0" selection-end-line="368" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1646,6 +1613,166 @@
             <element signature="e#10681#10893#0#PHP" expanded="false" />
             <element signature="e#10932#11384#0#PHP" expanded="false" />
             <marker date="1488216641265" expanded="true" signature="14538:14568" ph="select * fro... Bancos" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/excel/consumoFundoParronTodo.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#17685#17868#0#PHP" expanded="false" />
+            <element signature="e#17950#18865#0#PHP" expanded="false" />
+            <element signature="e#18872#21307#0#PHP" expanded="false" />
+            <element signature="e#21314#22463#0#PHP" expanded="false" />
+            <element signature="e#22470#22601#0#PHP" expanded="false" />
+            <marker date="1488302051704" expanded="true" signature="277:447" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1488302051704" expanded="true" signature="1071:1105" ph="select * fro... temp_balance_general" />
+            <marker date="1488302051704" expanded="true" signature="2886:4113" ph="SELECT v.Num... v_ordenCompra_details" />
+            <marker date="1488302051704" expanded="true" signature="3070:3552" ph="select CONVE... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="5671:5918" ph="select conve... GEN_TASCAM" />
+            <marker date="1488302051704" expanded="true" signature="6046:6196" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1488302051704" expanded="true" signature="6337:6543" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1488302051704" expanded="true" signature="6806:6982" ph="SELECT PRODU... PRODUCTO" />
+            <marker date="1488302051704" expanded="true" signature="7025:7211" ph="SELECT PRODU... v_getConsumoGif" />
+            <marker date="1488302051704" expanded="true" signature="8660:8977" ph="SELECT PRODU... v_getConsumoMateriaPrima" />
+            <marker date="1488302051704" expanded="true" signature="9020:9328" ph="SELECT PRODU... v_getConsumoGif" />
+            <marker date="1488302051704" expanded="true" signature="9869:10138" ph="SELECT CONVE... v_getConsumoMateriaPrima" />
+            <marker date="1488302051704" expanded="true" signature="10183:10443" ph="SELECT CONVE... v_getConsumoGif" />
+            <marker date="1488302051704" expanded="true" signature="11568:11968" ph="SELECT Anali... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="12218:12868" ph="SELECT p.GLO... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="14316:14702" ph="SELECT Anali... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="14778:15271" ph="SELECT p.GLO... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="16449:16921" ph="SELECT p.GLO... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="18194:18825" ph="select CONVE... DocumentoD" />
+            <marker date="1488302051704" expanded="true" signature="19024:20406" ph="SELECT A.COR... CON_MOVCOM" />
+            <marker date="1488302051704" expanded="true" signature="19116:19301" ph="SELECT TOP 1... CON_MOVCOM" />
+            <marker date="1488302051704" expanded="true" signature="19429:19584" ph="SELECT GLOSA... CON_ENCCOM" />
+            <marker date="1488302051704" expanded="true" signature="19601:19791" ph="SELECT TOP 1... CON_MOVCOM" />
+            <marker date="1488302051704" expanded="true" signature="19808:19926" ph="SELECT TOP 1... CON_CTACON" />
+            <marker date="1488302051704" expanded="true" signature="19940:20030" ph="SELECT ALIAS... CON_CTACON" />
+            <marker date="1488302051704" expanded="true" signature="20044:20201" ph="SELECT USUAR... CON_ENCCOM" />
+            <marker date="1488302051704" expanded="true" signature="23061:23395" ph="SELECT SUM( DocumentoD" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronPacking.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronGeneral.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParron.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="101" column="19" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/excel/costoMOFundoParronCU.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="758" column="0" selection-start-line="758" selection-start-column="0" selection-end-line="758" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="1538" column="35" selection-start-line="1538" selection-start-column="35" selection-end-line="1538" selection-end-column="35" />
+          <folding>
+            <element signature="e#51453#54968#0#PHP" expanded="false" />
+            <element signature="e#54974#60155#0#PHP" expanded="false" />
+            <element signature="e#60161#64393#0#PHP" expanded="false" />
+            <element signature="e#64399#70370#0#PHP" expanded="false" />
+            <element signature="e#70376#72928#0#PHP" expanded="false" />
+            <element signature="e#72934#73766#0#PHP" expanded="false" />
+            <marker date="1488389496884" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1488389496884" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
+            <marker date="1488389496884" expanded="true" signature="7365:7525" ph="SELECT coale... PER_ATRIB_TRAB" />
+            <marker date="1488389496884" expanded="true" signature="7685:8042" ph="SELECT FICHA... PER_REM_HIS" />
+            <marker date="1488389496884" expanded="true" signature="8146:8198" ph="select * fro... renov_contract" />
+            <marker date="1488389496884" expanded="true" signature="8834:9050" ph="INSERT INTO renov_contract... " />
+            <marker date="1488389496884" expanded="true" signature="9188:9312" ph="UPDATE flexl... " />
+            <marker date="1488389496884" expanded="true" signature="9343:9464" ph="UPDATE flexl... " />
+            <marker date="1488389496884" expanded="true" signature="9874:9934" ph="DELETE FROM " />
+            <marker date="1488389496884" expanded="true" signature="9968:10092" ph="UPDATE flexl... " />
+            <marker date="1488389496884" expanded="true" signature="10123:10244" ph="UPDATE flexl... " />
+            <marker date="1488389496884" expanded="true" signature="10355:10717" ph="SELECT TIPO_... PER_VACACIONES" />
+            <marker date="1488389496884" expanded="true" signature="10981:11233" ph="SELECT FICHA... v_allTrabajadores" />
+            <marker date="1488389496884" expanded="true" signature="12660:13300" ph="SELECT Nombr... v_telecredito" />
+            <marker date="1488389496884" expanded="true" signature="13340:13988" ph="SELECT Nombr... v_telecreditoOperario" />
+            <marker date="1488389496884" expanded="true" signature="14407:14504" ph="select CARGO... v_telecredito" />
+            <marker date="1488389496884" expanded="true" signature="14660:14764" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+            <marker date="1488389496884" expanded="true" signature="15063:15394" ph="select FICHA... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="15700:15811" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1488389496884" expanded="true" signature="21761:21872" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1488389496884" expanded="true" signature="51539:52623" ph="SELECT FICHA... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="51613:51937" ph="SELECT top 1... GEN_TABCOD" />
+            <marker date="1488389496884" expanded="true" signature="51965:52061" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1488389496884" expanded="true" signature="52073:52270" ph="select CASE " />
+            <marker date="1488389496884" expanded="true" signature="52118:52218" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1488389496884" expanded="true" signature="58321:58760" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="58321:59682" ph="select A.FIC... " />
+            <marker date="1488389496884" expanded="true" signature="58783:59222" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="59245:59682" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="64625:67442" ph="select (E.AP... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="65308:65977" ph="select SUM(D... PER_VACACIONES" />
+            <marker date="1488389496884" expanded="true" signature="70539:72274" ph="SELECT ROW_N... PER_DET_LIQ" />
+            <marker date="1488389496884" expanded="true" signature="70623:70797" ph="SELECT CASE PER_ATRIB_TRAB" />
+            <marker date="1488389496884" expanded="true" signature="73149:73520" ph="SELECT FICHA... PER_MOV_MES" />
+            <marker date="1488389496884" expanded="true" signature="73960:74181" ph="DELETE FROM " />
+            <marker date="1488389496884" expanded="true" signature="74325:74503" ph="select CODIG... GEN_TABCOD" />
+            <marker date="1488389496884" expanded="true" signature="74856:75052" ph="SELECT CODIG... GEN_TABLA" />
+            <marker date="1488389496884" expanded="true" signature="75283:75443" ph="select (conv... " />
+            <marker date="1488389496884" expanded="true" signature="75680:76003" ph="select Docum... Marcaciones" />
+            <marker date="1488389496884" expanded="true" signature="77233:78122" ph="INSERT INTO flexline.PER_DETALLETRATO... " />
+            <marker date="1488389496884" expanded="true" signature="78555:78870" ph="select TRABA... PER_DETALLETRATO" />
+            <marker date="1488389496884" expanded="true" signature="79268:79508" ph="select sum(M... PER_DETALLETRATO" />
+            <marker date="1488389496884" expanded="true" signature="80743:80882" ph="delete from " />
+            <marker date="1488389496884" expanded="true" signature="81184:81850" ph="select CONVE... PER_DETALLETRATO" />
+            <marker date="1488389496884" expanded="true" signature="81361:81535" ph="select NOMBR... PER_TRABAJADOR" />
+            <marker date="1488389496884" expanded="true" signature="81918:82572" ph="select CONVE... PER_DETALLETRATO" />
+            <marker date="1488389496884" expanded="true" signature="82095:82269" ph="select NOMBR... PER_TRABAJADOR" />
+            <marker date="1488389496884" expanded="true" signature="82921:83145" ph="select TRABA... PER_DETALLETRATO" />
+            <marker date="1488389496884" expanded="true" signature="87012:87189" ph="SELECT VALOR... GEN_TABCOD" />
+            <marker date="1488389496884" expanded="true" signature="87595:87795" ph="SELECT VALOR... GEN_TABCOD" />
           </folding>
         </state>
       </provider>

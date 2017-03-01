@@ -819,8 +819,9 @@ class RecursoshController extends Controller
                 $res_actividades = $res['res_actividades'];
                 $totales = $res['totales'];
                 $codigos = $res['codigos'];
+                $title = 'FUNDOS Y PARRONES ';
 
-                $sheet->loadView('rh.excel.costoMOFundoParron',compact('res_actividades','totales','codigos'));
+                $sheet->loadView('rh.excel.costoMOFundoParron',compact('res_actividades','totales','codigos','title'));
 
 
             });
@@ -866,8 +867,6 @@ class RecursoshController extends Controller
                             compact('fundo','campain','actividades','parrones','codes'));
 
                     });
-
-
 
                 }
 
