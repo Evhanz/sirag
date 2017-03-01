@@ -753,11 +753,17 @@ class RecursoshController extends Controller
 
         $data =  \Input::all();
 
+
         $res = $this->personalRep->getCostoMOPorFundo($data);
 
         $general = $this->personalRep->getCostoMOPor5CCI($data);
 
         $packing = $this->personalRep->getCostoMOPor5CCI($data,'packing');
+
+
+        if(count($res['res_actividades'])<1){
+            return back();
+        }
 
         /**
          * sacaremos por cada

@@ -305,18 +305,26 @@ class ProductoRep
 
             $saldo_inicial = round($obj->saldo,3);
 
+            /*estas variables paara obener la suma de entradas  y salidas*/
+            $total_entradas = 0;
+            $total_salidas = 0;
+
             foreach ($item as $i){
 
                 if($i->tipo == 'entrada'){
                    $saldo_inicial += $i->cantidad;
+                    $total_entradas += $i->cantidad;
                 }else{
                     $saldo_inicial -= $i->cantidad;
+                    $total_salidas += $i->cantidad;
                 }
                 $i->saldo = $saldo_inicial;
             }
 
             //el ultimo saldo se considera como saldo final o actul
             $obj->saldo_final = round($saldo_inicial,3);
+            $obj->total_entrada = $total_entradas;
+            $obj->total_salidas = $total_salidas;
 
             $obj->detalle = $item;
 

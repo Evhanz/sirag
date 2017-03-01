@@ -71,7 +71,7 @@
                                         <!--./ Filro Principal-->
                                         <!-- data procesada  -->
                                         <div class="row">
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-6">
                                                 <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
                                                     <div class="box-header">
@@ -95,8 +95,10 @@
                                                                     <tr>
                                                                         <th>i</th>
                                                                         <th>GLOSA</th>
-                                                                        <th>SALDO ACTUAL</th>
                                                                         <th>UNIDAD</th>
+                                                                        <th>SALDO ACTUAL</th>
+                                                                        <th>ENTRADA</th>
+                                                                        <th>CONSUMIDO</th>
                                                                         <th>*</th>
                                                                     </tr>
 
@@ -105,8 +107,11 @@
                                                                     <tr id="tr_Doc_@{{ $index }}">
                                                                         <td>@{{ $index + 1 }}</td>
                                                                         <td>@{{ item.producto_name }}</td>
-                                                                        <td>@{{ item.saldo_final }}</td>
                                                                         <td>@{{ item.unidad }}</td>
+                                                                        <td>@{{ item.saldo_final }}</td>
+                                                                        <td>@{{ item.total_entrada }}</td>
+                                                                        <td>@{{ item.total_salidas }}</td>
+
                                                                         <td>
                                                                             <a class="btn btn-default" ng-click="viewDetalle(item)">
                                                                                 <i class="fa fa-bullseye"></i>
@@ -123,7 +128,7 @@
                                             </div>
                                             <!-- ./ panel izquierdo -->
 
-                                            <div class="col-lg-7">
+                                            <div class="col-lg-6">
 
                                              <!-- Box (with bar chart) -->
                                                 <div class="box box-info" id="box_maestro">
@@ -144,7 +149,7 @@
                                                     </div><!-- /.box-header -->
                                                     <div class="box-body ">
 
-                                                        <div class="row" style="padding: 15px">
+                                                        <div class="row" style="padding: 15px;font-size: 11px">
                                                             <div class="table-responsive">
                                                                 <table class="table table-bordered" id="table_data_op2">
                                                                     <thead >
@@ -271,8 +276,8 @@
                                                                     <tr id="tr_Doc_@{{ $index }}">
                                                                         <td>@{{ $index }}</td>
                                                                         <td>@{{ item.producto_name }}</td>
-                                                                        <td>@{{ item.saldo_final }}</td>
                                                                         <td>@{{ item.unidad }}</td>
+                                                                        <td>@{{ item.saldo_final }}</td>
                                                                         <td>
                                                                             <a class="btn btn-default" ng-click="viewDetalleEntrada(item)">
                                                                                 <i class="fa fa-bullseye"></i>
