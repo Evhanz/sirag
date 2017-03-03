@@ -567,6 +567,79 @@ class ContabilidadRep
     }
 
 
+    public function getRetenciones($data){
+
+        $anio = $data['anio'];
+        $mes = $data['mes'];
+
+
+        $query = "SELECT 
+A.CORRELATIVO,
+A.AUX_VALOR2,
+A.TIPO_DOCUMENTO, 
+A.REFERENCIA,
+A.HABER_INGRESO,
+A.FECHA,
+A.VALOR4,
+B.RazonSocial
+FROM 
+flexline.CON_MOVCOM A,
+flexline.CtaCte B
+WHERE
+A.EMPRESA=B.Empresa
+AND A.AUX_VALOR2=B.CtaCte
+AND A.EMPRESA='E01'
+AND A.CUENTA='040110104001'
+AND A.ESTADO='A'
+AND YEAR(A.FECHA)=$anio
+AND MONTH(A.FECHA)=$mes
+AND A.HABER_INGRESO<>0
+and A.TIPO_COMPROBANTE='EGRESO'
+GROUP BY A.CORRELATIVO, A.TIPO_DOCUMENTO, A.REFERENCIA,A.HABER_INGRESO,A.FECHA,A.AUX_VALOR2,
+A.VALOR4,B.RazonSocial
+ORDER BY A.FECHA";
+
+
+
+        $res = \DB::select($query);
+
+        return $res;
+
+
+
+
+    }
+
+
+    public function updateRetencion($data){
+
+        $nComprobante = $data[ 'tempNDocumento'];
+        $fecha = $data[ 'FECHA'];
+        $tipo_documento = $data[ 'TIPO_DOCUMENTO'];
+        $correlativo = $data['CORRELATIVO'];
+
+        $query = "update 
+                flexline.CON_MOVCOM
+                set VALOR4 ='$nComprobante'
+                where CORRELATIVO = '$correlativo'
+                AND CONVERT(DATE,FECHA,113) = '$fecha'
+                AND TIPO_DOCUMENTO LIKE '%$tipo_documento%'
+                AND CUENTA='040110104001'
+                AND HABER_INGRESO<>0
+                AND ESTADO='A'
+                AND EMPRESA='E01'";
+
+        $res = \DB::update($query);
+
+        return $res;
+
+
+
+    }
+
+
+
+
     //FUNCION HELPER DE CAMBIO DE FECHA DE YY-MM-DD A DD-MM-YY
 
     public function h_chageFormatDate($fecha)

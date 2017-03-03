@@ -18,6 +18,7 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], functi
     Route::get('contabilidad/rep/viewPDB',['as'=>'viewPDB','uses'=>'ContabilidadController@viewPDB']);
     Route::get('contabilidad/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundo','uses'=>'ContabilidadController@viewConsumoByFundo']);
     Route::get('contabilidad/rep/viewComprobanteEgreso',['as'=>'viewComprobanteEgreso','uses'=>'ContabilidadController@viewComprobanteEgreso']);
+    Route::get('contabilidad/rep/viewRetenciones',['as'=>'viewRetenciones','uses'=>'ContabilidadController@viewRetenciones']);
 
 
 });
@@ -44,6 +45,12 @@ Route::get('contabilidad/api/getCciByCodigo/{codigo}',['as'=>'getCciByCodigo','u
 Route::post('contabilidad/sendDataForExcelConsumo',['as'=>'sendDataForExcelConsumo','uses'=>'ContabilidadController@sendDataForExcelConsumo']);
 
 Route::post('contabilidd/getDataForExcelConsumo2',['as'=>'getDataForExcelConsumo2','uses'=>'ContabilidadController@getDataForExcelConsumo2']);
+Route::post('contabilidd/api/getRetenciones',['as'=>'getRetenciones','uses'=>'ContabilidadController@getRetenciones']);
+
+
+//esto es para actuaizar
+
+Route::post('contabilidd/update/updateRetencion',['as'=>'updateRetencion','uses'=>'ContabilidadController@updateRetencion']);
 
 
 

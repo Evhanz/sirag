@@ -55,6 +55,12 @@ class ContabilidadController extends Controller
     }
 
 
+    public function viewRetenciones(){
+        return view('cc/viewRetenciones');
+    }
+
+
+
     public function sendDataForExcelConsumo()
     {
 
@@ -550,6 +556,34 @@ class ContabilidadController extends Controller
 
        // $data = \Input::all();
 
+
+    }
+
+
+
+    public function getRetenciones(){
+
+        $data = \Input::all();
+
+
+        $res = $this->contabilidadRep->getRetenciones($data);
+
+
+        return \Response::Json($res);
+
+
+    }
+
+
+    public function updateRetencion(){
+
+        $data = \Input::all();
+        $item = $data['item'];
+
+        $res = $this->contabilidadRep->updateRetencion($item);
+
+        
+        return $res;
 
     }
 
