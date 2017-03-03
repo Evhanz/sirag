@@ -190,6 +190,9 @@
                                                         <th>Vacaciones Gozadas</th>
                                                         <th>Vacaciones Truncas</th>
                                                         <th>Movilidad Condicion Trabajo</th>
+                                                        <th>Descanso Medico</th>
+                                                        <th>Subsidio Enfermedad</th>
+                                                        <th>Subsidio Maternidad</th>
                                                         <th>Total Haber</th>
                                                         <th>SNP</th>
                                                         <th>Fondo AFP</th>
@@ -222,10 +225,13 @@
                                                         <td>@{{ item.bonificacion_extraor }}</td>
                                                         <td>@{{ item.haber_movilidad }}</td>
                                                         <td>@{{ item.reintegros }}</td>
-                                                        <td>@{{ item.gratificacio_extraor }}</td>   <!-- FZ 040117-->
+                                                        <td>@{{ item.gratificacio_extraor }}</td>   <!-- FZ-->
                                                         <td>@{{ item.vacaciones_gozadas }}</td>
                                                         <td>@{{ item.vacaciones_truncas }}</td>
                                                         <td>@{{ item.movilidad_condicion }}</td>
+                                                        <td>@{{ item.descanso_medico }}</td>
+                                                        <td>@{{ item.subsidio_enfermedad }}</td>
+                                                        <td>@{{ item.subsidio_maternidad }}</td>
                                                         <td>@{{ item.total_haber }}</td>
                                                         <td>@{{ item.snp }}</td>
                                                         <td>@{{ item.fondo_afp }}</td>
@@ -257,6 +263,9 @@
                                                         <td>@{{ totales_agraria.t_vacaciones_gozadas }}</td>
                                                         <td>@{{ totales_agraria.t_vacaciones_truncas }}</td>
                                                         <td>@{{ totales_agraria.t_movilidad_condicion }}</td>
+                                                        <td>@{{ totales_agraria.t_descanso_medico }}</td>
+                                                        <td>@{{ totales_agraria.t_subsidio_enfermedad }}</td>
+                                                        <td>@{{ totales_agraria.t_subsidio_maternidad }}</td>
                                                         <td>@{{ totales_agraria.t_total_haber }}</td>
                                                         <td>@{{ totales_agraria.t_snp }}</td>
                                                         <td>@{{ totales_agraria.t_fondo_afp }}</td>
