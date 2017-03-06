@@ -31,68 +31,76 @@
 
                                         </div>
 
-                                        <div class="row">
-                                            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
-                                            <div class="col-md-2">
-                                                <label for="">Año</label><br>
-                                                <select name="" id="anio" class="form-control">
-                                                    <option value="">----------</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2014">2014</option>
-                                                    <option value="2013">2013</option>
-                                                    <option value="2012">2012</option>
-                                                    <option value="2011">2011</option>
+                                        <form action="{{route('getLibroRetenciones')}}" method="post">
+                                            <div class="row">
+                                                <input name="_token" type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                                <div class="col-md-2">
+                                                    <label for="">Año</label><br>
+                                                    <select name="anio" id="anio" class="form-control" required="">
+                                                        <option value="">----------</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2011">2011</option>
 
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label for="">Mes</label><br>
-                                                <select name="" id="mes" class="form-control">
-                                                    <option value="">----------</option>
-                                                    <option value="01">Enero</option>
-                                                    <option value="02">Febrero</option>
-                                                    <option value="03">Marzo</option>
-                                                    <option value="04">Abril</option>
-                                                    <option value="05">Mayo</option>
-                                                    <option value="06">Junio</option>
-                                                    <option value="07">Julio</option>
-                                                    <option value="08">Agosto</option>
-                                                    <option value="09">Septiembre</option>
-                                                    <option value="10">Octubre</option>
-                                                    <option value="11">Noviembre</option>
-                                                    <option value="12">Diciembre</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <br>
-                                                <button href="" class="btn btn-info" ng-click="getData()" id="btnExportar" >
-                                                    <i class="fa fa-search-plus fa-lg"></i> Buscar </button>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="">Mes</label><br>
+                                                    <select name="mes" id="mes" class="form-control" required>
+                                                        <option value="">----------</option>
+                                                        <option value="01">Enero</option>
+                                                        <option value="02">Febrero</option>
+                                                        <option value="03">Marzo</option>
+                                                        <option value="04">Abril</option>
+                                                        <option value="05">Mayo</option>
+                                                        <option value="06">Junio</option>
+                                                        <option value="07">Julio</option>
+                                                        <option value="08">Agosto</option>
+                                                        <option value="09">Septiembre</option>
+                                                        <option value="10">Octubre</option>
+                                                        <option value="11">Noviembre</option>
+                                                        <option value="12">Diciembre</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <br>
+                                                    <a href="" class="btn btn-info" ng-click="getData()" id="btnExportar" >
+                                                        <i class="fa fa-search-plus fa-lg"></i> Buscar </a>
 
-                                            </div>
+                                                </div>
 
-                                            <div class="col-md-5">
-                                                <div class="row" style="">
-                                                    <div class="col-md-2">
-                                                        <label for="">Dia</label>
-                                                        <input min="0" max="31" type="number" ng-model="num_dia" style="width: 50px;">
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <label for="">N° vez</label>
-                                                        <input type="number" ng-model="num_veces" ng-init="1" style="width: 50px;">
-                                                    </div>
+                                                <div class="col-md-5">
+                                                    <div class="row" style="">
+                                                        <div class="col-md-2">
+                                                            <label for="">Dia</label>
+                                                            <input name="dia" min="0" max="31" type="number" ng-model="num_dia" style="width: 50px;" required>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label for="">N° vez</label>
+                                                            <input type="number" ng-model="num_veces" ng-init="1" style="width: 50px;">
+                                                        </div>
 
-                                                    <div class="col-md-6">
-                                                        <label for=""> </label><br>
-                                                        <button class="btn btn-default btn-md" id="btnExportar" ng-click="getTextRetencion()">
-                                                            <i class="fa fa-download"></i>
-                                                        </button>
+                                                        <div class="col-md-1">
+                                                            <label for=""> </label><br>
+                                                            <a title="exportar txt" class="btn btn-default btn-md" id="btnExportar" ng-click="getTextRetencion()">
+                                                                <i class="fa fa-file-o"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <label for=""> </label><br>
+                                                            <button class="btn btn-danger btn-md" id="btnImprimir">
+                                                                <i class="fa fa-file-pdf-o"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        </div>
+                                            </div>
+                                        </form>
 
                                         <br><br>
 

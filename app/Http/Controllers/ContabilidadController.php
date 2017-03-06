@@ -670,6 +670,54 @@ class ContabilidadController extends Controller
     }
 
 
+    public function getLibroRetenciones(){
+
+        $data = \Input::all();
+
+        $fecha = $data['anio'].'-'.$data['mes'].'-'.$data['dia'];
+
+        $res = $this->contabilidadRep->getFormatOfRetencion($fecha);
+
+        foreach ($res as $item){
+
+            $item->c4 = $this->changeFormatFecha($item->c4);
+            if( $item->c3 == 6){
+                $item->c3  = '000'.$item->c3;
+            }
+
+        }
+
+
+        $newDate = getdate();
+
+        if($newDate['mon'] < 10){
+
+            $newDate['mon'] = '0'.$newDate['mon'];
+        }
+
+
+        $newDate = $newDate['mday'].'/'.$newDate['mon'].'/'.$newDate['year'];
+
+        $fecha_actual = $newDate;
+
+        $mes = HelpFunct::NameMonth($data['mes']);
+        $anio = $data['anio'];
+
+
+
+        $view =  \View::make('cc.pdf.libroRetenciones',compact('res','fecha_actual','mes','anio'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        // return $pdf->stream('invoice');
+        return $pdf->download('libro_retenciones');
+
+        //return view('rh.pdf.comprobanteEgresoPdf');
+
+
+
+    }
+
+
 
 
     //funciones helpers

@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/cc/pdf/libroRetenciones.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/contabilidad.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/contabilidad.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" afterPath="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -40,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="667" column="37" selection-start-line="667" selection-start-column="20" selection-end-line="667" selection-end-column="37" />
+            <state relative-caret-position="345">
+              <caret line="714" column="0" selection-start-line="714" selection-start-column="0" selection-end-line="714" selection-end-column="0" />
               <folding>
                 <element signature="e#7402#9700#0#PHP" expanded="false" />
                 <element signature="e#7760#9276#0#PHP" expanded="false" />
@@ -52,9 +51,29 @@
                 <element signature="e#11023#11475#0#PHP" expanded="false" />
                 <element signature="e#11483#13367#0#PHP" expanded="false" />
                 <element signature="e#13756#15724#0#PHP" expanded="false" />
-                <element signature="e#15933#16218#0#PHP" expanded="false" />
-                <element signature="e#16225#17039#0#PHP" expanded="false" />
-                <marker date="1488815109762" expanded="true" signature="17112:17142" ph="select * fro... Bancos" />
+                <marker date="1488841304380" expanded="true" signature="18201:18231" ph="select * fro... Bancos" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HelpFunct.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="311" column="36" selection-start-line="311" selection-start-column="27" selection-end-line="311" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="libroRetenciones.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/libroRetenciones.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="501">
+              <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,31 +83,17 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="393">
-              <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="47" />
+              <caret line="82" column="54" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewRetenciones.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="viewRetenciones.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="397" column="43" selection-start-line="397" selection-start-column="43" selection-end-line="397" selection-end-column="43" />
-              <folding>
-                <element signature="e#5035#5055#0#HTML" expanded="true" />
-                <element signature="e#13214#14789#0#HTML" expanded="false" />
-                <element signature="e#14846#15285#0#HTML" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3060">
-              <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+            <state relative-caret-position="476">
+              <caret line="94" column="89" selection-start-line="94" selection-start-column="89" selection-end-line="94" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -116,7 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php" />
         <option value="$PROJECT_DIR$/resources/views/comercial/viewProductos.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
         <option value="$PROJECT_DIR$/public/templates/lte2/dist/js/main.js" />
@@ -164,9 +168,10 @@
         <option value="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/contabilidad.php" />
+        <option value="$PROJECT_DIR$/resources/views/cc/pdf/libroRetenciones.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
       </list>
     </option>
   </component>
@@ -211,6 +216,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -390,6 +407,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cc" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cc" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pdf" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -627,18 +670,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests" />
-      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
@@ -855,14 +886,8 @@
       <workItem from="1488378788024" duration="18307000" />
       <workItem from="1488468485643" duration="13314000" />
       <workItem from="1488553551356" duration="20677000" />
-      <workItem from="1488809470364" duration="6036000" />
-    </task>
-    <task id="LOCAL-00029" summary="rev_viewPersonal">
-      <created>1480440524347</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1480440524347</updated>
+      <workItem from="1488809470364" duration="14826000" />
+      <workItem from="1488832079832" duration="8121000" />
     </task>
     <task id="LOCAL-00030" summary="rev_viewPersonal">
       <created>1480501018306</created>
@@ -1200,11 +1225,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488578866188</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="txt retenciones">
+      <created>1488816560055</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1488816560068</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1526976000" />
+    <option name="totallyTimeSpent" value="1543887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1275,13 +1307,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewOrdenCompra.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -1293,13 +1318,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteEgresoPdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1665,15 +1683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3060">
           <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="288" column="56" selection-start-line="288" selection-start-column="50" selection-end-line="288" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1681,7 +1690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="15" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1734,22 +1742,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteEgresoPdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3391">
+          <caret line="276" column="27" selection-start-line="276" selection-start-column="27" selection-end-line="276" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="311" column="36" selection-start-line="311" selection-start-column="27" selection-end-line="311" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="94" column="89" selection-start-line="94" selection-start-column="89" selection-end-line="94" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/libroRetenciones.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="78" column="19" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/contabilidad.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
-          <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="47" />
+          <caret line="82" column="54" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="667" column="37" selection-start-line="667" selection-start-column="20" selection-end-line="667" selection-end-column="37" />
+        <state relative-caret-position="345">
+          <caret line="714" column="0" selection-start-line="714" selection-start-column="0" selection-end-line="714" selection-end-column="0" />
           <folding>
             <element signature="e#7402#9700#0#PHP" expanded="false" />
             <element signature="e#7760#9276#0#PHP" expanded="false" />
@@ -1757,21 +1797,7 @@
             <element signature="e#11023#11475#0#PHP" expanded="false" />
             <element signature="e#11483#13367#0#PHP" expanded="false" />
             <element signature="e#13756#15724#0#PHP" expanded="false" />
-            <element signature="e#15933#16218#0#PHP" expanded="false" />
-            <element signature="e#16225#17039#0#PHP" expanded="false" />
-            <marker date="1488815109762" expanded="true" signature="17112:17142" ph="select * fro... Bancos" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="397" column="43" selection-start-line="397" selection-start-column="43" selection-end-line="397" selection-end-column="43" />
-          <folding>
-            <element signature="e#5035#5055#0#HTML" expanded="true" />
-            <element signature="e#13214#14789#0#HTML" expanded="false" />
-            <element signature="e#14846#15285#0#HTML" expanded="false" />
+            <marker date="1488841304380" expanded="true" signature="18201:18231" ph="select * fro... Bancos" />
           </folding>
         </state>
       </provider>

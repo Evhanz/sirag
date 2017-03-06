@@ -80,6 +80,8 @@ Route::get('contabilidad/excel/getExcelConsumoByFundo2',['as'=>'getExcelConsumoB
 //--- para pdf
 Route::post('contabilidad/archivos/getComprobanteDeEgresoPdf',['as'=>'getComprobanteDeEgresoPdf',
     'uses'=>'ContabilidadController@getComprobanteDeEgresoPdf']);
+Route::post('contabilidad/archivos/getLibroRetenciones',['as'=>'getLibroRetenciones',
+    'uses'=>'ContabilidadController@getLibroRetenciones']);
 
 //solo para prueba
 
