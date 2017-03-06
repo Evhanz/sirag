@@ -70,8 +70,28 @@
                                                 <button href="" class="btn btn-info" ng-click="getData()" id="btnExportar" >
                                                     <i class="fa fa-search-plus fa-lg"></i> Buscar </button>
 
-
                                             </div>
+
+                                            <div class="col-md-5">
+                                                <div class="row" style="">
+                                                    <div class="col-md-2">
+                                                        <label for="">Dia</label>
+                                                        <input min="0" max="31" type="number" ng-model="num_dia" style="width: 50px;">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label for="">N° vez</label>
+                                                        <input type="number" ng-model="num_veces" ng-init="1" style="width: 50px;">
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for=""> </label><br>
+                                                        <button class="btn btn-default btn-md" id="btnExportar" ng-click="getTextRetencion()">
+                                                            <i class="fa fa-download"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <br><br>
@@ -344,6 +364,60 @@
                     }
 
                 });
+
+
+            };
+
+
+            $scope.getTextRetencion = function () {
+
+
+                var token = $('#_token').val();
+                var anio  = $('#anio').val();
+                var mes  = $('#mes').val();
+                var dia = $scope.num_dia;
+
+                var periodo = anio+'-'+mes+'-'+dia;
+
+
+                if (periodo.length > 7 ) {
+
+
+                    var ruta = '{{ URL::route('buildTxtRetenciones') }}';
+
+                    $('#btnExportar').attr("disabled", true);
+                    $scope.Documentos = [];
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                    var num_veces = num_veces;
+
+
+                    $http.post(ruta,{
+                        _token : token,
+                        fecha:periodo,
+                        num_veces:num_veces
+                    })
+                            .success(function(data){
+                                $('#btnExportar').attr("disabled", false);
+                               // console.log(data);
+                                var url = '{{ URL::route('modContabilidad') }}/txt/getTxtRetenciones/'+data.file;
+                                window.location = url;
+
+                            }).error(function(data) {
+                        $('#btnExportar').attr("disabled", false);
+                        console.log(data);
+                        $("#box_maestro").remove(".overlay");
+                        $("#box_maestro").remove(".loading-img");
+                    });
+
+                } else {
+
+                    alert("Se tiene que ingresar , Año Mes y dia ");
+
+                }
+
+
+
 
 
             };

@@ -48,6 +48,8 @@ Route::post('contabilidd/getDataForExcelConsumo2',['as'=>'getDataForExcelConsumo
 Route::post('contabilidd/api/getRetenciones',['as'=>'getRetenciones','uses'=>'ContabilidadController@getRetenciones']);
 
 
+
+
 //esto es para actuaizar
 
 Route::post('contabilidd/update/updateRetencion',['as'=>'updateRetencion','uses'=>'ContabilidadController@updateRetencion']);
@@ -62,6 +64,9 @@ Route::post('contabilidad/txt/pdbTxtVentas',['as'=>'pdbTxtVentas','uses'=>'Conta
 Route::get('contabilidad/txt/getPdbTxtVentas/{periodo}',['as'=>'getPdbTxtVentas','uses'=>'ContabilidadController@getTxtVentas']);
 Route::post('contabilidad/txt/getTipoCambio',['as'=>'getTipoCambio','uses'=>'ContabilidadController@getTipoCambio']);
 Route::get('contabilidad/txt/getTxtTipoCambio',['as'=>'getTxtTipoCambio','uses'=>'ContabilidadController@getTxtTipoCambio']);
+
+Route::get('contabilidad/txt/getTxtRetenciones/{file}',['as'=>'getTxtRetenciones','uses'=>'ContabilidadController@getTxtRetenciones']);
+Route::post('contabilidad/txt/buildTxtRetenciones',['as'=>'buildTxtRetenciones','uses'=>'ContabilidadController@buildTxtRetenciones']);
 
 
 

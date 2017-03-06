@@ -298,7 +298,7 @@ class HelpFunct
         switch ($tipo){
 
             case '103':
-                $response =substr($date,6,2).'/'.substr($date,4,2).'/'. substr($date,0,4);
+                $response =substr($date,6,2).'/'.substr($date,4,2).'/'. substr($date,0,4);//dd/mm/yyyy
                 break;
         }
 

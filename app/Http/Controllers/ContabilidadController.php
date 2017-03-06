@@ -582,9 +582,91 @@ class ContabilidadController extends Controller
 
         $res = $this->contabilidadRep->updateRetencion($item);
 
-        
         return $res;
 
+    }
+
+
+    public function buildTxtRetenciones(){
+
+        $data = \Input::all();
+
+        $fecha = $data['fecha'];
+        if(isset($data['num_veces'])){
+            $num_veces = $data['num_veces'];
+        }else{
+            $num_veces = 1;
+        }
+
+
+        $res = $this->contabilidadRep->getFormatOfRetencion($fecha);
+
+        //'2017-01-26'
+
+
+        $row = "";
+
+
+        foreach ($res as $item) {
+
+
+            $row.=trim($item->c1).'|';
+            $row.=$item->c2.'|';
+            $row.=$item->c3.'|';
+            $row.= $this->changeFormatFecha($item->c4).'|';
+            $row.=$item->c5.'|';
+            $row.=$item->c6.'|';
+            $row.=$item->c7.'|';
+            $row.=$item->c8.'|';
+            $row.=$item->c9.'|';
+            $row.=round($item->c10,2).'|';
+            $row.=round($item->c11,2).'|';
+            $row.=$item->c12.'|';
+            $row.=$item->c13.'|';
+            $row.=$item->c14.'|';
+            $row.= $this->changeFormatFecha($item->c15).'|';
+            $row.=round($item->c16,2).'|';
+            $row.=$item->c17.'|';
+            $row.= $this->changeFormatFecha($item->c18).'|';
+            $row.=$item->c19.'|';
+            $row.=round($item->c20,2).'|';
+            $row.=$item->c21.'|';
+            $row.=round($item->c22,2).'|';
+            $row.= $this->changeFormatFecha($item->c23).'|';
+            $row.=round($item->c24,2).'|';
+            $row.=$item->c25.'|';
+            $row.=round($item->c26,2).'|';
+            $row.= $this->changeFormatFecha($item->c27).'|';
+
+            $row .= "\r\n";
+        }
+
+
+        $name_file= "20518803078-20-$fecha-$num_veces.txt";
+
+
+        $f['body'] = $row;
+        $url ="20518803078";
+
+        try {
+            $file = fopen(base_path()."/storage/logs/$name_file", "w");
+            fputs($file,$f['body'] );
+            fclose($file);
+            return ['estado'=>"correcto",'file'=>$name_file];
+
+        } catch (\Exception $e) {
+            return "error :-";
+        }
+
+
+
+
+
+    }
+
+
+    public function getTxtRetenciones($file){
+        return response()->download(base_path()."/storage/logs/$file");
     }
 
 
