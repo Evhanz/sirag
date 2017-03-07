@@ -374,4 +374,36 @@ class HelpFunct
         return $f;
     }
 
+    /*
+     * generar un hash code para no colicionar archivos
+     * se coge el codigo de consulta concatenado por los dos ultimos
+     * igitos del año + el mes + el dia , concatenado por la suma de la hora y los minutos
+     *
+     * $key: string => es el key que dirige el hash
+     * */
+    public function setHashCode($key){
+
+        $newDate = getdate();
+
+        if($newDate['mon'] < 10){
+
+            $newDate['mon'] = '0'.$newDate['mon'];
+        }
+
+        $year = substr($newDate['year'],2,2);
+        $mes = $newDate['mon'];
+        $dia = $newDate['mday'];
+        $hora = $newDate['H'];
+        $minuto = $newDate['i'];
+
+
+        $hash = $key.($year+$mes+$dia);
+
+
+
+
+    }
+
+
+
 }

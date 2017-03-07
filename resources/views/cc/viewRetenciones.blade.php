@@ -72,14 +72,13 @@
                                                         <i class="fa fa-search-plus fa-lg"></i> Buscar </a>
 
                                                 </div>
-
-                                                <div class="col-md-5">
+                                                <div class="col-md-3">
                                                     <div class="row" style="">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-3">
                                                             <label for="">Dia</label>
                                                             <input name="dia" min="0" max="31" type="number" ng-model="num_dia" style="width: 50px;" required>
                                                         </div>
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-3">
                                                             <label for="">N° vez</label>
                                                             <input type="number" ng-model="num_veces" ng-init="1" style="width: 50px;">
                                                         </div>
@@ -98,6 +97,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2" style="display: block">
+
+
+                                                    <div class="form-group has-success has-feedback">
+                                                        <label class="control-label" for="inputGroupSuccess1">Generar Comprobante</label>
+                                                        <div class="input-group">
+                                                            <a  ng-click="getComprobante()" id="btnGenerarComprobante"  class=" btn btn-success input-group-addon"><i class="fa fa-file-text fa-lg"></i></a>
+                                                            <input style="width: 80px;" ng-model="correlativo" id="correlativo" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--
+                                                <input style="width: 80px;" type="text" ng-model="correlativo" id="correlativo"><br>
+                                                <a href="" class="btn btn-success" ng-click="getComprobante()" id="btnGenerarComprobante" >
+                                                    <i class="fa fa-file-text fa-lg"></i> Generar Comprobante </a>
+                                                    -->
 
                                             </div>
                                         </form>
@@ -137,7 +152,7 @@
                                                                 <input ng-model="item.tempNDocumento" type="text" ng-keyup = "changeNDocumentos($event,item)">
                                                             </td>
                                                             <td ng-if="item.VALOR4 != '' " >
-                                                                <a class="btn btn-warning btn-xs" ng-click="updateNDocumento($index)"> <i class="fa fa-pencil-square"></i> </a> @{{ item.VALOR4 }}
+                                                                <a class="btn btn-warning btn-xs" ng-click="updateNDocumento($index)" > <i class="fa fa-pencil-square"></i> </a> @{{ item.VALOR4 }}
                                                             </td>
                                                             <td>@{{ item.RazonSocial | limitTo:25 }}</td>
 
@@ -430,7 +445,60 @@
 
             };
 
+            $scope.getComprobante = function () {
 
+                var token = $('#_token').val();
+                var anio  = $('#anio').val();
+                var mes  = $('#mes').val();
+                var dia = $scope.num_dia;
+                var correlativo = $scope.correlativo;
+
+                var periodo = anio+'-'+mes+'-'+dia;
+
+
+                if (periodo.length > 7 ) {
+
+
+                    var ruta = '{{ URL::route('getComprobanteRetencion') }}';
+
+                    $('#btnGenerarComprobante').attr("disabled", true);
+                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+
+
+                    $http.post(ruta,{
+                        _token : token,
+                        fecha:periodo,
+                        correlativo:correlativo
+                    })
+                            .success(function(data){
+                                $('#btnGenerarComprobante').attr("disabled", false);
+                                // console.log(data);
+
+                                if(data=='correcto'){
+
+                                    var url = '{{ URL::route('modContabilidad') }}/archivos/getComprobanteRetencionPdf/'+correlativo;
+                                    window.location = url;
+
+                                }else{
+                                    alert(data);
+                                }
+
+
+
+                            }).error(function(data) {
+                        $('#btnGenerarComprobante').attr("disabled", false);
+                       // console.log(data);
+                        alert('Ocurrio un error: No existen datos que mostrar');
+                    });
+
+                } else {
+
+                    alert("Se tiene que ingresar , Año Mes y dia ");
+
+                }
+
+            };
 
 
 

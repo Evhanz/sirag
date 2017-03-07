@@ -82,6 +82,10 @@ Route::post('contabilidad/archivos/getComprobanteDeEgresoPdf',['as'=>'getComprob
     'uses'=>'ContabilidadController@getComprobanteDeEgresoPdf']);
 Route::post('contabilidad/archivos/getLibroRetenciones',['as'=>'getLibroRetenciones',
     'uses'=>'ContabilidadController@getLibroRetenciones']);
+Route::post('contabilidad/archivos/getComprobanteRetencion',['as'=>'getComprobanteRetencion',
+    'uses'=>'ContabilidadController@getComprobanteRetencion']);
+Route::get('contabilidad/archivos/getComprobanteRetencionPdf/{code}',['as'=>'getComprobanteRetencionPdf',
+    'uses'=>'ContabilidadController@getComprobanteRetencionPdf']);
 
 //solo para prueba
 

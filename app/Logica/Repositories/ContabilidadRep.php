@@ -635,8 +635,14 @@ ORDER BY A.FECHA";
 
     }
 
-    public function getFormatOfRetencion($fecha){
+    public function getFormatOfRetencion($fecha,$correlativo=null){
 
+        $s_query = '';
+
+        if($correlativo != null){
+            $s_query = "AND (CASE WHEN A.VALOR4 LIKE 'E%' THEN RIGHT (A.VALOR4,1) ELSE RIGHT (A.VALOR4,4) END like '%$correlativo%' ) ";
+
+        }
 
         $query = "SELECT 
 '6' AS 'c1',
@@ -742,6 +748,7 @@ AND A.ESTADO='A'
 AND convert(date,A.FECHA,113) = '$fecha'
 and A.TIPO_COMPROBANTE='EGRESO'
 AND A.HABER_INGRESO<>0
+$s_query
 GROUP BY A.TIPO_COMPROBANTE,A.PERIODO,C.MONEDA,A.EMPRESA,A.CORRELATIVO,A.HABER_ORIGEN, A.TIPO_DOCUMENTO, A.REFERENCIA,A.HABER_INGRESO,A.FECHA,A.AUX_VALOR2,
 A.VALOR4,B.RazonSocial
 ORDER BY A.FECHA,A.VALOR4

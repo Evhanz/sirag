@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use sirag\Helpers\HelpFunct;
+use sirag\Helpers\NumberToLetter;
 use sirag\Repositories\ContabilidadRep;
 use sirag\Repositories\ProductoRep;
 
@@ -695,14 +696,11 @@ class ContabilidadController extends Controller
             $newDate['mon'] = '0'.$newDate['mon'];
         }
 
-
         $newDate = $newDate['mday'].'/'.$newDate['mon'].'/'.$newDate['year'];
-
         $fecha_actual = $newDate;
 
         $mes = HelpFunct::NameMonth($data['mes']);
         $anio = $data['anio'];
-
 
 
         $view =  \View::make('cc.pdf.libroRetenciones',compact('res','fecha_actual','mes','anio'))->render();
@@ -711,12 +709,79 @@ class ContabilidadController extends Controller
         // return $pdf->stream('invoice');
         return $pdf->download('libro_retenciones');
 
-        //return view('rh.pdf.comprobanteEgresoPdf');
-
-
+        //return view('rh.pdf.comprobanteEgresoPdf')
 
     }
 
+
+    public function getComprobanteRetencion(){
+
+        $data = \Input::all();
+
+        $fecha = $data['fecha'];
+        $correlativo = $data['correlativo'];
+
+        $res = $this->contabilidadRep->getFormatOfRetencion($fecha,$correlativo);
+        $cabecera = null;
+
+        if (count($res)>0){
+
+            $newDate = getdate();
+
+            if($newDate['mon'] < 10){
+
+                $newDate['mon'] = '0'.$newDate['mon'];
+            }
+
+            $newDate = $newDate['mday'].'/'.$newDate['mon'].'/'.$newDate['year'];
+
+            $cabecera['razon'] = $res[0]->c7;
+            $cabecera['ruc'] = $res[0]->c5;
+            $cabecera['fecha_emision1'] = $newDate;
+
+
+            $total['monto']=0;
+
+            foreach ($res as $item){
+                $item->tipo = '01';
+                $item->serie = $item->c2;
+                $item->correlativo = $correlativo;
+                $item->fecha_emision = $this->changeFormatFecha($item->c15);
+                $item->monto_pago = round($item->c20,2) ;
+                $item->monto_retenido = round($item->c22,2);
+
+                $total['monto'] +=round($item->c22,2);
+
+            }
+
+            $total['monto_letras'] = NumberToLetter::convert($total['monto']);
+
+
+            $view =  \View::make('cc.pdf.comprobanteRetencion',compact('res','total','cabecera'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            // return $pdf->stream('invoice');
+
+          //  return PDF::loadHTML('<h1>Test</h1> ')->save('/path//my_stored_file.pdf');
+
+            $ruta = base_path()."/storage/contabilidad/retenciones/comprobantes/l".$correlativo.'.pdf';
+            $pdf->save($ruta);
+
+            return 'correcto';
+
+
+        }else{
+            return 'No existen datos para mostrar';
+        }
+
+    }
+
+
+    public function getComprobanteRetencionPdf($code){
+
+        return response()->download(base_path()."/storage/contabilidad/retenciones/comprobantes/l".$code.'.pdf');
+
+    }
 
 
 
