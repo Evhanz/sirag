@@ -74,6 +74,13 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="row" style="">
+
+                                                        <div class="col-md-3">
+                                                            <label for="">Dia</label>
+                                                            <input name="dia" min="0" max="31" type="number" ng-model="num_dia" style="width: 50px;" >
+                                                        </div>
+
+
                                                         <div class="col-md-3">
                                                             <label for="">N° vez</label>
                                                             <input type="number" ng-model="num_veces" ng-init="1" style="width: 50px;">
@@ -119,9 +126,10 @@
 
                                             <div class="col-lg-12">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered" id="table_data_op1">
+                                                    <table class="table table-bordered table-hover" id="table_data_op1">
                                                         <thead >
                                                         <tr>
+                                                            <th>*</th>
                                                             <th>I</th>
                                                             <th>Correlarivo</th>
                                                             <th>Cuenta</th>
@@ -136,6 +144,9 @@
                                                         <tbody  ng-repeat=" item in Documentos | filter:search">
                                                         <tr id="tr_Doc_@{{ $index }}">
 
+                                                            <td><a style="cursor: pointer" ng-click="getComprobante(item)" id="btnGenerarComprobante">
+                                                                    <i class="fa fa-print fa-xs"></i></a>
+                                                            </td>
                                                             <td>@{{$index}}</td>
                                                             <td>@{{ item.CORRELATIVO }}</td>
                                                             <td>@{{ item.AUX_VALOR2 }}</td>
@@ -441,58 +452,53 @@
 
             };
 
-            $scope.getComprobante = function () {
+            $scope.getComprobante = function (item) {
 
                 var token = $('#_token').val();
-                var anio  = $('#anio').val();
-                var mes  = $('#mes').val();
-                var dia = $scope.num_dia;
-                var correlativo = $scope.correlativo;
 
-                var periodo = anio+'-'+mes+'-'+dia;
+                var periodo = item.FECHA;
+                periodo = periodo.substring(0, 10);
+                var correlativo = item.VALOR4.substring(item.VALOR4.length-3, item.VALOR4.length);
 
+                var ruta = '{{ URL::route('getComprobanteRetencion') }}';
 
-                if (periodo.length > 7 ) {
-
-
-                    var ruta = '{{ URL::route('getComprobanteRetencion') }}';
-
-                    $('#btnGenerarComprobante').attr("disabled", true);
-                    $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+                $('#btnGenerarComprobante').attr("disabled", true);
+                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
 
 
 
-                    $http.post(ruta,{
-                        _token : token,
-                        fecha:periodo,
-                        correlativo:correlativo
-                    })
-                            .success(function(data){
-                                $('#btnGenerarComprobante').attr("disabled", false);
-                                // console.log(data);
+                $http.post(ruta,{
+                    _token : token,
+                    fecha:periodo,
+                    correlativo:correlativo
+                })
+                        .success(function(data){
+                            $('#btnGenerarComprobante').attr("disabled", false);
+                            // console.log(data);
 
-                                if(data=='correcto'){
+                            if(data=='correcto'){
 
-                                    var url = '{{ URL::route('modContabilidad') }}/archivos/getComprobanteRetencionPdf/'+correlativo;
-                                    window.location = url;
+                                var url = '{{ URL::route('modContabilidad') }}/archivos/getComprobanteRetencionPdf/'+correlativo;
+                                //window.location = url;
+                                window.open(url, '_blank');
 
-                                }else{
-                                    alert(data);
-                                }
+                            }else{
+                                alert(data);
+                                console.log(data);
+                               // window.open(data, '_blank');
+                            }
 
 
 
-                            }).error(function(data) {
-                        $('#btnGenerarComprobante').attr("disabled", false);
-                       // console.log(data);
-                        alert('Ocurrio un error: No existen datos que mostrar');
-                    });
 
-                } else {
 
-                    alert("Se tiene que ingresar , Año Mes y dia ");
+                        }).error(function(data) {
+                    $('#btnGenerarComprobante').attr("disabled", false);
+                    // console.log(data);
+                    alert('Ocurrio un error: No existen datos que mostrar');
+                });
 
-                }
+
 
             };
 
@@ -516,6 +522,19 @@
 
         });
     </script>
+
+    <style>
+        .table-hover tbody tr:hover td {
+            background-color: #f3ca2d;
+            color: white;
+        }
+
+        .table-hover tbody tr:hover td a{
+
+
+        }
+
+    </style>
 
 
 @stop

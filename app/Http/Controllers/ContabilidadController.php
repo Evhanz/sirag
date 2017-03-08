@@ -743,9 +743,9 @@ class ContabilidadController extends Controller
             $total['monto']=0;
 
             foreach ($res as $item){
-                $item->tipo = '01';
-                $item->serie = $item->c2;
-                $item->correlativo = $correlativo;
+                $item->tipo =  $item->c12;
+                $item->serie = $item->c13;
+                $item->correlativo = $item->c14;
                 $item->fecha_emision = $this->changeFormatFecha($item->c15);
                 $item->monto_pago = round($item->c20,2) ;
                 $item->monto_retenido = round($item->c22,2);
@@ -758,16 +758,28 @@ class ContabilidadController extends Controller
 
 
             $view =  \View::make('cc.pdf.comprobanteRetencion',compact('res','total','cabecera'))->render();
+
+
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
-            // return $pdf->stream('invoice');
 
-          //  return PDF::loadHTML('<h1>Test</h1> ')->save('/path//my_stored_file.pdf');
 
             $ruta = base_path()."/storage/contabilidad/retenciones/comprobantes/l".$correlativo.'.pdf';
             $pdf->save($ruta);
 
-            return 'correcto';
+         //   return 'correcto';
+
+
+            /*
+            $file = fopen(base_path()."/storage/contabilidad/retenciones/comprobantes/l".$correlativo.'.html', "w");
+            fputs($file,$view );
+            fclose($file);
+            */
+
+            return "correcto";
+
+
+          //  return $view;
 
 
         }else{
@@ -779,7 +791,19 @@ class ContabilidadController extends Controller
 
     public function getComprobanteRetencionPdf($code){
 
-        return response()->download(base_path()."/storage/contabilidad/retenciones/comprobantes/l".$code.'.pdf');
+       return response()->download(base_path()."/storage/contabilidad/retenciones/comprobantes/l".$code.'.pdf');
+
+
+        /*
+        $filename = 'test.pdf';
+        $path = base_path()."/storage/contabilidad/retenciones/comprobantes/l".$code.'.html';
+
+        return \Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'text/html; charset=utf-8',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
+
+        */
 
     }
 

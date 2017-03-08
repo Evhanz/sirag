@@ -623,7 +623,7 @@ ORDER BY A.FECHA";
                 set VALOR4 ='$nComprobante'
                 where CORRELATIVO = '$correlativo'
                 AND CONVERT(DATE,FECHA,113) = '$fecha'
-                AND TIPO_DOCUMENTO LIKE '%$tipo_documento%'
+                --AND TIPO_DOCUMENTO LIKE '%$tipo_documento%'
                 AND CUENTA='040110104001'
                 AND HABER_INGRESO<>0
                 AND ESTADO='A'

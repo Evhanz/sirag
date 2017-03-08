@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,10 +14,10 @@
 
         </tr>
         <tr>
-            <td> <span style="padding-left: 1.5em">{{$cabecera['ruc'] }}</span>  </td>
+            <td> <span style="padding-left: -1em">{{$cabecera['ruc'] }}</span>  </td>
         </tr>
         <tr>
-            <td><span style="padding-left: 2em">  {{ $cabecera['fecha_emision1'] }} </span> </td>
+            <td><span style="padding-left: 3em">  {{ $cabecera['fecha_emision1'] }} </span> </td>
         </tr>
     </table>
 
@@ -26,31 +25,35 @@
 
         @foreach($res as $item)
         <tr>
-            <td>{{$item->tipo}}</td>
-            <td>{{$item->serie}}</td>
-            <td>{{$item->correlativo}}</td>
-            <td>{{$item->fecha_emision}}</td>
-            <td>{{$item->monto_pago}}</td>
-            <td>{{$item->monto_retenido}}</td>
+            <td style="">{{$item->tipo}}</td>
+            <td style="padding-left: 40px">{{$item->serie}}</td>
+            <td style="padding-left: 80px">{{$item->correlativo}}</td>
+            <td style="padding-left: 80px">{{$item->fecha_emision}}</td>
+            <td style="padding-left: 95px">{{$item->monto_pago}}</td>
+            <td style="padding-left: 80px">{{$item->monto_retenido}}</td>
 
         </tr>
         @endforeach
 
 
+
+
     </table>
 
-    <table class="totales">
-        <tr>
-            <td colspan="4" style="text-align: center">
-                {{$total['monto_letras']}}
-            </td>
-            <TD></TD>
-            <td>
-                {{$total['monto'] }}
-            </td>
 
-        </tr>
-    </table>
+    <div class="totales">
+
+        <div class="nonto_letras">
+            {{$total['monto_letras']}}
+        </div>
+
+        <div class="monton">
+            {{$total['monto'] }}
+        </div>
+
+    </div>
+
+
 
 </body>
 
@@ -59,7 +62,9 @@
     body{
 
         font-family: "Courier New", Courier, monospace;
+
         font-size: 12px;
+        font-weight: bold;
 
     }
 
@@ -71,23 +76,41 @@
 
     .cabecera{
         position: absolute;
-        left: 11em;
-        top: 37px;
+        left: 40px;
+        top: 80px;
     }
 
     .detail {
         position: absolute;
-        left: 40px;
-        top: 150px;
+        left: 20px;
+        top: 195px;
     }
 
-    .detail  tr td{
-        padding-left: 6em;
-    }
+
     .totales {
         position: absolute;
-        top: 340px;
-        left: 90px;
+        top: 400px;
+        left: 120px;
+
+        width: 100%;
+
+    }
+
+    .nonto_letras{
+
+        width: 400px;
+        position: absolute;
+        top: 20px;
+        text-align: center;
+
+    }
+
+    .monton{
+        width: 200px;
+        position: absolute;
+        top: 20px;
+        left: 420px;
+        text-align: center;
     }
 
 
