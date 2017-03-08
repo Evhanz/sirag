@@ -675,7 +675,7 @@ class ContabilidadController extends Controller
 
         $data = \Input::all();
 
-        $fecha = $data['anio'].'-'.$data['mes'].'-'.$data['dia'];
+        $fecha = $data['anio'].'-'.$data['mes'].'-%';
 
         $res = $this->contabilidadRep->getFormatOfRetencion($fecha);
 

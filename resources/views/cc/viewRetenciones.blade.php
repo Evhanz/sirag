@@ -75,10 +75,6 @@
                                                 <div class="col-md-3">
                                                     <div class="row" style="">
                                                         <div class="col-md-3">
-                                                            <label for="">Dia</label>
-                                                            <input name="dia" min="0" max="31" type="number" ng-model="num_dia" style="width: 50px;" required>
-                                                        </div>
-                                                        <div class="col-md-3">
                                                             <label for="">N° vez</label>
                                                             <input type="number" ng-model="num_veces" ng-init="1" style="width: 50px;">
                                                         </div>
