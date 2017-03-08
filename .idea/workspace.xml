@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l521.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l557.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l558.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l560.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l562.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l564.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l564.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l566.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l566.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l568.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l571.pdf" afterPath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l571.pdf" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +38,7 @@
       <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
+            <state relative-caret-position="36">
               <caret line="769" column="0" selection-start-line="769" selection-start-column="0" selection-end-line="769" selection-end-column="0" />
               <folding>
                 <element signature="e#7436#9734#0#PHP" expanded="false" />
@@ -976,7 +963,7 @@
       <workItem from="1488832079832" duration="8888000" />
       <workItem from="1488898498724" duration="21028000" />
       <workItem from="1488982193090" duration="9944000" />
-      <workItem from="1488995506206" duration="12300000" />
+      <workItem from="1488995506206" duration="12898000" />
     </task>
     <task id="LOCAL-00033" summary="architecture_and_firstmod_MateriaPrima">
       <created>1480703535910</created>
@@ -1325,10 +1312,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1587926000" />
+    <option name="totallyTimeSpent" value="1588524000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2693997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1813,7 +1800,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
+        <state relative-caret-position="36">
           <caret line="769" column="0" selection-start-line="769" selection-start-column="0" selection-end-line="769" selection-end-column="0" />
           <folding>
             <element signature="e#7436#9734#0#PHP" expanded="false" />
