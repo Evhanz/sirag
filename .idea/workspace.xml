@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l521.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l557.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l558.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l560.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l562.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l564.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l564.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l566.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l566.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l568.pdf" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" afterPath="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,15 +51,15 @@
       <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="653" column="43" selection-start-line="653" selection-start-column="43" selection-end-line="653" selection-end-column="43" />
+            <state relative-caret-position="291">
+              <caret line="769" column="0" selection-start-line="769" selection-start-column="0" selection-end-line="769" selection-end-column="0" />
               <folding>
                 <element signature="e#7436#9734#0#PHP" expanded="false" />
                 <element signature="e#7794#9310#0#PHP" expanded="false" />
                 <element signature="e#10806#11018#0#PHP" expanded="false" />
                 <element signature="e#11057#11509#0#PHP" expanded="false" />
                 <element signature="e#11517#13401#0#PHP" expanded="false" />
-                <marker date="1489009464832" expanded="true" signature="20807:20837" ph="select * fro... Bancos" />
+                <marker date="1489010824644" expanded="true" signature="20810:20840" ph="select * fro... Bancos" />
               </folding>
             </state>
           </provider>
@@ -58,8 +68,8 @@
       <file leaf-file-name="comprobanteRetencion.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+            <state relative-caret-position="240">
+              <caret line="63" column="60" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#td#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#td#0;n#tr#2;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -76,7 +86,7 @@
       <file leaf-file-name="viewRetenciones.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
+            <state relative-caret-position="-375">
               <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
               <folding>
                 <element signature="e#5353#5373#0#HTML" expanded="true" />
@@ -221,9 +231,9 @@
         <option value="$PROJECT_DIR$/resources/views/cc/pdf/libroRetenciones.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/contabilidad.php" />
         <option value="$PROJECT_DIR$/app/Logica/Helpers/HelpFunct.php" />
-        <option value="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
       </list>
     </option>
@@ -755,16 +765,17 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sirag\resources\views\cc\pdf" />
-      <recent name="C:\xampp\htdocs\sirag\resources\views\cc" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sirag\storage\contabilidad" />
       <recent name="C:\xampp\htdocs\sirag\storage\contabilidad\retenciones" />
       <recent name="C:\xampp\htdocs\sirag\resources\views\comercial" />
       <recent name="C:\xampp\htdocs\sirag\resources\views\rh" />
       <recent name="C:\xampp\htdocs\sirag\resources\views\rh\excel" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sirag\storage\contabilidad\retenciones" />
+      <recent name="C:\xampp\htdocs\sirag\resources\views\cc\pdf" />
+      <recent name="C:\xampp\htdocs\sirag\resources\views\cc" />
     </key>
   </component>
   <component name="RunManager">
@@ -965,7 +976,7 @@
       <workItem from="1488832079832" duration="8888000" />
       <workItem from="1488898498724" duration="21028000" />
       <workItem from="1488982193090" duration="9944000" />
-      <workItem from="1488995506206" duration="11230000" />
+      <workItem from="1488995506206" duration="12300000" />
     </task>
     <task id="LOCAL-00033" summary="architecture_and_firstmod_MateriaPrima">
       <created>1480703535910</created>
@@ -1314,13 +1325,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1586856000" />
+    <option name="totallyTimeSpent" value="1587926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2693997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2693997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32492113" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1774,20 +1785,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
-          <folding>
-            <element signature="e#5353#5373#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
+        <state relative-caret-position="240">
+          <caret line="63" column="60" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#span#0;n#td#0;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#td#0;n#tr#2;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1800,17 +1801,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-375">
+          <caret line="432" column="22" selection-start-line="432" selection-start-column="22" selection-end-line="432" selection-end-column="22" />
+          <folding>
+            <element signature="e#5353#5373#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="653" column="43" selection-start-line="653" selection-start-column="43" selection-end-line="653" selection-end-column="43" />
+        <state relative-caret-position="291">
+          <caret line="769" column="0" selection-start-line="769" selection-start-column="0" selection-end-line="769" selection-end-column="0" />
           <folding>
             <element signature="e#7436#9734#0#PHP" expanded="false" />
             <element signature="e#7794#9310#0#PHP" expanded="false" />
             <element signature="e#10806#11018#0#PHP" expanded="false" />
             <element signature="e#11057#11509#0#PHP" expanded="false" />
             <element signature="e#11517#13401#0#PHP" expanded="false" />
-            <marker date="1489009464832" expanded="true" signature="20807:20837" ph="select * fro... Bancos" />
+            <marker date="1489010824644" expanded="true" signature="20810:20840" ph="select * fro... Bancos" />
           </folding>
         </state>
       </provider>

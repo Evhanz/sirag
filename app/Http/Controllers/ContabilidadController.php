@@ -725,6 +725,8 @@ class ContabilidadController extends Controller
         $res = $this->contabilidadRep->getFormatOfRetencion($fecha,$correlativo);
         $cabecera = null;
 
+
+
         if (count($res)>0){
 
             $newDate = getdate();
@@ -763,6 +765,7 @@ class ContabilidadController extends Controller
 
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
+
 
 
             $ruta = base_path()."/storage/contabilidad/retenciones/comprobantes/l".$correlativo.'.pdf';
