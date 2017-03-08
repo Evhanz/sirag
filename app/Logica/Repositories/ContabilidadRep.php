@@ -10,6 +10,7 @@ namespace sirag\Repositories;
 
 use sirag\DTO\DocumentoDTO;
 use sirag\Entities\Obj;
+use sirag\Helpers\HelpFunct;
 
 
 class ContabilidadRep
@@ -753,6 +754,9 @@ GROUP BY A.TIPO_COMPROBANTE,A.PERIODO,C.MONEDA,A.EMPRESA,A.CORRELATIVO,A.HABER_O
 A.VALOR4,B.RazonSocial
 ORDER BY A.FECHA,A.VALOR4
 ";
+
+
+
 
         $res = \DB::select($query);
 

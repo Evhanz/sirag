@@ -407,6 +407,10 @@
                 var mes  = $('#mes').val();
                 var dia = $scope.num_dia;
 
+                if(dia < 10){
+                    dia = '0'+''+dia;
+                }
+
                 var periodo = anio+'-'+mes+'-'+dia;
 
 
@@ -428,8 +432,10 @@
                         num_veces:num_veces
                     })
                             .success(function(data){
+
+
                                 $('#btnExportar').attr("disabled", false);
-                               // console.log(data);
+                                console.log(data);
                                 var url = '{{ URL::route('modContabilidad') }}/txt/getTxtRetenciones/'+data.file;
                                 window.location = url;
 

@@ -606,7 +606,8 @@ class ContabilidadController extends Controller
 
 
         $row = "";
-
+        $new_fecha = explode('-',$fecha);
+        $new_fecha = $new_fecha[0].$new_fecha[1].$new_fecha[2];
 
         foreach ($res as $item) {
 
@@ -643,7 +644,7 @@ class ContabilidadController extends Controller
         }
 
 
-        $name_file= "20518803078-20-$fecha-$num_veces.txt";
+        $name_file= "20518803078-20-$new_fecha-$num_veces.txt";
 
 
         $f['body'] = $row;
