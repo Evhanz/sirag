@@ -29,13 +29,11 @@
             <td style="padding-left: 40px">{{$item->serie}}</td>
             <td style="padding-left: 80px">{{$item->correlativo}}</td>
             <td style="padding-left: 80px">{{$item->fecha_emision}}</td>
-            <td style="padding-left: 95px">{{$item->monto_pago}}</td>
-            <td style="padding-left: 80px">{{$item->monto_retenido}}</td>
+            <td style="padding-left: 95px;text-align: right;">{{ number_format($item->monto_pago,2,'.',',') }}</td>
+            <td style="padding-left: 80px ;text-align: right;">{{ number_format($item->monto_retenido,2,'.',',') }}</td>
 
         </tr>
         @endforeach
-
-
 
 
     </table>
@@ -43,12 +41,12 @@
 
     <div class="totales">
 
-        <div class="nonto_letras">
+        <div class="nonto_letras" style="font-size: 14px">
             {{$total['monto_letras']}}
         </div>
 
         <div class="monton">
-            {{$total['monto'] }}
+            {{ number_format($total['monto'],2,'.',',') }}
         </div>
 
     </div>
@@ -64,7 +62,7 @@
       /*  font-family: "Courier New", Courier, monospace; */
 
         font-size: 12px;
-        font-weight: bold;
+
 
     }
 
@@ -77,13 +75,13 @@
     .cabecera{
         position: absolute;
         left: 40px;
-        top: 80px;
+        top: 85px;
     }
 
     .detail {
         position: absolute;
         left: 20px;
-        top: 195px;
+        top: 205px;
     }
 
 
