@@ -152,7 +152,7 @@
                                                             <td>@{{ item.AUX_VALOR2 }}</td>
                                                             <td>@{{ item.TIPO_DOCUMENTO }}</td>
                                                             <td>@{{ item.REFERENCIA }}</td>
-                                                            <td>@{{ item.HABER_INGRESO | number: 2 }}</td>
+                                                            <td>@{{ item.HABER_INGRESO | number:2 }}</td>
                                                             <td>@{{ item.FECHA | limitTo:10 }}</td>
 
                                                             <td ng-if="item.VALOR4 == '' " >
