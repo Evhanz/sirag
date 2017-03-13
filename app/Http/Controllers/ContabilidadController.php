@@ -680,6 +680,8 @@ class ContabilidadController extends Controller
 
         $res = $this->contabilidadRep->getFormatOfRetencion($fecha);
 
+       
+
         foreach ($res as $item){
 
             $item->c4 = $this->changeFormatFecha($item->c4);

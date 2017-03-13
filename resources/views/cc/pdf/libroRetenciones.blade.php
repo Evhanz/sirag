@@ -46,6 +46,7 @@
        <strong>Mes: </strong> <span>{{$mes}}</span>   <strong>Año: </strong> <span>{{$anio}}</span>
    </div>
 
+
 </div>
 
 <div class="detail">
@@ -67,13 +68,14 @@
                 <td>6</td>
                 <td>{{$item->c5}}</td>
                 <td>{{$item->c7}}</td>
-                <td>001-{{$item->c3}}</td>
-                <td>{{ round($item->c20,2) }}</td>
+                <td>{{$item->c2}}-{{$item->c3}}</td>
+                <td>{{ round($item->c11_1,2) }}</td>
                 <td>{{ round($item->c22,2) }}</td>
                 <td>{{ round($item->c24,2) }}</td>
+                
             </tr>
 
-            <?php   $t_bruto += round($item->c20,2);
+            <?php   $t_bruto += round($item->c11_1,2);
                     $t_retencion += round($item->c22,2);
                     $t_neto += round($item->c24,2); ?>
         @endforeach
