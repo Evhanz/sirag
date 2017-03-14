@@ -270,9 +270,10 @@
         function fillDataSelects(data)
         {
             data.forEach(function (item) {
-                item.id = item.dni;
+                item.id = item.EMPLEADO;
                 item.text = item.nombre;
             });
+
 
             $("#selChofer").select2({
                 data: data
@@ -283,6 +284,8 @@
             $("#selControlador").select2({
                 data: data
             });
+
+          
         }
 
 
@@ -320,7 +323,9 @@
                         tara_parihuela: '',
                         peso_bruto: ''
                     }
-                ]
+                ],
+                conductores:[ ]
+
             },
             methods:{
                 addDetalleUva: function () {
@@ -388,6 +393,9 @@
                         this.detallesUva.splice(correlativo, 1);
                     }
 
+
+                },
+                addConductor:   function () {
 
                 }
             }

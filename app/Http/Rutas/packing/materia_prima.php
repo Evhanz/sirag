@@ -7,7 +7,7 @@
  */
 
 Route::get('packing/materiaPrima/index',['as'=>'inicioPMateriaPrima','uses'=>'Packing\MateriaPrimaController@index']);
-Route::get('packing/viewStore',
+Route::get('packing/materiaPrima/viewStore',
     ['as'=>'viewStorePMateriaPrima','uses'=>'Packing\MateriaPrimaController@viewStorePMateriaPrima']);
 
 //api
