@@ -71,13 +71,13 @@
                 <td>{{$item->c2}}-{{$item->c3}}</td>
                 <td>{{ round($item->c11_1,2) }}</td>
                 <td>{{ round($item->c22,2) }}</td>
-                <td>{{ round($item->c24,2) }}</td>
+                <td>{{ round($item->c20_1,2) }}</td>
                 
             </tr>
 
             <?php   $t_bruto += round($item->c11_1,2);
                     $t_retencion += round($item->c22,2);
-                    $t_neto += round($item->c24,2); ?>
+                    $t_neto += round($item->c20_1,2); ?>
         @endforeach
 
         <tr class="resultado">
