@@ -96,7 +96,7 @@
             <td>{{ round((($t_cantidad / $t_total_area)/8),2) }}</td>
 
             <td>{{ $t_plantas }}</td>
-            <td>{{ round($t_plantas / (($t_cantidad / $t_total_area)/8),2 )}}</td>
+            <td>{{ round(($t_plantas / $t_total_area) / (($t_cantidad / $t_total_area)/8),2 )}}</td>
 
         </tr>
         @endforeach
