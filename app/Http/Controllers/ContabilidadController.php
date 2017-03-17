@@ -738,7 +738,10 @@ class ContabilidadController extends Controller
                 $newDate['mon'] = '0'.$newDate['mon'];
             }
 
-            $newDate = $newDate['mday'].'/'.$newDate['mon'].'/'.$newDate['year'];
+           // $newDate = $newDate['mday'].'/'.$newDate['mon'].'/'.$newDate['year'];
+
+            $newDate  = $this->changeFormatFecha($res[0]->c4);
+
 
             $cabecera['razon'] = $res[0]->c7;
             $cabecera['ruc'] = $res[0]->c5;

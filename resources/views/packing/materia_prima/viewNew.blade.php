@@ -44,13 +44,11 @@
                             <input class="form-control input-sm" value="AGRO EXPORTACIONES GRACE S.A.C." type="text" disabled>
                         </div>
                         <div class="form-group">
-                            <label>CHOFER</label>
-                            <select class="form-control select2" style="width: 100%;" id="selChofer">
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>N° PLACA</label>
-                            <input class="form-control input-sm" type="text" id="n_placa">
+                            <label>CHOFERES</label><br>
+                            <button class="btn btn-success"  v-on:click="addChoferes()">
+                                Agregar  choferes <i class="fa fa-users"></i>
+                            </button>
+
                         </div>
                     </div>
 
@@ -127,10 +125,10 @@
                                         <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
                                         <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
                                         <td>
-                                            <select class="form-control input-sm" v-model="item.variedad">
+                                            <select class="form-control input-sm" v-model="item.variedad" v-on:change="cambio(item.variedad)">
                                                 <option value="Superior">Superior</option>
                                                 <option value="Red Globe">Red Globe</option>
-                                                <option value="Red Globe">Crimson</option>
+                                                <option value="Crimson">Crimson</option>
                                             </select>
 
                                         </td>
@@ -175,7 +173,7 @@
                                         <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
                                         <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
                                         <td>
-                                            <select class="form-control input-sm" v-model="item.variedad">
+                                            <select class="form-control input-sm" v-model="item.variedad" >
                                                 <option value="Superior">Superior</option>
                                                 <option value="Red Globe">Red Globe</option>
                                                 <option value="Red Globe">Crimson</option>
@@ -211,6 +209,93 @@
             </pre>
 
         </div>
+
+
+
+        <div id="modalTrbajadores" class="modal fade bs-example-modal-lg"  role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-xs-6">
+
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Personal </h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <label>Chofer</label>
+                                            <select class="form-control select2" style="width: 100%" id="selChofer">
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Placa</label>
+                                            <input class="form-control" id="n_placa" type="text">
+                                        </div>
+                                        <div class="col-xs-2">
+
+                                            <br>
+                                            <button class="btn btn-primary btn-sm" v-on:click="addNewChofer()">></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- /.box-body -->
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6">
+
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Conductores </h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <td>DNI</td>
+                                            <td>Chofer</td>
+                                            <td>Placa</td>
+                                        </tr>
+
+                                        <tr v-for=" (item, index) in conductores" >
+                                            <td>@{{ item.dni }}</td>
+                                            <td>@{{ item.chofer }}</td>
+                                            <td>@{{ item.placa }}</td>
+                                            <td><button class="btn btn-danger btn-sm" v-on:click="quitChofer(index)"><</button></td>
+
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+                                <!-- /.box-body -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
 
 
@@ -324,7 +409,8 @@
                         peso_bruto: ''
                     }
                 ],
-                conductores:[ ]
+                conductores:[ ],
+                detalleDescarte:[]
 
             },
             methods:{
@@ -395,7 +481,76 @@
 
 
                 },
-                addConductor:   function () {
+                addChoferes:   function () {
+
+                    $("#modalTrbajadores").modal('show');
+
+                },
+                addNewChofer: function () {
+
+                    var dni  = $("#selChofer").val();
+                    var placa = $('#n_placa').val();
+                    var bandera = 0;
+                    var chofer = $("#selChofer option:selected").html();
+
+                    this.conductores.forEach(function (element, index) {
+
+                        if(element.dni == dni || element.placa == placa){
+                            bandera = 1;
+                        }
+
+                    });
+
+                    if(bandera==0){
+                        var chofer = {
+                            dni:dni,
+                            placa:placa,
+                            chofer:chofer
+                        };
+
+                        this.conductores.push(chofer);
+                    }else{
+                        alert('ya se encuentra ingresado un dato');
+                    }
+
+                },
+                quitChofer: function (index) {
+
+                    var r = confirm("Seguro que quieres eliminar esta fila ?");
+                    if (r == true) {
+
+                        this.conductores.splice(index, 1);
+                    }
+
+                },
+                cambio : function (tipo) {
+
+                    //primero buscmos la variedad en el detalle descarte
+
+
+                    this.detallesUva.forEach(function (item,key) {
+
+
+                    });
+
+
+                    /*
+                    this.detalleDescarte.forEach(function (item,key) {
+
+                        this.detallesUva.forEach(function (itemDet, keyDet) {
+
+                            if(item.){
+
+                            }
+
+                        });
+
+
+
+                        
+                    });
+                    */
+
 
                 }
             }
