@@ -110,7 +110,7 @@
             @if($jornales == 0)
                 <td>{{ $jornales }}</td>
             @else
-                <td>{{ round($t_plantas  / $jornales ,2) }}</td>
+                <td>{{ round(($t_plantas/$t_total_area)  / $jornales ,2) }}</td>
             @endif
 
 

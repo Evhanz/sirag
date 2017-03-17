@@ -108,7 +108,7 @@
             @endif
             <td>{{ $t_plantas }}</td>
             @if($jornal != 0)
-                <td>{{ round($t_plantas / $jornal,2)  }}</td> <!-- SON PLANTAS ENTRE JORNALES -->
+                <td>{{ round(($t_plantas/$t_total_area) / $jornal,2)  }}</td> <!-- SON PLANTAS ENTRE JORNALES -->
             @else
                 <td>{{ $t_plantas }}</td>
             @endif
