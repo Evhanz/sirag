@@ -755,7 +755,7 @@ class ContabilidadController extends Controller
                 $item->serie = $item->c13;
                 $item->correlativo = $item->c14;
                 $item->fecha_emision = $this->changeFormatFecha($item->c15);
-                $item->monto_pago = round($item->c20,2) ;
+                $item->monto_pago = round($item->c11_1,2) ;
                 $item->monto_retenido = round($item->c22,2);
 
                 $total['monto'] +=round($item->c22,2);
