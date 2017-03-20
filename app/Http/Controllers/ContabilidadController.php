@@ -788,8 +788,6 @@ class ContabilidadController extends Controller
             return "correcto";
 
 
-          //  return $view;
-
 
         }else{
             return 'No existen datos para mostrar';

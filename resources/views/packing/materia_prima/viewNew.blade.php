@@ -94,7 +94,7 @@
             <div class="box-footer">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home">DETALLE UVA</a></li>
-                    <li><a data-toggle="tab" href="#menu1">DETALLE DESCARTE</a></li>
+                    <li><a data-toggle="tab" href="#menu1"  v-on:click="generateDetDescarte()">DETALLE DESCARTE</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -108,9 +108,9 @@
                                         <th >I</th>
                                         <th>Pesadas</th>
                                         <th>Guia </th>
-                                        <th>Variedad</th>
                                         <th>F.</th>
                                         <th>P.</th>
+                                        <th>Variedad</th>
                                         <th>L Prod.</th>
                                         <th>N° Jaba</th>
                                         <th>Tara Jaba</th>
@@ -124,16 +124,15 @@
                                         <td>@{{ item.correlativo }}</td>
                                         <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
                                         <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
+                                        <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
+                                        <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
                                         <td>
-                                            <select class="form-control input-sm" v-model="item.variedad" v-on:change="cambio(item.variedad)">
+                                            <select class="form-control input-sm" v-model="item.variedad">
                                                 <option value="Superior">Superior</option>
                                                 <option value="Red Globe">Red Globe</option>
                                                 <option value="Crimson">Crimson</option>
                                             </select>
-
                                         </td>
-                                        <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
-                                        <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
                                         <td><input v-model="item.l_produccion" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.n_jaba" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.tara_jaba" step="any" min="0.00" class="form-control input-sm" type="text"></td>
@@ -154,40 +153,28 @@
                                     <thead>
                                     <tr>
                                         <th >I</th>
-                                        <th>Pesadas</th>
-                                        <th>Guia </th>
+                                        <th>F/P</th>
                                         <th>Variedad</th>
-                                        <th>F.</th>
-                                        <th>P.</th>
-                                        <th>L Prod.</th>
-                                        <th>N° Jaba</th>
-                                        <th>Tara Jaba</th>
-                                        <th>Tara Parihuela</th>
-                                        <th>Peso Bruto</th>
-                                        <th> <button class="btn btn-info btn-sm" v-on:click="addDetalleUva()"> + </button> </th>
+                                        <th>Racimo</th>
+                                        <th>KL</th>
+                                        <th>Baya</th>
+                                        <th>KL</th>
+                                        <th>Total</th>
+                                        <th>%</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for=" item in detallesUva" >
+                                    <tr v-for=" item in detalleDescarte" >
                                         <td>@{{ item.correlativo }}</td>
-                                        <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
-                                        <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
-                                        <td>
-                                            <select class="form-control input-sm" v-model="item.variedad" >
-                                                <option value="Superior">Superior</option>
-                                                <option value="Red Globe">Red Globe</option>
-                                                <option value="Red Globe">Crimson</option>
-                                            </select>
+                                        <td><input v-model="item.fundo_parron" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.variedad" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.kl_racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.kl_baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.total" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.porcentaje" step="any" min="0.00" class="form-control input-sm" type="text"></td>
 
-                                        </td>
-                                        <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
-                                        <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
-                                        <td><input v-model="item.l_produccion" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.n_jaba" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.tara_jaba" step="any" min="0.00" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.tara_parihuela" step="any" min="0.00" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.peso_bruto" step="any" min="0.00" class="form-control input-sm" type="text" ></td>
-                                        <td><button class="btn btn-default btn-sm" v-on:click="deteleDetail(item.correlativo)"> - </button></td>
                                     <!-- por aqui se guarda esto: @keyup.tab="addDetalleUva()" -->
                                     </tr>
                                     </tbody>
@@ -205,7 +192,7 @@
         <div class="col-lg-12">
 
             <pre>
-                 @{{ $data }}
+              <!--   @{{ $data }} -->
             </pre>
 
         </div>
@@ -376,6 +363,8 @@
 
 
 
+
+
     </script>
 
 
@@ -523,34 +512,51 @@
                     }
 
                 },
-                cambio : function (tipo) {
+                cambio : function (variedad,fundo,parron) {
 
                     //primero buscmos la variedad en el detalle descarte
 
 
-                    this.detallesUva.forEach(function (item,key) {
+
+                    var bandera = 0;
 
 
-                    });
-
-
-                    /*
                     this.detalleDescarte.forEach(function (item,key) {
 
-                        this.detallesUva.forEach(function (itemDet, keyDet) {
+                        if(item.fundo_parron == fundo+'/'+parron && item.variedad == variedad ){
 
-                            if(item.){
-
-                            }
-
-                        });
-
-
-
-                        
+                            bandera = 1;
+                        }
                     });
-                    */
 
+
+
+                    console.log(bandera);
+
+                    if(bandera == 0){
+
+                        var detail_descarte = {
+                            fundo_parron:fundo+'/'+parron,
+                            variedad:variedad,
+                            racimo:0,
+                            kl_racimo:0,
+                            baya:0,
+                            kl_baya:0,
+                            total:0,
+                            porcentaje:0
+
+                        };
+
+                        this.detalleDescarte.push(detail_descarte);
+
+                    }
+
+
+
+
+
+                },
+                generateDetDescarte: function () {
 
                 }
             }

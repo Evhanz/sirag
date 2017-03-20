@@ -47,14 +47,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewNew.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="viewNew.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="531" column="0" selection-start-line="531" selection-start-column="0" selection-end-line="531" selection-end-column="0" />
-              <folding>
-                <element signature="e#19303#20622#0#HTML" expanded="false" />
-              </folding>
+            <state relative-caret-position="56">
+              <caret line="537" column="47" selection-start-line="537" selection-start-column="47" selection-end-line="537" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,8 +60,8 @@
       <file leaf-file-name="ContabilidadRep.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="660" column="23" selection-start-line="660" selection-start-column="23" selection-end-line="660" selection-end-column="23" />
+            <state relative-caret-position="10812">
+              <caret line="643" column="33" selection-start-line="643" selection-start-column="33" selection-end-line="643" selection-end-column="33" />
               <folding>
                 <marker date="1489503786657" expanded="true" signature="306:476" ph="SELECT CODIG... GEN_TABCOD" />
                 <marker date="1489503786657" expanded="true" signature="1100:1134" ph="select * fro... temp_balance_general" />
@@ -85,7 +83,7 @@
                 <marker date="1489503786657" expanded="true" signature="16478:16950" ph="SELECT p.GLO... DocumentoD" />
                 <marker date="1489503786657" expanded="true" signature="17770:18320" ph="SELECT A.COR... CON_MOVCOM" />
                 <marker date="1489503786657" expanded="true" signature="18641:19040" ph="update flexl... " />
-                <marker date="1489503786657" expanded="true" signature="19404:24282" ph="SELECT '6' A... " />
+                <marker date="1489503786657" expanded="false" signature="19404:24282" ph="SELECT '6' A... " />
                 <marker date="1489503786657" expanded="true" signature="24938:25569" ph="select CONVE... DocumentoD" />
                 <marker date="1489503786657" expanded="true" signature="25768:27150" ph="SELECT A.COR... CON_MOVCOM" />
                 <marker date="1489503786657" expanded="true" signature="25860:26045" ph="SELECT TOP 1... CON_MOVCOM" />
@@ -100,28 +98,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comprobanteRetencion.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="78" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContabilidadController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="736" column="0" selection-start-line="736" selection-start-column="0" selection-end-line="736" selection-end-column="0" />
+            <state relative-caret-position="10829">
+              <caret line="814" column="5" selection-start-line="814" selection-start-column="5" selection-end-line="814" selection-end-column="5" />
               <folding>
                 <element signature="e#7436#9734#0#PHP" expanded="false" />
                 <element signature="e#7794#9310#0#PHP" expanded="false" />
                 <element signature="e#10806#11018#0#PHP" expanded="false" />
                 <element signature="e#11057#11509#0#PHP" expanded="false" />
                 <element signature="e#11517#13401#0#PHP" expanded="false" />
-                <marker date="1489787514664" expanded="true" signature="20886:20916" ph="select * fro... Bancos" />
+                <marker date="1490020927803" expanded="true" signature="20857:20887" ph="select * fro... Bancos" />
               </folding>
             </state>
           </provider>
@@ -218,8 +206,8 @@
         <option value="$PROJECT_DIR$/resources/views/cc/viewRetenciones.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/packing/materia_prima.php" />
-        <option value="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php" />
+        <option value="$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php" />
       </list>
     </option>
   </component>
@@ -712,120 +700,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rutas" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rutas" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="packing" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Packing" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sirag" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Console" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -1095,14 +969,9 @@
       <workItem from="1489588639303" duration="10519000" />
       <workItem from="1489611125179" duration="5621000" />
       <workItem from="1489673849301" duration="15380000" />
-      <workItem from="1489762232073" duration="9588000" />
-    </task>
-    <task id="LOCAL-00034" summary="rev">
-      <created>1481026486680</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1481026486681</updated>
+      <workItem from="1489762232073" duration="9795000" />
+      <workItem from="1490020131499" duration="14345000" />
+      <workItem from="1490042926542" duration="6814000" />
     </task>
     <task id="LOCAL-00035" summary="rev">
       <created>1481105278600</created>
@@ -1440,17 +1309,24 @@
       <option name="project" value="LOCAL" />
       <updated>1489089517542</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="se cambio retenciones y agregado vuejs full">
+      <created>1489791608397</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1489791608398</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1671382000" />
+    <option name="totallyTimeSpent" value="1692748000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2693997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22767204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32492113" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1838,20 +1714,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="531" column="0" selection-start-line="531" selection-start-column="0" selection-end-line="531" selection-end-column="0" />
+        <state relative-caret-position="10829">
+          <caret line="814" column="5" selection-start-line="814" selection-start-column="5" selection-end-line="814" selection-end-column="5" />
           <folding>
-            <element signature="e#19303#20622#0#HTML" expanded="false" />
+            <element signature="e#7436#9734#0#PHP" expanded="false" />
+            <element signature="e#7794#9310#0#PHP" expanded="false" />
+            <element signature="e#10806#11018#0#PHP" expanded="false" />
+            <element signature="e#11057#11509#0#PHP" expanded="false" />
+            <element signature="e#11517#13401#0#PHP" expanded="false" />
+            <marker date="1490020927803" expanded="true" signature="20857:20887" ph="select * fro... Bancos" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="78" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="660" column="23" selection-start-line="660" selection-start-column="23" selection-end-line="660" selection-end-column="23" />
+        <state relative-caret-position="10812">
+          <caret line="643" column="33" selection-start-line="643" selection-start-column="33" selection-end-line="643" selection-end-column="33" />
           <folding>
             <marker date="1489503786657" expanded="true" signature="306:476" ph="SELECT CODIG... GEN_TABCOD" />
             <marker date="1489503786657" expanded="true" signature="1100:1134" ph="select * fro... temp_balance_general" />
@@ -1873,7 +1761,7 @@
             <marker date="1489503786657" expanded="true" signature="16478:16950" ph="SELECT p.GLO... DocumentoD" />
             <marker date="1489503786657" expanded="true" signature="17770:18320" ph="SELECT A.COR... CON_MOVCOM" />
             <marker date="1489503786657" expanded="true" signature="18641:19040" ph="update flexl... " />
-            <marker date="1489503786657" expanded="true" signature="19404:24282" ph="SELECT '6' A... " />
+            <marker date="1489503786657" expanded="false" signature="19404:24282" ph="SELECT '6' A... " />
             <marker date="1489503786657" expanded="true" signature="24938:25569" ph="select CONVE... DocumentoD" />
             <marker date="1489503786657" expanded="true" signature="25768:27150" ph="SELECT A.COR... CON_MOVCOM" />
             <marker date="1489503786657" expanded="true" signature="25860:26045" ph="SELECT TOP 1... CON_MOVCOM" />
@@ -1887,26 +1775,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/cc/pdf/comprobanteRetencion.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/packing/materia_prima/viewNew.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="78" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="78" />
+        <state relative-caret-position="56">
+          <caret line="537" column="47" selection-start-line="537" selection-start-column="47" selection-end-line="537" selection-end-column="47" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContabilidadController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="736" column="0" selection-start-line="736" selection-start-column="0" selection-end-line="736" selection-end-column="0" />
-          <folding>
-            <element signature="e#7436#9734#0#PHP" expanded="false" />
-            <element signature="e#7794#9310#0#PHP" expanded="false" />
-            <element signature="e#10806#11018#0#PHP" expanded="false" />
-            <element signature="e#11057#11509#0#PHP" expanded="false" />
-            <element signature="e#11517#13401#0#PHP" expanded="false" />
-            <marker date="1489787514664" expanded="true" signature="20886:20916" ph="select * fro... Bancos" />
-          </folding>
         </state>
       </provider>
     </entry>
