@@ -192,6 +192,8 @@
         <div class="col-lg-12">
 
             <pre>
+
+                <button class="btn btn-success btn-lg"  v-on:click="saveData()"> <i class="fa fa-floppy-o fa-lg"></i> Guardar</button>
               <!--   @{{ $data }} -->
             </pre>
 
@@ -266,7 +268,6 @@
                                             <td>@{{ item.chofer }}</td>
                                             <td>@{{ item.placa }}</td>
                                             <td><button class="btn btn-danger btn-sm" v-on:click="quitChofer(index)"><</button></td>
-
                                         </tr>
 
                                     </table>
@@ -310,19 +311,6 @@
     <link rel="stylesheet" href="{{asset('templates/lte2/plugins/timepicker/bootstrap-timepicker.min.css')}}">
     <script>
 
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        });
-        //Timepicker
-        $(".timepicker").timepicker({
-            showInputs: false
-        });
-
-
-        function validar() {
-            alert("as");
-        }
 
         //primero traeremos toda la data de las personas
 
@@ -332,6 +320,8 @@
         getInitData();
         
         function getInitData() {
+
+
 
             $.getJSON( ruta, function( data ) {
                // console.log( data );
@@ -355,6 +345,15 @@
             });
             $("#selControlador").select2({
                 data: data
+            });
+
+            $('#datepicker').datepicker({
+                format: 'dd/mm/yyyy'
+            });
+
+            //Timepicker
+            $(".timepicker").timepicker({
+                showInputs: false
             });
 
           
@@ -557,6 +556,86 @@
 
                 },
                 generateDetDescarte: function () {
+
+                    var res = confirm('Desea generar ');
+                    var detallesDescarte = this.detalleDescarte;
+
+                    if(res){
+
+
+                        //limpiamos el array
+
+                        var cant_descarte = detallesDescarte.length;
+
+                        detallesDescarte.splice(0,cant_descarte);
+
+
+                        this.detallesUva.forEach(function (item,key) {
+
+
+                            var fundo = item.fundo;
+                            var parron  = item.parron;
+                            var variedad  = item.variedad;
+
+                            if(fundo.length >0 &&  parron.length >0 ){
+                                var bandera = 0;
+
+                                detallesDescarte.forEach(function (itemDes,keyDes) {
+
+                                    if(itemDes.fundo_parron == fundo+'/'+parron && itemDes.variedad == variedad ){
+
+                                        bandera = 1;
+                                    }
+                                });
+
+                            }
+
+
+                            if(bandera == 0){
+
+                                var detail_descarte = {
+                                    fundo_parron:fundo+'/'+parron,
+                                    variedad:variedad,
+                                    racimo:0,
+                                    kl_racimo:0,
+                                    baya:0,
+                                    kl_baya:0,
+                                    total:0,
+                                    porcentaje:0
+
+                                };
+
+                                detallesDescarte.push(detail_descarte);
+
+                            }
+
+
+                        });
+
+
+
+
+
+
+
+                    }
+
+                },
+                saveData: function () {
+
+                    var conductores = this.conductores ;
+                    var cabecera  = {};
+                    var detalle_uva = this.detallesUva;
+                    var detalle_descarte = this.detalleDescarte;
+
+
+
+                },
+                validateForm:function () {
+
+                    var bandera = 0;
+
+                    if(){}
 
                 }
             }
