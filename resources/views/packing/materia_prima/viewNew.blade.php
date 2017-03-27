@@ -37,14 +37,14 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="row">
-
+                    <input name="_token" type="hidden" id="_token" value="{{ csrf_token() }}" />
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>PRODUCTOR</label>
                             <input class="form-control input-sm" value="AGRO EXPORTACIONES GRACE S.A.C." type="text" disabled>
                         </div>
                         <div class="form-group">
-                            <label>CHOFERES</label><br>
+                            <label>CHOFERES: @{{ conductores.length }}</label><br>
                             <button class="btn btn-success"  v-on:click="addChoferes()">
                                 Agregar  choferes <i class="fa fa-users"></i>
                             </button>
@@ -55,7 +55,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>GUIA TRANSPORTISTAS</label>
-                            <input class="form-control input-sm"  type="text" >
+                            <input class="form-control input-sm" id="selGuiaTransportistas"  type="text" >
                         </div>
                         <div class="form-group">
                             <label>RESPONSABLE</label>
@@ -76,12 +76,12 @@
                         </div>
                         <div class="form-group">
                             <label>H. INICIO</label>
-                            <input class="form-control timepicker" type="text">
+                            <input class="form-control timepicker" type="text" id="h_inicio">
 
                         </div>
                         <div class="form-group">
                             <label>H. FIN</label>
-                            <input class="form-control timepicker" type="text">
+                            <input class="form-control timepicker" type="text" id="h_fin">
                         </div>
                     </div>
 
@@ -210,11 +210,6 @@
                             <div class="box box-default">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Personal </h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                                    </div>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -247,35 +242,24 @@
                             <div class="box box-primary">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Conductores </h3>
-
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                                    </div>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table class="table table-bordered">
-
                                         <tr>
                                             <td>DNI</td>
                                             <td>Chofer</td>
                                             <td>Placa</td>
                                         </tr>
-
                                         <tr v-for=" (item, index) in conductores" >
                                             <td>@{{ item.dni }}</td>
                                             <td>@{{ item.chofer }}</td>
                                             <td>@{{ item.placa }}</td>
                                             <td><button class="btn btn-danger btn-sm" v-on:click="quitChofer(index)"><</button></td>
                                         </tr>
-
                                     </table>
-
                                 </div>
                                 <!-- /.box-body -->
-
-
                         </div>
                     </div>
                 </div>
@@ -290,8 +274,7 @@
     </div>
     <!-- /.row (Row Filter) -->
 
-    <!-- Row Data-->
-    <div class="row">
+
 
     </div>
     <!-- /.row (Row Data) -->
@@ -373,9 +356,6 @@
 
     <script>
 
-        Vue.component('detUva_template',{
-            template:''
-        });
 
         new Vue({
 
@@ -490,7 +470,7 @@
                     });
 
                     if(bandera==0){
-                        var chofer = {
+                        chofer = {
                             dni:dni,
                             placa:placa,
                             chofer:chofer
@@ -528,10 +508,6 @@
                         }
                     });
 
-
-
-                    console.log(bandera);
-
                     if(bandera == 0){
 
                         var detail_descarte = {
@@ -549,11 +525,6 @@
                         this.detalleDescarte.push(detail_descarte);
 
                     }
-
-
-
-
-
                 },
                 generateDetDescarte: function () {
 
@@ -587,10 +558,7 @@
                                         bandera = 1;
                                     }
                                 });
-
                             }
-
-
                             if(bandera == 0){
 
                                 var detail_descarte = {
@@ -604,38 +572,86 @@
                                     porcentaje:0
 
                                 };
-
                                 detallesDescarte.push(detail_descarte);
-
                             }
-
-
                         });
-
-
-
-
-
-
 
                     }
 
                 },
                 saveData: function () {
 
+
                     var conductores = this.conductores ;
                     var cabecera  = {};
                     var detalle_uva = this.detallesUva;
                     var detalle_descarte = this.detalleDescarte;
+                    var ruta = "{{URL::route('materiaPrimaStoreNew')}}";
 
 
+                    var valid = this.validateForm();
+
+                    console.log(valid);
+
+                    if(valid.bandera == 0){
+
+                        var fecha = $('#datepicker').val();
+                        fecha = fecha.split('/');
+                        fecha = fecha[2]+'/'+fecha[1]+'/'+fecha[0];
+
+
+                        cabecera = {
+
+                            guia_transportista: $('#selGuiaTransportistas').val(),
+                            responsable: $('#selResponsable').val(),
+                            controlador: $('#selControlador').val(),
+                            fecha: fecha,
+                            h_inicio: $('#h_inicio').val(),
+                            h_fin: $('#h_fin').val()
+
+                        };
+
+                        $.post( ruta,
+                                {
+                                    _token: $('#_token').val(),
+                                    conductores: conductores,
+                                    cabecera:cabecera,
+                                    detalle_uva: detalle_uva,
+                                    detalle_descarte : detalle_descarte
+                                })
+                                .done(function( data ) {
+
+                                    console.log(data);
+
+                                }).fail(function(error) {
+
+                                    console.log(error); });
+
+
+                    }else{
+                        alert('Error en :'+valid.mensaje);
+                    }
 
                 },
                 validateForm:function () {
 
-                    var bandera = 0;
+                    var response = {
+                        bandera:0,
+                        mensaje:''
 
-                    if(){}
+                    };
+
+                    var conductores = this.conductores ;
+                    var detalle_uva = this.detallesUva;
+                    var detalle_descarte = this.detalleDescarte;
+
+                    if(conductores.length < 1){
+                        response.bandera = 1;
+                        response.mensaje = '';
+                    }
+
+                    return response;
+
 
                 }
             }

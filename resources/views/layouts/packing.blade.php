@@ -409,7 +409,7 @@
 <!-- ./ main Script -->
 
 <!--more Scripts -->
-@yield('scripts');
+@yield('scripts')
 
 <!-- ./ more scripts -->
 </body>

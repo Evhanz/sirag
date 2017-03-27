@@ -15,6 +15,8 @@ Route::get('packing/materiaPrima/getAllMteriaPrima',
     ['as'=>'getAllMteriaPrima','uses'=>'Packing\MateriaPrimaController@getAllMteriaPrima']);
 Route::get('packing/materiaPrima/get',
     ['as'=>'inicioPacking','uses'=>'Packing\MateriaPrimaController@index']);
+Route::post('packing/materiaPrima/storeNew',
+    ['as'=>'materiaPrimaStoreNew','uses'=>'Packing\MateriaPrimaController@materiaPrimaStoreNew']);
 
 //  esto es un api externaa  se usó para no tener
 //  problemas con el acceso a compartir rutas

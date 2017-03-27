@@ -56,11 +56,19 @@ class MateriaPrimaController extends Controller
 
     public function getTrabajadores(){
 
-
         $res = $this->personalRep->getAllTrabajadores();
 
         return \Response::json($res);
 
+    }
+
+
+    public function materiaPrimaStoreNew()
+    {
+        $data = \Input::all();
+
+
+        return \Response::json($data);
 
     }
 
