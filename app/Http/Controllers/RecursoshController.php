@@ -70,6 +70,10 @@ class RecursoshController extends Controller
         return view('rh/viewDeleteMovimientos');
     }
 
+    public function viewGetBoletaPago(){
+        return view('rh/viewGetBoletaPago');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -1186,6 +1190,48 @@ class RecursoshController extends Controller
 
     }
 
+
+    public function getBoletaPago(){
+
+
+        $data['periodo']= '20170322';
+        $data['ficha']= '10029';
+
+
+        $res = $this->personalRep->getBoletaDePago($data);
+        //dd($res);
+
+        $view =  \View::make('rh.pdf.boletaPagoPdf',compact('res'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('invoice');
+
+
+       // dd($res);
+
+
+        /*
+
+
+        $input = \Input::all();
+
+        $periodo = explode("/", $input['fecha']);
+
+        $input['periodo'] = $periodo[2].$periodo[1].$periodo[0];
+        $input['inicio_periodo'] = $periodo[2].$periodo[1].'01';
+
+        $data = $this->personalRep->getDetailLiquidacion($input);
+
+        $view =  \View::make('rh.pdf.liquidacionPdf',compact('data'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        // return $pdf->stream('invoice');
+        return $pdf->download('liquidaciones:'.$input['fecha']);
+
+        */
+
+
+    }
 
 
 

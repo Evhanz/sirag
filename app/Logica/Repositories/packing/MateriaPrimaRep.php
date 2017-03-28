@@ -58,12 +58,17 @@ class MateriaPrimaRep
             $variedad = $item['variedad'];
             $fundo_parron = $item['fundo'].'/'.$item['parron'];
             $l_produccion = $item['l_produccion'];
+            $n_jaba = $item['n_jaba'];
+            $tara_jaba = $item['tara_jaba'];
+            $tara_parihuela = $item['tara_parihuela'];
+            $peso_bruto = $item['peso_bruto'];
 
 
 
             \DB::insert("INSERT INTO sirag.detalle_uva (n_pesadas , n_guia , variedad ,fundo_parron
                         ,l_produccion , n_jaba , tara_jaba , tara_parihuela , peso_bruto , id_ingreso_MP ) VALUES
-                     ('$guia', '$h_inicio', '$h_fin','$dni_responsable','$dni_controlador',1,'$fecha')");
+                     ('$n_pesadas', '$n_guia', '$variedad','$fundo_parron','$l_produccion',$n_jaba,$tara_jaba,
+                     $tara_parihuela,$peso_bruto,'$id_cabecera')");
 
 
 

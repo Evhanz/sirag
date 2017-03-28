@@ -21,7 +21,7 @@ Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron'
     'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
 Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
 Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
-
+Route::get('rh/rep/viewGetBoletaPago',['as'=>'viewGetBoletaPago','uses'=>'RecursoshController@viewGetBoletaPago']);
 
 
 //llamada a API
@@ -81,6 +81,7 @@ Route::get('archivo/getTxtPlameJOR/{periodo}',['as'=>'getTxtPlameJOR','uses'=>'R
 
 //esto es para los pdf
 Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
+Route::get('rh/archivos/getBoletaPago',['as'=>'getBoletaPago','uses'=>'RecursoshController@getBoletaPago']);
 
 
 //esto es para los archivos excel

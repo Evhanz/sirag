@@ -172,7 +172,15 @@ class NumberToLetter
         $tex = $neg . substr($tex, 1) . $fin;
         //Zi hack --> return ucfirst($tex);
         try{
-        $ff = $float[1] == '' ? '00':$float[1] ;
+            //esto colocó Eidelman
+            if (count($float)==2){
+                if( strlen($float[1]) == 1){
+                    $float[1] = $float[1].'0';
+                }
+            }
+            $ff = $float[1] == '' ? '00':$float[1] ;
+
+
         }catch ( \Exception $e){
             $ff= '00';
 

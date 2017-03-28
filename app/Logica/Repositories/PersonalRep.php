@@ -2787,6 +2787,75 @@ where EMPRESA = 'e01'";
     }
 
 
+    public function getBoletaDePago($data){
+
+        $q1='';
+        $periodo = $data['periodo'];
+
+        if(isset($data['ficha'])){
+
+            $ficha = $data['ficha'];
+            $q1 = " and A.FICHA = '$ficha' ";
+
+        }else{
+            $q1 = " and A.FICHA like '%%' ";
+        }
+
+
+        $query = "SELECT
+        B.NOMBRE+' '+B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO AS NOMBRE ,
+        A.FICHA AS CODIGO,
+        B.EMPLEADO AS DNI,
+        B.CATEGORIA AS CATEGORIA,
+        B.CARGO AS CARGO,
+        (SELECT VALOR FROM flexline.PER_ATRIB_TRAB
+        WHERE EMPRESA=A.EMPRESA
+        AND FICHA=A.FICHA
+        AND ATRIBUTO='AFP') AS AFP,
+        (SELECT VALOR FROM flexline.PER_ATRIB_TRAB
+        WHERE EMPRESA=A.EMPRESA
+        AND FICHA=A.FICHA
+        AND ATRIBUTO='CUSPP') AS T_TRABAJADOR,
+        A.MOVIMIENTO,
+        A.VALOR,
+        A.DESCRIPCION,
+        A.TIPO_MOVTO
+        FROM 
+        flexline.PER_DET_LIQ A,
+        flexline.PER_TRABAJADOR B
+        WHERE 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='E01'
+        AND A.PERIODO ='20170322' -- DEBE ESCOGER EL DIA DE QUE BOLETA QUIERE OBTENER
+        $q1
+        AND A.MOVIMIENTO <> '110900'
+        AND A.MOVIMIENTO <> '99002'
+        AND A.MOVIMIENTO <> '99001'
+        AND A.MOVIMIENTO <> '52500'
+        AND A.MOVIMIENTO <> '132'
+        AND A.MOVIMIENTO <> '133'
+        AND A.MOVIMIENTO <> '1'
+        AND A.MOVIMIENTO <> '4'
+        AND A.MOVIMIENTO <> '5'
+        ORDER BY TIPO_MOVTO
+        ";
+
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+        $res = $res->groupBy('DNI');
+
+
+
+        return ($res);
+
+
+
+    }
+
+
 
 
 
