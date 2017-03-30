@@ -191,7 +191,7 @@
                         @if(Auth::user()->USR== 'JMIRANDA' || Auth::user()->hasAnyRole(['ADMIN']) == true )
                             <li><a href="{{ URL::route('viewDeleteMovimientos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Eliminar Movimientos </a></li>
                         @endif
-                        <li><a href="{{ URL::route('viewGetBoletaPago') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Boletas de Pago</a></li>
+                        <li><a href="{{ URL::route('viewGetBoletaPago') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Boletas de Pago </a></li>
 
 
 
