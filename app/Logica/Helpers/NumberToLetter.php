@@ -188,7 +188,7 @@ class NumberToLetter
         /**
          * esto modifico Evhanz
          * */
-        $end_num=ucfirst($tex).' y '.$ff.'/100 Soles';
+        $end_num=ucfirst($tex).' con '.$ff.'/100 Soles';
         return $end_num;
     }
 }

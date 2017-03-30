@@ -71,7 +71,7 @@
                 }
                 ?>
                 <td>N° Días Nocturno:</td>
-                <td>{{$d_nocturno}}</td>
+                <td>{{number_format($d_nocturno, 2, '.', ',')}}</td>
                 <td>N° Horas Extras 25%:</td>
                 <?php $temp = $item->where('MOVIMIENTO','20101')->first();
                 if($temp != null){
@@ -80,7 +80,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
             </tr>
             <tr>
                 <td>Categoria:</td>
@@ -123,7 +123,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
             </tr>
             <tr>
                 <td>Fecha Ingreso:</td>
@@ -190,7 +190,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
                 <td>F. Final Vacaciones:</td>
                 <?php $temp = $item->where('MOVIMIENTO','6003')->first();
                 if($temp != null){
@@ -335,9 +335,7 @@
     </div>
 
     <br>
-    <div class="espacio">
-
-    </div>
+    <div class="espacio"></div>
 
     <div class="boleta">
         <div class="title">
@@ -396,7 +394,7 @@
                 }
                 ?>
                 <td>N° Días Nocturno:</td>
-                <td>{{$d_nocturno}}</td>
+                <td>{{number_format($d_nocturno, 2, '.', ',')}}</td>
                 <td>N° Horas Extras 25%:</td>
                 <?php $temp = $item->where('MOVIMIENTO','20101')->first();
                 if($temp != null){
@@ -405,7 +403,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
             </tr>
             <tr>
                 <td>Categoria:</td>
@@ -448,7 +446,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
             </tr>
             <tr>
                 <td>Fecha Ingreso:</td>
@@ -515,7 +513,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
                 <td>F. Final Vacaciones:</td>
                 <?php $temp = $item->where('MOVIMIENTO','6003')->first();
                 if($temp != null){
@@ -661,6 +659,8 @@
 
 
 
+
+
     <div class="page-break"></div>
 
 
@@ -770,14 +770,14 @@
 
     .foot{
         position: absolute;
-        top:360px;
+        top:380px;
         width: 100%;
     }
 
     .firmas{
 
         position: absolute;
-        top: 440px;
+        top: 460px;
     }
     .firmas .firma_k{
 

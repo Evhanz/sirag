@@ -1208,9 +1208,13 @@ class RecursoshController extends Controller
 
         $f_i = $f->subDay(6)->format('d/m/Y');
 
+        /*para colocr el periodo 2 por si cae en dos meses*/
+        $periodo2 = explode('/', $f_i);
 
-        $fecha = $fecha[2] . '-' . $fecha[1] . '-' . $fecha[0];
+
+        $fecha = $fecha[2].$fecha[1]. $fecha[0];
         $data['periodo'] = $fecha;
+        $data['periodo2'] = $periodo2[2]. $periodo2[1]. $periodo2[0];;
 
 
         $res = $this->personalRep->getBoletaDePago($data);

@@ -2804,6 +2804,7 @@ where EMPRESA = 'e01'";
 
         $q1='';
         $periodo = $data['periodo'];
+        $periodo2 = $data['periodo2'];
 
         if(isset($data['ficha'])){
 
@@ -2824,7 +2825,7 @@ where EMPRESA = 'e01'";
 
 
         $query = "SELECT
-        B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+ B.NOMBRE AS NOMBRE ,
+        B.NOMBRE+' '+B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO AS NOMBRE ,
         A.FICHA AS CODIGO,
         B.EMPLEADO AS DNI,
         B.CATEGORIA AS CATEGORIA,
@@ -2838,7 +2839,7 @@ where EMPRESA = 'e01'";
         AND FICHA=A.FICHA
         AND ATRIBUTO='CUSPP') AS T_TRABAJADOR,
         A.MOVIMIENTO,
-        A.VALOR,
+        SUM (A.VALOR) VALOR,
         A.DESCRIPCION,
         A.TIPO_MOVTO
         FROM 
@@ -2848,7 +2849,7 @@ where EMPRESA = 'e01'";
         A.EMPRESA=B.EMPRESA
         AND A.FICHA=B.FICHA
         AND A.EMPRESA='E01'
-        AND A.PERIODO ='20170322' -- DEBE ESCOGER EL DIA DE QUE BOLETA QUIERE OBTENER
+        AND A.PERIODO between '$periodo2'  and  '$periodo' -- DEBE ESCOGER EL DIA DE QUE BOLETA QUIERE OBTENER
         $q1
         AND A.MOVIMIENTO <> '110900'
         AND A.MOVIMIENTO <> '99002'
@@ -2859,10 +2860,15 @@ where EMPRESA = 'e01'";
         AND A.MOVIMIENTO <> '1'
         AND A.MOVIMIENTO <> '4'
         AND A.MOVIMIENTO <> '5'
-        ORDER BY B.APELLIDO_PATERNO,TIPO_MOVTO
+        group by B.NOMBRE+' '+B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO,
+        A.FICHA,B.EMPLEADO,B.CATEGORIA,B.CARGO,A.MOVIMIENTO,A.DESCRIPCION,A.EMPRESA,
+        A.TIPO_MOVTO
+        ORDER BY B.NOMBRE+' '+B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO,A.TIPO_MOVTO
         ";
 
+        HelpFunct::writeQuery($query);
 
+        try{
         $res = \DB::select($query);
 
         $res = collect($res);
@@ -2871,7 +2877,10 @@ where EMPRESA = 'e01'";
 
 
         return ($res);
-
+        }
+        catch (\Exception $e){
+            dd($e);
+        }
 
 
     }
