@@ -1227,9 +1227,9 @@ class RecursoshController extends Controller
         */
 
 
-        return \PDFS::loadView('rh.pdf.boletaPagoPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+       // return \PDFS::loadView('rh.pdf.boletaPagoPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
 
-
+        return \PDF::loadFile('http://www.github.com')->stream('github.pdf');
 
         //$pdf = \App::make('dompdf.wrapper');
         //$pdf->loadHTML($view)->setPaper('a4');
