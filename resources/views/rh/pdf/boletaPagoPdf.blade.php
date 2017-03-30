@@ -305,13 +305,7 @@
                         $temp = '0.00';
                     }
 
-                    try{
-
                     $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
-                    }catch(\Exception $e){
-                        $let = 'error'.$temp;
-
-                    }
                     ?>
                     <td >{{ number_format($temp,2,'.','')}} </td>
                 </tr>
