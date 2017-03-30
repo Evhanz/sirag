@@ -112,8 +112,8 @@
       <file leaf-file-name="boletaPagoPdf.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="637" column="23" selection-start-line="637" selection-start-column="20" selection-end-line="637" selection-end-column="23" />
+            <state relative-caret-position="212">
+              <caret line="640" column="53" selection-start-line="640" selection-start-column="53" selection-end-line="640" selection-end-column="53" />
               <folding>
                 <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
@@ -1046,7 +1046,7 @@
       <workItem from="1490712279533" duration="247000" />
       <workItem from="1490713443634" duration="24675000" />
       <workItem from="1490797970835" duration="54219000" />
-      <workItem from="1490912041124" duration="109000" />
+      <workItem from="1490912041124" duration="411000" />
     </task>
     <task id="LOCAL-00040" summary="rev">
       <created>1481638617023</created>
@@ -1395,7 +1395,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1832051000" />
+    <option name="totallyTimeSpent" value="1832353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1896,8 +1896,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="637" column="23" selection-start-line="637" selection-start-column="20" selection-end-line="637" selection-end-column="23" />
+        <state relative-caret-position="212">
+          <caret line="640" column="53" selection-start-line="640" selection-start-column="53" selection-end-line="640" selection-end-column="53" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>

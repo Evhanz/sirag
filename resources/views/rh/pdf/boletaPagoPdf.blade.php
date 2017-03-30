@@ -635,14 +635,13 @@
                         $temp = '0.00';
                     }
 
-                    try{
-
+                    if($temp!='0.00'){
                         $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
-
-                    }catch(\Exception $e){
-                        $let = 'error'.$temp;
-
+                    }else{
+                        $let = 'cero con 00/100 soles';
                     }
+
+
                     ?>
                     <td >{{ number_format($temp,2,'.','')}} </td>
                 </tr>
