@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
+    <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="rev">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,12 +49,98 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="191" column="133" selection-start-line="191" selection-start-column="133" selection-end-line="191" selection-end-column="133" />
+            <state relative-caret-position="421">
+              <caret line="203" column="32" selection-start-line="203" selection-start-column="32" selection-end-line="203" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="boletaPagoPdf.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+              <folding>
+                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="2826" column="19" selection-start-line="2826" selection-start-column="19" selection-end-line="2826" selection-end-column="19" />
+              <folding>
+                <marker date="1490901424628" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1490901424628" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
+                <marker date="1490901424628" expanded="true" signature="7365:7525" ph="SELECT coale... PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="7685:8042" ph="SELECT FICHA... PER_REM_HIS" />
+                <marker date="1490901424628" expanded="true" signature="8146:8198" ph="select * fro... renov_contract" />
+                <marker date="1490901424628" expanded="true" signature="8834:9050" ph="INSERT INTO renov_contract... " />
+                <marker date="1490901424628" expanded="true" signature="9188:9312" ph="UPDATE flexl... " />
+                <marker date="1490901424628" expanded="true" signature="9343:9464" ph="UPDATE flexl... " />
+                <marker date="1490901424628" expanded="true" signature="9874:9934" ph="DELETE FROM " />
+                <marker date="1490901424628" expanded="true" signature="9968:10092" ph="UPDATE flexl... " />
+                <marker date="1490901424628" expanded="true" signature="10123:10244" ph="UPDATE flexl... " />
+                <marker date="1490901424628" expanded="true" signature="10355:10735" ph="SELECT TIPO_... PER_VACACIONES" />
+                <marker date="1490901424628" expanded="true" signature="10999:11251" ph="SELECT FICHA... v_allTrabajadores" />
+                <marker date="1490901424628" expanded="true" signature="12678:13318" ph="SELECT Nombr... v_telecredito" />
+                <marker date="1490901424628" expanded="true" signature="13358:14006" ph="SELECT Nombr... v_telecreditoOperario" />
+                <marker date="1490901424628" expanded="true" signature="14425:14522" ph="select CARGO... v_telecredito" />
+                <marker date="1490901424628" expanded="true" signature="14678:14782" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+                <marker date="1490901424628" expanded="true" signature="15081:15412" ph="select FICHA... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="15718:15829" ph="SELECT TOP 1... v_allTrabajadores" />
+                <marker date="1490901424628" expanded="true" signature="21920:22031" ph="SELECT TOP 1... v_allTrabajadores" />
+                <marker date="1490901424628" expanded="true" signature="53259:54343" ph="SELECT FICHA... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="53333:53657" ph="SELECT top 1... GEN_TABCOD" />
+                <marker date="1490901424628" expanded="true" signature="53685:53781" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1490901424628" expanded="true" signature="53793:53990" ph="select CASE " />
+                <marker date="1490901424628" expanded="true" signature="53838:53938" ph="SELECT EMPLE... PER_TRABAJADOR" />
+                <marker date="1490901424628" expanded="true" signature="62271:62710" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="62271:65010" ph="select A.FIC... " />
+                <marker date="1490901424628" expanded="true" signature="62733:63172" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="63195:63632" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="63655:64091" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="64114:64550" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="64574:65010" ph="select A.FIC... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="69953:70180" ph="select (E.AP... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="69953:73927" ph="select (E.AP... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="70190:70348" ph="SELECT VALOR... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="70421:70553" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="71010:71217" ph="SELECT CASE PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="71253:71460" ph="SELECT CASE PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="71497:72166" ph="select SUM(D... PER_VACACIONES" />
+                <marker date="1490901424628" expanded="true" signature="72397:72529" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="72655:72787" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="77087:78846" ph="SELECT ROW_N... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="77171:77345" ph="SELECT CASE PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="79721:80092" ph="SELECT FICHA... PER_MOV_MES" />
+                <marker date="1490901424628" expanded="true" signature="80532:80753" ph="DELETE FROM " />
+                <marker date="1490901424628" expanded="true" signature="80897:81075" ph="select CODIG... GEN_TABCOD" />
+                <marker date="1490901424628" expanded="true" signature="81428:81624" ph="SELECT CODIG... GEN_TABLA" />
+                <marker date="1490901424628" expanded="true" signature="81855:82015" ph="select (conv... " />
+                <marker date="1490901424628" expanded="true" signature="82252:82575" ph="select Docum... Marcaciones" />
+                <marker date="1490901424628" expanded="true" signature="83805:84694" ph="INSERT INTO flexline.PER_DETALLETRATO... " />
+                <marker date="1490901424628" expanded="true" signature="85127:85442" ph="select TRABA... PER_DETALLETRATO" />
+                <marker date="1490901424628" expanded="true" signature="85840:86080" ph="select sum(M... PER_DETALLETRATO" />
+                <marker date="1490901424628" expanded="true" signature="87315:87454" ph="delete from " />
+                <marker date="1490901424628" expanded="true" signature="87756:88422" ph="select CONVE... PER_DETALLETRATO" />
+                <marker date="1490901424628" expanded="true" signature="87933:88107" ph="select NOMBR... PER_TRABAJADOR" />
+                <marker date="1490901424628" expanded="true" signature="88490:89144" ph="select CONVE... PER_DETALLETRATO" />
+                <marker date="1490901424628" expanded="true" signature="88667:88841" ph="select NOMBR... PER_TRABAJADOR" />
+                <marker date="1490901424628" expanded="true" signature="89493:89717" ph="select TRABA... PER_DETALLETRATO" />
+                <marker date="1490901424628" expanded="true" signature="90259:91472" ph="SELECT B.APE... PER_DET_LIQ" />
+                <marker date="1490901424628" expanded="true" signature="90465:90591" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="90610:90738" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+                <marker date="1490901424628" expanded="true" signature="95421:95598" ph="SELECT VALOR... GEN_TABCOD" />
+                <marker date="1490901424628" expanded="true" signature="96004:96204" ph="SELECT sum(V... GEN_TABCOD" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,10 +224,10 @@
         <option value="$PROJECT_DIR$/storage/logs/query_temp.txt" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/config/snappy.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
         <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
       </list>
     </option>
   </component>
@@ -620,6 +707,28 @@
               <option name="myItemId" value="Logica" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Repositories" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sirag" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Logica" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -936,14 +1045,7 @@
       <workItem from="1490625456423" duration="23910000" />
       <workItem from="1490712279533" duration="247000" />
       <workItem from="1490713443634" duration="24675000" />
-      <workItem from="1490797970835" duration="44386000" />
-    </task>
-    <task id="LOCAL-00039" summary="agregado al telecredito de operario">
-      <created>1481583111614</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1481583111614</updated>
+      <workItem from="1490797970835" duration="45233000" />
     </task>
     <task id="LOCAL-00040" summary="rev">
       <created>1481638617023</created>
@@ -1281,11 +1383,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490900821272</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="add repore de boleta de pago">
+      <created>1490900876977</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1490900876977</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1822109000" />
+    <option name="totallyTimeSpent" value="1822956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1338,7 +1447,6 @@
     <MESSAGE value="add_rep_consumoByParron_for_comercial" />
     <MESSAGE value="se completo el módulo de registro de jornales" />
     <MESSAGE value="módulo dominical" />
-    <MESSAGE value="rev" />
     <MESSAGE value="rev_mod_jornales" />
     <MESSAGE value="rev_reg jornales" />
     <MESSAGE value="rev_consumo_cci" />
@@ -1350,7 +1458,8 @@
     <MESSAGE value="mod_inset_materia_prima" />
     <MESSAGE value="add_function_materiaprima_store" />
     <MESSAGE value="add repore de boleta de pago" />
-    <option name="LAST_COMMIT_MESSAGE" value="add repore de boleta de pago" />
+    <MESSAGE value="rev" />
+    <option name="LAST_COMMIT_MESSAGE" value="rev" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6474359" />
   </component>
   <component name="XDebuggerManager">
@@ -1676,89 +1785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="297" column="38" selection-start-line="297" selection-start-column="38" selection-end-line="297" selection-end-column="38" />
-          <folding>
-            <marker date="1490897901379" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
-            <marker date="1490897901379" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
-            <marker date="1490897901379" expanded="true" signature="7365:7525" ph="SELECT coale... PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="7685:8042" ph="SELECT FICHA... PER_REM_HIS" />
-            <marker date="1490897901379" expanded="true" signature="8146:8198" ph="select * fro... renov_contract" />
-            <marker date="1490897901379" expanded="true" signature="8834:9050" ph="INSERT INTO renov_contract... " />
-            <marker date="1490897901379" expanded="true" signature="9188:9312" ph="UPDATE flexl... " />
-            <marker date="1490897901379" expanded="true" signature="9343:9464" ph="UPDATE flexl... " />
-            <marker date="1490897901379" expanded="true" signature="9874:9934" ph="DELETE FROM " />
-            <marker date="1490897901379" expanded="true" signature="9968:10092" ph="UPDATE flexl... " />
-            <marker date="1490897901379" expanded="true" signature="10123:10244" ph="UPDATE flexl... " />
-            <marker date="1490897901379" expanded="true" signature="10355:10735" ph="SELECT TIPO_... PER_VACACIONES" />
-            <marker date="1490897901379" expanded="true" signature="10999:11251" ph="SELECT FICHA... v_allTrabajadores" />
-            <marker date="1490897901379" expanded="true" signature="12678:13318" ph="SELECT Nombr... v_telecredito" />
-            <marker date="1490897901379" expanded="true" signature="13358:14006" ph="SELECT Nombr... v_telecreditoOperario" />
-            <marker date="1490897901379" expanded="true" signature="14425:14522" ph="select CARGO... v_telecredito" />
-            <marker date="1490897901379" expanded="true" signature="14678:14782" ph="SELECT CODIG... PER_DEPARTAMENTO" />
-            <marker date="1490897901379" expanded="true" signature="15081:15412" ph="select FICHA... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="15718:15829" ph="SELECT TOP 1... v_allTrabajadores" />
-            <marker date="1490897901379" expanded="true" signature="21920:22031" ph="SELECT TOP 1... v_allTrabajadores" />
-            <marker date="1490897901379" expanded="true" signature="53259:54343" ph="SELECT FICHA... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="53333:53657" ph="SELECT top 1... GEN_TABCOD" />
-            <marker date="1490897901379" expanded="true" signature="53685:53781" ph="SELECT EMPLE... PER_TRABAJADOR" />
-            <marker date="1490897901379" expanded="true" signature="53793:53990" ph="select CASE " />
-            <marker date="1490897901379" expanded="true" signature="53838:53938" ph="SELECT EMPLE... PER_TRABAJADOR" />
-            <marker date="1490897901379" expanded="true" signature="62271:62710" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="62271:65010" ph="select A.FIC... " />
-            <marker date="1490897901379" expanded="true" signature="62733:63172" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="63195:63632" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="63655:64091" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="64114:64550" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="64574:65010" ph="select A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="69953:70180" ph="select (E.AP... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="70224:70356" ph="SELECT VALOR... PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="70813:71020" ph="SELECT CASE PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="71056:71263" ph="SELECT CASE PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="71300:71969" ph="select SUM(D... PER_VACACIONES" />
-            <marker date="1490897901379" expanded="true" signature="76539:78298" ph="SELECT ROW_N... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="76623:76797" ph="SELECT CASE PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="79173:79544" ph="SELECT FICHA... PER_MOV_MES" />
-            <marker date="1490897901379" expanded="true" signature="79984:80205" ph="DELETE FROM " />
-            <marker date="1490897901379" expanded="true" signature="80349:80527" ph="select CODIG... GEN_TABCOD" />
-            <marker date="1490897901379" expanded="true" signature="80880:81076" ph="SELECT CODIG... GEN_TABLA" />
-            <marker date="1490897901379" expanded="true" signature="81307:81467" ph="select (conv... " />
-            <marker date="1490897901379" expanded="true" signature="81704:82027" ph="select Docum... Marcaciones" />
-            <marker date="1490897901379" expanded="true" signature="83257:84146" ph="INSERT INTO flexline.PER_DETALLETRATO... " />
-            <marker date="1490897901379" expanded="true" signature="84579:84894" ph="select TRABA... PER_DETALLETRATO" />
-            <marker date="1490897901379" expanded="true" signature="85292:85532" ph="select sum(M... PER_DETALLETRATO" />
-            <marker date="1490897901379" expanded="true" signature="86767:86906" ph="delete from " />
-            <marker date="1490897901379" expanded="true" signature="87208:87874" ph="select CONVE... PER_DETALLETRATO" />
-            <marker date="1490897901379" expanded="true" signature="87385:87559" ph="select NOMBR... PER_TRABAJADOR" />
-            <marker date="1490897901379" expanded="true" signature="87942:88596" ph="select CONVE... PER_DETALLETRATO" />
-            <marker date="1490897901379" expanded="true" signature="88119:88293" ph="select NOMBR... PER_TRABAJADOR" />
-            <marker date="1490897901379" expanded="true" signature="88945:89169" ph="select TRABA... PER_DETALLETRATO" />
-            <marker date="1490897901379" expanded="true" signature="89677:89760" ph="SELECT A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="89677:90871" ph="SELECT A.FIC... PER_DET_LIQ" />
-            <marker date="1490897901379" expanded="true" signature="89883:90009" ph="SELECT VALOR... PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="90028:90156" ph="SELECT VALOR... PER_ATRIB_TRAB" />
-            <marker date="1490897901379" expanded="true" signature="95401:95578" ph="SELECT VALOR... GEN_TABCOD" />
-            <marker date="1490897901379" expanded="true" signature="95984:96184" ph="SELECT sum(V... GEN_TABCOD" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="835" column="5" selection-start-line="835" selection-start-column="5" selection-end-line="835" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#H5#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#td#4;n#tr#1;n#table#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -1803,9 +1829,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="191" column="133" selection-start-line="191" selection-start-column="133" selection-end-line="191" selection-end-column="133" />
+        <state relative-caret-position="421">
+          <caret line="203" column="32" selection-start-line="203" selection-start-column="32" selection-end-line="203" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/pdf/boletaPagoPdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+          <folding>
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="2826" column="19" selection-start-line="2826" selection-start-column="19" selection-end-line="2826" selection-end-column="19" />
+          <folding>
+            <marker date="1490901424628" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1490901424628" expanded="true" signature="7096:7150" ph="select * fro... v_allTrabajadores" />
+            <marker date="1490901424628" expanded="true" signature="7365:7525" ph="SELECT coale... PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="7685:8042" ph="SELECT FICHA... PER_REM_HIS" />
+            <marker date="1490901424628" expanded="true" signature="8146:8198" ph="select * fro... renov_contract" />
+            <marker date="1490901424628" expanded="true" signature="8834:9050" ph="INSERT INTO renov_contract... " />
+            <marker date="1490901424628" expanded="true" signature="9188:9312" ph="UPDATE flexl... " />
+            <marker date="1490901424628" expanded="true" signature="9343:9464" ph="UPDATE flexl... " />
+            <marker date="1490901424628" expanded="true" signature="9874:9934" ph="DELETE FROM " />
+            <marker date="1490901424628" expanded="true" signature="9968:10092" ph="UPDATE flexl... " />
+            <marker date="1490901424628" expanded="true" signature="10123:10244" ph="UPDATE flexl... " />
+            <marker date="1490901424628" expanded="true" signature="10355:10735" ph="SELECT TIPO_... PER_VACACIONES" />
+            <marker date="1490901424628" expanded="true" signature="10999:11251" ph="SELECT FICHA... v_allTrabajadores" />
+            <marker date="1490901424628" expanded="true" signature="12678:13318" ph="SELECT Nombr... v_telecredito" />
+            <marker date="1490901424628" expanded="true" signature="13358:14006" ph="SELECT Nombr... v_telecreditoOperario" />
+            <marker date="1490901424628" expanded="true" signature="14425:14522" ph="select CARGO... v_telecredito" />
+            <marker date="1490901424628" expanded="true" signature="14678:14782" ph="SELECT CODIG... PER_DEPARTAMENTO" />
+            <marker date="1490901424628" expanded="true" signature="15081:15412" ph="select FICHA... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="15718:15829" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1490901424628" expanded="true" signature="21920:22031" ph="SELECT TOP 1... v_allTrabajadores" />
+            <marker date="1490901424628" expanded="true" signature="53259:54343" ph="SELECT FICHA... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="53333:53657" ph="SELECT top 1... GEN_TABCOD" />
+            <marker date="1490901424628" expanded="true" signature="53685:53781" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1490901424628" expanded="true" signature="53793:53990" ph="select CASE " />
+            <marker date="1490901424628" expanded="true" signature="53838:53938" ph="SELECT EMPLE... PER_TRABAJADOR" />
+            <marker date="1490901424628" expanded="true" signature="62271:62710" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="62271:65010" ph="select A.FIC... " />
+            <marker date="1490901424628" expanded="true" signature="62733:63172" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="63195:63632" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="63655:64091" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="64114:64550" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="64574:65010" ph="select A.FIC... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="69953:70180" ph="select (E.AP... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="69953:73927" ph="select (E.AP... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="70190:70348" ph="SELECT VALOR... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="70421:70553" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="71010:71217" ph="SELECT CASE PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="71253:71460" ph="SELECT CASE PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="71497:72166" ph="select SUM(D... PER_VACACIONES" />
+            <marker date="1490901424628" expanded="true" signature="72397:72529" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="72655:72787" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="77087:78846" ph="SELECT ROW_N... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="77171:77345" ph="SELECT CASE PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="79721:80092" ph="SELECT FICHA... PER_MOV_MES" />
+            <marker date="1490901424628" expanded="true" signature="80532:80753" ph="DELETE FROM " />
+            <marker date="1490901424628" expanded="true" signature="80897:81075" ph="select CODIG... GEN_TABCOD" />
+            <marker date="1490901424628" expanded="true" signature="81428:81624" ph="SELECT CODIG... GEN_TABLA" />
+            <marker date="1490901424628" expanded="true" signature="81855:82015" ph="select (conv... " />
+            <marker date="1490901424628" expanded="true" signature="82252:82575" ph="select Docum... Marcaciones" />
+            <marker date="1490901424628" expanded="true" signature="83805:84694" ph="INSERT INTO flexline.PER_DETALLETRATO... " />
+            <marker date="1490901424628" expanded="true" signature="85127:85442" ph="select TRABA... PER_DETALLETRATO" />
+            <marker date="1490901424628" expanded="true" signature="85840:86080" ph="select sum(M... PER_DETALLETRATO" />
+            <marker date="1490901424628" expanded="true" signature="87315:87454" ph="delete from " />
+            <marker date="1490901424628" expanded="true" signature="87756:88422" ph="select CONVE... PER_DETALLETRATO" />
+            <marker date="1490901424628" expanded="true" signature="87933:88107" ph="select NOMBR... PER_TRABAJADOR" />
+            <marker date="1490901424628" expanded="true" signature="88490:89144" ph="select CONVE... PER_DETALLETRATO" />
+            <marker date="1490901424628" expanded="true" signature="88667:88841" ph="select NOMBR... PER_TRABAJADOR" />
+            <marker date="1490901424628" expanded="true" signature="89493:89717" ph="select TRABA... PER_DETALLETRATO" />
+            <marker date="1490901424628" expanded="true" signature="90259:91472" ph="SELECT B.APE... PER_DET_LIQ" />
+            <marker date="1490901424628" expanded="true" signature="90465:90591" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="90610:90738" ph="SELECT VALOR... PER_ATRIB_TRAB" />
+            <marker date="1490901424628" expanded="true" signature="95421:95598" ph="SELECT VALOR... GEN_TABCOD" />
+            <marker date="1490901424628" expanded="true" signature="96004:96204" ph="SELECT sum(V... GEN_TABCOD" />
+          </folding>
         </state>
       </provider>
     </entry>

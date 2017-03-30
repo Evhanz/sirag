@@ -359,14 +359,22 @@
 
         </div>
         <hr >
-        <H5 style="padding: 0px;margin: 0px;"><STRONG>{{$maestro->NOMBRE}}</STRONG></H5>
+        <H5 style="padding: 0px;margin: 0px;font-size: 14px;letter-spacing: 0.2em"><STRONG>{{$maestro->NOMBRE}}</STRONG></H5>
         <table style="margin: 0px;padding: 0px;" id="details">
             <tr>
                 <td>Código:</td>
                 <td>{{$maestro->CODIGO}}</td>
                 <td>N° Días Trabajados:</td>
-
-                <td></td>
+                <?php
+                $d_trabajador =  $item->where('MOVIMIENTO','52')->first();
+                if($d_trabajador != null){
+                    $d_trabajador = $d_trabajador->VALOR;
+                }ELSE{
+                    $d_trabajador = '0.00';
+                }
+                //$d_trabajador = $d_trabajador->VALOR;
+                ?>
+                <td>{{number_format($d_trabajador, 2, '.', ',')}}</td>
                 <td>N° Horas Trabajadas:</td>
                 <?php $h_trabajadas = $item->where('MOVIMIENTO','70060')->first();
                 if($h_trabajadas != null){
@@ -533,9 +541,9 @@
 
         <table id="detail2">
             <tr>
-                <td ><strong>INGRESOS</strong></td>
-                <td ><strong>DESCUENTOS</strong></td>
-                <td colspan="2"><strong>APORTACIONES</strong></td>
+                <td style="letter-spacing: 0.2em"><strong>INGRESOS</strong></td>
+                <td style="letter-spacing: 0.2em"><strong>DESCUENTOS</strong></td>
+                <td colspan="2" style="letter-spacing: 0.2em"><strong>APORTACIONES</strong></td>
             </tr>
             <tr>
                 <td>
@@ -614,7 +622,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><strong>NETO A PAGAR (E):</strong></td>
+                    <td><strong style="letter-spacing: 0.1em">NETO A PAGAR (E):</strong></td>
                     <?php $temp = $item->where('MOVIMIENTO','99005')->first();
                     if($temp != null){
                         $temp = $temp->VALOR;
