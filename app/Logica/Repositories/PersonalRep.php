@@ -2329,6 +2329,8 @@ class PersonalRep
             $item->FONDO = round($item->FONDO,2);
             $item->SEGURO_AFP = round($item->SEGURO_AFP,2);
 
+            $item->DIAS_FALTAS = round($item->DIAS_FALTAS,2);
+
             if($item->AFP == 'ONP'){
                 $item->FONDO = round(0.00,2);
             }
