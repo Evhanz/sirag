@@ -312,7 +312,7 @@
 
             </table>
             <hr>
-            <span class="importe_letras"><strong>{{$let}}</strong></span>
+            <span class="importe_letras"><strong>Son: {{$let}}</strong></span>
         </div>
 
         <div class="firmas" width="100%">
@@ -902,9 +902,9 @@
         width: 145px;
     }
     .title .fecha{
-        font-size: 8px;
+        font-size: 14px;
         position: absolute;
-        top: 30px;
+        top: 28px;
         right: 12px;
     }
 
