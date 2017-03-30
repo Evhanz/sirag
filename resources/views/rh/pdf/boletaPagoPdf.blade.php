@@ -307,7 +307,8 @@
 
                     try{
 
-                    $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                   // $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                        $let='';
                     }catch(\Exception $e){
                         $let = 'error'.$temp;
 
