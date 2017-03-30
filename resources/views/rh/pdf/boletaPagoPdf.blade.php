@@ -305,7 +305,14 @@
                         $temp = '0.00';
                     }
 
-                    $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                    try{
+
+                        $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                        $let='';
+                    }catch(\Exception $e){
+                        $let = 'error'.$temp;
+
+                    }
                     ?>
                     <td >{{ number_format($temp,2,'.','')}} </td>
                 </tr>
@@ -532,9 +539,9 @@
         <HR>
 
         <?php
-        //aca se hallará lacantiad de descuentos e ingresos
-        $ingresos = $item->where('TIPO_MOVTO','H');
-        $descuentos = $item->where('TIPO_MOVTO','D');
+            //aca se hallará lacantiad de descuentos e ingresos
+            $ingresos = $item->where('TIPO_MOVTO','H');
+            $descuentos = $item->where('TIPO_MOVTO','D');
         ?>
 
         <table id="detail2">
@@ -547,11 +554,11 @@
                 <td>
                     <table id="sub_ingreso">
                         @foreach($ingresos as $i)
-                            <tr>
-                                <td>{{$i->DESCRIPCION}}</td>
-                                <td>{{number_format($i->VALOR,2,'.','')}}</td>
+                        <tr>
+                            <td>{{$i->DESCRIPCION}}</td>
+                            <td>{{number_format($i->VALOR,2,'.','')}}</td>
 
-                            </tr>
+                        </tr>
                         @endforeach
                     </table>
                 </td>
@@ -628,7 +635,14 @@
                         $temp = '0.00';
                     }
 
-                    $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                    try{
+
+                        $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                        $let='';
+                    }catch(\Exception $e){
+                        $let = 'error'.$temp;
+
+                    }
                     ?>
                     <td >{{ number_format($temp,2,'.','')}} </td>
                 </tr>
@@ -653,9 +667,6 @@
             </div>
 
         </div>
-
-
-    </div>
 
 
 
