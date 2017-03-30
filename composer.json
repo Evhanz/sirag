@@ -10,7 +10,11 @@
         "laravelcollective/html": "5.1.*",
         "barryvdh/laravel-dompdf": "^0.7.0",
         "guzzlehttp/guzzle": "~4.0",
-        "maatwebsite/excel": "~2.0"
+        "maatwebsite/excel": "~2.0",
+        "barryvdh/laravel-snappy": "^0.3.3",
+        "knplabs/knp-snappy": "^0.4.3",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x",
+        "h4cc/wkhtmltoimage-amd64": "0.12.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

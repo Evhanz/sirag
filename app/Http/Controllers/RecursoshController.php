@@ -1191,44 +1191,51 @@ class RecursoshController extends Controller
     }
 
 
-    public function getBoletaPago(){
+    public function getBoletaPago()
+    {
+
+        set_time_limit (180);
 
 
-        $data['periodo']= '20170322';
-        $data['ficha']= '10029';
+        $data = \Input::all();
+        $fecha = $data['periodo'];
+        $fecha = explode('/', $fecha);
+
+
+        $f = Carbon::createFromDate($fecha[2], $fecha[1], $fecha[0]);
+
+        $f_f = $f->format('d/m/Y');
+
+        $f_i = $f->subDay(6)->format('d/m/Y');
+
+
+        $fecha = $fecha[2] . '-' . $fecha[1] . '-' . $fecha[0];
+        $data['periodo'] = $fecha;
 
 
         $res = $this->personalRep->getBoletaDePago($data);
-        //dd($res);
-
-        $view =  \View::make('rh.pdf.boletaPagoPdf',compact('res'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
-        return $pdf->stream('invoice');
 
 
-       // dd($res);
-
+        $view = \View::make('rh.pdf.boletaPagoPdf', compact('res', 'f_i', 'f_f'))->render();
+        $snappy = \App::make('snappy.pdf');
+        //To file
+                $html = '<h1>Bill</h1><p>You owe me money, dude.</p>';
 
         /*
-
-
-        $input = \Input::all();
-
-        $periodo = explode("/", $input['fecha']);
-
-        $input['periodo'] = $periodo[2].$periodo[1].$periodo[0];
-        $input['inicio_periodo'] = $periodo[2].$periodo[1].'01';
-
-        $data = $this->personalRep->getDetailLiquidacion($input);
-
-        $view =  \View::make('rh.pdf.liquidacionPdf',compact('data'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
-        // return $pdf->stream('invoice');
-        return $pdf->download('liquidaciones:'.$input['fecha']);
-
+                $snappy->generateFromHtml($html, '/tmp/bill-124.pdf');
+                $snappy->generate('http://www.github.com', '/tmp/github.pdf');
         */
+
+
+        return \PDFS::loadView('rh.pdf.boletaPagoPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+
+
+
+        //$pdf = \App::make('dompdf.wrapper');
+        //$pdf->loadHTML($view)->setPaper('a4');
+        // return $pdf->download('invoice');
+
+        //dd($view);
 
 
     }
