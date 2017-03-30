@@ -136,7 +136,7 @@
     <!--Fila 4-->
     <strong>INGRESOS</strong><br>
 
-    <table class="tbl_row4">
+    <table class="tbl_row4" >
         <tr>
             <td colspan="8"><strong>VACACIONES TRUNCAS</strong></td>
         </tr>
@@ -151,7 +151,8 @@
             <td class="valor">{{$item->VT}}</td>
         </tr>
         <tr>
-            <td colspan="8"><strong>VACACIONES GOZADAS</strong></td>
+            <td colspan="8" ><strong>VACACIONES GOZADAS</strong></td>
+            <td  style="padding-left: 80px; width:250px"><strong>FALTAS EN EL PERIODO</strong></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -160,6 +161,10 @@
             <td>Meses,</td>
             <td>{{$item->dias_VG}}</td>
             <td>Días</td>
+            <td></td>
+            <td></td>
+            <td style="padding-left: 80px; width:250px">Por -----> {{$item->DIAS_FALTAS}}</td>
+            
         </tr>
         <tr>
             <td colspan="4"><strong>TOTAL, INGRESOS</strong></td>
