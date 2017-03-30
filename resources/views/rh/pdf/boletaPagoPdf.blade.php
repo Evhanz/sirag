@@ -637,7 +637,7 @@
 
             </table>
             <hr>
-            <span class="importe_letras"><strong>{{$let}}</strong></span>
+            <span class="importe_letras"><strong>Son: {{$let}}</strong></span>
         </div>
 
         <div class="firmas" width="100%">
