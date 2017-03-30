@@ -1226,8 +1226,8 @@ class RecursoshController extends Controller
                 $snappy->generate('http://www.github.com', '/tmp/github.pdf');
         */
 
-
-        return \PDFS::loadView('rh.pdf.boletaPagoPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+        dd($view);
+       // return \PDFS::loadView('rh.pdf.boletaPagoPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
 
         //return \PDFS::loadFile('http://www.github.com')->stream('github.pdf');
 
