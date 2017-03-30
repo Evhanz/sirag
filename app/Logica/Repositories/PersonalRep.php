@@ -2851,6 +2851,7 @@ where EMPRESA = 'e01'";
         AND A.EMPRESA='E01'
         AND A.PERIODO between '$periodo2'  and  '$periodo' -- DEBE ESCOGER EL DIA DE QUE BOLETA QUIERE OBTENER
         $q1
+        AND B.CATEGORIA = 'OPERARIO'
         AND A.MOVIMIENTO <> '110900'
         AND A.MOVIMIENTO <> '99002'
         AND A.MOVIMIENTO <> '99001'
