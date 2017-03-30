@@ -2807,9 +2807,17 @@ where EMPRESA = 'e01'";
 
         if(isset($data['ficha'])){
 
-            $ficha = $data['ficha'];
+            if ($data['ficha'] == '') {
+                 $q1 = " and A.FICHA like '%%' ";
+    
+            } else {
+                $ficha = $data['ficha'];
             $q1 = " and A.FICHA = '$ficha' ";
 
+            }
+            
+
+           
         }else{
             $q1 = " and A.FICHA like '%%' ";
         }
