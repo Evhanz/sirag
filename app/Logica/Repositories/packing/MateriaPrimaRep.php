@@ -63,14 +63,10 @@ class MateriaPrimaRep
             $tara_parihuela = $item['tara_parihuela'];
             $peso_bruto = $item['peso_bruto'];
 
-
-
             \DB::insert("INSERT INTO sirag.detalle_uva (n_pesadas , n_guia , variedad ,fundo_parron
                         ,l_produccion , n_jaba , tara_jaba , tara_parihuela , peso_bruto , id_ingreso_MP ) VALUES
                      ('$n_pesadas', '$n_guia', '$variedad','$fundo_parron','$l_produccion',$n_jaba,$tara_jaba,
                      $tara_parihuela,$peso_bruto,'$id_cabecera')");
-
-
 
         }
 
@@ -79,6 +75,21 @@ class MateriaPrimaRep
         $detalle_descarte = $data['detalle_descarte'];
 
         foreach ($detalle_descarte as $item){
+
+
+            $fundo_parron = $item['fundo_parron'];
+            $variedad = $item['variedad'];
+            $racimo = $item['racimo'];
+            $baya = $item['baya'];
+            $k_racimo = $item['kl_racimo'];
+            $k_baya = $item['kl_baya'];
+
+
+
+            \DB::insert("INSERT INTO sirag.detalle_uva (n_pesadas , n_guia , variedad ,fundo_parron
+                        ,l_produccion , n_jaba , tara_jaba , tara_parihuela , peso_bruto , id_ingreso_MP ) VALUES
+                     ('$n_pesadas', '$n_guia', '$variedad','$fundo_parron','$l_produccion',$n_jaba,$tara_jaba,
+                     $tara_parihuela,$peso_bruto,'$id_cabecera')");
 
         }
 

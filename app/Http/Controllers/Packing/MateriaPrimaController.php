@@ -47,6 +47,16 @@ class MateriaPrimaController extends Controller
     }
 
 
+    public function materiaPrimaStoreNew()
+    {
+        $data = \Input::all();
+
+
+        return \Response::json($data);
+
+    }
+
+
 
 
 
@@ -63,14 +73,7 @@ class MateriaPrimaController extends Controller
     }
 
 
-    public function materiaPrimaStoreNew()
-    {
-        $data = \Input::all();
 
-
-        return \Response::json($data);
-
-    }
 
 
     //helpers
