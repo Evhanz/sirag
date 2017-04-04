@@ -35,6 +35,35 @@ class MateriaPrimaController extends Controller
     }
 
 
+    public function viewAllMP()
+    {
+        $res = $this->materiaPrimaRep->getMateriaPrima();
+        return view('packing/materia_prima/viewAllMP',compact('res'));
+    }
+
+    public function viewEditIMP($id){
+        return view('packing/materia_prima/viewEdit',compact('id'));
+    }
+
+    public function viewAllMPPrameters(){
+
+        $data = \Input::all();
+
+        $fechas = explode('-',$data['daterange']) ;
+        $fecha_i = explode('/',trim($fechas[0]));
+        $fecha_i = $fecha_i[2].'-'.$fecha_i[1].'-'.$fecha_i[0];
+        $fecha_f = explode('/',trim($fechas[1]));
+        $fecha_f = $fecha_f[2].'-'.$fecha_f[1].'-'.$fecha_f[0];
+
+        $res = $this->materiaPrimaRep->getMateriaPrima($fecha_i,$fecha_f);
+
+
+        return view('packing/materia_prima/viewAllMP',compact('res'));
+
+
+    }
+
+
     public function viewStorePMateriaPrima(){
 
         $data  = \Input::all();

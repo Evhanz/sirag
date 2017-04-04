@@ -9,6 +9,13 @@
 Route::get('packing/materiaPrima/index',['as'=>'inicioPMateriaPrima','uses'=>'Packing\MateriaPrimaController@index']);
 Route::get('packing/materiaPrima/viewStore',
     ['as'=>'viewStorePMateriaPrima','uses'=>'Packing\MateriaPrimaController@viewStorePMateriaPrima']);
+Route::get('packing/materiaPrima/viewAllMP',
+    ['as'=>'viewAllMP','uses'=>'Packing\MateriaPrimaController@viewAllMP']);
+Route::get('packing/materiaPrima/{id}',
+    ['as'=>'viewEditIMP','uses'=>'Packing\MateriaPrimaController@viewEditIMP']);
+
+Route::post('packing/materiaPrima/viewAllMP',
+    ['as'=>'viewAllMPPrameters','uses'=>'Packing\MateriaPrimaController@viewAllMPPrameters']);
 
 //api
 Route::get('packing/materiaPrima/getAllMteriaPrima',

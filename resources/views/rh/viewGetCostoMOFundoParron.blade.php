@@ -44,16 +44,25 @@
 
 
 
-
+    <link rel="stylesheet" href="{{asset('css/daterangepicker/daterangepicker-bs3.css')}}">
+    <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
     <!-- datepicker -->
     <script src="{{asset('templates/lte2/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
     <!-- Date Picker -->
     <link rel="stylesheet" href="{{asset('templates/lte2/plugins/datepicker/datepicker3.css')}}">
     <script>
+
+        $('#periodo_agrario').daterangepicker({
+            format : "DD/MM/YYYY"
+        });
+
+        /*
         $('#periodo_agrario').datepicker({
             format: 'dd/mm/yyyy'
         });
+
+        */
 
         $( "#form" ).submit(function( event ) {
            // alert( "Handler for .submit() called." );

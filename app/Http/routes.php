@@ -102,7 +102,7 @@ Route::group(['middleware' => 'roles','roles'=>'ADMIN'], function () {
 
 //para lo de la adminsitracion de roles
 
-Route::group(['middleware' => 'roles','roles'=>['ADMIN']], function () {
+Route::group(['middleware' => 'roles','roles'=>['SUPADMIN']], function () {
     require __DIR__ . '/Rutas/usuarios.php';
 });
 

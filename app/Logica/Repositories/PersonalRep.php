@@ -1250,12 +1250,19 @@ class PersonalRep
 
     public function getCostoMOPorFundo($data){
 
+        /**
+         * Esto se cambia por el cambio de la lógica , de obtener entre rango de fechas
+
         $fecha      =   $data['fecha'];
         $fecha      =   explode('/',$fecha);
         $periodo    =   $fecha[2];
         $fecha      =   $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
+        */
 
         //$fecha = '2016-12-14';
+
+        $fecha_i = $data['fecha_i'];
+        $fecha_f = $data['fecha_f'];
 
         $query      =   "
         --esta fecha se usará para saber que dia se consultará el detalle 
@@ -1264,14 +1271,13 @@ class PersonalRep
         --luego se sacara la fecha de inicio para sacar el rango de consulta
         DECLARE @fecha_inicio DATE;
         -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
-        SET @fecha = '$fecha'; --aca se cambia por la variable
-        SET @fecha_inicio= DATEADD(day,-6,@fecha); 
+        SET @fecha = '$fecha_f'; --aca se cambia por la variable
+        SET @fecha_inicio= '$fecha_i';
+        --SET @fecha_inicio= DATEADD(day,-6,@fecha); 
         select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD,CONVERT(DATE,DT.FECHA,113) FECHA
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
             AND TIPO_COMPROBANTE='PLANILLAS'
-            --AND PERIODO='$periodo'
-            --AND CONVERT(DATE,FECHA) = @fecha
             AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
             AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
             AND AUX_VALOR19 = GC.CODIGO
@@ -1481,10 +1487,9 @@ class PersonalRep
     {
 
 
-        $fecha      =   $data['fecha'];
-        $fecha      =   explode('/',$fecha);
-        $periodo    =   $fecha[2];
-        $fecha      =   $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
+        $fecha_i = $data['fecha_i'];
+        $fecha_f = $data['fecha_f'];
+
 
         $tipo       =   $t;
 
@@ -1505,14 +1510,12 @@ class PersonalRep
         --luego se sacara la fecha de inicio para sacar el rango de consulta
         DECLARE @fecha_inicio DATE;
         -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
-        SET @fecha = '$fecha'; --aca se cambia por la variable
-        SET @fecha_inicio= DATEADD(day,-6,@fecha); 
+        SET @fecha = '$fecha_f'; --aca se cambia por la variable
+        SET @fecha_inicio = '$fecha_i';
         select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
             AND TIPO_COMPROBANTE='PLANILLAS'
-            --AND PERIODO='$periodo'
-            --AND CONVERT(DATE,FECHA) = @fecha
             AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
             AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
             AND ESTADO='A'

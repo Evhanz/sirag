@@ -10,10 +10,6 @@
         <li class="active">New</li>
     </ol>
 
-   
-
-
-
 @stop
 
 @section('head_options')
@@ -38,6 +34,7 @@
             <div class="box-body">
                 <div class="row">
                     <input name="_token" type="hidden" id="_token" value="{{ csrf_token() }}" />
+                    <input name="id_imp" type="hidden" id="id_imp" value="{{ $id }}">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>PRODUCTOR</label>
@@ -139,7 +136,7 @@
                                         <td><input v-model="item.tara_parihuela" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.peso_bruto" step="any" min="0.00" class="form-control input-sm" type="text" ></td>
                                         <td><button class="btn btn-default btn-sm" v-on:click="deteleDetail(item.correlativo)"> - </button></td>
-                                        <!-- por aqui se guarda esto: @keyup.tab="addDetalleUva()" -->
+                                    <!-- por aqui se guarda esto: @keyup.tab="addDetalleUva()" -->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -194,7 +191,7 @@
             <pre>
 
                 <button class="btn btn-success btn-lg"  v-on:click="saveData()"> <i class="fa fa-floppy-o fa-lg"></i> Guardar</button>
-              <!--   @{{ $data }} -->
+            <!--   @{{ $data }} -->
             </pre>
 
         </div>
@@ -260,19 +257,19 @@
                                     </table>
                                 </div>
                                 <!-- /.box-body -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
         </div>
-
-
-
-
-
-
-    </div>
-    <!-- /.row (Row Filter) -->
+        <!-- /.row (Row Filter) -->
 
 
 
@@ -301,13 +298,13 @@
         var personal = [];
 
         getInitData();
-        
+
         function getInitData() {
 
 
 
             $.getJSON( ruta, function( data ) {
-               // console.log( data );
+                // console.log( data );
                 fillDataSelects(data);
             });
         }
@@ -339,7 +336,7 @@
                 showInputs: false
             });
 
-          
+
         }
 
 
@@ -437,7 +434,7 @@
 
 
                     this.formValidate = bandera;
-                    
+
                 },
                 deteleDetail : function (correlativo) {
                     var r = confirm("Seguro que quieres eliminar esta fila ?");
@@ -624,7 +621,7 @@
 
                                 }).fail(function(error) {
 
-                                    console.log(error); });
+                            console.log(error); });
 
 
                     }else{

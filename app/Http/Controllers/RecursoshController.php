@@ -757,6 +757,20 @@ class RecursoshController extends Controller
 
         $data =  \Input::all();
 
+        $fechas = explode('-',$data['fecha']) ;
+        $fecha_i = explode('/',trim($fechas[0]));
+        $fecha_i = $fecha_i[2].'-'.$fecha_i[1].'-'.$fecha_i[0];
+        $fecha_f = explode('/',trim($fechas[1]));
+        $fecha_f = $fecha_f[2].'-'.$fecha_f[1].'-'.$fecha_f[0];
+
+        $data['fecha_i'] = $fecha_i;
+        $data['fecha_f'] = $fecha_f;
+
+        /**
+         * se cambió la lógica de la fecha de inicio y fecha fin,
+         * ahora se enviará la fechade inicio y fin por sepadaro
+         */
+
 
         $res = $this->personalRep->getCostoMOPorFundo($data);
 

@@ -12,6 +12,41 @@ namespace sirag\Repositories\packing;
 class MateriaPrimaRep
 {
 
+
+    public function getMateriaPrima($f_i = null,$f_f=null){
+
+        $q = '';
+
+        if($f_i != null || $f_f != null){
+            $q = "where fecha between '$f_i' and '$f_f' ";
+        }
+
+        $query = "SELECT *  FROM sirag.ingreso_MP $q";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+    }
+
+
+    public function getMateriaPrimaById($id){
+
+
+        $query ="SELECT *  FROM sirag.ingreso_MP where id = $id";
+        $imp = \DB::select($query);
+        if(count($imp)>0){
+            //traemos a sus detalles
+
+
+        }
+
+
+
+
+
+    }
+
     public function getByParameters($data)
     {
 
