@@ -299,11 +299,19 @@ class PersonalRep
 
             \DB::update("UPDATE flexline.PER_TRABAJADOR
                         SET FECHA_TERMINO='$f_f'
-                        WHERE FICHA='$ficha';");
+                        WHERE 
+                        EMPRESA='E01' AND FICHA='$ficha';");
 
             \DB::update("UPDATE flexline.PER_REM_HIS
                         SET FECHA_TERMINO='$f_f'
-                        WHERE FICHA='$ficha';");
+                        WHERE 
+                        EMPRESA='E01' 
+                        AND FICHA='$ficha'
+                        AND FECHA_INICIO=(SELECT TOP 1 FECHA_INICIO FROM flexline.PER_REM_HIS
+                        WHERE
+                        EMPRESA='E01' 
+                        AND FICHA='$ficha'
+                        ORDER BY FECHA_INICIO DESC);");
 
         });
 
@@ -328,11 +336,18 @@ class PersonalRep
 
             \DB::update("UPDATE flexline.PER_TRABAJADOR
                         SET FECHA_TERMINO='$f_f'
-                        WHERE FICHA='$ficha';");
+                        WHERE 
+                        EMPRESA='E01' AND FICHA='$ficha';");
 
             \DB::update("UPDATE flexline.PER_REM_HIS
                         SET FECHA_TERMINO='$f_f'
-                        WHERE FICHA='$ficha';");
+                        WHERE 
+                        EMPRESA='E01' AND FICHA='$ficha'
+                        AND FECHA_INICIO=(SELECT TOP 1 FECHA_INICIO FROM flexline.PER_REM_HIS
+                        WHERE
+                        EMPRESA='E01' 
+                        AND FICHA='$ficha'
+                        ORDER BY FECHA_INICIO DESC);");
 
         });
 
