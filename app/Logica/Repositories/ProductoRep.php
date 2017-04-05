@@ -11,6 +11,7 @@ use sirag\Entities\Familia;
 use sirag\Entities\Obj;
 use sirag\Entities\SubFamilia;
 use sirag\DTO\ProductoDTO;
+use sirag\Helpers\HelpFunct;
 
 class ProductoRep
 {
@@ -123,7 +124,7 @@ class ProductoRep
         AND dd.TipoDocto = tp.TipoDocto
         and dd.Empresa='e01'
         AND dd.Bodega <> '' 
-        AND tp.Sistema IN ('Inventario','Produccion') 
+        --AND tp.Sistema IN ('Inventario','Produccion') 
         AND tp.FactorInventario='-1' 
         AND dd.Fecha BETWEEN '$f_i' and '$f_f'
         AND p.GLOSA like '%$producto%'
@@ -275,13 +276,15 @@ class ProductoRep
         AND dd.TipoDocto = tp.TipoDocto
         and dd.Empresa='e01'
         AND dd.Bodega <> '' 
-        AND tp.Sistema IN ('Inventario','Produccion') 
+        --AND tp.Sistema IN ('Inventario','Produccion') 
         AND tp.FactorInventario='-1' 
         AND dd.Fecha BETWEEN '$f_i' and '$f_f'
         AND p.GLOSA like '%$glosa%'
         AND p.FAMILIA like '%$familia%'
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
         ORDER BY A.Fecha";
+
+        //HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);
@@ -368,7 +371,7 @@ class ProductoRep
                 AND dd.TipoDocto = tp.TipoDocto
                 and dd.Empresa='e01'
                 AND dd.Bodega <> '' 
-                AND tp.Sistema IN ('Inventario','Produccion') 
+                --AND tp.Sistema IN ('Inventario','Produccion') 
                 AND tp.FactorInventario='-1' 
                 AND dd.Fecha < '$f_i'
                 AND p.GLOSA = '$glosa') saldo";
