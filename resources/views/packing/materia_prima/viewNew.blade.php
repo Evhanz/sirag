@@ -194,7 +194,7 @@
             <pre>
 
                 <button class="btn btn-success btn-lg"  v-on:click="saveData()"> <i class="fa fa-floppy-o fa-lg"></i> Guardar</button>
-              <!--   @{{ $data }} -->
+              <!-- @{{ $data }} -->
             </pre>
 
         </div>
@@ -304,11 +304,10 @@
         
         function getInitData() {
 
+            console.log( ruta );
 
-
-            $.getJSON( ruta, function( data ) {
-               // console.log( data );
-                fillDataSelects(data);
+            $.get(ruta,function (data) {
+                console.log( data );
             });
         }
 
@@ -319,6 +318,7 @@
                 item.text = item.nombre;
             });
 
+            console.log(data);
 
             $("#selChofer").select2({
                 data: data
@@ -348,8 +348,6 @@
 
 
     </script>
-
-
 
     <!-- vue JS -->
     <script  src="{{asset('js/vue.js')}}"></script>
@@ -437,7 +435,7 @@
 
 
                     this.formValidate = bandera;
-                    
+
                 },
                 deteleDetail : function (correlativo) {
                     var r = confirm("Seguro que quieres eliminar esta fila ?");
@@ -624,7 +622,7 @@
 
                                 }).fail(function(error) {
 
-                                    console.log(error); });
+                            console.log(error); });
 
 
                     }else{
@@ -658,5 +656,7 @@
         });
 
     </script>
+
+
 
 @stop

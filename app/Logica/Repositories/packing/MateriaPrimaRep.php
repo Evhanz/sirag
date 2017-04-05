@@ -36,14 +36,32 @@ class MateriaPrimaRep
         $query ="SELECT *  FROM sirag.ingreso_MP where id = $id";
         $imp = \DB::select($query);
         if(count($imp)>0){
-            //traemos a sus detalles
+            //traemos a sus detalles de choferes
+
+            $imp = $imp[0];
+
+            $q = "SELECT dc.id,dc.placa,dc.dni_chofer as dni,dc.dni_chofer,
+                    (t.APELLIDO_PATERNO+' '+t.APELLIDO_MATERNO+' '+t.NOMBRE) chofer
+                    FROM sirag.detalle_chofer_mp dc inner join flexline.PER_TRABAJADOR t
+                    on dc.dni_chofer = t.EMPLEADO
+                    where id_ingreso_mp = $id";
+            $imp->detalle_chofer = \DB::select($q);
 
 
+            $q = "SELECT * FROM sirag.detalle_uva where id_ingreso_mp = $id";
+            $temp =  \DB::select($q);
+            foreach ($temp as $i){
+                $bandera = explode('/',$i->fundo_parron);
+                $i->fundo = $bandera[0];
+                $i->parron = $bandera[1];
+            }
+            $imp->detalle_uva = $temp;
+
+            $q = "SELECT * FROM sirag.detalle_descarte where id_ingreso_mp = $id";
+            $imp->detalle_descarte = \DB::select($q);
         }
 
-
-
-
+        return $imp;
 
     }
 

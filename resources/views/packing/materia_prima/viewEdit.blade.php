@@ -7,7 +7,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Modulo: Materia Prima</a></li>
-        <li class="active">New</li>
+        <li class="active">Editar</li>
     </ol>
 
 @stop
@@ -34,7 +34,7 @@
             <div class="box-body">
                 <div class="row">
                     <input name="_token" type="hidden" id="_token" value="{{ csrf_token() }}" />
-                    <input name="id_imp" type="hidden" id="id_imp" value="{{ $id }}">
+                    <input name="idIMP" type="hidden" id="idIMP" value="{{ $id }}" />
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>PRODUCTOR</label>
@@ -120,7 +120,7 @@
                                     <tr v-for=" item in detallesUva" >
                                         <td>@{{ item.correlativo }}</td>
                                         <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
-                                        <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
+                                        <td><input v-model="item.n_guia" class="form-control input-sm" type="text" maxlength="12"></td>
                                         <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
                                         <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
                                         <td>
@@ -338,11 +338,6 @@
 
 
         }
-
-
-
-
-
 
     </script>
 
@@ -650,6 +645,37 @@
 
 
                 }
+            },
+            mounted:function () {
+
+                var ruta = "{{ route('apiGetIMPById',['id'=>$id]) }}";
+
+                var v_obj = this;
+
+                $.getJSON( ruta, function( data ) {
+
+                    console.log(data);
+
+                    var fecha = data.fecha.split('-');
+                    fecha = fecha[2]+'/'+fecha[1]+'/'+fecha[0];
+
+
+                    v_obj.detallesUva = data.detalle_uva;
+                    v_obj.conductores = data.detalle_chofer;
+                    v_obj.detalleDescarte = data.detalle_descarte;
+
+                    $("#selGuiaTransportistas").val(data.guia_transportista);
+                    $("#selResponsable").val(data.dni_responsable).trigger('change.select2');
+                    $("#selControlador").val(data.dni_controlador).trigger('change.select2');
+                    $("#datepicker").val(fecha);
+                    $("#h_inicio").val(data.h_inicio);
+                    $("#h_fin").val(data.h_fin);
+
+
+
+                });
+
+
             }
 
         });

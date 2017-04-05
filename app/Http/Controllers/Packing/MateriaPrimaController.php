@@ -113,6 +113,14 @@ class MateriaPrimaController extends Controller
 
     }
 
+    public function getIMPById($id){
+
+        $res = $this->materiaPrimaRep->getMateriaPrimaById($id);
+
+        return \Response::json($res);
+
+    }
+
 
 
 

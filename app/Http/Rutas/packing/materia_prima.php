@@ -11,7 +11,7 @@ Route::get('packing/materiaPrima/viewStore',
     ['as'=>'viewStorePMateriaPrima','uses'=>'Packing\MateriaPrimaController@viewStorePMateriaPrima']);
 Route::get('packing/materiaPrima/viewAllMP',
     ['as'=>'viewAllMP','uses'=>'Packing\MateriaPrimaController@viewAllMP']);
-Route::get('packing/materiaPrima/{id}',
+Route::get('packing/materiaPrima/Get/{id}',
     ['as'=>'viewEditIMP','uses'=>'Packing\MateriaPrimaController@viewEditIMP']);
 
 Route::post('packing/materiaPrima/viewAllMP',
@@ -24,6 +24,8 @@ Route::get('packing/materiaPrima/get',
     ['as'=>'inicioPacking','uses'=>'Packing\MateriaPrimaController@index']);
 Route::post('packing/materiaPrima/storeNew',
     ['as'=>'materiaPrimaStoreNew','uses'=>'Packing\MateriaPrimaController@materiaPrimaStoreNew']);
+Route::get('packing/materiaPrima/api/getIMPById/{id}',
+    ['as'=>'apiGetIMPById','uses'=>'Packing\MateriaPrimaController@getIMPById']);
 
 //  esto es un api externaa  se usó para no tener
 //  problemas con el acceso a compartir rutas

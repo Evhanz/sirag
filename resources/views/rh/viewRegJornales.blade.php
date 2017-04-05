@@ -576,6 +576,7 @@
 
                                 if(data == 0){
                                     alert('Valor no Encontrado');
+                                    item.codigo = '';
                                 }else{
                                     item.labor_desc = data.DESCRIPCION;
                                     //console.log( data);
@@ -1039,11 +1040,14 @@
                         bandera = 1;
                         mensaje = mensaje + ' El codigo cci no ha sido ingresada \n';
                     }
-
+                    if(item.labor_desc.length <= 0 || item.labor_desc === undefined){
+                        bandera = 1;
+                        mensaje = mensaje + '  El Codigo de Labor no ha sido ingresado correctamente \n';
+                    }
                     if((item.codigo.length <= 0 || item.codigo === undefined) &&
                             (item.labor_desc.length <= 0 || item.labor_desc === undefined)) {
                         bandera = 1;
-                        mensaje = mensaje + ' La Codigo de Labor no ha sido ingresada \n';
+                        mensaje = mensaje + ' El Codigo de Labor no ha sido ingresado \n';
                     }
                     if(item.actividad.length <= 0 || item.codigo === undefined) {
                         bandera = 1;
