@@ -41,7 +41,7 @@
                 <td>{{$maestro->CODIGO}}</td>
                 <td>N° Días Trabajados:</td>
                 <?php
-                $d_trabajador =  $item->where('MOVIMIENTO','52')->first();
+                $d_trabajador =  $item->where('MOVIMIENTO','52500')->first();
                 if($d_trabajador != null){
                     $d_trabajador = $d_trabajador->VALOR;
                 }ELSE{
@@ -371,7 +371,7 @@
                 <td>{{$maestro->CODIGO}}</td>
                 <td>N° Días Trabajados:</td>
                 <?php
-                $d_trabajador =  $item->where('MOVIMIENTO','52')->first();
+                $d_trabajador =  $item->where('MOVIMIENTO','52500')->first();
                 if($d_trabajador != null){
                     $d_trabajador = $d_trabajador->VALOR;
                 }ELSE{

@@ -2574,7 +2574,9 @@ where EMPRESA = 'e01'";
         $query = "select Documento,CONVERT(DATE,Fecha) Fecha,Estado 
         from BDASISTENCIA10_AGROGRACE.dbo.Marcaciones m inner join BDASISTENCIA10_AGROGRACE.dbo.Trabajadores t ON
         m.CodTrabajador = t.CodTrabajador
-        where m.Estado IN ('E','EL','EP','FT','EI','IE')
+        where 
+        --m.Estado IN ('E','EL','EP','FT','EI','IE')
+        m.Incidencia='00'
         AND Fecha = '$fecha'
         AND Documento = '$dni'";
 
@@ -2873,7 +2875,7 @@ where EMPRESA = 'e01'";
         AND A.MOVIMIENTO <> '110900'
         AND A.MOVIMIENTO <> '99002'
         AND A.MOVIMIENTO <> '99001'
-        AND A.MOVIMIENTO <> '52500'
+        AND A.MOVIMIENTO <> '52'
         AND A.MOVIMIENTO <> '132'
         AND A.MOVIMIENTO <> '133'
         AND A.MOVIMIENTO <> '1'
