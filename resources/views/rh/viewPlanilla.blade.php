@@ -205,6 +205,7 @@
                                                         <th>Exceso Pago </th>
                                                         <th>Reembolso Movilidad </th>
                                                         <th>Adelanto Remuneracion </th>
+                                                        <th>Saldo Prestamo </th>
                                                         <th>Total Descuentos</th>
                                                         <th>Neto  Pagar</th>
                                                         <th>Essalud </th>
@@ -244,6 +245,7 @@
                                                         <td>@{{ item.exceso_pago }}</td>
                                                         <td>@{{ item.reembolso_movilidad }}</td>
                                                         <td>@{{ item.adelanto_remuneraci }}</td>
+                                                        <td>@{{ item.saldo_prestamo }}</td>
                                                         <td>@{{ item.descuentos }}</td>
                                                         <td>@{{ item.semanal }}</td>
                                                         <td>@{{ item.essalud }}</td>
@@ -278,6 +280,7 @@
                                                         <td>@{{ totales_agraria.t_exceso_pago }}</td>
                                                         <td>@{{ totales_agraria.t_reembolso_movilidad }}</td>
                                                         <td>@{{ totales_agraria.t_adelanto_remuneraci }}</td>
+                                                        <td>@{{ totales_agraria.t_saldo_prestamo }}</td>
                                                         <td>@{{ totales_agraria.t_descuentos }}</td>
                                                         <td>@{{ totalesAgraria.t_semanal }}</td>
                                                         <td>@{{ totales_agraria.t_essalud }}</td>
