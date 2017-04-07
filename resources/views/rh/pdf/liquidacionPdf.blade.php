@@ -59,7 +59,7 @@
             <tr>
                 <td>CATEGORIA</td>
                 <td>:</td>
-                <td><span>OPERARIO</span></td>
+                <td><span>{{$item->CAT}}</span></td>
                 <td>FECHA DE TERMINO</td>
                 <td>:</td>
                 <td>{{$item->FECHA_TERMINO}}</td>
