@@ -74,6 +74,10 @@ class RecursoshController extends Controller
         return view('rh/viewGetBoletaPago');
     }
 
+    public function viewFeriado(){
+        return view('rh/viewFeriados');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -1258,7 +1262,15 @@ class RecursoshController extends Controller
 
     }
 
+    public function regFeriados(){
+        $data = \Input::all();
+        $fecha = $data['fecha'];
+        $fecha = explode('/',$fecha);
+        $fecha = $fecha[2].$fecha[1].$fecha[0];
+        $data['fecha'] =$fecha ;
+        $this->regFeriados($data);
 
+    }
 
 
 

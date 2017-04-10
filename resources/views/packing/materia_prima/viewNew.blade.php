@@ -123,7 +123,7 @@
                                     <tr v-for=" item in detallesUva" >
                                         <td>@{{ item.correlativo }}</td>
                                         <td><input style="width: 3em" v-model="item.n_pesadas" class="form-control input-sm" v-on:keyup="validateInput(item.correlativo,item.n_pesadas,'number','2')"></td>
-                                        <td><input v-model="item.guia" class="form-control input-sm" type="text" maxlength="12"></td>
+                                        <td><input v-model="item.n_guia" class="form-control input-sm" type="text" maxlength="12"></td>
                                         <td><input v-model="item.fundo" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.fundo,'number','2')"></td>
                                         <td><input v-model="item.parron" style="width: 3em" class="form-control input-sm" type="text" v-on:keyup="validateInput(item.correlativo,item.parron,'number','2')"></td>
                                         <td>
@@ -169,9 +169,9 @@
                                         <td><input v-model="item.fundo_parron" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.variedad" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.kl_racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.k_racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.kl_baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.k_baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.total" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.porcentaje" step="any" min="0.00" class="form-control input-sm" type="text"></td>
 
@@ -304,10 +304,8 @@
         
         function getInitData() {
 
-            console.log( ruta );
-
             $.get(ruta,function (data) {
-                console.log( data );
+                fillDataSelects( data );
             });
         }
 
@@ -318,7 +316,7 @@
                 item.text = item.nombre;
             });
 
-            console.log(data);
+           // console.log(data);
 
             $("#selChofer").select2({
                 data: data
@@ -363,7 +361,7 @@
                     {
                         correlativo:1,
                         n_pesadas:'',
-                        guia:'',
+                        n_guia:'',
                         variedad:'',
                         fundo: '',
                         parron: '',
@@ -511,9 +509,9 @@
                             fundo_parron:fundo+'/'+parron,
                             variedad:variedad,
                             racimo:0,
-                            kl_racimo:0,
+                            k_racimo:0,
                             baya:0,
-                            kl_baya:0,
+                            k_baya:0,
                             total:0,
                             porcentaje:0
 
@@ -562,9 +560,9 @@
                                     fundo_parron:fundo+'/'+parron,
                                     variedad:variedad,
                                     racimo:0,
-                                    kl_racimo:0,
+                                    k_racimo:0,
                                     baya:0,
-                                    kl_baya:0,
+                                    k_baya:0,
                                     total:0,
                                     porcentaje:0
 

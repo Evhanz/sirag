@@ -166,9 +166,9 @@
                                         <td><input v-model="item.fundo_parron" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.variedad" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.kl_racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.k_racimo" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
-                                        <td><input v-model="item.kl_baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
+                                        <td><input v-model="item.k_baya" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.total" step="any" min="0.00" class="form-control input-sm" type="text"></td>
                                         <td><input v-model="item.porcentaje" step="any" min="0.00" class="form-control input-sm" type="text"></td>
 
@@ -505,9 +505,9 @@
                             fundo_parron:fundo+'/'+parron,
                             variedad:variedad,
                             racimo:0,
-                            kl_racimo:0,
+                            k_racimo:0,
                             baya:0,
-                            kl_baya:0,
+                            k_baya:0,
                             total:0,
                             porcentaje:0
 
@@ -556,9 +556,9 @@
                                     fundo_parron:fundo+'/'+parron,
                                     variedad:variedad,
                                     racimo:0,
-                                    kl_racimo:0,
+                                    k_racimo:0,
                                     baya:0,
-                                    kl_baya:0,
+                                    k_baya:0,
                                     total:0,
                                     porcentaje:0
 
@@ -577,7 +577,8 @@
                     var cabecera  = {};
                     var detalle_uva = this.detallesUva;
                     var detalle_descarte = this.detalleDescarte;
-                    var ruta = "{{URL::route('materiaPrimaStoreNew')}}";
+                    var ruta = "{{URL::route('updateIMP')}}";
+                    var id = '{{$id}}';
 
 
                     var valid = this.validateForm();
@@ -598,7 +599,8 @@
                             controlador: $('#selControlador').val(),
                             fecha: fecha,
                             h_inicio: $('#h_inicio').val(),
-                            h_fin: $('#h_fin').val()
+                            h_fin: $('#h_fin').val(),
+                            id:id
 
                         };
 

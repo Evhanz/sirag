@@ -2908,6 +2908,37 @@ where EMPRESA = 'e01'";
 
 
 
+    public function regFeriados($data){
+
+
+        \DB::transaction(function () use ($data){
+
+            //primero eliminamos todas las de esa fecha
+
+            $fecha = $data['fecha'];
+
+            $q_detele = "delete from
+                    flexline.PER_DETALLETRATO
+                    where CODACTIVIDAD = 'HORA-FERIADO'
+                    and convert(date,FECHA,102) = '$fecha'";
+
+            $q = \DB::delete($q_detele);
+
+
+            //luego insertamos
+
+            $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
+
+            $res = \DB::select($query);
+
+
+
+        });
+
+    }
+
+
+
 
 
 

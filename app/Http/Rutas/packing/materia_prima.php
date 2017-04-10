@@ -26,6 +26,8 @@ Route::post('packing/materiaPrima/storeNew',
     ['as'=>'materiaPrimaStoreNew','uses'=>'Packing\MateriaPrimaController@materiaPrimaStoreNew']);
 Route::get('packing/materiaPrima/api/getIMPById/{id}',
     ['as'=>'apiGetIMPById','uses'=>'Packing\MateriaPrimaController@getIMPById']);
+Route::post('packing/materiaPrima/updateIMP',
+    ['as'=>'updateIMP','uses'=>'Packing\MateriaPrimaController@updateIMP']);
 
 //  esto es un api externaa  se usó para no tener
 //  problemas con el acceso a compartir rutas

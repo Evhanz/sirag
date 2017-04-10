@@ -22,6 +22,7 @@ Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron'
 Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
 Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
 Route::get('rh/rep/viewGetBoletaPago',['as'=>'viewGetBoletaPago','uses'=>'RecursoshController@viewGetBoletaPago']);
+Route::get('rh/rep/viewFeriado',['as'=>'viewFeriado','uses'=>'RecursoshController@viewFeriado']);
 
 
 //llamada a API
@@ -58,8 +59,11 @@ Route::get('rh/api/getJefeByFicha/{ficha}',['as'=>'getJefeByFicha','uses'=>'Recu
 
 
 
+
+
 //inserts
 Route::post('rh/store/regJornales',['as'=>'regJornales','uses'=>'RecursoshController@regJornales']);
+Route::post('rh/store/regFeriados',['as'=>'regFeriados','uses'=>'RecursoshController@regFeriados']);
 
 
 

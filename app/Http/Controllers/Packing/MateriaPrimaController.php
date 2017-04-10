@@ -87,9 +87,10 @@ class MateriaPrimaController extends Controller
         $cabecera = \DB::select("SELECT * FROM sirag.ingreso_MP  where fecha = '$fecha'");
 
         if(count($cabecera)>=1){
-            $data = ['respuesta'=>'ya existe un valor con la misma fecha'];
+            $data = ['respuesta'=>'ya existe un valor con la misma fecha','cod'=>501];
         }else{
             $this->materiaPrimaRep->store($data);
+            $data = ['respuesta'=>'Correcto','cod'=>200];
         }
 
 
@@ -118,6 +119,29 @@ class MateriaPrimaController extends Controller
         $res = $this->materiaPrimaRep->getMateriaPrimaById($id);
 
         return \Response::json($res);
+
+    }
+
+    public function updateIMP(){
+
+
+        $data = \Input::all();
+        //return \Response::json($data);
+
+        $id = $data['cabecera']['id'];
+        $fecha = $data['cabecera']['fecha'];
+
+        $cabecera = \DB::select("SELECT * FROM sirag.ingreso_MP  where fecha = '$fecha' and id <> $id");
+
+        if(count($cabecera)>=1){
+            $data = ['respuesta'=>'ya existe un valor con la misma fecha','cod'=>501];
+        }else{
+            $this->materiaPrimaRep->update($data);
+            $data = ['respuesta'=>'Correcto','cod'=>200];
+        }
+
+
+        return \Response::json($data);
 
     }
 

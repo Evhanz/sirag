@@ -7,7 +7,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Modulo: Materia Prima</a></li>
-        <li class="active">New</li>
+        <li class="active">Ver ngresos </li>
     </ol>
 
 
@@ -29,7 +29,7 @@
             <div class="box box-default" >
                 <div class="box-header">
                     <ul class="nav nav-tabs" id="tab_filtros">
-                        <li class="active"><a data-toggle="tab" href="#home">Documento</a></li>
+                        <li class="active"><a data-toggle="tab" href="#home">Detalle</a></li>
                     </ul>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
@@ -56,6 +56,11 @@
                                                     <i class="fa fa-search fa-lg"></i>
                                                 </button>
                                             </div>
+                                            <div class="form-group">
+                                                <a href="{{route('viewStorePMateriaPrima')}}" class="btn btn-info" id="btnBuscarDoc" >
+                                                    Nuevo Ingreso
+                                                </a>
+                                            </div>
                                         </form>
 
                                     </div>
@@ -79,9 +84,6 @@
                                                         <td>{{$item->fecha}}</td>
                                                         <td>{{$item->guia_transportista}}</td>
                                                         <td>{{$item->h_inicio}} - {{$item->h_fin}}</td>
-                                                        <td>
-                                                            <a class="btn btn-info">Ver </a>
-                                                        </td>
                                                         <td>
                                                             <a href="{{route('viewEditIMP',['id'=>$item->id])}}" class="btn btn-warning">Edit </a>
                                                         </td>
