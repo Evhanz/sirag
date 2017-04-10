@@ -667,6 +667,7 @@ class PersonalRep
         $t_pacifico             =   0; //agregado por frank zelada 19/01/2017
         $t_desc_venta           =   0;
         $t_descuentos           =   0;
+        $t_saldo_prestamo       =   0;  //FZ06042017
         $t_essalud              =   0;
 
 
@@ -709,9 +710,9 @@ class PersonalRep
                     A.EMPRESA=B.EMPRESA
                     AND A.FICHA=B.FICHA
                     AND A.EMPRESA='e01'
-                    --AND B.CATEGORIA='OPERARIO'
+                    AND B.CATEGORIA='OPERARIO'
                     and CONVERT(DATE,CONVERT(VARCHAR(8),A.PERIODO),113) BETWEEN @fecha_inicio AND @fecha --- FILTRAR POR PERIODO '$periodo'
-                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     GROUP BY A.FICHA, A.MOVIMIENTO
                     ORDER by A.FICHA
                     ";
@@ -1064,6 +1065,16 @@ class PersonalRep
                 $desc_venta = $desc_venta->VALOR;
             }
 
+             //10528
+            $saldo_prestamo = $item->where('MOVIMIENTO','10528')->first();
+
+            if ($saldo_prestamo == null){
+                $saldo_prestamo=0;
+
+            }else{
+                $saldo_prestamo = $saldo_prestamo->VALOR;
+            }
+
 
             //10804
             $essalud = $item->where('MOVIMIENTO','10804')->first();
@@ -1153,6 +1164,7 @@ class PersonalRep
             $t_reembolso_movilidad += $reembolso_movilidad;
             $t_adelanto_remuneraci += $adelanto_remuneraci; //FZ 041217
             $t_desc_venta += $desc_venta;
+            $t_saldo_prestamo += $saldo_prestamo; //FZ
             $t_essalud += $essalud;
             $t_descuentos += $descuentos;
             $t_comision_afp += $comision_afp;
@@ -1168,7 +1180,7 @@ class PersonalRep
             $obj->vacaciones_truncas    = number_format($vacaciones_truncas,2,'.',',');
             $obj->cts_ley               = number_format($cts_ley,2,'.',',');
             $obj->gratificacion         = number_format($gratificacion,2,'.',',');
-            $obj->gratificacio_extraor  = number_format($gratificacio_extraor,2,'.',','); //frank zel1/2017
+            $obj->gratificacio_extraor  = number_format($gratificacio_extraor,2,'.',','); //fZ1/2017
             $obj->movilidad_condicion   = number_format($movilidad_condicion,2,'.',',');
             $obj->bonificacion_extraor  = number_format($bonificacion_extraor,2,'.',',');
             $obj->descanso_medico       = number_format($descanso_medico,2,'.',',');
@@ -1186,6 +1198,7 @@ class PersonalRep
             $obj->reembolso_movilidad   = number_format($reembolso_movilidad,2,'.',',');
             $obj->adelanto_remuneraci   = number_format($adelanto_remuneraci,2,'.',','); // FZ 040117
             $obj->desc_venta            = number_format($desc_venta,2,'.',',');
+            $obj->saldo_prestamo        = number_format($saldo_prestamo,2,'.',',');//FZ
             $obj->essalud               = number_format($essalud,2,'.',',');
             $obj->descuentos            = number_format($descuentos,2,'.',',');
 
@@ -1237,8 +1250,9 @@ class PersonalRep
         $totales['t_desc_movilidad_con']    = number_format($t_desc_movilidad_con,2,'.',',');
         $totales['t_exceso_pago']           = number_format($t_exceso_pago,2,'.',','); //FZ 27012017
         $totales['t_reembolso_movilidad']   = number_format($t_reembolso_movilidad,2,'.',',');
-        $totales['t_adelanto_remuneraci']   = number_format($t_adelanto_remuneraci,2,'.',','); // FZ 040117
+        $totales['t_adelanto_remuneraci']   = number_format($t_adelanto_remuneraci,2,'.',','); // FZ117
         $totales['t_desc_venta']            = number_format($t_desc_venta,2,'.',',');
+        $totales['t_saldo_prestamo']        = number_format($t_saldo_prestamo,2,'.',',');//fz
         $totales['t_essalud']               = number_format($t_essalud,2,'.',',');
         $totales['t_descuentos']            = number_format($t_descuentos,2,'.',',');
         $totales['t_comision_afp']          = number_format($t_comision_afp ,2,'.',',');
