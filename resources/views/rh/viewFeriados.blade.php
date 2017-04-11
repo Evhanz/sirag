@@ -1,5 +1,16 @@
 @extends('layout')
 
+@section('content-header')
+
+    @if((session('status'))!=null)
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
+@stop
+
+
 @section('content')
 
     <div >
@@ -16,7 +27,7 @@
                             </div>
                             <div class="form-group col-xs-3">
                                 <label for="">&nbsp;</label><br>
-                                <button class="btn btn-warning">Registrar Feriados</button>
+                                <button id="Registrar-" class="btn btn-warning">Registrar Feriados</button>
                             </div>
                         </form>
                     </div><!-- /.box-header -->
@@ -47,6 +58,25 @@
         $('#periodo_agrario').datepicker({
             format: 'dd/mm/yyyy'
         });
+
+        $("#Registrar").click(function () {
+
+            var token = $("#_token").val();
+            var fecha = $("#periodo_agrario").val();
+            var ruta = "{{route('regFeriados')}}";
+
+            $.post( ruta,
+                    { _token: token,
+                       fecha: fecha })
+                    .done(function( data ) {
+                        console.log(data);
+                    })
+                    .fail(function (data) {
+                        console.log(data);
+                    });
+        });
+
+
     </script>
 
 

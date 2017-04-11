@@ -1268,7 +1268,10 @@ class RecursoshController extends Controller
         $fecha = explode('/',$fecha);
         $fecha = $fecha[2].$fecha[1].$fecha[0];
         $data['fecha'] =$fecha ;
-        $this->regFeriados($data);
+
+        $res =  $this->personalRep->regFeriados($data);
+
+        return back()->with('status', 'Correcto, el proceso a culminado exitosamente!! ');
 
     }
 

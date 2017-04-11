@@ -2940,14 +2940,15 @@ where EMPRESA = 'e01'";
 
 
             //luego insertamos
-
             $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
 
-            $res = \DB::select($query);
+            $res = \DB::statement($query);
 
-
+            return $res;
 
         });
+
+
 
     }
 
