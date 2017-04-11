@@ -459,6 +459,11 @@
 
         /*funciones de jquery*/
 
+        $('#periodo_agrario').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+
         $('input[name="daterange"]').daterangepicker({
             format : "DD/MM/YYYY"
         });
