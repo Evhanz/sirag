@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,26 +41,29 @@
       <file leaf-file-name="viewFeriados.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+            <state relative-caret-position="136">
+              <caret line="8" column="10" selection-start-line="4" selection-start-column="3" selection-end-line="8" selection-end-column="10" />
               <folding>
-                <marker date="1491926236930" expanded="true" signature="2103:2600" ph="..." />
-                <marker date="1491926236930" expanded="true" signature="2116:2366" ph="..." />
-                <marker date="1491926236930" expanded="true" signature="2395:2478" ph="..." />
-                <marker date="1491926236930" expanded="true" signature="2413:2477" ph="..." />
-                <marker date="1491926236930" expanded="true" signature="2506:2588" ph="..." />
-                <marker date="1491926236930" expanded="true" signature="2523:2587" ph="..." />
+                <marker date="1491933366223" expanded="true" signature="1333:1830" ph="..." />
+                <marker date="1491933366223" expanded="true" signature="1346:1596" ph="..." />
+                <marker date="1491933366223" expanded="true" signature="1625:1708" ph="..." />
+                <marker date="1491933366223" expanded="true" signature="1643:1707" ph="..." />
+                <marker date="1491933366223" expanded="true" signature="1736:1818" ph="..." />
+                <marker date="1491933366223" expanded="true" signature="1753:1817" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <file leaf-file-name="viewRegJornales.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="188" column="79" selection-start-line="188" selection-start-column="79" selection-end-line="188" selection-end-column="79" />
-              <folding />
+            <state relative-caret-position="-357">
+              <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+              <folding>
+                <element signature="e#1663#14079#0#HTML" expanded="false" />
+                <element signature="e#14166#18732#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,11 +78,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecursoshController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="187" column="52" selection-start-line="187" selection-start-column="52" selection-end-line="187" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecursoshController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="1270" column="0" selection-start-line="1270" selection-start-column="0" selection-end-line="1270" selection-end-column="0" />
+            <state relative-caret-position="191">
+              <caret line="1265" column="30" selection-start-line="1265" selection-start-column="30" selection-end-line="1265" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -232,7 +243,6 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewGetCostoMOFundoParron.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/packing/materia_prima.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Packing/MateriaPrimaController.php" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/packing/MateriaPrimaRep.php" />
@@ -243,9 +253,10 @@
         <option value="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
-        <option value="$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
       </list>
     </option>
   </component>
@@ -968,14 +979,7 @@
       <workItem from="1491488812042" duration="16441000" />
       <workItem from="1491576297188" duration="8682000" />
       <workItem from="1491848941885" duration="7990000" />
-      <workItem from="1491920644570" duration="6695000" />
-    </task>
-    <task id="LOCAL-00042" summary="centro de costo consumo por fundo">
-      <created>1481827136873</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1481827136873</updated>
+      <workItem from="1491920644570" duration="9384000" />
     </task>
     <task id="LOCAL-00043" summary="rev">
       <created>1481881779729</created>
@@ -1313,11 +1317,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491866774190</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="rev">
+      <created>1491928028713</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1491928028714</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1950594000" />
+    <option name="totallyTimeSpent" value="1953283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1638,13 +1649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="1056" column="40" selection-start-line="1056" selection-start-column="40" selection-end-line="1056" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/packing/materia_prima/viewAllMP.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-26">
@@ -1840,6 +1844,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="1265" column="30" selection-start-line="1265" selection-start-column="30" selection-end-line="1265" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="10" selection-start-line="4" selection-start-column="3" selection-end-line="8" selection-end-column="10" />
+          <folding>
+            <marker date="1491933366223" expanded="true" signature="1333:1830" ph="..." />
+            <marker date="1491933366223" expanded="true" signature="1346:1596" ph="..." />
+            <marker date="1491933366223" expanded="true" signature="1625:1708" ph="..." />
+            <marker date="1491933366223" expanded="true" signature="1643:1707" ph="..." />
+            <marker date="1491933366223" expanded="true" signature="1736:1818" ph="..." />
+            <marker date="1491933366223" expanded="true" signature="1753:1817" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="42" column="53" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
+          <folding>
+            <element signature="e#1663#14079#0#HTML" expanded="false" />
+            <element signature="e#14166#18732#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1850,31 +1888,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="188" column="79" selection-start-line="188" selection-start-column="79" selection-end-line="188" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/rh/viewFeriados.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding>
-            <marker date="1491926236930" expanded="true" signature="2103:2600" ph="..." />
-            <marker date="1491926236930" expanded="true" signature="2116:2366" ph="..." />
-            <marker date="1491926236930" expanded="true" signature="2395:2478" ph="..." />
-            <marker date="1491926236930" expanded="true" signature="2413:2477" ph="..." />
-            <marker date="1491926236930" expanded="true" signature="2506:2588" ph="..." />
-            <marker date="1491926236930" expanded="true" signature="2523:2587" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="1270" column="0" selection-start-line="1270" selection-start-column="0" selection-end-line="1270" selection-end-column="0" />
+        <state relative-caret-position="227">
+          <caret line="187" column="52" selection-start-line="187" selection-start-column="52" selection-end-line="187" selection-end-column="52" />
           <folding />
         </state>
       </provider>

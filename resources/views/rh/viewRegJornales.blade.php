@@ -13,6 +13,12 @@
        </div>
     </div>
 
+    @if((session('status'))!=null)
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
 @stop
 
 @section('content')
@@ -31,6 +37,7 @@
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Jornales</a></li>
                             <li ><a data-toggle="tab" href="#dominical">Dominical</a></li>
+                            <li ><a data-toggle="tab" href="#feriados">Feriados</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -281,6 +288,26 @@
 
 
 
+                            </div>
+
+                            <div id="feriados" class="tab-pane fade">
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form action="{{route('regFeriados')}}" method="post" class="form">
+                                            <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+                                            <div class="form-group col-xs-3">
+                                                <label for="">Ingrese la fecha de feriado</label>
+                                                <input name="fecha" id="periodo_agrario" class="form-control datepicker" required>
+                                            </div>
+                                            <div class="form-group col-xs-3">
+                                                <label for="">&nbsp;</label><br>
+                                                <button id="Registrar-" class="btn btn-warning">Registrar Feriados</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
