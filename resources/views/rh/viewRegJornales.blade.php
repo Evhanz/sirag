@@ -101,9 +101,8 @@
                                                             <tr ng-repeat="item in detalles">
                                                                 <td>
                                                                     @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'RFLORES')
-                                                                        <button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">X</button>
+                                                                        <button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">x</button>
                                                                     @endif
-
                                                                 </td>
                                                                 <td>@{{ $index + 1 }}</td>
                                                                 <td>
@@ -115,7 +114,7 @@
                                                                         ...</button>
                                                                     <!-- data-type="number" data-max ="6" -->
                                                                     <input id="ficha@{{$index}}" ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
-                                                                    <input  ng-model="item.trabajador" type="text" disabled  style="width: 10em;">
+                                                                    <input  ng-model="item.trabajador" type="text" disabled  style="width: 16em;">
                                                                 </td>
                                                                 <td>
                                                                     <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
@@ -189,7 +188,15 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr ng-repeat="item in dataSelect">
-                                                                <td><button ng-click="deleteDetailShow($index)" class="btn btn-danger btn-xs">X</button></td>
+                                                                <td>
+                                                                    @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'RFLORES')
+                                                                        <button ng-click="deleteDetailShow($index)" class="btn btn-danger btn-xs">X</button>
+                                                                    @endif
+
+                                                                    <button ng-click="updateDetail($index)" class="btn btn-warning btn-xs">
+                                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </td>
                                                                 <td>@{{ $index + 1 }}</td>
                                                                 <td>@{{item.fecha}}</td>
                                                                 <td>@{{ item.nombre }}</td>
@@ -266,7 +273,7 @@
                                                             <tbody>
                                                             <tr ng-repeat="item in dataDominical">
                                                                 <td>@{{ $index + 1 }}</td>
-                                                                <td>@{{item.fecha}}</td>
+                                                                <td>@{ {item.fecha}}</td>
                                                                 <td>@{{ item.nombre }}</td>
                                                                 <td>@{{ item.cci }}</td>
                                                                 <td>@{{ item.codigo }}</td>
@@ -439,6 +446,100 @@
             </div>
         </div>
         <!--./ modal Detail-->
+
+        <!--Modal Edit Jornal-->
+        <div class="modal fade " id="modEditJornal"  role="dialog">
+            <div class="modal-dialog " >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2>Editar Jornal: </h2>
+                        <span>@{{ jornalEdit.nombre }} , del día  @{{ jornalEdit.fecha }}</span>
+                    </div>
+                    <div class="modal-body" style="height: auto !important;" >
+
+                        <div class="row">
+                            <div >
+                                <input type="hidden" id="indexJornal">
+                                <div class="form-group">
+                                    <div class="col-xs-1">
+                                        <label for="">CCI: </label>
+                                    </div>
+                                    <div class="col-xs-1" >
+                                        <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input class="form-control" id="cci"  ng-model="jornalEdit.cci"  ng-keyup="getCciByCodigo($event,jornalEdit.cci,jornalEdit,$index)">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input class="form-control"  ng-model="jornalEdit.descCci" type="text" disabled  >
+                                    </div>
+
+                                </div>
+
+
+                                <span style="height: 20px">&nbsp;</span>
+
+
+                                <div class="form-group">
+                                    <div class="col-xs-1">
+                                        <label for="">Labor: </label>
+                                    </div>
+
+                                    <div class="col-xs-2">
+                                        <input class="form-control" id="codigo" ng-model="jornalEdit.codigo" ng-keyup="getLabor($event,jornalEdit.codigo,jornalEdit,$index)"  type="text">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input class="form-control" type="text" ng-model="jornalEdit.labor_desc" disabled>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <label for="">T.Hora</label>
+                                    </div>
+                                    <div  class="col-xs-4">
+                                        <select class="form-control" name="" id="actividad" ng-model="jornalEdit.actividad" >
+                                            <option value="">-----------------------</option>
+                                            <option ng-repeat="item in codigoActividad" value="@{{ item.value }}">
+                                                @{{ item.codigo }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <span style="height: 20px">&nbsp;</span>
+
+                                <div class="form-group">
+
+                                    <div class="col-xs-1">
+                                        Horas:
+                                    </div>
+
+                                    <div class="col-xs-2">
+                                        <input class="form-control" ng-model="jornalEdit.hora"  type="text"  >
+
+                                    </div>
+                                </div>
+                                <span style="height: 20px">&nbsp;</span>
+                                <hr>
+
+                                <div class="form-group">
+                                    <div class="col-xs-8">
+                                        <a class="btn btn-info " ng-click="editJornal()"> <i class="fa fa-floppy-o"></i> Guardar  </a>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -540,6 +641,9 @@
             $scope.detalles = [];
             $scope.dataSelect = [];
             $scope.dataDominical =[];
+            $scope.jornalSelect = {};
+            $scope.jornalEdit = {};
+
 
             getCodigoActividad();
 
@@ -729,7 +833,6 @@
                 $("#modPersonal").modal('hide');
             };
 
-
             $scope.getTrabajador = function(evento,ficha,item,index){
 
                 var dni = '';
@@ -843,7 +946,6 @@
                 }
             };
 
-
             $scope.selectCCI = function (item) {
 
                 var position = $("#idCodigoCCI").val();
@@ -889,10 +991,6 @@
 
                 }
 
-
-
-
-
             };
 
 
@@ -933,7 +1031,6 @@
 
 
             };
-
 
             $scope.addLine  = function (evento,index) {
 
@@ -1045,12 +1142,6 @@
 
             };
 
-
-
-
-
-
-
             function validarItem(item,index) {
 
                 var bandera = 0 ;
@@ -1063,37 +1154,37 @@
                         mensaje += 'La fecha no tiene un formato adecuado \n';
                     }
 
-                    if(item.ficha.length <= 0 || item.ficha === undefined){
+                    if(item.ficha.length <= 0 || typeof item.ficha === 'undefined'){
                         bandera = 1;
                         mensaje = mensaje + ' La ficha no ha sido ingresada \n';
                     }
 
-                    if(item.cci.length <= 0 || item.cci === undefined){
+                    if(item.cci.length <= 0 || typeof item.cci === 'undefined'){
                         bandera = 1;
                         mensaje = mensaje + ' El codigo cci no ha sido ingresada \n';
                     }
-                    if(item.labor_desc.length <= 0 || item.labor_desc === undefined){
+                    if(item.labor_desc.length <= 0 || typeof  item.labor_desc === 'undefined'){
                         bandera = 1;
                         mensaje = mensaje + '  El Codigo de Labor no ha sido ingresado correctamente \n';
                     }
-                    if((item.codigo.length <= 0 || item.codigo === undefined) &&
-                            (item.labor_desc.length <= 0 || item.labor_desc === undefined)) {
+                    if((item.codigo.length <= 0 || typeof item.codigo === 'undefined') &&
+                            (item.labor_desc.length <= 0 || typeof item.labor_desc === 'undefined')) {
                         bandera = 1;
                         mensaje = mensaje + ' El Codigo de Labor no ha sido ingresado \n';
                     }
-                    if(item.actividad.length <= 0 || item.codigo === undefined) {
+                    if(item.actividad.length <= 0 || typeof item.codigo === 'undefined') {
                         bandera = 1;
                         mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada \n';
                     }
 
-                    if(item.hora.length <= 0 || item.hora === undefined || item.hora < 0 ) {
+                    if(item.hora.length <= 0 || typeof item.hora === 'undefined' || item.hora < 0 ) {
                         bandera = 1;
                         mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada \n';
                     }
 
                 }catch (err){
                     bandera=1;
-                    mensaje += "Emos detectado lo siguiente- \n La linea "+(index+1) +"que desea ingresar contiene errores en su ingreso," +
+                    mensaje += "Hemos detectado lo siguiente- \n La linea "+(index+1) +"que desea ingresar contiene errores en su ingreso," +
                             "reingrese todo los campos para continuar , gracias :"+err;
                 }
 
@@ -1136,7 +1227,7 @@
 
                     })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.dataSelect = data;
                         $("#btnBuscar").attr('disabled',false);
                         $("#btnNuevo").attr('disabled',false);
@@ -1236,6 +1327,71 @@
 
             };
 
+            $scope.updateDetail = function (index) {
+
+                $scope.jornalSelect = {
+
+                    fecha: $scope.dataSelect[index].fecha,
+                    ficha: $scope.dataSelect[index].ficha,
+                    actividad: $scope.dataSelect[index].actividad,
+                    codigo: $scope.dataSelect[index].codigo,
+                    cci: $scope.dataSelect[index].cci,
+                    hora:$scope.dataSelect[index].hora,
+                    nombre:$scope.dataSelect[index].nombre
+
+                };
+                $scope.jornalEdit = $scope.dataSelect[index];
+
+                $("#modEditJornal").modal("show");
+
+            };
+
+            $scope.editJornal = function () {
+
+
+                var fecha = $scope.jornalEdit.fecha.split('-');
+                fecha = fecha[0]+'-'+fecha[1]+'-'+ fecha[2].substr(2,2);
+                $scope.jornalEdit.fecha = fecha;
+
+                var bandera = validarItem($scope.jornalEdit,0);
+                $scope.jornalEdit.fecha = $scope.jornalSelect.fecha ;
+                if(bandera==1){
+                    alert('Error: todos los campos tienen que ser completados');
+
+                }else{
+
+                    //el scope jornalSelect es el anterior jornal y el edit es el que se acaba de editar
+                    var token = $('#_token').val();
+                    var usr = $('#nameUser').text();
+                    $scope.jornalEdit.user = usr;
+                    $scope.jornalSelect.user = usr;
+
+
+
+                    $http.post('{{URL::route('editJornal')}}',{
+                        _token:token,
+                        itemAnterior: $scope.jornalSelect,
+                        itemNuevo: $scope.jornalEdit
+
+                    }).success(function (data) {
+
+
+                    }).error(function (error) {
+
+
+                        console.log(error);
+
+
+                    });
+
+                }
+
+
+
+
+
+            };
+
 
 
             /**
@@ -1266,8 +1422,6 @@
                 if( cadena[0].length == 1 || cadena[1].length == 1){
                     bandera = 1;
                 }
-
-
 
                 if(cadena[2]<10 || cadena[2]>99){
                     bandera = 1;

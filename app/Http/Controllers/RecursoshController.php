@@ -1035,8 +1035,30 @@ class RecursoshController extends Controller
         $res = $this->personalRep->deleteJornal($data['item']);
 
         return \Response::Json('ok');
+    }
+
+    public function editJornal(){
+
+        $data = \Input::all();
+
+        \DB::transaction(function () use ($data){
+
+            $anterior = $data['itemAnterior'] ;
+            $nuevo = $data['itemNuevo'];
+
+            $res = $this->personalRep->deleteJornal($anterior);
+
+            $res = $this->personalRep->regJornales($nuevo);
+
+        });
+
+
+
+        return \Response::Json('ok');
 
     }
+
+
 
 
     public function getJornalesByFechas(){

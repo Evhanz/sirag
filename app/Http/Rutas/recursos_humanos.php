@@ -65,7 +65,8 @@ Route::get('rh/api/getJefeByFicha/{ficha}',['as'=>'getJefeByFicha','uses'=>'Recu
 Route::post('rh/store/regJornales',['as'=>'regJornales','uses'=>'RecursoshController@regJornales']);
 Route::post('rh/store/regFeriados',['as'=>'regFeriados','uses'=>'RecursoshController@regFeriados']);
 
-
+//edits
+Route::post('rh/store/editJornal',['as'=>'editJornal','uses'=>'RecursoshController@editJornal']);
 
 //deletes
 Route::post('rh/delete/deleteJornales',['as'=>'deleteJornales','uses'=>'RecursoshController@deleteJornales']);
