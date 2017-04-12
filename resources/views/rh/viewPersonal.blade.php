@@ -32,6 +32,7 @@
                                                         <option value="OPERARIO">OPERARIO</option>
                                                         <option value="SIN_CONTRATO">SIN_CONTRATO</option>
                                                         <option value="EMPLEADO">EMPLEADO</option>
+                                                        <option value="PRACTICANTE">PRACTICANTE</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
