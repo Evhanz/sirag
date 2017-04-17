@@ -2839,6 +2839,8 @@ where EMPRESA = 'e01'";
         $q1='';
         $periodo = $data['periodo'];
         $periodo2 = $data['periodo2'];
+        $categoria = $data['categoria'];
+
 
         if(isset($data['ficha'])){
 
@@ -2895,13 +2897,13 @@ where EMPRESA = 'e01'";
         AND A.MOVIMIENTO <> '1'
         AND A.MOVIMIENTO <> '4'
         AND A.MOVIMIENTO <> '5'
+        AND B.CATEGORIA = '$categoria'
         group by B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,
         A.FICHA,B.EMPLEADO,B.CATEGORIA,B.CARGO,A.MOVIMIENTO,A.DESCRIPCION,A.EMPRESA,
         A.TIPO_MOVTO
         ORDER BY A.FICHA,B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,A.TIPO_MOVTO
         ";
 
-        HelpFunct::writeQuery($query);
 
         try{
         $res = \DB::select($query);
