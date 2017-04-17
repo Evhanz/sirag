@@ -38,7 +38,7 @@
                                                 <div class="form-group">
                                                     <label for="" >Vigencia</label><br>
                                                     <select name="" class="form-control" ng-model="filVigencia" ng-init="filVigencia='ACTIVO'">
-                                                        <option value="">-----</option>
+                                                        <option value="todos">-----</option>
                                                         <option value="ACTIVO" >si</option>
                                                         <option value="INACTIVO">no</option>
                                                     </select>
