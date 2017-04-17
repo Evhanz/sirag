@@ -155,7 +155,7 @@
                                             <th>CUENTA CORRIENTE</th>
                                             <th>BANCO</th>
                                             <th>T. IDENTIDAD</th>
-                                            <th>U. Negocio</th>
+                                            <th>ASIG FAMILIAR</th>
                                             <th>Sexo</th>
                                             <th>F. Nac.</th>
                                             <th>Fecha Ini</th>
@@ -184,7 +184,7 @@
                                             <td>@{{ item.CUENTA_CORRIENTE }}</td>
                                             <td>@{{ item.BANCO }}</td>
                                             <td>@{{ item.TIPO_IDENTIDAD }}</td>
-                                            <td>@{{ item.UNIDAD_NEGOCIO }}</td>
+                                            <td>@{{ item.ASIG_FAM }}</td>
                                             <td>@{{ item.SEXO | limitTo:1 }}</td>
                                             <td>@{{ item.FECHA_NACIMIENTO }}</td>
                                             <td>@{{ item.FECHA_INICIO }}</td>
