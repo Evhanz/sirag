@@ -156,13 +156,15 @@
                                             <th>BANCO</th>
                                             <th>T. IDENTIDAD</th>
                                             <th>ASIG FAMILIAR</th>
+                                            <th>Estado Civil</th>
                                             <th>Sexo</th>
                                             <th>F. Nac.</th>
                                             <th>Fecha Ini</th>
                                             <th>Fecha Fin</th>
+                                            <th>Categoria</th>
                                             <th>Cargo</th>
                                             <th>Remuneración</th>
-                                            <th>T_Contrato</th>
+                                            <th>Área</th>
                                             <th>C. Costo</th>
                                             <th>CTA_CENTRA</th>
                                             <th>AFP/ONP</th>
@@ -170,6 +172,7 @@
                                             <th>FINIQUITO</th>
                                             <th>VAC. ACUMULADAS</th>
                                             <th>VAC. ADEUDADAS</th>
+                                            <th>DIRECCION</th>
                                             <th class="noExl">V</th>
                                             <th class="noExl">Dirección</th>
                                             <th class="noExl">*</th>
@@ -185,13 +188,15 @@
                                             <td>@{{ item.BANCO }}</td>
                                             <td>@{{ item.TIPO_IDENTIDAD }}</td>
                                             <td>@{{ item.ASIG_FAM }}</td>
+                                            <td>@{{ item.ESTADO_CIVIL }}</td>
                                             <td>@{{ item.SEXO | limitTo:1 }}</td>
                                             <td>@{{ item.FECHA_NACIMIENTO }}</td>
                                             <td>@{{ item.FECHA_INICIO }}</td>
                                             <td>@{{ item.FECHA_TERMINO }}</td>
+                                            <td>@{{ item.CATEGORIA }}</td>
                                             <td>@{{ item.CARGO }}</td>
                                             <td>@{{ item.REMUNERACION }} </td>
-                                            <td>@{{ item.TIPO_CONTRATO }} </td>
+                                            <td>@{{ item.AREA }} </td>
                                             <td>@{{ item.CENTRO_COSTO }}</td>
                                             <td>@{{ item.CTA_CENTRA }}</td>
                                             <td>@{{ item.AFP_ONP }}</td>
@@ -199,6 +204,7 @@
                                             <td>@{{ item.MOTIVO_SALIDA }}</td>
                                             <td>@{{ item.vac}}</td>
                                             <td>@{{ item.CANTIDA_DIF}}</td>
+                                            <td>@{{ item.DIRECCION}}</td>
                                             <td class="noExl"> <div class="animate-switch-container"
                                                       ng-switch on="item.VIGENCIA">
                                                     <div  ng-switch-when="A">
