@@ -49,7 +49,7 @@ class PersonalRep
         $f_i = $data['f_i'];
         $f_f = $data['f_f'];
 
-        $query = "EXEC sp_getTrabajadoresByParametes @categoria = '%$categoria%' , @vigencia = '$vigencia' , @f_i = '$f_i', @f_f = '$f_f'";
+        $query = "EXEC sp_getTrabajadoresByParametes @categoria = '%$categoria%' , @vigencia = '%$vigencia%' , @f_i = '$f_i', @f_f = '$f_f'";
 
         $res = \DB::select($query);
 
@@ -131,7 +131,7 @@ class PersonalRep
         $categoria = $data['categoria'];
         $vigencia = $data['vigencia'];
 
-        $res = \DB::select("EXEC sp_getTrabajadoresByParamOutDates @categoria = '%$categoria%' , @vigencia = '$vigencia' ;");
+        $res = \DB::select("EXEC sp_getTrabajadoresByParamOutDates @categoria = '%$categoria%' , @vigencia = '%$vigencia%' ;");
 
 
 
