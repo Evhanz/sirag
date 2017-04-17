@@ -2229,6 +2229,7 @@ class PersonalRep
         //$inicio_periodo = '20170101';
         $periodo = $data['periodo'];
         $inicio_periodo = $data['inicio_periodo'];
+        $categoria = $data['categoria'];
 
         $query = "select 
         (E.APELLIDO_PATERNO+' '+E.APELLIDO_MATERNO+', '+E.NOMBRE) NOMBRE,
@@ -2309,6 +2310,7 @@ class PersonalRep
         AND A.VALOR > 0
         AND C.codigo1='$inicio_periodo' -- INICIO DE MES DE LA SEMANA QUE SE CONSULTA
         AND A.PERIODO='$periodo' -- ACA VA EL PERIODO
+        AND E.CATEGORIA = '$categoria'
         ORDER BY E.APELLIDO_PATERNO,E.APELLIDO_MATERNO  ";
 
 
@@ -2839,8 +2841,6 @@ where EMPRESA = 'e01'";
         $q1='';
         $periodo = $data['periodo'];
         $periodo2 = $data['periodo2'];
-        $categoria = $data['categoria'];
-
 
         if(isset($data['ficha'])){
 
@@ -2897,7 +2897,6 @@ where EMPRESA = 'e01'";
         AND A.MOVIMIENTO <> '1'
         AND A.MOVIMIENTO <> '4'
         AND A.MOVIMIENTO <> '5'
-        AND B.CATEGORIA = '$categoria'
         group by B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,
         A.FICHA,B.EMPLEADO,B.CATEGORIA,B.CARGO,A.MOVIMIENTO,A.DESCRIPCION,A.EMPRESA,
         A.TIPO_MOVTO

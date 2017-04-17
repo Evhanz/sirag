@@ -12,14 +12,6 @@
                             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
 
                             <div class="form-group col-xs-2">
-                                <label for="">Categoria</label>
-                                <select class="form-control" name="categoria" id="categoria" required>
-                                    <option value="EMPLEADO">EMPLEADO</option>
-                                    <option value="OPERARIO">OPERARIO</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-xs-2">
                                 <label for="">Ficha</label>
                                 <input name="ficha" id="ficha" class="form-control" >
                             </div>

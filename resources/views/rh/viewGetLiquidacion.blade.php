@@ -10,6 +10,14 @@
                     <div class="box-header">
                         <form action="{{route('getLiquidacion')}}" method="post" class="form">
                             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+
+                            <div class="form-group col-xs-2">
+                                <label for="categoria">Categoria</label>
+                                <select class="form-control" name="categoria" id="categoria" required>
+                                    <option value="OPERARIO" SELECTED>OPERARIO</option>
+                                    <option value="EMPLEADO">EMPLEADO</option>
+                                </select>
+                            </div>
                             <div class="form-group col-xs-3">
                                 <label for="">Fecha</label>
                                 <input name="fecha" id="periodo_agrario" class="form-control datepicker" required>
