@@ -173,6 +173,8 @@
                                             <th>VAC. ACUMULADAS</th>
                                             <th>VAC. ADEUDADAS</th>
                                             <th>DIRECCION</th>
+                                            <th>DISTRITO</th>
+                                            <th>PROVINCIA</th>
                                             <th class="noExl">V</th>
                                             <th class="noExl">Dirección</th>
                                             <th class="noExl">*</th>
@@ -205,6 +207,8 @@
                                             <td>@{{ item.vac}}</td>
                                             <td>@{{ item.CANTIDA_DIF}}</td>
                                             <td>@{{ item.DIRECCION}}</td>
+                                            <td>@{{ item.DISTRITO}}</td>
+                                            <td>@{{ item.PROVINCIA}}</td>
                                             <td class="noExl"> <div class="animate-switch-container"
                                                       ng-switch on="item.VIGENCIA">
                                                     <div  ng-switch-when="A">
