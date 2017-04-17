@@ -82,7 +82,7 @@
                                                         <table class="table table-bordered" id="data">
                                                             <thead>
                                                             <tr>
-                                                                <td rowspan="2">E</td>
+                                                                <td rowspan="2" >E</td>
                                                                 <td rowspan="2">N°</td>
                                                                 <td rowspan="2">Fecha</td>
                                                                 <td rowspan="2">Trabajador</td>
@@ -90,7 +90,6 @@
                                                                 <td colspan="4" style="text-align: center">TIPO DE LABOR</td>
                                                             </tr>
                                                             <tr>
-
                                                                 <td>Labor</td>
                                                                 <td>Turno</td>
                                                                 <td>Codigo Actividad</td>
@@ -99,11 +98,15 @@
                                                             </thead>
                                                             <tbody>
                                                             <tr ng-repeat="item in detalles">
-                                                                <td>
+                                                                <td style="width: 65px">
                                                                     @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'RFLORES')
                                                                         <button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">x</button>
                                                                     @endif
+                                                                    <button ng-click="updateDetail2($index)" class="btn btn-warning btn-xs" id="btnEdit@{{$index}}" disabled>
+                                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                    </button>
                                                                 </td>
+
                                                                 <td>@{{ $index + 1 }}</td>
                                                                 <td>
                                                                     <input ng-init="prueba($index)" ng-keyup="keyFecha($event,$index)" ng-change="item.ficha='';item.trabajador=''" id="fecha@{{$index}}" ng-model="item.fecha" class="fecha" style="width: 65px" ng-click="clickFecha()" pattern="\d{1,2}-\d{1,2}-\d{2}">
@@ -120,7 +123,6 @@
                                                                     <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
                                                                     <input id="cci@{{$index}}"  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item,$index)">
                                                                     <input  ng-model="item.descCci" type="text" disabled  style="width: 8em">
-
                                                                 </td>
                                                                 <td>
                                                                     <input id="codigo@{{$index}}" ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item,$index)" style="width: 3em;" type="text">
@@ -156,6 +158,8 @@
                                     </div>
 
                                 </div>
+
+
                                 <div class="row" id="dataShow">
                                     <div class="col-lg-12">
                                         <!-- Box (with bar chart) -->
@@ -465,11 +469,15 @@
                                     <div class="col-xs-1">
                                         <label for="">CCI: </label>
                                     </div>
+
                                     <div class="col-xs-1" >
-                                        <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
+                                        <!--
+                                       <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">
+                                           <i class="fa fa-search"></i>
+                                       </button>
+                                       -->
+                                   </div>
+
                                     <div class="col-xs-5">
                                         <input class="form-control" id="cci"  ng-model="jornalEdit.cci"  ng-keyup="getCciByCodigo($event,jornalEdit.cci,jornalEdit,$index)">
                                     </div>
@@ -528,10 +536,7 @@
                                     <div class="col-xs-8">
                                         <a class="btn btn-info " ng-click="editJornal()"> <i class="fa fa-floppy-o"></i> Guardar  </a>
                                     </div>
-
                                 </div>
-
-
                             </div>
 
                         </div>
@@ -670,7 +675,6 @@
                     alert('Error: :>');
                 });
             };
-
             $scope.getModCCostoInterno = function (index) {
 
                 $("#modCCostoInterno").modal('show');
@@ -695,7 +699,6 @@
                     alert('Error: :>');
                 });
             };
-
             $scope.getLabor = function(evento,codigo,item,index){
 
                 var token = $('#_token').val();
@@ -731,7 +734,6 @@
 
 
             };
-
             function getCodigoActividad(){
 
                 $http.get('{{ URL::route('CodigoActividad') }}')
@@ -748,7 +750,6 @@
                     alert('Error: :>');
                 });
             }
-
             $scope.newRegDetails = function () {
 
                 var detail = {};
@@ -759,12 +760,14 @@
                 $('#dataInsert').show();
                 $('#dataShow').hide();
 
-                $scope.detalles.push(detail);
+                if($scope.detalles.length==0){
+                    $scope.detalles.push(detail);
+                }
+
+
 
             };
-
             $scope.loadFecha = function () {
-
               //  alert('as');
 
                 $('.datepicker').datepicker({
@@ -773,7 +776,6 @@
 
 
             };
-
             $scope.selectTrabajador = function (item) {
 
 
@@ -832,7 +834,6 @@
 
                 $("#modPersonal").modal('hide');
             };
-
             $scope.getTrabajador = function(evento,ficha,item,index){
 
                 var dni = '';
@@ -920,7 +921,6 @@
 
                 }
             };
-
             $scope.getCciByCodigo = function (evento,codigo,item,index) {
                 var ruta = '{{ URL::route('modContabilidad') }}/api/getCciByCodigo/'+codigo;
 
@@ -945,7 +945,6 @@
                     $("#codigo"+index).focus();
                 }
             };
-
             $scope.selectCCI = function (item) {
 
                 var position = $("#idCodigoCCI").val();
@@ -956,7 +955,6 @@
 
                 $("#modCCostoInterno").modal('hide');
             };
-
             $scope.deleteDetail = function (item) {
 
                 var r = confirm("Está seguro que eliminará ");
@@ -992,8 +990,6 @@
                 }
 
             };
-
-
             $scope.deleteDetailShow = function (item) {
 
                 var r = confirm("Está seguro que eliminará ");
@@ -1031,7 +1027,6 @@
 
 
             };
-
             $scope.addLine  = function (evento,index) {
 
 
@@ -1073,33 +1068,70 @@
                         var token = $('#_token').val();
                         $scope.detalles[index].user = usr;
                         $('#hora'+index).attr('disabled',true);
+                        $('#cci'+index).attr('disabled',true);
+                        $('#codigo'+index).attr('disabled',true);
+                        $('#actividad'+index).attr('disabled',true);
+
+                        var opcion = $("#btnEdit"+index).is (':disabled');
+
+                        if(opcion==true){
+
+                            $http.post('{{ URL::route('regJornales') }}',
+                                    {   _token   : token,
+                                        detalle  : $scope.detalles[index]
+                                    })
+                                    .success(function(data){
+
+                                        if(data.res == '200'){
+                                            //------
+                                            $("#fecha"+(index+1)).focus();
+                                            $("#btnEdit"+index).attr('disabled',false);
+                                            $('#fecha'+index).attr('disabled',true);
+                                            $('#ficha'+index).attr('disabled',true);
+                                        }else{
+                                            alert('Error:'+data.mensaje);
+                                            $('#hora'+index).attr('disabled',false);
+                                            $('#cci'+index).attr('disabled',false);
+                                            $('#codigo'+index).attr('disabled',false);
+                                            $('#actividad'+index).attr('disabled',false);
+                                        }
+
+                                        console.log('-');
+                                        console.log(data);
+
+                                    })
+                                    .error(function(data) {
+                                        $('#hora'+index).attr('disabled',false);
+                                        $('#cci'+index).attr('disabled',false);
+                                        $('#codigo'+index).attr('disabled',false);
+                                        $('#actividad'+index).attr('disabled',false);
+                                        console.log(data);
+                                        alert('Error: :>');
+                                    });
+
+                        }else{
+
+                            var itemAnterior = $scope.jornalSelect;
+                            var itemNuevo = $scope.detalles[index];
+
+                            $http.post('{{URL::route('editJornal')}}',{
+                                _token:token,
+                                itemAnterior: itemAnterior,
+                                itemNuevo: itemNuevo
+                            }).success(function (data) {
+
+                                alert('Operacion correcta');
+
+                            }).error(function (error) {
+                                console.log(error);
+                            });
+
+                        }
 
 
-                        $http.post('{{ URL::route('regJornales') }}',
-                                {   _token   : token,
-                                    detalle  : $scope.detalles[index]
-                                })
-                                .success(function(data){
 
-                                   if(data.res == '200'){
-                                       //------
-                                       $("#fecha"+(index+1)).focus();
 
-                                   }else{
-                                       alert('Error:'+data.mensaje);
-                                       $('#hora'+index).attr('disabled',false);
-                                   }
 
-                                   console.log('-');
-                                   console.log(data);
-
-                                })
-                                .error(function(data) {
-                                    $('#hora'+index).attr('disabled',false);
-                                    console.log(data);
-
-                                    alert('Error: :>');
-                        });
 
 
                     }
@@ -1135,7 +1167,6 @@
 
 
             };
-
             $scope.changeActividad = function (index) {
 
                 $("#hora"+(index)).focus();
@@ -1197,10 +1228,7 @@
 
             }
 
-
-
             $scope.buscarData = function () {
-
 
                 $("#btnBuscar").attr('disabled',true);
 
@@ -1254,8 +1282,6 @@
                // $("#btnBuscar").attr('disabled',false);
 
             };
-
-
             $scope.keyFecha = function (evento,index) {
 
                 if(evento.keyCode == 13 ){
@@ -1265,8 +1291,6 @@
                 }
 
             };
-
-
 
             $scope.execDominical = function () {
 
@@ -1327,6 +1351,7 @@
 
             };
 
+            /*esto es editar del select */
             $scope.updateDetail = function (index) {
 
                 $scope.jornalSelect = {
@@ -1357,7 +1382,6 @@
                 $scope.jornalEdit.fecha = $scope.jornalSelect.fecha ;
                 if(bandera==1){
                     alert('Error: todos los campos tienen que ser completados');
-
                 }else{
 
                     //el scope jornalSelect es el anterior jornal y el edit es el que se acaba de editar
@@ -1375,6 +1399,8 @@
 
                     }).success(function (data) {
 
+                        alert('Operacion Correcta');
+                        $("#modEditJornal").modal("hide");
 
                     }).error(function (error) {
 
@@ -1385,16 +1411,41 @@
                     });
 
                 }
+            };
+
+            /*--------------------------------------------------------*/
+
+            /*esto es para eidit en el registrar*/
+
+            $scope.updateDetail2 = function (index) {
+
+                $scope.jornalSelect = {
+
+                    fecha: $scope.detalles[index].fecha,
+                    ficha: $scope.detalles[index].ficha,
+                    actividad: $scope.detalles[index].actividad,
+                    codigo: $scope.detalles[index].codigo,
+                    cci: $scope.detalles[index].cci,
+                    hora:$scope.detalles[index].hora,
+                    nombre:$scope.detalles[index].nombre
+
+                };
 
 
-
-
+                $('#hora'+index).attr('disabled',false);
+                $('#cci'+index).attr('disabled',false);
+                $('#codigo'+index).attr('disabled',false);
+                $('#actividad'+index).attr('disabled',false);
+                console.log($scope.jornalSelect);
 
             };
 
 
 
-            /**
+
+
+
+            /*-------------------------------------*
              * esta funcion averigua si tiene un formato fecha
              */
 

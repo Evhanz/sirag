@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php" />
     </list>
     <ignored path="sirag.iws" />
@@ -41,8 +39,8 @@
       <file leaf-file-name="PersonalRep.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="2726" column="0" selection-start-line="2726" selection-start-column="0" selection-end-line="2726" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="2729" column="20" selection-start-line="2729" selection-start-column="20" selection-end-line="2729" selection-end-column="45" />
               <folding>
                 <element signature="e#40927#48775#0#PHP" expanded="false" />
                 <marker date="1491925412886" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
@@ -117,39 +115,34 @@
       <file leaf-file-name="viewRegJornales.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="121" column="141" selection-start-line="121" selection-start-column="141" selection-end-line="121" selection-end-column="141" />
+            <state relative-caret-position="336">
+              <caret line="1402" column="58" selection-start-line="1402" selection-start-column="58" selection-end-line="1402" selection-end-column="58" />
               <folding>
-                <element signature="e#7229#7249#0#HTML" expanded="true" />
-                <element signature="e#10373#14746#0#HTML" expanded="false" />
-                <element signature="e#14869#19436#0#HTML" expanded="false" />
-                <element signature="e#19466#20705#0#HTML" expanded="false" />
-                <element signature="e#20998#23386#0#HTML" expanded="false" />
-                <element signature="e#23461#25620#0#HTML" expanded="false" />
-                <element signature="e#26252#26284#0#HTML" expanded="true" />
-                <element signature="e#27588#27608#0#HTML" expanded="true" />
-                <element signature="e#27609#27615#1#HTML" expanded="true" />
-                <element signature="e#29228#29248#0#HTML" expanded="true" />
-                <element signature="e#29249#29255#1#HTML" expanded="true" />
-                <element signature="e#29763#29783#0#HTML" expanded="true" />
-                <element signature="e#29784#29790#1#HTML" expanded="true" />
-                <element signature="e#33289#33900#0#HTML" expanded="false" />
-                <element signature="e#33961#34582#0#HTML" expanded="false" />
-                <element signature="e#34649#35675#0#HTML" expanded="false" />
-                <element signature="e#35719#36111#0#HTML" expanded="false" />
-                <element signature="e#36160#36450#0#HTML" expanded="false" />
-                <element signature="e#36496#36653#0#HTML" expanded="false" />
-                <element signature="e#36710#38942#0#HTML" expanded="false" />
-                <element signature="e#39013#43101#0#HTML" expanded="false" />
-                <element signature="e#43176#43970#0#HTML" expanded="false" />
-                <element signature="e#44020#44343#0#HTML" expanded="false" />
-                <element signature="e#44396#45475#0#HTML" expanded="false" />
-                <element signature="e#45533#46553#0#HTML" expanded="false" />
-                <element signature="e#49072#49864#0#HTML" expanded="false" />
-                <element signature="e#49921#49982#0#HTML" expanded="false" />
-                <element signature="e#50030#52337#0#HTML" expanded="false" />
-                <element signature="e#52385#53993#0#HTML" expanded="false" />
-                <element signature="e#54051#54178#0#HTML" expanded="false" />
+                <element signature="e#5393#5412#0#HTML" expanded="true" />
+                <element signature="e#10776#15149#0#HTML" expanded="false" />
+                <element signature="e#15272#19839#0#HTML" expanded="false" />
+                <element signature="e#21401#23789#0#HTML" expanded="false" />
+                <element signature="e#23864#26023#0#HTML" expanded="false" />
+                <element signature="e#26097#30809#0#HTML" expanded="false" />
+                <element signature="e#33775#34386#0#HTML" expanded="false" />
+                <element signature="e#34446#35067#0#HTML" expanded="false" />
+                <element signature="e#35133#36159#0#HTML" expanded="false" />
+                <element signature="e#36202#36594#0#HTML" expanded="false" />
+                <element signature="e#36642#37003#0#HTML" expanded="false" />
+                <element signature="e#37048#37204#0#HTML" expanded="false" />
+                <element signature="e#37260#39492#0#HTML" expanded="false" />
+                <element signature="e#39562#43650#0#HTML" expanded="false" />
+                <element signature="e#43724#44518#0#HTML" expanded="false" />
+                <element signature="e#44567#44890#0#HTML" expanded="false" />
+                <element signature="e#44942#46021#0#HTML" expanded="false" />
+                <element signature="e#46077#47097#0#HTML" expanded="false" />
+                <element signature="e#48829#48962#0#HTML" expanded="false" />
+                <element signature="e#51487#52279#0#HTML" expanded="false" />
+                <element signature="e#52335#52396#0#HTML" expanded="false" />
+                <element signature="e#52444#54751#0#HTML" expanded="false" />
+                <element signature="e#54797#56404#0#HTML" expanded="false" />
+                <element signature="e#56460#56587#0#HTML" expanded="false" />
+                <element signature="e#56637#58549#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -158,8 +151,8 @@
       <file leaf-file-name="recursos_humanos.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="68" column="52" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -168,7 +161,7 @@
       <file leaf-file-name="RecursoshController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
+            <state relative-caret-position="17">
               <caret line="1046" column="37" selection-start-line="1046" selection-start-column="28" selection-end-line="1046" selection-end-column="37" />
               <folding />
             </state>
@@ -920,14 +913,8 @@
       <workItem from="1491848941885" duration="7990000" />
       <workItem from="1491920644570" duration="12815000" />
       <workItem from="1491945117404" duration="2214000" />
-      <workItem from="1492007937514" duration="23799000" />
-    </task>
-    <task id="LOCAL-00045" summary="rev">
-      <created>1481891169020</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1481891169020</updated>
+      <workItem from="1492007937514" duration="23956000" />
+      <workItem from="1492439314055" duration="8500000" />
     </task>
     <task id="LOCAL-00046" summary="rev">
       <created>1482144975225</created>
@@ -1265,14 +1252,21 @@
       <option name="project" value="LOCAL" />
       <updated>1491933619304</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="rev">
+      <created>1492039965617</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1492039965634</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1982727000" />
+    <option name="totallyTimeSpent" value="1991384000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24158126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1674,10 +1668,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1046" column="37" selection-start-line="1046" selection-start-column="28" selection-end-line="1046" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="68" column="52" selection-start-line="68" selection-start-column="42" selection-end-line="68" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="2726" column="0" selection-start-line="2726" selection-start-column="0" selection-end-line="2726" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="2729" column="20" selection-start-line="2729" selection-start-column="20" selection-end-line="2729" selection-end-column="45" />
           <folding>
             <element signature="e#40927#48775#0#PHP" expanded="false" />
             <marker date="1491925412886" expanded="true" signature="331:590" ph="SELECT EMPLE... PER_TRABAJADOR" />
@@ -1748,57 +1758,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="1046" column="37" selection-start-line="1046" selection-start-column="28" selection-end-line="1046" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewRegJornales.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="121" column="141" selection-start-line="121" selection-start-column="141" selection-end-line="121" selection-end-column="141" />
+        <state relative-caret-position="336">
+          <caret line="1402" column="58" selection-start-line="1402" selection-start-column="58" selection-end-line="1402" selection-end-column="58" />
           <folding>
-            <element signature="e#7229#7249#0#HTML" expanded="true" />
-            <element signature="e#10373#14746#0#HTML" expanded="false" />
-            <element signature="e#14869#19436#0#HTML" expanded="false" />
-            <element signature="e#19466#20705#0#HTML" expanded="false" />
-            <element signature="e#20998#23386#0#HTML" expanded="false" />
-            <element signature="e#23461#25620#0#HTML" expanded="false" />
-            <element signature="e#26252#26284#0#HTML" expanded="true" />
-            <element signature="e#27588#27608#0#HTML" expanded="true" />
-            <element signature="e#27609#27615#1#HTML" expanded="true" />
-            <element signature="e#29228#29248#0#HTML" expanded="true" />
-            <element signature="e#29249#29255#1#HTML" expanded="true" />
-            <element signature="e#29763#29783#0#HTML" expanded="true" />
-            <element signature="e#29784#29790#1#HTML" expanded="true" />
-            <element signature="e#33289#33900#0#HTML" expanded="false" />
-            <element signature="e#33961#34582#0#HTML" expanded="false" />
-            <element signature="e#34649#35675#0#HTML" expanded="false" />
-            <element signature="e#35719#36111#0#HTML" expanded="false" />
-            <element signature="e#36160#36450#0#HTML" expanded="false" />
-            <element signature="e#36496#36653#0#HTML" expanded="false" />
-            <element signature="e#36710#38942#0#HTML" expanded="false" />
-            <element signature="e#39013#43101#0#HTML" expanded="false" />
-            <element signature="e#43176#43970#0#HTML" expanded="false" />
-            <element signature="e#44020#44343#0#HTML" expanded="false" />
-            <element signature="e#44396#45475#0#HTML" expanded="false" />
-            <element signature="e#45533#46553#0#HTML" expanded="false" />
-            <element signature="e#49072#49864#0#HTML" expanded="false" />
-            <element signature="e#49921#49982#0#HTML" expanded="false" />
-            <element signature="e#50030#52337#0#HTML" expanded="false" />
-            <element signature="e#52385#53993#0#HTML" expanded="false" />
-            <element signature="e#54051#54178#0#HTML" expanded="false" />
+            <element signature="e#5393#5412#0#HTML" expanded="true" />
+            <element signature="e#10776#15149#0#HTML" expanded="false" />
+            <element signature="e#15272#19839#0#HTML" expanded="false" />
+            <element signature="e#21401#23789#0#HTML" expanded="false" />
+            <element signature="e#23864#26023#0#HTML" expanded="false" />
+            <element signature="e#26097#30809#0#HTML" expanded="false" />
+            <element signature="e#33775#34386#0#HTML" expanded="false" />
+            <element signature="e#34446#35067#0#HTML" expanded="false" />
+            <element signature="e#35133#36159#0#HTML" expanded="false" />
+            <element signature="e#36202#36594#0#HTML" expanded="false" />
+            <element signature="e#36642#37003#0#HTML" expanded="false" />
+            <element signature="e#37048#37204#0#HTML" expanded="false" />
+            <element signature="e#37260#39492#0#HTML" expanded="false" />
+            <element signature="e#39562#43650#0#HTML" expanded="false" />
+            <element signature="e#43724#44518#0#HTML" expanded="false" />
+            <element signature="e#44567#44890#0#HTML" expanded="false" />
+            <element signature="e#44942#46021#0#HTML" expanded="false" />
+            <element signature="e#46077#47097#0#HTML" expanded="false" />
+            <element signature="e#48829#48962#0#HTML" expanded="false" />
+            <element signature="e#51487#52279#0#HTML" expanded="false" />
+            <element signature="e#52335#52396#0#HTML" expanded="false" />
+            <element signature="e#52444#54751#0#HTML" expanded="false" />
+            <element signature="e#54797#56404#0#HTML" expanded="false" />
+            <element signature="e#56460#56587#0#HTML" expanded="false" />
+            <element signature="e#56637#58549#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
