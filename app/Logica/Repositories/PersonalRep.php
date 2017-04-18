@@ -360,7 +360,7 @@ class PersonalRep
 
         $query = "SELECT TIPO_TRANS,ESTADO,
                             ID_VACA,CONVERT(date, CAST(FEC_FINSOL AS CHAR(8)), 112) FEC_FINSOL,
-                            CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112) FEC_INISOL 
+                            CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112) FEC_INISOL,OBSERVACIONES periodo
                             FROM flexline.PER_VACACIONES
                             where EMPRESA='E01' AND TIPO_TRANS = 'APROBACION' AND ESTADO='A' AND FICHA = '$ficha'
                             ORDER BY CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112)";
@@ -368,6 +368,24 @@ class PersonalRep
         $res = \DB::select($query);
 
         return $res;
+    }
+
+    public function editPeriodoVac($id,$periodo){
+
+        try{
+
+            \DB::update("UPDATE flexline.PER_VACACIONES
+                        SET OBSERVACIONES='$periodo'
+                        WHERE 
+                        EMPRESA='E01' AND ID_VACA='$id';");
+
+            return 'ok';
+
+        }catch (\Exception $e){
+            return $e.'-';
+
+        }
+
     }
 
 

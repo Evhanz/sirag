@@ -1026,6 +1026,16 @@ class RecursoshController extends Controller
 
     }
 
+    public function editPeriodoVac(){
+
+        $data = \Input::all();
+
+        $res = $this->personalRep->editPeriodoVac($data['id'],$data['periodo']);
+
+        return $res;
+
+    }
+
 
 
     public function deleteJornales(){

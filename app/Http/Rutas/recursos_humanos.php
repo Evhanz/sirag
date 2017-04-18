@@ -67,6 +67,7 @@ Route::post('rh/store/regFeriados',['as'=>'regFeriados','uses'=>'RecursoshContro
 
 //edits
 Route::post('rh/store/editJornal',['as'=>'editJornal','uses'=>'RecursoshController@editJornal']);
+Route::post('rh/vacaciones/editPeriodo',['as'=>'editPeriodoVac','uses'=>'RecursoshController@editPeriodoVac']);
 
 //deletes
 Route::post('rh/delete/deleteJornales',['as'=>'deleteJornales','uses'=>'RecursoshController@deleteJornales']);

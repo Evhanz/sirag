@@ -182,6 +182,7 @@
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Fin</th>
                                             <th>Transcurrido</th>
+                                            <th>Periodo</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -191,6 +192,26 @@
                                             <td>@{{ item.FEC_INISOL_F }}</td>
                                             <td>@{{ item.FEC_FINSOL_F }}</td>
                                             <td>@{{ item.d_transcurrido }}</td>
+                                            <td>
+                                                <div class="row" style="margin-left: -0px;margin-right: 0px;">
+                                                    <div class="col-xs-8">
+                                                        <select ng-model="item.periodo" class="form-control" ng-change="updateVacaciones($index)">
+                                                            <option value="">-----</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2018">2018</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <button id="btnSave@{{ item.ID_VACA }}" ng-click="saveChange($index)"  class="btn bg-olive btn-xs">
+                                                            <i class="fa fa-floppy-o"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -250,6 +271,8 @@
         $('input[name="daterange"]').daterangepicker({
             format : "DD/MM/YYYY"
         });
+
+        $('.bg-olive').hide();
         /*----*/
 
 
@@ -472,7 +495,6 @@
                                 })
                                 .success(function(data){
                                     getDataInit();
-
                                 }).error(function(data) {
                             console.log(data);
 
@@ -529,12 +551,12 @@
                 var fecha = moment().format('YYYY-M-D');
                 var bandera ;
                 var dias ;
-                var tipo
+                var tipo;
 
                 for(var i = 0;i<$scope.contratos.length;i++){
 
                     bandera = getCantDiasBetweendates($scope.contratos[i].fecha_fin,fecha);
-                    dias;
+                    //dias;
 
                     if(bandera > 0){
                         dias = getCantDiasBetweendates($scope.contratos[i].fecha_inicio,$scope.contratos[i].fecha_fin);
@@ -560,10 +582,46 @@
 
                 }
 
-                    
+            };
+
+            $scope.updateVacaciones = function (index) {
+
+                var id = $scope.vacaciones[index].ID_VACA;
+                $('#btnSave'+id).show();
 
 
-                
+            };
+
+            $scope.saveChange = function (index) {
+
+                var id = $scope.vacaciones[index].ID_VACA;
+                var periodo = $scope.vacaciones[index].periodo;
+                var token = $('#_token').val();
+                var ruta = "{{route('editPeriodoVac')}}";
+
+
+                $http.post(ruta,
+                        {_token : token,
+                            id:id,
+                            periodo: periodo
+                        })
+                        .success(function(data){
+
+                            if(data.trim()=='ok'){
+                                alert('Actualizacion concretada');
+                                $('#btnSave'+id).hide();
+                            }else{
+                                alert('Hubo un error');
+                                console.log(data);
+                            }
+
+                        }).error(function(data) {
+                    console.log(data);
+
+                });
+
+
+
             };
 
 
