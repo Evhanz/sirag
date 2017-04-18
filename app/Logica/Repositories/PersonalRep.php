@@ -362,7 +362,8 @@ class PersonalRep
                             ID_VACA,CONVERT(date, CAST(FEC_FINSOL AS CHAR(8)), 112) FEC_FINSOL,
                             CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112) FEC_INISOL 
                             FROM flexline.PER_VACACIONES
-                            where EMPRESA='E01' AND TIPO_TRANS = 'APROBACION' AND ESTADO='A' AND FICHA = '$ficha'";
+                            where EMPRESA='E01' AND TIPO_TRANS = 'APROBACION' AND ESTADO='A' AND FICHA = '$ficha'
+                            ORDER BY CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112)";
 
         $res = \DB::select($query);
 
