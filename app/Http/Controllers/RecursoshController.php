@@ -1295,6 +1295,10 @@ class RecursoshController extends Controller
     }
 
     public function regFeriados(){
+
+        set_time_limit (250);
+       
+
         $data = \Input::all();
         $fecha = $data['fecha'];
         $fecha = explode('/',$fecha);
@@ -1303,7 +1307,9 @@ class RecursoshController extends Controller
 
         $res =  $this->personalRep->regFeriados($data);
 
-        return back()->with('status', 'Correcto, el proceso a culminado exitosamente!! ');
+        dd($res);
+
+        //return back()->with('status', 'Correcto, el proceso a culminado exitosamente!! ');
 
     }
 

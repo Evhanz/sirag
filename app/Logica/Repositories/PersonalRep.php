@@ -2960,9 +2960,22 @@ where EMPRESA = 'e01'";
 
 
             //luego insertamos
-            $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
+          // $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
 
-            $res = \DB::statement($query);
+            $query = "
+
+
+            DECLARE @return_value int
+
+            EXEC    @return_value = [dbo].[sp_getdiasferiados]
+                    @FECHA = N'20170413'
+
+            SELECT  'Return Value' = @return_value
+
+        
+            ";
+
+            $res = \DB::raw($query);
 
             return $res;
 
