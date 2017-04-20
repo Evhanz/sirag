@@ -360,8 +360,8 @@ class ProductoRep
                 and B.Producto=C.PRODUCTO
                 AND B.TipoDocto = tp.TipoDocto
                 AND B.Empresa = tp.Empresa
-                AND tp.Sistema IN ('Compras','Inventario','Produccion') 
-                AND tp.FactorInventario=1 
+                --AND tp.Sistema IN ('Compras','Inventario','Produccion') 
+                AND tp.FactorInventario='1'
                 and B.Empresa='e01'
                 AND B.Fecha < '$f_i'
                 AND C.GLOSA = '$glosa') -
