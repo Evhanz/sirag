@@ -255,15 +255,15 @@ class ProductoRep
 
         $query = "select A.Fecha fecha ,A.Numero numero,'entrada' as tipo,
         C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON
-        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento D
+        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
         where
         A.idDocto=B.idDocto
         AND B.Empresa= C.EMPRESA
         and B.Producto= C.PRODUCTO
-        AND B.Empresa=D.Empresa
-        AND B.TipoDocto=D.TipoDocto
-        --AND A.TipoDocto='N/I ALMACEN (A)'
-        AND D.FactorInventario='1'
+        --AND B.Empresa=D.Empresa
+        --AND B.TipoDocto=D.TipoDocto
+        AND A.TipoDocto='N/I ALMACEN (A)'
+        --AND D.FactorInventario='1'
         and A.Empresa='e01'
         AND B.Fecha BETWEEN '$f_i' and '$f_f'
         AND C.GLOSA like '%$glosa%'

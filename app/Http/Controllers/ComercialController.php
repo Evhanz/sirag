@@ -206,6 +206,8 @@ class ComercialController extends Controller
 
     public function getKardex(){
 
+        set_time_limit (360);
+
         $data = \Input::all();
 
         $res = $this->productoRep->getKardex($data);
