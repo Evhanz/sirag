@@ -1,4 +1,4 @@
-@extends('layoutRH')
+@extends('layout')
 
 @section('content')
 
@@ -27,12 +27,10 @@
                                                 <label for="">DNI</label>
                                                 <input type="text" class="form-control" ng-model="personal.EMPLEADO" disabled>
                                             </div>
-
                                             <div class="col-lg-2">
                                                 <label for="">Inicio Contrato</label>
                                                 <input type="text" class="form-control" ng-model="personal.F_INICIO_FORMAT" disabled>
                                             </div>
-
                                             <div class="col-lg-2">
                                                 <label for="">Fin Contrato</label>
                                                 <input type="text" class="form-control" ng-model="personal.F_TERMINO_FORMAT" disabled>
@@ -192,10 +190,10 @@
                                             <td>@{{ item.FEC_INISOL_F }}</td>
                                             <td>@{{ item.FEC_FINSOL_F }}</td>
                                             <td>@{{ item.d_transcurrido }}</td>
-                                            <td>
-                                                <div class="row" style="margin-left: -0px;margin-right: 0px;">
-                                                    <div class="col-xs-8">
-                                                        <select ng-model="item.periodo" class="form-control" ng-change="updateVacaciones($index)">
+                                            <td style="overflow: hidden" >
+                                                <div class="row" >
+                                                    <div class="col-xs-5" style="padding: 5px;margin: 0px;">
+                                                        <select ng-model="item.periodo1" class="form-control" ng-change="updateVacaciones($index)">
                                                             <option value="">-----</option>
                                                             <option value="2014">2014</option>
                                                             <option value="2015">2015</option>
@@ -203,9 +201,18 @@
                                                             <option value="2017">2017</option>
                                                             <option value="2018">2018</option>
                                                         </select>
-
                                                     </div>
-                                                    <div class="col-xs-4">
+                                                    <div class="col-xs-5" style="padding: 5px;margin: 0px;">
+                                                        <select ng-model="item.periodo2" class="form-control" ng-change="updateVacaciones($index)">
+                                                            <option value="">-----</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2018">2018</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-1" style="padding: 5px;margin: 0px;">
                                                         <button id="btnSave@{{ item.ID_VACA }}" ng-click="saveChange($index)"  class="btn bg-olive btn-xs">
                                                             <i class="fa fa-floppy-o"></i>
                                                         </button>
@@ -344,7 +351,6 @@
             }
 
             function getRenovacionesByFicha(f) {
-
                 //traemos las renovaciones
                 $http.get('{{ URL::route('modRH') }}/api/getRenovacionesByFicha/'+f)
                         .success(function(data){
@@ -374,6 +380,25 @@
                                 data[i].FEC_FINSOL_F = ch_format_YMD_DMY(data[i].FEC_FINSOL);
                                 data[i].FEC_INISOL_F = ch_format_YMD_DMY(data[i].FEC_INISOL);
                                 data[i].d_transcurrido = getCantDiasBetweendates(data[i].FEC_INISOL,data[i].FEC_FINSOL);
+
+                                var periodo = data[i].periodo;
+                                periodo = periodo.split("-");
+
+                                switch(periodo.length) {
+                                    case 1:
+                                        data[i].periodo1 = periodo[0];
+                                        data[i].periodo2 = "";
+                                        break;
+                                    case 2:
+                                        data[i].periodo1 = periodo[0];
+                                        data[i].periodo2 = periodo[1];
+                                        break;
+                                    default:
+                                        data[i].periodo1 = "";
+                                        data[i].periodo2 = "";
+                                        break;
+                                }
+
                             }
 
                             $scope.vacaciones = data;
@@ -595,7 +620,8 @@
             $scope.saveChange = function (index) {
 
                 var id = $scope.vacaciones[index].ID_VACA;
-                var periodo = $scope.vacaciones[index].periodo;
+                var periodo = $scope.vacaciones[index].periodo1+'-'+$scope.vacaciones[index].periodo2;
+                var ficha = $scope.vacaciones[index].FICHA;
                 var token = $('#_token').val();
                 var ruta = "{{route('editPeriodoVac')}}";
 
@@ -603,7 +629,8 @@
                 $http.post(ruta,
                         {_token : token,
                             id:id,
-                            periodo: periodo
+                            periodo: periodo,
+                            ficha: ficha
                         })
                         .success(function(data){
 

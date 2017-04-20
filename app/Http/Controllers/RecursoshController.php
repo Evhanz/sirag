@@ -1030,7 +1030,7 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-        $res = $this->personalRep->editPeriodoVac($data['id'],$data['periodo']);
+        $res = $this->personalRep->editPeriodoVac($data['id'],$data['periodo'],$data['ficha']);
 
         return $res;
 

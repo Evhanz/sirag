@@ -20,7 +20,6 @@ Route::get('comercial/rep/viewSeguimientoGuia',['as'=>'viewSeguimientoGuia','use
 
 
 
-
 /*API para treer todos los documentos de acuerdos a sus parametros*/
 Route::post('comercial/ap/getDocsByParameters',['as'=>'api_getDocsByParameters',
     'uses'=>'ComercialController@getAllDocumentosByParameters']);
@@ -38,3 +37,7 @@ Route::post('comercial/api/getGuiaFaltaFactura',['as'=>'getGuiaFaltaFactura','us
 //esta ruta se comparte con contabilidad
 Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraForControl',
     'uses'=>'ContabilidadController@getOrdenCompraForControl']);
+
+//rutas para reportes excel
+Route::post('comercial/excel/ControlOrdenCompraComercial',['as'=>'excelControlOrdenCompraComercial',
+    'uses'=>'ComercialController@excelControlOrdenCompraComercial']);

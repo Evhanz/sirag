@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use sirag\Repositories\ContabilidadRep;
 use sirag\Repositories\DocumentoRep;
 use sirag\Repositories\ProductoRep;
 use sirag\Repositories\TipoDocumentoRep;
@@ -23,12 +24,14 @@ class ComercialController extends Controller
     protected $tipoDocuementoRep;
     protected $productoRep;
     protected $proveedorRep;
+    protected $contabiliddaRep;
 
-    public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep,ProveedorRep $proveedorRep){
+    public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep,ProveedorRep $proveedorRep, ContabilidadRep $contabilidadRep){
         $this->documentoRep = $documentoRep;
         $this->tipoDocuementoRep = $tipoDocumentoRep;
         $this->productoRep = $productoRep;
         $this->proveedorRep = $proveedorRep;
+        $this->contabilidadRep = $contabilidadRep;
     }
 
 
@@ -224,6 +227,37 @@ class ComercialController extends Controller
 
         $res = $this->documentoRep->getGuiaFaltaFactura($fecha);
         return \Response::Json($res);
+
+    }
+
+    public function excelControlOrdenCompraComercial()
+    {
+
+        $data = \Input::all();
+
+        if (!isset($data['proveedor'])) {
+            $data['proveedor'] = '';
+        }
+        if (!isset($data['numero'])) {
+            $data['numero'] = '';
+        }
+
+        $fechas = explode('-', $data['daterange']);
+        $data['f_inicio'] = trim($fechas[0]);
+        $data['f_fin'] = trim($fechas[1]);
+
+        $res = $this->contabilidadRep->getOrdenCompraForControl($data);
+
+        $res = collect($res);
+        $res  = $res->filter(function ($value) {
+            return $value->estado != 'COMPLETADO';
+        });
+
+        $res = $res->groupBy('Numero');
+       // dd($res);
+
+        $pdf = \PDF::loadView('cc.excel.controlOrdenCompra', ['ordenes'=>$res] );
+        return $pdf->stream('invoice.pdf');
 
     }
     

@@ -21,21 +21,21 @@
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
                                         <div class="row">
-                                            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
-                                            <form class="form-inline" style="padding: 15px">
+                                            <form class="form-inline" style="padding: 15px" method="post" action="{{route('excelControlOrdenCompraComercial')}}">
+                                                <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
 
                                                 <div class="form-group">
-                                                    <label for="">Proveedor</label>
+                                                    <label for="">Proveedor </label>
                                                     <input type="text" class="form-control" ng-model="filProveedor">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">N° Orden</label>
-                                                    <input type="text" class="form-control" ng-model="filNOrden">
+                                                    <label for="">N° Orden</label><br>
+                                                    <input style="width: 80px;" type="text" class="form-control" ng-model="filNOrden">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="">Vigencia</label><br>
-                                                    <select class="form-control" name="" id="" ng-model="filVigencia">
+                                                    <select class="form-control" name="vigencia" id="" ng-model="filVigencia" required>
                                                         <option value="">----------</option>
                                                         <option value="S">Si</option>
                                                         <option value="N">No</option>
@@ -48,15 +48,15 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input class="form-control " name="daterange" id="reservation" type="text">
+                                                        <input class="form-control " name="daterange" id="reservation" type="text" required>
                                                     </div><!-- /.input group -->
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for=""></label><br>
-                                                    <button class="btn btn-success" id="btnBuscarDoc" ng-click="getDataByDoc()">
+                                                    <a class="btn btn-success" id="btnBuscarDoc" ng-click="getDataByDoc()">
                                                         <i class="fa fa-search fa-lg"></i>
-                                                    </button>
+                                                    </a>
                                                 </div>
 
                                                 <div class="form-group">
@@ -68,16 +68,21 @@
                                                    
                                                 </div>
 
-
 												<div class="form-group">
 
-                                   
 				                                    <label for="">Exportar</label><br>
 				                                    <a href="#" class="btn btn-success btn-sm" onClick ="print_excel()" title="Reporte Totalizado Excel">
 				                                        <i class="fa fa-file-excel-o fa-lg"></i></a>
-				                                    
-				                                   
 				                                </div>
+
+                                                <div class="form-group">
+
+                                                    <label for="">&nbsp;</label><br>
+                                                    <button name="opcion" value="as" class="btn btn-danger btn-sm" title="Reporte Totalizado PDF">
+                                                        <i class="fa fa-file-pdf-o fa-lg"></i></button>
+
+                                                </div>
+
 
                                             </form>
 
@@ -149,7 +154,7 @@
                                             <th>Cantidad Solicitado</th>
                                             <th>Cantidd Por Ingresar</th>
                                             <th>Observación</th>
-                                            <th>*</th>
+                                            <th >*</th>
                                         </tr>
                                         </thead>
                                         <tbody  ng-repeat=" item in Documentos | filter:search">

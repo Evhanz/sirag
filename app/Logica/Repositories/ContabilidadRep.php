@@ -93,7 +93,8 @@ class ContabilidadRep
         $f_fin = $data['f_fin'];
         $numero = $data['numero'];
         $vigencia = $data['vigencia'];
-        $doc = \DB::select("SELECT v.Numero,convert(DATE,v.Fecha)AS FECHA,v.RazonSocial, v.UnidadIngreso,v.cod_producto, v.GLOSA,CONVERT(decimal(9,2),v.Cantidad) AS Cantidad
+
+        $q = "SELECT v.Numero,convert(DATE,v.Fecha)AS FECHA,v.RazonSocial, v.UnidadIngreso,v.cod_producto, v.GLOSA,CONVERT(decimal(9,2),v.Cantidad) AS Cantidad
                           ,Coalesce( (select CONVERT(decimal(9,2),sum(dd.Cantidad))
                           from
                           flexline.DocumentoD dd inner join flexline.Documento d
@@ -112,7 +113,11 @@ class ContabilidadRep
                           AND RazonSocial like '%$proveedor%'
                           AND Numero like '%$numero%'
                           AND Vigencia like '%$vigencia%'
-                          ORDER BY Fecha DESC ");
+                          ORDER BY Fecha DESC ";
+
+
+
+        $doc = \DB::select($q);
 
         foreach ($doc as $item) {
 
@@ -140,6 +145,9 @@ class ContabilidadRep
             $item->FECHA_ENTREGA = $this->h_chageFormatDate($item->FECHA_ENTREGA);
 
         }
+
+
+       // HelpFunct::writeQuery($q);
 
         return $doc;
     }

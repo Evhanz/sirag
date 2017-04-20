@@ -358,7 +358,7 @@ class PersonalRep
     public function getVacacionesByFicha ($ficha)
     {
 
-        $query = "SELECT TIPO_TRANS,ESTADO,
+        $query = "SELECT TIPO_TRANS,ESTADO,'$ficha' FICHA,
                             ID_VACA,CONVERT(date, CAST(FEC_FINSOL AS CHAR(8)), 112) FEC_FINSOL,
                             CONVERT(date, CAST(FEC_INISOL AS CHAR(8)), 112) FEC_INISOL,OBSERVACIONES periodo
                             FROM flexline.PER_VACACIONES
@@ -370,14 +370,14 @@ class PersonalRep
         return $res;
     }
 
-    public function editPeriodoVac($id,$periodo){
+    public function editPeriodoVac($id,$periodo,$ficha){
 
         try{
 
             \DB::update("UPDATE flexline.PER_VACACIONES
                         SET OBSERVACIONES='$periodo'
                         WHERE 
-                        EMPRESA='E01' AND ID_VACA='$id';");
+                        EMPRESA='E01' AND ID_VACA='$id'  AND FICHA = '$ficha';");
 
             return 'ok';
 
