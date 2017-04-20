@@ -4,6 +4,8 @@
 
 
     <script type="text/javascript" src="{{ asset('js/plugins/table2excel/jquery.table2excel.min.js') }} "></script>
+    <link href="{{ asset('js/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }} " />
+    <script type="text/javascript" src="{{ asset('js/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }} "></script>
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
@@ -14,6 +16,7 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#salidas">Salidas</a></li>
+                            <li><a data-toggle="tab" href="#cci">CCI</a></li>
                            <!-- <li ><a data-toggle="tab" href="#entradas">Entradas</a></li>-->
 
                         </ul>
@@ -188,9 +191,6 @@
 
 
                                         </div>
-
-                                            
-
                                         <!-- ./data procesada  -->
                                     </div>
                                     <!-- Tab filtro proveedor -->
@@ -348,9 +348,47 @@
 
                                         </div>
                                     </div>
-                                    <div id="menu2" class="tab-pane fade">
-                                        <h3>Menu 2</h3>
-                                        <p>Some content in menu 2.</p>
+                                    <div id="cci" class="tab-pane fade">
+                                        <div class="row">
+                                            <form class="form-inline" style="padding: 15px" action="{{route('excelConsumoPorCCI')}}" method="post">
+                                                <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+                                                <div class="col-xs-3">
+                                                    <label>Rango de Fechas</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input class="form-control " name="daterange" id="reservation" type="text">
+                                                    </div><!-- /.input group -->
+                                                </div>
+
+                                                <div class="col-xs-3">
+                                                    <label for="" >Familia </label><br>
+                                                    <select class="form-control" name="familia" ng-model="familiaFilter" id="f_familia" ng-init="familiaFilter='MATERIA PRIMA'">
+                                                        <option value="">---------</option>
+                                                        <option ng-repeat="familia in familias "
+                                                                value="@{{familia.CODIGO}}">
+                                                            @{{familia.CODIGO}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-xs-3">
+                                                    <label for="">CCI</label>
+                                                    <div class="ccis" >
+                                                        <input name="tags" class="form-control" type="text"  ng-model="cci" data-role="tagsinput" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <label for="" style="margin-bottom: 20px"> </label><br>
+                                                    <button href="" class="btn btn-success">
+                                                        Buscar <i class="fa fa-file-excel-o"></i>
+                                                    </button>
+
+                                                </div>
+
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -390,6 +428,8 @@
         $('input[name="daterange"]').daterangepicker({
             format : "DD/MM/YYYY"
         });
+
+
         /*----*/
 
 
@@ -723,6 +763,22 @@
 
         });
     </script>
+
+    <style type="text/css">
+        .bootstrap-tagsinput {
+            width: 100%;
+        }
+        .label {
+            line-height: 2 !important;
+        }
+        .ccis{
+            background-color: white;
+            padding: 5px ;
+            width: 100%;
+            line-height: 1.428571429;
+            border: 1px solid #ccc;
+        }
+    </style>
 
 
 @stop

@@ -41,3 +41,7 @@ Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraFo
 //rutas para reportes excel
 Route::post('comercial/excel/ControlOrdenCompraComercial',['as'=>'excelControlOrdenCompraComercial',
     'uses'=>'ComercialController@excelControlOrdenCompraComercial']);
+Route::post('comercial/excel/consumoPorCCI',['as'=>'excelConsumoPorCCI',
+    'uses'=>'ComercialController@excelConsumoPorCCI']);
+
+

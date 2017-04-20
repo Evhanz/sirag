@@ -388,6 +388,44 @@ class ProductoRep
     }
 
 
+    public function getSalidaByCCI($data){
+
+
+        $cci = $data['cci'];
+        $f_inicio = $data['f_inicio'];
+        $f_fin = $data['f_fin'] ;
+
+
+
+        $query  = "
+        SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
+        p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON
+        FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
+        where
+        dd.Empresa=p.EMPRESA
+        and dd.Producto = p.PRODUCTO
+        AND dd.EMPRESA = tp.Empresa
+        AND dd.TipoDocto = tp.TipoDocto
+        and dd.Empresa='e01'
+        AND dd.Bodega <> '' 
+        AND tp.FactorInventario='-1' 
+        AND dd.Fecha BETWEEN '$f_inicio' and '$f_fin' 
+        AND p.FAMILIA like 'MATERIA PRIMA'
+        AND DD.Analisis15 in $cci 
+        group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
+        ORDER BY A.Fecha
+        ";
+
+
+        $res = \DB::select($query);
+
+
+        return $res;
+
+
+    }
+
+
 
 
 

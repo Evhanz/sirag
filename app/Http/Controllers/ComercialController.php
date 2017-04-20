@@ -285,4 +285,37 @@ class ComercialController extends Controller
 
     }
 
+
+    public function excelConsumoPorCCI(){
+
+        $data = \Input::all();
+        $fechas =  explode('-',$data['daterange']);
+
+        $data['f_inicio'] = trim($fechas[0]);
+        $data['f_fin'] = trim($fechas[1]);
+        $data['cci'] = '( '.$data['tags'].') ';
+
+        $res = $this->productoRep->getSalidaByCCI($data);
+
+
+        \Excel::create('Consumo CCI', function($excel) use ($res) {
+
+            $excel->sheet('Productos', function($sheet) use ($res) {
+
+                $data = array();
+
+                foreach ($res as $result) {
+                    $data[] = (array)$result;
+                }
+
+                $sheet->fromArray($data);
+
+            });
+        })->export('xlsx');
+
+
+        dd($res);
+
+    }
+
 }
