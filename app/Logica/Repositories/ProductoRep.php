@@ -324,7 +324,7 @@ class ProductoRep
                     $saldo_inicial -= $i->cantidad;
                     $total_salidas += $i->cantidad;
                 }
-                $i->saldo = $saldo_inicial;
+                $i->saldo = round($saldo_inicial,3);
             }
 
             //el ultimo saldo se considera como saldo final o actul

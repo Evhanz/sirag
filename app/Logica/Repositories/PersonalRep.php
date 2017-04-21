@@ -2982,7 +2982,7 @@ where EMPRESA = 'e01'";
             $res = \DB::statement($query);
 
             return $res;
-            
+
 
 
 
