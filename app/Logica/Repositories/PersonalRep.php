@@ -2945,7 +2945,7 @@ where EMPRESA = 'e01'";
     public function regFeriados($data){
 
 
-        \DB::transaction(function () use ($data){
+
 
             //primero eliminamos todas las de esa fecha
 
@@ -2959,15 +2959,19 @@ where EMPRESA = 'e01'";
             $q = \DB::delete($q_detele);
 
 
+
+
             //luego insertamos
-          // $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
+           $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
+
+
 
             $query = "
 
 
             DECLARE @return_value int
 
-            EXEC    @return_value = [dbo].[sp_getdiasferiados]
+            EXEC    @return_value = dbo.sp_getdiasferiados
                     @FECHA = N'20170413'
 
             SELECT  'Return Value' = @return_value
@@ -2975,11 +2979,12 @@ where EMPRESA = 'e01'";
         
             ";
 
-            $res = \DB::raw($query);
+            $res = \DB::statement($query);
 
             return $res;
+            
 
-        });
+
 
 
 
