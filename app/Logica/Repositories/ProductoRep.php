@@ -352,7 +352,7 @@ class ProductoRep
     public function getSaldoFinal($f_i,$f_f,$glosa)
     {
 
-        $query = "select (select 
+        $query = "select coalesce((select 
                 SUM(B.Cantidad) entrada
                 from  flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento tp
                 where
@@ -364,8 +364,8 @@ class ProductoRep
                 AND tp.FactorInventario='1'
                 and B.Empresa='e01'
                 AND B.Fecha < '$f_i'
-                AND C.GLOSA = '$glosa') -
-                (SELECT sum(dd.Cantidad)salida
+                AND C.GLOSA = '$glosa'),0) -
+                coalesce((SELECT sum(dd.Cantidad)salida
                 FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
                 where
                 dd.Empresa=p.EMPRESA
@@ -377,7 +377,7 @@ class ProductoRep
                 --AND tp.Sistema IN ('Inventario','Produccion') 
                 AND tp.FactorInventario='-1' 
                 AND dd.Fecha < '$f_i'
-                AND p.GLOSA = '$glosa') saldo";
+                AND p.GLOSA = '$glosa'),0) saldo";
 
 
         $res = \DB::select($query);
