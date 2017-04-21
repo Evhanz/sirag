@@ -398,8 +398,8 @@ class ProductoRep
 
 
         $query  = "
-        SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
-        p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON
+        SELECT coalesce(dd.analisis15,'-') CCI, CONVERT (date,dd.Fecha,103) fecha,p.GLOSA glosa
+        ,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad,'-' as numero ,'salida' as tipo
         FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
         where
         dd.Empresa=p.EMPRESA
