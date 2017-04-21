@@ -2959,27 +2959,68 @@ where EMPRESA = 'e01'";
             $q = \DB::delete($q_detele);
 
 
+            $query = "SELECT 
+			A.TRABAJADOR
+			FROM flexline.PER_DETALLETRATO A,
+			flexline.PER_TRABAJADOR B
+			WHERE 
+			A.EMPRESA=B.EMPRESA
+			AND A.TRABAJADOR=B.FICHA
+			AND B.VIGENCIA='ACTIVO'
+			AND FECHA_INICIO < '$fecha'
+			AND FECHA_TERMINO >= '$fecha'
+			AND A.TRATO='TRATO_HORA'
+			AND B.CENTRO_COSTO='PRODUCCION'
+			GROUP BY A.TRABAJADOR";
 
+
+            $res = \DB::select($query);
+
+            foreach ($res as $item){
+
+                $q = "SELECT
+                        TOP 1  AUX_VALOR5 CCI , AUX_VALOR16 LABOR
+                        FROM flexline.PER_DETALLETRATO
+                        WHERE EMPRESA='E01'
+                        AND TRABAJADOR= $item->TRABAJADOR
+                        AND TRATO='TRATO_HORA'
+                        AND AUX_VALOR5<>'696969'
+                        AND FECHA < '$fecha'
+                        ORDER BY FECHA DESC";
+
+                $res_aux = \DB::select($q);
+                $CCI = $res_aux[0]->CCI;
+                $LABOR = $res_aux[0]->LABOR;
+
+
+
+
+                $q_insert = "INSERT INTO flexline.PER_DETALLETRATO
+                 (EMPRESA,TRABAJADOR,FECHA,TRATO,CODACTIVIDAD,HINICIO,HFIN,CANTIDAD,MONTO,ESTADO,AUX_VALOR5,AUX_VALOR11
+                 ,AUX_VALOR16,AUX_VALOR19,AUX_VALOR20,MONTO_INICIAL,TIPO_TRAB,CORRELATIVOP,CORRELATIVOACT,THORAS,AUX_VALOR2,
+                 AUX_VALOR3,AUX_VALOR4,AUX_VALOR6,AUX_VALOR7,AUX_VALOR8,AUX_VALOR9,AUX_VALOR10,AUX_VALOR12,AUX_VALOR13,
+                 AUX_VALOR14,AUX_VALOR15,AUX_VALOR17,AUX_VALOR18,TIPODOCTOP,TIPODOCTOACT,COMENTARIO,AUX_VALOR1) 
+                 values 
+                 ('E01','$item->TRABAJADOR','$fecha','TRATO_HORA','HORA-FERIADO','0','0','8','8',
+                 'NPRT',$CCI,'J',$LABOR,'JMIRANDA','L02','8',
+                 'TRABAJADOR','0','0','0','','','','','','','','','','','','','','','','','','');";
+
+                $res = \DB::insert($q_insert);
+            }
+
+
+
+
+        /*
 
             //luego insertamos
            $query = "EXEC sp_getdiasferiados @FECHA  = '$fecha'";
 
 
 
-            $query = "
-
-
-            DECLARE @return_value int
-
-            EXEC    @return_value = dbo.sp_getdiasferiados
-                    @FECHA = N'20170413'
-
-            SELECT  'Return Value' = @return_value
-
-        
-            ";
-
             $res = \DB::statement($query);
+
+        */
 
             return $res;
 

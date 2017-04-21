@@ -1307,9 +1307,7 @@ class RecursoshController extends Controller
 
         $res =  $this->personalRep->regFeriados($data);
 
-        dd($res);
-
-        //return back()->with('status', 'Correcto, el proceso a culminado exitosamente!! ');
+        return back()->with('status', 'Correcto, el proceso a culminado exitosamente!! ');
 
     }
 
