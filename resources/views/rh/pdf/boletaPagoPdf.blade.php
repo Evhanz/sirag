@@ -166,7 +166,7 @@
                 ?>
                 <td>{{number_format($h_trabajadas, 2, '.', ',')}}</td>
                 <td>F. Inicio Vacaciones:</td>
-                <?php $temp = $item->where('MOVIMIENTO','6002')->first();
+                <?php $temp = $item->where('MOVIMIENTO','60002')->first();
                 if($temp != null){
                     $temp = $temp->VALOR;
                     $temp = explode('.', $temp);
@@ -192,7 +192,7 @@
                 ?>
                 <td>{{number_format($temp, 2, '.', ',')}}</td>
                 <td>F. Final Vacaciones:</td>
-                <?php $temp = $item->where('MOVIMIENTO','6003')->first();
+                <?php $temp = $item->where('MOVIMIENTO','60003')->first();
                 if($temp != null){
                     $temp = $temp->VALOR;
                     $temp = explode('.', $temp);
