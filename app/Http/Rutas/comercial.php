@@ -19,7 +19,6 @@ Route::get('comercial/rep/viewConsumoByFundo',['as'=>'viewConsumoByFundoComercia
 Route::get('comercial/rep/viewSeguimientoGuia',['as'=>'viewSeguimientoGuia','uses'=>'ComercialController@viewSeguimientoGuia']);
 
 
-
 /*API para treer todos los documentos de acuerdos a sus parametros*/
 Route::post('comercial/ap/getDocsByParameters',['as'=>'api_getDocsByParameters',
     'uses'=>'ComercialController@getAllDocumentosByParameters']);
@@ -34,6 +33,8 @@ Route::post('comercial/api/getKardexEntrada',['as'=>'api_getKardexEntrada',
 Route::post('comercial/api/apiGetKardex',['as'=>'api_getKardex','uses'=>'ComercialController@getKardex']);
 Route::post('comercial/api/getGuiaFaltaFactura',['as'=>'getGuiaFaltaFactura','uses'=>'ComercialController@getGuiaFaltaFactura']);
 
+
+
 //esta ruta se comparte con contabilidad
 Route::post('contabilidad/api/getOrdenCompraForControl',['as'=>'getOrdenCompraForControl',
     'uses'=>'ContabilidadController@getOrdenCompraForControl']);
@@ -43,5 +44,7 @@ Route::post('comercial/excel/ControlOrdenCompraComercial',['as'=>'excelControlOr
     'uses'=>'ComercialController@excelControlOrdenCompraComercial']);
 Route::post('comercial/excel/consumoPorCCI',['as'=>'excelConsumoPorCCI',
     'uses'=>'ComercialController@excelConsumoPorCCI']);
+Route::post('comercial/excel/getExcelRequerimiento',['as'=>'getExcelRequerimiento',
+    'uses'=>'ComercialController@getExcelRequerimiento']);
 
 

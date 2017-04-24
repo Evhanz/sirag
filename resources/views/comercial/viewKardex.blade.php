@@ -236,6 +236,7 @@
 
                                                 </div>
 
+
                                             </form>
                                         </div>
                                         <br><br>
@@ -350,7 +351,7 @@
                                     </div>
                                     <div id="cci" class="tab-pane fade">
                                         <div class="row">
-                                            <form class="form-inline" style="padding: 15px" action="{{route('excelConsumoPorCCI')}}" method="post">
+                                            <form id="formExcelCCI" class="form-inline" style="padding: 15px" action="{{route('excelConsumoPorCCI')}}" method="post">
                                                 <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
                                                 <div class="col-xs-3">
                                                     <label>Rango de Fechas</label>
@@ -379,11 +380,18 @@
                                                         <input name="tags" class="form-control" type="text"  ng-model="cci" data-role="tagsinput" >
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-1">
                                                     <label for="" style="margin-bottom: 20px"> </label><br>
-                                                    <button href="" class="btn btn-success">
-                                                        Buscar <i class="fa fa-file-excel-o"></i>
-                                                    </button>
+                                                    <a id="bntExcelCCI" ng-click="getExcelCCI()" href="" class="btn btn-success">
+                                                        Generar <i class="fa fa-file-excel-o"></i>
+                                                    </a>
+
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <label for="" style="margin-bottom: 20px"> </label><br>
+                                                    <a href="" class="btn btn-info" ng-click="refreshCCI()">
+                                                        <i class="fa fa-refresh"></i>
+                                                    </a>
 
                                                 </div>
 
@@ -482,6 +490,9 @@
                 exclude_inputs: true
             });
         }
+
+
+
             
                   
 
@@ -694,6 +705,17 @@
 
                 $scope.detallesEntrada = item.detalle;
 
+
+            };
+
+            $scope.getExcelCCI = function () {
+                $('#bntExcelCCI').attr("disabled", true);
+                $("#formExcelCCI" ).submit();
+            };
+
+            $scope.refreshCCI = function () {
+
+                $('#bntExcelCCI').attr("disabled", false);
 
             };
 

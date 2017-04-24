@@ -318,4 +318,20 @@ class ComercialController extends Controller
 
     }
 
+    public function getExcelRequerimiento(){
+
+        $data = \Input::all();
+        $fechas = explode('-',$data['rango_requerimiento']);
+        $data['f_inicio'] = trim($fechas[0]) ;
+        $data['f_fin'] = trim($fechas[1]) ;
+
+        $res = $this->documentoRep->getRequerimiento($data);
+
+
+
+        dd($res);
+
+
+    }
+
 }

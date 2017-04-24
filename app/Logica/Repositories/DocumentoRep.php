@@ -221,6 +221,51 @@ order by FECHA_GUIA";
 
     }
 
+    public function getRequerimiento($data){
+
+        if($data['tipo']=='ambos'){
+
+            $q_tipo= " AND D.TipoDocto IN ('R/COMPRA (A)','R/C SERVICIO') " ;
+
+        }else{
+            $tipo = $data['tipo'];
+            $q_tipo= " AND D.TipoDocto = '$tipo' " ;
+        }
+
+        $f_inicio = $data['f_inicio'];
+        $f_fin = $data['f_fin'];
+        $vigencia = $data['vigencia'];
+        $aprobacion = $data['aprobacion'];
+
+
+        $query = "SELECT D.COMPRADOR,D.NUMERO,CONVERT(DATE,D.Fecha,113) AS FECHA, DD.Producto,P.UNIDAD,P.GLOSA,DD.Cantidad,
+                D.Vigencia,D.Aprobacion,D.UsuarioAprueba, CONVERT(DATE,D.FechaAprueba,113) AS FECHA_APRUEBA
+                FROM 
+                flexline.Documento D,
+                FLEXLINE.DocumentoD DD,
+                flexline.PRODUCTO P
+                WHERE 
+                D.idDocto=DD.idDocto
+                AND DD.Empresa=P.EMPRESA
+                AND DD.Producto=P.PRODUCTO
+                AND D.Empresa='E01'
+                $q_tipo -- DEBE FILTRAR POR 3 OPCIONES QUE SON 'R/C SERVICIO' , 'R/COMPRA (A)' Y LOS 2 A LA VEZ
+                AND D.Vigencia like '%$vigencia%'--- DEBE FILTRAR POR 3 OPCIONES QUE SON 'S'=SIGUE VIGENTE , 'N'= NO ESTA VIGENTE Y LOS 2 A LA VEZ
+                AND D.Aprobacion like '%$aprobacion%'--- DEBE FILTRAR POR 3 OPCIONES QUE SON 'S'=APROBADO , 'N'= NO APROBADO , 'P'=PENDIENTE APROBAR Y LOS 3 A LA VEZ
+                AND D.Fecha BETWEEN '$f_inicio' AND '$f_fin' -- FILTRAR POR RANGO DE FECHAS
+                ORDER BY D.Fecha , D.Numero
+                ";
+
+        $res = \DB::select($query);
+
+        $res = collect($res);
+
+        $res = $res->groupBy('NUMERO');
+
+        return $res->toArray();
+
+    }
+
 
 
 }
