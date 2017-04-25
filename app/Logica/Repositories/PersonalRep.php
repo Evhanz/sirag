@@ -3048,7 +3048,7 @@ where EMPRESA = 'e01'";
                     $res = \DB::insert($q_insert);
 
                 }
-                
+
 
             }
 

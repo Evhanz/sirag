@@ -12,6 +12,7 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Orden Compra</a></li>
+                            <li ><a data-toggle="tab" href="#requerimiento">Requerimiento</a></li>
 
                         </ul>
                     </div><!-- /.box-header -->
@@ -88,6 +89,74 @@
 
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <!-- Box (with bar chart) -->
+                                                <div class="box box-info" id="box_maestro">
+                                                    <div class="box-header">
+
+                                                    </div><!-- /.box-header -->
+                                                    <div class="box-body ">
+
+
+                                                        <label>
+                                                            <!--  Any: <input ng-model="search.$">-->
+                                                        </label> <br>
+
+                                                        <div class="row" style="padding: 15px">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered" id="table_data_op1">
+                                                                    <thead >
+                                                                    <tr>
+                                                                        <th>O/C</th>
+                                                                        <th>Fecha</th>
+                                                                        <th>Fecha de Entrega</th>
+                                                                        <th>Proveedor</th>
+                                                                        <th>UM</th>
+                                                                        <th>Código Producto</th>
+                                                                        <th>Descripción</th>
+                                                                        <th>Precio</th>
+                                                                        <th>Cantidad Solicitado</th>
+                                                                        <th>Cantidd Por Ingresar</th>
+                                                                        <th>Observación</th>
+                                                                        <th >*</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody  ng-repeat=" item in Documentos | filter:search">
+                                                                    <tr id="tr_Doc_@{{ item.idDocto }}">
+                                                                        <td>@{{ item.Numero }}</td>
+                                                                        <td>@{{ item.FECHA }}</td>
+                                                                        <td>@{{ item.FECHA_ENTREGA }}</td>
+                                                                        <td>@{{ item.RazonSocial }}</td>
+                                                                        <td>@{{ item.UnidadIngreso }}</td>
+                                                                        <td>@{{ item.cod_producto}}</td>
+                                                                        <td>@{{ item.GLOSA }}</td>
+                                                                        <td>@{{ item.PrecioIngreso }}</td>
+                                                                        <td>@{{ item.Cantidad }}</td>
+                                                                        <td>@{{ item.ATENDIDO }}</td>
+                                                                        <td>@{{	item.estado }}</td>
+                                                                        <td>
+
+                                                                            <a href="" class="btn btn-default" ng-show="item.ATENDIDO!=0" ng-click="viewGuia(item)" >
+                                                                                <i class="fa fa-eye fa-lg"></i>
+                                                                            </a>
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div><!-- /.row - inside box -->
+                                                    </div><!-- /.box-body -->
+
+                                                </div><!-- /.box -->
+
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                     <!-- Tab filtro documento -->
                                     <div id="menu1" class="tab-pane fade">
@@ -104,9 +173,69 @@
 
 
                                     </div>
-                                    <div id="menu2" class="tab-pane fade">
-                                        <h3>Menu 2</h3>
-                                        <p>Some content in menu 2.</p>
+                                    <div id="requerimiento" class="tab-pane fade">
+                                        <form class="form-inline" style="padding: 15px" method="post" action="{{route('getExcelRequerimiento')}}">
+                                            <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+
+                                            <div class="form-group">
+                                                <label>Rango de Fechas</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input class="form-control " name="rango_requerimiento" id="rango_requerimiento" type="text">
+                                                </div><!-- /.input group -->
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="" >Tipo Requerimiento</label><br>
+                                                <select name="tipo" class="form-control" id="tipoR" required>
+                                                    <option value="ambos">Ambos</option>
+                                                    <option value="R/COMPRA (A)">R/COMPRA (A)</option>
+                                                    <option value="R/C SERVICIO">R/C SERVICIO</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="" >Vigencia</label><br>
+                                                <select name="vigencia" class="form-control" id="vigenciaR" required>
+                                                    <option value="">--------</option>
+                                                    <option value="S">Vigente</option>
+                                                    <option value="N">No Vigente</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="" >Aprobacion</label><br>
+                                                <select name="aprobacion" class="form-control" id="vigenciaR" required>
+                                                    <option value="">--------</option>
+                                                    <option value="S">Aprobado</option>
+                                                    <option value="N">No Aprobado</option>
+                                                    <option value="P">Pendiente</option>
+                                                </select>
+                                            </div>
+
+                                            <!--
+
+                                            <div class="form-group">
+                                                <label for=""></label><br>
+                                                <button name="option" value="excel" class="btn btn-success"  >
+                                                    <i class="fa fa-file-excel-o fa-lg"></i>
+                                                </button>
+                                            </div>
+                                            -->
+
+
+
+                                            <div class="form-group">
+                                                <label for=""></label><br>
+                                                <button name="option" value="pdf" class="btn btn-danger"  >
+                                                    <i class="fa fa-file-pdf-o fa-lg"></i>
+                                                </button>
+                                            </div>
+
+
+
+                                        </form>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -124,73 +253,7 @@
 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Box (with bar chart) -->
-                    <div class="box box-info" id="box_maestro">
-                        <div class="box-header">
 
-                        </div><!-- /.box-header -->
-                        <div class="box-body ">
-
-
-                            <label>
-                              <!--  Any: <input ng-model="search.$">-->
-                            </label> <br>
-
-                            <div class="row" style="padding: 15px">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="table_data_op1">
-                                        <thead >
-                                        <tr>
-                                            <th>O/C</th>
-                                            <th>Fecha</th>
-                                            <th>Fecha de Entrega</th>
-                                            <th>Proveedor</th>
-                                            <th>UM</th>
-                                            <th>Código Producto</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
-                                            <th>Cantidad Solicitado</th>
-                                            <th>Cantidd Por Ingresar</th>
-                                            <th>Observación</th>
-                                            <th >*</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody  ng-repeat=" item in Documentos | filter:search">
-                                        <tr id="tr_Doc_@{{ item.idDocto }}">
-                                            <td>@{{ item.Numero }}</td>
-                                            <td>@{{ item.FECHA }}</td>
-                                            <td>@{{ item.FECHA_ENTREGA }}</td>
-                                            <td>@{{ item.RazonSocial }}</td>
-                                            <td>@{{ item.UnidadIngreso }}</td>
-                                            <td>@{{ item.cod_producto}}</td>
-                                            <td>@{{ item.GLOSA }}</td>
-                                            <td>@{{ item.PrecioIngreso }}</td>
-                                            <td>@{{ item.Cantidad }}</td>
-                                            <td>@{{ item.ATENDIDO }}</td>
-                                            <td>@{{	item.estado }}</td>
-                                            <td>
-                                                
-                                                <a href="" class="btn btn-default" ng-show="item.ATENDIDO!=0" ng-click="viewGuia(item)" >
-                                                    <i class="fa fa-eye fa-lg"></i>
-                                                </a>
-
-                                            </td>
-
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div><!-- /.row - inside box -->
-                        </div><!-- /.box-body -->
-
-                    </div><!-- /.box -->
-
-                </div>
-
-            </div>
         </div><!--/. content-->
 
         <!-- modal Detail-->

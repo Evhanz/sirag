@@ -12,7 +12,6 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Orden Compra</a></li>
-                            <li ><a data-toggle="tab" href="#requerimiento">Requerimiento</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding" >
@@ -90,70 +89,7 @@
 
                                     </div>
                                     <!-- Tab filtro documento -->
-                                    <div id="requerimiento" class="tab-pane fade">
-                                        <form class="form-inline" style="padding: 15px" method="post" action="{{route('getExcelRequerimiento')}}">
-                                            <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
 
-                                            <div class="form-group">
-                                                <label>Rango de Fechas</label>
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </div>
-                                                    <input class="form-control " name="rango_requerimiento" id="rango_requerimiento" type="text">
-                                                </div><!-- /.input group -->
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="" >Tipo Requerimiento</label><br>
-                                                <select name="tipo" class="form-control" id="tipoR" required>
-                                                    <option value="ambos">Ambos</option>
-                                                    <option value="R/COMPRA (A)">R/COMPRA (A)</option>
-                                                    <option value="R/C SERVICIO">R/C SERVICIO</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="" >Vigencia</label><br>
-                                                <select name="vigencia" class="form-control" id="vigenciaR" required>
-                                                    <option value="">--------</option>
-                                                    <option value="S">Vigente</option>
-                                                    <option value="N">No Vigente</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="" >Aprobacion</label><br>
-                                                <select name="aprobacion" class="form-control" id="vigenciaR" required>
-                                                    <option value="">--------</option>
-                                                    <option value="S">Aprobado</option>
-                                                    <option value="N">No Aprobado</option>
-                                                    <option value="P">Pendiente</option>
-                                                </select>
-                                            </div>
-
-                                            <!--
-
-                                            <div class="form-group">
-                                                <label for=""></label><br>
-                                                <button name="option" value="excel" class="btn btn-success"  >
-                                                    <i class="fa fa-file-excel-o fa-lg"></i>
-                                                </button>
-                                            </div>
-                                            -->
-
-
-
-                                            <div class="form-group">
-                                                <label for=""></label><br>
-                                                <button name="option" value="pdf" class="btn btn-danger"  >
-                                                    <i class="fa fa-file-pdf-o fa-lg"></i>
-                                                </button>
-                                            </div>
-
-
-
-                                        </form>
-
-
-                                    </div>
                                     <div id="menu2" class="tab-pane fade">
                                         <h3>Menu 2</h3>
                                         <p>Some content in menu 2.</p>
