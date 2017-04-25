@@ -1399,8 +1399,17 @@
 
                     }).success(function (data) {
 
-                        alert('Operacion Correcta');
-                        $("#modEditJornal").modal("hide");
+                        //alert('Operacion Correcta');
+
+                        if(data.mensaje == 'ok'){
+                            alert('Operacion Correcta');
+                            $("#modEditJornal").modal("hide");
+                        }else{
+                            console.log(data);
+                            alert('Error: '+data.mensaje);
+                        }
+
+
 
                     }).error(function (error) {
 

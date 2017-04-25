@@ -2637,6 +2637,10 @@ where EMPRESA = 'e01'";
         }
         $f = $f[2].'-'.$f[0].'-'.$f[1];
 
+        if(!isset($data['ubigeo'])){
+            $data['ubigeo'] = 'L02';
+        }
+
 
 
         $trabajador     =   $data['ficha'];

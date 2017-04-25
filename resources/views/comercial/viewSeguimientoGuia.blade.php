@@ -129,12 +129,25 @@
                                                 </select>
                                             </div>
 
+                                            <!--
+
                                             <div class="form-group">
                                                 <label for=""></label><br>
                                                 <button name="option" value="excel" class="btn btn-success"  >
-                                                    <i class="fa fa-search fa-lg"></i>
+                                                    <i class="fa fa-file-excel-o fa-lg"></i>
                                                 </button>
                                             </div>
+                                            -->
+
+
+
+                                            <div class="form-group">
+                                                <label for=""></label><br>
+                                                <button name="option" value="pdf" class="btn btn-danger"  >
+                                                    <i class="fa fa-file-pdf-o fa-lg"></i>
+                                                </button>
+                                            </div>
+
 
 
                                         </form>

@@ -327,9 +327,23 @@ class ComercialController extends Controller
 
         $res = $this->documentoRep->getRequerimiento($data);
 
+        if($data['option'] == 'pdf'){
+            $pdf = \PDF::loadView('comercial.R_pdf.r_requerimientos', ['requerimientos'=>$res] );
+            return $pdf->stream('invoice.pdf');
+        }else{
+
+            \Excel::create('Requerimientos', function($excel) use ($res) {
+
+                $excel->sheet('Sheetname', function($sheet) use($res) {
+
+                    $sheet->fromModel($res);
+
+                });
+            })->export('xlsx');
+
+        }
 
 
-        dd($res);
 
 
     }

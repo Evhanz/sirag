@@ -958,8 +958,6 @@ class RecursoshController extends Controller
 
                     $monto_activity = $this->personalRep->getTotalHoras($detalle,$actividad);
 
-
-
                     $pre_cant_horas_activity = $monto_activity + $detalle['hora'];
 
                     if($pre_cant_horas_activity>8){
@@ -1008,8 +1006,6 @@ class RecursoshController extends Controller
             $res = $this->personalRep->regJornales($detalle);
         }
 
-
-
         return \Response::Json($response);
 
 
@@ -1051,20 +1047,102 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-        \DB::transaction(function () use ($data){
+        $respuesta = [];
+
 
             $anterior = $data['itemAnterior'] ;
             $nuevo = $data['itemNuevo'];
+            $response['mensaje'] = '';
 
             $res = $this->personalRep->deleteJornal($anterior);
 
-            $res = $this->personalRep->regJornales($nuevo);
 
-        });
+            /*
+
+            $res = $this->personalRep->regJornales($nuevo);*/
+
+            $total_horas =  $this->personalRep->getTotalHoras($nuevo,''); //nos da el total de horas registrados
+
+            $pre_cant_horas = $total_horas + $nuevo['hora'];
+
+            if($pre_cant_horas >24){
+
+                $response['res'] = '500';
+
+                $response['mensaje'] = $response['mensaje'].'La cantidad de hora a ingresar supera lo permisible  \\n';
+                $bandera=1;
+
+            }
+            else{
+
+
+                /*averiguaremos que tipo de labor se está registrando*/
+
+
+                $actividad = $nuevo['actividad'];
+
+                switch ($actividad){
+
+                    case 'HORA-NORMAL' :
+
+                        $monto_activity = $this->personalRep->getTotalHoras($nuevo,$actividad);
+
+                        $pre_cant_horas_activity = $monto_activity + $nuevo['hora'];
+
+                        if($pre_cant_horas_activity>8){
+
+                            $response['res'] = '500';
+
+                            $response['mensaje'] = $response['mensaje'].'La cantidad de hora a ingresar supera lo permisible  \\n';
+                            $bandera = 1;
+
+                        }else{
+                            //registrar
+                        }
+                        break;
+                    case 'HORA-EXTRA-25%' :
+
+                        $monto_activity = $this->personalRep->getTotalHoras($nuevo,$actividad);
+
+                        $response['data'] = $monto_activity;
+
+                        $pre_cant_horas_activity = $monto_activity + $nuevo['hora'];
+
+                        if($pre_cant_horas_activity>2){
+
+                            $response['res'] = '500';
+
+                            $response['mensaje'] = $response['mensaje'].'La cantidad de hora a ingresar supera lo permisible  \\n';
+                            $bandera = 1;
+
+                        }else{
+                            //registrar
+                        }
+
+                        break;
+                    default:
+
+                        //registrar
+                        break;
+                }
 
 
 
-        return \Response::Json('ok');
+            }
+
+            if($bandera == 0){
+                $response['mensaje']='ok';
+                $res = $this->personalRep->regJornales($nuevo);
+            }else{
+                $res = $this->personalRep->regJornales($anterior);
+            }
+
+
+            $respuesta = $response;
+
+
+        return \Response::Json($respuesta);
+
 
     }
 
