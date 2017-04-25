@@ -2982,7 +2982,43 @@ where EMPRESA = 'e01'";
 
             foreach ($res as $item){
 
-                $q = "SELECT
+                $q_vacaciones ="
+                        SELECT 
+						CASE 
+						WHEN '$fecha' >=CONVERT(DATE,SUBSTRING(RIGHT(DESCRIPCION,31),1,10),103) AND
+						 '$fecha' <=CONVERT(DATE,RIGHT(DESCRIPCION,10),103) THEN FICHA
+						ELSE '' END as TRABAJADOR FROM flexline.PER_MOV_MES
+						WHERE EMPRESA='E01'			
+						AND FICHA='$item->TRABAJADOR'
+						AND MOVIMIENTO IN ('20006','20007','20005')
+						and LEN(CASE 
+						WHEN '$fecha' >=CONVERT(DATE,SUBSTRING(RIGHT(DESCRIPCION,31),1,10),103) AND
+						 '$fecha' <=CONVERT(DATE,RIGHT(DESCRIPCION,10),103) THEN FICHA
+						ELSE '' END)>0
+						AND SUBSTRING(CONVERT(VARCHAR,PERIODO),1,6)=SUBSTRING('$fecha',1,6)";
+
+                $res_vacaciones = \DB::select($q_vacaciones);
+
+
+                $q_descanso = "SELECT 
+						CASE
+						WHEN '$fecha'>=CONVERT(DATE,CONVERT(VARCHAR,FEC_INIEFE),103) AND 
+						'$fecha'<=CONVERT(DATE,CONVERT(VARCHAR,FEC_FINEFE),103) THEN FICHA ELSE '' END
+						as TRABAJADOR FROM flexline.PER_VACACIONES
+						WHERE EMPRESA='E01'
+						AND TIPO_TRANS='APROBACION'
+						AND ESTADO='A'
+						AND FICHA= '$item->TRABAJADOR'
+						AND LEN(CASE
+						WHEN '$fecha' >=CONVERT(DATE,CONVERT(VARCHAR,FEC_INIEFE),103) AND
+						'$fecha' <=CONVERT(DATE,CONVERT(VARCHAR,FEC_FINEFE),103) THEN FICHA ELSE '' END)>0";
+
+                $res_descansos = \DB::select($q_descanso);
+
+
+                if(count($res_vacaciones) < 1 && count($res_descansos) < 1 ){
+
+                    $q = "SELECT
                         TOP 1  AUX_VALOR5 CCI , AUX_VALOR16 LABOR
                         FROM flexline.PER_DETALLETRATO
                         WHERE EMPRESA='E01'
@@ -2992,14 +3028,14 @@ where EMPRESA = 'e01'";
                         AND FECHA < '$fecha'
                         ORDER BY FECHA DESC";
 
-                $res_aux = \DB::select($q);
-                $CCI = $res_aux[0]->CCI;
-                $LABOR = $res_aux[0]->LABOR;
+                    $res_aux = \DB::select($q);
+                    $CCI = $res_aux[0]->CCI;
+                    $LABOR = $res_aux[0]->LABOR;
 
 
 
 
-                $q_insert = "INSERT INTO flexline.PER_DETALLETRATO
+                    $q_insert = "INSERT INTO flexline.PER_DETALLETRATO
                  (EMPRESA,TRABAJADOR,FECHA,TRATO,CODACTIVIDAD,HINICIO,HFIN,CANTIDAD,MONTO,ESTADO,AUX_VALOR5,AUX_VALOR11
                  ,AUX_VALOR16,AUX_VALOR19,AUX_VALOR20,MONTO_INICIAL,TIPO_TRAB,CORRELATIVOP,CORRELATIVOACT,THORAS,AUX_VALOR2,
                  AUX_VALOR3,AUX_VALOR4,AUX_VALOR6,AUX_VALOR7,AUX_VALOR8,AUX_VALOR9,AUX_VALOR10,AUX_VALOR12,AUX_VALOR13,
@@ -3009,7 +3045,11 @@ where EMPRESA = 'e01'";
                  'NPRT',$CCI,'J',$LABOR,'JMIRANDA','L02','8',
                  'TRABAJADOR','0','0','0','','','','','','','','','','','','','','','','','','');";
 
-                $res = \DB::insert($q_insert);
+                    $res = \DB::insert($q_insert);
+
+                }
+                
+
             }
 
 
