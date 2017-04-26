@@ -11,7 +11,7 @@
                 <div class="box box-default" >
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
-                            <li class="active"><a data-toggle="tab" href="#home">Orden Compra</a></li>
+                            <li class="active"><a data-toggle="tab" href="#home">Seguimiento Guia</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding" >
