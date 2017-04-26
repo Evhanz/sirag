@@ -2842,13 +2842,33 @@ where EMPRESA = 'e01'";
 
 
 
-    public function processdominical($f_i,$f_f){
+    public function processdominical($f_i,$f_f,$f_dominical){
 
         $query = "select TRABAJADOR, ROUND(SUM(CANTIDAD)/6,2) CANTIDAD
         from flexline.PER_DETALLETRATO
         where CONVERT(DATE,FECHA,113) BETWEEN '$f_i' AND '$f_f'
         AND CODACTIVIDAD IN ('HORA-NORMAL','HORA-FERIADO')
-        group by TRABAJADOR";
+        and TRABAJADOR NOT IN (select
+		CASE WHEN
+		'$f_dominical' >=CONVERT(DATE,CONVERT(VARCHAR,A.FEC_INIEFE),103) AND
+		'$f_dominical' <=CONVERT(DATE,CONVERT(VARCHAR,A.FEC_FINEFE),103) 
+		THEN A.FICHA ELSE '' END AS TRABAJADOR
+		FROM 
+		flexline.PER_VACACIONES A,
+		flexline.per_trabajador B
+		WHERE
+		A.EMPRESA=B.EMPRESA
+		AND A.FICHA=B.FICHA 
+		AND A.EMPRESA='E01'
+		AND A.TIPO_TRANS='APROBACION'
+		AND A.ESTADO='A'
+		AND B.FECHA_INICIO < '$f_dominical'
+		AND B.FECHA_TERMINO >= '$f_dominical'
+		AND LEN(CASE WHEN
+		'$f_dominical'>=CONVERT(DATE,CONVERT(VARCHAR,A.FEC_INIEFE),103) AND
+		'$f_dominical'<=CONVERT(DATE,CONVERT(VARCHAR,A.FEC_FINEFE),103) THEN A.FICHA ELSE '' END)>0)
+        group by TRABAJADOR
+";
 
 
 

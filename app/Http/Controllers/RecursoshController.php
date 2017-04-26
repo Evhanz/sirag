@@ -1188,7 +1188,7 @@ class RecursoshController extends Controller
 
             $f_inicio = $fechaI;
             $f_1_fin = $f_I[0].'-'.$f_I[1].'-'.HelpFunct::getUltimoDiaMes($f_I[0],$f_I[1]);
-            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin);
+            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin,$f_1_fin);
 
             //var_dump($res);
 
@@ -1223,9 +1223,9 @@ class RecursoshController extends Controller
 
             $f_inicio = $f_F[0].'-'.$f_F[1].'-'.'01';
             $f_1_fin = $fechaF;
-            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin);
 
             $f = HelpFunct::getNextDia($fechaF);
+            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin,$f);
 
             $this->personalRep->deleteJornalVolume($f->format('Y-m-d'));
 
@@ -1262,10 +1262,8 @@ class RecursoshController extends Controller
         else{
 
 
-
-            $res = $this->personalRep->processdominical($fechaI,$fechaF);
-
             $f = HelpFunct::getNextDia($fechaF);
+            $res = $this->personalRep->processdominical($fechaI,$fechaF,$f);
 
             $this->personalRep->deleteJornalVolume($f->format('Y-m-d'));
 
