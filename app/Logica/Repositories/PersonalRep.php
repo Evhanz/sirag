@@ -2847,7 +2847,7 @@ where EMPRESA = 'e01'";
         $query = "select TRABAJADOR, ROUND(SUM(CANTIDAD)/6,2) CANTIDAD
         from flexline.PER_DETALLETRATO
         where CONVERT(DATE,FECHA,113) BETWEEN '$f_i' AND '$f_f'
-        AND CODACTIVIDAD = 'HORA-NORMAL'
+        AND CODACTIVIDAD IN ('HORA-NORMAL','HORA-FERIADO')
         group by TRABAJADOR";
 
 
