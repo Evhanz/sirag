@@ -292,7 +292,7 @@
                                                             <tbody>
                                                             <tr ng-repeat="item in dataDominical">
                                                                 <td>@{{ $index + 1 }}</td>
-                                                                <td>@{ {item.fecha}}</td>
+                                                                <td>@{{ item.fecha }}</td>
                                                                 <td>@{{ item.nombre }}</td>
                                                                 <td>@{{ item.cci }}</td>
                                                                 <td>@{{ item.codigo }}</td>
@@ -1344,6 +1344,7 @@
                        // console.log(data);
                        // $scope.dataDominical = data ;
                         alert('El proceso a terminado con exito');
+                        $scope.dataDominical = data ;
 
                         $('#btnExecDominical').attr('disabled',false);
 
