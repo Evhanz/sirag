@@ -28,7 +28,7 @@
 
     <div ng-app="app" ng-controller="PruebaController">
         <div class="content"  >
-            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+
 
             <div class="row" style="padding-left: 15px; padding-right: 15px;">
                 <!-- Box (with bar chart) -->
@@ -46,26 +46,41 @@
                             <div id="home" class="tab-pane fade in active" style="padding: 20px">
                                 <div class="row">
 
-                                    <div class="col-lg-2">
-                                        <label for="">Código de trabajador</label><br>
-                                        <input class="form-control" id="codigo_trabajador" type="text">
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label for="">Fecha</label>
-                                        <input class="form-control" name="daterange" id="reservation" type="text">
-                                    </div>
-                                    <div class="col-lg-3">
+                                    <form action="{{route('getExcelJornales')}}" method="post">
+                                        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+                                        <div class="col-lg-2">
+                                            <label for="">Código de trabajador</label><br>
+                                            <input class="form-control" id="codigo_trabajador" type="text">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label for="">Fecha</label>
+                                            <input class="form-control" name="daterange" id="reservation" type="text" required>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label for="">Opciones</label><br>
+                                            <a class="btn btn-info" id="btnBuscar" ng-click="buscarData()">Buscar</a>
+                                            <a ng-model="btnNuevo" class="btn btn-success" id="btnNuevo" ng-click="newRegDetails()"> <i class="fa fa-disk"></i> Nuevo </a>
+                                            <!-- <button class="btn btn-info" id="btnGuardar" disabled> <i class="fa fa-disk"></i> Guardar </button>-->
 
-                                        <button class="btn btn-info" id="btnBuscar" ng-click="buscarData()">Buscar</button>
-                                        <button ng-model="btnNuevo" class="btn btn-success" id="btnNuevo" ng-click="newRegDetails()"> <i class="fa fa-disk"></i> Nuevo </button>
-                                        <!-- <button class="btn btn-info" id="btnGuardar" disabled> <i class="fa fa-disk"></i> Guardar </button>-->
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label for="">CCI</label>
+                                            <input class="form-control" name="cci" id="cci" type="text">
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <label for="">Exportar</label>
+                                            <button class="btn btn-success">Excel</button>
+                                        </div>
 
-                                    </div>
-                                    <div class="col-lg-3"></div>
+                                    </form>
+
+
 
 
 
                                 </div>
+
+                                <br><br>
 
                                 <div class="row" id="dataInsert">
                                     <div class="col-lg-12">

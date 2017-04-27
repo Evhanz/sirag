@@ -94,6 +94,8 @@ Route::post('rh/archivos/getBoletaPago',['as'=>'getBoletaPago','uses'=>'Recursos
 Route::post('rh/archivos/getExcelAFPNet',['as'=>'getExcelAFPNet','uses'=>'RecursoshController@getExcelAFPNet']);
 Route::post('rh/archivos/getExcelCostoMOPorFundo',['as'=>'getExcelCostoMOPorFundo',
     'uses'=>'RecursoshController@getExcelCostoMOPorFundo']);
+Route::post('rh/archivos/getExcelJornales',['as'=>'getExcelJornales',
+    'uses'=>'RecursoshController@getExcelJornales']);
 
 
 //solo pruebas

@@ -2787,11 +2787,18 @@ where EMPRESA = 'e01'";
     }
 
 
-    public function getJornalesByFechas($data,$dominical=null)
+    public function getJornalesByFechas($data,$dominical=null,$cci=null)
     {
 
 
         if($dominical == null){
+
+            $q_cci = '';
+
+            if($cci != null){
+                $q_cci = "AND AUX_VALOR5 = $cci ";
+            }
+
             $f_i = $data['f_i'];
             $f_f = $data['f_f'];
             $codigo = $data['codigo'];
@@ -2804,7 +2811,7 @@ where EMPRESA = 'e01'";
                                 flexline.PER_DETALLETRATO
                                 WHERE CONVERT(DATE,FECHA,113)  between  '$f_i' and '$f_f'
                                 AND TRATO = 'TRATO_HORA'
-                                AND TRABAJADOR LIKE '%$codigo%'";
+                                AND TRABAJADOR LIKE '%$codigo%' $q_cci";
         }else{
             $fecha = $data;
             $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 

@@ -908,6 +908,55 @@ class RecursoshController extends Controller
     }
 
 
+    public function getExcelJornales(){
+
+        $data = \Input::all();
+
+        $fechas = explode('-',$data['daterange']);
+
+
+        $data['f_i'] = explode('/',trim($fechas[0]));
+        $data['f_i'] =  $data['f_i'][2].'-'.$data['f_i'][1].'-'.$data['f_i'][0];
+
+        $data['f_f'] =  explode('/',trim($fechas[1]));
+        $data['f_f'] =  $data['f_f'][2].'-'.$data['f_f'][1].'-'.$data['f_f'][0];
+
+        $data['codigo'] = '';
+
+
+
+        if($data['cci'] != ''){
+
+            $res = $this->personalRep->getJornalesByFechas($data,null,$data['cci']);
+        }else{
+            $res = $this->personalRep->getJornalesByFechas($data);
+
+        }
+
+        $array_res = [];
+
+        foreach($res as $item){
+
+            $array_res[] = (array)$item;
+
+        }
+
+        //dd($res);
+
+       \Excel::create('Laravel Excel', function($excel) use ($array_res) {
+
+            $excel->sheet('Productos', function($sheet) use ($array_res) {
+
+                $sheet->fromArray($array_res);
+
+            });
+        })->export('xlsx');
+
+
+
+    }
+
+
 
 
 
