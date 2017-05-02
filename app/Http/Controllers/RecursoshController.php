@@ -1390,7 +1390,7 @@ class RecursoshController extends Controller
 
         $fecha = $fecha[2].$fecha[1]. $fecha[0];
         $data['periodo'] = $fecha;
-        $data['periodo2'] = $periodo2[2]. $periodo2[1]. $periodo2[0];;
+        $data['periodo2'] = $periodo2[2]. $periodo2[1]. $periodo2[0];
 
 
         $res = $this->personalRep->getBoletaDePago($data);

@@ -264,7 +264,7 @@
                                     <div class="col-lg-12">
                                         <!-- Box (with bar chart) -->
                                         <div class="box box-info" id="box_maestro">
-                                            <div class="box-header">
+                                              <div class="box-header">
                                                 <!-- tools box -->
                                             </div><!-- /.box-header -->
                                             <div class="box-body ">
