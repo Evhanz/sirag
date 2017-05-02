@@ -19,9 +19,9 @@ class EtapaController extends Controller
 
     }
 
-    public function viewSeleccionReg(){
+    public function viewEtapaReg(){
 
-        return view('packing/etapa/viewSeleccion');
+        return view('packing/etapa/viewEtapa');
 
     }
 
@@ -33,7 +33,9 @@ class EtapaController extends Controller
         $date = $carbon->now();
         $date = $date->toDateTimeString();
         $data['fecha'] = $date;
-        dd($data);
+
+
+        return \Response::Json($data);
 
 
     }
