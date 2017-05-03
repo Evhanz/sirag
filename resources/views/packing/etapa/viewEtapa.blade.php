@@ -38,6 +38,7 @@
                     <form action="{{route('apiSeleccionReg')}}" method="post">
                         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
                         <input type="hidden" id="url_send" value="{{route('apiSeleccionReg')}}">
+                        <input type="hidden" id="opcion" >
                         <div class="col-md-8 col-lg-offset-2">
 
                             <div class="row">

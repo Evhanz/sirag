@@ -308,6 +308,12 @@
             format : "DD/MM/YYYY"
         });
 
+        $('#rango_requerimiento').daterangepicker({
+            format : "DD/MM/YYYY"
+        });
+
+
+
 
         function print_excel() {
                     
