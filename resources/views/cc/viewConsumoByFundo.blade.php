@@ -297,7 +297,7 @@
 
                     var fecha = item.fecha;
 
-                    if(fecha === null || fecha.length === 0){
+                    if(fecha === null ){
                         bandera = 1;
                     }else{
                         var fechas  = fecha.split('-');
@@ -334,7 +334,7 @@
 
                     var fecha = $scope.fecha_otros;
 
-                    if(fecha === null || fecha.length === 0){
+                    if(fecha === null ){
                         bandera = 1;
                     }else{
                         var fechas  = fecha.split('-');
