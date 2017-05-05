@@ -2811,7 +2811,8 @@ where EMPRESA = 'e01'";
                                 flexline.PER_DETALLETRATO
                                 WHERE CONVERT(DATE,FECHA,113)  between  '$f_i' and '$f_f'
                                 AND TRATO = 'TRATO_HORA'
-                                AND TRABAJADOR LIKE '%$codigo%' $q_cci";
+                                AND TRABAJADOR LIKE '%$codigo%' $q_cci
+                                ORDER BY FECHA";
         }else{
             $fecha = $data;
             $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
@@ -2823,7 +2824,8 @@ where EMPRESA = 'e01'";
                                 flexline.PER_DETALLETRATO
                                 WHERE CONVERT(DATE,FECHA,113)  = '$fecha'
                                 AND TRATO = 'TRATO_HORA'
-                                and CODACTIVIDAD = 'HORA-DOMINICAL'";
+                                and CODACTIVIDAD = 'HORA-DOMINICAL'
+                                ORDER BY FECHA";
 
 
         }
@@ -3060,8 +3062,6 @@ where EMPRESA = 'e01'";
                     $LABOR = $res_aux[0]->LABOR;
 
 
-
-
                     $q_insert = "INSERT INTO flexline.PER_DETALLETRATO
                  (EMPRESA,TRABAJADOR,FECHA,TRATO,CODACTIVIDAD,HINICIO,HFIN,CANTIDAD,MONTO,ESTADO,AUX_VALOR5,AUX_VALOR11
                  ,AUX_VALOR16,AUX_VALOR19,AUX_VALOR20,MONTO_INICIAL,TIPO_TRAB,CORRELATIVOP,CORRELATIVOACT,THORAS,AUX_VALOR2,
@@ -3069,7 +3069,7 @@ where EMPRESA = 'e01'";
                  AUX_VALOR14,AUX_VALOR15,AUX_VALOR17,AUX_VALOR18,TIPODOCTOP,TIPODOCTOACT,COMENTARIO,AUX_VALOR1) 
                  values 
                  ('E01','$item->TRABAJADOR','$fecha','TRATO_HORA','HORA-FERIADO','0','0','8','8',
-                 'NPRT',$CCI,'J',$LABOR,'JMIRANDA','L02','8',
+                 'NPRT',$CCI,'J','$LABOR','JMIRANDA','L02','8',
                  'TRABAJADOR','0','0','0','','','','','','','','','','','','','','','','','','');";
 
                     $res = \DB::insert($q_insert);

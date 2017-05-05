@@ -10,7 +10,7 @@
     <!-- Daterangepicker css -->
     <link rel="stylesheet" href="{{asset('css/daterangepicker/daterangepicker-bs3.css')}}">
     <script src="{{ asset('js/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('js/plugins/angular/angular-daterangepicker/angular-daterangepicker.js') }}"></script>
+   <!-- <script src="{{ asset('js/plugins/angular/angular-daterangepicker/angular-daterangepicker.js') }}"></script> -->
     
 
 
@@ -89,13 +89,13 @@
                                            
                                             <div ng-repeat="parron in parrones" class="col-md-3">
                                                 <label for="">@{{  parron.CODIGO }}</label>
-                                                <input  name="data_range" date-range-picker class="form-control date-picker" type="text" ng-model="parron.fecha" ng-init="parron.fecha={startDate: null, endDate: null}" />
+                                                <input  name="data_range2"  class="form-control date-picker" type="text" ng-model="parron.fecha"  ng-init="convert_input_date()"/>
                                                 
                                             </div>
 
                                             <div class="col-md-3" id="mdOtros">
                                                 <label for="">Otros</label>
-                                                <input  name="data_range2" date-range-picker class="form-control date-picker" type="text" ng-model="fecha_otros" ng-init="fecha_otros={startDate: null, endDate: null}"  />
+                                                <input  name="data_range2" class="form-control" type="text" ng-model="fecha_otros"   />
 
                                             </div>
                                         </div>
@@ -150,11 +150,10 @@
 
         /*funciones de jquery*/
 
-        $('input[name="data_range"]').daterangepicker({
+        $('input[name="data_range2"]').daterangepicker({
             format : "DD/MM/YYYY"
         });
         $('[data-toggle="tooltip"]').tooltip();
-
 
         /*
         $('input[name="data_range"]').daterangepicker(
@@ -200,7 +199,7 @@
         /**/
 
 
-        var app = angular.module("app",['daterangepicker']);
+        var app = angular.module("app",[]);
         app.controller("PruebaController", function($scope,$http,$window) {
 
             $scope.s = "a";
@@ -298,6 +297,22 @@
 
                     var fecha = item.fecha;
 
+                    if(fecha === null || fecha.length === 0){
+                        bandera = 1;
+                    }else{
+                        var fechas  = fecha.split('-');
+
+                        var f           = fechas[0].trim().split('/');
+                        item.startDate    = f[2]+"-"+f[0]+"-"+f[1];
+
+                        var f           = fechas[1].trim().split('/');
+                        item.endDate    = f[2]+"-"+f[0]+"-"+f[1];
+
+
+                    }
+
+                    /*
+
                     if (fecha.endDate == null || fecha.startDate == null) {
                         bandera = 1;
                     }else{
@@ -309,6 +324,8 @@
                         item.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
                     }
 
+                    */
+
                 });
 
 
@@ -316,6 +333,21 @@
 
 
                     var fecha = $scope.fecha_otros;
+
+                    if(fecha === null || fecha.length === 0){
+                        bandera = 1;
+                    }else{
+                        var fechas  = fecha.split('-');
+                        var f           = fechas[0].trim().split('/');
+                        $scope.otros.startDate    = f[2]+"-"+f[0]+"-"+f[1];
+                        var f           = fechas[1].trim().split('/');
+                        $scope.otros.endDate    = f[2]+"-"+f[0]+"-"+f[1];
+
+
+                    }
+
+
+                    /*
 
                     if (fecha.endDate == null || fecha.startDate == null) {
                         bandera = 1;
@@ -325,6 +357,8 @@
                         var f = new Date(fecha.startDate);
                         $scope.otros.startDate = f.getFullYear()+"-"+(f.getMonth()+1)+"-"+f.getDate();
                     }
+
+                    */
 
                 /*
                 if($scope.opcion == 'consumo'){
@@ -368,6 +402,8 @@
                    }
 
                     var token = $('#_token').val();
+
+                   console.log($scope.parrones);
 
                     $http.post(ruta,{
                         _token   : token,
@@ -436,6 +472,12 @@
                     $scope.opcion = 'consumo';
                 }
 
+            };
+
+            $scope.convert_input_date = function () {
+                $('input[name="data_range2"]').daterangepicker({
+                    format : "DD/MM/YYYY"
+                });
             };
 
             /*funcion helper*/

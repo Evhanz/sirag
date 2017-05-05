@@ -357,6 +357,12 @@ class ContabilidadRep
         $parrones = $data['parrones'];
         $fundo = $data['fundo'];
 
+        //--
+
+       // HelpFunct::writeQuery(var_dump($data));
+
+        //--
+
 
         // $codigos = $codigos->;
         $a_fechas_ini = [];
@@ -389,6 +395,9 @@ class ContabilidadRep
                     ORDER BY cci";
 
         $res_codigos = \DB::select($query);
+
+
+
 
         //obtenemos solo los codigos
 
@@ -430,6 +439,8 @@ class ContabilidadRep
                 return $res_codigos;
             }
         }
+
+
 
 
         //recorremos cada producto para obetener la matriz

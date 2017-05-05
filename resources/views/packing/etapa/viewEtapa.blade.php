@@ -6,7 +6,7 @@
         <small></small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ route('viewEtapaAll') }}"><i class="fa fa-dashboard"></i> Etapa</a></li>
         <li class="active">All</li>
     </ol>
 
@@ -22,7 +22,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Ingreso de Etapa</h3>
+                <h3 class="box-title">Ingreso de Etapa : <small>{{$opcion}}</small></h3>
                 <!--
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -37,8 +37,14 @@
 
                     <form action="{{route('apiSeleccionReg')}}" method="post">
                         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
-                        <input type="hidden" id="url_send" value="{{route('apiSeleccionReg')}}">
-                        <input type="hidden" id="opcion" >
+
+                        @if($opcion == 'nuevo')
+                            <input type="hidden" id="url_send" value="{{route('apiSeleccionReg')}}">
+                        @else
+                            <input type="hidden" id="url_send" value="{{route('apiSeleccionEdit')}}">
+                        @endif
+                        <input type="hidden" id="opcion" value="{{ $opcion or ''  }}">
+                        <input type="hidden" id="id_etapa" value="{{ $etapa or ''  }}">
                         <div class="col-md-8 col-lg-offset-2">
 
                             <div class="row">
@@ -112,15 +118,15 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a @click="sendData()" class="btn btn-block btn-success btn-lg">
+                                    <a id="btnEnviar" @click="sendData()" class="btn btn-block btn-success btn-lg">
                                         <i class="fa fa-save "></i> Guardar
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" id="codigo">
                                 <div class="col-xs-12">
-                                    <h2>Código : <strong>12</strong></h2>
+                                    <h2>Código : <strong>@{{ codigo }}</strong></h2>
                                 </div>
 
                             </div>

@@ -34,19 +34,36 @@
 			<td style="color: #FFF;background-color: #F0867A " rowspan="2">PROGRAMA</td>
 			<td style="color: #FFF;background-color: #F0867A " rowspan="2">CODIGO</td>
 			<td style="color: #FFF;background-color: #F0867A " rowspan="2">DESCRIPCION</td>
-			@foreach ($parrones as $parron)
-			<td style="color: #FFF;background-color: #F0867A " colspan="2">HAS:</td>
-			<td style="color: #FFF;background-color: #F0867A " >{{ $parron['VALOR1'] }}</td>
-			@endforeach
+			@if(isset($cci))
+				@foreach ($cci as $parron)
+					<td style="color: #FFF;background-color: #F0867A " colspan="2">HAS:</td>
+					<td style="color: #FFF;background-color: #F0867A " >{{ $parron->VALOR1 }}</td>
+				@endforeach
+			@else
+				@foreach ($parrones as $parron)
+					<td style="color: #FFF;background-color: #F0867A " colspan="2">HAS:</td>
+					<td style="color: #FFF;background-color: #F0867A " >{{ $parron['VALOR1'] }}</td>
+				@endforeach
+			@endif
+
 			<td style="color: #FFF;background-color: #FFBD00 " colspan="2" >TOTAL FUNDO</td>
 			<td style="color: #FFF;background-color: #FFBD00 " colspan="2">PROMEDIO HA. FUNDO	</td>
 		</tr>
 		<tr class="cabecera">
-			@foreach ($parrones as $parron)
-			<td>CANTIDAD</td>
-			<td>GTO. PARRON S/</td>
-			<td>GTO. POR HA. S/</td>
-			@endforeach
+			@if(isset($cci))
+				@foreach ($cci as $parron)
+					<td>CANTIDAD</td>
+					<td>GTO. PARRON S/</td>
+					<td>GTO. POR HA. S/</td>
+				@endforeach
+			@else
+				@foreach ($parrones as $parron)
+					<td>CANTIDAD</td>
+					<td>GTO. PARRON S/</td>
+					<td>GTO. POR HA. S/</td>
+				@endforeach
+			@endif
+
 			<td>CANTIDAD</td>
 			<td>GTO. PARRON S/</td>
 			<td>GTO. POR HA. S/</td>
