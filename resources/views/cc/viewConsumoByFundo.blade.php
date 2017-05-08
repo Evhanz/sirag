@@ -303,10 +303,10 @@
                         var fechas  = fecha.split('-');
 
                         var f           = fechas[0].trim().split('/');
-                        item.startDate    = f[2]+"-"+f[0]+"-"+f[1];
+                        item.startDate    = f[2]+"-"+f[1]+"-"+f[0];
 
                         var f           = fechas[1].trim().split('/');
-                        item.endDate    = f[2]+"-"+f[0]+"-"+f[1];
+                        item.endDate    = f[2]+"-"+f[1]+"-"+f[0];
 
 
                     }
@@ -339,9 +339,9 @@
                     }else{
                         var fechas  = fecha.split('-');
                         var f           = fechas[0].trim().split('/');
-                        $scope.otros.startDate    = f[2]+"-"+f[0]+"-"+f[1];
+                        $scope.otros.startDate    = f[2]+"-"+f[1]+"-"+f[0];
                         var f           = fechas[1].trim().split('/');
-                        $scope.otros.endDate    = f[2]+"-"+f[0]+"-"+f[1];
+                        $scope.otros.endDate    = f[2]+"-"+f[1]+"-"+f[0];
 
 
                     }
