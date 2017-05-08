@@ -85,9 +85,21 @@ class EtapaController extends Controller
         $data  = \Input::all();
 
         return \Response::Json($data);
+    }
+
+    public function getEtapaByParameter(){
+        $data = \Input::all();
+
+        $fechas = $data['fecha'];
+
+        $fechas = explode('-',$fechas);
+        $f_inicio = trim($fechas[0]);
+        $f_fin = trim($fechas[1]);
 
 
+        $etapa = $this->etapaRep->getEtapaByParameter($f_inicio,$f_fin);
 
+        return view('packing/etapa/viewAllEtapa',compact('etapa'));
     }
 
 }

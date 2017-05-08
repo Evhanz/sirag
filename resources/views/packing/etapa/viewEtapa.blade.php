@@ -34,6 +34,7 @@
             <div class="box-body">
 
                 <div class="row">
+                    <input type="hidden" id="ruta_empleados" value="{{ url() }}">
 
                     <form action="{{route('apiSeleccionReg')}}" method="post">
                         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
@@ -62,15 +63,15 @@
                             <div class="row">
 
                                 <div class="col-xs-4">
-                                    <input class="form-control input-lg" v-model="etapa.seleccion" type="text" required>
+                                    <input class="form-control input-lg" @keyup="etapaWrite('s')" @keyup.enter="getTrabajador(etapa.seleccion,'s')" v-model="etapa.seleccion" type="text" required>
                                 </div>
 
                                 <div class="col-xs-4">
-                                    <input class="form-control input-lg" v-model="etapa.pesaje" type="text" required>
+                                    <input class="form-control input-lg" @keyup="etapaWrite('p')" @keyup.enter="getTrabajador(etapa.pesaje,'p')" v-model="etapa.pesaje" type="text" required>
                                 </div>
 
                                 <div class="col-xs-4">
-                                    <input class="form-control input-lg" v-model="etapa.embalaje" type="text" required>
+                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.embalaje,'e')" v-model="etapa.embalaje" type="text" required>
                                 </div>
 
                                 <!--

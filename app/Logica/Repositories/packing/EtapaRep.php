@@ -40,10 +40,14 @@ class EtapaRep
     }
 
     public function getAllEtapa(){
-
-
         $res = \DB::table('sirag.etapa')->paginate(15);
+        return $res;
+    }
 
+    public function getEtapaByParameter($f_inicio,$fecha_fin){
+
+        $res = \DB::table('sirag.etapa')->where('fecha','>=',"$f_inicio")
+            ->where('fecha','<=',"$fecha_fin")->get();
         return $res;
 
     }

@@ -42,11 +42,7 @@ Route::get('comercial/api/getDetailOrden/{id}',['as'=>'getDetailOrden','uses'=>'
 
 
 /*Estas son de Recursos Humanos*/
-
-Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
-    require __DIR__ . '/Rutas/recursos_humanos.php';
-});
-
+require __DIR__ . '/Rutas/recursos_humanos.php';
 
 
 /*Estas dos son de contabilidad*/

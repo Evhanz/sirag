@@ -7,6 +7,9 @@ new Vue({
     data: {
         etapa:{
             calibre:'',
+            seleccion_estado:0,
+            pesaje_estado:0,
+            embalaje_estado:0,
             embalaje:'',
             pesaje:'',
             peso:'',
@@ -102,10 +105,64 @@ new Vue({
             if(etapa.uva == ''){
                 bandera=1;
             }
+            if(etapa.seleccion_estado === 0){
+                bandera=1;
+            }
+            if(etapa.pesaje_estado === 0){
+                bandera=1;
+            }
+            if(etapa.embalaje_estado === 0){
+                bandera=1;
+            }
 
             return bandera;
 
+        },
+        getTrabajador: function (ficha,tipo) {
+
+            ficha = ficha.trim();
+            var v = this;
+
+
+            var ruta = $("#ruta_empleados").val()+'/rh/api/getTrabajadorBy/'+ficha;
+
+            $.getJSON( ruta)
+                .done(function( data ) {
+                   if(data!=0){
+
+                       switch (tipo) {
+
+                           case 's':
+                               v.etapa.seleccion_estado = 1;
+                               break;
+                           case 'p':
+                               v.etapa.pesaje_estado = 1;
+                               break;
+                           case 'e':
+                               v.etapa.embalaje_estado = 1;
+                               break;
+                       }
+                   }
+                   console.log(v.etapa.seleccion_estado);
+                });
+
+        },
+        etapaWrite: function (etapa) {
+            var v = this;
+            switch (etapa) {
+
+                case 's':
+                    v.etapa.seleccion_estado = 0;
+                    break;
+                case 'p':
+                    v.etapa.pesaje_estado = 0;
+                    break;
+                case 'e':
+                    v.etapa.embalaje_estado = 0;
+                    break;
+            }
         }
+
 
     },
     mounted:function () {

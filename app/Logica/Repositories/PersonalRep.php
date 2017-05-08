@@ -1563,7 +1563,7 @@ class PersonalRep
         select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD
         ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
             WHERE EMPRESA='E01'
-            AND TIPO_COMPROBANTE='PLANILLAS'
+            AND TIPO_COMPROBANTE='PLANILLAS'   
             AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
             AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
             AND ESTADO='A'

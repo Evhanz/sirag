@@ -6,23 +6,26 @@
  * Time: 10:03 AM
  */
 
+Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
 //------ llamada a las views de rh ----------------- RH
-Route::get('rh/',['as'=>'modRH']);
-Route::get('rh/rep/viewPersonal',['as'=>'viewPersonal','uses'=>'RecursoshController@viewPersonal']);
-Route::get('rh/rep/HistorialContrato/{ficha}',['as'=>'viewHistoryContract','uses'=>'RecursoshController@viewHistoryContract']);
-Route::post('rh/addNewRenovacion',['as'=>'addNewRenovacion','uses'=>'RecursoshController@addNewRenovacion']);
-Route::post('rh/deleteRenovacion',['as'=>'deleteRenovacion','uses'=>'RecursoshController@deleteRenovacion']);
-Route::get('rh/rep/viewTelecredito',['as'=>'viewTelecredito','uses'=>'RecursoshController@viewTelecredito']);
-Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshController@viewPlanilla']);
-Route::get('rh/rep/viewPlame',['as'=>'viewPlame','uses'=>'RecursoshController@viewPlame']);
-Route::get('rh/rep/viewGetLiquidacion',['as'=>'viewGetLiquidacion','uses'=>'RecursoshController@viewGetLiquidacion']);
-Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshController@viewGetAFPNet']);
-Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron',
-    'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
-Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
-Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
-Route::get('rh/rep/viewGetBoletaPago',['as'=>'viewGetBoletaPago','uses'=>'RecursoshController@viewGetBoletaPago']);
-Route::get('rh/rep/viewFeriado',['as'=>'viewFeriado','uses'=>'RecursoshController@viewFeriado']);
+    Route::get('rh/',['as'=>'modRH']);
+    Route::get('rh/rep/viewPersonal',['as'=>'viewPersonal','uses'=>'RecursoshController@viewPersonal']);
+    Route::get('rh/rep/HistorialContrato/{ficha}',['as'=>'viewHistoryContract','uses'=>'RecursoshController@viewHistoryContract']);
+    Route::post('rh/addNewRenovacion',['as'=>'addNewRenovacion','uses'=>'RecursoshController@addNewRenovacion']);
+    Route::post('rh/deleteRenovacion',['as'=>'deleteRenovacion','uses'=>'RecursoshController@deleteRenovacion']);
+    Route::get('rh/rep/viewTelecredito',['as'=>'viewTelecredito','uses'=>'RecursoshController@viewTelecredito']);
+    Route::get('rh/rep/viewPlanilla',['as'=>'viewPlanilla','uses'=>'RecursoshController@viewPlanilla']);
+    Route::get('rh/rep/viewPlame',['as'=>'viewPlame','uses'=>'RecursoshController@viewPlame']);
+    Route::get('rh/rep/viewGetLiquidacion',['as'=>'viewGetLiquidacion','uses'=>'RecursoshController@viewGetLiquidacion']);
+    Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshController@viewGetAFPNet']);
+    Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron',
+        'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
+    Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
+    Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
+    Route::get('rh/rep/viewGetBoletaPago',['as'=>'viewGetBoletaPago','uses'=>'RecursoshController@viewGetBoletaPago']);
+    Route::get('rh/rep/viewFeriado',['as'=>'viewFeriado','uses'=>'RecursoshController@viewFeriado']);
+
+});
 
 
 //llamada a API
