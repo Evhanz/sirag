@@ -26,10 +26,12 @@ new Vue({
         sendData : function () {
 
             var etapa = this.etapa;
-            var url = $('#apiSeleccionReg').val();
+            var url = $('#url_send').val();
             var token = $('#_token').val();
             var v_obj = this;
             var bandera = v_obj.validateForm();
+
+            console.log('aqui',url);
 
             if(bandera == 0 ){
                 $.ajax({
@@ -44,7 +46,7 @@ new Vue({
 
                         if (data.code == '200'){
                             if(v_obj.opcion === 'editar'){
-                                window.location = data.url;
+                                window.location = $("#ruta_empleados").val()+'/packing/etapa/viewAll';
                             }else{
                                 $("#btnEnviar").attr('disabled',false);
                                 v_obj.codigo = data.codigo;
@@ -56,7 +58,10 @@ new Vue({
                                     peso:'',
                                     seleccion:'',
                                     t_caja:'',
-                                    uva:''
+                                    uva:'',
+                                    seleccion_estado:0,
+                                    pesaje_estado:0,
+                                    embalaje_estado:0
                                 };
                             }
                         }else{
@@ -170,6 +175,34 @@ new Vue({
 
         $("#codigo").hide();
         this.opcion = $('#opcion').val();
+        var v = this;
+
+        var id_etapa = $("#id_etapa").val();
+
+        if(id_etapa !== ''){
+            //trae a la etapa
+
+            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getById/'+id_etapa;
+
+            $.getJSON( ruta)
+                .done(function( data ) {
+
+                    data.seleccion= data.u_seleccion ;
+                    data.pesaje = data.u_pesaje ;
+                    data.embalaje = data.u_embalaje  ;
+
+
+                    v.etapa = data;
+                });
+
+
+
+
+        }
+
+
+
+
 
 
 

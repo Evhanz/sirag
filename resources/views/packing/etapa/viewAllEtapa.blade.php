@@ -86,7 +86,7 @@
                                     <td>{{$item->u_pesaje}}</td>
                                     <td>{{$item->u_embalaje}}</td>
                                     <td>{{$item->fecha}}</td>
-                                    <td><a class="btn btn-info" href="">
+                                    <td><a class="btn btn-info" href="{{route('viewEtapaEdit',['id'=>$item->id])}}">
                                             <i class="fa fa-edit"></i>
                                         </a></td>
 

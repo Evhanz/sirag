@@ -32,7 +32,7 @@ class EtapaRep
 
         $res = \DB::table('sirag.etapa')->insertGetId(
             ['t_caja' => $t_caja, 'uva' => $uva,'calibre' => $calibre,'peso' => $peso,
-                'embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
+                'e_embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
                 'estado' => 1,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje]
         );
 
@@ -58,7 +58,7 @@ class EtapaRep
 
         $res = \DB::select($query);
 
-        return $res;
+        return $res[0];
     }
 
 
@@ -74,13 +74,14 @@ class EtapaRep
         $pesaje = $data['pesaje'];
         $id  = $data['id'];
 
-        \DB::table('users')
+        $res =\DB::table('sirag.etapa')
             ->where('id', $id)
             ->update(
                 ['t_caja' => $t_caja, 'uva' => $uva,'calibre' => $calibre,'peso' => $peso,
-                    'embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
+                    'e_embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
                     'estado' => 1,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje]);
 
+        return $res;
     }
 
 }

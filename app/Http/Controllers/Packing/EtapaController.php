@@ -40,7 +40,7 @@ class EtapaController extends Controller
     public function viewEdit($id){
 
         $opcion = 'editar';
-        $etapa = $this->etapaRep->getEtapaById($id);
+        $etapa = $id;
 
         return view('packing/etapa/viewEtapa',compact('id','opcion','etapa'));
 
@@ -84,7 +84,25 @@ class EtapaController extends Controller
 
         $data  = \Input::all();
 
-        return \Response::Json($data);
+        $etapa = $data['etapa'];
+
+        $bandera = 0;
+        $res = 0;
+
+
+
+        try{
+
+            $res = $this->etapaRep->updateEtapa($etapa);
+            $response = ['code'=>200,'codigo'=>$res];
+        }catch (\Exception $e){
+            $bandera =$e;
+            $response = ['code'=>500,'mensaje'=>'error'];
+        }
+
+
+
+        return \Response::Json($response);
     }
 
     public function getEtapaByParameter(){
@@ -101,5 +119,15 @@ class EtapaController extends Controller
 
         return view('packing/etapa/viewAllEtapa',compact('etapa'));
     }
+
+    public function apiGetById($id){
+
+        $res = $this->etapaRep->getEtapaById($id);
+
+        return \Response::json($res);
+
+    }
+
+
 
 }

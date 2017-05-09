@@ -50,13 +50,30 @@
 
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <h3>C. Selección <i class="fa fa-barcode"></i> </h3>
+                                    <div v-if="etapa.seleccion_estado == 0 ">
+                                        <h3 >C. Selección <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                    </div>
+                                    <div v-else >
+                                        <h3>C. Selección <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                    </div>
+
                                 </div>
                                 <div class="col-xs-4">
-                                    <h3>C. Pesaje <i class="fa fa-barcode"></i> </h3>
+                                    <div v-if="etapa.pesaje_estado == 0 ">
+                                        <h3>C. Pesaje <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                    </div>
+                                    <div v-else >
+                                        <h3>C. Pesaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                    </div>
+
                                 </div>
                                 <div class="col-xs-4">
-                                    <h3>C. Embalaje <i class="fa fa-barcode"></i> </h3>
+                                    <div v-if="etapa.embalaje_estado == 0 ">
+                                        <h3>C. Embalaje <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                    </div>
+                                    <div v-else >
+                                        <h3>C. Embalaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                    </div>
                                 </div>
                             </div>
 
