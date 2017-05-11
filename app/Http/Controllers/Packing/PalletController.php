@@ -29,8 +29,6 @@ class PalletController extends Controller
 
         return view('packing/pallet/viewNewPallet');
 
-
-
     }
 
     public function viewEdit(){
@@ -40,5 +38,7 @@ class PalletController extends Controller
     public function viewAll(){
 
     }
+
+
 
 }

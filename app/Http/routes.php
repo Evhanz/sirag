@@ -108,6 +108,7 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN']], function () {
     require __DIR__ . '/Rutas/packing/inicio.php';
     require __DIR__ . '/Rutas/packing/materia_prima.php';
     require __DIR__ . '/Rutas/packing/etapa.php';
+    require __DIR__ . '/Rutas/packing/pallet.php';
 });
 
 

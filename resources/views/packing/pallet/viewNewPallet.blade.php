@@ -24,6 +24,8 @@
     <!-- Row Filter-->
     <div class="row" id="content">
 
+        <input type="hidden" id="ruta" value="{{url()}}">
+
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
@@ -37,29 +39,44 @@
             <!-- /.box-header -->
             <div class="box-body">
 
+                <div class="row" >
+                    <div class="col-xs-4 col-xs-offset-1" >
+
+                        <h1>PALLET</h1>
+
+                    </div>
+
+                </div>
+                <br>
+
                 <div class="row">
-                    <div class="col-lg-4">
+
+                    <div class="col-xs-4 col-xs-offset-1">
+                        DESCRIPCION <BR>
+                        <input type="text" class="form-control" v-model="pallet.descripcion">
 
                     </div>
-                    <div class="col-lg-4">
-
-                    </div>
-                    <div class="col-lg-4">
+                    <div class="col-xs-4">
+                        Fecha de Vencimiento
+                        <input type="date" class="form-control" v-model="pallet.fecha_vencimiento">
 
                     </div>
                 </div>
+                <br><br>
 
                 <div class="row">
-                    <div class="col-xs-12">
-                        <a href="">
+                    <div class="col-xs-8 col-xs-offset-1" style="text-align: center">
+                        <a   @click="addDetail()" style="cursor: pointer">
                             <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
 
+                <br>
+
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="table">
+                    <div class="col-xs-8 col-xs-offset-1" >
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th>*</th>
@@ -68,11 +85,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr v-for="(item, index) in detalles">
+                                <td>
+                                    <a class="btn btn-danger btn-xs" @click="quitDetail(index)"> <i class="fa fa-minus-circle"></i> </a>
+                                </td>
+                                <td>
+                                    <input :id="index" @keyup.enter="getCaja(item.id_caja,item,index)" v-model="item.id_caja" type="text" class="form-control">
+                                </td>
+                                <td>
+                                    -
+                                </td>
 
                             </tr>
                             </tbody>
-                        </div>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-1" style="text-align: right">
+                        <a @click="saveData()" class="btn btn-success btn-lg"> Guardar  <i class="fa fa-save"></i></a>
                     </div>
                 </div>
 
@@ -109,6 +141,7 @@
 
     <!-- vue JS -->
     <script  src="{{asset('js/vue.js')}}"></script>
+    <script  src="{{asset('js/mods/packing/pallet.js')}}"></script>
 
 
 

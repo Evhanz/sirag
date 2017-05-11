@@ -17,5 +17,5 @@ Route::post('packing/etapa/reg',
 Route::post('packing/etapa/editar',
     ['as'=>'apiSeleccionEdit','uses'=>'Packing\EtapaController@apiSeleccionEdit']);
 //api
-Route::get('packing/etapa/api/getById/{id}',['as'=>'apiGetEtapaById','uses'=>'Packing\EtapaController@apiGetEtapaById']);
+Route::get('packing/etapa/api/getById/{id}',['as'=>'apiGetEtapaById','uses'=>'Packing\EtapaController@apiGetById']);
 
