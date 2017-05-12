@@ -13,17 +13,19 @@ new Vue({
         saveData : function () {
 
             var bandera =this.validateData();
+            var v_obj = this;
+
             if (bandera){
                 alert('debe ingresar un detalle para registrar Palet');
             }else {
 
                 //aca va la funcion de registrar
 
-                var url = $('#ruta').val();
+                var url = $('#ruta').val()+'/packing/pallet/regPallet';
                 var token = $('#_token').val();
 
                 $.ajax({
-                    data: {etapa:etapa,_token:token},
+                    data: {pallet:v_obj.etapa,_token:token,detalles:v_obj.detalles},
                     url:url,
                     type: 'post',
                     beforeSend: function () {
@@ -39,18 +41,8 @@ new Vue({
                                 $("#btnEnviar").attr('disabled',false);
                                 v_obj.codigo = data.codigo;
                                 $("#codigo").show();
-                                v_obj.etapa = {
-                                    calibre:'',
-                                    embalaje:'',
-                                    pesaje:'',
-                                    peso:'',
-                                    seleccion:'',
-                                    t_caja:'',
-                                    uva:'',
-                                    seleccion_estado:0,
-                                    pesaje_estado:0,
-                                    embalaje_estado:0
-                                };
+
+
                             }
                         }else{
                             alert('Error: '+ data.code);

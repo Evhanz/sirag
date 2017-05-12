@@ -46,6 +46,9 @@
                         <h1>PALLET</h1>
 
                     </div>
+                    <div class="col-xs-4">
+                        <h2><strong>Código:</strong> @{{ codigo }}</h2>
+                    </div>
 
                 </div>
                 <br>
