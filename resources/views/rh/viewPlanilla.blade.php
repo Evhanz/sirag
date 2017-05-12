@@ -180,6 +180,7 @@
                                                         <th>Remuneracion Basica</th>
                                                         <th>Asignacion Familiar</th>
                                                         <th>Importe HS Extras 25%</th>
+                                                        <th>Importe HS Extras 35%</th>
                                                         <th>Importe HS Extras 100%</th>
                                                         <th>CTS LEY 27360</th>
                                                         <th>Gratificacion LEY 27360</th>
@@ -220,6 +221,7 @@
                                                         <td>@{{ item.remuneracion_basica }}</td>
                                                         <td>@{{ item.asignacion_familiar }}</td>
                                                         <td>@{{ item.importe_hs_extras_25 }}</td>
+                                                        <td>@{{ item.importe_hs_extras_35 }}</td>
                                                         <td>@{{ item.importe_hs_100 }}</td>
                                                         <td>@{{ item.cts_ley }}</td>
                                                         <td>@{{ item.gratificacion }}</td>

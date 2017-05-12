@@ -659,6 +659,7 @@ class PersonalRep
         //estos conceptos se agregaron ra si total
         $t_remuneracion_basica  =   0;
         $t_importe_hs_extras_25 =   0;
+        $t_importe_hs_extras_35 =   0;
         $t_haber_movilidad      =   0;
         $t_asignacion_familiar  =   0;
         $t_reintegros           =   0;
@@ -731,7 +732,7 @@ class PersonalRep
                     AND A.EMPRESA='e01'
                     AND B.CATEGORIA='OPERARIO'
                     and CONVERT(DATE,CONVERT(VARCHAR(8),A.PERIODO),113) BETWEEN @fecha_inicio AND @fecha --- FILTRAR POR PERIODO '$periodo'
-                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10003','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     GROUP BY A.FICHA, A.MOVIMIENTO
                     ORDER by A.FICHA
                     ";
@@ -806,6 +807,17 @@ class PersonalRep
             }else{
                 $importe_hs_extras_25 = $importe_hs_extras_25->VALOR;
             }
+
+            //10003
+            $importe_hs_extras_35 = $item->where('MOVIMIENTO','10003')->first();
+
+            if ($importe_hs_extras_35 == null){
+                $importe_hs_extras_35=0;
+
+            }else{
+                $importe_hs_extras_35 = $importe_hs_extras_35->VALOR;
+            }
+
 
             //10004
             $haber_movilidad = $item->where('MOVIMIENTO','10004')->first();
@@ -1158,6 +1170,7 @@ class PersonalRep
             $t_semanal += $semanal;
             $t_remuneracion_basica += $remuneracion_basica;
             $t_importe_hs_extras_25 += $importe_hs_extras_25;
+            $t_importe_hs_extras_35 += $importe_hs_extras_35;
             $t_haber_movilidad += $haber_movilidad;
             $t_asignacion_familiar += $asignacion_familiar;
             $t_reintegros += $reintegros;
@@ -1191,6 +1204,7 @@ class PersonalRep
             $obj->semanal               = number_format($semanal,2,'.',',');
             $obj->remuneracion_basica   = number_format($remuneracion_basica,2,'.',',');
             $obj->importe_hs_extras_25  = number_format($importe_hs_extras_25,2,'.',',');
+            $obj->importe_hs_extras_35  = number_format($importe_hs_extras_35,2,'.',',');
             $obj->haber_movilidad       = number_format($haber_movilidad,2,'.',',');
             $obj->asignacion_familiar   = number_format($asignacion_familiar,2,'.',',');
             $obj->reintegros            = number_format($reintegros,2,'.',',');
@@ -1246,6 +1260,7 @@ class PersonalRep
         $totales['t_remuneracion_basica']   = number_format($t_remuneracion_basica,2,'.',',');
 
         $totales['t_importe_hs_extras_25']  = number_format($t_importe_hs_extras_25,2,'.',',');
+        $totales['t_importe_hs_extras_35']  = number_format($t_importe_hs_extras_35,2,'.',',');
         $totales['t_haber_movilidad']       = number_format($t_haber_movilidad,2,'.',',');
         $totales['t_asignacion_familiar']   = number_format($t_asignacion_familiar,2,'.',',');
         $totales['t_reintegros']            = number_format($t_reintegros,2,'.',',');

@@ -25,6 +25,7 @@
     <div class="row" id="content">
 
         <input type="hidden" id="ruta" value="{{url()}}">
+        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
 
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
@@ -104,7 +105,7 @@
 
                 <div class="row">
                     <div class="col-xs-8 col-xs-offset-1" style="text-align: right">
-                        <a @click="saveData()" class="btn btn-success btn-lg"> Guardar  <i class="fa fa-save"></i></a>
+                        <a id="btnEnviar" @click="saveData()" class="btn btn-success btn-lg"> Guardar  <i class="fa fa-save"></i></a>
                     </div>
                 </div>
 

@@ -17,11 +17,11 @@ use sirag\Repositories\packing\PalletRep;
 class PalletController extends Controller
 {
 
-    protected $palletRpe ;
+    protected $palletRep ;
 
     public function __construct(PalletRep $palletRep)
     {
-        $this->palletRpe = $palletRep;
+        $this->palletRep = $palletRep;
     }
 
 
@@ -36,6 +36,17 @@ class PalletController extends Controller
     }
 
     public function viewAll(){
+
+    }
+
+    public function regPallet(){
+
+        $data = \Input::all();
+
+        $res  = $this->palletRep->regPallet($data);
+
+        return \Response::json($res);
+
 
     }
 

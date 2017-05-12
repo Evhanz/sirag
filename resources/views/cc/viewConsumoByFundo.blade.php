@@ -209,6 +209,8 @@
             $scope.tipodocts = [{}];
             $scope.otros = {};
             $scope.opcion = 'consumo';
+            $scope.parrones = [];
+            $scope.fundos = [];
 
             $scope.totales = {};
 
@@ -292,6 +294,8 @@
                 var bandera=0;
 
                 //primero formateamos las fechas para determinar si estan en el rango
+
+                console.log($scope.parrones);
 
                 angular.forEach($scope.parrones,function(item){
 
