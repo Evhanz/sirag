@@ -4,7 +4,7 @@
 
 
 
-    
+
     <script src="{{ asset('js/plugins/moment/moment.js') }}"></script>
 
     <!-- Daterangepicker css -->
@@ -89,13 +89,13 @@
                                            
                                             <div ng-repeat="parron in parrones" class="col-md-3">
                                                 <label for="">@{{  parron.CODIGO }}</label>
-                                                <input  name="data_range2"  class="form-control date-picker" type="text" ng-model="parron.fecha"  ng-init="convert_input_date()"/>
+                                                <input id="date_@{{ $index }}"  name="data_range2"  class="form-control date-picker" type="text" ng-model="parron.fecha" ng-change="asign_fecha($index)"  ng-init="convert_input_date()"/>
                                                 
                                             </div>
 
                                             <div class="col-md-3" id="mdOtros">
                                                 <label for="">Otros</label>
-                                                <input  name="data_range2" class="form-control" type="text" ng-model="fecha_otros"   />
+                                                <input  name="data_range2" class="form-control" type="text" ng-model="fecha_otros" id="fecha_otros"  />
 
                                             </div>
                                         </div>
@@ -209,8 +209,6 @@
             $scope.tipodocts = [{}];
             $scope.otros = {};
             $scope.opcion = 'consumo';
-            $scope.parrones = [];
-            $scope.fundos = [];
 
             $scope.totales = {};
 
@@ -265,6 +263,8 @@
                     $http.get(ruta)
                     .success(function(data){
 
+                        $scope.parrones =[];
+
                         //console.log(data);
                         $scope.parrones = data;
 
@@ -295,13 +295,18 @@
 
                 //primero formateamos las fechas para determinar si estan en el rango
 
-                console.log($scope.parrones);
 
-                angular.forEach($scope.parrones,function(item){
 
-                    var fecha = item.fecha;
+                angular.forEach($scope.parrones,function(item,index){
 
-                    if(fecha === null ){
+                    var fecha = $("#date_"+index).val();
+
+
+
+                 //   console.log( $("#date_"+index).val());
+
+                    console.log(fecha);
+                    if(fecha === null || fecha ==='' || fecha.length ===0 ){
                         bandera = 1;
                     }else{
                         var fechas  = fecha.split('-');
@@ -336,9 +341,11 @@
 
 
 
-                    var fecha = $scope.fecha_otros;
+                    //var fecha = $scope.fecha_otros;
 
-                    if(fecha === null ){
+                    var fecha = $("#fecha_otros").val();
+
+                    if(fecha === null || fecha ==='' || fecha.length ===0 ){
                         bandera = 1;
                     }else{
                         var fechas  = fecha.split('-');
@@ -482,6 +489,14 @@
                 $('input[name="data_range2"]').daterangepicker({
                     format : "DD/MM/YYYY"
                 });
+            };
+
+            $scope.asign_fecha = function (index) {
+
+                var date = $('#date_'+index).val();
+
+                console.log(date);
+
             };
 
             /*funcion helper*/
