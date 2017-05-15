@@ -37,16 +37,54 @@ class PalletController extends Controller
 
     public function viewAll(){
 
+        $pallets = $this->palletRep->getAllPallet();
+
+        return view('packing/pallet/viewAllPallet',compact('pallets'));
+
+
     }
 
     public function regPallet(){
 
         $data = \Input::all();
+        $carbon = new \Carbon\Carbon();
+        $date = $carbon->now();
+        $date = $date->format('Y-M-d H:i:s');
 
-        $res  = $this->palletRep->regPallet($data);
+        $pallet = $data['pallet'];
+        $pallet['registrador'] = 'EHERNANDEZ';
+        $pallet['fecha_registro'] = $date;
+        $pallet['estado'] = 1;
+
+
+
+
+        $id_pallet  = $this->palletRep->regPallet($pallet);
+
+        if($id_pallet >0 ){
+
+
+            $this->palletRep->editPallet($data['detalles'],$id_pallet,1);
+
+            $res = ['code'=>200,'codigo'=>$id_pallet];
+
+        }else{
+
+            $res = ['code'=>500];
+        }
+
+
 
         return \Response::json($res);
 
+
+    }
+
+    public function getDetailsPallet($id){
+
+        $res = $this->palletRep->getDetailsPallet($id);
+
+        return \Response::json($res);
 
     }
 
