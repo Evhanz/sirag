@@ -245,12 +245,17 @@ class ProductoRep
     public function getKardex($data)
     {
 
+        if(!isset($data['subFamilia'])){
+            $data['subFamilia'] = '';
+        }
+
         //sacaremos la fecha
 
         $f_i    =   $data['f_i'];
         $f_f    =   $data['f_f'];
         $glosa  =   $data['producto'];
         $familia = $data['familia'];
+        $subFamilia = $data['subFamilia'];
         //primero sacamos a toda la data general
 
         $query = "select A.Fecha fecha ,A.Numero numero,'entrada' as tipo,
@@ -268,6 +273,7 @@ class ProductoRep
         AND B.Fecha BETWEEN '$f_i' and '$f_f'
         AND C.GLOSA like '%$glosa%'
         AND C.FAMILIA like '%$familia%'
+        AND C.SUBFAMILIA like '%$subFamilia%'
         UNION
         SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
         p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON

@@ -52,18 +52,31 @@
                                                         </option>
                                                     </select>
                                                 </div>
-
                                                 <div class="col-xs-3">
+                                                    <div class="form-group">
+                                                        <label for="" >Sub Familia</label><br>
+                                                        <select class="form-control" ng-model="subFamilia" id="f_subfamilia">
+                                                            <option value="">---------</option>
+                                                            <option ng-repeat="item in subfamilias | filter:familiaFilter"
+                                                                    value="@{{item.CODIGO}}">
+                                                                @{{item.CODIGO}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-xs-2">
                                                     <label for="">Producto</label>
                                                     <input class="form-control" type="text" ng-keyup="$event.keyCode == 13 && getProduct()" ng-model="producto_glosa">
                                                 </div>
 
                                                 
 
-                                                <div class="col-xs-2">
+                                                <div class="col-xs-1">
                                                     <label for="" style="margin-bottom: 20px"> </label><br>
                                                     <a href="" class="btn btn-info" ng-click="getProduct()">
-                                                        Buscar <i class="fa fa-search"></i>
+                                                       <i class="fa fa-search"></i>
                                                     </a>
 
                                                 </div>
@@ -518,6 +531,8 @@
 
             //funcioines que inician la pagina
             getAllFamilias();
+
+            getAllSubFamilias();
            
 
             //traer la data por el click
@@ -565,7 +580,8 @@
                             producto: $scope.producto_glosa,
                             f_i: f_i,
                             f_f: f_f,
-                            familia:$scope.familiaFilter
+                            familia:$scope.familiaFilter,
+                            subFamilia:$scope.subFamilia
 
                         })
                         .success(function(data){
@@ -733,6 +749,18 @@
                         }).error(function (data) {
                             console.log("error en :"+data);
                         });
+            }
+
+            function getAllSubFamilias(){
+
+                var ruta = '{{ URL::route('getAllSubFamilias')}}';
+
+                $http.get(ruta)
+                    .success(function(data){
+                        $scope.subfamilias = data;
+                    }).error(function (data) {
+                    console.log("error en :"+data);
+                });
             }
 
 

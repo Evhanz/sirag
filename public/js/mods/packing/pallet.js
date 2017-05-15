@@ -7,7 +7,8 @@ new Vue({
     data: {
         detalles:[],
         pallet:{},
-        opcion:''
+        opcion:'',
+        codigo:''
     },
     methods:{
         saveData : function () {
@@ -41,8 +42,6 @@ new Vue({
                                 $("#btnEnviar").attr('disabled',false);
                                 v_obj.codigo = data.codigo;
                                 $("#codigo").show();
-
-
                             }
                         }else{
                             alert('Error: '+ data.code);
