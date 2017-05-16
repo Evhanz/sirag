@@ -104,17 +104,18 @@
                                                     </div><!-- /.box-header -->
                                                     <div class="box-body ">
 
-                                                        <div class="row" style="padding: 15px">
-                                                            <div class="table-responsive">
+                                                        <div class="row" style="padding: 15px;font-size: 11px;">
+                                                            <div class="col-lg-12">
                                                                 <table class="table table-bordered table-hover" id="table_data_op1">
                                                                     <thead >
                                                                     <tr>
                                                                         <th>i</th>
                                                                         <th>GLOSA</th>
                                                                         <th>UNIDAD</th>
-                                                                        <th>SALDO ACTUAL</th>
-                                                                        <th>ENTRADA</th>
-                                                                        <th>CONSUMIDO</th>
+                                                                        <th>SALDO INICIAL</th>
+                                                                        <th>COMPRAS</th>
+                                                                        <th>CONSUMO</th>
+                                                                        <th>SALDO FINAL</th>
                                                                         <th>*</th>
                                                                     </tr>
 
@@ -124,9 +125,10 @@
                                                                         <td>@{{ $index + 1 }}</td>
                                                                         <td>@{{ item.producto_name }}</td>
                                                                         <td>@{{ item.unidad }}</td>
-                                                                        <td>@{{ item.saldo_final }}</td>
+                                                                        <td>@{{ item.saldo_inicial }}</td>
                                                                         <td>@{{ item.total_entrada }}</td>
                                                                         <td>@{{ item.total_salidas }}</td>
+                                                                        <td>@{{ item.saldo_final }}</td>
 
                                                                         <td>
                                                                             <a class="btn btn-default" ng-click="viewDetalle(item)">

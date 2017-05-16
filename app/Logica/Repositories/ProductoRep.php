@@ -296,7 +296,7 @@ class ProductoRep
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
         ORDER BY A.Fecha";
 
-        HelpFunct::writeQuery($query);
+       // HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);
@@ -319,6 +319,8 @@ class ProductoRep
             $obj->saldo  = $this->getSaldoFinal($f_i,$f_f,$producto->glosa);
 
             $saldo_inicial = round($obj->saldo,3);
+            #el anterior saldo inicial va ir variado , el siguiente es para que quede fijo y se use despues
+            $s_inicial = $saldo_inicial;
 
             /*estas variables paara obener la suma de entradas  y salidas*/
             $total_entradas = 0;
@@ -336,10 +338,11 @@ class ProductoRep
                 $i->saldo = round($saldo_inicial,3);
             }
 
-            //el ultimo saldo se considera como saldo final o actul
+            //el ultimo saldo se considera como saldo final o actual
             $obj->saldo_final = round($saldo_inicial,3);
             $obj->total_entrada = $total_entradas;
             $obj->total_salidas = $total_salidas;
+            $obj->saldo_inicial = $s_inicial;
 
             $obj->detalle = $item;
 
