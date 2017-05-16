@@ -258,7 +258,8 @@ class ProductoRep
         $subFamilia = $data['subFamilia'];
         //primero sacamos a toda la data general
 
-        $query = "select A.Fecha fecha ,A.Numero numero,'entrada' as tipo,
+        $query = "select 
+        CONVERT(DATE,A.Fecha,113) fecha ,A.Numero numero,'entrada' as tipo,
         C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON
         from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
         where
@@ -275,7 +276,8 @@ class ProductoRep
         AND C.FAMILIA like '%$familia%'
         AND C.SUBFAMILIA like '%$subFamilia%'
         UNION
-        SELECT dd.Fecha fecha,'-' as numero,'salida' as tipo,
+        SELECT 
+        CONVERT(DATE,dd.Fecha,113) fecha,'-' as numero,'salida' as tipo,
         p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON
         FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
         where
@@ -290,10 +292,11 @@ class ProductoRep
         AND dd.Fecha BETWEEN '$f_i' and '$f_f'
         AND p.GLOSA like '%$glosa%'
         AND p.FAMILIA like '%$familia%'
+        AND p.SUBFAMILIA like '%$subFamilia%'
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
         ORDER BY A.Fecha";
 
-        //HelpFunct::writeQuery($query);
+        HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);
