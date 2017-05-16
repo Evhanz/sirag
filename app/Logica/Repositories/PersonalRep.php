@@ -1356,6 +1356,7 @@ class PersonalRep
             AND B.FICHA=A.TRABAJADOR
             AND B.CATEGORIA='OPERARIO'
             ) CANTIDAD_H
+            ,coalesce(GT.texto3,9999) correlativo
             
         from
         dbo.GEN_TABLA as GT INNER JOIN 
@@ -1375,7 +1376,7 @@ class PersonalRep
         AND PT.CATEGORIA='OPERARIO'
         AND LEN(GC.CODIGO) = 6
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
-        GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113)";
+        GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113),GT.texto3";
 
 
 
@@ -1407,8 +1408,9 @@ class PersonalRep
 
         //por cada
 
+        //obtenes las actividades de todos los ccis
 
-        $actividades = $res->groupBy('descripcion');
+        $actividades = $res->sortBy('correlativo')->groupBy('descripcion');
 
         /*por cada personal vamos a llenar los detalles de su consumo*/
 
@@ -1594,6 +1596,7 @@ class PersonalRep
             AND B.FICHA=A.TRABAJADOR
             AND B.CATEGORIA='OPERARIO'
             ) CANTIDAD_H
+            ,coalesce(GT.texto3,9999) correlativo
             
         from
         dbo.GEN_TABLA as GT INNER JOIN 
@@ -1614,11 +1617,13 @@ class PersonalRep
         AND LEN(GC.CODIGO) = 5
         $q1
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
-        GROUP BY GC.CODIGO, GT.descripcion
+        GROUP BY GC.CODIGO, GT.descripcion, GT.texto3
         ORDER BY GC.CODIGO";
 
 
         $res = \DB::select($query);
+
+
 
         $res = collect($res);
         //se saca los codigos que se ncuentran
@@ -1626,7 +1631,9 @@ class PersonalRep
         $codigos = $res->groupBy('CODIGO')->keys();
 
         //separamos en actividades
-        $actividades = $res->groupBy('descripcion');
+        $actividades = $res->sortBy('correlativo')->groupBy('descripcion');
+
+
 
         $a_actividades = array();
 

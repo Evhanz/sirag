@@ -783,6 +783,8 @@ class RecursoshController extends Controller
         $packing = $this->personalRep->getCostoMOPor5CCI($data,'packing');
 
 
+
+
         if(count($res['res_actividades'])<1){
             return back();
         }
