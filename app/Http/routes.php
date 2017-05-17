@@ -57,6 +57,11 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','CONTABILIDAD']], functi
 
 */
 
+/*Estas son para el módulo de costos*/
+require __DIR__ . '/Rutas/costo.php';
+
+/*-*/
+
 
 //----para traer todos los trabajadores
 Route::post('rh/api/getAllTrabajadoresByParameter',['as'=>'getAllTrabajadoresByParameter',
