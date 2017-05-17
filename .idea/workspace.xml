@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l571.pdf" afterPath="$PROJECT_DIR$/storage/contabilidad/retenciones/comprobantes/l571.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CostoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CostoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" afterPath="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,48 +47,8 @@
       <file leaf-file-name="CostoController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CostoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecursoshController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="1099" column="21" lean-forward="false" selection-start-line="1099" selection-start-column="21" selection-end-line="1099" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="60" column="37" lean-forward="false" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="costo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Rutas/costo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="40" column="93" lean-forward="false" selection-start-line="40" selection-start-column="93" selection-end-line="40" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -95,8 +57,84 @@
       <file leaf-file-name="CostoRep.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="84" column="15" lean-forward="true" selection-start-line="84" selection-start-column="15" selection-end-line="84" selection-end-column="15" />
+              <folding>
+                <marker date="1495050837450" expanded="true" signature="828:862" ph="insert into ${$table}... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewKardex.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="181">
+              <caret line="386" column="31" lean-forward="false" selection-start-line="386" selection-start-column="31" selection-end-line="386" selection-end-column="31" />
+              <folding>
+                <element signature="e#499#547#0#HTML" expanded="true" />
+                <element signature="e#14808#25707#0#HTML" expanded="false" />
+                <marker date="1495052213800" expanded="true" signature="9:17" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="29:38" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="84:143" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="176:246" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="296:365" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="1715:1729" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="15071:15085" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="25959:25986" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="26109:26123" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="30952:31004" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="31028:31084" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="34506:34535" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="36889:36925" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="39195:39223" ph="..." />
+                <marker date="1495052213800" expanded="true" signature="39608:39640" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComercialController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="297" column="37" lean-forward="true" selection-start-line="297" selection-start-column="37" selection-end-line="297" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductoRep.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="437" column="7" lean-forward="false" selection-start-line="437" selection-start-column="7" selection-end-line="437" selection-end-column="7" />
+              <folding>
+                <marker date="1495052898262" expanded="true" signature="705:1118" ph="SELECT Razon... v_allProductsAndProveedores" />
+                <marker date="1495052898262" expanded="true" signature="1249:1646" ph="SELECT top 1... " />
+                <marker date="1495052898262" expanded="true" signature="2023:2405" ph="SELECT Fecha... v_allProductsAndProveedores" />
+                <marker date="1495052898262" expanded="true" signature="2583:2729" ph="select CODIG... gen_tabcod" />
+                <marker date="1495052898262" expanded="true" signature="2865:3003" ph="select CODIG... gen_tabcod" />
+                <marker date="1495052898262" expanded="true" signature="3425:4109" ph="SELECT dd.Fe... DocumentoD" />
+                <marker date="1495052898262" expanded="true" signature="5298:5927" ph="select A.Fec... Documento" />
+                <marker date="1495052898262" expanded="true" signature="7276:7283" ph="select A.Fec... " />
+                <marker date="1495052898262" expanded="true" signature="7276:7980" ph="select CONVE... Documento" />
+                <marker date="1495052898262" expanded="true" signature="7276:8852" ph="select CONVE... " />
+                <marker date="1495052898262" expanded="true" signature="8003:8827" ph="SELECT CONVE... DocumentoD" />
+                <marker date="1495052898262" expanded="true" signature="10662:11862" ph="select coale... " />
+                <marker date="1495052898262" expanded="true" signature="10679:11239" ph="select SUM(B... DocumentoD" />
+                <marker date="1495052898262" expanded="true" signature="11272:11852" ph="SELECT sum(d... DocumentoD" />
+                <marker date="1495052898262" expanded="true" signature="12302:13085" ph="SELECT coale... DocumentoD" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="query_temp.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/logs/query_temp.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -114,9 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fich</find>
-      <find>viewEtapaEdit</find>
-      <find>byFicha</find>
       <find>apiSeleccionReg</find>
       <find>lle</find>
       <find>apiSeleccionEdit</find>
@@ -144,6 +179,9 @@
       <find>getExcelCostoMOPorFundo</find>
       <find>addLine</find>
       <find>jornale</find>
+      <find>getExcelCCI</find>
+      <find>excelConsumoPorCCI</find>
+      <find>CCI</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,17 +236,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Packing/EtapaController.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/packing/pallet.php" />
         <option value="$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php" />
-        <option value="$PROJECT_DIR$/storage/logs/query_temp.txt" />
         <option value="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
-        <option value="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
-        <option value="$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php" />
         <option value="$PROJECT_DIR$/app/Http/Rutas/costo.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CostoController.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CostoController.php" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php" />
+        <option value="$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php" />
+        <option value="$PROJECT_DIR$/storage/logs/query_temp.txt" />
+        <option value="$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php" />
       </list>
     </option>
   </component>
@@ -1261,14 +1299,7 @@
       <workItem from="1494944553635" duration="4535000" />
       <workItem from="1494951882157" duration="1002000" />
       <workItem from="1494954039797" duration="2162000" />
-      <workItem from="1495031891191" duration="4794000" />
-    </task>
-    <task id="LOCAL-00060" summary="rev">
-      <created>1487259343577</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1487259343577</updated>
+      <workItem from="1495031891191" duration="17176000" />
     </task>
     <task id="LOCAL-00061" summary="rev">
       <created>1487260188738</created>
@@ -1606,11 +1637,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494863467918</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="rev">
+      <created>1495037017239</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1495037017240</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2313026000" />
+    <option name="totallyTimeSpent" value="2325408000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1696,13 +1734,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ContabilidadRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="352" column="43" lean-forward="false" selection-start-line="352" selection-start-column="20" selection-end-line="352" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
@@ -1778,13 +1809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/comercial.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1965,37 +1989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="337" column="49" lean-forward="true" selection-start-line="337" selection-start-column="49" selection-end-line="337" selection-end-column="49" />
-          <folding>
-            <marker date="1494954749454" expanded="true" signature="705:1118" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1494954749454" expanded="true" signature="1249:1646" ph="SELECT top 1... " />
-            <marker date="1494954749454" expanded="true" signature="2023:2405" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1494954749454" expanded="true" signature="2583:2729" ph="select CODIG... gen_tabcod" />
-            <marker date="1494954749454" expanded="true" signature="2865:3003" ph="select CODIG... gen_tabcod" />
-            <marker date="1494954749454" expanded="true" signature="3425:4109" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1494954749454" expanded="true" signature="5298:5927" ph="select A.Fec... Documento" />
-            <marker date="1494954749454" expanded="true" signature="7276:7283" ph="select A.Fec... " />
-            <marker date="1494954749454" expanded="true" signature="7276:7980" ph="select CONVE... Documento" />
-            <marker date="1494954749454" expanded="true" signature="7276:8852" ph="select CONVE... " />
-            <marker date="1494954749454" expanded="true" signature="8003:8827" ph="SELECT CONVE... DocumentoD" />
-            <marker date="1494954749454" expanded="true" signature="10662:11862" ph="select coale... " />
-            <marker date="1494954749454" expanded="true" signature="10679:11239" ph="select SUM(B... DocumentoD" />
-            <marker date="1494954749454" expanded="true" signature="11272:11852" ph="SELECT sum(d... DocumentoD" />
-            <marker date="1494954749454" expanded="true" signature="12123:12863" ph="SELECT coale... DocumentoD" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="130" column="86" lean-forward="true" selection-start-line="130" selection-start-column="86" selection-end-line="130" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/packing.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -2003,41 +1996,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/query_temp.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="24" lean-forward="false" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Rutas/centro_costo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="60" column="37" lean-forward="false" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/costo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2081,10 +2043,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CostoController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        <state relative-caret-position="202">
+          <caret line="1178" column="17" lean-forward="true" selection-start-line="1178" selection-start-column="17" selection-end-line="1178" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -2097,11 +2059,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CostoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="40" column="93" lean-forward="false" selection-start-line="40" selection-start-column="93" selection-end-line="40" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/CostoRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="84" column="15" lean-forward="true" selection-start-line="84" selection-start-column="15" selection-end-line="84" selection-end-column="15" />
+          <folding>
+            <marker date="1495050837450" expanded="true" signature="828:862" ph="insert into ${$table}... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/costo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Rutas/comercial.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="43" column="33" lean-forward="true" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ComercialController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
-          <caret line="1099" column="21" lean-forward="false" selection-start-line="1099" selection-start-column="21" selection-end-line="1099" selection-end-column="21" />
+          <caret line="297" column="37" lean-forward="true" selection-start-line="297" selection-start-column="37" selection-end-line="297" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/comercial/viewKardex.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="386" column="31" lean-forward="false" selection-start-line="386" selection-start-column="31" selection-end-line="386" selection-end-column="31" />
+          <folding>
+            <element signature="e#499#547#0#HTML" expanded="true" />
+            <element signature="e#14808#25707#0#HTML" expanded="false" />
+            <marker date="1495052213800" expanded="true" signature="9:17" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="29:38" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="84:143" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="176:246" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="296:365" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="1715:1729" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="15071:15085" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="25959:25986" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="26109:26123" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="30952:31004" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="31028:31084" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="34506:34535" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="36889:36925" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="39195:39223" ph="..." />
+            <marker date="1495052213800" expanded="true" signature="39608:39640" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/query_temp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Logica/Repositories/ProductoRep.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="437" column="7" lean-forward="false" selection-start-line="437" selection-start-column="7" selection-end-line="437" selection-end-column="7" />
+          <folding>
+            <marker date="1495052898262" expanded="true" signature="705:1118" ph="SELECT Razon... v_allProductsAndProveedores" />
+            <marker date="1495052898262" expanded="true" signature="1249:1646" ph="SELECT top 1... " />
+            <marker date="1495052898262" expanded="true" signature="2023:2405" ph="SELECT Fecha... v_allProductsAndProveedores" />
+            <marker date="1495052898262" expanded="true" signature="2583:2729" ph="select CODIG... gen_tabcod" />
+            <marker date="1495052898262" expanded="true" signature="2865:3003" ph="select CODIG... gen_tabcod" />
+            <marker date="1495052898262" expanded="true" signature="3425:4109" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1495052898262" expanded="true" signature="5298:5927" ph="select A.Fec... Documento" />
+            <marker date="1495052898262" expanded="true" signature="7276:7283" ph="select A.Fec... " />
+            <marker date="1495052898262" expanded="true" signature="7276:7980" ph="select CONVE... Documento" />
+            <marker date="1495052898262" expanded="true" signature="7276:8852" ph="select CONVE... " />
+            <marker date="1495052898262" expanded="true" signature="8003:8827" ph="SELECT CONVE... DocumentoD" />
+            <marker date="1495052898262" expanded="true" signature="10662:11862" ph="select coale... " />
+            <marker date="1495052898262" expanded="true" signature="10679:11239" ph="select SUM(B... DocumentoD" />
+            <marker date="1495052898262" expanded="true" signature="11272:11852" ph="SELECT sum(d... DocumentoD" />
+            <marker date="1495052898262" expanded="true" signature="12302:13085" ph="SELECT coale... DocumentoD" />
+          </folding>
         </state>
       </provider>
     </entry>

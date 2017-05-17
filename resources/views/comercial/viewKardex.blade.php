@@ -389,7 +389,20 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="col-xs-3">
+                                                <div class="col-xs-2">
+                                                    <div class="form-group">
+                                                        <label for="" >Sub Familia</label><br>
+                                                        <select name="subFamilia" class="form-control" ng-model="subFamilia" id="f_subfamilia">
+                                                            <option value="">---------</option>
+                                                            <option ng-repeat="item in subfamilias | filter:familiaFilter"
+                                                                    value="@{{item.CODIGO}}">
+                                                                @{{item.CODIGO}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-2">
                                                     <label for="">CCI</label>
                                                     <div class="ccis" >
                                                         <input name="tags" class="form-control" type="text"  ng-model="cci" data-role="tagsinput" >
@@ -656,7 +669,6 @@
                                 f_i: f_i,
                                 f_f: f_f,
                                 familia:$scope.familiaFilterEntrada
-
                             })
                             .success(function(data){
 

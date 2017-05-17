@@ -406,6 +406,12 @@ class ProductoRep
         $cci = $data['cci'];
         $f_inicio = $data['f_inicio'];
         $f_fin = $data['f_fin'] ;
+        $familia = $data['familia'];
+        if(isset($data['subFamilia'])){
+            $subFamilia = $data['subFamilia'];
+        }else{
+            $subFamilia = '';
+        }
 
 
 
@@ -422,12 +428,14 @@ class ProductoRep
         AND dd.Bodega <> '' 
         AND tp.FactorInventario='-1' 
         AND dd.Fecha BETWEEN '$f_inicio' and '$f_fin' 
-        AND p.FAMILIA like 'MATERIA PRIMA'
+        AND p.FAMILIA like '%$familia%'
+        AND p.SUBFAMILIA like '%$subFamilia%'
         AND DD.Analisis15 in $cci 
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
         ORDER BY A.Fecha
         ";
 
+       
 
         $res = \DB::select($query);
 
