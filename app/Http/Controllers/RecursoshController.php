@@ -1097,6 +1097,7 @@ class RecursoshController extends Controller
     public function editJornal(){
 
         $data = \Input::all();
+        $bandera = 0;
 
         $respuesta = [];
 
