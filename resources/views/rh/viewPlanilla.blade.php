@@ -257,6 +257,7 @@
                                                         <td>@{{ totales_agraria.t_remuneracion_basica }}</td>
                                                         <td>@{{ totales_agraria.t_asignacion_familiar }}</td>
                                                         <td>@{{ totales_agraria.t_importe_hs_extras_25 }}</td>
+                                                        <td>@{{ totales_agraria.t_importe_hs_extras_35 }}</td>
                                                         <td>@{{ totales_agraria.t_importe_hs_100 }}</td>
                                                         <td>@{{ totales_agraria.t_cts_ley }}</td>
                                                         <td>@{{ totales_agraria.t_gratificacion }}</td>
