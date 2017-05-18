@@ -244,7 +244,7 @@
                                 <div class="row" style="padding: 15px">
 
                                     <div class="col-xs-4">
-                                        <label>Fecha :</label>
+                                        <label>Colocar Fecha del Lunes que corresponde:</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
