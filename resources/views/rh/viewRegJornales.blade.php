@@ -2,16 +2,7 @@
 
 @section('content-header')
 
-    <div class="row" id="alertError">
-        <br>
-       <div class="col-lg-12">
-           <div class="alert alert-danger alert-dismissable">
-               <i class="fa fa-ban"></i>
-               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-               <b>Error!! :</b> <span id="txtError"></span>
-           </div>
-       </div>
-    </div>
+
 
     @if((session('status'))!=null)
         <div class="alert alert-success">
@@ -131,22 +122,22 @@
                                                                     <button class="btn btn-default btn-xs" title="buscar Trabajador" ng-click="getModEmpleado($index)">
                                                                         ...</button>
                                                                     <!-- data-type="number" data-max ="6" -->
-                                                                    <input id="ficha@{{$index}}" ng-model="item.ficha"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
-                                                                    <input  ng-model="item.trabajador" type="text" disabled  style="width: 16em;">
+                                                                    <input id="ficha@{{$index}}" ng-model="item.ficha" ng-init="item.ficha=''"  style="width: 3.5em"  ng-keyup="getTrabajador($event,item.ficha,item,$index)">
+                                                                    <input  ng-model="item.trabajador" ng-init="item.trabajador=''" type="text" disabled  style="width: 16em;">
                                                                 </td>
                                                                 <td>
                                                                     <button class="btn btn-default btn-xs" ng-click="getModCCostoInterno($index)">...</button>
-                                                                    <input id="cci@{{$index}}"  ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item,$index)">
-                                                                    <input  ng-model="item.descCci" type="text" disabled  style="width: 8em">
+                                                                    <input id="cci@{{$index}}"  ng-init="item.cci=''" ng-model="item.cci" style="width: 3.5em" ng-keyup="getCciByCodigo($event,item.cci,item,$index)">
+                                                                    <input  ng-init="item.descCci=''"  ng-model="item.descCci" type="text" disabled  style="width: 8em">
                                                                 </td>
                                                                 <td>
-                                                                    <input id="codigo@{{$index}}" ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item,$index)" style="width: 3em;" type="text">
-                                                                    <input style="width: 12em;" type="text" ng-model="item.labor_desc" disabled>
+                                                                    <input id="codigo@{{$index}}" ng-init="item.codigo=''" ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item,$index)" style="width: 3em;" type="text">
+                                                                    <input style="width: 12em;" type="text" ng-model="item.labor_desc" ng-init="item.labor_desc=''" disabled>
                                                                 </td>
                                                                 <td><input style="width: 3em;" type="text" disabled >
                                                                 </td>
                                                                 <td>
-                                                                    <select name="" id="actividad@{{ $index }}" ng-model="item.actividad" ng-change="changeActividad($index)">
+                                                                    <select name="" id="actividad@{{ $index }}" ng-init="item.actividad=''" ng-model="item.actividad" ng-change="changeActividad($index)">
                                                                         <option value="">-----------------------</option>
                                                                         <option ng-repeat="item in codigoActividad" value="@{{ item.value }}">
                                                                             @{{ item.codigo }}
@@ -154,7 +145,7 @@
                                                                     </select>
                                                                 </td>
                                                                 <td>
-                                                                    <input ng-model="item.hora" class="hora" id="hora@{{ $index }}" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
+                                                                    <input ng-model="item.hora" class="hora" id="hora@{{ $index }}"  ng-init="item.hora=''" style="width: 7em;" type="text" ng-keyup="addLine($event,$index)" >
                                                                 </td>
 
                                                             </tr>
@@ -562,6 +553,32 @@
         </div>
     </div>
 
+    <!-- modalError -->
+    <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #ef404a;color:white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ERROR!!!! ... </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="alertError">
+                        <br>
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger alert-dismissable">
+                                <i class="fa fa-ban"></i>
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <b>Error!! :</b> <span id="txtError"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -745,6 +762,8 @@
 
                    $("#actividad"+index).focus();
 
+                }else{
+                    item.labor_desc = '';
                 }
 
 
@@ -958,6 +977,8 @@
                     });
 
                     $("#codigo"+index).focus();
+                }else{
+                    item.descCci = '';
                 }
             };
             $scope.selectCCI = function (item) {
@@ -1046,6 +1067,8 @@
 
 
                 //9: es la tecla tab
+
+                /*
                 if( evento.keyCode == 9){
 
                     if($scope.detalles.length == (index+1)){
@@ -1053,6 +1076,7 @@
                         $scope.detalles.push(detail);
                     }
                 }
+                */
 
                 //13: es para el enter
                 if(evento.keyCode == 13 ){
@@ -1061,10 +1085,10 @@
 
                     var bandera = validarItem(item,index);
 
-                    if($scope.detalles.length == (index+1)){
+                    if($scope.detalles.length == (index+1) && bandera == 0){
                         var detail = {};
                         $scope.detalles.push(detail);
-
+                        console.log(bandera);
                     }
 
 
@@ -1073,7 +1097,7 @@
 
 
                         $("#alertError").show();
-                        $("#alertError").delay(6000).hide(600);
+                        // $("#alertError").delay(6000).hide(600);
 
                     }else{
 
@@ -1126,8 +1150,14 @@
 
                         }else{
 
+                            var usr = $('#nameUser').text();
+
+
                             var itemAnterior = $scope.jornalSelect;
                             var itemNuevo = $scope.detalles[index];
+
+                            itemAnterior.user = usr;
+                            itemNuevo.user = usr;
 
                             $http.post('{{URL::route('editJornal')}}',{
                                 _token:token,
@@ -1135,9 +1165,29 @@
                                 itemNuevo: itemNuevo
                             }).success(function (data) {
 
-                                alert('Operacion correcta');
+
+                                //alert('Operacion Correcta');
+
+                                if(data.mensaje == 'ok'){
+                                    alert('Operacion Correcta');
+                                }else{
+
+                                   // $scope.detalles[index]=itemAnterior;
+
+                                    $scope.detalles[index].hora = itemAnterior.hora;
+                                    $scope.detalles[index].cci = itemAnterior.cci;
+                                    $scope.detalles[index].descCci = itemAnterior.descCci;
+                                    $scope.detalles[index].codigo = itemAnterior.codigo;
+                                    $scope.detalles[index].labor_desc = itemAnterior.labor_desc;
+                                    $scope.detalles[index].labor_desc = itemAnterior.labor_desc;
+                                    $scope.detalles[index].actividad = itemAnterior.actividad;
+
+                                    console.log(data);
+                                    alert('Error: '+data.mensaje);
+                                }
 
                             }).error(function (error) {
+                                alert('Hubo un error , comuníquese con el area de soporte');
                                 console.log(error);
                             });
 
@@ -1190,6 +1240,8 @@
 
             function validarItem(item,index) {
 
+                console.log(item);
+
                 var bandera = 0 ;
                 var mensaje = '';
 
@@ -1197,46 +1249,46 @@
 
                     if (getFotmatDate(item.fecha)==1){
                         bandera = 1;
-                        mensaje += 'La fecha no tiene un formato adecuado \n';
+                        mensaje += '- La fecha no tiene un formato adecuado <br>';
                     }
 
-                    if(item.ficha.length <= 0 || typeof item.ficha === 'undefined'){
+                    if(item.ficha.length <= 0 || item.trabajador.length <= 0 || typeof item.ficha === 'undefined'){
                         bandera = 1;
-                        mensaje = mensaje + ' La ficha no ha sido ingresada \n';
+                        mensaje = mensaje + 'El trabajador no ha sido agregado correctamente  \r\n';
                     }
 
-                    if(item.cci.length <= 0 || typeof item.cci === 'undefined'){
+                    if(item.cci.length <= 0 || item.descCci.length <= 0 || typeof item.cci === 'undefined'){
                         bandera = 1;
-                        mensaje = mensaje + ' El codigo cci no ha sido ingresada \n';
+                        mensaje = mensaje + ' El codigo cci no ha sido ingresada \r\n';
                     }
-                    if(item.labor_desc.length <= 0 || typeof  item.labor_desc === 'undefined'){
+                    if(item.codigo.length <= 0 || item.labor_desc.length <= 0 || typeof item.codigo === 'undefined') {
                         bandera = 1;
-                        mensaje = mensaje + '  El Codigo de Labor no ha sido ingresado correctamente \n';
+                        mensaje = mensaje + ' La Labor ha sido ingresada correctamente \r\n';
                     }
-                    if((item.codigo.length <= 0 || typeof item.codigo === 'undefined') &&
-                            (item.labor_desc.length <= 0 || typeof item.labor_desc === 'undefined')) {
+                    if(item.actividad.length <= 0 || typeof item.actividad === 'undefined') {
                         bandera = 1;
-                        mensaje = mensaje + ' El Codigo de Labor no ha sido ingresado \n';
-                    }
-                    if(item.actividad.length <= 0 || typeof item.codigo === 'undefined') {
-                        bandera = 1;
-                        mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada \n';
+                        mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada\r\n';
                     }
 
                     if(item.hora.length <= 0 || typeof item.hora === 'undefined' || item.hora < 0 ) {
                         bandera = 1;
-                        mensaje = mensaje + ' La Codigo de actividad no ha sido ingresada \n';
+                        mensaje = mensaje + ' La Hora no ha sido ingresada \r\n';
                     }
+
+                    mensaje += "Hemos detectado Errores en la  linea "+(index+1) +"." +
+                        "reingrese todo los campos para continuar , gracias :";
 
                 }catch (err){
                     bandera=1;
-                    mensaje += "Hemos detectado lo siguiente- \n La linea "+(index+1) +"que desea ingresar contiene errores en su ingreso," +
+                    mensaje += "Hemos detectado lo siguiente- \r\n La linea "+(index+1) +" que desea ingresar contiene errores en su ingreso," +
                             "reingrese todo los campos para continuar , gracias :"+err;
                 }
 
 
                 if(bandera == 1){
                     $("#txtError").text(mensaje);
+
+                    $("#modalError").modal("show");
                 }
 
                 return bandera;
@@ -1367,7 +1419,7 @@
 
             };
 
-            /*esto es editar del select */
+            /*esto es editar del select en el modal*/
             $scope.updateDetail = function (index) {
 
                 $scope.jornalSelect = {
@@ -1378,10 +1430,26 @@
                     codigo: $scope.dataSelect[index].codigo,
                     cci: $scope.dataSelect[index].cci,
                     hora:$scope.dataSelect[index].hora,
-                    nombre:$scope.dataSelect[index].nombre
+                    nombre:$scope.dataSelect[index].nombre,
+                    trabajador:$scope.dataSelect[index].nombre
 
                 };
-                $scope.jornalEdit = $scope.dataSelect[index];
+
+                $scope.jornalEdit = {
+
+                    fecha: $scope.dataSelect[index].fecha,
+                    ficha: $scope.dataSelect[index].ficha,
+                    actividad: $scope.dataSelect[index].actividad,
+                    codigo: $scope.dataSelect[index].codigo,
+                    cci: $scope.dataSelect[index].cci,
+                    hora:$scope.dataSelect[index].hora,
+                    nombre:$scope.dataSelect[index].nombre,
+                    trabajador:$scope.dataSelect[index].nombre
+
+                };
+
+
+               // $scope.jornalEdit = $scope.dataSelect[index];
 
                 $("#modEditJornal").modal("show");
 
@@ -1405,8 +1473,6 @@
                     var usr = $('#nameUser').text();
                     $scope.jornalEdit.user = usr;
                     $scope.jornalSelect.user = usr;
-
-
 
                     $http.post('{{URL::route('editJornal')}}',{
                         _token:token,

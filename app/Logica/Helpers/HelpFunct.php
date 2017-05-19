@@ -405,5 +405,16 @@ class HelpFunct
     }
 
 
+    public static function getHash(){
+        $date_now =  getdate();
+
+        $factor_random = rand(100,600);
+
+        $hash = $factor_random.$date_now['hours'].$date_now['minutes'].$date_now['seconds'];
+
+        return $hash;
+    }
+
+
 
 }

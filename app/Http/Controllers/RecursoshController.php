@@ -1053,8 +1053,10 @@ class RecursoshController extends Controller
         }
 
         if($bandera == 0){
-            $response['mensaje']='ok';
             $res = $this->personalRep->regJornales($detalle);
+            $response['mensaje']='ok';
+            $response['id'] = $res;
+
         }
 
         return \Response::Json($response);
@@ -1091,7 +1093,7 @@ class RecursoshController extends Controller
 
         $res = $this->personalRep->deleteJornal($data['item']);
 
-        return \Response::Json('ok');
+        return \Response::Json($data);
     }
 
     public function editJornal(){
@@ -1100,22 +1102,27 @@ class RecursoshController extends Controller
         $bandera = 0;
 
         $respuesta = [];
+        $anterior = $data['itemAnterior'] ;
+        $nuevo = $data['itemNuevo'];
+        $response['mensaje'] = '';
 
+        $count_anterior = $this->personalRep->getJornalByParameters($anterior,$anterior['hora']);
 
-            $anterior = $data['itemAnterior'] ;
-            $nuevo = $data['itemNuevo'];
-            $response['mensaje'] = '';
+        if(count($count_anterior)<=0){
+            $response['res'] = '500';
+            $response['mensaje']='El dato ya no se encuentra , reporte a sistemas';
 
-            $res = $this->personalRep->deleteJornal($anterior);
-
-
+        }else{
             /*
 
-            $res = $this->personalRep->regJornales($nuevo);*/
+           $res = $this->personalRep->regJornales($nuevo);*/
 
             $total_horas =  $this->personalRep->getTotalHoras($nuevo,''); //nos da el total de horas registrados
 
-            $pre_cant_horas = $total_horas + $nuevo['hora'];
+            //si las actividades son las mismas se resta , si no no
+
+            $pre_cant_horas = $total_horas + $nuevo['hora'] - $anterior['hora'];
+
 
             if($pre_cant_horas >24){
 
@@ -1133,13 +1140,25 @@ class RecursoshController extends Controller
 
                 $actividad = $nuevo['actividad'];
 
+
+                if($nuevo['actividad'] === $anterior['actividad']){
+                    $monto_activity = $this->personalRep->getTotalHoras($nuevo,$actividad) - $anterior['hora'];
+
+                }else{
+                    $monto_activity = $this->personalRep->getTotalHoras($nuevo,$actividad) ;
+                }
+
+
+
+
+
                 switch ($actividad){
 
                     case 'HORA-NORMAL' :
 
-                        $monto_activity = $this->personalRep->getTotalHoras($nuevo,$actividad);
 
                         $pre_cant_horas_activity = $monto_activity + $nuevo['hora'];
+
 
                         if($pre_cant_horas_activity>8){
 
@@ -1148,13 +1167,14 @@ class RecursoshController extends Controller
                             $response['mensaje'] = $response['mensaje'].'La cantidad de hora a ingresar supera lo permisible  \\n';
                             $bandera = 1;
 
+
+
                         }else{
                             //registrar
                         }
                         break;
                     case 'HORA-EXTRA-25%' :
 
-                        $monto_activity = $this->personalRep->getTotalHoras($nuevo,$actividad);
 
                         $response['data'] = $monto_activity;
 
@@ -1182,15 +1202,20 @@ class RecursoshController extends Controller
 
             }
 
+
+
+
             if($bandera == 0){
                 $response['mensaje']='ok';
+                $res_delete = $this->personalRep->deleteJornal($anterior);
                 $res = $this->personalRep->regJornales($nuevo);
             }else{
-                $res = $this->personalRep->regJornales($anterior);
+                // $res = $this->personalRep->regJornales($anterior);
             }
+        }
 
 
-            $respuesta = $response;
+        $respuesta = $response;
 
 
         return \Response::Json($respuesta);

@@ -2687,6 +2687,8 @@ where EMPRESA = 'e01'";
 
         //DESDE THORAS EN ADELANTE SE COLOCAN VALORES VACIOS
 
+        /*
+
         $query = "INSERT INTO flexline.PER_DETALLETRATO
                  (EMPRESA,TRABAJADOR,FECHA,TRATO,CODACTIVIDAD,HINICIO,HFIN,CANTIDAD,MONTO,ESTADO,AUX_VALOR5,AUX_VALOR11
                  ,AUX_VALOR16,AUX_VALOR19,AUX_VALOR20,MONTO_INICIAL,TIPO_TRAB,CORRELATIVOP,CORRELATIVOACT,THORAS,AUX_VALOR2,
@@ -2697,22 +2699,48 @@ where EMPRESA = 'e01'";
                  '$estado','$aux_valor5','$aux_valor11','$aux_valor16','$aux_valor19','$aux_valor20',$monto_inicial,
                  '$tipo_trab','$correlativop','$correlativoact','0','','','','','','','','','','','','','','','','','','');";
 
-        $val = \DB::insert($query);
 
-        return $val;
+         $val = \DB::insert($query);
+        */
+
+        $id = \DB::table('flexline.PER_DETALLETRATO')->insertGetId(
+            ['EMPRESA' => 'E01', 'TRABAJADOR' => $trabajador,'FECHA'=>$fecha,'TRATO'=>$trato,
+                'CODACTIVIDAD'=>$codactividad,'HINICIO'=>$hinicio,'HFIN'=>$hfin,'CANTIDAD'=>$cantidad,
+                'MONTO'=>$monto,'ESTADO'=>$estado,'AUX_VALOR5'=>$aux_valor5,'AUX_VALOR11'=>$aux_valor11,
+                'AUX_VALOR16'=>$aux_valor16,'AUX_VALOR19'=>$aux_valor19,'AUX_VALOR20'=>$aux_valor20
+                ,'MONTO_INICIAL'=>$monto_inicial,'TIPO_TRAB'=>$tipo_trab,'CORRELATIVOP'=>$correlativop
+                ,'CORRELATIVOACT'=>$correlativoact,'THORAS'=>0,'AUX_VALOR2'=>'','AUX_VALOR3'=>''
+                ,'AUX_VALOR4'=>'','AUX_VALOR6'=>'','AUX_VALOR7'=>'','AUX_VALOR8'=>'','AUX_VALOR9'=>''
+                ,'AUX_VALOR10'=>'','AUX_VALOR12'=>'','AUX_VALOR13'=>'','AUX_VALOR14'=>'',
+                'AUX_VALOR15'=>'','AUX_VALOR17'=>'','AUX_VALOR18'=>'','TIPODOCTOP'=>'',
+                'TIPODOCTOACT'=>'','COMENTARIO'=>'','AUX_VALOR1'=>''],'IdPER_DETALLETRATO'
+        );
+
+
+        return $id;
     }
 
 
-    public function getJornalByParameters($data){
+    public function getJornalByParameters($data,$hora = null){
 
 
         //--cambiando e formato de dd-mm-yyyy a yyyy-dd-mm
         $f = explode('-',$data['fecha']);
+
+        if(strlen($f[2])<=2){
+            $f[2] = '20'.$f[2];
+        }
+
         $f = $f[2].'-'.$f[0].'-'.$f[1];
         $trabajador = $data['ficha'];
         $codactividad = $data['actividad'];
         $codigo = $data['codigo'];
         $cci    = $data['cci'];
+        $q = '';
+
+        if($hora !== null){
+            $q = ' AND MONTO = '.$hora;
+        }
 
 
         $query = "select TRABAJADOR,MONTO, * from 
@@ -2721,7 +2749,7 @@ where EMPRESA = 'e01'";
                     AND TRABAJADOR = '$trabajador'
                     AND CODACTIVIDAD = '$codactividad'
                     AND AUX_VALOR16 = '$codigo'
-                    AND AUX_VALOR5 = '$cci'";
+                    AND AUX_VALOR5 = '$cci' $q ";
 
         $res = \DB::select($query);
 
@@ -2746,7 +2774,6 @@ where EMPRESA = 'e01'";
                     AND TRABAJADOR = '$trabajador'
                     AND CODACTIVIDAD like '%$actividad%'";
 
-        //HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
@@ -2765,7 +2792,11 @@ where EMPRESA = 'e01'";
 
 
         $f = explode('-',$data['fecha']);//viene en formato dd-mm-yyyy
+        if(strlen($f[2])<=2){
+            $f[2] = '20'.$f[2];
+        }
         $f = $f[2].'-'.$f[1].'-'.$f[0];
+
         $trabajador = $data['ficha'];
         $codactividad = $data['actividad'];
         $codigo = $data['codigo'];
@@ -2782,11 +2813,8 @@ where EMPRESA = 'e01'";
                     AND AUX_VALOR5 = '$cci' 
                     AND CANTIDAD = $hora ";
 
-
         $res = \DB::delete($query);
-
         return $res;
-
     }
 
     //sirve para limpiar los registros ya hechos en es misma fecha para dominicar
