@@ -271,7 +271,6 @@ class CostoRep
     public function deleteDetallesDistribucion($estado,$fecha, $correlativo){
 
         $query  = "delete from flexline.CON_MOVCOM
-                   
                     WHERE CONVERT (DATE ,FECHA,113) = '$fecha'
                     AND CORRELATIVO = '$correlativo'
                     AND EMPRESA = 'E01'";

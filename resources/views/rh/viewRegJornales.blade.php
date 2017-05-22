@@ -1287,7 +1287,7 @@
 
                 if(bandera == 1){
                     $("#txtError").text(mensaje);
-
+                    console.log(mensaje,bandera);
                     $("#modalError").modal("show");
                 }
 
