@@ -41,7 +41,7 @@
                                         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
                                         <div class="col-lg-2">
                                             <label for="">Código de trabajador</label><br>
-                                            <input class="form-control" id="codigo_trabajador" type="text">
+                                            <input class="form-control" name="codigo" id="codigo_trabajador" type="text">
                                         </div>
                                         <div class="col-lg-3">
                                             <label for="">Fecha</label>

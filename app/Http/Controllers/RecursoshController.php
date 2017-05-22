@@ -923,8 +923,9 @@ class RecursoshController extends Controller
         $data['f_f'] =  explode('/',trim($fechas[1]));
         $data['f_f'] =  $data['f_f'][2].'-'.$data['f_f'][1].'-'.$data['f_f'][0];
 
-        $data['codigo'] = '';
-
+        if(!isset( $data['codigo'])){
+            $data['codigo'] = '';
+        }
 
 
         if($data['cci'] != ''){
@@ -945,9 +946,9 @@ class RecursoshController extends Controller
 
         //dd($res);
 
-       \Excel::create('Laravel Excel', function($excel) use ($array_res) {
+       \Excel::create('registro_excel', function($excel) use ($array_res) {
 
-            $excel->sheet('Productos', function($sheet) use ($array_res) {
+            $excel->sheet('libro1', function($sheet) use ($array_res) {
 
                 $sheet->fromArray($array_res);
 

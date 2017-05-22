@@ -204,7 +204,7 @@ class CostoRep
         #------$this->processTemporalTable($key,'##TempDetalles');
         $keys = implode(',',$key);
 
-        #aremos un algoritmo para insertar de 500 en 500
+        #haremos un algoritmo para insertar de acuerdo a la cantidad de lote
         $cant_registros = count($a_registros_asiento);
         $cat_lote = 200;
         $cant_bucle = $cant_registros / $cat_lote;
@@ -215,8 +215,7 @@ class CostoRep
            $bandera = count($temp_reg_asientos);
 
            if($bandera<$cat_lote){
-                //insertar de 0 y contamos la bandera
-              // echo '--final'.count($temp_reg_asientos);
+
                $values =implode($temp_reg_asientos,',');
 
                $query = "insert into $table ($keys) values $values";
