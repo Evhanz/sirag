@@ -2898,9 +2898,6 @@ where EMPRESA = 'e01'";
 
 
 
-
-
-
     public function processdominical($f_i,$f_f,$f_dominical){
 
         $query = "select TRABAJADOR, ROUND(SUM(CANTIDAD)/6,2) CANTIDAD
@@ -2926,10 +2923,7 @@ where EMPRESA = 'e01'";
 		AND LEN(CASE WHEN
 		'$f_dominical'>=CONVERT(DATE,CONVERT(VARCHAR,A.FEC_INIEFE),103) AND
 		'$f_dominical'<=CONVERT(DATE,CONVERT(VARCHAR,A.FEC_FINEFE),103) THEN A.FICHA ELSE '' END)>0)
-        group by TRABAJADOR
-";
-
-
+        group by TRABAJADOR";
 
         $res = \DB::select($query);
 
@@ -2954,9 +2948,6 @@ where EMPRESA = 'e01'";
             $q1 = " and A.FICHA = '$ficha' ";
 
             }
-            
-
-           
         }else{
             $q1 = " and A.FICHA like '%%' ";
         }
@@ -3002,19 +2993,14 @@ where EMPRESA = 'e01'";
         group by B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,
         A.FICHA,B.EMPLEADO,B.CATEGORIA,B.CARGO,A.MOVIMIENTO,A.DESCRIPCION,A.EMPRESA,
         A.TIPO_MOVTO
-        ORDER BY A.FICHA,B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,A.TIPO_MOVTO
-        ";
+        ORDER BY A.FICHA,B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,A.TIPO_MOVTO";
 
 
         try{
-        $res = \DB::select($query);
-
-        $res = collect($res);
-        $res = $res->groupBy('DNI');
-
-
-
-        return ($res);
+            $res = \DB::select($query);
+            $res = collect($res);
+            $res = $res->groupBy('DNI');
+            return ($res);
         }
         catch (\Exception $e){
             dd($e);
@@ -3026,9 +3012,6 @@ where EMPRESA = 'e01'";
 
 
     public function regFeriados($data){
-
-
-
 
             //primero eliminamos todas las de esa fecha
 
@@ -3274,7 +3257,7 @@ where EMPRESA = 'e01'";
         {
             if ($item->campain == substr($codigo,0,2)){
 
-               /* ahra entramos a compar fundos*/
+               /* ahora entramos a comparar fundos*/
                 foreach ($item->fundos as $f){
 
                     if(substr($codigo,2,1)== $f->fundo){

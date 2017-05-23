@@ -32,6 +32,7 @@ Route::post('comercial/api/getKardexEntrada',['as'=>'api_getKardexEntrada',
     'uses'=>'ComercialController@apiGetKardexEntrada']);
 Route::post('comercial/api/apiGetKardex',['as'=>'api_getKardex','uses'=>'ComercialController@getKardex']);
 Route::post('comercial/api/getGuiaFaltaFactura',['as'=>'getGuiaFaltaFactura','uses'=>'ComercialController@getGuiaFaltaFactura']);
+Route::post('comercial/api/getKardexValorizado',['as'=>'getKardexValorizado','uses'=>'ComercialController@getKardexValorizado']);
 
 
 

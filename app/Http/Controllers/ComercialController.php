@@ -24,7 +24,7 @@ class ComercialController extends Controller
     protected $tipoDocuementoRep;
     protected $productoRep;
     protected $proveedorRep;
-    protected $contabiliddaRep;
+    protected $contabilidadRep;
 
     public function __construct(DocumentoRep $documentoRep,TipoDocumentoRep $tipoDocumentoRep,ProductoRep $productoRep,ProveedorRep $proveedorRep, ContabilidadRep $contabilidadRep){
         $this->documentoRep = $documentoRep;
@@ -260,6 +260,38 @@ class ComercialController extends Controller
         return $pdf->stream('invoice.pdf');
 
     }
+
+
+    public function getKardexValorizado(){
+
+        $data = \Input::all();
+
+        if(!isset($data['subFamilia'])){
+            $data['subFamilia'] = '';
+        }
+
+        $res = $this->productoRep->getKardex($data);
+
+        foreach ($res  as $item){
+            $item->requerimiento = round($this->productoRep->getCantRequerimientOfProduct($item->codigo,$data['f_i'],$data['f_f']),3);
+            unset($item->detalle);
+
+            $item->res_cuntificado = $item->requerimiento - $item->total_salidas;
+
+            if ($item->res_cuntificado<0){
+                $item->res = 'positivo';
+            }
+            if($item->res_cuntificado==0){
+                $item->res = 'cero';
+            }
+            if($item->res_cuntificado>0){
+                $item->res = 'negativo';
+            }
+
+        }
+
+        return \Response::Json($res);
+    }
     
 
     /*esto es para reportes en PDF*/
@@ -347,5 +379,7 @@ class ComercialController extends Controller
 
 
     }
+
+
 
 }

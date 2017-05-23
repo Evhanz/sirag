@@ -17,6 +17,7 @@
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#salidas">Salidas</a></li>
                             <li><a data-toggle="tab" href="#cci">CCI</a></li>
+                            <li><a data-toggle="tab" href="#valorizado">Valorizado</a></li>
                            <!-- <li ><a data-toggle="tab" href="#entradas">Entradas</a></li>-->
 
                         </ul>
@@ -426,6 +427,124 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div id="valorizado" class="tab-pane fade">
+                                        <div class="row">
+                                            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                            <form class="form-inline" style="padding: 15px">
+
+                                                <div class="col-xs-3">
+                                                    <label>Rango de Fechas</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input class="form-control " name="daterange" id="fecha_valorizado" type="text">
+                                                    </div><!-- /.input group -->
+                                                </div>
+
+                                                <div class="col-xs-3">
+                                                    <label for="" >Familia </label><br>
+                                                    <select class="form-control" ng-model="familiaFilter" id="f_familia" ng-init="familiaFilter='MATERIA PRIMA'">
+                                                        <option value="">---------</option>
+                                                        <option ng-repeat="familia in familias "
+                                                                value="@{{familia.CODIGO}}">
+                                                            @{{familia.CODIGO}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-xs-2">
+                                                    <div class="form-group">
+                                                        <label for="" >Sub Familia</label><br>
+                                                        <select class="form-control" ng-model="subFamilia" id="f_subfamilia">
+                                                            <option value="">---------</option>
+                                                            <option ng-repeat="item in subfamilias | filter:familiaFilter"
+                                                                    value="@{{item.CODIGO}}">
+                                                                @{{item.CODIGO}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-xs-2">
+                                                    <label for="">Producto</label>
+                                                    <input class="form-control" type="text" ng-keyup="$event.keyCode == 13 && getKardexValorizado()" ng-model="producto_glosa">
+                                                </div>
+
+                                                <div class="col-xs-1">
+                                                    <label for="" style="margin-bottom: 20px"> </label><br>
+                                                    <a href="" id="btn_getKardex" class="btn btn-info" ng-click="getKardexValorizado()">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-xs-1">
+                                                    <label for="" style="margin-bottom: 20px"> </label><br>
+                                                    <a href="" id="btn_getKardex" class="btn btn-success" onclick="printValorizado()">
+                                                        <i class="fa fa-file-excel-o"></i>
+                                                    </a>
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+
+                                        <br><br>
+
+                                        <div class="row" >
+                                            <div class="col-xs-12 table-responsive" style="font-size: 11px;">
+                                                <table class="table table-bordered" id="table_kardex">
+                                                    <thead >
+                                                    <tr>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" rowspan="2">*</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" rowspan="2">Glosa</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" rowspan="2">Costo U.</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Salida Inicial</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Compras</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Requerimiento</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Consumo</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Saldo Final</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" rowspan="2">Resultado</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Q</td>
+                                                        <td>TOTAL</td>
+                                                        <td>Q</td>
+                                                        <td>TOTAL</td>
+                                                        <td>Q</td>
+                                                        <td>TOTAL</td>
+                                                        <td>Q</td>
+                                                        <td>TOTAL</td>
+                                                        <td>Q</td>
+                                                        <td>TOTAL</td>
+                                                    </tr>
+
+                                                    </thead>
+                                                    <tbody  ng-repeat=" item in kardex | filter:search">
+                                                    <tr >
+                                                        <td>@{{ $index }}</td>
+                                                        <td>@{{ item.producto_name }}</td>
+                                                        <td style="text-align: right">@{{ item.costo }}</td>
+                                                        <td style="text-align: right">@{{ item.saldo_inicial }}</td>
+                                                        <td style="text-align: right">@{{ item.saldo_inicial * item.costo | number:2}}</td>
+                                                        <td style="text-align: right">@{{ item.total_entrada }}</td>
+                                                        <td style="text-align: right">@{{ item.total_entrada * item.costo | number:2}}</td>
+                                                        <td style="text-align: right">@{{ item.requerimiento }}</td>
+                                                        <td style="text-align: right">@{{ item.requerimiento * item.costo | number:2}}</td>
+                                                        <td style="text-align: right">@{{ item.total_salidas }}</td>
+                                                        <td style="text-align: right">@{{ item.total_salidas * item.costo | number:2}}</td>
+                                                        <td style="text-align: right">@{{ item.saldo_final }}</td>
+                                                        <td style="text-align: right">@{{ item.saldo_final * item.costo | number:2}}</td>
+                                                        <td style="text-align: right" class="res-@{{ item.res }}">@{{ item.res_cuntificado }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div><!-- /.row - inside box -->
+
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div><!-- /.row - inside box -->
@@ -498,6 +617,20 @@
             });
         }
 
+        function printValorizado() {
+            // body...
+
+            $("#table_kardex").table2excel({
+                exclude: ".noExl",
+                name: "tabla_general",
+                filename: "tabla_general",
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+        }
+
 
 
         function printExcel(id) {
@@ -540,6 +673,7 @@
             $scope.proveedores  =   [];
             $scope.prov_active  =   {};
             $scope.prod_provee  =   [];
+            $scope.kardex       =   [];
 
 
 
@@ -628,14 +762,10 @@
             };
 
 
-            $scope.getProductEntrada = function () {
+            $scope.getKardexValorizado = function () {
                 var token = $('#_token').val();
 
                 /*--- Procedimiento que se haga mientras no termine  */
-
-
-                $scope.search               = {};
-                $scope.ProductosDTOEntrada  = [];
 
                 $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
 
@@ -652,39 +782,47 @@
                 }
 
 
-                if ( $("#reservationEntrada").val().length > 0 ) {
+                if ( $("#fecha_valorizado").val().length > 0 ) {
 
 
-                    var fecha_s_format = $("#reservationEntrada").val().split('-');
+                    var fecha_s_format = $("#fecha_valorizado").val().split('-');
 
                     //se cambia a este formato por que es lo que se necesita por el sql server y el hdp que hizo flexline
-                    var f_i = formatDateDMYtoYDM(fecha_s_format[0],"/");
-                    var f_f = formatDateDMYtoYDM(fecha_s_format[1],"/");
+                    var f_i = fecha_s_format[0].trim().split('/');
+                    f_i = f_i[2]+''+f_i[1]+''+f_i[0];
 
-                    var ruta = '{{ URL::route('api_getKardexEntrada') }}';
+                    var f_f = fecha_s_format[1].trim().split('/');
+                    f_f = f_f[2]+''+f_f[1]+''+f_f[0];
+
+                    var ruta = '{{ URL::route('getKardexValorizado') }}';
+
+                    $("#btn_getKardex").prop('disabled',true);
 
                     $http.post(ruta,
                             {   _token : token,
                                 producto: $scope.producto_glosa_entrada,
                                 f_i: f_i,
                                 f_f: f_f,
-                                familia:$scope.familiaFilterEntrada
+                                familia:$scope.familiaFilterEntrada,
+                                subFamilia:$scope.subFamilia
                             })
                             .success(function(data){
 
-                                $scope.ProductosDTOEntrada = data;
-
-                                //console.log(data);
+                                $scope.kardex = data;
+                                console.log(data);
 
                                 $( "div" ).remove( ".overlay" );
                                 $( "div" ).remove( ".loading-img" );
 
+                                $("#btn_getKardex").prop('disabled',false);
 
                             }).error(function(data) {
                         console.log(data);
                         alert("Error _>");
                         $("div").remove(".overlay");
                         $("div").remove(".loading-img");
+
+                        $("#btn_getKardex").prop('disabled',false);
                     });
 
 
@@ -697,9 +835,6 @@
 
 
             };
-
-
-
 
 
 
@@ -749,10 +884,78 @@
 
             };
 
+            $scope.getProductEntrada = function () {
+                var token = $('#_token').val();
 
-            
+                /*--- Procedimiento que se haga mientras no termine  */
 
-       
+
+                $scope.search               = {};
+                $scope.ProductosDTOEntrada  = [];
+
+                $("#box_maestro").append("<div class='overlay'></div><div class='loading-img'></div>");
+
+                /*-----------------*/
+
+                // console.log($scope.TipoDoct);
+                if($scope.producto_glosa_entrada == null || $scope.producto_glosa_entrada.length == 0){
+
+                    $scope.producto_glosa_entrada = '';
+                }
+                if($scope.familiaFilterEntrada == null || $scope.familiaFilterEntrada.length == 0){
+
+                    $scope.familiaFilterEntrada = '';
+                }
+
+
+                if ( $("#reservationEntrada").val().length > 0 ) {
+
+
+                    var fecha_s_format = $("#reservationEntrada").val().split('-');
+
+                    //se cambia a este formato por que es lo que se necesita por el sql server y el hdp que hizo flexline
+                    var f_i = formatDateDMYtoYDM(fecha_s_format[0],"/");
+                    var f_f = formatDateDMYtoYDM(fecha_s_format[1],"/");
+
+                    var ruta = '{{ URL::route('api_getKardexEntrada') }}';
+
+                    $http.post(ruta,
+                        {   _token : token,
+                            producto: $scope.producto_glosa_entrada,
+                            f_i: f_i,
+                            f_f: f_f,
+                            familia:$scope.familiaFilterEntrada
+                        })
+                        .success(function(data){
+
+                            $scope.ProductosDTOEntrada = data;
+
+                            //console.log(data);
+
+                            $( "div" ).remove( ".overlay" );
+                            $( "div" ).remove( ".loading-img" );
+
+
+                        }).error(function(data) {
+                        console.log(data);
+                        alert("Error _>");
+                        $("div").remove(".overlay");
+                        $("div").remove(".loading-img");
+                    });
+
+
+                } else {
+
+
+
+                    alert("El campo de fecha es obligatorio");
+                }
+
+
+            };
+
+
+
             function getAllFamilias(){
 
                 var ruta = '{{ URL::route('modComercial') }}/api/getAllFamilias';
@@ -776,6 +979,8 @@
                     console.log("error en :"+data);
                 });
             }
+
+
 
 
             /*funcion helper*/
@@ -842,6 +1047,17 @@
             line-height: 1.428571429;
             border: 1px solid #ccc;
         }
+
+        .res-positivo{
+            background-color: #ef404a;
+            color:white;
+        }
+
+        .res-negativo{
+            background-color: #3e8f3e;
+            color:white;
+        }
+
     </style>
 
 

@@ -240,7 +240,7 @@ class ProductoRep
 
 
 
-    //esta es la funcion que se encarga de traer al krdex
+    //esta es la funcion que se encarga de traer al kardex
     //convinando la entrada con las salidas
     public function getKardex($data)
     {
@@ -259,8 +259,8 @@ class ProductoRep
         //primero sacamos a toda la data general
 
         $query = "select 
-        CONVERT(DATE,A.Fecha,113) fecha ,A.Numero numero,'entrada' as tipo,
-        C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON
+        CONVERT(DATE,A.Fecha,113) fecha ,A.Numero numero,'entrada' as tipo,C.PRODUCTO,
+        C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON, B.Costo
         from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
         where
         A.idDocto=B.idDocto
@@ -277,8 +277,8 @@ class ProductoRep
         AND C.SUBFAMILIA like '%$subFamilia%'
         UNION
         SELECT 
-        CONVERT(DATE,dd.Fecha,113) fecha,'-' as numero,'salida' as tipo,
-        p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON
+        CONVERT(DATE,dd.Fecha,113) fecha,'-' as numero,'salida' as tipo,p.PRODUCTO,
+        p.GLOSA glosa,sum(dd.Cantidad) cantidad,dd.UnidadIngreso unidad, coalesce(dd.analisis15,'-') FUNDO_PARRON , dd.Costo
         FROM flexline.DocumentoD dd, flexline.PRODUCTO p , flexline.TipoDocumento tp
         where
         dd.Empresa=p.EMPRESA
@@ -293,10 +293,10 @@ class ProductoRep
         AND p.GLOSA like '%$glosa%'
         AND p.FAMILIA like '%$familia%'
         AND p.SUBFAMILIA like '%$subFamilia%'
-        group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
+        group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15 , dd.Costo,p.PRODUCTO
         ORDER BY A.Fecha";
 
-       // HelpFunct::writeQuery($query);
+        //HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);
@@ -317,6 +317,7 @@ class ProductoRep
             $obj->producto_name  = $producto->glosa;
             $obj->unidad = $producto->unidad;
             $obj->saldo  = $this->getSaldoFinal($f_i,$f_f,$producto->glosa);
+            $obj->codigo = $producto->PRODUCTO;
 
             $saldo_inicial = round($obj->saldo,3);
             #el anterior saldo inicial va ir variado , el siguiente es para que quede fijo y se use despues
@@ -325,6 +326,7 @@ class ProductoRep
             /*estas variables paara obener la suma de entradas  y salidas*/
             $total_entradas = 0;
             $total_salidas = 0;
+
 
             foreach ($item as $i){
 
@@ -336,7 +338,11 @@ class ProductoRep
                     $total_salidas += $i->cantidad;
                 }
                 $i->saldo = round($saldo_inicial,3);
+
+                //$i->costo =
             }
+
+
 
             //el ultimo saldo se considera como saldo final o actual
             $obj->saldo_final = round($saldo_inicial,3);
@@ -345,6 +351,7 @@ class ProductoRep
             $obj->saldo_inicial = $s_inicial;
 
             $obj->detalle = $item;
+            $obj->costo = round($item->avg('Costo'),3);
 
 
             array_push($dataFormated,$obj);
@@ -356,6 +363,33 @@ class ProductoRep
 
         return $dataFormated;
 
+
+    }
+
+
+    public function getCantRequerimientOfProduct($producto,$f_inicio,$f_fin){
+
+        $query = "select A.Producto , SUM(A.Cantidad) cant_requerimiento
+                    from flexline.DocumentoD A,
+                    flexline.Documento B,
+                    flexline.PRODUCTO P
+                    where 
+                    A.idDocto=B.idDocto
+                    AND A.Empresa=P.EMPRESA
+                    AND A.Producto=P.PRODUCTO
+                    AND A.Empresa='e01'
+                    AND A.TipoDocto='R/COMPRA (A)'
+                    AND A.Fecha BETWEEN '$f_inicio' and '$f_fin' -- SE FILTRA POR FECHA yyyymmdd
+                    AND A.Producto = '$producto' -- FILTRO
+                    GROUP BY A.Producto ";
+
+        $res = \DB::select($query);
+        $response = 0;
+        if(count($res)>0){
+            $response = $res[0]->cant_requerimiento;
+        }
+
+        return $response;
 
     }
 
@@ -394,7 +428,6 @@ class ProductoRep
 
         $res = \DB::select($query);
 
-
         return $res[0]->saldo;
 
     }
@@ -432,8 +465,7 @@ class ProductoRep
         AND p.SUBFAMILIA like '%$subFamilia%'
         AND DD.Analisis15 in $cci 
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15
-        ORDER BY A.Fecha
-        ";
+        ORDER BY A.Fecha ";
 
        
 
