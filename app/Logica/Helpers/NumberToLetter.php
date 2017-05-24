@@ -75,12 +75,21 @@ class NumberToLetter
                 $float = explode('.', $num);
                 $num = $float[0];
                 $num = trim((string)@$num);
+
                 if ($num[0] == '-') {
                     $neg = 'menos ';
                     $num = substr($num, 1);
                 } else
                     $neg = '';
-                while ($num[0] == '0'){ $num = substr($num, 1);  }
+                while ($num[0] == '0'){
+                    //Agregó Evhanz , para que si es 0 ya no elimine los ceros a la izquierda
+                    if((int)$num === 0){
+                        break;
+
+                    }else{
+                        $num = substr($num, 1);
+                    }
+                }
                 if ($num[0] < '1' or $num[0] > 9) $num = '0' . $num;
                 $zeros = true;
                 $punt = false;
@@ -116,7 +125,7 @@ class NumberToLetter
                     }
                 } else
                     $fin = '';
-                if ((int)$ent === 0) return 'Cero ' . $fin;
+                if ((int)$ent === 0) return 'Cero con '.$float[1].'/100 Soles ' . $fin;
                 $tex = '';
                 $sub = 0;
                 $mils = 0;
