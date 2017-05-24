@@ -12,6 +12,7 @@ namespace sirag\Helpers;
 class NumberToLetter
 {
     public static function convert($num, $fem = false, $dec = true) {
+        $matuni[1]  = "uno";
         $matuni[2]  = "dos";
         $matuni[3]  = "tres";
         $matuni[4]  = "cuatro";
@@ -194,7 +195,7 @@ class NumberToLetter
             $end_num = ucfirst($tex) . ' con ' . $ff . '/100 Soles';
             return $end_num;
         }catch (\Exception $e){
-            return "Ocurrio un error :".$num.'-';
+            return "Ocurrio un error :".$num.'-'.$e;
         }
     }
 }
