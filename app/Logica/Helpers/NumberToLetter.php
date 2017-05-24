@@ -196,7 +196,7 @@ class NumberToLetter
                 $end_num = ucfirst($tex) . ' con ' . $ff . '/100 Soles';
                 return $end_num;
             }catch (\Exception $e){
-               return "cero.:";
+               return "Cero Soles";
             }
         }else{
             return 'cero..';
