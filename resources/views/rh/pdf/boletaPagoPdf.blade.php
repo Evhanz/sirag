@@ -310,11 +310,8 @@
                         if(strlen($temp)<=0){
                             $let = 'error';
                         }else{
-                           // $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
+                            $let =  \sirag\Helpers\NumberToLetter::convert(number_format($temp,2,'.',''));
                         }
-
-
-
                     }catch(\Exception $e){
                         $let = 'error'.$temp;
 
