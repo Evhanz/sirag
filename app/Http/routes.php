@@ -116,5 +116,9 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN']], function () {
     require __DIR__ . '/Rutas/packing/pallet.php';
 });
 
-
+//-----para pruebas
+Route::get('prueba/test1',function (){
+    $nombre =  \sirag\Helpers\NumberToLetter::convert('00.01');
+    echo $nombre;
+});
 

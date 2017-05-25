@@ -13,7 +13,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
+
+        /*
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('Laravel 5');*/
+
+       $nombre =  \sirag\Helpers\NumberToLetter::convert('2.12');
+       echo $nombre;
     }
 }
