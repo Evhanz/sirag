@@ -880,68 +880,72 @@
                                 if(data == 0){
                                     alert('Valor no Encontrado');
                                 }else{
-                                    item.trabajador = data.NOMBRE;
-                                    item.dni    = data.EMPLEADO;
-                                    dni    = data.EMPLEADO;
 
+                                    if (data.VIGENCIA == 'ACTIVO') {
+                                        item.trabajador = data.NOMBRE;
+                                        item.dni    = data.EMPLEADO;
+                                        dni    = data.EMPLEADO;
+                                        if(item.fecha !== undefined){
 
-                                    if(item.fecha !== undefined){
+                                            //console.log(getFotmatDate(item.fecha));
 
-                                        //console.log(getFotmatDate(item.fecha));
+                                            if(getFotmatDate(item.fecha)== 0){
+                                                var token = $('#_token').val();
+                                                var f = item.fecha.split('-');
+                                                f = '20'+''+f[2]+''+f[1]+''+f[0];
 
-                                        if(getFotmatDate(item.fecha)== 0){
-                                            var token = $('#_token').val();
-                                            var f = item.fecha.split('-');
-                                            f = '20'+''+f[2]+''+f[1]+''+f[0];
+                                                $http.post('{{ URL::route('getMarcacionDICONTrabajadorByFecha') }}',
+                                                        {   _token   : token,
+                                                            dni      : item.dni,
+                                                            fecha    : f
+                                                        })
+                                                        .success(function(data){
 
-                                            $http.post('{{ URL::route('getMarcacionDICONTrabajadorByFecha') }}',
-                                                    {   _token   : token,
-                                                        dni      : item.dni,
-                                                        fecha    : f
-                                                    })
-                                                    .success(function(data){
+                                                            if(data == 0){
+                                                                alert('El trbajador no tiene registro en el DICON en la fecha ');
+                                                                item.fecha = '';
+                                                                item.trabajador = '';
+                                                                item.ficha = '';
+                                                                $("#fecha"+(index)).focus();
+                                                            }else {
 
-                                                        if(data == 0){
-                                                            alert('El trbajador no tiene registro en el DICON en la fecha ');
-                                                            item.fecha = '';
-                                                            item.trabajador = '';
-                                                            item.ficha = '';
-                                                            $("#fecha"+(index)).focus();
-                                                        }else {
+                                                                var r = '{{ URL::route('modRH') }}/api/getJefeByFicha/'+ficha;
+                                                                $http.get(r).success(function (data) {
 
-                                                            var r = '{{ URL::route('modRH') }}/api/getJefeByFicha/'+ficha;
-                                                            $http.get(r).success(function (data) {
+                                                                   if(data == 0){
 
-                                                               if(data == 0){
+                                                                       alert('El trabajador no tiene registrado el jefe');
+                                                                       item.fecha = '';
+                                                                       item.trabajador = '';
+                                                                       item.ficha = '';
+                                                                       $("#fecha"+(index)).focus();
+                                                                   }else{
 
-                                                                   alert('El trabajador no tiene registrado el jefe');
-                                                                   item.fecha = '';
-                                                                   item.trabajador = '';
-                                                                   item.ficha = '';
-                                                                   $("#fecha"+(index)).focus();
-                                                               }else{
+                                                                   }
 
-                                                               }
+                                                                }).error(function (error) {
 
-                                                            }).error(function (error) {
+                                                                });
 
-                                                            });
+                                                            }
 
-                                                        }
+                                                        }).error(function(data) {
+                                                    console.log(data);
 
-                                                    }).error(function(data) {
-                                                console.log(data);
-
-                                                alert('Error: :>');
-                                                item.fecha = '';
-                                            });
-                                        }else{
-                                            alert('corrige la fecha de esta fila');
+                                                    alert('Error: :>');
+                                                    item.fecha = '';
+                                                });
+                                            }else{
+                                                alert('corrige la fecha de esta fila');
+                                            }
                                         }
 
 
+                                    }else{
+                                        alert('El Trabajador no se encuentra activo');
                                     }
 
+                                   
 
                                 }
                             }).error(function(data) {
