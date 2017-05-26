@@ -517,7 +517,7 @@ class ContabilidadController extends Controller
                     $parrones   =   $res['parrones'] ;
                     $productos  =   collect($res['productos']) ;
                     $fundo      =   $res['fundo'];
-                    $cci        =    $res['cci'];
+                    $cci        =   $res['cci'];
                     $otros      =   $res['otros'];
                     $f_otros_i  =   $res['f_otros_i'];
                     $f_otros_f  =   $res['f_otros_f'];
@@ -557,6 +557,65 @@ class ContabilidadController extends Controller
 
        // $data = \Input::all();
 
+
+    }
+
+
+    public function sendDataForExcelConsumoMacro(){
+
+        $data = \Input::all();
+
+        //return \Response::Json($data);
+
+
+        if($data['fundo'] != ''){
+            $res = $this->contabilidadRep->getDataForExcelConsumo2($data);
+
+            $res['fundo']   = $data['fundo'];
+
+            $ruta =base_path()."/storage/contabilidad/excel/";
+
+            Excel::create('consumo_por_fundo_cci', function($excel) use ($res){
+
+                $excel->sheet('resultado', function($sheet) use ($res){
+
+                    $parrones   =   $res['parrones'] ;
+                    $productos  =   collect($res['productos']) ;
+                    $fundo      =   $res['fundo'];
+                    $cci        =   $res['cci'];
+                    $otros      =   $res['otros'];
+                    $f_otros_i  =   $res['f_otros_i'];
+                    $f_otros_f  =   $res['f_otros_f'];
+
+                    $sheet->loadView('cc/excelConsumoByFundoAndParron',compact('parrones','productos','fundo','cci','otros','f_otros_i','f_otros_f'));
+                });
+
+            })->store('xls',$ruta);
+
+
+            return \Response::json("correcto");
+        }else{
+
+            $res = $this->contabilidadRep->getDataForExcelConsumoAll($data);
+
+            $ruta =base_path()."/storage/contabilidad/excel/";
+
+            Excel::create('consumo_por_fundo_cci', function($excel) use ($res){
+
+                $excel->sheet('resultado', function($sheet) use ($res){
+
+                    $otros      =   $res['otros'];
+                    $f_otros_i  =   $res['f_otros_i'];
+                    $f_otros_f  =   $res['f_otros_f'];
+
+                    $sheet->loadView('cc/excel/consumoFundoParronTodo',compact('otros','f_otros_i','f_otros_f'));
+                });
+
+            })->store('xls',$ruta);
+
+
+            return \Response::json("correcto");
+        }
 
     }
 

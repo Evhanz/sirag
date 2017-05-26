@@ -397,8 +397,6 @@ class ContabilidadRep
         $res_codigos = \DB::select($query);
 
 
-
-
         //obtenemos solo los codigos
 
         foreach ($res_codigos as $item) {

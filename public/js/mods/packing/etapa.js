@@ -10,15 +10,18 @@ new Vue({
             seleccion_estado:0,
             pesaje_estado:0,
             embalaje_estado:0,
+            peso_fijo_estado:0,
             embalaje:'',
             pesaje:'',
             peso:'',
             seleccion:'',
+            peso_fijo:'',
             t_caja:'',
             uva:''
         },
         codigo:'',
-        opcion:''
+        opcion:'',
+        tipo:'normal'
 
     },
     methods:{
@@ -88,37 +91,46 @@ new Vue({
 
             var etapa = this.etapa;
             var bandera = 0;
+            var tipo = this.tipo;
 
-            if(etapa.calibre == ''){
-                bandera = 1;
+            if(tipo === 'normal'){
+                if(etapa.calibre == ''){
+                    bandera = 1;
+                }
+                if(etapa.embalaje == ''){
+                    bandera = 1;
+                }
+                if (etapa.pesaje == ''){
+                    bandera=1;
+                }
+                if(etapa.seleccion_estado === 0){
+                    bandera=1;
+                }
+                if(etapa.pesaje_estado === 0){
+                    bandera=1;
+                }
+                if(etapa.embalaje_estado === 0){
+                    bandera=1;
+                }
+
+            }else{
+                if(etapa.peso_fijo === ''){
+                    bandera = 1;
+                }
+                if(etapa.peso_fijo_estado === 0){
+                    bandera=1;
+                }
             }
-            if(etapa.embalaje == ''){
-                bandera = 1;
-            }
-            if (etapa.pesaje == ''){
-                bandera=1;
-            }
-            if (etapa.peso == ''){
-                bandera = 1;
-            }
+
+
+
             if (etapa.seleccion == ''){
                 bandera=1;
             }
             if(etapa.t_caja == ''){
                 bandera=1;
             }
-            if(etapa.uva == ''){
-                bandera=1;
-            }
-            if(etapa.seleccion_estado === 0){
-                bandera=1;
-            }
-            if(etapa.pesaje_estado === 0){
-                bandera=1;
-            }
-            if(etapa.embalaje_estado === 0){
-                bandera=1;
-            }
+
 
             return bandera;
 
@@ -146,6 +158,9 @@ new Vue({
                            case 'e':
                                v.etapa.embalaje_estado = 1;
                                break;
+                           case 'f':
+                               v.etapa.peso_fijo_estado = 1;
+                               break;
                        }
                    }
                    console.log(v.etapa.seleccion_estado);
@@ -166,17 +181,38 @@ new Vue({
                     v.etapa.embalaje_estado = 0;
                     break;
             }
+        },
+        changeTipo: function () {
+            var tipo = this.tipo;
+
+            if (tipo === 'normal') {
+                $('*[data-opcion="normal"]').show();
+                $('*[data-opcion="peso_fijo"]').hide();
+
+            } else {
+                $('*[data-opcion="peso_fijo"]').show();
+                $('*[data-opcion="normal"]').hide();
+            }
+
+
+
+
         }
 
 
     },
     mounted:function () {
 
-
+        //se oculta el código
         $("#codigo").hide();
         this.opcion = $('#opcion').val();
+
         var v = this;
 
+        //se evalua si está activo el tipo
+        v.changeTipo();
+
+        //esto es el id de la caja
         var id_etapa = $("#id_etapa").val();
 
         if(id_etapa !== ''){
@@ -194,10 +230,6 @@ new Vue({
 
                     v.etapa = data;
                 });
-
-
-
-
         }
 
 

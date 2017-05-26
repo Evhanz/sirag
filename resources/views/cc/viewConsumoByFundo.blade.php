@@ -25,6 +25,7 @@
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a ng-click="changeOption('consumo')"  data-toggle="tab" href="#home">Consumo </a></li>
                             <li ><a  ng-click="changeOption('cci')" data-toggle="tab" href="#home"> Consumo Por CCI </a></li>
+                            <li ><a  ng-click="changeOption('macro')" data-toggle="tab" href="#macro"> Consumo Por CCI Macro</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -77,7 +78,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-8">
-                                                <label for="">*Las fechas se encuentran en MM-DD-YYYY</label>
+                                                <label for="">*Las fechas se encuentran en DD-MM-YYYY</label>
                                             </div>
 
                                         </div>
@@ -113,6 +114,47 @@
 
                                     </div>
                                     <!-- Tab filtro documento -->
+                                    <div id="macro" class="tab-pane fade">
+                                        <div class="row">
+                                            <input type="hidden" id="_token" value="{{ csrf_token() }}" />
+                                            <div class="col-md-2">
+                                                <label for="">Fundo</label>
+                                                <select class="form-control" ng-model="f_fundo" id="f_fundo_macro">
+                                                    <option value="">---------</option>
+                                                    <option ng-repeat="fundo in fundos "
+                                                            value="@{{fundo.CODIGO}}">
+                                                        @{{fundo.CODIGO}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="">*Las fechas se encuentran en DD-MM-YYYY</label>
+                                                <input  name="data_range2" class="form-control" type="text" ng-model="fecha_filter_macro" id="fecha_filter_macro"  />
+                                            </div>
+
+                                        </div>
+
+                                        <br><br>
+                                        <!--
+                                        <div class="row">
+                                            @{{ parrones.length }}
+                                        </div>
+                                        -->
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <button href="" class="btn btn-success" id="btnExcel" ng-click="senDataMacro()">
+                                                    <i class="fa fa-file-excel-o"></i>
+                                                    <strong>Generar Excel</strong>
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
 
                                 </div>
                             </div>
@@ -209,6 +251,7 @@
             $scope.tipodocts = [{}];
             $scope.otros = {};
             $scope.opcion = 'consumo';
+            $scope.parrones = [];
 
             $scope.totales = {};
 
@@ -244,9 +287,6 @@
                 });
 
             }
-
-            
-
 
             $("#f_fundo").change(function(){
                 
@@ -286,6 +326,41 @@
 
             });
 
+            $("#f_fundo_macro").change(function(){
+
+                var fundo = $(this).val();
+
+                var bandera = fundo.indexOf("FUNDO");
+
+                if (bandera>-1) {
+
+                    var f = "F"+fundo.substring(8,9);
+                    var ruta = "{{ URL::route('modContabilidad') }}/api/getParronByFundo/"+f;
+
+
+                    $http.get(ruta)
+                        .success(function(data){
+
+                            $scope.parrones =[];
+                            //console.log(data);
+                            $scope.parrones = data;
+                        })
+                        .error(function(data){
+                            console.log(data);
+                        });
+
+
+
+                } else {
+
+
+                    $scope.parrones =[];
+                }
+
+
+                // alert("Fundo: "+fundo);
+
+            });
 
             $scope.sentData = function (){
 
@@ -300,12 +375,8 @@
                 angular.forEach($scope.parrones,function(item,index){
 
                     var fecha = $("#date_"+index).val();
-
-
-
                  //   console.log( $("#date_"+index).val());
-
-                    console.log(fecha);
+                  //  console.log(fecha);
                     if(fecha === null || fecha ==='' || fecha.length ===0 ){
                         bandera = 1;
                     }else{
@@ -316,7 +387,6 @@
 
                         var f           = fechas[1].trim().split('/');
                         item.endDate    = f[2]+"-"+f[1]+"-"+f[0];
-
 
                     }
 
@@ -336,10 +406,6 @@
                     */
 
                 });
-
-
-
-
 
                     //var fecha = $scope.fecha_otros;
 
@@ -377,9 +443,6 @@
                 }
                 */
 
-
-
-
                 //verificamos el centro de costo
                 var cc = $("#selCentroCosto").val();
 
@@ -387,8 +450,6 @@
                     bandera = 1;
                     alert("tienes que elegir centro de costo");
                 }
-
-
                 //si la bandera = a 0 entonces se envia la data
                if(bandera == 0){
 
@@ -414,7 +475,7 @@
 
                     var token = $('#_token').val();
 
-                   console.log($scope.parrones);
+                  // console.log($scope.parrones);
 
                     $http.post(ruta,{
                         _token   : token,
@@ -453,8 +514,77 @@
 
             };
 
+            $scope.senDataMacro = function () {
+                var  fundo = '';
+                var token = $('#_token').val();
+                if($scope.f_fundo === undefined){
+                    fundo= '';
+                }else{
+                    fundo = ($scope.f_fundo).substring(8,9);
+                }
+
+                var fecha_filter_macro = $("#fecha_filter_macro").val();
+                var f_i = '';
+                var f_f = '';
+
+
+                if(fecha_filter_macro.length>0 && fundo.length > 0){
+
+                    var fechas =  fecha_filter_macro.split('-');
+                    f_i = fechas[0].trim().split('/');
+                    f_i = f_i[2]+"-"+f_i[1]+"-"+f_i[0];
+                    f_f = fechas[1].trim().split('/');
+                    f_f = f_f[2]+"-"+f_f[1]+"-"+f_f[0];
+
+                    angular.forEach($scope.parrones,function(item,index){
+                        item.startDate = f_i;
+                        item.endDate = f_f;
+                    });
+
+                    var otros =  {startDate:f_i,endDate:f_f};
+
+                    var ruta = '{{route('sendDataForExcelConsumoMacro')}}';
+                    var url         = '{{ URL::route('getExcelConsumoByFundo2') }}';
+
+                    $http.post(ruta,{
+                        _token   : token,
+                        parrones : $scope.parrones,
+                        fundo    : fundo,
+                        otros    : otros
+
+                    })
+                        .success(function (data) {
+
+                            if (data=="correcto") {
+
+
+                                window.location = url;
+                                $('#btnExcel').attr("disabled", false);
+
+                            }else{
+                                alert("Ocurrio un error, llamar al area de soporte");
+                                $('#btnExcel').attr("disabled", false);
+                                console.log(data);
+                            }
+
+                        })
+                        .error(function (data) {
+                            alert("Ocurrio un error, llamar al area de soporte");
+                            $('#btnExcel').attr("disabled", false);
+                            console.log(data);
+                        });
+
+                }else {
+
+                    alert('Debe Ingresar las fechas y Fundo');
+
+                }
+
+            };
 
             $scope.changeOption = function (option) {
+
+
 
                 if(option == 'cci'){
 
@@ -467,7 +597,6 @@
                     var bandera = 0;
 
                     angular.forEach( $scope.fundos, function(value, key) {
-
                         if(value.CODIGO == 'TODOS'){
                             bandera = 1;
                         }
@@ -477,10 +606,36 @@
                         $scope.fundos.push(fundo);
                     }
 
-                }else{
+                }
+                if(option == 'consumo'){
                     //$('#mdOtros').show();
                     $('#mdCentroCosto').show();
                     $scope.opcion = 'consumo';
+                }
+                if(option == 'macro'){
+                    //$('#mdOtros').show();
+                    var bandera_index = '';
+                    for(var i=0;i<$scope.fundos.length;i++){
+                        if($scope.fundos[i].CODIGO === 'COSTO IND. X ASIGNAR') bandera_index = i;
+                    }
+                    if(bandera_index !== '') $scope.fundos.splice(bandera_index,1);
+
+                    var fundo = {};
+                    fundo.CODIGO = 'TODOS';
+
+                    var bandera = 0;
+
+                    angular.forEach( $scope.fundos, function(value, key) {
+                        if(value.CODIGO == 'TODOS'){
+                            bandera = 1;
+                        }
+                    });
+
+                    if(bandera == 0){
+                        $scope.fundos.push(fundo);
+                    }
+
+
                 }
 
             };
@@ -500,7 +655,6 @@
             };
 
             /*funcion helper*/
-
 
             function formatDateToText(fecha) {
                 // body...

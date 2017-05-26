@@ -43,6 +43,8 @@ Route::get('contabilidad/api/getParronByFundo/{fundo}',['as'=>'getParronByFundo'
 Route::get('contabilidad/api/getCciByCodigo/{codigo}',['as'=>'getCciByCodigo','uses'=>'ContabilidadController@getCciByCodigo']);
 
 Route::post('contabilidad/sendDataForExcelConsumo',['as'=>'sendDataForExcelConsumo','uses'=>'ContabilidadController@sendDataForExcelConsumo']);
+Route::post('contabilidad/sendDataForExcelConsumoMacro',['as'=>'sendDataForExcelConsumoMacro'
+    ,'uses'=>'ContabilidadController@sendDataForExcelConsumoMacro']);
 
 Route::post('contabilidd/getDataForExcelConsumo2',['as'=>'getDataForExcelConsumo2','uses'=>'ContabilidadController@getDataForExcelConsumo2']);
 Route::post('contabilidd/api/getRetenciones',['as'=>'getRetenciones','uses'=>'ContabilidadController@getRetenciones']);
