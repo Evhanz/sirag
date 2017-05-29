@@ -287,6 +287,10 @@ class ComercialController extends Controller
                 $mes--;
             }
 
+            if($mes < 10){
+                $mes = '0'.$mes;
+            }
+
             $f_i = $anio.$mes.'01';
             $f_f = $anio.$mes.HelpFunct::getUltimoDiaMes($anio,$mes);
 
