@@ -284,7 +284,7 @@ class ComercialController extends Controller
                 $mes = 12;
                 $anio --;
             }else{
-                $anio--;
+                $mes--;
             }
 
             $f_i = $anio.$mes.'01';

@@ -383,6 +383,8 @@ class ProductoRep
                     AND A.Producto = '$producto' -- FILTRO
                     GROUP BY A.Producto ";
 
+        HelpFunct::writeQuery($query);
+
         $res = \DB::select($query);
         $response = 0;
         if(count($res)>0){
