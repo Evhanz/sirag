@@ -635,7 +635,6 @@
                         $scope.fundos.push(fundo);
                     }
 
-
                 }
 
             };

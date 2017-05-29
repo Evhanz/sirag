@@ -432,14 +432,39 @@
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
                                             <form class="form-inline" style="padding: 15px">
 
-                                                <div class="col-xs-3">
-                                                    <label>Rango de Fechas</label>
+                                                <div class="col-xs-1">
+                                                    <label>Periodo</label>
                                                     <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input class="form-control " name="daterange" id="fecha_valorizado" type="text">
+                                                        <select class="form-control" name="" id="mesPeriodo" >
+                                                            <option value="01" selected>Enero</option>
+                                                            <option value="02">Febrero</option>
+                                                            <option value="03">Marzo</option>
+                                                            <option value="04">Abril</option>
+                                                            <option value="05">Mayo</option>
+                                                            <option value="06">Junio</option>
+                                                            <option value="07">Julio</option>
+                                                            <option value="08">Agosto</option>
+                                                            <option value="09">Septiembre</option>
+                                                            <option value="10">Octubre</option>
+                                                            <option value="11">Noviembre</option>
+                                                            <option value="12">Diciembre</option>
+                                                        </select>
                                                     </div><!-- /.input group -->
+
+                                                </div>
+
+                                                <div class="col-xs-1">
+                                                    <label>&nbsp;</label>
+                                                    <div class="input-group">
+                                                        <select class="form-control" name="" id="anioPeriodo">
+                                                            <option value="2017" selected>2017</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2013">2013</option>
+                                                        </select>
+                                                    </div><!-- /.input group -->
+
                                                 </div>
 
                                                 <div class="col-xs-3">
@@ -473,14 +498,15 @@
 
                                                 <div class="col-xs-1">
                                                     <label for="" style="margin-bottom: 20px"> </label><br>
-                                                    <a href="" id="btn_getKardex" class="btn btn-info" ng-click="getKardexValorizado()">
+                                                    <a href="" id="btn_getKardex_valorizado" class="btn btn-info" ng-click="getKardexValorizado()">
                                                         <i class="fa fa-search"></i>
+                                                        <span class="mensaje_cargando"> <i class="fa fa-spinner fa-spin  fa-fw"></i></span>
                                                     </a>
                                                 </div>
 
                                                 <div class="col-xs-1">
                                                     <label for="" style="margin-bottom: 20px"> </label><br>
-                                                    <a href="" id="btn_getKardex" class="btn btn-success" onclick="printValorizado()">
+                                                    <a href="" id="" class="btn btn-success" onclick="printValorizado()">
                                                         <i class="fa fa-file-excel-o"></i>
                                                     </a>
                                                 </div>
@@ -501,22 +527,22 @@
                                                         <th style="background-color: #2b688c;color:white; font-size: 14px;" rowspan="2">Costo U.</th>
                                                         <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Salida Inicial</th>
                                                         <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Compras</th>
-                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Requerimiento</th>
+                                                        <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Req. Mes Anterior</th>
                                                         <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Consumo</th>
                                                         <th style="background-color: #2b688c;color:white; font-size: 14px;" colspan="2">Saldo Final</th>
                                                         <th style="background-color: #2b688c;color:white; font-size: 14px;" rowspan="2">Resultado</th>
                                                     </tr>
                                                     <tr>
                                                         <td>Q</td>
-                                                        <td>TOTAL</td>
+                                                        <td>S/. TOTAL</td>
                                                         <td>Q</td>
-                                                        <td>TOTAL</td>
+                                                        <td>S/. TOTAL</td>
                                                         <td>Q</td>
-                                                        <td>TOTAL</td>
+                                                        <td>S/. TOTAL</td>
                                                         <td>Q</td>
-                                                        <td>TOTAL</td>
+                                                        <td>S/. TOTAL</td>
                                                         <td>Q</td>
-                                                        <td>TOTAL</td>
+                                                        <td>S/. TOTAL</td>
                                                     </tr>
 
                                                     </thead>
@@ -583,6 +609,8 @@
         $('input[name="daterange"]').daterangepicker({
             format : "DD/MM/YYYY"
         });
+
+        $(".mensaje_cargando").hide();
 
 
         /*----*/
@@ -772,66 +800,45 @@
                 /*-----------------*/
 
                 // console.log($scope.TipoDoct);
-                if($scope.producto_glosa_entrada == null || $scope.producto_glosa_entrada.length == 0){
+                if($scope.producto_glosa == null || $scope.producto_glosa.length == 0){
 
-                    $scope.producto_glosa_entrada = '';
+                    $scope.producto_glosa = '';
                 }
-                if($scope.familiaFilterEntrada == null || $scope.familiaFilterEntrada.length == 0){
+                if($scope.familiaFilter == null || $scope.familiaFilter.length == 0){
 
-                    $scope.familiaFilterEntrada = '';
+                    $scope.familiaFilter = '';
                 }
 
 
-                if ( $("#fecha_valorizado").val().length > 0 ) {
+                var periodo = $("#anioPeriodo").val()+''+$("#mesPeriodo").val();
+                var f_i = periodo+''+'01';
+                var f_f = new Date($("#anioPeriodo").val(), $("#mesPeriodo").val(), 0);
+                f_f = periodo+''+f_f.getDate();
+                var ruta = '{{ URL::route('getKardexValorizado') }}';
 
+                $("#btn_getKardex_valorizado").prop('disabled',true);
+                $(".mensaje_cargando").show();
+                $http.post(ruta,
+                    {   _token : token,
+                        producto: $scope.producto_glosa,
+                        f_i: f_i,
+                        f_f: f_f,
+                        familia:$scope.familiaFilter,
+                        subFamilia:$scope.subFamilia
+                    })
+                    .success(function(data){
+                        $scope.kardex = data;
+                        //console.log(data);
+                        $(".mensaje_cargando").hide();
+                        $("#btn_getKardex_valorizado").prop('disabled',false);
 
-                    var fecha_s_format = $("#fecha_valorizado").val().split('-');
-
-                    //se cambia a este formato por que es lo que se necesita por el sql server y el hdp que hizo flexline
-                    var f_i = fecha_s_format[0].trim().split('/');
-                    f_i = f_i[2]+''+f_i[1]+''+f_i[0];
-
-                    var f_f = fecha_s_format[1].trim().split('/');
-                    f_f = f_f[2]+''+f_f[1]+''+f_f[0];
-
-                    var ruta = '{{ URL::route('getKardexValorizado') }}';
-
-                    $("#btn_getKardex").prop('disabled',true);
-
-                    $http.post(ruta,
-                            {   _token : token,
-                                producto: $scope.producto_glosa_entrada,
-                                f_i: f_i,
-                                f_f: f_f,
-                                familia:$scope.familiaFilterEntrada,
-                                subFamilia:$scope.subFamilia
-                            })
-                            .success(function(data){
-
-                                $scope.kardex = data;
-                                console.log(data);
-
-                                $( "div" ).remove( ".overlay" );
-                                $( "div" ).remove( ".loading-img" );
-
-                                $("#btn_getKardex").prop('disabled',false);
-
-                            }).error(function(data) {
+                    }).error(function(data) {
                         console.log(data);
                         alert("Error _>");
-                        $("div").remove(".overlay");
-                        $("div").remove(".loading-img");
-
-                        $("#btn_getKardex").prop('disabled',false);
+                        $(".mensaje_cargando").hide();
+                        $("#btn_getKardex_valorizado").prop('disabled',false);
                     });
 
-
-                } else {
-
-
-
-                    alert("El campo de fecha es obligatorio");
-                }
 
 
             };
@@ -1015,6 +1022,9 @@
                 return fecha;
 
             }
+
+
+
 
 
 
