@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use sirag\Helpers\HelpFunct;
 use sirag\Repositories\ContabilidadRep;
 use sirag\Repositories\DocumentoRep;
 use sirag\Repositories\ProductoRep;
@@ -266,6 +267,8 @@ class ComercialController extends Controller
 
         $data = \Input::all();
 
+      //  return \Response::Json($data);
+
         if(!isset($data['subFamilia'])){
             $data['subFamilia'] = '';
         }
@@ -273,7 +276,25 @@ class ComercialController extends Controller
         $res = $this->productoRep->getKardex($data);
 
         foreach ($res  as $item){
-            $item->requerimiento = round($this->productoRep->getCantRequerimientOfProduct($item->codigo,$data['f_i'],$data['f_f']),3);
+
+            $anio = substr($data['f_i'],0,4);
+            $mes = substr($data['f_i'],4,2);
+
+            if($mes == 1){
+                $mes = 12;
+                $anio --;
+            }else{
+                $mes--;
+            }
+
+            if($mes < 10){
+                $mes = '0'.$mes;
+            }
+
+            $f_i = $anio.$mes.'01';
+            $f_f = $anio.$mes.HelpFunct::getUltimoDiaMes($anio,$mes);
+
+            $item->requerimiento = round($this->productoRep->getCantRequerimientOfProduct($item->codigo,$f_i,$f_f),3);
             unset($item->detalle);
 
             $item->res_cuntificado = $item->requerimiento - $item->total_salidas;

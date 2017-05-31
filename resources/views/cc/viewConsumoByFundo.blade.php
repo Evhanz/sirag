@@ -148,6 +148,7 @@
                                                 <button href="" class="btn btn-success" id="btnExcel" ng-click="senDataMacro()">
                                                     <i class="fa fa-file-excel-o"></i>
                                                     <strong>Generar Excel</strong>
+                                                    <span class="mensaje_cargando"> <i class="fa fa-spinner fa-spin  fa-fw"></i></span>
                                                 </button>
                                             </div>
 
@@ -196,6 +197,7 @@
             format : "DD/MM/YYYY"
         });
         $('[data-toggle="tooltip"]').tooltip();
+        $(".mensaje_cargando").hide();
 
         /*
         $('input[name="data_range"]').daterangepicker(
@@ -546,33 +548,31 @@
                     var ruta = '{{route('sendDataForExcelConsumoMacro')}}';
                     var url         = '{{ URL::route('getExcelConsumoByFundo2') }}';
 
+                    $(".mensaje_cargando").show();
+
                     $http.post(ruta,{
                         _token   : token,
                         parrones : $scope.parrones,
                         fundo    : fundo,
                         otros    : otros
 
-                    })
-                        .success(function (data) {
-
-                            if (data=="correcto") {
-
-
-                                window.location = url;
-                                $('#btnExcel').attr("disabled", false);
-
-                            }else{
-                                alert("Ocurrio un error, llamar al area de soporte");
-                                $('#btnExcel').attr("disabled", false);
-                                console.log(data);
-                            }
-
-                        })
-                        .error(function (data) {
+                    }).success(function (data) {
+                        if (data=="correcto") {
+                            window.location = url;
+                            $('#btnExcel').attr("disabled", false);
+                        }else{
                             alert("Ocurrio un error, llamar al area de soporte");
                             $('#btnExcel').attr("disabled", false);
                             console.log(data);
-                        });
+                        }
+                        $(".mensaje_cargando").hide();
+
+                    }).error(function (data) {
+                        alert("Ocurrio un error, llamar al area de soporte");
+                        $('#btnExcel').attr("disabled", false);
+                        console.log(data);
+                        $(".mensaje_cargando").hide();
+                    });
 
                 }else {
 
@@ -584,7 +584,9 @@
 
             $scope.changeOption = function (option) {
 
+                //AQUÍ MEJORAR EL ALGORITMO
 
+                var bandera_index = '';
 
                 if(option == 'cci'){
 
@@ -592,12 +594,12 @@
                     $('#mdCentroCosto').hide();
                     $scope.opcion = 'cci';
                     var fundo = {};
-                    fundo.CODIGO = 'TODOS';
+                    fundo.CODIGO = 'GENERICO';
 
                     var bandera = 0;
 
                     angular.forEach( $scope.fundos, function(value, key) {
-                        if(value.CODIGO == 'TODOS'){
+                        if(value.CODIGO == 'GENERICO'){
                             bandera = 1;
                         }
                     });
@@ -605,6 +607,13 @@
                     if(bandera == 0){
                         $scope.fundos.push(fundo);
                     }
+
+                    //SE ELIMINA EL TODOS PARA ESTA OPCION
+
+                    for(var i=0;i<$scope.fundos.length;i++){
+                        if($scope.fundos[i].CODIGO === 'TODOS') bandera_index = i;
+                    }
+                    if(bandera_index !== '') $scope.fundos.splice(bandera_index,1);
 
                 }
                 if(option == 'consumo'){
@@ -614,9 +623,13 @@
                 }
                 if(option == 'macro'){
                     //$('#mdOtros').show();
-                    var bandera_index = '';
+
                     for(var i=0;i<$scope.fundos.length;i++){
                         if($scope.fundos[i].CODIGO === 'COSTO IND. X ASIGNAR') bandera_index = i;
+                    }
+                    if(bandera_index !== '') $scope.fundos.splice(bandera_index,1);
+                    for(var i=0;i<$scope.fundos.length;i++){
+                        if($scope.fundos[i].CODIGO === 'GENERICO') bandera_index = i;
                     }
                     if(bandera_index !== '') $scope.fundos.splice(bandera_index,1);
 
@@ -634,7 +647,6 @@
                     if(bandera == 0){
                         $scope.fundos.push(fundo);
                     }
-
 
                 }
 
@@ -655,7 +667,6 @@
             };
 
             /*funcion helper*/
-
             function formatDateToText(fecha) {
                 // body...
 
@@ -664,9 +675,6 @@
                 return fecha;
 
             }
-
-
-
 
         });
     </script>

@@ -438,9 +438,6 @@ class ContabilidadRep
             }
         }
 
-
-
-
         //recorremos cada producto para obetener la matriz
 
         foreach ($productos as $p) {
@@ -495,9 +492,7 @@ class ContabilidadRep
 
         $productos_otros = \DB::select($q_productos);
 
-
         $otros = [];
-
 
         foreach ($productos_otros as $p){
 
@@ -592,39 +587,35 @@ class ContabilidadRep
 
 
         $query = "SELECT 
-A.CORRELATIVO,
-A.AUX_VALOR2,
-A.TIPO_DOCUMENTO, 
-A.REFERENCIA,
-A.HABER_INGRESO,
-A.HABER_ORIGEN,
-A.FECHA,
-A.VALOR4,
-B.RazonSocial
-FROM 
-flexline.CON_MOVCOM A,
-flexline.CtaCte B
-WHERE
-A.EMPRESA=B.Empresa
-AND A.AUX_VALOR2=B.CtaCte
-AND A.EMPRESA='E01'
-AND A.CUENTA='040110104001'
-AND A.ESTADO='A'
-AND YEAR(A.FECHA)=$anio
-AND MONTH(A.FECHA)=$mes
-AND A.HABER_INGRESO<>0
-and A.TIPO_COMPROBANTE='EGRESO'
-GROUP BY A.HABER_ORIGEN,A.CORRELATIVO, A.TIPO_DOCUMENTO, A.REFERENCIA,A.HABER_INGRESO,A.FECHA,A.AUX_VALOR2,
-A.VALOR4,B.RazonSocial
-ORDER BY A.FECHA,A.VALOR4";
-
-
+        A.CORRELATIVO,
+        A.AUX_VALOR2,
+        A.TIPO_DOCUMENTO, 
+        A.REFERENCIA,
+        A.HABER_INGRESO,
+        A.HABER_ORIGEN,
+        A.FECHA,
+        A.VALOR4,
+        B.RazonSocial
+        FROM 
+        flexline.CON_MOVCOM A,
+        flexline.CtaCte B
+        WHERE
+        A.EMPRESA=B.Empresa
+        AND A.AUX_VALOR2=B.CtaCte
+        AND A.EMPRESA='E01'
+        AND A.CUENTA='040110104001'
+        AND A.ESTADO='A'
+        AND YEAR(A.FECHA)=$anio
+        AND MONTH(A.FECHA)=$mes
+        AND A.HABER_INGRESO<>0
+        and A.TIPO_COMPROBANTE='EGRESO'
+        GROUP BY A.HABER_ORIGEN,A.CORRELATIVO, A.TIPO_DOCUMENTO, A.REFERENCIA,A.HABER_INGRESO,A.FECHA,A.AUX_VALOR2,
+        A.VALOR4,B.RazonSocial
+        ORDER BY A.FECHA,A.VALOR4";
 
         $res = \DB::select($query);
 
         return $res;
-
-
 
 
     }

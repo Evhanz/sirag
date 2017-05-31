@@ -45,6 +45,8 @@ class LogController extends Controller
     {
         //
         $user = User::where('USR',$request['usuario'])->where('PWD',$request['pwd'])->first();
+
+
         if(count($user)>0){
             Auth::login($user,true);
 
