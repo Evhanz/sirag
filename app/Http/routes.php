@@ -87,6 +87,7 @@ Route::get('rutina/changeProveedores',['as'=>'changeProveedores',
 
 Route::get('administracion/usuarios',['as'=>'usuarios','uses'=>'AdministracionUserController@index']);
 
+
 //para el login
 Route::resource('log','LogController');
 Route::get('inicio',['as'=>'inicio','uses'=>'AdministracionUserController@inicio']);
@@ -118,7 +119,9 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN']], function () {
 
 //-----para pruebas
 Route::get('prueba/test1',function (){
-    $nombre =  \sirag\Helpers\NumberToLetter::convert('00.01');
-    echo $nombre;
+
+
+   // dd(Auth::user()->getAccess());
+
 });
 

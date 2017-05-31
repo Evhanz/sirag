@@ -112,122 +112,25 @@
                 </div>
             </div>
             <!-- sidebar menu: : style can be found in sidebar.less -->
-            <!--Menu right: option list-->
+            <!--Menu right: option list , principal-->
             <ul class="sidebar-menu">
 
-                @if(Auth::user()->hasAnyRole(['ADMIN','COMERCIAL']))
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-cubes"></i>
-                        <span>Comercial</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
+                <!-- Opciones de usuario -->
 
-                    <ul class="treeview-menu">
-                        <li><a href="{{ URL::route('viewRepProductos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Costo de Productos </a></li>
-                        <li><a href="{{ URL::route('viewOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Ordenes Compra </a></li>
-
-                        <li><a href="{{ URL::route('viewControlOrdenCompraComercial') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
-                        
-                        <li>
-                        <a href="{{ URL::route('viewKardex') }}" class="item sub">
-                            <i class="fa fa-angle-double-right"></i> Reporte Kardex</a></li>
-
-                        <li>
-                            <a href="{{ route('viewConsumoByFundoComercial') }}">
-                                <i class="fa fa-angle-double-right"></i> Reporte Cosumo x Fundo
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('viewSeguimientoGuia') }}">
-                                <i class="fa fa-angle-double-right"></i> Reporte Seguimiento Guia
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li><!--Comercial-->
-                @endif
-
-
-                @if(Auth::user()->hasAnyRole(['ADMIN','CONTABILIDAD']))
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <span>Contabilidad</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-
-                    <ul class="treeview-menu">
-                        <li><a href="{{ URL::route('viewCentroCosto') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Centro Costo</a></li>
-                        <li><a href="{{ URL::route('viewControlOrdenCompra') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte de Control Orden Compra</a></li>
-                        <li><a href="{{ URL::route('viewPDB') }}"><i class="fa fa-angle-double-right"></i> Exportados PDB</a></li>
-                        <li><a href="{{ URL::route('viewConsumoByFundo') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Reporte por consumo</a></li>
-                        <li><a href="{{ URL::route('viewComprobanteEgreso') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Comprobante Egreso</a></li>
-                        <li><a href="{{ URL::route('viewRetenciones') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Retenciones</a></li>
-
-                    </ul>
-                </li><!--Contabilidad-->
-                @endif
-
-
-                @if(Auth::user()->hasAnyRole(['ADMIN','RH']))
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-universal-access" aria-hidden="true"></i>
-                        <span>Recursos Humanos</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-
-                    <ul class="treeview-menu">
-                        <li><a href="{{ URL::route('viewPersonal') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Reporte Personal</a></li>
-                        <li><a href="{{ URL::route('viewTelecredito') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Telecrédito</a></li>
-                        <li><a href="{{ URL::route('viewPlanilla') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Planilla </a></li>
-                        <li><a href="{{ URL::route('viewPlame') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Plame </a></li>
-                        <li><a href="{{ URL::route('viewGetLiquidacion') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Liquidacion </a></li>
-                        <li><a href="{{ URL::route('viewGetAFPNet') }}" class="item sub"><i class="fa fa-angle-double-right"></i> AFP Net </a></li>
-                        <li><a href="{{ URL::route('viewGetCostoMOFundoParron') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Costo MO x Fundo</a></li>
-                        <li><a href="{{ URL::route('viewRegJornales') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Registro de Jornales</a></li>
-                        @if(Auth::user()->USR== 'JMIRANDA' || Auth::user()->hasAnyRole(['ADMIN']) == true )
-                            <li><a href="{{ URL::route('viewDeleteMovimientos') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Eliminar Movimientos </a></li>
-                        @endif
-                        <li><a href="{{ URL::route('viewGetBoletaPago') }}" class="item sub"><i class="fa fa-angle-double-right"></i>Boletas de Pago </a></li>
-
-                    </ul>
-                </li><!--RECURSOS HUMANOS-->
-                @endif
-
-                @if(Auth::user()->hasAnyRole(['SUPADMIN']))
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <span>Configuración</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-
-                    <ul class="treeview-menu">
-                        <li><a href="{{ URL::route('getViewAdminUsuarios') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Administracion de Usuarios</a></li>
-                        
-                    </ul>
-                </li><!--cONFIGURACION SUPER ADMIN-->
-                @endif
-                @if(Auth::user()->hasAnyRole(['ADMIN']))
+                @foreach(Auth::user()->getAccess() as $modulos )
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-universal-access" aria-hidden="true"></i>
-                            <span>Sistemas</span>
+                            <i class="fa {{$modulos->icono}}"></i>
+                            <span>{{$modulos->alias}}</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
-
                         <ul class="treeview-menu">
-                            <li><a href="{{ URL::route('inicioPacking') }}" class="item sub"><i class="fa fa-angle-double-right"></i> Packing</a></li>
+                            @foreach($modulos->sub_modulo as $submodulo)
+                                <li><a href="{{ URL::route($submodulo->alias) }}" class="item sub"><i class="fa fa-angle-double-right"></i> {{$submodulo->descripcion}}</a></li>
+                            @endforeach
                         </ul>
-                    </li><!--Acceso a subsistemas-->
-                @endif
-
-                
-
-
+                    </li><!--Comercial-->
+                @endforeach
 
             </ul>
         </section>

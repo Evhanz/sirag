@@ -98,6 +98,38 @@ class UsuarioRep
     }
 
 
+    public function insertAccesModulo($idModulo,$usr,$tipo){
+
+
+        if($tipo == 'modulo'){
+            $query = "SELECT * FROM sirag.modulos where id = $idModulo";
+        }else{
+            $query = "SELECT * FROM sirag.sub_modulos where id = $idModulo";
+        }
+
+
+        $modulo = \DB::select($query);
+
+        $modulo = $modulo[0];
+
+        $res = \DB::insert("INSERT INTO sirag.accesos
+                            (descripcion, id_modulo, tipo, usuario)
+                            VALUES('$modulo->nombre', $modulo->id, '$tipo', '$usr')");
+        return $res;
+
+    }
+
+    public function DeleteAccesModulo($id){
+
+        $query = "delete from sirag.accesos where id = $id";
+
+        $res = \DB::delete($query);
+
+        return $res;
+
+    }
+
+
 
 
 

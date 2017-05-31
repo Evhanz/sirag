@@ -81,5 +81,33 @@ class User extends Model implements AuthenticatableContract,
             return false;
     }
 
+    public function getAccess(){
+
+        $query_mod = "SELECT a.id id, m.alias alias,m.icono,a.id_modulo id_modulo  FROM sirag.accesos a inner join sirag.modulos m 
+                    on a.id_modulo = m.id
+                    where a.usuario = '$this->USR'
+                    AND tipo = 'modulo'";
+
+        $modulos = \DB::select($query_mod);
+
+        $query = "SELECT a.id id_acceso,m.id id_modulo, a.descripcion descripcion, s.id id_submodulo , s.alias alias
+                    FROM sirag.accesos a INNER JOIN sirag.sub_modulos s 
+                    on a.id_modulo = s.id INNER join sirag.modulos m on s.id_modulo = m.id
+                    where a.usuario = '$this->USR' AND tipo = 'sub_modulo'";
+
+        $submodulos =  \DB::select($query);
+        $submodulos =  collect($submodulos);
+
+        $a_sub_modulos = [];
+        foreach ($modulos as $modulo ){
+
+            $a_sub_modulos = $submodulos->where('id_modulo',$modulo->id_modulo);
+            $modulo->sub_modulo = $a_sub_modulos;
+        }
+
+        return $modulos;
+
+    }
+
 
 }
