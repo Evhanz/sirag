@@ -1372,7 +1372,7 @@
 
                 fecha_dominical = fecha_dominical.split('/');
 
-                fecha=new Date(fecha_dominical[2]+'-'+fecha_dominical[1]+'-'+fecha_dominical[0]);
+                fecha=new Date(fecha_dominical[2],(fecha_dominical[1]-1),fecha_dominical[0]);
                 /*
                 fecha.setDate(fecha_dominical[0]);
                 fecha.setMonth(fecha_dominical[1]);
@@ -1381,13 +1381,16 @@
 
                 var numdia = 0;
                 numdia = fecha.getDay();
+                if(numdia == 1){
 
-                if(numdia == 0){
 
+                    var f_f = sumarDias(fecha.getFullYear(),fecha.getMonth()+1,fecha.getDate(),5);
+                    var mes = f_f.getMonth()+1;
+                    if(f_f.getMonth() <10 ){
+                        mes = '0'+f_f.getMonth();
+                    }
 
-                    //scamos la fecha fin
-                    var f_f = sumarDias(fecha,6);
-                    f_f = f_f.getFullYear()+'-'+(f_f.getMonth()+1)+'-'+f_f.getDate();
+                    f_f = f_f.getFullYear()+'-'+(mes)+'-'+f_f.getDate();
                     var f_i = fecha_dominical[2]+'-'+fecha_dominical[1]+'-'+fecha_dominical[0];
 
                     $http.post('{{URL::route('processdominical')}}',{
@@ -1588,8 +1591,8 @@
             }
 
 
-            function sumarDias(fecha, dias){
-                var f_fin = new Date();
+            function sumarDias(anio,mes,d, dias){
+                var f_fin = new Date(anio,mes,d);
                 f_fin.setDate(fecha.getDate() + dias);
                 return f_fin;
             }

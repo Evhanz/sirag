@@ -2,7 +2,7 @@
  * Created by ehernandez on 02/05/2017.
  */
 
-new Vue({
+var v_etapa=new Vue({
     el:"#content",
     data: {
         etapa:{
@@ -78,14 +78,9 @@ new Vue({
                         $("#btnEnviar").attr('disabled',false);
                     }
                 });
-            }else{
+            }else {
                 alert('Tiene que registrar todos los datos');
             }
-
-
-
-
-
         },
         validateForm: function () {
 
@@ -140,7 +135,6 @@ new Vue({
             ficha = ficha.trim();
             var v = this;
 
-
             var ruta = $("#ruta_empleados").val()+'/rh/api/getTrabajadorBy/'+ficha;
 
             $.getJSON( ruta)
@@ -148,7 +142,6 @@ new Vue({
                    if(data!=0){
 
                        switch (tipo) {
-
                            case 's':
                                v.etapa.seleccion_estado = 1;
                                break;
@@ -193,12 +186,7 @@ new Vue({
                 $('*[data-opcion="peso_fijo"]').show();
                 $('*[data-opcion="normal"]').hide();
             }
-
-
-
-
         }
-
 
     },
     mounted:function () {
@@ -231,13 +219,81 @@ new Vue({
                     v.etapa = data;
                 });
         }
+    }
+
+});
 
 
 
+new Vue({
+    el:"#opciones",
+    data: {
+        calibres:[],
+        t_cajas:[]
+    },
+    methods:{
+
+    },
+    mounted:function () {
+
+        var ruta = $("#ruta_empleados").val()+'/packing/inicio/getOpcionesGenerales/packing_mobile';
+        var v = this;
+
+        $("#opciones").show();
+
+        $.getJSON( ruta)
+            .done(function( data ) {
+
+                var calibre = '';
+
+                data.calibre.forEach(function (item) {
+                    var opcion = "<option  value='"+item.CODIGO+"'>"+item.CODIGO +"</option> ";
+                    calibre = calibre +opcion;
+                });
+
+                var t_caja = '';
+
+                data.tipo_caja.forEach(function (item) {
+                    var opcion = "<option  value='"+item.CODIGO+"'>"+item.CODIGO +"</option> ";
+                    t_caja = t_caja +opcion;
+                });
 
 
+
+                var html ="<li><a >Calibre</a></li>" +
+                    "<li style='padding: 0px 15px 0px 15px'>" +
+                        "<select class='form-control s_opciones' name='calibre' id='calibre'>" +
+                        "<option value=''>-------------</option> " +
+                            calibre+
+                        "</select> " +
+                    "</li>" +
+                    "<li><a >Tipo Caja</a></li> " +
+                    "<li style='padding: 0px 15px 0px 15px'> " +
+                        "<select class='form-control s_opciones' name='t_caja' id='t_caja' > " +
+                        "<option value=''>-------------</option>" +
+                            t_caja+
+                        "</select> " +
+                    "</li>";
+
+                $("#opciones").html(html);
+
+                /*
+                console.log(data);
+                v.calibres = data.calibre;
+                v.t_cajas = data.tipo_caja;*/
+            });
 
 
     }
 
+});
+
+
+
+//asignamos las funciones que controles los cambios de los select
+
+$( "#opciones" ).change(function() {
+
+    v_etapa.etapa.calibre=$( "#calibre" ).val();
+    v_etapa.etapa.t_caja=$( "#t_caja" ).val();
 });

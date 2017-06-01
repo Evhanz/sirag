@@ -1241,8 +1241,6 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-
-
         $fechaI = $data['f_i'];
         $fechaF = $data['f_f'];
         $val = '';

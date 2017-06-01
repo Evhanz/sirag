@@ -1,14 +1,20 @@
 @extends('layouts/packing')
 
 @section('header')
-    <h1>
+
+    <h1 class="hidden-xs" >
         Etapas de packing
         <small></small>
     </h1>
-    <ol class="breadcrumb">
+
+    <ol class="hidden-xs breadcrumb">
         <li><a href="{{ route('viewEtapaAll') }}"><i class="fa fa-dashboard"></i> Etapa</a></li>
         <li class="active">All</li>
     </ol>
+
+
+
+
 
 @stop
 
@@ -20,7 +26,7 @@
     <!-- Row Filter-->
     <div class="row" id="content">
         <!-- SELECT2 EXAMPLE -->
-        <div class="box box-default">
+        <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">Ingreso de Etapa : <small>{{$opcion}}</small></h3>
                 <!--
@@ -57,42 +63,56 @@
                         <div class="col-md-8 ">
 
                             <div class="row">
-                                <div class="col-xs-4" data-opcion="normal">
+                                <div class="col-md-4" data-opcion="normal">
                                     <div v-if="etapa.seleccion_estado == 0 ">
-                                        <h3 >C. Selección <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Selección  </div>
+                                            <div class="pull-right"><i style=" color: red" class="fa fa-barcode"></i></div>
+                                        </div>
+
+
                                     </div>
                                     <div v-else >
-                                        <h3>C. Selección <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <h3>Selección <i style="color: green" class="fa fa-barcode"></i> </h3>
                                     </div>
 
+                                    <input class="form-control input-lg" @keyup="etapaWrite('s')" @keyup.enter="getTrabajador(etapa.seleccion,'s')" v-model="etapa.seleccion" type="text" required>
+
+
                                 </div>
-                                <div class="col-xs-4" data-opcion="normal">
+                                <div class="col-md-4" data-opcion="normal">
                                     <div v-if="etapa.pesaje_estado == 0 ">
-                                        <h3>C. Pesaje <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <h3>Pesaje <i style="color: red" class="fa fa-barcode"></i> </h3>
                                     </div>
                                     <div v-else >
-                                        <h3>C. Pesaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <h3>Pesaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
                                     </div>
+                                    <input class="form-control input-lg" @keyup="etapaWrite('p')" @keyup.enter="getTrabajador(etapa.pesaje,'p')" v-model="etapa.pesaje" type="text" required>
+
 
                                 </div>
-                                <div class="col-xs-4" data-opcion="normal">
+                                <div class="col-md-4" data-opcion="normal">
                                     <div v-if="etapa.embalaje_estado == 0 ">
-                                        <h3>C. Embalaje <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <h3>Embalaje <i style="color: red" class="fa fa-barcode"></i> </h3>
                                     </div>
                                     <div v-else >
-                                        <h3>C. Embalaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <h3>Embalaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
                                     </div>
+
+                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.embalaje,'e')" v-model="etapa.embalaje" type="text" required>
+
                                 </div>
 
                                 <!--peso fijo -->
 
                                 <div class="col-xs-12" data-opcion="peso_fijo">
                                     <div v-if="etapa.embalaje_estado == 0 ">
-                                        <h3>C. Peso Fijo <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <h3>Peso Fijo <i style="color: red" class="fa fa-barcode"></i> </h3>
                                     </div>
                                     <div v-else >
-                                        <h3>C. Peso Fijo  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <h3>Peso Fijo  <i style="color: green" class="fa fa-barcode"></i> </h3>
                                     </div>
+                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.peso_fijo,'f')" v-model="etapa.peso_fijo" type="text" required>
                                 </div>
 
                                 <!--./peso fijo -->
@@ -102,20 +122,16 @@
                             <div class="row">
 
                                 <div class="col-xs-4" data-opcion="normal">
-                                    <input class="form-control input-lg" @keyup="etapaWrite('s')" @keyup.enter="getTrabajador(etapa.seleccion,'s')" v-model="etapa.seleccion" type="text" required>
-                                </div>
+                                     </div>
 
                                 <div class="col-xs-4" data-opcion="normal">
-                                    <input class="form-control input-lg" @keyup="etapaWrite('p')" @keyup.enter="getTrabajador(etapa.pesaje,'p')" v-model="etapa.pesaje" type="text" required>
-                                </div>
+                                     </div>
 
                                 <div class="col-xs-4" data-opcion="normal">
-                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.embalaje,'e')" v-model="etapa.embalaje" type="text" required>
-                                </div>
+                                     </div>
 
                                 <div class="col-xs-12" data-opcion="peso_fijo">
-                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.peso_fijo,'f')" v-model="etapa.peso_fijo" type="text" required>
-                                </div>
+                                      </div>
 
                                 <!--
                                 <div class="col-xs-2">
@@ -143,11 +159,7 @@
                                 -->
                                 <div class="col-xs-6">
                                     <label for="calibre">Calibre</label>
-                                    <select class="form-control" name="calibre" id="calibre" v-model="etapa.calibre" required>
-                                        <option value="12">12</option>
-                                        <option value="11">11</option>
-                                        <option value="13">13</option>
-                                    </select>
+                                    <input type="text" class="form-control" v-model="etapa.calibre" disabled>
                                 </div>
                                 <!--
                                 <div class="col-xs-3">
@@ -158,7 +170,7 @@
 
                                 <div class="col-xs-6">
                                     <label for="calibre">T. Caja</label>
-                                    <input type="text" class="form-control" id="t_caja" v-model="etapa.t_caja" name="t_caja">
+                                    <input type="text" class="form-control" id="t_caja" v-model="etapa.t_caja" name="t_caja" disabled>
                                 </div>
 
                             </div>
@@ -219,5 +231,50 @@
     <!-- vue JS -->
     <script  src="{{asset('js/vue.js')}}"></script>
     <script  src="{{asset('js/mods/packing/etapa.js')}}"></script>
+
+    <style>
+
+        @media (max-width: 770px) {
+            .s_opciones{
+
+                background-color: #367fa9;
+                color:white;
+                border-color: #3c8dbc;
+                margin-bottom: 20px;
+                font-size: 25px;
+                height: 40px;
+
+
+            }
+            .s_opciones option{
+                margin: 2000px;
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+
+            }
+
+            select[name='tipo']{
+                font-size: 18px;
+                height: 35px;
+            }
+
+            .content-header{
+                padding: 0px;
+            }
+            .content{
+                padding-top: 0px;
+            }
+
+            .label_input{
+                padding: 15px;
+            }
+
+        }
+
+
+
+
+    </style>
 
 @stop

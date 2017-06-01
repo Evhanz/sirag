@@ -84,4 +84,30 @@ class EtapaRep
         return $res;
     }
 
+    public function getCalibresUva(){
+
+        $query = "SELECT CODIGO FROM flexline.GEN_TABCOD
+                    WHERE EMPRESA='E01'
+                    AND TIPO='PRODUCTO.CALIBRE' -- CALIBRE
+                    AND VIGENCIA<>'N'";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+
+    }
+
+    public function getTiposCaja(){
+
+        $query = "SELECT CODIGO,DESCRIPCION FROM flexline.GEN_TABCOD
+                WHERE EMPRESA='E01'
+                AND TIPO='PRODUCTO.TIPO_CAJA' -- EMBALAJE
+                AND VIGENCIA<>'N'";
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
 }
