@@ -22,6 +22,7 @@ class EtapaRep
         $fecha = $data['fecha'];
         $seleccion = $data['seleccion'];
         $pesaje = $data['pesaje'];
+        $codigo = $data['codigo'];
 
        /* $query = "INSERT INTO sirag.etapa(t_caja,uva,calibre,peso,embalaje,fecha,hora,usuario,estado,u_seleccion,u_pesaje,u_embalaje)
                   VALUES
@@ -33,7 +34,7 @@ class EtapaRep
         $res = \DB::table('sirag.etapa')->insertGetId(
             ['t_caja' => $t_caja, 'uva' => $uva,'calibre' => $calibre,'peso' => $peso,
                 'e_embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
-                'estado' => 0,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje]
+                'estado' => 0,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje,'codigo'=>$codigo]
         );
 
         return $res;

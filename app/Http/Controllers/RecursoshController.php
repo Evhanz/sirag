@@ -1245,6 +1245,7 @@ class RecursoshController extends Controller
         $fechaF = $data['f_f'];
         $val = '';
 
+
         /*
         $fechaI = '2017-01-30';
         $fechaF = '2017-02-04';
@@ -1253,10 +1254,14 @@ class RecursoshController extends Controller
         $f_I = explode('-',$fechaI);
         $f_F = explode('-',$fechaF);
 
+
         $pass = [];
+
+
 
         //quiere decir que abarca dos meses
         if($f_I[1] != $f_F[1]){
+
 
             //1. hacemos el primer caso del  mes
 
@@ -1265,18 +1270,25 @@ class RecursoshController extends Controller
             $f_inicio = $fechaI;
             $f_1_fin = $f_I[0].'-'.$f_I[1].'-'.HelpFunct::getUltimoDiaMes($f_I[0],$f_I[1]);
 
+
             $res = $this->personalRep->processdominical($f_inicio,$f_1_fin,$f_1_fin);
+
 
            // var_dump($res);
 
             $this->personalRep->deleteJornalVolume($f_1_fin);
 
+
+            /*la fecha que se ingresa el jornal es de tipo d-m-y, $f_1_fin viene y-m-d*/
+            $f_temp =  explode('-',$f_1_fin);
+            $f_temp = $f_temp[2].'-'.$f_temp[1].'-'.$f_temp[0];
+
             foreach ($res as $item){
 
-                $item->fecha =  $f_1_fin;
+                $item->fecha =  $f_temp;
 
                 $d['ficha']     =   $item->TRABAJADOR;
-                $d['fecha']     =    $f_1_fin;
+                $d['fecha']     =    $f_temp;
                 $d['actividad'] =   'HORA-DOMINICAL';
                 $d['hora']      =   round($item->CANTIDAD,2);
                 $d['cci']       =   '696969';//aux_valor5
@@ -1290,8 +1302,10 @@ class RecursoshController extends Controller
                 $p['res']        = $reg;
 
                 array_push($pass,$p);
-
             }
+
+
+
 
             $val = $this->personalRep->getJornalesByFechas($f_1_fin,'dominical');
 
@@ -1302,9 +1316,10 @@ class RecursoshController extends Controller
             $f_1_fin = $fechaF;
 
             $f = HelpFunct::getNextDia($fechaF);
-            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin,$f);
+            $res = $this->personalRep->processdominical($f_inicio,$f_1_fin,$f->format('Y-m-d'));
 
             $this->personalRep->deleteJornalVolume($f->format('Y-m-d'));
+
 
             foreach ($res as $item){
 
@@ -1337,6 +1352,7 @@ class RecursoshController extends Controller
 
         }
         else{
+
 
 
             $f = HelpFunct::getNextDia($fechaF);

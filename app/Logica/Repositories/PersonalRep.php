@@ -2845,7 +2845,7 @@ where EMPRESA = 'e01'";
         return $res;
     }
 
-    //sirve para limpiar los registros ya hechos en es misma fecha para dominicar
+    //sirve para limpiar los registros ya hechos en es misma fecha para dominical
     public function deleteJornalVolume($fecha){
 
 
@@ -2924,7 +2924,12 @@ where EMPRESA = 'e01'";
         return $res;
     }
 
-
+    /**
+     * @param $f_i
+     * @param $f_f
+     * @param $f_dominical: esto se encesita por que si ese domingo no le corresponde
+     * @return mixed
+     */
 
     public function processdominical($f_i,$f_f,$f_dominical){
 

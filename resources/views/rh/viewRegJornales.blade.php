@@ -1385,12 +1385,17 @@
 
 
                     var f_f = sumarDias(fecha.getFullYear(),fecha.getMonth()+1,fecha.getDate(),5);
+                    console.log(f_f);
                     var mes = f_f.getMonth()+1;
-                    if(f_f.getMonth() <10 ){
-                        mes = '0'+f_f.getMonth();
+                    var dia = f_f.getDate();
+                    if(mes <10 ){
+                        mes = '0'+mes;
+                    }
+                    if(dia <10 ){
+                        dia = '0'+dia;
                     }
 
-                    f_f = f_f.getFullYear()+'-'+(mes)+'-'+f_f.getDate();
+                    f_f = f_f.getFullYear()+'-'+mes+'-'+dia;
                     var f_i = fecha_dominical[2]+'-'+fecha_dominical[1]+'-'+fecha_dominical[0];
 
                     $http.post('{{URL::route('processdominical')}}',{
@@ -1592,8 +1597,8 @@
 
 
             function sumarDias(anio,mes,d, dias){
-                var f_fin = new Date(anio,mes,d);
-                f_fin.setDate(fecha.getDate() + dias);
+                var f_fin = new Date(anio,(mes-1),d);
+                f_fin.setDate(f_fin.getDate() + dias);
                 return f_fin;
             }
 

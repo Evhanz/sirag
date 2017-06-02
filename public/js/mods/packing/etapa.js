@@ -14,11 +14,12 @@ var v_etapa=new Vue({
             codigo_estado:0,
             embalaje:'',
             pesaje:'',
-            peso:'',
+            peso:0,
             seleccion:'',
             peso_fijo:'',
             t_caja:'',
-            uva:''
+            uva:'',
+            codigo:''
         },
         codigo:'',
         opcion:'',
