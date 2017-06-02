@@ -37,25 +37,45 @@
                     <div class="col-lg-12">
                         <form  class="form-inline" action="{{route('getEtapaByParameter')}}" method="get">
 
-                            <div class="form-group">
+
+                            <div class="hidden-xs form-group">
                                 <label for="fecha">Rango de Fechas </label>
                                 <input type="text" class="form-control" name="fecha" >
                             </div>
 
-                            <button type="submit" class="btn btn-default">Buscar</button>
+                            <button type="submit" class="hidden-xs btn btn-default">Buscar</button>
 
-                            <div class="form-group" style="margin-left: 30px">
+                            <div class="hidden-xs form-group" style="margin-left: 30px">
 
-                                <a class="btn btn-success" href="{{route('viewNewEtapa')}}">Nuevo</a>
+                                <a class="btn btn-success" href="{{route('viewNewEtapa')}}">
+                                    <i class="fa fa-cubes"></i>Nuevo</a>
                             </div>
+
+                            <!--Esto se va a ver solo en el mobil -->
+                            <a class="visible-xs  btn btn-success" href="{{route('viewNewEtapa')}}">
+                                Nuevo <strong> <i class="fa fa-cubes"></i></strong></a>
                         </form>
 
                     </div>
+
+                    <hr>
+
+                    <div class="visible-xs col-lg-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="email" class="form-control" placeholder="Codigo de caja">
+                        </div>
+                    </div>
+
                 </div>
 
                 <br>
 
-                <div class="row">
+
+
+
+                <!--Esta tabla solo se vera en dispositivos grandes -->
+                <div class="hidden-xs row">
                     <div class="col-lg-12">
                         <table class="table table-bordered">
                             <thead>

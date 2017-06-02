@@ -9,6 +9,8 @@
 namespace sirag\Repositories\packing;
 
 
+use sirag\Helpers\HelpFunct;
+
 class EtapaRep
 {
 
@@ -23,6 +25,9 @@ class EtapaRep
         $seleccion = $data['seleccion'];
         $pesaje = $data['pesaje'];
         $codigo = $data['codigo'];
+        if(isset($data['peso_fijo']))$peso_fijo = $data['peso_fijo'];
+        else $peso_fijo='';
+
 
        /* $query = "INSERT INTO sirag.etapa(t_caja,uva,calibre,peso,embalaje,fecha,hora,usuario,estado,u_seleccion,u_pesaje,u_embalaje)
                   VALUES
@@ -33,8 +38,9 @@ class EtapaRep
 
         $res = \DB::table('sirag.etapa')->insertGetId(
             ['t_caja' => $t_caja, 'uva' => $uva,'calibre' => $calibre,'peso' => $peso,
-                'e_embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
-                'estado' => 0,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje,'codigo'=>$codigo]
+                 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
+                'estado' => 0,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje
+                ,'codigo'=>$codigo,'u_peso_fijo'=>$peso_fijo]
         );
 
         return $res;
@@ -116,8 +122,9 @@ class EtapaRep
         $query = "SELECT *
                     FROM sirag.etapa
                     where codigo = '$codigo'
-                    and cod_pallet = NULL";
+                    and cod_pallet IS NULL";
         $res = \DB::select($query);
+
 
         return $res;
 
@@ -126,8 +133,8 @@ class EtapaRep
     public function getEmpleadoByFichaTipo($ficha,$tipo){
 
         $query = "SELECT * 
-from flexline.PER_TRABAJADOR
-where CARGO = '$tipo' and FICHA = $ficha";
+                from flexline.PER_TRABAJADOR
+                where CARGO = '$tipo' and FICHA = $ficha";
 
         $res = \DB::select($query);
 

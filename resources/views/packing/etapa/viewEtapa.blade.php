@@ -28,7 +28,11 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">Ingreso de Etapa : <small>{{$opcion}}</small></h3>
+                <h3 class="box-title">Ingreso de Etapa : <small>{{$opcion}}</small>
+                    <button @click="resetForm()" class=" visible-xs btn btn-warning" id="btnReset">
+                        <i class="fa fa-eercast" aria-hidden="true"></i>
+                    </button>
+                </h3>
                 <!--
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -65,7 +69,7 @@
 
                             <div class="row">
 
-                                <div class="col-md-3" data-opcion="normal">
+                                <div class="col-md-3" data-opcion="caja">
                                     <div v-if="etapa.codigo_estado == 0 ">
                                         <div class="label_input">
                                             <div class="pull-left"> Caja  </div>
@@ -140,7 +144,7 @@
                                 <!--peso fijo -->
 
                                 <div class="col-xs-12" data-opcion="peso_fijo">
-                                    <div v-if="etapa.embalaje_estado == 0 ">
+                                    <div v-if="etapa.peso_fijo_estado == 0 ">
                                         <div class="label_input">
                                             <div class="pull-left"> Peso Fijo   </div>
                                             <div class="pull-right"><i style="color: red" class="fa fa-address-card-o"></i></div>
@@ -152,7 +156,7 @@
                                             <div class="pull-right"><i style="color: green" class="fa fa-address-card-o"></i></div>
                                         </div>
                                     </div>
-                                    <input id="input_peso_fijo" class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.peso_fijo,'f')" v-model="etapa.peso_fijo" type="text" required>
+                                    <input id="input_peso_fijo" class="form-control input-lg" @keyup="etapaWrite('f')" @keyup.enter="getTrabajador(etapa.peso_fijo,'f')" v-model="etapa.peso_fijo" type="text" required>
                                 </div>
 
                                 <!--./peso fijo -->
@@ -227,7 +231,7 @@
 
                             <div class="row" id="codigo">
                                 <div class="col-xs-12">
-                                    <h2>Código : <strong>@{{ codigo }}</strong></h2>
+                                    <h2>Código :<span class="badge bg-green"><strong>Ok</strong></span> </h2>
                                 </div>
 
                             </div>
@@ -321,6 +325,11 @@
                 vertical-align: middle;
 
                 font-size: 20px;
+            }
+
+            #btnReset{
+                position: absolute;
+                right: 10px;
             }
 
 

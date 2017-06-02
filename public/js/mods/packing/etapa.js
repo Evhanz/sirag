@@ -57,17 +57,22 @@ var v_etapa=new Vue({
                                 v_obj.codigo = data.codigo;
                                 $("#codigo").show();
                                 v_obj.etapa = {
-                                    calibre:'',
                                     embalaje:'',
                                     pesaje:'',
-                                    peso:'',
+                                    peso:0,
                                     seleccion:'',
-                                    t_caja:'',
                                     uva:'',
                                     seleccion_estado:0,
                                     pesaje_estado:0,
-                                    embalaje_estado:0
+                                    embalaje_estado:0,
+                                    codigo_estado:0,
+                                    codigo:'',
+                                    peso_fijo_estado:0,
+                                    calibre:$( "#calibre" ).val(),
+                                    t_caja:$( "#t_caja" ).val()
                                 };
+
+                                v_obj.changeEstateInput('all',false);
                             }
                         }else{
                             alert('Error: '+ data.code);
@@ -90,14 +95,18 @@ var v_etapa=new Vue({
             var bandera = 0;
             var tipo = this.tipo;
 
+            if(etapa.codigo === ''){
+                bandera = 1;
+            }
+            if(etapa.codigo_estado === 0){
+                bandera=1;
+            }
+
             if(tipo === 'normal'){
-                if(etapa.calibre == ''){
+                if(etapa.embalaje === ''){
                     bandera = 1;
                 }
-                if(etapa.embalaje == ''){
-                    bandera = 1;
-                }
-                if (etapa.pesaje == ''){
+                if (etapa.pesaje === ''){
                     bandera=1;
                 }
                 if(etapa.seleccion_estado === 0){
@@ -107,6 +116,9 @@ var v_etapa=new Vue({
                     bandera=1;
                 }
                 if(etapa.embalaje_estado === 0){
+                    bandera=1;
+                }
+                if (etapa.seleccion === ''){
                     bandera=1;
                 }
 
@@ -119,14 +131,16 @@ var v_etapa=new Vue({
                 }
             }
 
-
-
-            if (etapa.seleccion == ''){
+            if(etapa.t_caja === ''){
                 bandera=1;
             }
-            if(etapa.t_caja == ''){
-                bandera=1;
+            if(etapa.calibre === ''){
+                bandera = 1;
             }
+
+
+
+
 
 
             return bandera;
@@ -139,20 +153,7 @@ var v_etapa=new Vue({
 
             var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getEmpleadoByFichaTipo/'+ficha+'/'+tipo;
 
-            switch (tipo) {
-                case 's':
-                    $("#input_seleccion").prop('disabled', true);
-                    break;
-                case 'p':
-                    $("#input_pesaje").prop('disabled', true);
-                    break;
-                case 'e':
-                    $("#input_embalaje").prop('disabled', true);
-                    break;
-                case 'f':
-                    $("#input_peso_fijo").prop('disabled', true);
-                    break;
-            }
+            v.changeEstateInput(tipo,true);
 
             $.getJSON( ruta)
                 .done(function( data ) {
@@ -161,9 +162,11 @@ var v_etapa=new Vue({
                        switch (tipo) {
                            case 's':
                                v.etapa.seleccion_estado = 1;
+                               $("#input_pesaje").focus();
                                break;
                            case 'p':
                                v.etapa.pesaje_estado = 1;
+                               $("#input_embalaje").focus();
                                break;
                            case 'e':
                                v.etapa.embalaje_estado = 1;
@@ -172,49 +175,44 @@ var v_etapa=new Vue({
                                v.etapa.peso_fijo_estado = 1;
                                break;
                        }
+
                    }else{
                        alert('Codigo de Trabajador incorrecto');
+                       v.changeEstateInput(tipo,false);
                    }
                 }).fail(function (data) {
                     alert('Error:');
-                console.log(data);
-                switch (tipo) {
-                    case 's':
-                        $("#input_seleccion").prop('disabled', false);
-                        break;
-                    case 'p':
-                        $("#input_pesaje").prop('disabled', false);
-                        break;
-                    case 'e':
-                        $("#input_embalaje").prop('disabled', false);
-                        break;
-                    case 'f':
-                        $("#input_peso_fijo").prop('disabled', false);
-                        break;
-                }
+                    console.log(data);
+                    v.changeEstateInput(tipo,false);
+
             });
 
         },
         getCodigoCaja: function (codigo) {
 
             var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getByCodigo/'+codigo;
-
             var v= this;
+
+            v.changeEstateInput('c',true);
+
             $.getJSON( ruta)
                 .done(function( data ) {
                     if(data == 0){
                         v.etapa.codigo_estado = 1;
+                        $("#input_seleccion").focus();
                     }else if(data >0){
                         alert('La Caja ya se ha ingresado');
+                        v.changeEstateInput('c',false);
                     }
+                    console.log(data);
                 }).fail(function (data) {
                 alert('ocurrio un error');
+                v.changeEstateInput('c',false);
             });
         },
         etapaWrite: function (etapa) {
             var v = this;
             switch (etapa) {
-
                 case 's':
                     v.etapa.seleccion_estado = 0;
                     break;
@@ -224,7 +222,12 @@ var v_etapa=new Vue({
                 case 'e':
                     v.etapa.embalaje_estado = 0;
                     break;
+                case 'f':
+                    v.etapa.peso_fijo_estado = 0;
+                    break;
             }
+
+            $("#codigo").hide();
         },
         changeTipo: function () {
             var tipo = this.tipo;
@@ -237,6 +240,55 @@ var v_etapa=new Vue({
                 $('*[data-opcion="peso_fijo"]').show();
                 $('*[data-opcion="normal"]').hide();
             }
+            $("#codigo").hide();
+
+            this.resetForm();
+        },
+        changeEstateInput: function (tipo, estado) {
+            switch (tipo) {
+                case 's':
+                    $("#input_seleccion").prop('disabled', estado);
+                    break;
+                case 'p':
+                    $("#input_pesaje").prop('disabled', estado);
+                    break;
+                case 'e':
+                    $("#input_embalaje").prop('disabled', estado);
+                    break;
+                case 'f':
+                    $("#input_peso_fijo").prop('disabled', estado);
+                    break;
+                case 'c':
+                    $("#input_codigo_caja").prop('disabled', estado);
+                    break;
+                default:
+                    $("#input_seleccion").prop('disabled', estado);
+                    $("#input_pesaje").prop('disabled', estado);
+                    $("#input_embalaje").prop('disabled', estado);
+                    $("#input_peso_fijo").prop('disabled', estado);
+                    $("#input_codigo_caja").prop('disabled', estado);
+                    break;
+            }
+
+        },
+        resetForm: function () {
+            this.etapa = {
+                embalaje:'',
+                pesaje:'',
+                peso:0,
+                seleccion:'',
+                uva:'',
+                seleccion_estado:0,
+                pesaje_estado:0,
+                embalaje_estado:0,
+                codigo_estado:0,
+                codigo:'',
+                peso_fijo_estado:0,
+                calibre:$( "#calibre" ).val(),
+                t_caja:$( "#t_caja" ).val()
+            };
+
+            this.changeEstateInput('all',false);
         }
 
     },

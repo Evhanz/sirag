@@ -141,6 +141,7 @@ class EtapaController extends Controller
             case 's': $tipo = 'SELECCION';break;
             case 'p': $tipo = 'PESADO';break;
             case 'e': $tipo = 'EMBALAJE';break;
+            case 'f': $tipo = 'PESADO';break;
         }
 
         $res = $this->etapaRep->getEmpleadoByFichaTipo($ficha,$tipo);

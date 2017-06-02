@@ -1402,7 +1402,6 @@
                         _token:token,
                         f_i:f_i,
                         f_f:f_f
-
                     }).success(function (data) {
 
                        // console.log(data);
