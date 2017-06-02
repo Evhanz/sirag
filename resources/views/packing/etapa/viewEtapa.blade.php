@@ -60,46 +60,80 @@
                             </select>
 
                         </div>
+                        <hr>
                         <div class="col-md-8 ">
 
                             <div class="row">
-                                <div class="col-md-4" data-opcion="normal">
+
+                                <div class="col-md-3" data-opcion="normal">
+                                    <div v-if="etapa.codigo_estado == 0 ">
+                                        <div class="label_input">
+                                            <div class="pull-left"> Caja  </div>
+                                            <div class="pull-right"><i style=" color: red" class="fa fa-archive"></i></div>
+                                        </div>
+                                    </div>
+                                    <div v-else >
+                                        <div class="label_input">
+                                            <div class="pull-left"> Caja  </div>
+                                            <div class="pull-right"><i style="color: green" class="fa fa-archive"></i></div>
+                                        </div>
+                                    </div>
+
+                                    <input id="input_codigo_caja" class="form-control input-lg" @keyup="etapa.codigo_estado = 0 " @keyup.enter="getCodigoCaja(etapa.codigo,'c')" v-model="etapa.codigo" type="text" required>
+
+
+                                </div>
+
+                                <div class="col-md-3" data-opcion="normal">
                                     <div v-if="etapa.seleccion_estado == 0 ">
                                         <div class="label_input">
                                             <div class="pull-left"> Selección  </div>
-                                            <div class="pull-right"><i style=" color: red" class="fa fa-barcode"></i></div>
+                                            <div class="pull-right"><i style=" color: red" class="fa fa-address-card-o"></i></div>
                                         </div>
-
-
                                     </div>
                                     <div v-else >
-                                        <h3>Selección <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Selección  </div>
+                                            <div class="pull-right"><i style="color: green" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
 
-                                    <input class="form-control input-lg" @keyup="etapaWrite('s')" @keyup.enter="getTrabajador(etapa.seleccion,'s')" v-model="etapa.seleccion" type="text" required>
+                                    <input id="input_seleccion" class="form-control input-lg" @keyup="etapaWrite('s')" @keyup.enter="getTrabajador(etapa.seleccion,'s')" v-model="etapa.seleccion" type="text" required>
 
 
                                 </div>
-                                <div class="col-md-4" data-opcion="normal">
+                                <div class="col-md-3" data-opcion="normal">
                                     <div v-if="etapa.pesaje_estado == 0 ">
-                                        <h3>Pesaje <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Pesaje  </div>
+                                            <div class="pull-right"><i style="color: red" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
                                     <div v-else >
-                                        <h3>Pesaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Pesaje  </div>
+                                            <div class="pull-right"><i style="color: green" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
-                                    <input class="form-control input-lg" @keyup="etapaWrite('p')" @keyup.enter="getTrabajador(etapa.pesaje,'p')" v-model="etapa.pesaje" type="text" required>
+                                    <input id="input_pesaje" class="form-control input-lg" @keyup="etapaWrite('p')" @keyup.enter="getTrabajador(etapa.pesaje,'p')" v-model="etapa.pesaje" type="text" required>
 
 
                                 </div>
-                                <div class="col-md-4" data-opcion="normal">
+                                <div class="col-md-3" data-opcion="normal">
                                     <div v-if="etapa.embalaje_estado == 0 ">
-                                        <h3>Embalaje <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Embalaje  </div>
+                                            <div class="pull-right"><i style="color: red" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
                                     <div v-else >
-                                        <h3>Embalaje  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Embalaje  </div>
+                                            <div class="pull-right"><i style="color: green" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
 
-                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.embalaje,'e')" v-model="etapa.embalaje" type="text" required>
+                                    <input id="input_embalaje" class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.embalaje,'e')" v-model="etapa.embalaje" type="text" required>
 
                                 </div>
 
@@ -107,12 +141,18 @@
 
                                 <div class="col-xs-12" data-opcion="peso_fijo">
                                     <div v-if="etapa.embalaje_estado == 0 ">
-                                        <h3>Peso Fijo <i style="color: red" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Peso Fijo   </div>
+                                            <div class="pull-right"><i style="color: red" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
                                     <div v-else >
-                                        <h3>Peso Fijo  <i style="color: green" class="fa fa-barcode"></i> </h3>
+                                        <div class="label_input">
+                                            <div class="pull-left"> Peso Fijo   </div>
+                                            <div class="pull-right"><i style="color: green" class="fa fa-address-card-o"></i></div>
+                                        </div>
                                     </div>
-                                    <input class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.peso_fijo,'f')" v-model="etapa.peso_fijo" type="text" required>
+                                    <input id="input_peso_fijo" class="form-control input-lg" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.peso_fijo,'f')" v-model="etapa.peso_fijo" type="text" required>
                                 </div>
 
                                 <!--./peso fijo -->
@@ -267,8 +307,23 @@
             }
 
             .label_input{
-                padding: 15px;
+                padding-top: 10px;
+                overflow: hidden;
             }
+
+            .label_input .pull-left{
+                font-size: 20px;
+                vertical-align: middle;
+            }
+
+            .label_input .pull-right{
+                margin: 0 auto;
+                vertical-align: middle;
+
+                font-size: 20px;
+            }
+
+
 
         }
 

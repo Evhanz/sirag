@@ -110,4 +110,29 @@ class EtapaRep
         return $res;
     }
 
+    public function getEtapaByCodigo($codigo){
+
+        $query = "SELECT *
+                    FROM sirag.etapa
+                    where codigo = '$codigo'
+                    and cod_pallet = NULL";
+        $res = \DB::select($query);
+
+        return $res;
+
+    }
+
+    public function getEmpleadoByFichaTipo($ficha,$tipo){
+
+        $query = "SELECT * 
+from flexline.PER_TRABAJADOR
+where CARGO = '$tipo' and FICHA = $ficha";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+
+    }
+
 }

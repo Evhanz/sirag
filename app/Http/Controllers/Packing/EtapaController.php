@@ -128,6 +128,27 @@ class EtapaController extends Controller
 
     }
 
+    public function apiGetByCodigo($codigo){
+
+        $res = $this->etapaRep->getEtapaByCodigo($codigo);
+
+        return count($res);
+    }
+
+    public function getEmpleadoByFichaTipo($ficha,$tipo){
+
+        switch ($tipo){
+            case 's': $tipo = 'SELECCION';break;
+            case 'p': $tipo = 'PESADO';break;
+            case 'e': $tipo = 'EMBALAJE';break;
+        }
+
+        $res = $this->etapaRep->getEmpleadoByFichaTipo($ficha,$tipo);
+
+        return count($res);
+
+    }
+
 
 
 }

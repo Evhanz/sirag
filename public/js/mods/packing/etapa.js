@@ -11,6 +11,7 @@ var v_etapa=new Vue({
             pesaje_estado:0,
             embalaje_estado:0,
             peso_fijo_estado:0,
+            codigo_estado:0,
             embalaje:'',
             pesaje:'',
             peso:'',
@@ -135,11 +136,26 @@ var v_etapa=new Vue({
             ficha = ficha.trim();
             var v = this;
 
-            var ruta = $("#ruta_empleados").val()+'/rh/api/getTrabajadorBy/'+ficha;
+            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getEmpleadoByFichaTipo/'+ficha+'/'+tipo;
+
+            switch (tipo) {
+                case 's':
+                    $("#input_seleccion").prop('disabled', true);
+                    break;
+                case 'p':
+                    $("#input_pesaje").prop('disabled', true);
+                    break;
+                case 'e':
+                    $("#input_embalaje").prop('disabled', true);
+                    break;
+                case 'f':
+                    $("#input_peso_fijo").prop('disabled', true);
+                    break;
+            }
 
             $.getJSON( ruta)
                 .done(function( data ) {
-                   if(data!=0){
+                   if(data===1){
 
                        switch (tipo) {
                            case 's':
@@ -155,10 +171,44 @@ var v_etapa=new Vue({
                                v.etapa.peso_fijo_estado = 1;
                                break;
                        }
+                   }else{
+                       alert('Codigo de Trabajador incorrecto');
                    }
-                   console.log(v.etapa.seleccion_estado);
-                });
+                }).fail(function (data) {
+                    alert('Error:');
+                console.log(data);
+                switch (tipo) {
+                    case 's':
+                        $("#input_seleccion").prop('disabled', false);
+                        break;
+                    case 'p':
+                        $("#input_pesaje").prop('disabled', false);
+                        break;
+                    case 'e':
+                        $("#input_embalaje").prop('disabled', false);
+                        break;
+                    case 'f':
+                        $("#input_peso_fijo").prop('disabled', false);
+                        break;
+                }
+            });
 
+        },
+        getCodigoCaja: function (codigo) {
+
+            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getByCodigo/'+codigo;
+
+            var v= this;
+            $.getJSON( ruta)
+                .done(function( data ) {
+                    if(data == 0){
+                        v.etapa.codigo_estado = 1;
+                    }else if(data >0){
+                        alert('La Caja ya se ha ingresado');
+                    }
+                }).fail(function (data) {
+                alert('ocurrio un error');
+            });
         },
         etapaWrite: function (etapa) {
             var v = this;
