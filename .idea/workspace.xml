@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Packing/EtapaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Packing/EtapaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/packing/etapa.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/packing/etapa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/packing/EtapaRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/packing/EtapaRep.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/etapa.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/etapa.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/packing.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/packing/etapa/viewEtapa.blade.php" afterPath="$PROJECT_DIR$/resources/views/packing/etapa/viewEtapa.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1430,14 +1424,7 @@
       <workItem from="1496153846635" duration="24626000" />
       <workItem from="1496240087719" duration="22263000" />
       <workItem from="1496328554379" duration="22148000" />
-      <workItem from="1496413684712" duration="7076000" />
-    </task>
-    <task id="LOCAL-00063" summary="rev">
-      <created>1487261280322</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1487261280322</updated>
+      <workItem from="1496413684712" duration="7308000" />
     </task>
     <task id="LOCAL-00064" summary="rev">
       <created>1487261603420</created>
@@ -1775,11 +1762,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496345096518</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="rev">
+      <created>1496420889696</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1496420889696</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2560154000" />
+    <option name="totallyTimeSpent" value="2560386000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1791,7 +1785,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2693997" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
