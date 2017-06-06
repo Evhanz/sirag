@@ -268,7 +268,7 @@ class ProductoRep
         and B.Producto= C.PRODUCTO
         --AND B.Empresa=D.Empresa
         --AND B.TipoDocto=D.TipoDocto
-        AND A.TipoDocto='N/I ALMACEN (A)'
+        AND A.TipoDocto in ('N/I ALMACEN (A)')
         --AND D.FactorInventario='1'
         and A.Empresa='e01'
         AND B.Fecha BETWEEN '$f_i' and '$f_f'
