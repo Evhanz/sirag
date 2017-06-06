@@ -383,7 +383,7 @@ class ProductoRep
                     AND A.Producto = '$producto' -- FILTRO
                     GROUP BY A.Producto ";
 
-        HelpFunct::writeQuery($query);
+       
 
         $res = \DB::select($query);
         $response = 0;
@@ -424,11 +424,14 @@ class ProductoRep
                 AND dd.Bodega <> '' 
                 --AND tp.Sistema IN ('Inventario','Produccion') 
                 AND tp.FactorInventario='-1' 
+                and dd.Vigente <> 'A' 
                 AND dd.Fecha < '$f_i'
                 AND p.GLOSA = '$glosa'),0) saldo";
 
 
         $res = \DB::select($query);
+
+        //HelpFunct::writeQuery($query);
 
         return $res[0]->saldo;
 
