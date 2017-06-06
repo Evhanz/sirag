@@ -268,7 +268,7 @@ class ProductoRep
         and B.Producto= C.PRODUCTO
         --AND B.Empresa=D.Empresa
         --AND B.TipoDocto=D.TipoDocto
-        AND A.TipoDocto in ('N/I ALMACEN (A)','DEVOLUCION PACKING')
+        AND A.TipoDocto in ('N/I ALMACEN (A)','DEVOLUCION PACKING','AJUSTE T/INVENTARIO')
         --AND D.FactorInventario='1'
         and A.Empresa='e01'
         AND B.Fecha BETWEEN '$f_i' and '$f_f'
@@ -296,7 +296,7 @@ class ProductoRep
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15 , dd.Costo,p.PRODUCTO
         ORDER BY A.Fecha";
 
-        //HelpFunct::writeQuery($query);
+        HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);

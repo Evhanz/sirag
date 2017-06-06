@@ -432,6 +432,17 @@
                                             <input type="hidden" id="_token" value="{{ csrf_token() }}" />
                                             <form class="form-inline" style="padding: 15px">
 
+                                                <div class="col-xs-3">
+                                                    <label>Rango de Fechas</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input class="form-control " name="daterange" id="fecha_valorizado" type="text">
+                                                    </div><!-- /.input group -->
+                                                </div>
+
+                                                <!--
                                                 <div class="col-xs-1">
                                                     <label>Periodo</label>
                                                     <div class="input-group">
@@ -449,7 +460,7 @@
                                                             <option value="11">Noviembre</option>
                                                             <option value="12">Diciembre</option>
                                                         </select>
-                                                    </div><!-- /.input group -->
+                                                    </div>
 
                                                 </div>
 
@@ -463,9 +474,10 @@
                                                             <option value="2014">2014</option>
                                                             <option value="2013">2013</option>
                                                         </select>
-                                                    </div><!-- /.input group -->
-
+                                                    </div>
                                                 </div>
+
+                                                -->
 
                                                 <div class="col-xs-3">
                                                     <label for="" >Familia </label><br>
@@ -810,10 +822,31 @@
                 }
 
 
+                /*esto se comento 06/06/2017*/
+
+                /*
                 var periodo = $("#anioPeriodo").val()+''+$("#mesPeriodo").val();
                 var f_i = periodo+''+'01';
                 var f_f = new Date($("#anioPeriodo").val(), $("#mesPeriodo").val(), 0);
-                f_f = periodo+''+f_f.getDate();
+                 f_f = periodo+''+f_f.getDate();
+                */
+                //---------
+
+                /*se obtiene por dia mes anio y se necesita anio mes dia*/
+
+                var fecha = $("#fecha_valorizado").val();
+                fecha = fecha.split('-');
+
+                var f_i = fecha[0];
+                f_i = f_i.trim().split('/');
+                f_i = f_i[2]+''+f_i[1]+''+f_i[0];
+                var f_f = fecha[1];
+                f_f = f_f.trim().split('/');
+                f_f = f_f[2]+''+f_f[1]+''+f_f[0];
+
+
+                console.log(f_i,f_f);
+               
                 var ruta = '{{ URL::route('getKardexValorizado') }}';
 
                 $("#btn_getKardex_valorizado").prop('disabled',true);
