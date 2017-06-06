@@ -75,7 +75,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>Codigo Caja</th>
                                 <th>Tipo Caja</th>
                                 <th>Tipo Uva</th>
                                 <th>Calibre</th>
@@ -90,7 +90,7 @@
                             <tbody>
                             @foreach($etapa as $item)
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->codigo}}</td>
                                     <td>{{$item->t_caja}}</td>
                                     <td>{{$item->uva}}</td>
                                     <td>{{$item->calibre}}</td>
