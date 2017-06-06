@@ -37,7 +37,6 @@
                     <div class="col-lg-12">
                         <form  class="form-inline" action="{{route('getEtapaByParameter')}}" method="get">
 
-
                             <div class="hidden-xs form-group">
                                 <label for="fecha">Rango de Fechas </label>
                                 <input type="text" class="form-control" name="fecha" >
@@ -66,13 +65,9 @@
                             <input type="email" class="form-control" placeholder="Codigo de caja">
                         </div>
                     </div>
-
                 </div>
 
                 <br>
-
-
-
 
                 <!--Esta tabla solo se vera en dispositivos grandes -->
                 <div class="hidden-xs row">
@@ -90,9 +85,7 @@
                                 <th>P. Embalaje</th>
                                 <th>Fecha</th>
                                 <th>Opciones</th>
-                                
                             </tr>
-
                             </thead>
                             <tbody>
                             @foreach($etapa as $item)

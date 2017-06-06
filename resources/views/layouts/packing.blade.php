@@ -105,16 +105,12 @@
                 <li><a href="{{route('viewAllMP')}}"><i class="fa fa-circle-o text-red"></i> <span>Materia Prima</span></a></li>
                 <li><a href="{{route('viewEtapaAll')}}"><i class="fa fa-circle-o text-yellow"></i> <span>E. Seleccion</span></a></li>
                 <li><a href="{{route('viewAllPallet')}}"><i class="fa fa-circle-o text-green"></i> <span>Pallet</span></a></li>
+                <li><a href="{{route('viewAllPallet')}}"><i class="fa fa-circle-o text-teal"></i> <span>Cambio Cargo</span></a></li>
 
               <!--  <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
                 <li class="header">OPCIONES GENERALES</li>
                 <span id="opciones">
-
-
-
                 </span>
-
-
 
 
             </ul>
@@ -141,7 +137,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
+    <footer class=" hidden-xs main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>

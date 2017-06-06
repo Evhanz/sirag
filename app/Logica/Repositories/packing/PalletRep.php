@@ -9,6 +9,8 @@
 namespace sirag\Repositories\packing;
 
 
+use sirag\Helpers\HelpFunct;
+
 class PalletRep
 {
 
@@ -18,6 +20,14 @@ class PalletRep
 
         return $res;
 
+    }
+
+
+    public function getPalletByCodigo($codigo){
+
+        $res = \DB::table('sirag.pallet')->where('codigo',$codigo)->get();
+
+        return $res;
     }
 
     public function regPallet($data){
@@ -39,12 +49,14 @@ class PalletRep
 
         $codigos_etapas=trim($codigos_etapas, ',');
 
-
-
-        $res = \DB::update("UPDATE sirag.etapa
+        $query = "UPDATE sirag.etapa
                         SET cod_pallet=$codPallet,estado = $estado
                         WHERE 
-                       id in ($codigos_etapas)");
+                       codigo in ($codigos_etapas)";
+
+        $res = \DB::update($query);
+
+        HelpFunct::writeQuery($query);
 
         return $res;
 

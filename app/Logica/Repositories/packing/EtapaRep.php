@@ -134,7 +134,7 @@ class EtapaRep
 
         $query = "SELECT * 
                 from flexline.PER_TRABAJADOR
-                where CARGO = '$tipo' and FICHA = $ficha";
+                where CARGO = '$tipo' and FICHA = $ficha and VIGENCIA = 'ACTIVO'";
 
         $res = \DB::select($query);
 

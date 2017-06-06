@@ -51,12 +51,11 @@ class PalletController extends Controller
         $date = $carbon->now();
         $date = $date->format('Y-M-d H:i:s');
 
-        $pallet = $data['pallet'];
+        $pallet = [];
+        $pallet['codigo'] = $data['pallet'];
         $pallet['registrador'] = 'EHERNANDEZ';
         $pallet['fecha_registro'] = $date;
         $pallet['estado'] = 1;
-
-
 
 
         $id_pallet  = $this->palletRep->regPallet($pallet);
@@ -64,9 +63,8 @@ class PalletController extends Controller
         if($id_pallet >0 ){
 
 
-            $this->palletRep->editPallet($data['detalles'],$id_pallet,1);
-
-            $res = ['code'=>200,'codigo'=>$id_pallet];
+            $this->palletRep->editPallet($data['detalles'],$pallet['codigo'],1);
+            $res = ['code'=>200,'codigo'=>$pallet['codigo']];
 
         }else{
 
@@ -74,10 +72,7 @@ class PalletController extends Controller
         }
 
 
-
         return \Response::json($res);
-
-
     }
 
     public function getDetailsPallet($id){
@@ -85,7 +80,13 @@ class PalletController extends Controller
         $res = $this->palletRep->getDetailsPallet($id);
 
         return \Response::json($res);
+    }
 
+    public function getPalletByCodigo($codigo){
+
+        $res = $this->palletRep->getPalletByCodigo($codigo);
+
+        return \Response::json(count($res));
     }
 
 

@@ -15,3 +15,4 @@ Route::post('packing/pallet/regPallet',['as'=>'regPallet','uses'=>'Packing\Palle
 Route::post('packing/pallet/editPallet',['as'=>'editPallet','uses'=>'Packing\PalletController@editPallet']);
 Route::get('packing/pallet/getPallet/{id}',['as'=>'getPalletById','uses'=>'Packing\PalletController@getPalletById']);
 Route::get('packing/pallet/getDetailsPallet/{id}',['as'=>'getPalletById','uses'=>'Packing\PalletController@getDetailsPallet']);
+Route::get('packing/pallet/getPalletBy/{codigo}',['as'=>'getPalletByCodigo','uses'=>'Packing\PalletController@getPalletByCodigo']);

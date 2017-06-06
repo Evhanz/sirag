@@ -19,7 +19,9 @@ new Vue({
         pallet:{descripcion:''},
         opcion:'',
         codigo:'',
-        bandera:0
+        bandera:0,
+        caja:'',
+        codigo_pallet:''
     },
     methods:{
         saveData : function () {
@@ -37,7 +39,7 @@ new Vue({
                 var token = $('#_token').val();
 
                 $.ajax({
-                    data: {pallet:v_obj.pallet,_token:token,detalles:v_obj.detalles},
+                    data: {pallet:v_obj.codigo_pallet,_token:token,detalles:v_obj.detalles},
                     url:url,
                     type: 'post',
                     beforeSend: function () {
@@ -51,9 +53,13 @@ new Vue({
                                 window.location = $("#ruta_empleados").val()+'/packing/etapa/viewAll';
                             }else{
                                 $("#btnEnviar").attr('disabled',false);
-                                v_obj.codigo = data.codigo;
+                               // v_obj.codigo = data.codigo;
                                 v_obj.detalles=[];
-                                v_obj.pallet={descripcion:''};
+                              //  v_obj.pallet={descripcion:''};
+                                v_obj.codigo_pallet='';
+                                $("#codigo_pallet").prop('disabled',false);
+
+                                aler('Correcto');
 
                             }
                         }else{
@@ -78,19 +84,10 @@ new Vue({
             var bandera = 0;
             var v = this;
 
-            if(v.pallet.descripcion ===''){
+            if(v.codigo_pallet === ''){
                 bandera = 1;
             }
 
-            this.detalles.forEach(function (item,index) {
-                if(item.estado !== 1){
-                    v.detalles.splice(index,1);
-                }
-            });
-
-            if(v.detalles.length === 0){
-                return 1;
-            }
 
             return bandera;
             
@@ -112,32 +109,56 @@ new Vue({
                 this.detalles.splice(index,1);
             }
         },
-        getCaja : function (idCaja,item,index) {
+        getCaja : function (idCaja) {
 
-            var ruta = $('#ruta').val()+'/packing/etapa/api/getById/'+idCaja;
+            var ruta = $('#ruta').val()+'/packing/etapa/api/getByCodigo/'+idCaja;
             var v = this;
 
             $.getJSON( ruta)
                 .done(function( data ) {
 
-                    var bandera = 0;
-                    v.detalles.forEach(function (item,i) {
-                        if(item.id_caja === data.id && i !== index){
-                            bandera =1;
-                        }
-                    });
+                    console.log('a1',data);
 
-                    if(bandera!==0 || data.estado == 1){
-                        alert('Esta Caja ya está ingresada');
+                    if(data === 1 ){
+
+                        var b = '';
+
+                        v.detalles.find(function (i,index) {
+                           if( i.id_caja === idCaja)  b = index;
+                        });
+
+
+                        if(b===''){
+                            var e = {id_caja:idCaja};
+                            v.detalles.splice(0, 0,e);
+                            v.caja = '';
+
+
+                            $('.details tbody tr:nth-child(1)').removeClass('detalle').animate({'nothing':null}, 1, function () {
+                                $(this).addClass('detalle');
+                            });
+
+
+
+                        }else
+                        {
+                            alert('El código ya a sido ingresado');
+                        }
+
+
+
 
                     }else{
-
-                        item.id_caja = data.id;
-                        item.estado = 1;
-                        $("#"+index).prop('disabled', true);
-                        v.addDetail();
-
+                        alert("No existe ese código o no está hábil");
                     }
+
+                    var bandera = 0;
+                    //acamodificar toda la lógica
+                    v.detalles.forEach(function (item,i) {
+
+
+
+                    });
                 })
                 .fail(function (data) {
                   alert('El código no es  correcto');
@@ -163,6 +184,43 @@ new Vue({
 
             //console.log('llega aca');
 
+        },
+        validateCodePallet: function(codigo_pallet){
+
+            var ruta  = $("#ruta").val()+'/packing/pallet/getPalletBy/'+codigo_pallet;
+            var v = this;
+
+            $.getJSON( ruta)
+                .done(function( data ) {
+                    if(data === 0 ){
+                        v.codigo_pallet = codigo_pallet;
+                        $("#codigo_pallet").prop('disabled',true);
+
+                    }else{
+                        alert("El codigo no está disponible");
+                    }
+
+                })
+                .fail(function (data) {
+                    alert("Error");
+                    console.log(data);
+                });
+
+
+
+        },
+        reset: function () {
+
+            var a = confirm('Seguro Que desea continuar ??, Se borrará los datos en el formulario');
+
+
+            if(a === true){
+                this.codigo_pallet = '';
+                this.detalles=[];
+                $("#codigo_pallet").prop('disabled',false);
+            }
+
+
         }
     },
     mounted:function () {
@@ -184,6 +242,7 @@ new Vue({
             format : "DD/MM/YYYY"
         });
 
+
     },
     watch: {
         bandera:function () {
@@ -195,9 +254,6 @@ new Vue({
 
         var bandera =  this.detalles.length - 1 ;
 
-      //  $("#"+bandera).focus();
-
-     //   console.log(bandera);
 
     }
 
