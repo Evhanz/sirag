@@ -8,7 +8,8 @@ Vue.directive('focus', {
     // When the bound element is inserted into the DOM...
     inserted: function (el) {
         // Focus the element
-        el.focus()
+        //el.focus()
+
     }
 });
 
@@ -22,7 +23,7 @@ new Vue({
         bandera:0,
         caja:'',
         codigo_pallet:'',
-        isDisabled:false
+        isDisabled:true
     },
     methods:{
         saveData : function () {
@@ -130,17 +131,13 @@ new Vue({
                             var e = {id_caja:idCaja};
                             v.detalles.splice(0, 0,e);
                             v.caja = '';
-                            /*
+
                             $('.details tbody tr:nth-child(1)').removeClass('detalle').animate({'nothing':null}, 1, function () {
                                 $(this).addClass('detalle');
                             });
-                            */
-
-
                            // $("#code_caja").delay(1500).prop('disabled',false);
 
                             v.isDisabled = false;
-                            $("#code_caja").focus();
 
                         }else
                         {
@@ -156,7 +153,6 @@ new Vue({
                         v.isDisabled = false;
                         v.caja = '';
                        // $("#code_caja").attr('disabled',true);
-                        $("#code_caja").focus();
                     }
 
                     var bandera = 0;
@@ -172,6 +168,7 @@ new Vue({
                 })
                 .fail(function (data) {
                   alert('El código no es  correcto');
+                  v.isDisabled = false;
                 });
 
         },
@@ -192,7 +189,6 @@ new Vue({
 
             $("#modalPallet").modal('show');
 
-            //console.log('llega aca');
 
         },
         validateCodePallet: function(codigo_pallet){
@@ -209,7 +205,7 @@ new Vue({
                         if(data === 0 ){
                             v.codigo_pallet = codigo_pallet;
                             $("#codigo_pallet").prop('disabled',true);
-
+                            v.isDisabled = false ;
                         }else{
                             alert("El codigo no está disponible");
                         }
@@ -263,7 +259,9 @@ new Vue({
 
     },
     watch: {
-        bandera:function () {
+        caja:function () {
+
+
 
         }
 
@@ -271,6 +269,14 @@ new Vue({
     updated: function () {
 
         var bandera =  this.detalles.length - 1 ;
+
+        var a =  $("#codigo_pallet:disabled" ).val();
+
+        if(a!==undefined){
+            $("#code_caja").focus();
+        }
+
+
 
 
     }
