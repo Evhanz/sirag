@@ -61,7 +61,7 @@ new Vue({
                                 v_obj.codigo_pallet='';
                                 $("#codigo_pallet").prop('disabled',false);
 
-                                aler('Correcto');
+                                alert('Correcto');
 
                             }
                         }else{
