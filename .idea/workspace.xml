@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/pallet.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/pallet.js" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,7 +54,7 @@
       <file leaf-file-name="pallet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/mods/packing/pallet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="323">
               <caret line="63" column="50" lean-forward="false" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
               <folding>
                 <element signature="e#2493#2687#0" expanded="false" />
@@ -1303,14 +1302,7 @@
       <workItem from="1496672597009" duration="23606000" />
       <workItem from="1496758888053" duration="4215000" />
       <workItem from="1496765395411" duration="18602000" />
-      <workItem from="1496844899402" duration="15318000" />
-    </task>
-    <task id="LOCAL-00071" summary="rev_mod_jornales">
-      <created>1487633618251</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1487633618251</updated>
+      <workItem from="1496844899402" duration="15392000" />
     </task>
     <task id="LOCAL-00072" summary="rev_reg jornales">
       <created>1487709690824</created>
@@ -1648,11 +1640,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496857271119</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="rev">
+      <created>1496867715966</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1496867715966</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2640734000" />
+    <option name="totallyTimeSpent" value="2640808000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2293,7 +2292,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/mods/packing/pallet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="323">
           <caret line="63" column="50" lean-forward="false" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
           <folding>
             <element signature="e#2493#2687#0" expanded="false" />
