@@ -100,7 +100,6 @@ new Vue({
             this.bandera ++;
 
         },
-
         quitDetail : function (index) {
 
 
@@ -197,25 +196,33 @@ new Vue({
 
         },
         validateCodePallet: function(codigo_pallet){
+            /*esta funcion mediante el codigo , ferifica si el código está disponible */
 
             var ruta  = $("#ruta").val()+'/packing/pallet/getPalletBy/'+codigo_pallet;
             var v = this;
 
-            $.getJSON( ruta)
-                .done(function( data ) {
-                    if(data === 0 ){
-                        v.codigo_pallet = codigo_pallet;
-                        $("#codigo_pallet").prop('disabled',true);
+            if(v.codigo_pallet === '' || v.codigo_pallet.length < 6 || v.codigo_pallet.length > 6){
+                alert('Ingrese un código válido');
+            }else{
+                $.getJSON( ruta)
+                    .done(function( data ) {
+                        if(data === 0 ){
+                            v.codigo_pallet = codigo_pallet;
+                            $("#codigo_pallet").prop('disabled',true);
 
-                    }else{
-                        alert("El codigo no está disponible");
-                    }
+                        }else{
+                            alert("El codigo no está disponible");
+                        }
 
-                })
-                .fail(function (data) {
-                    alert("Error");
-                    console.log(data);
-                });
+                    })
+                    .fail(function (data) {
+                        alert("Error");
+                        console.log(data);
+                    });
+
+            }
+
+
 
 
 

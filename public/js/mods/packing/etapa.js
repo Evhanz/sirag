@@ -218,9 +218,10 @@ var v_etapa=new Vue({
 
             v.changeEstateInput('c',true);
 
-            if (codigo === ''){
-                alert('Ingrese una código');
+            if (codigo === '' || codigo.length < 8 || codigo.length > 8){
+                alert('Ingrese una código válido');
                 v.changeEstateInput('c',false);
+                v.etapa.codigo = '';
             }else{
 
                 $.getJSON( ruta)

@@ -4,6 +4,7 @@
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/etapa.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/etapa.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/pallet.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/pallet.js" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +44,8 @@
       <file leaf-file-name="viewNewPallet.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="62" column="158" lean-forward="false" selection-start-line="62" selection-start-column="158" selection-end-line="62" selection-end-column="158" />
+            <state relative-caret-position="289">
+              <caret line="41" column="31" lean-forward="true" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
               <folding>
                 <element signature="e#1494#1520#0#HTML" expanded="true" />
               </folding>
@@ -52,30 +53,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pallet.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pallet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/mods/packing/pallet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="156" column="42" lean-forward="true" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
+            <state relative-caret-position="528">
+              <caret line="220" column="23" lean-forward="false" selection-start-line="220" selection-start-column="23" selection-end-line="220" selection-end-column="23" />
               <folding>
                 <element signature="e#495#2444#0" expanded="false" />
+                <element signature="e#2490#2684#0" expanded="false" />
+                <element signature="e#2718#2831#0" expanded="false" />
+                <element signature="e#2871#3022#0" expanded="false" />
+                <element signature="e#3060#5148#0" expanded="false" />
+                <element signature="e#6218#6540#0" expanded="false" />
+                <element signature="e#6751#7045#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="etapa.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="etapa.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/mods/packing/etapa.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="194" column="32" lean-forward="true" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
+            <state relative-caret-position="272">
+              <caret line="220" column="71" lean-forward="true" selection-start-line="220" selection-start-column="33" selection-end-line="220" selection-end-column="71" />
               <folding>
                 <element signature="e#605#3130#0" expanded="false" />
                 <element signature="e#3166#4470#0" expanded="false" />
-                <element signature="e#7405#7928#0" expanded="false" />
-                <marker date="1496852728076" expanded="true" signature="12482:12508" ph="..." />
-                <marker date="1496852728076" expanded="true" signature="12870:12896" ph="..." />
+                <element signature="e#4517#6976#0" expanded="false" />
+                <element signature="e#7491#8014#0" expanded="false" />
+                <marker date="1496853425424" expanded="true" signature="12568:12594" ph="..." />
+                <marker date="1496853425424" expanded="true" signature="12956:12982" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewEtapa.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/packing/etapa/viewEtapa.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2561">
+              <caret line="216" column="86" lean-forward="false" selection-start-line="216" selection-start-column="80" selection-end-line="216" selection-end-column="86" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -185,8 +203,8 @@
         <option value="$PROJECT_DIR$/resources/views/rh/viewCambioCargo.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/packing/pallet/viewAllPallet.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/mods/packing/pallet.js" />
         <option value="$PROJECT_DIR$/public/js/mods/packing/etapa.js" />
+        <option value="$PROJECT_DIR$/public/js/mods/packing/pallet.js" />
       </list>
     </option>
   </component>
@@ -1297,14 +1315,7 @@
       <workItem from="1496672597009" duration="23606000" />
       <workItem from="1496758888053" duration="4215000" />
       <workItem from="1496765395411" duration="18602000" />
-      <workItem from="1496844899402" duration="7294000" />
-    </task>
-    <task id="LOCAL-00068" summary="rev">
-      <created>1487604284152</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1487604284152</updated>
+      <workItem from="1496844899402" duration="8171000" />
     </task>
     <task id="LOCAL-00069" summary="rev_mod_jornales">
       <created>1487624575922</created>
@@ -1642,11 +1653,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496852098247</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="rev">
+      <created>1496852808227</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1496852808227</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2632710000" />
+    <option name="totallyTimeSpent" value="2633587000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1658,7 +1676,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1760,6 +1778,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8908">
           <caret line="531" column="20" lean-forward="false" selection-start-line="531" selection-start-column="20" selection-end-line="531" selection-end-column="20" />
+          <folding>
+            <marker date="1496092749335" expanded="true" signature="306:476" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1496092749335" expanded="true" signature="1100:1134" ph="select * fro... temp_balance_general" />
+            <marker date="1496092749335" expanded="true" signature="2902:4129" ph="SELECT v.Num... v_ordenCompra_details" />
+            <marker date="1496092749335" expanded="true" signature="3086:3568" ph="select CONVE... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="5760:6007" ph="select conve... GEN_TASCAM" />
+            <marker date="1496092749335" expanded="true" signature="6135:6285" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1496092749335" expanded="true" signature="6426:6632" ph="SELECT CODIG... GEN_TABCOD" />
+            <marker date="1496092749335" expanded="true" signature="6895:7071" ph="SELECT PRODU... PRODUCTO" />
+            <marker date="1496092749335" expanded="true" signature="7114:7300" ph="SELECT PRODU... v_getConsumoGif" />
+            <marker date="1496092749335" expanded="true" signature="8749:9066" ph="SELECT PRODU... v_getConsumoMateriaPrima" />
+            <marker date="1496092749335" expanded="true" signature="9109:9417" ph="SELECT PRODU... v_getConsumoGif" />
+            <marker date="1496092749335" expanded="true" signature="9958:10227" ph="SELECT CONVE... v_getConsumoMateriaPrima" />
+            <marker date="1496092749335" expanded="true" signature="10272:10532" ph="SELECT CONVE... v_getConsumoGif" />
+            <marker date="1496092749335" expanded="true" signature="11736:12136" ph="SELECT Anali... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="12387:13037" ph="SELECT p.GLO... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="14484:14870" ph="SELECT Anali... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="14946:15439" ph="SELECT p.GLO... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="16615:17087" ph="SELECT p.GLO... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="17907:18666" ph="SELECT A.COR... CON_MOVCOM" />
+            <marker date="1496092749335" expanded="true" signature="18983:19382" ph="update flexl... " />
+            <marker date="1496092749335" expanded="true" signature="19746:24642" ph="SELECT '6' A... " />
+            <marker date="1496092749335" expanded="true" signature="25298:25929" ph="select CONVE... DocumentoD" />
+            <marker date="1496092749335" expanded="true" signature="26128:27510" ph="SELECT A.COR... CON_MOVCOM" />
+            <marker date="1496092749335" expanded="true" signature="26220:26405" ph="SELECT TOP 1... CON_MOVCOM" />
+            <marker date="1496092749335" expanded="true" signature="26533:26688" ph="SELECT GLOSA... CON_ENCCOM" />
+            <marker date="1496092749335" expanded="true" signature="26705:26895" ph="SELECT TOP 1... CON_MOVCOM" />
+            <marker date="1496092749335" expanded="true" signature="26912:27030" ph="SELECT TOP 1... CON_CTACON" />
+            <marker date="1496092749335" expanded="true" signature="27044:27134" ph="SELECT ALIAS... CON_CTACON" />
+            <marker date="1496092749335" expanded="true" signature="27148:27305" ph="SELECT USUAR... CON_ENCCOM" />
+            <marker date="1496092749335" expanded="true" signature="30165:30499" ph="SELECT SUM( DocumentoD" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1961,6 +2011,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
           <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <marker date="1496702173221" expanded="true" signature="872:1039" ph="UPDATE sirag... " />
+            <marker date="1496702173221" expanded="true" signature="1327:2110" ph="select p.id,... pallet" />
+            <marker date="1496702173221" expanded="true" signature="1446:1606" ph="select NOMBR... PER_TRABAJADOR" />
+            <marker date="1496702173221" expanded="true" signature="1636:1796" ph="select NOMBR... PER_TRABAJADOR" />
+            <marker date="1496702173221" expanded="true" signature="1825:1985" ph="select NOMBR... PER_TRABAJADOR" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2215,16 +2272,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/packing/etapa/viewEtapa.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="2561">
           <caret line="216" column="86" lean-forward="false" selection-start-line="216" selection-start-column="80" selection-end-line="216" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/etapa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="220" column="71" lean-forward="true" selection-start-line="220" selection-start-column="33" selection-end-line="220" selection-end-column="71" />
+          <folding>
+            <element signature="e#605#3130#0" expanded="false" />
+            <element signature="e#3166#4470#0" expanded="false" />
+            <element signature="e#4517#6976#0" expanded="false" />
+            <element signature="e#7491#8014#0" expanded="false" />
+            <marker date="1496853425424" expanded="true" signature="12568:12594" ph="..." />
+            <marker date="1496853425424" expanded="true" signature="12956:12982" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="62" column="158" lean-forward="false" selection-start-line="62" selection-start-column="158" selection-end-line="62" selection-end-column="158" />
+        <state relative-caret-position="289">
+          <caret line="41" column="31" lean-forward="true" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
           <folding>
             <element signature="e#1494#1520#0#HTML" expanded="true" />
           </folding>
@@ -2233,24 +2305,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/mods/packing/pallet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="156" column="42" lean-forward="true" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
+        <state relative-caret-position="528">
+          <caret line="220" column="23" lean-forward="false" selection-start-line="220" selection-start-column="23" selection-end-line="220" selection-end-column="23" />
           <folding>
             <element signature="e#495#2444#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/etapa.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="194" column="32" lean-forward="true" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
-          <folding>
-            <element signature="e#605#3130#0" expanded="false" />
-            <element signature="e#3166#4470#0" expanded="false" />
-            <element signature="e#7405#7928#0" expanded="false" />
-            <marker date="1496852728076" expanded="true" signature="12482:12508" ph="..." />
-            <marker date="1496852728076" expanded="true" signature="12870:12896" ph="..." />
+            <element signature="e#2490#2684#0" expanded="false" />
+            <element signature="e#2718#2831#0" expanded="false" />
+            <element signature="e#2871#3022#0" expanded="false" />
+            <element signature="e#3060#5148#0" expanded="false" />
+            <element signature="e#6218#6540#0" expanded="false" />
+            <element signature="e#6751#7045#0" expanded="false" />
           </folding>
         </state>
       </provider>
