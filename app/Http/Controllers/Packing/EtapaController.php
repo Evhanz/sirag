@@ -128,9 +128,9 @@ class EtapaController extends Controller
 
     }
 
-    public function apiGetByCodigo($codigo){
+    public function apiGetByCodigo($codigo,$opcion){
 
-        $res = $this->etapaRep->getEtapaByCodigo($codigo);
+        $res = $this->etapaRep->getEtapaByCodigo($codigo,$opcion);
 
         return count($res);
     }

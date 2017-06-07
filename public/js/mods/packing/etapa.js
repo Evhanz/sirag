@@ -213,7 +213,7 @@ var v_etapa=new Vue({
         },
         getCodigoCaja: function (codigo) {
 
-            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getByCodigo/'+codigo;
+            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getByCodigo/'+codigo+'/etapa';
             var v= this;
 
             v.changeEstateInput('c',true);

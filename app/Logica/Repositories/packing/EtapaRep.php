@@ -117,12 +117,17 @@ class EtapaRep
         return $res;
     }
 
-    public function getEtapaByCodigo($codigo){
+    public function getEtapaByCodigo($codigo,$opcion){
+
+        $q1= '';
+
+        if($opcion == 'pallet'){
+            $q1= "and cod_pallet IS NULL";
+        }
 
         $query = "SELECT *
                     FROM sirag.etapa
-                    where codigo = '$codigo'
-                    and cod_pallet IS NULL";
+                    where codigo = '$codigo' $q1";
         $res = \DB::select($query);
 
 

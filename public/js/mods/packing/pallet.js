@@ -112,7 +112,7 @@ new Vue({
         },
         getCaja : function (idCaja) {
 
-            var ruta = $('#ruta').val()+'/packing/etapa/api/getByCodigo/'+idCaja;
+            var ruta = $('#ruta').val()+'/packing/etapa/api/getByCodigo/'+idCaja+'/pallet';
             var v = this;
             v.isDisabled = true;
             $.getJSON( ruta)
