@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="091df281-4f1c-4597-a4d1-752a4ec88f1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" afterPath="$PROJECT_DIR$/app/Http/Rutas/recursos_humanos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" afterPath="$PROJECT_DIR$/app/Logica/Repositories/PersonalRep.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/etapa.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/etapa.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/mods/packing/pallet.js" afterPath="$PROJECT_DIR$/public/js/mods/packing/pallet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/packing/pallet/viewAllPallet.blade.php" afterPath="$PROJECT_DIR$/resources/views/packing/pallet/viewAllPallet.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php" afterPath="$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rh/viewCambioCargo.blade.php" afterPath="$PROJECT_DIR$/resources/views/rh/viewCambioCargo.blade.php" />
     </list>
     <ignored path="sirag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,13 +52,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pallet.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pallet.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/mods/packing/pallet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
+            <state relative-caret-position="224">
+              <caret line="156" column="42" lean-forward="true" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
               <folding>
                 <element signature="e#495#2444#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="etapa.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/mods/packing/etapa.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="194" column="32" lean-forward="true" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
+              <folding>
+                <element signature="e#605#3130#0" expanded="false" />
+                <element signature="e#3166#4470#0" expanded="false" />
+                <element signature="e#7405#7928#0" expanded="false" />
+                <marker date="1496852728076" expanded="true" signature="12482:12508" ph="..." />
+                <marker date="1496852728076" expanded="true" signature="12870:12896" ph="..." />
               </folding>
             </state>
           </provider>
@@ -175,9 +184,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/RecursoshController.php" />
         <option value="$PROJECT_DIR$/resources/views/rh/viewCambioCargo.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/packing/pallet/viewAllPallet.blade.php" />
-        <option value="$PROJECT_DIR$/public/js/mods/packing/etapa.js" />
         <option value="$PROJECT_DIR$/resources/views/packing/pallet/viewNewPallet.blade.php" />
         <option value="$PROJECT_DIR$/public/js/mods/packing/pallet.js" />
+        <option value="$PROJECT_DIR$/public/js/mods/packing/etapa.js" />
       </list>
     </option>
   </component>
@@ -1288,14 +1297,7 @@
       <workItem from="1496672597009" duration="23606000" />
       <workItem from="1496758888053" duration="4215000" />
       <workItem from="1496765395411" duration="18602000" />
-      <workItem from="1496844899402" duration="6548000" />
-    </task>
-    <task id="LOCAL-00067" summary="rev">
-      <created>1487282480838</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1487282480838</updated>
+      <workItem from="1496844899402" duration="7294000" />
     </task>
     <task id="LOCAL-00068" summary="rev">
       <created>1487604284152</created>
@@ -1633,11 +1635,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496761272877</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="rev">
+      <created>1496852098246</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1496852098247</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2631964000" />
+    <option name="totallyTimeSpent" value="2632710000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1728,21 +1737,21 @@
         <state relative-caret-position="237">
           <caret line="377" column="43" lean-forward="true" selection-start-line="377" selection-start-column="43" selection-end-line="377" selection-end-column="43" />
           <folding>
-            <marker date="1496091872995" expanded="true" signature="705:1118" ph="SELECT Razon... v_allProductsAndProveedores" />
-            <marker date="1496091872995" expanded="true" signature="1249:1646" ph="SELECT top 1... " />
-            <marker date="1496091872995" expanded="true" signature="2023:2405" ph="SELECT Fecha... v_allProductsAndProveedores" />
-            <marker date="1496091872995" expanded="true" signature="2583:2729" ph="select CODIG... gen_tabcod" />
-            <marker date="1496091872995" expanded="true" signature="2865:3003" ph="select CODIG... gen_tabcod" />
-            <marker date="1496091872995" expanded="true" signature="3425:4109" ph="SELECT dd.Fe... DocumentoD" />
-            <marker date="1496091872995" expanded="true" signature="5298:5927" ph="select A.Fec... Documento" />
-            <marker date="1496091872995" expanded="true" signature="7277:8001" ph="select CONVE... Documento" />
-            <marker date="1496091872995" expanded="true" signature="7277:8917" ph="select CONVE... " />
-            <marker date="1496091872995" expanded="true" signature="8024:8892" ph="SELECT CONVE... DocumentoD" />
-            <marker date="1496091872995" expanded="true" signature="10769:11397" ph="select A.Pro... DocumentoD" />
-            <marker date="1496091872995" expanded="true" signature="11820:13020" ph="select coale... " />
-            <marker date="1496091872995" expanded="true" signature="11837:12397" ph="select SUM(B... DocumentoD" />
-            <marker date="1496091872995" expanded="true" signature="12430:13010" ph="SELECT sum(d... DocumentoD" />
-            <marker date="1496091872995" expanded="true" signature="13459:14242" ph="SELECT coale... DocumentoD" />
+            <marker date="1496852310193" expanded="true" signature="705:1118" ph="SELECT Razon... v_allProductsAndProveedores" />
+            <marker date="1496852310193" expanded="true" signature="1249:1646" ph="SELECT top 1... " />
+            <marker date="1496852310193" expanded="true" signature="2023:2405" ph="SELECT Fecha... v_allProductsAndProveedores" />
+            <marker date="1496852310193" expanded="true" signature="2583:2729" ph="select CODIG... gen_tabcod" />
+            <marker date="1496852310193" expanded="true" signature="2865:3003" ph="select CODIG... gen_tabcod" />
+            <marker date="1496852310193" expanded="true" signature="3425:4109" ph="SELECT dd.Fe... DocumentoD" />
+            <marker date="1496852310193" expanded="true" signature="5298:5927" ph="select A.Fec... Documento" />
+            <marker date="1496852310193" expanded="true" signature="7277:7544" ph="select CONVE... Documento" />
+            <marker date="1496852310193" expanded="true" signature="7277:7544" ph="select CONVE... " />
+            <marker date="1496852310193" expanded="true" signature="8024:8892" ph="SELECT CONVE... DocumentoD" />
+            <marker date="1496852310193" expanded="true" signature="10769:11397" ph="select A.Pro... DocumentoD" />
+            <marker date="1496852310193" expanded="true" signature="11820:13020" ph="select coale... " />
+            <marker date="1496852310193" expanded="true" signature="11837:12397" ph="select SUM(B... DocumentoD" />
+            <marker date="1496852310193" expanded="true" signature="12430:13010" ph="SELECT sum(d... DocumentoD" />
+            <marker date="1496852310193" expanded="true" signature="13685:14468" ph="SELECT coale... DocumentoD" />
           </folding>
         </state>
       </provider>
@@ -2064,6 +2073,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="179" column="32" lean-forward="false" selection-start-line="179" selection-start-column="32" selection-end-line="179" selection-end-column="32" />
+          <folding>
+            <element signature="e#277#325#0#HTML" expanded="true" />
+            <element signature="e#804#831#0#HTML" expanded="true" />
+            <element signature="e#2236#2281#0#HTML" expanded="true" />
+            <element signature="e#4920#4938#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2198,21 +2213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/etapa.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="207" column="44" lean-forward="true" selection-start-line="207" selection-start-column="44" selection-end-line="207" selection-end-column="44" />
-          <folding>
-            <element signature="e#605#3130#0" expanded="false" />
-            <element signature="e#3166#4470#0" expanded="false" />
-            <element signature="e#4958#6129#0" expanded="false" />
-            <element signature="e#6759#7282#0" expanded="false" />
-            <marker date="1496849203146" expanded="true" signature="11836:11862" ph="..." />
-            <marker date="1496849203146" expanded="true" signature="12224:12250" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/packing/etapa/viewEtapa.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -2233,10 +2233,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/mods/packing/pallet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
+        <state relative-caret-position="224">
+          <caret line="156" column="42" lean-forward="true" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
           <folding>
             <element signature="e#495#2444#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/mods/packing/etapa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="194" column="32" lean-forward="true" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
+          <folding>
+            <element signature="e#605#3130#0" expanded="false" />
+            <element signature="e#3166#4470#0" expanded="false" />
+            <element signature="e#7405#7928#0" expanded="false" />
+            <marker date="1496852728076" expanded="true" signature="12482:12508" ph="..." />
+            <marker date="1496852728076" expanded="true" signature="12870:12896" ph="..." />
           </folding>
         </state>
       </provider>

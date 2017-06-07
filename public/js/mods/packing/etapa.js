@@ -185,6 +185,20 @@ var v_etapa=new Vue({
                         }else{
                             alert('Codigo de Trabajador incorrecto');
                             v.changeEstateInput(tipo,false);
+                            switch (tipo) {
+                                case 's':
+                                    v.etapa.seleccion ='';
+                                    break;
+                                case 'p':
+                                    v.etapa.pesaje ='';
+                                    break;
+                                case 'e':
+                                    v.etapa.embalaje ='';
+                                    break;
+                                case 'f':
+                                    v.etapa.peso_fijo ='';
+                                    break;
+                            }
                         }
                     }).fail(function (data) {
                     alert('Error:');
