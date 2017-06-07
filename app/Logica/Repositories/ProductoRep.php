@@ -261,15 +261,18 @@ class ProductoRep
         $query = "select 
         CONVERT(DATE,A.Fecha,113) fecha ,A.Numero numero,'entrada' as tipo,C.PRODUCTO,
         C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON, B.Costo
-        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
+        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento tp
         where
         A.idDocto=B.idDocto
         AND B.Empresa= C.EMPRESA
         and B.Producto= C.PRODUCTO
-        --AND B.Empresa=D.Empresa
-        --AND B.TipoDocto=D.TipoDocto
-        AND A.TipoDocto in ('N/I ALMACEN (A)','DEVOLUCION PACKING','AJUSTE T/INVENTARIO')
-        --AND D.FactorInventario='1'
+        AND A.Empresa=TP.Empresa
+        AND B.Empresa=TP.Empresa
+        AND C.EMPRESA=TP.Empresa
+        AND A.TipoDocto=TP.TipoDocto
+        AND B.TipoDocto=TP.TipoDocto
+        AND tp.FactorInventario='1' 
+        --AND A.TipoDocto in ('N/I ALMACEN (A)','DEVOLUCION PACKING','AJUSTE T/INVENTARIO')
         and A.Empresa='e01'
         AND B.Fecha BETWEEN '$f_i' and '$f_f'
         AND C.GLOSA like '%$glosa%'
