@@ -261,15 +261,18 @@ class ProductoRep
         $query = "select 
         CONVERT(DATE,A.Fecha,113) fecha ,A.Numero numero,'entrada' as tipo,C.PRODUCTO,
         C.GLOSA glosa,B.Cantidad cantidad,B.UnidadIngreso unidad ,'-' as FUNDO_PARRON, B.Costo
-        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C
+        from flexline.Documento A, flexline.DocumentoD B, flexline.PRODUCTO C, flexline.TipoDocumento tp
         where
         A.idDocto=B.idDocto
         AND B.Empresa= C.EMPRESA
         and B.Producto= C.PRODUCTO
-        --AND B.Empresa=D.Empresa
-        --AND B.TipoDocto=D.TipoDocto
-        AND A.TipoDocto='N/I ALMACEN (A)'
-        --AND D.FactorInventario='1'
+        AND A.Empresa=TP.Empresa
+        AND B.Empresa=TP.Empresa
+        AND C.EMPRESA=TP.Empresa
+        AND A.TipoDocto=TP.TipoDocto
+        AND B.TipoDocto=TP.TipoDocto
+        AND tp.FactorInventario='1' 
+        --AND A.TipoDocto in ('N/I ALMACEN (A)','DEVOLUCION PACKING','AJUSTE T/INVENTARIO')
         and A.Empresa='e01'
         AND B.Fecha BETWEEN '$f_i' and '$f_f'
         AND C.GLOSA like '%$glosa%'
@@ -296,7 +299,7 @@ class ProductoRep
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15 , dd.Costo,p.PRODUCTO
         ORDER BY A.Fecha";
 
-        //HelpFunct::writeQuery($query);
+        HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);
@@ -383,7 +386,7 @@ class ProductoRep
                     AND A.Producto = '$producto' -- FILTRO
                     GROUP BY A.Producto ";
 
-        HelpFunct::writeQuery($query);
+       
 
         $res = \DB::select($query);
         $response = 0;
@@ -424,11 +427,14 @@ class ProductoRep
                 AND dd.Bodega <> '' 
                 --AND tp.Sistema IN ('Inventario','Produccion') 
                 AND tp.FactorInventario='-1' 
+                and dd.Vigente <> 'A' 
                 AND dd.Fecha < '$f_i'
                 AND p.GLOSA = '$glosa'),0) saldo";
 
 
         $res = \DB::select($query);
+
+        //HelpFunct::writeQuery($query);
 
         return $res[0]->saldo;
 
