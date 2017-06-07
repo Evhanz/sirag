@@ -265,6 +265,8 @@ class ComercialController extends Controller
 
     public function getKardexValorizado(){
 
+        set_time_limit (360);
+
         $data = \Input::all();
 
       //  return \Response::Json($data);
