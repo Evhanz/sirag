@@ -27,6 +27,7 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
 
 });
 
+Route::get('rh/viewCambioCargo',['as'=>'viewCambioCargo','uses'=>'RecursoshController@viewCambioCargo']);
 
 //llamada a API
 Route::get('rh/api/getTrabajadorBy/{ficha}',['as'=>'getTrabajadorByFicha','uses'=>'RecursoshController@getTrabajadorByFicha']);
@@ -58,6 +59,7 @@ Route::get('rh/api/CodigoActividad',['as'=>'CodigoActividad','uses'=>'RecursoshC
 Route::post('rh/api/getJornalesByFechas',['as'=>'getJornalesByFechas','uses'=>'RecursoshController@getJornalesByFechas']);
 Route::post('rh/api/processdominical',['as'=>'processdominical','uses'=>'RecursoshController@processdominical']);
 Route::get('rh/api/getJefeByFicha/{ficha}',['as'=>'getJefeByFicha','uses'=>'RecursoshController@getJefeByFicha']);
+Route::get('rh/api/getTrabajadorByFichaAndActive/{ficha}',['as'=>'getTrabajadorByFichaAndActive','uses'=>'RecursoshController@getTrabajadorByFichaAndActive']);
 
 
 
@@ -71,6 +73,7 @@ Route::post('rh/store/regFeriados',['as'=>'regFeriados','uses'=>'RecursoshContro
 //edits
 Route::post('rh/store/editJornal',['as'=>'editJornal','uses'=>'RecursoshController@editJornal']);
 Route::post('rh/vacaciones/editPeriodo',['as'=>'editPeriodoVac','uses'=>'RecursoshController@editPeriodoVac']);
+Route::post('rh/cargo/editCargo',['as'=>'editCargo','uses'=>'RecursoshController@editCargo']);
 
 //deletes
 Route::post('rh/delete/deleteJornales',['as'=>'deleteJornales','uses'=>'RecursoshController@deleteJornales']);

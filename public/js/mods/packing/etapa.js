@@ -73,6 +73,8 @@ var v_etapa=new Vue({
                                 };
 
                                 v_obj.changeEstateInput('all',false);
+
+                                $("#input_codigo_caja").focus();
                             }
                         }else{
                             alert('Error: '+ data.code);
@@ -140,9 +142,6 @@ var v_etapa=new Vue({
 
 
 
-
-
-
             return bandera;
 
         },
@@ -155,37 +154,61 @@ var v_etapa=new Vue({
 
             v.changeEstateInput(tipo,true);
 
-            $.getJSON( ruta)
-                .done(function( data ) {
-                   if(data===1){
+            if (ficha === ''){
+                alert('Ingrese una ficha');
+                v.changeEstateInput(tipo,false);
+            }else{
 
-                       switch (tipo) {
-                           case 's':
-                               v.etapa.seleccion_estado = 1;
-                               $("#input_pesaje").focus();
-                               break;
-                           case 'p':
-                               v.etapa.pesaje_estado = 1;
-                               $("#input_embalaje").focus();
-                               break;
-                           case 'e':
-                               v.etapa.embalaje_estado = 1;
-                               break;
-                           case 'f':
-                               v.etapa.peso_fijo_estado = 1;
-                               break;
-                       }
+                $.getJSON( ruta)
+                    .done(function( data ) {
+                        if(data===1){
 
-                   }else{
-                       alert('Codigo de Trabajador incorrecto');
-                       v.changeEstateInput(tipo,false);
-                   }
-                }).fail(function (data) {
+                            switch (tipo) {
+                                case 's':
+                                    v.etapa.seleccion_estado = 1;
+                                    $("#input_pesaje").focus();
+                                    break;
+                                case 'p':
+                                    v.etapa.pesaje_estado = 1;
+                                    $("#input_embalaje").focus();
+                                    break;
+                                case 'e':
+                                    $("#t_caja").focus();
+                                    v.etapa.embalaje_estado = 1;
+                                    break;
+                                case 'f':
+                                    $("#t_caja").focus();
+                                    v.etapa.peso_fijo_estado = 1;
+                                    break;
+                            }
+
+                        }else{
+                            alert('Codigo de Trabajador incorrecto');
+                            v.changeEstateInput(tipo,false);
+                            switch (tipo) {
+                                case 's':
+                                    v.etapa.seleccion ='';
+                                    break;
+                                case 'p':
+                                    v.etapa.pesaje ='';
+                                    break;
+                                case 'e':
+                                    v.etapa.embalaje ='';
+                                    break;
+                                case 'f':
+                                    v.etapa.peso_fijo ='';
+                                    break;
+                            }
+                        }
+                    }).fail(function (data) {
                     alert('Error:');
                     console.log(data);
                     v.changeEstateInput(tipo,false);
 
-            });
+                });
+
+            }
+
 
         },
         getCodigoCaja: function (codigo) {
@@ -195,20 +218,32 @@ var v_etapa=new Vue({
 
             v.changeEstateInput('c',true);
 
-            $.getJSON( ruta)
-                .done(function( data ) {
-                    if(data == 0){
-                        v.etapa.codigo_estado = 1;
-                        $("#input_seleccion").focus();
-                    }else if(data >0){
-                        alert('La Caja ya se ha ingresado');
-                        v.changeEstateInput('c',false);
-                    }
-                    console.log(data);
-                }).fail(function (data) {
-                alert('ocurrio un error');
+            if (codigo === '' || codigo.length < 8 || codigo.length > 8){
+                alert('Ingrese una código válido');
                 v.changeEstateInput('c',false);
-            });
+                v.etapa.codigo = '';
+            }else{
+
+                $.getJSON( ruta)
+                    .done(function( data ) {
+                        if(data == 0){
+                            v.etapa.codigo_estado = 1;
+                            $("#input_seleccion").focus();
+                        }else if(data >0){
+                            alert('La Caja ya se ha ingresado');
+                            v.changeEstateInput('c',false);
+                            v.etapa.codigo = '';
+                            $("#input_codigo_caja").focus();
+                        }
+                        console.log(data);
+                    }).fail(function (data) {
+                    alert('ocurrio un error');
+                    v.changeEstateInput('c',false);
+                });
+
+            }
+
+
         },
         etapaWrite: function (etapa) {
             var v = this;

@@ -39,17 +39,32 @@
                     <div class="col-lg-12">
                         <form  class="form-inline" method="get">
 
-                            <div class="form-group">
+                            <div class="form-group hidden-xs">
                                 <label for="fecha">Rango de Fechas </label>
                                 <input type="text" class="form-control" name="fecha" >
                             </div>
 
-                            <button type="submit" class="btn btn-default">Buscar</button>
+                            <button type="submit" class="btn btn-default hidden-xs">Buscar</button>
 
-                            <div class="form-group" style="margin-left: 30px">
+                            <div class="form-group hidden-xs" style="margin-left: 30px">
 
                                 <a class="btn btn-success" href="{{route('viewNewPallet')}}">Nuevo</a>
                             </div>
+
+                            <!--Esto se va a ver solo en el mobil -->
+                            <a class="visible-xs  btn btn-success" href="{{route('viewNewPallet')}}">
+                                Nuevo <strong> <i class="fa fa-cubes"></i></strong></a>
+
+                            <hr>
+
+                            <div class="visible-xs ">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    <input type="email" class="form-control" placeholder="Codigo de pallet">
+                                </div>
+                            </div>
+
+
                         </form>
 
                     </div>
@@ -57,7 +72,7 @@
 
                 <br>
 
-                <div class="row">
+                <div class="row hidden-xs">
                     <div class="col-lg-12">
                         <table class="table table-bordered">
                             <thead>

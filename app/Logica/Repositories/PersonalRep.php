@@ -36,6 +36,34 @@ class PersonalRep
     }
 
 
+    public function getTrabajadorByFichaAndActive($ficha){
+        $query = "SELECT * ,(APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre 
+                    FROM flexline.PER_TRABAJADOR
+                    where EMPRESA = 'e01'
+                    AND VIGENCIA = 'ACTIVO'
+                    AND FICHA = $ficha
+                    ORDER BY nombre";
+
+        $res = \DB::select($query);
+
+        foreach ($res as $i){
+            $i->nombre = utf8_encode( $i->nombre);
+        }
+        return $res[0];
+    }
+
+
+    public function editCargo($ficha,$cargo){
+
+        $query = "UPDATE flexline.PER_TRABAJADOR
+                    SET CARGO = '$cargo'
+                    WHERE FICHA = $ficha AND EMPRESA = 'E01'";
+        $res = \DB::update($query);
+        return $res;
+
+    }
+
+
 
 
 
@@ -114,11 +142,8 @@ class PersonalRep
                 // $item->CANTIDA_DIF = $interval;
 
                 $item->now =$datetime2->diff($now);
-
-
             }
         }
-
 
        // HelpFunct::writeQuery($query);
 

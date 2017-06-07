@@ -37,7 +37,6 @@
 
                 <div class="row" >
                     <div class="col-xs-4 col-sm-offset-1" >
-
                         <h2>PALLET: </h2>
                     </div>
                     <div class="col-xs-6 col-sm-7 " style="text-align: center">
@@ -61,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input  @keyup.enter="getCaja(caja)" v-model="caja" type="text" class="form-control">
+                                    <input id="code_caja"  @keyup.enter="getCaja(caja)" v-model="caja" type="text" class="form-control" :disabled="isDisabled">
                                 </td>
                             </tr>
                         </table>

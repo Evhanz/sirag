@@ -8,7 +8,8 @@ Vue.directive('focus', {
     // When the bound element is inserted into the DOM...
     inserted: function (el) {
         // Focus the element
-        el.focus()
+        //el.focus()
+
     }
 });
 
@@ -21,7 +22,8 @@ new Vue({
         codigo:'',
         bandera:0,
         caja:'',
-        codigo_pallet:''
+        codigo_pallet:'',
+        isDisabled:true
     },
     methods:{
         saveData : function () {
@@ -59,7 +61,7 @@ new Vue({
                                 v_obj.codigo_pallet='';
                                 $("#codigo_pallet").prop('disabled',false);
 
-                                aler('Correcto');
+                                alert('Correcto');
 
                             }
                         }else{
@@ -99,7 +101,6 @@ new Vue({
             this.bandera ++;
 
         },
-
         quitDetail : function (index) {
 
 
@@ -113,11 +114,9 @@ new Vue({
 
             var ruta = $('#ruta').val()+'/packing/etapa/api/getByCodigo/'+idCaja;
             var v = this;
-
+            v.isDisabled = true;
             $.getJSON( ruta)
                 .done(function( data ) {
-
-                    console.log('a1',data);
 
                     if(data === 1 ){
 
@@ -133,23 +132,27 @@ new Vue({
                             v.detalles.splice(0, 0,e);
                             v.caja = '';
 
-
                             $('.details tbody tr:nth-child(1)').removeClass('detalle').animate({'nothing':null}, 1, function () {
                                 $(this).addClass('detalle');
                             });
+                           // $("#code_caja").delay(1500).prop('disabled',false);
 
-
+                            v.isDisabled = false;
 
                         }else
                         {
                             alert('El código ya a sido ingresado');
+                            v.caja = '';
+                            v.isDisabled = false;
+                            $("#code_caja").focus();
+                            v.isDisabled = false;
                         }
-
-
-
 
                     }else{
                         alert("No existe ese código o no está hábil");
+                        v.isDisabled = false;
+                        v.caja = '';
+                       // $("#code_caja").attr('disabled',true);
                     }
 
                     var bandera = 0;
@@ -157,11 +160,15 @@ new Vue({
                     v.detalles.forEach(function (item,i) {
 
 
-
                     });
+
+
+
+
                 })
                 .fail(function (data) {
                   alert('El código no es  correcto');
+                  v.isDisabled = false;
                 });
 
         },
@@ -182,29 +189,36 @@ new Vue({
 
             $("#modalPallet").modal('show');
 
-            //console.log('llega aca');
 
         },
         validateCodePallet: function(codigo_pallet){
+            /*esta funcion mediante el codigo , ferifica si el código está disponible */
 
             var ruta  = $("#ruta").val()+'/packing/pallet/getPalletBy/'+codigo_pallet;
             var v = this;
 
-            $.getJSON( ruta)
-                .done(function( data ) {
-                    if(data === 0 ){
-                        v.codigo_pallet = codigo_pallet;
-                        $("#codigo_pallet").prop('disabled',true);
+            if(v.codigo_pallet === '' || v.codigo_pallet.length < 6 || v.codigo_pallet.length > 6){
+                alert('Ingrese un código válido');
+            }else{
+                $.getJSON( ruta)
+                    .done(function( data ) {
+                        if(data === 0 ){
+                            v.codigo_pallet = codigo_pallet;
+                            $("#codigo_pallet").prop('disabled',true);
+                            v.isDisabled = false ;
+                        }else{
+                            alert("El codigo no está disponible");
+                        }
 
-                    }else{
-                        alert("El codigo no está disponible");
-                    }
+                    })
+                    .fail(function (data) {
+                        alert("Error");
+                        console.log(data);
+                    });
 
-                })
-                .fail(function (data) {
-                    alert("Error");
-                    console.log(data);
-                });
+            }
+
+
 
 
 
@@ -245,7 +259,9 @@ new Vue({
 
     },
     watch: {
-        bandera:function () {
+        caja:function () {
+
+
 
         }
 
@@ -253,6 +269,14 @@ new Vue({
     updated: function () {
 
         var bandera =  this.detalles.length - 1 ;
+
+        var a =  $("#codigo_pallet:disabled" ).val();
+
+        if(a!==undefined){
+            $("#code_caja").focus();
+        }
+
+
 
 
     }
