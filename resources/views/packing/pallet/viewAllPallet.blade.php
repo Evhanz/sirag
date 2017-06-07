@@ -62,7 +62,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>Codido Pallet</th>
                                 <th>Descripcion</th>
                                 <th>Registrador</th>
                                 <th>Fecha Venciminento</th>
@@ -74,7 +74,7 @@
                             <tbody>
                             @foreach($pallets as $item)
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->codigo}}</td>
                                     <td>{{$item->descripcion}}</td>
                                     <td>{{$item->registrador}}</td>
                                     <td>{{$item->fecha_vencimiento}}</td>
