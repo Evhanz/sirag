@@ -78,6 +78,10 @@ class RecursoshController extends Controller
         return view('rh/viewFeriados');
     }
 
+    public function viewCambioCargo(){
+        return view('rh/viewCambioCargo');
+    }
+
 
     //API para traer a los trbajadores
 
@@ -231,6 +235,12 @@ class RecursoshController extends Controller
 
         return \Response::Json($res);
 
+    }
+
+
+    public function getTrabajadorByFichaAndActive($ficha){
+        $res = $this->personalRep->getTrabajadorByFichaAndActive($ficha);
+        return \Response::Json($res);
     }
 
 
@@ -1477,6 +1487,21 @@ class RecursoshController extends Controller
         $res =  $this->personalRep->regFeriados($data);
 
         return back()->with('status', 'Correcto, el proceso a culminado exitosamente!! ');
+
+    }
+
+
+
+    public function editCargo(){
+
+        $data = \Input::all();
+
+        $ficha = $data['ficha'];
+        $cargo = $data['cargo'];
+
+        $res = $this->personalRep->editCargo($ficha,$cargo);
+
+        return \Response::json($res);
 
     }
 

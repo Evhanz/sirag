@@ -21,7 +21,8 @@ new Vue({
         codigo:'',
         bandera:0,
         caja:'',
-        codigo_pallet:''
+        codigo_pallet:'',
+        isDisabled:false
     },
     methods:{
         saveData : function () {
@@ -113,11 +114,9 @@ new Vue({
 
             var ruta = $('#ruta').val()+'/packing/etapa/api/getByCodigo/'+idCaja;
             var v = this;
-
+            v.isDisabled = true;
             $.getJSON( ruta)
                 .done(function( data ) {
-
-                    console.log('a1',data);
 
                     if(data === 1 ){
 
@@ -132,24 +131,33 @@ new Vue({
                             var e = {id_caja:idCaja};
                             v.detalles.splice(0, 0,e);
                             v.caja = '';
-
-
+                            /*
                             $('.details tbody tr:nth-child(1)').removeClass('detalle').animate({'nothing':null}, 1, function () {
                                 $(this).addClass('detalle');
                             });
+                            */
 
 
+                           // $("#code_caja").delay(1500).prop('disabled',false);
+
+                            v.isDisabled = false;
+                            $("#code_caja").focus();
 
                         }else
                         {
                             alert('El código ya a sido ingresado');
+                            v.caja = '';
+                            v.isDisabled = false;
+                            $("#code_caja").focus();
+                            v.isDisabled = false;
                         }
-
-
-
 
                     }else{
                         alert("No existe ese código o no está hábil");
+                        v.isDisabled = false;
+                        v.caja = '';
+                       // $("#code_caja").attr('disabled',true);
+                        $("#code_caja").focus();
                     }
 
                     var bandera = 0;
@@ -157,8 +165,11 @@ new Vue({
                     v.detalles.forEach(function (item,i) {
 
 
-
                     });
+
+
+
+
                 })
                 .fail(function (data) {
                   alert('El código no es  correcto');
