@@ -199,7 +199,7 @@
                                                             <tbody>
                                                             <tr ng-repeat="item in dataSelect">
                                                                 <td>
-                                                                    @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'RFLORES')
+                                                                    @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'JMIRANDA')
                                                                         <button ng-click="deleteDetailShow($index)" class="btn btn-danger btn-xs">X</button>
                                                                     @endif
 
