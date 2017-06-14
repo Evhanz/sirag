@@ -105,8 +105,7 @@
                                                             <tbody>
                                                             <tr ng-repeat="item in detalles">
                                                                 <td style="width: 65px">
-                                                                    @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'RFLORES' ||
-                                                                    Auth::user()->USR == 'JMIRANDA' )
+                                                                    @if(Auth::user()->hasAnyRole(['ADMIN']) || Auth::user()->USR == 'JMIRANDA' )
                                                                         <button ng-click="deleteDetail($index)" class="btn btn-danger btn-xs">x</button>
                                                                     @endif
                                                                     <button ng-click="updateDetail2($index)" class="btn btn-warning btn-xs" id="btnEdit@{{$index}}" disabled>
