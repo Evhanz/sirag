@@ -77,10 +77,10 @@
 				<div class="row">
 					<div class="col-lg-3">
 						<label for="pais">País</label>
-						<select name="" id="">
+						<select name="" id="" class="form-control">
 							<option value="">-------</option>
+							<option ng-repeat="item in paises" value="item.CODIGO">@{{item.CODIGO}}</option>
 						</select>
-						
 					</div>
 					<div class="col-lg-3"></div>
 					<div class="col-lg-3"></div>
@@ -88,9 +88,7 @@
 				</div>
 			</div>
 
-			<div class="box-footer">
-				@{{saludo}}
-			</div>
+			
 
 		</div>
 	</div>
@@ -109,28 +107,29 @@
 	  var app = angular.module("app", []);
         app.controller("PruebaController", function($scope,$http,$window) {
 
-        	$scope.saludo= 'angular funciona';
+      
+        	$scope.paises = [];
+        	var ruta = "";
 
         	initData();
 
         	function initData() {
         		// body...
         		//primero llamamos pais
-        		var ruta =  "{{route('modRH')}}/api/getUbigeo/pais";
-        		console.log(ruta);
-        		$http.get(ruta)
-        		.success(function(data){
+        		ruta =  "{{route('modRH')}}/api/getUbigeo/pais";
+        		
+        		$http.get(ruta).success(function(data){
 
-        			console.log(data);
+        			$scope.paises=data;
 
-
-                })
-        		.error(function(data) {
+                }).error(function(data) {
 
         			alert('error');
         			console.log(data);
                   
                 });
+
+
 
         	}
 

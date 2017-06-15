@@ -3398,9 +3398,34 @@ where EMPRESA = 'e01'";
 
     public function getUbigeo($tipo){
 
+        $q1 = "";
+
+
+        switch ($tipo) {
+            case 'pais':
+                # code...
+                $q1="AND TIPO='GEN_PAIS'";
+                break;
+            case 'departamento':
+                # code...
+                $q1="AND TIPO='GEN_AREA'";
+                break;
+            case 'provincia':
+                # code...
+                $q1="AND TIPO='GEN_CIUDAD'";
+                break;
+            case 'distrito':
+                # code...
+                $q1="AND TIPO='GEN_COMUNA'";
+                break;
+            default:
+                # code...
+                break;
+        }
+
         $query = "SELECT CODIGO FROM flexline.GEN_TABCOD
                     WHERE EMPRESA='E01'
-                    AND TIPO='GEN_PAIS'";
+                    $q1";
 
         $res = \DB::select($query);
 
