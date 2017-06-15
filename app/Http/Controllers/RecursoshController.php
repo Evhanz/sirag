@@ -82,6 +82,13 @@ class RecursoshController extends Controller
         return view('rh/viewCambioCargo');
     }
 
+     public function viewPrueba(){
+        return view('rh/viewPrueba');
+    }
+
+
+    
+
 
     //API para traer a los trbajadores
 
@@ -1505,6 +1512,15 @@ class RecursoshController extends Controller
 
     }
 
+    public function getUbigeo($tipo){
+
+       $res = $this->personalRep->getUbigeo($tipo);
+
+        return \Response::json($res);
+
+    }
+
+
 
 
 
@@ -1525,6 +1541,7 @@ class RecursoshController extends Controller
         return $response;
 
     }
+
 
 
 

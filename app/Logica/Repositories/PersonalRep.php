@@ -3396,5 +3396,19 @@ where EMPRESA = 'e01'";
 
     }
 
+    public function getUbigeo($tipo){
+
+        $query = "SELECT CODIGO FROM flexline.GEN_TABCOD
+                    WHERE EMPRESA='E01'
+                    AND TIPO='GEN_PAIS'";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+
+
+    }
+
 
 }

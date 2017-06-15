@@ -29,6 +29,10 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
 
 Route::get('rh/viewCambioCargo',['as'=>'viewCambioCargo','uses'=>'RecursoshController@viewCambioCargo']);
 
+Route::get('rh/viewPrueba',['as'=>'viewPrueba','uses'=>'RecursoshController@viewPrueba']);
+Route::get('rh/api/getUbigeo/{tipo}',['as'=>'getUbigeo','uses'=>'RecursoshController@getUbigeo']);
+
+
 //llamada a API
 Route::get('rh/api/getTrabajadorBy/{ficha}',['as'=>'getTrabajadorByFicha','uses'=>'RecursoshController@getTrabajadorByFicha']);
 Route::get('rh/api/getContratos/{ficha}',['as'=>'getContratos','uses'=>'RecursoshController@getContratos']);
