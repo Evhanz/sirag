@@ -27,3 +27,5 @@ Route::post('packing/pallet/getPalletByFechas',['as'=>'getPalletByFechas'
     ,'uses'=>'Packing\PalletController@getPalletByFechas']);
 
 //excel
+Route::post('packing/pallet/getExcelPalletByFechas',['as'=>'getExcelPalletByFechas'
+    ,'uses'=>'Packing\PalletController@getExcelPalletByFechas']);

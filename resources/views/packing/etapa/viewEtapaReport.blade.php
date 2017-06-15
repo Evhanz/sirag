@@ -21,10 +21,11 @@
     <div class="row" id="content">
 
         <input type="hidden" id="ruta" value="{{url('')}}">
+        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Mostrar Pallet</h3>
+                <h3 class="box-title">Mostrar Cajas</h3>
                 <!--
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -40,26 +41,24 @@
                         <div  class="form-inline" >
 
                             <div class="form-group hidden-xs">
-                                <label for="fecha">Codigo Pallet </label>
+                                <label for="fecha">Codigo Caja </label>
                                 <input id="codigoPallet" @keyup.enter="getPalletByCodigo()" type="text" class="form-control"  >
                             </div>
 
-                            <form action="{{route('getExcelPalletByFechas')}}" method="post" class="form-group">
-                                <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}" />
+
+                            <form action="{{route('getPalletByFechas')}}" method="post" class="form-group">
                                 <div class="form-group hidden-xs">
                                     <label for="fecha">Rango de Fechas </label>
-                                    <input  id='fecha' type="text" class="form-control" name="fecha" required>
+                                    <input  id='fecha' type="text" class="form-control" name="fecha" >
                                 </div>
                                 <a type="submit" class="btn btn-default hidden-xs" @click="getPalletByFechas()">Buscar</a>
-                                <button class="btn btn-success">
-                                    <i class="fa fa-file-excel-o"></i>
+                                <button class="btn btn-info btn-xs">
+                                    <i class="fa fa-search"></i>
                                 </button>
                                 <div class="form-group hidden-xs" style="margin-left: 30px">
-                                    <a class="btn btn-info" href="{{route('viewNewPallet')}}">Nuevo</a>
+                                    <a class="btn btn-success" href="{{route('viewNewPallet')}}">Nuevo</a>
                                 </div>
                             </form>
-
-
 
                             <!--Esto se va a ver solo en el mobil -->
                             <a class="visible-xs  btn btn-success" href="{{route('viewNewPallet')}}">

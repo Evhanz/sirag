@@ -27,6 +27,7 @@
                             <ul class="nav nav-tabs" id="tab_filtros">
                                 <li class="active"><a data-toggle="tab" href="#home">Usuarios Rol</a></li>
                                 <li class=""><a data-toggle="tab" href="#modulos">Módulos </a></li>
+                                <li class=""><a data-toggle="tab" href="#mantenedor_opciones">Mantenedor Opciones </a></li>
                             </ul>
                         </div><!-- /.box-header -->
                         <div class="box-body no-padding">
@@ -96,6 +97,22 @@
                                     </div>
 
                                 </div>
+
+                                <div id="mantenedor_opciones">
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+
+                                            
+
+                                        </div>
+                                        <div class="col-lg-6">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div><!-- /.box-body -->
                         <div class="box-footer">

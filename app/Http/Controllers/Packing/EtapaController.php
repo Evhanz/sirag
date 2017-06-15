@@ -51,8 +51,19 @@ class EtapaController extends Controller
         $etapa = $this->etapaRep->getAllEtapa();
 
         return view('packing/etapa/viewAllEtapa',compact('etapa'));
-
     }
+
+    public function viewEtapaByCodigo($codigo){
+
+        $etapa = $this->etapaRep->getEtapaByCodigo($codigo,'');
+
+        return view('packing/etapa/viewAllEtapa',compact('etapa'));
+    }
+
+
+
+
+
 
 
     public function apiSeleccionReg(){
@@ -109,15 +120,42 @@ class EtapaController extends Controller
         $data = \Input::all();
 
         $fechas = $data['fecha'];
-
         $fechas = explode('-',$fechas);
         $f_inicio = trim($fechas[0]);
         $f_fin = trim($fechas[1]);
-
-
         $etapa = $this->etapaRep->getEtapaByParameter($f_inicio,$f_fin);
 
-        return view('packing/etapa/viewAllEtapa',compact('etapa'));
+        if($data['opcion']=='buscar'){
+
+            return view('packing/etapa/viewAllEtapa',compact('etapa'));
+
+        }
+
+        if($data['opcion']=='excel'){
+
+            $etapas= [];
+
+            foreach ($etapa as $item){
+
+                $i = (array)$item;
+
+                array_push($etapas,$i);
+            }
+
+
+            \Excel::create('etapa_data', function($excel) use ($etapas) {
+
+                $excel->sheet('pallet', function($sheet) use ($etapas) {
+
+                    $sheet->fromArray($etapas);
+
+                });
+            })->export('xls');
+
+        }
+
+
+
     }
 
     public function apiGetById($id){

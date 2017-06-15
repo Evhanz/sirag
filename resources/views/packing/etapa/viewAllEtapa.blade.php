@@ -34,16 +34,28 @@
             <div class="box-body">
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <form  class="form-inline" action="{{route('getEtapaByParameter')}}" method="get">
 
+                    <div class="col-lg-4">
+                        <form action=""  class="form-inline">
+                            <div class="form-group hidden-xs">
+                                <label for="codigo">Codigo Etapa:  </label>
+                                <input id="codigoEtapa" type="text" class="form-control">
+                                <a id="btnGetCodigo" class="hidden-xs btn btn-info"> > </a>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="col-lg-8">
+
+                        <form  class="form-inline" action="{{route('getEtapaByParameter')}}" method="get">
                             <div class="hidden-xs form-group">
                                 <label for="fecha">Rango de Fechas </label>
-                                <input type="text" class="form-control" name="fecha" >
+                                <input type="text" class="form-control" name="fecha" required>
                             </div>
 
-                            <button type="submit" class="hidden-xs btn btn-default">Buscar</button>
-
+                            <button name="opcion" value="buscar" type="submit" class="hidden-xs btn btn-default">Buscar</button>
+                            <button name="opcion" value="excel" type="submit" class="hidden-xs btn btn-success">Excel</button>
                             <div class="hidden-xs form-group" style="margin-left: 30px">
 
                                 <a class="btn btn-success" href="{{route('viewNewEtapa')}}">
@@ -77,9 +89,7 @@
                             <tr>
                                 <th>Codigo Caja</th>
                                 <th>Tipo Caja</th>
-                                <th>Tipo Uva</th>
                                 <th>Calibre</th>
-                                <th>Peso</th>
                                 <th>P. Seleccion</th>
                                 <th>P. Pesaje</th>
                                 <th>P. Embalaje</th>
@@ -92,9 +102,7 @@
                                 <tr>
                                     <td>{{$item->codigo}}</td>
                                     <td>{{$item->t_caja}}</td>
-                                    <td>{{$item->uva}}</td>
                                     <td>{{$item->calibre}}</td>
-                                    <td>{{$item->peso}}</td>
                                     <td>{{$item->u_seleccion}}</td>
                                     <td>{{$item->u_pesaje}}</td>
                                     <td>{{$item->u_embalaje}}</td>
@@ -158,6 +166,28 @@
 
         $('input[name="fecha"]').daterangepicker({
             format : "DD/MM/YYYY"
+        });
+
+
+        $("#btnGetCodigo").click(function (e) {
+
+            var codigo = $("#codigoEtapa").val();
+
+            window.location.replace("{{route('modPacking')}}/etapa/viewEtapaByCodigo/"+codigo);
+
+        });
+
+
+        $("#codigoEtapa").keyup(function(e){
+            var code = e.which; // recommended to use e.which, it's normalized across browsers
+            if(code===13){
+                e.preventDefault();
+                var codigo = $("#codigoEtapa").val();
+
+                window.location.replace("{{route('modPacking')}}/etapa/viewEtapaByCodigo/"+codigo);
+
+            }
+
         });
 
     </script>

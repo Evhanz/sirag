@@ -165,26 +165,36 @@ class PalletController extends Controller
     public function getExcelPalletByFechas(){
 
         $data= \Input::all();
-        $res = $this->palletRep->getPalletByFechas($data['f_inicio'],$data['f_fin']);
 
-        $res = collect($res);
-        $res = $res->groupBy('codigo');
-        $pallets = [];
+        $fecha = $data['fecha'];
+        $fecha = explode('-',$fecha);
+
+        $f_inicio = explode('/',$fecha[0]);
+        $f_inicio = trim($f_inicio[2]).'-'.trim($f_inicio[1]).'-'.trim($f_inicio[0]);
+        $f_fin = explode('/',$fecha[1]);
+        $f_fin = trim($f_fin[2]).'-'.trim($f_fin[1]).'-'.trim($f_fin[0]);
+
+        $res = $this->palletRep->getPalletByFechas($f_inicio,$f_fin);
+
+        $pallet= [];
 
         foreach ($res as $item){
-            $pallet = new Obj();
-            $pallet->codigo = $item[0]->codigo;
-            $pallet->calibre = $item[0]->calibre;
-            $pallet->t_caja = $item[0]->t_caja;
-            $pallet->cant_cajas = count($item);
-            $pallet->fecha_registro = $item[0]->fecha_registro;
-            $pallet->detalles = $item;
-            $pallet->detail_show = false;
 
-            array_push($pallets,$pallet);
+            $i = (array)$item;
+            unset($i['fecha_vencimiento']);
+            unset($i['id']);
+            array_push($pallet,$i);
         }
 
-        return \Response::json($pallets);
+
+        \Excel::create('pallet_data', function($excel) use ($pallet) {
+
+            $excel->sheet('pallet', function($sheet) use ($pallet) {
+
+                $sheet->fromArray($pallet);
+
+            });
+        })->export('xls');
     }
 
 

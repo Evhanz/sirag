@@ -47,7 +47,7 @@ class EtapaRep
     }
 
     public function getAllEtapa(){
-        $res = \DB::table('sirag.etapa')->get();
+        $res = \DB::table('sirag.etapa')->take(10)->get();
         return $res;
     }
 
