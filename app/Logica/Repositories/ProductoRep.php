@@ -297,9 +297,9 @@ class ProductoRep
         AND p.FAMILIA like '%$familia%'
         AND p.SUBFAMILIA like '%$subFamilia%'
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15 , dd.Costo,p.PRODUCTO
-        ORDER BY A.Fecha";
+        ORDER BY A.Fecha DESC";
 
-        HelpFunct::writeQuery($query);
+        //HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);
@@ -354,7 +354,7 @@ class ProductoRep
             $obj->saldo_inicial = $s_inicial;
 
             $obj->detalle = $item;
-            $obj->costo = round($item->avg('Costo'),3);
+            $obj->costo = round($item[0]->Costo,3);
 
 
             array_push($dataFormated,$obj);
