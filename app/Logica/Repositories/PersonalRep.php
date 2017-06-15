@@ -2907,7 +2907,7 @@ where EMPRESA = 'e01'";
             $codigo = $data['codigo'];
             $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
                         actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
-                        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
+                        (select APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE
                                  from flexline.PER_TRABAJADOR
                                 WHERE FICHA = TRABAJADOR) nombre
                                 from 
@@ -2920,7 +2920,7 @@ where EMPRESA = 'e01'";
             $fecha = $data;
             $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 
                         actividad,AUX_VALOR16 codigo, AUX_VALOR5 cci,CANTIDAD hora,
-                        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO
+                        (select APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE
                                  from flexline.PER_TRABAJADOR
                                 WHERE FICHA = TRABAJADOR) nombre
                                 from 
