@@ -12,3 +12,4 @@ Route::get('packing/inicio',['as'=>'inicioPacking','uses'=>'Packing\InicioContro
 //esto va a ser para colocar el calibre y el tipo de caja en los pallets
 Route::get('packing/inicio/getOpcionesGenerales/{tipo}',['as'=>'getOpcionesGenerales',
     'uses'=>'Packing\InicioController@getOpcionesGenerales']);
+Route::get('packing/inicio/getBarCajas/{f_i}/{f_f}/{tipo}',['as'=>'getBarCajas','uses'=>'Packing\InicioController@getBarCajas']);

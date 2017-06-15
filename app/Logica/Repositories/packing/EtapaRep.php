@@ -144,8 +144,65 @@ class EtapaRep
         $res = \DB::select($query);
 
         return $res;
+    }
 
+    public function getEtapaByCodigoPallet($codigo){
+
+        $query = "SELECT 
+        e.id,e.t_caja,e.calibre,e.fecha,e.codigo,
+        (SELECT (APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre
+        from flexline.PER_TRABAJADOR
+        where FICHA = e.u_seleccion) seleccion,
+        (SELECT (APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre
+        from flexline.PER_TRABAJADOR
+        where FICHA = e.u_pesaje) pesaje,
+        (SELECT (APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre
+        from flexline.PER_TRABAJADOR
+        where FICHA = e.u_embalaje) embalaje,
+        (SELECT (APELLIDO_PATERNO+' '+APELLIDO_MATERNO+' '+NOMBRE) nombre
+        from flexline.PER_TRABAJADOR
+        where FICHA = e.u_peso_fijo) peso_fijo
+        from sirag.etapa as e
+        where cod_pallet = $codigo";
+
+        $res = \DB::select($query);
+
+
+        return $res;
 
     }
+
+
+    public function getEtapaByTipoCaja($f_inicio,$f_fin,$codigo){
+
+        $query = "SELECT * 
+        FROM sirag.etapa
+        where CONVERT(date,fecha,103) >= '$f_inicio'
+        and CONVERT(date,fecha,103) <= '$f_fin'
+        AND t_caja = '$codigo'";
+
+
+        $res = \DB::select($query);
+
+        return $res ;
+
+    }
+
+    public function getEtapaByCalibreCaja($f_inicio,$f_fin,$codigo){
+
+        $query = "SELECT * 
+        FROM sirag.etapa
+        where CONVERT(date,fecha,103) >= '$f_inicio'
+        and CONVERT(date,fecha,103) <= '$f_fin'
+        AND calibre = '$codigo'";
+
+
+        $res = \DB::select($query);
+
+        return $res ;
+
+    }
+
+
 
 }

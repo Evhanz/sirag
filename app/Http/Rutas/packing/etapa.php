@@ -18,7 +18,8 @@ Route::post('packing/etapa/editar',
     ['as'=>'apiSeleccionEdit','uses'=>'Packing\EtapaController@apiSeleccionEdit']);
 //api
 Route::get('packing/etapa/api/getById/{id}',['as'=>'apiGetEtapaById','uses'=>'Packing\EtapaController@apiGetById']);
+Route::get('packing/etapa/api/getByCodigoPallet/{codigo}',['as'=>'apiGetEtapaByCodigoPallet'
+    ,'uses'=>'Packing\EtapaController@apiGetEtapaByCodigoPallet']);
 Route::get('packing/etapa/api/getByCodigo/{codigo}/{opcion}',['as'=>'apiGetByCodigo','uses'=>'Packing\EtapaController@apiGetByCodigo']);
 Route::get('packing/etapa/api/getEmpleadoByFichaTipo/{ficha}/{tipo}',
     ['as'=>'getEmpleadoByFichaTipo','uses'=>'Packing\EtapaController@getEmpleadoByFichaTipo']);
-

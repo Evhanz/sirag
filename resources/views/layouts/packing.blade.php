@@ -105,8 +105,7 @@
                 <li><a href="{{route('viewAllMP')}}"><i class="fa fa-circle-o text-red"></i> <span>Materia Prima</span></a></li>
                 <li><a href="{{route('viewEtapaAll')}}"><i class="fa fa-circle-o text-yellow"></i> <span>E. Seleccion</span></a></li>
                 <li><a href="{{route('viewAllPallet')}}"><i class="fa fa-circle-o text-green"></i> <span>Pallet</span></a></li>
-                <li><a href="{{route('viewAllPallet')}}"><i class="fa fa-circle-o text-teal"></i> <span>Cambio Cargo</span></a></li>
-
+                <li><a href="{{route('viewPalletRep')}}"><i class="fa fa-circle-o text-green"></i> <span>Reporte Pallet</span></a></li>
               <!--  <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
                 <li class="header">OPCIONES GENERALES</li>
                 <span id="opciones">
@@ -169,9 +168,9 @@
 </script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{asset('templates/lte2/bootstrap/js/bootstrap.min.js')}}"></script>
-<!-- Morris.js charts
+<!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{asset('templates/lte2/plugins/morris/morris.min.js')}} "></script> -->
+<script src="{{asset('templates/lte2/plugins/morris/morris.min.js')}} "></script>
 <!-- Sparkline -->
 <script src="{{asset('templates/lte2/plugins/sparkline/jquery.sparkline.min.js')}}  "></script>
 <!-- jvectormap -->

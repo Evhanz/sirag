@@ -9,6 +9,7 @@
 namespace sirag\Repositories\packing;
 
 
+use sirag\Entities\Obj;
 use sirag\Helpers\HelpFunct;
 
 class PalletRep
@@ -38,6 +39,8 @@ class PalletRep
 
     }
 
+    /*Esto es para insertar los detalles*/
+
     public function editPallet($detalles,$codPallet,$estado){
 
         $codigos_etapas = '';
@@ -56,10 +59,7 @@ class PalletRep
 
         $res = \DB::update($query);
 
-        HelpFunct::writeQuery($query);
-
         return $res;
-
     }
 
     public function deleteDetailPallet($id){
@@ -70,10 +70,13 @@ class PalletRep
 
     }
 
-    public function getDetailsPallet($id){
+    public function getDetailsPallet($codigo){
 
 
-        $res = \DB::select("select p.id, 
+        $res = \DB::select("SELECT 
+        e.t_caja,
+        e.calibre,
+        p.id, 
         p.fecha_registro,
         p.fecha_vencimiento,
         p.estado,
@@ -81,25 +84,110 @@ class PalletRep
         (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO 
         from flexline.PER_TRABAJADOR
         where EMPRESA = 'e01'
-        and EMPLEADO = e.u_seleccion
+        and FICHA = e.u_seleccion
         )seleccion,
         (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO 
         from flexline.PER_TRABAJADOR
         where EMPRESA = 'e01'
-        and EMPLEADO = e.u_seleccion
+        and FICHA = e.u_pesaje
         ) pesaje ,
         (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO 
         from flexline.PER_TRABAJADOR
         where EMPRESA = 'e01'
-        and EMPLEADO = e.u_seleccion
+        and FICHA = e.u_embalaje
         )embalaje
-        from 
-        sirag.pallet p inner join sirag.etapa e on p.id = e.cod_pallet
-        where p.id = $id");
+        FROM sirag.etapa e 
+        INNER join sirag.pallet p on e.cod_pallet=p.codigo
+        where p.codigo = $codigo");
 
         return $res;
 
 
     }
+
+    public function getAllPalletPaginate($fecha=null){
+
+        if($fecha==null){
+            $res = \DB::table('sirag.pallet')->paginate(3);
+        }else{
+
+            $res = \DB::table('sirag.pallet')->
+            whereRaw("CONVERT(DATE,fecha_registro,103) ='".$fecha."'")->
+            paginate(3);
+        }
+
+
+        return $res;
+
+    }
+
+    public function getAllPalletPaginateFechas($f_i,$f_f){
+
+        $res = \DB::table('sirag.pallet')->
+            where('fecha_registro','>=',$f_i)->where('fecha_registro','<=',$f_f)->paginate(3);
+        return $res;
+
+    }
+
+    public function getCountNowPallet($fecha){
+        $res = \DB::table('sirag.pallet')->whereRaw("CONVERT(DATE,fecha_registro,103) ='".$fecha."'")->get();
+        return $res;
+
+    }
+
+
+    public function getPalletByCodigoWithDetails($codigo){
+
+        $res = \DB::table('sirag.pallet')->where('codigo',$codigo)->get();
+
+        if(isset($res[0])){
+            $res = $res[0];
+            $res->detalles = $this->getDetailsPallet($codigo);
+            $res->t_caja = $res->detalles[0]->t_caja;
+            $res->calibre = $res->detalles[0]->calibre;
+            $res->cant_cajas = count($res->detalles);
+            $res->detail_show = false;
+        }
+
+        return $res;
+    }
+
+    public function getPalletByFechas($f_inicio,$f_fin){
+
+        $query = "select
+                p.codigo codigo,
+                e.t_caja,
+                e.calibre,
+                p.id, 
+                p.fecha_registro,
+                p.fecha_vencimiento,
+                p.estado,
+                e.id cod_caja,
+                (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO 
+                from flexline.PER_TRABAJADOR
+                        where EMPRESA = 'e01'
+                        and FICHA = e.u_seleccion
+                        )seleccion,
+                        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO 
+                        from flexline.PER_TRABAJADOR
+                        where EMPRESA = 'e01'
+                        and FICHA = e.u_pesaje
+                        ) pesaje ,
+                        (select NOMBRE+' '+APELLIDO_PATERNO+' '+APELLIDO_MATERNO 
+                        from flexline.PER_TRABAJADOR
+                        where EMPRESA = 'e01'
+                        and FICHA = e.u_embalaje
+                        )embalaje
+                FROM sirag.etapa e 
+                INNER join sirag.pallet p on e.cod_pallet=p.codigo
+                where CONVERT(date,p.fecha_registro,103) >='$f_inicio' AND  CONVERT(date,p.fecha_registro,103) <= '$f_fin'
+                order by p.codigo";
+
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
 
 }

@@ -1,0 +1,22 @@
+new Vue({
+    el:"#content",
+    data: {
+
+    },
+    methods:{
+
+    },
+    mounted:function () {
+
+
+    },
+    watch: {
+
+
+    },
+    updated: function () {
+
+    }
+
+});
+

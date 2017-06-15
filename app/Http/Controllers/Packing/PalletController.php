@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Packing;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use sirag\Entities\Obj;
 use sirag\Repositories\packing\PalletRep;
 
 
@@ -38,10 +39,11 @@ class PalletController extends Controller
     public function viewAll(){
 
         $pallets = $this->palletRep->getAllPallet();
-
         return view('packing/pallet/viewAllPallet',compact('pallets'));
+    }
 
-
+    public function viewPalletRep(){
+        return view('packing/pallet/viewPalletReport');
     }
 
     public function regPallet(){
@@ -89,6 +91,101 @@ class PalletController extends Controller
         return \Response::json(count($res));
     }
 
+    public function getAllPalletPaginate(){
+
+        $hoy = getdate();
+
+        if($hoy['mon']<10)$hoy['mon'] = '0'.$hoy['mon'];
+        if($hoy['mday']<10)$hoy['mday'] = '0'.$hoy['mday'];
+
+        $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'];
+
+        $res = $this->palletRep->getAllPalletPaginate($fecha);
+        return \Response::json($res);
+    }
+
+    public function getAllPalletPaginateFechas($f_i,$f_f){
+        $res = $this->palletRep->getAllPalletPaginateFechas($f_i,$f_f);
+        return \Response::json($res);
+    }
+
+    public function getCountNowPallet(){
+
+        $hoy = getdate();
+
+        if($hoy['mon']<10)$hoy['mon'] = '0'.$hoy['mon'];
+        if($hoy['mday']<10)$hoy['mday'] = '0'.$hoy['mday'];
+
+        $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'];
+
+        $res = $this->palletRep->getCountNowPallet($fecha);
+        return \Response::json(count($res));
+
+    }
+
+    public function getPalletByCodigoWithDetails(){
+
+        $data = \Input::all();
+
+        $res = $this->palletRep->getPalletByCodigoWithDetails($data['codigo']);
+
+        return \Response::json($res);
+
+    }
+
+
+    public function getPalletByFechas(){
+
+        $data= \Input::all();
+        $res = $this->palletRep->getPalletByFechas($data['f_inicio'],$data['f_fin']);
+
+        $res = collect($res);
+        $res = $res->groupBy('codigo');
+        $pallets = [];
+
+        foreach ($res as $item){
+            $pallet = new Obj();
+            $pallet->codigo = $item[0]->codigo;
+            $pallet->calibre = $item[0]->calibre;
+            $pallet->t_caja = $item[0]->t_caja;
+            $pallet->cant_cajas = count($item);
+            $pallet->fecha_registro = $item[0]->fecha_registro;
+            $pallet->detalles = $item;
+            $pallet->detail_show = false;
+
+            array_push($pallets,$pallet);
+        }
+
+        return \Response::json($pallets);
+    }
+
+
+    //excel -
+
+    public function getExcelPalletByFechas(){
+
+        $data= \Input::all();
+        $res = $this->palletRep->getPalletByFechas($data['f_inicio'],$data['f_fin']);
+
+        $res = collect($res);
+        $res = $res->groupBy('codigo');
+        $pallets = [];
+
+        foreach ($res as $item){
+            $pallet = new Obj();
+            $pallet->codigo = $item[0]->codigo;
+            $pallet->calibre = $item[0]->calibre;
+            $pallet->t_caja = $item[0]->t_caja;
+            $pallet->cant_cajas = count($item);
+            $pallet->fecha_registro = $item[0]->fecha_registro;
+            $pallet->detalles = $item;
+            $pallet->detail_show = false;
+
+            array_push($pallets,$pallet);
+        }
+
+        return \Response::json($pallets);
+    }
 
 
 }

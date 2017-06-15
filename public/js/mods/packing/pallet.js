@@ -215,13 +215,7 @@ new Vue({
                         alert("Error");
                         console.log(data);
                     });
-
             }
-
-
-
-
-
         },
         reset: function () {
 

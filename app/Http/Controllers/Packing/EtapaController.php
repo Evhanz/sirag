@@ -147,8 +147,17 @@ class EtapaController extends Controller
         $res = $this->etapaRep->getEmpleadoByFichaTipo($ficha,$tipo);
 
         return count($res);
-
     }
+
+
+    public function apiGetEtapaByCodigoPallet($codigo){
+
+        $res = $this->etapaRep->getEtapaByCodigoPallet($codigo);
+        return \Response::json($res);
+    }
+
+
+
 
 
 

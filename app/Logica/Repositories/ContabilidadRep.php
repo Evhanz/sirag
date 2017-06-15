@@ -44,7 +44,6 @@ class ContabilidadRep
         $ff = $data['f_f'];
         $nivel = $data['nivel'];
 
-
         //$sql = "EXEC sp_getBalanceByNiveles @fi = '$fi', @ff = '$ff',	@nivel = 1";
 
         $res_query = \DB::statement("EXEC sp_getBalanceByNiveles @fi = '$fi', @ff = '$ff',	@nivel = $nivel");
@@ -405,7 +404,7 @@ class ContabilidadRep
 
         //luego sacamos a los producos
 
-        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.FAMILIA
                         FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
                         on D.Producto = P.PRODUCTO 
                         AND  D.Empresa = P.Empresa
@@ -413,8 +412,8 @@ class ContabilidadRep
                         AND D.TipoDocto = 'SALIDA ALMACEN'
                         AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) > 0
                         and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
-                        group by p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
-                        ORDER BY P.SUBFAMILIA,p.GLOSA";
+                        group by p.GLOSA,P.PRODUCTO,P.FAMILIA
+                        ORDER BY P.FAMILIA,p.GLOSA";
 
         $productos = \DB::select($q_productos);
 

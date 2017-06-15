@@ -20,8 +20,9 @@ Route::post('packing/materiaPrima/viewAllMP',
 //api
 Route::get('packing/materiaPrima/getAllMteriaPrima',
     ['as'=>'getAllMteriaPrima','uses'=>'Packing\MateriaPrimaController@getAllMteriaPrima']);
+/*
 Route::get('packing/materiaPrima/get',
-    ['as'=>'inicioPacking','uses'=>'Packing\MateriaPrimaController@index']);
+    ['as'=>'inicioPacking','uses'=>'Packing\MateriaPrimaController@index']); */
 Route::post('packing/materiaPrima/storeNew',
     ['as'=>'materiaPrimaStoreNew','uses'=>'Packing\MateriaPrimaController@materiaPrimaStoreNew']);
 Route::get('packing/materiaPrima/api/getIMPById/{id}',
