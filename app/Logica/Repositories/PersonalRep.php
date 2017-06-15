@@ -2915,7 +2915,7 @@ where EMPRESA = 'e01'";
                                 WHERE CONVERT(DATE,FECHA,113)  between  '$f_i' and '$f_f'
                                 AND TRATO = 'TRATO_HORA'
                                 AND TRABAJADOR LIKE '%$codigo%' $q_cci
-                                ORDER BY FECHA";
+                                ORDER BY FECHA DESC";
         }else{
             $fecha = $data;
             $query = "select CONVERT(DATE,FECHA,113) fecha,TRABAJADOR ficha,CODACTIVIDAD 

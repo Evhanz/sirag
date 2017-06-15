@@ -175,10 +175,8 @@
                                                 <!-- tools box -->
                                             </div><!-- /.box-header -->
                                             <div class="box-body ">
-
                                                 <div class="row" id="details">
                                                     <div class="col-lg-12">
-
                                                         <table class="table table-bordered" id="data">
                                                             <thead>
                                                             <tr>
