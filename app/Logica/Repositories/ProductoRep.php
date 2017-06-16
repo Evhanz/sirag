@@ -297,7 +297,7 @@ class ProductoRep
         AND p.FAMILIA like '%$familia%'
         AND p.SUBFAMILIA like '%$subFamilia%'
         group by dd.Fecha ,p.GLOSA,dd.UnidadIngreso, dd.analisis15 , dd.Costo,p.PRODUCTO
-        ORDER BY A.Fecha DESC";
+        ORDER BY A.Fecha";
 
         //HelpFunct::writeQuery($query);
 
