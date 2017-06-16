@@ -27,7 +27,7 @@
                             <ul class="nav nav-tabs" id="tab_filtros">
                                 <li class="active"><a data-toggle="tab" href="#home">Usuarios Rol</a></li>
                                 <li class=""><a data-toggle="tab" href="#modulos">Módulos </a></li>
-                                <li class=""><a data-toggle="tab" href="#mantenedor_opciones">Mantenedor Opciones </a></li>
+                                <li class=""><a data-toggle="tab" href="#mantenedor_opciones" ng-click="getOpciones()">Mantenedor Opciones </a></li>
                             </ul>
                         </div><!-- /.box-header -->
                         <div class="box-body no-padding">
@@ -98,16 +98,121 @@
 
                                 </div>
 
-                                <div id="mantenedor_opciones">
+                                <div id="mantenedor_opciones" class="tab-pane fade">
 
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-6" >
 
-                                            
+                                            <div class="box box-sucess" style="padding: 15px;">
+                                                <div class="box-header">
+                                                    <h3>Modulos</h3>
+                                                </div>
+                                                <div class="box-mody">
 
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <label for="">Nombre</label>
+                                                            <input ng-model="select_op_modulos.nombre" ng-init="select_op_modulos.nombre=''" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="">Alias</label>
+                                                            <input ng-model="select_op_modulos.alias" ng-init="select_op_modulos.alias=''" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="">Icono</label>
+                                                            <input ng-model="select_op_modulos.icono" ng-init="select_op_modulos.icono=''" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="">&nbsp;</label><br>
+                                                            <button id="saveModulo" value="save" ng-click="addModulo()" style="width: 100%" class="btn btn-success btn-large">Guardar</button>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="box-footer no-padding" style="height: 320px;overflow: auto;">
+                                                    <br>
+
+                                                    <table class="table table-bordered">
+
+                                                        <tr>
+                                                            <td>Id</td>
+                                                            <td>Nombre</td>
+                                                            <td>Alias </td>
+                                                            <td>Icono</td>
+                                                            <td>*</td>
+                                                        </tr>
+                                                        <tr ng-repeat="item in opciones_modulos">
+                                                            <td>@{{ item.id }}</td>
+                                                            <td>@{{ item.nombre }}</td>
+                                                            <td>@{{ item.alias }}</td>
+                                                            <td><i class="fa @{{ item.icono }}"></i></td>
+                                                            <td><a style="cursor: pointer;" ng-click="editModule(item)"><i class="fa fa-eye"></i></a> </td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-lg-6">
+                                            <div class="box box-sucess" style="padding: 15px;">
+                                                <div class="box-header">
+                                                    <h3>Sub Modulos</h3>
+                                                </div>
+                                                <div class="box-mody">
 
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <label for="">Nombre</label>
+                                                            <input ng-model="select_op_sub_modulos.nombre" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="">Alias</label>
+                                                            <input ng-model="select_op_sub_modulos.alias" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="">URL</label>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="">IdModulo</label>
+                                                            <input ng-model="select_op_sub_modulos.id_modulo" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label for="">&nbsp;</label><br>
+                                                            <button id="saveSubModulo" value="save" ng-click="addSubModulo()" style="width: 100%" class="btn btn-success btn-large">Guardar</button>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="box-footer no-padding" style="height: 320px;overflow: auto;">
+                                                    <br>
+
+                                                    <table class="table table-bordered">
+
+                                                        <tr>
+                                                            <td>Id</td>
+                                                            <td>Nombre</td>
+                                                            <td>Alias </td>
+                                                            <td>#Mod</td>
+                                                            <td>*</td>
+                                                        </tr>
+                                                        <tr ng-repeat="item in opciones_sub_modulos">
+                                                            <td>@{{ item.id }}</td>
+                                                            <td>@{{ item.nombre }}</td>
+                                                            <td>@{{ item.alias }}</td>
+                                                            <td>@{{ item.id_modulo }}</td>
+                                                            <td><a style="cursor: pointer;" ng-click="editSubModule(item)"><i class="fa fa-eye"></i></a> </td>
+                                                        </tr>
+
+                                                    </table>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -163,6 +268,13 @@
             initData();
 
             $scope.modulos = [];
+
+
+            $scope.opciones_modulos = [];
+            $scope.opciones_sub_modulos = [];
+            $scope.select_op_modulos = {};
+            $scope.select_op_sub_modulos = {};
+
 
 
 
@@ -316,6 +428,111 @@
 
             };
 
+            $scope.getOpciones= function () {
+
+                var ruta ="{{route('getOpciones')}}";
+
+
+                $http.get(ruta)
+                    .success(function (data) {
+                        $scope.opciones_modulos = data.modulos;
+                        $scope.opciones_sub_modulos = data.sub_modulos;
+
+                    })
+                    .error(function (data) {
+                        alert("Hay un problema con el servidor");
+                        $(".mensaje_cargando").hide();
+                    });
+
+
+
+            };
+
+            $scope.addModulo = function () {
+                var ruta   = "{{ URL::route('apiSaveOpcionModulo') }}";
+                var _token = $("#_token").val();
+
+                var bandera = 0;
+
+                if($scope.select_op_modulos.nombre === ''){
+                    bandera = 1;
+                }
+                if($scope.select_op_modulos.alias === ''){
+                    bandera = 1;
+                }
+                if($scope.select_op_modulos.icono === ''){
+                    bandera = 1;
+                }
+
+                if(bandera === 0){
+
+                    $http.post(ruta,{
+                        _token: _token,
+                        tipo  : 'modulo',
+                        modulo: $scope.select_op_modulos
+                    }).success(function (data) {
+                        console.log(data);
+                        $scope.select_op_modulos = {};
+                        $scope.getOpciones();
+                    }).error(function (data) {
+                        alert("Hay un problema con el servidor");
+                        console.log(data);
+                    });
+
+                }else{
+                    alert('Tiene que ingresar todas las opciones');
+                }
+            };
+
+
+            $scope.editModule = function (item) {
+
+                $scope.select_op_modulos = item;
+
+            };
+
+            $scope.addSubModulo = function () {
+                var ruta   = "{{ URL::route('apiSaveOpcionModulo') }}";
+                var _token = $("#_token").val();
+
+                var bandera = 0;
+
+                if($scope.select_op_sub_modulos.nombre === ''){
+                    bandera = 1;
+                }
+                if($scope.select_op_sub_modulos.alias === ''){
+                    bandera = 1;
+                }
+                if($scope.select_op_sub_modulos.id_modulo === ''){
+                    bandera = 1;
+                }
+
+                if(bandera === 0){
+
+                    $http.post(ruta,{
+                        _token: _token,
+                        tipo  : 'sub_modulo',
+                        modulo: $scope.select_op_sub_modulos
+                    }).success(function (data) {
+                        console.log(data);
+                        $scope.select_op_sub_modulos = {};
+                        $scope.getOpciones();
+                    }).error(function (data) {
+                        alert("Hay un problema con el servidor");
+                        console.log(data);
+                    });
+
+                }else{
+                    alert('Tiene que ingresar todas las opciones');
+                }
+            };
+
+
+            $scope.editSubModule = function (item) {
+
+                $scope.select_op_sub_modulos = item;
+
+            };
 
            function clearModules() {
 

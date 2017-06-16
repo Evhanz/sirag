@@ -31,9 +31,12 @@ class AdministracionUserController extends Controller
 
 
     public  function inicio(){
-
         return view('login');
+    }
 
+    public function getViewAdminUsuarios()
+    {
+        return view('usuarios/viewAdminUser');
     }
 
 
@@ -46,11 +49,19 @@ class AdministracionUserController extends Controller
 
     }
 
-
-    public function getViewAdminUsuarios()
+    public function getOpciones()
     {
-        return view('usuarios/viewAdminUser');
+        # code...
+        $res = $this->usuarioRep->getOpciones();
+
+        return \Response::json($res);
+
     }
+
+
+
+
+
 
     public function updateRolesUsuarios()
     {
@@ -147,7 +158,30 @@ class AdministracionUserController extends Controller
         return 'ok';
 
     }
+    //save
+    public function apiSaveOpcionModulo(){
 
+        $data= \Input::all();
+
+        $res = '';
+
+        $tipo = $data['tipo'];
+
+        switch ($tipo){
+            case 'modulo':
+                #llama a modulo
+                $res = $this->usuarioRep->addOrEditModule($data['modulo']);
+            break;
+            case 'sub_modulo':
+                #llama a submodulo
+                $res = $this->usuarioRep->addOrEditSubModule($data['modulo']);
+            break;
+        }
+
+
+        return $res;
+
+    }
 
 
 

@@ -130,6 +130,62 @@ class UsuarioRep
     }
 
 
+    public function getOpciones(){
+
+        $query ="select * from sirag.modulos";
+
+        $res['modulos'] = \DB::select($query);
+
+        $query ="select * from sirag.sub_modulos";
+
+        $res['sub_modulos'] = \DB::select($query);
+
+
+        return $res;
+
+    }
+
+    public function addOrEditModule($module){
+
+        if(isset($module['id'])){
+            #edita
+
+            $id = $module['id'];
+            unset($module['id']);
+
+            \DB::table('sirag.modulos')
+                ->where('id', $id)
+                ->update($module);
+        }else{
+            #nuevo
+            \DB::table('sirag.modulos')->insert($module);
+        }
+
+        return 'ok';
+
+    }
+
+    public function addOrEditSubModule($module){
+
+        if(isset($module['id'])){
+            #edita
+
+            $id = $module['id'];
+            unset($module['id']);
+
+            \DB::table('sirag.sub_modulos')
+                ->where('id', $id)
+                ->update($module);
+        }else{
+            #nuevo
+            \DB::table('sirag.sub_modulos')->insert($module);
+        }
+
+        return 'ok';
+
+    }
+
+
 
 
 
