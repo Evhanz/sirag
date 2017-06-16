@@ -346,7 +346,7 @@ class ContabilidadRep
 
     /*
      * esta funcion reemplaza a la funcion anterior por cmbios
-     * en el proceso del ERP
+     * en el proceso del ERP ESTO ES POR CCI
      */
 
     public function getDataForExcelConsumo2($data)
@@ -387,7 +387,7 @@ class ContabilidadRep
         $query = "SELECT Analisis15 cci
                     FROM flexline.DocumentoD 
                     where CONVERT(date,Fecha) BETWEEN '$menor_fecha_ini' AND '$mayor_fecha_fin'
-                    AND TipoDocto = 'SALIDA ALMACEN'
+                    AND TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
                     AND LEN(Analisis15) = 6
                     and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
                     group by  Analisis15
@@ -404,16 +404,16 @@ class ContabilidadRep
 
         //luego sacamos a los producos
 
-        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.FAMILIA
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.TIPO
                         FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
                         on D.Producto = P.PRODUCTO 
                         AND  D.Empresa = P.Empresa
                         where CONVERT(date,D.Fecha) BETWEEN '$menor_fecha_ini' AND '$mayor_fecha_fin'
-                        AND D.TipoDocto = 'SALIDA ALMACEN'
+                        AND D.TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
                         AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) > 0
                         and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
-                        group by p.GLOSA,P.PRODUCTO,P.FAMILIA
-                        ORDER BY P.FAMILIA,p.GLOSA";
+                        group by p.GLOSA,P.PRODUCTO,P.TIPO
+                        ORDER BY P.TIPO,p.GLOSA";
 
         $productos = \DB::select($q_productos);
 
@@ -469,7 +469,7 @@ class ContabilidadRep
         $query = "SELECT Analisis15 cci
                     FROM flexline.DocumentoD 
                     where CONVERT(date,Fecha) BETWEEN '$startDate' AND '$endDate'
-                    AND TipoDocto = 'SALIDA ALMACEN'
+                    AND TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
                     AND LEN(Analisis15) = 5
                     and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
                     group by  Analisis15
@@ -478,16 +478,16 @@ class ContabilidadRep
         $res_cci_otros = \DB::select($query);
 
 
-        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.TIPO
         FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
         on D.Producto = P.PRODUCTO 
         AND  D.Empresa = P.Empresa
         where CONVERT(date,D.Fecha)  BETWEEN '$startDate' AND '$endDate'
-        AND D.TipoDocto = 'SALIDA ALMACEN'
+        AND D.TipoDocto  in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
         AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) = 5
         and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
-        group by p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
-        ORDER BY P.SUBFAMILIA,p.GLOSA";
+        group by p.GLOSA,P.PRODUCTO,P.TIPO
+        ORDER BY P.TIPO,p.GLOSA";
 
         $productos_otros = \DB::select($q_productos);
 
@@ -537,16 +537,18 @@ class ContabilidadRep
         $endDate = $otros['endDate'];
 
 
-        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
+        $q_productos = "SELECT p.GLOSA,P.PRODUCTO,P.TIPO
         FROM flexline.DocumentoD D inner join flexline.PRODUCTO P
         on D.Producto = P.PRODUCTO 
         AND  D.Empresa = P.Empresa
         where CONVERT(date,D.Fecha)  BETWEEN '$startDate' AND '$endDate'
-        AND D.TipoDocto = 'SALIDA ALMACEN'
+        AND D.TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
         AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) = 5
         and  D.Analisis15 =  17000
-        group by p.GLOSA,P.PRODUCTO,P.SUBFAMILIA
-        ORDER BY P.SUBFAMILIA,p.GLOSA";
+        group by p.GLOSA,P.PRODUCTO,P.TIPO
+        ORDER BY P.TIPO,p.GLOSA";
+
+        //HelpFunct::writeQuery($q_productos);
 
         $productos_otros = \DB::select($q_productos);
 
@@ -1055,11 +1057,15 @@ AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
         $query = "SELECT SUM( Cantidad) cantidad,SUM(costo*Cantidad) total, '$cci' cci
                     FROM flexline.DocumentoD 
                     where CONVERT(date,Fecha) BETWEEN '$f_ini' AND '$f_fin'
-                    AND TipoDocto = 'SALIDA ALMACEN'
+                    AND TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
                     AND Analisis15 = '$cci'
                     AND Producto = '$producto'";
 
+
+        //HelpFunct::writeQuery($query);
+
         $res = \DB::select($query);
+
 
 
 

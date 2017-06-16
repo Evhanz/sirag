@@ -77,7 +77,7 @@
 		<!--Cuerpo de la data-->
 		@foreach ($productos as $p)
 		<tr class="data">
-			<td>{{ $p->FAMILIA }}</td>
+			<td>{{ $p->TIPO }}</td>
 			<td>{{ $p->PRODUCTO }}</td>
 			<td>{{ $p->GLOSA }}</td>
 			@foreach($p->analisis_parron as $item)

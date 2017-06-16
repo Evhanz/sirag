@@ -531,7 +531,10 @@ class ContabilidadController extends Controller
             return \Response::json("correcto");
         }else{
 
+
+
             $res = $this->contabilidadRep->getDataForExcelConsumoAll($data);
+
 
             $ruta =base_path()."/storage/contabilidad/excel/";
 

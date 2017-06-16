@@ -141,14 +141,50 @@
 								<input class="form-control" type="text" name="cargo">
 							</div>
 							<div class="col-lg-4">
-								<label for="operario">Operario</label>
+								<label for="operario">Categoria</label>
 								<input class="form-control" type="text" name="operario">
 							</div>
 						</div>
-						
+						<hr>
+						<h4><strong>PERIODOS DE CONTRATO</strong></h4>
+						<div class="row">
+							<div class="col-lg-12" style="padding: 15px">
+                        	<div class="table-responsive" style="overflow: auto" id="cont_tabla">
+                            	<table class="table table-bordered" id="table_data_op1">
+                                	<thead >
+                                    <tr>
+                                    <th>*</th>
+                                    <th>Remuneración</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Término</th>
+                                    <th>Centro de costo</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- /.row - inside box -->
+						</div>								
 					</div>
 					<div id="atributos" class="tab-pane fade">
-						
+						<h4><strong>MODALIDAD DE PAGO</strong></h4>
+						<hr>
+						<div class="row">
+							<div class="col-lg-4">
+								<label for="cuentaCorriente">Cuenta Corriente</label>
+								<input class="form-control" type="text" name="cuentaCorriente">
+							</div>
+							<div class="col-lg-4">
+								<label for="tipoCuenta">Tipo de Cuenta</label>
+								<input class="form-control" type="text" name="tipoCuenta">
+							</div>
+							<div class="col-lg-4">
+								<label for="banco">Banco</label>
+								<input class="form-control" type="text" name="banco">
+							</div>							
+						</div>	
 					</div>
 				</div>
 
