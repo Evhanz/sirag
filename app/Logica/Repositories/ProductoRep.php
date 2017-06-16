@@ -354,7 +354,8 @@ class ProductoRep
             $obj->saldo_inicial = $s_inicial;
 
             $obj->detalle = $item;
-            $obj->costo = round($item[0]->Costo,3);
+            $ultimo = count($item);
+            $obj->costo = round($item[$ultimo - 1]->Costo,3);
 
 
             array_push($dataFormated,$obj);
