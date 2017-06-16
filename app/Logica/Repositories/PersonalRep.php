@@ -3418,13 +3418,18 @@ where EMPRESA = 'e01'";
                 # code...
                 $q1="AND TIPO='GEN_COMUNA'";
                 break;
+            case 'estadoCivil':
+                # code...
+                $q1="AND TIPO='PER_ESTADOCIVIL'";
+                break;
             default:
                 # code...
                 break;
         }
 
-        $query = "SELECT CODIGO FROM flexline.GEN_TABCOD
+        $query = "SELECT CODIGO,DESCRIPCION FROM flexline.GEN_TABCOD
                     WHERE EMPRESA='E01'
+                    AND TEXTO1<>'N' 
                     $q1";
 
         $res = \DB::select($query);
