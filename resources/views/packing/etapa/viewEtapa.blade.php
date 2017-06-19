@@ -201,7 +201,7 @@
 
                                 </div>
                                 -->
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <label for="calibre">Calibre</label>
                                     <input type="text" class="form-control" v-model="etapa.calibre" disabled>
                                 </div>
@@ -212,9 +212,14 @@
                                 </div>
                                 -->
 
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <label for="calibre">T. Caja</label>
                                     <input type="text" class="form-control" id="t_caja" v-model="etapa.t_caja" name="t_caja" disabled>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <label for="calibre">Uva</label>
+                                    <input type="text" class="form-control"  v-model="etapa.uva" name="uva" disabled>
                                 </div>
 
                             </div>

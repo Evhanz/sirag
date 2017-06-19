@@ -37,6 +37,7 @@ class InicioController extends Controller
             case 'packing_mobile':
                 $response['calibre'] = $this->etapaRep->getCalibresUva();
                 $response['tipo_caja'] = $this->etapaRep->getTiposCaja();
+                $response['uva'] = $this->etapaRep->getTiposUva();
                 break;
         }
 

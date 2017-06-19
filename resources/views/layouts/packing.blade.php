@@ -103,7 +103,7 @@
             <ul class="sidebar-menu" >
                 <li class="header">Opciones</li>
                 <li><a href="{{route('viewAllMP')}}"><i class="fa fa-circle-o text-red"></i> <span>Materia Prima</span></a></li>
-                <li><a href="{{route('viewEtapaAll')}}"><i class="fa fa-circle-o text-yellow"></i> <span>E. Seleccion</span></a></li>
+                <li><a href="{{route('viewEtapaAll')}}"><i class="fa fa-circle-o text-yellow"></i> <span>Cajas</span></a></li>
                 <li><a href="{{route('viewAllPallet')}}"><i class="fa fa-circle-o text-green"></i> <span>Pallet</span></a></li>
                 <li><a href="{{route('viewPalletRep')}}"><i class="fa fa-circle-o text-green"></i> <span>Reporte Pallet</span></a></li>
               <!--  <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->

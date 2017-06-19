@@ -61,7 +61,7 @@ var v_etapa=new Vue({
                                     pesaje:'',
                                     peso:0,
                                     seleccion:'',
-                                    uva:'',
+                                    uva:$( "#uva" ).val(),
                                     seleccion_estado:0,
                                     pesaje_estado:0,
                                     embalaje_estado:0,
@@ -139,7 +139,9 @@ var v_etapa=new Vue({
             if(etapa.calibre === ''){
                 bandera = 1;
             }
-
+            if(etapa.uva === ''){
+                bandera = 1;
+            }
 
 
             return bandera;
@@ -312,7 +314,7 @@ var v_etapa=new Vue({
                 pesaje:'',
                 peso:0,
                 seleccion:'',
-                uva:'',
+                uva:$( "#uva" ).val(),
                 seleccion_estado:0,
                 pesaje_estado:0,
                 embalaje_estado:0,
@@ -396,6 +398,13 @@ new Vue({
                     t_caja = t_caja +opcion;
                 });
 
+                var uva = '';
+
+                data.uva.forEach(function (item) {
+                    var opcion = "<option  value='"+item.CODIGO+"'>"+item.CODIGO +"</option> ";
+                    uva = uva +opcion;
+                });
+
 
 
                 var html ="<li><a >Calibre</a></li>" +
@@ -411,6 +420,13 @@ new Vue({
                         "<option value=''>-------------</option>" +
                             t_caja+
                         "</select> " +
+                    "</li>"+
+                    "<li><a >Tipo Uva</a></li> " +
+                    "<li style='padding: 0px 15px 0px 15px'> " +
+                    "<select class='form-control s_opciones' name='uva' id='uva' > " +
+                    "<option value=''>-------------</option>" +
+                    uva+
+                    "</select> " +
                     "</li>";
 
                 $("#opciones").html(html);
@@ -434,4 +450,5 @@ $( "#opciones" ).change(function() {
 
     v_etapa.etapa.calibre=$( "#calibre" ).val();
     v_etapa.etapa.t_caja=$( "#t_caja" ).val();
+    v_etapa.etapa.uva=$( "#uva" ).val();
 });

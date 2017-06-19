@@ -97,12 +97,20 @@ class EtapaRep
                     WHERE EMPRESA='E01'
                     AND TIPO='PRODUCTO.CALIBRE' -- CALIBRE
                     AND VIGENCIA<>'N'";
+        $res = \DB::select($query);
+        return $res;
+    }
+
+    public function getTiposUva(){
+
+        $query = "SELECT CODIGO FROM flexline.GEN_TABCOD
+                    WHERE EMPRESA='E01'
+                    AND TIPO='PRODUCTO.VARIEDAD'
+                    ";
 
         $res = \DB::select($query);
 
         return $res;
-
-
     }
 
     public function getTiposCaja(){
