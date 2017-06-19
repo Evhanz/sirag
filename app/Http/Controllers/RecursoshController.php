@@ -82,8 +82,8 @@ class RecursoshController extends Controller
         return view('rh/viewCambioCargo');
     }
 
-     public function viewPrueba(){
-        return view('rh/viewPrueba');
+     public function viewMantenedorPersonal(){
+        return view('rh/viewMantenedorPersonal');
     }
 
 
@@ -1512,9 +1512,17 @@ class RecursoshController extends Controller
 
     }
 
-    public function getUbigeo($tipo){
+    public function getGentabcod($tipo){
 
-       $res = $this->personalRep->getUbigeo($tipo);
+       $res = $this->personalRep->getGentabcod($tipo);
+
+        return \Response::json($res);
+
+    }
+
+    public function getArea($area){
+
+       $res = $this->personalRep->getArea($area);
 
         return \Response::json($res);
 

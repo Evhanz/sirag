@@ -3396,7 +3396,7 @@ where EMPRESA = 'e01'";
 
     }
 
-    public function getUbigeo($tipo){
+    public function getGentabcod($tipo){
 
         $q1 = "";
 
@@ -3422,6 +3422,22 @@ where EMPRESA = 'e01'";
                 # code...
                 $q1="AND TIPO='PER_ESTADOCIVIL'";
                 break;
+            case 'vigencia':
+                # code...
+                $q1="AND TIPO='PER_VIG'";
+                break;
+            case 'moneda':
+                # code...
+                $q1="AND TIPO='GEN_MONEDA'";
+                break;
+            case 'cargo':
+                # code...
+                $q1="AND TIPO='PER_CARGO'";
+                break;
+            case 'categoria':
+                # code...
+                $q1="AND TIPO='PER_CATEGO'";
+                break;
             default:
                 # code...
                 break;
@@ -3437,6 +3453,17 @@ where EMPRESA = 'e01'";
         return $res;
 
 
+
+    }
+
+    public function getArea($area){
+
+        $query = "SELECT CODIGO,NOMBRE FROM flexline.PER_DEPARTAMENTO
+                    WHERE EMPRESA='E01'";
+
+        $res = \DB::select($query);
+
+        return $res;
 
     }
 

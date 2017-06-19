@@ -124,33 +124,52 @@
 							</div>
 							<div class="col-lg-4">
 								<label for="vigencia">Vigencia</label>
-								<input class="form-control" type="text" name="vigencia">
+								<select name="" id="" class="form-control">
+									<option value="">-------</option>
+									<option ng-repeat="item in vigencia" value="item.CODIGO">@{{item.CODIGO}}</option>
+								</select>
 							</div>
 							<div class="col-lg-4">
 								<label for="moneda">Moneda</label>
-								<input class="form-control" type="text" name="moneda">
+								<select name="" id="" class="form-control">
+									<option value="">-------</option>
+									<option ng-repeat="item in moneda" value="item.CODIGO">@{{item.CODIGO}}</option>
+								</select>
 							</div>							
 						</div>
 						<div class="row">
-							<div class="col-lg-4">
-								<label for="departamento">Departamento</label>
-								<input class="form-control" type="text" name="departamento">
+							<div class="col-lg-3">
+								<label for="area">Departamento</label>
+								<select name="" id="" class="form-control">
+									<option value="">-------</option>
+									<option ng-repeat="item in area" value="item.NOMBRE">@{{item.NOMBRE}}</option>
+								</select>
 							</div>
-							<div class="col-lg-4">
+							<div class="col-lg-3">
 								<label for="cargo">Cargo</label>
-								<input class="form-control" type="text" name="cargo">
+								<select name="" id="" class="form-control">
+									<option value="">-------</option>
+									<option ng-repeat="item in cargo" value="item.CODIGO">@{{item.CODIGO}}</option>
+								</select>
 							</div>
-							<div class="col-lg-4">
-								<label for="operario">Categoria</label>
-								<input class="form-control" type="text" name="operario">
+							<div class="col-lg-3">
+								<label for="categoria">Categoria</label>
+								<select name="" id="" class="form-control">
+									<option value="">-------</option>
+									<option ng-repeat="item in categoria" value="item.CODIGO">@{{item.CODIGO}}</option>
+								</select>
+							</div>
+							<div class="col-lg-3">
+								<label for="vacaciones">Vacaciones</label>
+								<input class="form-control" type="text" name="vacaciones">
 							</div>
 						</div>
 						<hr>
 						<h4><strong>PERIODOS DE CONTRATO</strong></h4>
 						<div class="row">
 							<div class="col-lg-12" style="padding: 15px">
-                        	<div class="table-responsive" style="overflow: auto" id="cont_tabla">
-                            	<table class="table table-bordered" id="table_data_op1">
+                        	<div class="table-responsive" style="overflow: auto" id="periodo_tabla">
+                            	<table class="table table-bordered" id="periodo_tabla_op1">
                                 	<thead >
                                     <tr>
                                     <th>*</th>
@@ -184,7 +203,33 @@
 								<label for="banco">Banco</label>
 								<input class="form-control" type="text" name="banco">
 							</div>							
-						</div>	
+						</div>
+						<h4><strong>OBSERVACIONES</strong></h4>
+						<hr>
+						<div class="row">
+							<div class="col-lg-12">
+								<label for="observaciones">Observaciones</label>
+								<input class="form-control" type="text" name="observaciones">
+							</div>
+						</div>
+						<h4><strong>ATRIBUTO DE PERSONAL</strong></h4>
+						<hr>
+						<div class="row">
+							<div class="col-lg-12" style="padding: 15px">
+                        	<div class="table-responsive" style="overflow: auto" id="atributo_tabla">
+                            	<table class="table table-bordered" id="atributo_tabla_op1">
+                                	<thead >
+                                    <tr>
+                                    <th>*</th>
+                                    <th>Atributo</th>
+                                    <th>Valor</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody >
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- /.row - inside box -->	
 					</div>
 				</div>
 
@@ -220,7 +265,7 @@
         	function initData() {
         		// body...
         		//primero llamamos pais
-        		ruta =  "{{route('modRH')}}/api/getUbigeo/pais";
+        		ruta =  "{{route('modRH')}}/api/getGentabcod/pais";
         		
         		$http.get(ruta).success(function(data){
 
@@ -234,7 +279,7 @@
                 });
 
 
-                ruta =  "{{route('modRH')}}/api/getUbigeo/departamento";
+                ruta =  "{{route('modRH')}}/api/getGentabcod/departamento";
         		
         		$http.get(ruta).success(function(data){
 
@@ -247,7 +292,7 @@
                   
                 });
 
-                ruta =  "{{route('modRH')}}/api/getUbigeo/provincia";
+                ruta =  "{{route('modRH')}}/api/getGentabcod/provincia";
         		
         		$http.get(ruta).success(function(data){
 
@@ -260,7 +305,7 @@
                   
                 });
 
-                ruta =  "{{route('modRH')}}/api/getUbigeo/distrito";
+                ruta =  "{{route('modRH')}}/api/getGentabcod/distrito";
         		
         		$http.get(ruta).success(function(data){
 
@@ -273,7 +318,7 @@
                   
                 });
 
-                ruta =  "{{route('modRH')}}/api/getUbigeo/estadoCivil";
+                ruta =  "{{route('modRH')}}/api/getGentabcod/estadoCivil";
         		
         		$http.get(ruta).success(function(data){
 
@@ -285,6 +330,72 @@
         			console.log(data);
                   
                 });
+
+                ruta =  "{{route('modRH')}}/api/getGentabcod/vigencia";
+        		
+        		$http.get(ruta).success(function(data){
+
+        			$scope.vigencia=data;
+
+                }).error(function(data) {
+
+        			alert('error');
+        			console.log(data);
+                  
+                });
+
+                ruta =  "{{route('modRH')}}/api/getGentabcod/moneda";
+        		
+        		$http.get(ruta).success(function(data){
+
+        			$scope.moneda=data;
+
+                }).error(function(data) {
+
+        			alert('error');
+        			console.log(data);
+                  
+                });
+
+                ruta =  "{{route('modRH')}}/api/getArea/area";
+        		
+        		$http.get(ruta).success(function(data){
+
+        			$scope.area=data;
+
+                }).error(function(data) {
+
+        			alert('error');
+        			console.log(data);
+                  
+                });
+
+                ruta =  "{{route('modRH')}}/api/getGentabcod/cargo";
+        		
+        		$http.get(ruta).success(function(data){
+
+        			$scope.cargo=data;
+
+                }).error(function(data) {
+
+        			alert('error');
+        			console.log(data);
+                  
+                });
+
+                ruta =  "{{route('modRH')}}/api/getGentabcod/categoria";
+        		
+        		$http.get(ruta).success(function(data){
+
+        			$scope.categoria=data;
+
+                }).error(function(data) {
+
+        			alert('error');
+        			console.log(data);
+                  
+                });
+
 
 
         	}
