@@ -8,7 +8,6 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
-
     <!-- Ionicons -->
     <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
@@ -17,22 +16,10 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- jQuery 2.0.2 -->
     <script src="{{ asset('js/jquery-2.0.2.min.js')}}"></script>
-
     <!--Angular JS 1.2.19 -->
     <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>-->
-
     <!--Angular JS 1.5.8 -->
     <script src="{{ asset('js/plugins/angular/angular-1.5.8.min.js')}}"></script>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-
-
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
     <!-- AdminLTE App -->

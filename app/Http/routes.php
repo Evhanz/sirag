@@ -118,10 +118,7 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN']], function () {
 });
 
 //-----para pruebas
-Route::get('prueba/test1',function (){
-
-
-   // dd(Auth::user()->getAccess());
-
-});
+Route::get('prueba/', ['middleware' => 'prueba', function () {
+    return "eres mayor de edad y puedes ver este contenido";
+}]);
 

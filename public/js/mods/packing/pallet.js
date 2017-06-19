@@ -221,7 +221,6 @@ new Vue({
 
             var a = confirm('Seguro Que desea continuar ??, Se borrará los datos en el formulario');
 
-
             if(a === true){
                 this.codigo_pallet = '';
                 this.detalles=[];
@@ -232,7 +231,6 @@ new Vue({
         }
     },
     mounted:function () {
-
 
         $("#codigo").hide();
         this.opcion = $('#opcion').val();
