@@ -99,6 +99,7 @@ Route::get('archivo/getTxtPlameJOR/{periodo}',['as'=>'getTxtPlameJOR','uses'=>'R
 //esto es para los pdf
 Route::post('rh/archivos/getLiquidacion',['as'=>'getLiquidacion','uses'=>'RecursoshController@getLiquidacion']);
 Route::post('rh/archivos/getBoletaPago',['as'=>'getBoletaPago','uses'=>'RecursoshController@getBoletaPago']);
+Route::post('rh/archivos/getBoletaPagoPacking',['as'=>'getBoletaPagoPacking','uses'=>'RecursoshController@getBoletaPagoPacking']);
 
 
 //esto es para los archivos excel

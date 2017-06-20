@@ -3048,6 +3048,7 @@ where EMPRESA = 'e01'";
         AND A.MOVIMIENTO <> '1'
         AND A.MOVIMIENTO <> '4'
         AND A.MOVIMIENTO <> '5'
+        AND B.CARGO NOT IN ('SELECCION')
         group by B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,
         A.FICHA,B.EMPLEADO,B.CATEGORIA,B.CARGO,A.MOVIMIENTO,A.DESCRIPCION,A.EMPRESA,
         A.TIPO_MOVTO
@@ -3464,6 +3465,84 @@ where EMPRESA = 'e01'";
         $res = \DB::select($query);
 
         return $res;
+
+    }
+
+    public function getBoletaPagoPacking($data){
+
+        $q1='';
+        $periodo = $data['periodo'];
+        $periodo2 = $data['periodo2'];
+
+        if(isset($data['ficha'])){
+
+            if ($data['ficha'] == '') {
+                 $q1 = " and A.FICHA like '%%' ";
+    
+            } else {
+                $ficha = $data['ficha'];
+            $q1 = " and A.FICHA = '$ficha' ";
+
+            }
+        }else{
+            $q1 = " and A.FICHA like '%%' ";
+        }
+
+
+        $query = "SELECT
+        B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE AS NOMBRE ,
+        A.FICHA AS CODIGO,
+        B.EMPLEADO AS DNI,
+        B.CATEGORIA AS CATEGORIA,
+        B.CARGO AS CARGO,
+        (SELECT VALOR FROM flexline.PER_ATRIB_TRAB
+        WHERE EMPRESA=A.EMPRESA
+        AND FICHA=A.FICHA
+        AND ATRIBUTO='AFP') AS AFP,
+        (SELECT VALOR FROM flexline.PER_ATRIB_TRAB
+        WHERE EMPRESA=A.EMPRESA
+        AND FICHA=A.FICHA
+        AND ATRIBUTO='CUSPP') AS T_TRABAJADOR,
+        A.MOVIMIENTO,
+        SUM (A.VALOR) VALOR,
+        A.DESCRIPCION,
+        A.TIPO_MOVTO
+        FROM 
+        flexline.PER_DET_LIQ A,
+        flexline.PER_TRABAJADOR B
+        WHERE 
+        A.EMPRESA=B.EMPRESA
+        AND A.FICHA=B.FICHA
+        AND A.EMPRESA='E01'
+        AND A.PERIODO between '$periodo2'  and  '$periodo' -- DEBE ESCOGER EL DIA DE QUE BOLETA QUIERE OBTENER
+        $q1
+        AND B.CATEGORIA = 'OPERARIO'
+        AND A.MOVIMIENTO <> '110900'
+        AND A.MOVIMIENTO <> '99002'
+        AND A.MOVIMIENTO <> '99001'
+        AND A.MOVIMIENTO <> '52'
+        AND A.MOVIMIENTO <> '132'
+        AND A.MOVIMIENTO <> '133'
+        AND A.MOVIMIENTO <> '1'
+        AND A.MOVIMIENTO <> '4'
+        AND A.MOVIMIENTO <> '5'
+        AND B.CARGO IN ('SELECCION')
+        group by B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,
+        A.FICHA,B.EMPLEADO,B.CATEGORIA,B.CARGO,A.MOVIMIENTO,A.DESCRIPCION,A.EMPRESA,
+        A.TIPO_MOVTO
+        ORDER BY A.FICHA,B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,A.TIPO_MOVTO";
+
+
+        try{
+            $res = \DB::select($query);
+            $res = collect($res);
+            $res = $res->groupBy('DNI');
+            return ($res);
+        }
+        catch (\Exception $e){
+            dd($e);
+        }
+
 
     }
 
