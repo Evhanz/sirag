@@ -3054,6 +3054,8 @@ where EMPRESA = 'e01'";
         A.TIPO_MOVTO
         ORDER BY A.FICHA,B.APELLIDO_PATERNO+' '+B.APELLIDO_MATERNO+' '+B.NOMBRE,A.TIPO_MOVTO";
 
+        
+
 
         try{
             $res = \DB::select($query);
@@ -3065,7 +3067,7 @@ where EMPRESA = 'e01'";
             dd($e);
         }
 
-
+   
     }
 
 

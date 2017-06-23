@@ -803,7 +803,7 @@ A.VALOR4,B.RazonSocial
 ORDER BY A.FECHA,A.VALOR4
 ";
 
-HelpFunct::writeQuery($query);
+//HelpFunct::writeQuery($query);
 
 
         $res = \DB::select($query);

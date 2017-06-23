@@ -1529,7 +1529,7 @@ class RecursoshController extends Controller
 
     }
 
-        public function getBoletaPagoPacking()
+    public function getBoletaPagoPacking()
     {
 
         set_time_limit (180);
@@ -1569,7 +1569,9 @@ class RecursoshController extends Controller
         */
 
        
+       
         return \PDFS::loadView('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+       
 
         //return \PDFS::loadFile('http://www.github.com')->stream('github.pdf');
 
@@ -1577,7 +1579,7 @@ class RecursoshController extends Controller
         //$pdf->loadHTML($view)->setPaper('a4');
         // return $pdf->download('invoice');
 
-        //dd($view);
+        //echo ($view);
 
 
     }
