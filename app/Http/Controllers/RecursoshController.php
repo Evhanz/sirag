@@ -87,6 +87,7 @@ class RecursoshController extends Controller
     }
 
 
+
     
 
 
@@ -1525,6 +1526,61 @@ class RecursoshController extends Controller
        $res = $this->personalRep->getArea($area);
 
         return \Response::json($res);
+
+    }
+
+    public function getBoletaPagoPacking()
+    {
+
+        set_time_limit (180);
+
+
+        $data = \Input::all();
+        $fecha = $data['periodo'];
+        $fecha = explode('/', $fecha);
+
+
+        $f = Carbon::createFromDate($fecha[2], $fecha[1], $fecha[0]);
+
+        $f_f = $f->format('d/m/Y');
+
+        $f_i = $f->subDay(6)->format('d/m/Y');
+
+        /*para colocr el periodo 2 por si cae en dos meses*/
+        $periodo2 = explode('/', $f_i);
+
+
+        $fecha = $fecha[2].$fecha[1]. $fecha[0];
+        $data['periodo'] = $fecha;
+        $data['periodo2'] = $periodo2[2]. $periodo2[1]. $periodo2[0];
+
+
+        $res = $this->personalRep->getBoletaPagoPacking($data);
+
+
+        $view = \View::make('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->render();
+        $snappy = \App::make('snappy.pdf');
+        //To file
+                $html = '<h1>Bill</h1><p>You owe me money, dude.</p>';
+
+        /*
+                $snappy->generateFromHtml($html, '/tmp/bill-124.pdf');
+                $snappy->generate('http://www.github.com', '/tmp/github.pdf');
+        */
+
+       
+       
+        return \PDFS::loadView('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+       
+
+        //return \PDFS::loadFile('http://www.github.com')->stream('github.pdf');
+
+        //$pdf = \App::make('dompdf.wrapper');
+        //$pdf->loadHTML($view)->setPaper('a4');
+        // return $pdf->download('invoice');
+
+        //echo ($view);
+
 
     }
 
