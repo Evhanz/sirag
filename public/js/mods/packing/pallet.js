@@ -9,7 +9,6 @@ Vue.directive('focus', {
     inserted: function (el) {
         // Focus the element
         //el.focus()
-
     }
 });
 
@@ -35,9 +34,15 @@ new Vue({
                 alert('debe ingresar un detalle para registrar Palet y los datos obligatorios');
             }else {
 
-                //aca va la funcion de registrar
+                var url = '';
 
-                var url = $('#ruta').val()+'/packing/pallet/regPallet';
+                //aca va la funcion de registrar
+                if(v_obj.opcion==='editar'){
+                    url = $('#ruta').val()+'/packing/pallet/editPallet';
+                }else{
+                    url = $('#ruta').val()+'/packing/pallet/regPallet';
+                }
+
                 var token = $('#_token').val();
 
                 $.ajax({
@@ -51,19 +56,26 @@ new Vue({
                         // console.log('si salio',data);
 
                         if (data.code == '200'){
+
+                            /*
                             if(v_obj.opcion === 'editar'){
                                 window.location = $("#ruta_empleados").val()+'/packing/etapa/viewAll';
                             }else{
-                                $("#btnEnviar").attr('disabled',false);
-                               // v_obj.codigo = data.codigo;
-                                v_obj.detalles=[];
-                              //  v_obj.pallet={descripcion:''};
-                                v_obj.codigo_pallet='';
-                                $("#codigo_pallet").prop('disabled',false);
 
-                                alert('Correcto');
 
                             }
+                            */
+
+                            $("#btnEnviar").attr('disabled',false);
+                            // v_obj.codigo = data.codigo;
+                            v_obj.detalles=[];
+                            //  v_obj.pallet={descripcion:''};
+                            v_obj.codigo_pallet='';
+                            $("#codigo_pallet").prop('disabled',false);
+                            v_obj.opcion = '';
+
+                            alert('Correcto');
+
                         }else{
                             alert('Error: '+ data.code);
                         }
@@ -111,6 +123,7 @@ new Vue({
             }
         },
         getCaja : function (idCaja) {
+            /*el idcaja es el codigo de la caja*/
 
             var ruta = $('#ruta').val()+'/packing/etapa/api/getByCodigo/'+idCaja+'/pallet';
             var v = this;
@@ -126,7 +139,6 @@ new Vue({
                            if( i.id_caja === idCaja)  b = index;
                         });
 
-
                         if(b===''){
                             var e = {id_caja:idCaja};
                             v.detalles.splice(0, 0,e);
@@ -139,8 +151,7 @@ new Vue({
 
                             v.isDisabled = false;
 
-                        }else
-                        {
+                        }else {
                             alert('El código ya a sido ingresado');
                             v.caja = '';
                             v.isDisabled = false;
@@ -202,13 +213,27 @@ new Vue({
             }else{
                 $.getJSON( ruta)
                     .done(function( data ) {
-                        if(data === 0 ){
+                        if(data.existe < 1 ){
                             v.codigo_pallet = codigo_pallet;
                             $("#codigo_pallet").prop('disabled',true);
                             v.isDisabled = false ;
                         }else{
-                            alert("El codigo no está disponible");
+
+                            /*si entra aqui entonces quiere decir que existe */
+                           // alert("El codigo no está disponible");
+                           // v.detalles = data.detalles;
+
+                            data.detalles.forEach(function (item) {
+                                var e = {id_caja:item.codigo};
+                                v.detalles.push(e);
+                            });
+
+                            v.codigo_pallet = codigo_pallet;
+                            $("#codigo_pallet").prop('disabled',true);
+                            v.isDisabled = false;
+                            v.opcion = 'editar';
                         }
+
 
                     })
                     .fail(function (data) {

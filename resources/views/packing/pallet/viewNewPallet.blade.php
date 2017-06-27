@@ -70,7 +70,7 @@
                         <div class="col-xs-1">
                             <table class="table">
                                 <tr>
-                                    <th >* </th>
+                                    <th>*</th>
                                 </tr>
                                 <tr>
                                    <td> <span class="badge">@{{ detalles.length }}</span></td>
@@ -78,10 +78,7 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
-
-
 
                 <div class="row">
                     <div class="col-xs-12" >
@@ -96,10 +93,10 @@
                             <tbody>
 
                             <tr v-for="(item, index) in detalles">
-                                <td >
+                                <td>
                                     <a class="btn btn-danger btn-xs" @click="quitDetail(index)"> <i class="fa fa-minus-circle"></i> </a>
                                 </td>
-                                <td>
+                                <td><!-- el id_caja es el codigo de la caja  -->
                                     @{{ item.id_caja }}
                                    <!-- <input :id="index" @keyup.enter="getCaja(item.id_caja,item,index)" v-model="item.id_caja" type="text" class="form-control"> -->
                                 </td>

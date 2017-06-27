@@ -115,10 +115,23 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN']], function () {
     require __DIR__ . '/Rutas/packing/materia_prima.php';
     require __DIR__ . '/Rutas/packing/etapa.php';
     require __DIR__ . '/Rutas/packing/pallet.php';
+    require __DIR__ . '/Rutas/packing/movimientos.php';
 });
 
 //-----para pruebas
+/*
 Route::get('prueba/', ['middleware' => 'prueba', function () {
-    return "eres mayor de edad y puedes ver este contenido";
+
 }]);
+*/
+
+Route::get('prueba/',function (){
+
+    $res = \sirag\Helpers\HelpFunct::addElementFecha('day','8','+','2017-06-10');
+
+    \sirag\Helpers\HelpFunct::writeLog('prueba.txt',$res,'w');
+
+    dd($res);
+
+});
 

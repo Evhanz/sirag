@@ -3468,4 +3468,53 @@ where EMPRESA = 'e01'";
     }
 
 
+    /**
+     * @param $tipo: puede ser seleccion , pesaje o embalaje
+     * @param $f_i : fecha de inicio de intervalo : yyyy-mm-dd
+     * @param $f_f : fecha de fin de intervalo : yyyy-mm-dd
+     */
+
+    public function getCantCajasPacking($tipo,$f_i,$f_f){
+
+        $query = "SELECT COUNT(id) cant_cajas,$tipo ficha FROM
+                sirag.etapa
+                WHERE CONVERT(DATE,fecha,103) >= '$f_i'
+                and CONVERT(DATE,fecha,103) <= '$f_f'
+                GROUP by $tipo";
+
+        $res = \DB::select($query);
+
+        return $res;
+    }
+
+
+    public function insertJornalPacking($data){
+
+
+        try{
+            $res =  \DB::table('flexline.PER_DETALLETRATO')->insert($data);
+            return $res;
+        }catch(\Exception $e){
+            $res = $e;
+        }
+
+        return $res;
+    }
+
+    public function cleanRegDestajo($fecha){
+
+        $query = "DELETE FROM flexline.PER_DETALLETRATO 
+                where EMPRESA = 'E01'
+                AND AUX_VALOR11 = 'T'
+                AND COMENTARIO = 'SIRAG-PACKING'
+                AND CONVERT(DATE,FECHA,103) = '$fecha'";
+
+        \DB::delete($query);
+
+    }
+
+
+
+
+
 }
