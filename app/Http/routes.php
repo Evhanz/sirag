@@ -122,3 +122,8 @@ Route::get('prueba/', ['middleware' => 'prueba', function () {
     return "eres mayor de edad y puedes ver este contenido";
 }]);
 
+
+//---- para presupuestos
+
+require __DIR__ . '/Rutas/presupuestos.php';
+

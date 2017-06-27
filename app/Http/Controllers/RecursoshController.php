@@ -82,7 +82,7 @@ class RecursoshController extends Controller
         return view('rh/viewCambioCargo');
     }
 
-     public function viewMantenedorPersonal(){
+    public function viewMantenedorPersonal(){
         return view('rh/viewMantenedorPersonal');
     }
 
