@@ -101,6 +101,8 @@
 
             fecha = new Date(fecha);
 
+            console.log(fecha.getDay());
+
             if(fecha.getDay()===3){
 
                 $("#formAgrario").submit();
