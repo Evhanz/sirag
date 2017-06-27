@@ -31,7 +31,8 @@
                                         </div>
                                         <div class="form-group col-xs-3">
                                             <label for="">&nbsp;</label><br>
-                                            <a id="btnEnviarBoletaAgrario" class="btn btn-warning">Traer Boleta</a>
+                                          <!--  <a id="btnEnviarBoletaAgrario" class="btn btn-warning">Traer Boleta</a> -->
+                                            <button class="btn btn-warning">Traer Boleta</button>
                                         </div>
                                     </form>
                                 </div><!-- /.row - inside box -->
@@ -51,7 +52,8 @@
                                         </div>
                                         <div class="form-group col-xs-3">
                                             <label for="">&nbsp;</label><br>
-                                            <a id="btnEnviarBoletaPacking" class="btn btn-warning">Traer Boleta</a>
+                                          <!--  <a id="btnEnviarBoletaPacking" class="btn btn-warning">Traer Boleta</a>-->
+                                            <button class="btn btn-warning">Traer Boleta</button>
                                         </div>
                                     </form>
                                 </div>
@@ -94,14 +96,15 @@
             var mes = periodo[1];
             var dia = periodo[0];
 
-            if(mes<10) mes = '0'+mes;
-            if(dia<10) dia = '0'+dia;
+            if(mes.length===1) mes = '0'+mes;
+            if(dia.length===1) dia = '0'+dia;
+
 
             var fecha = periodo[2]+'-'+mes+'-'+dia;
 
             fecha = new Date(fecha);
 
-            console.log(fecha.getDay());
+            console.log(fecha);
 
             if(fecha.getDay()===3){
 

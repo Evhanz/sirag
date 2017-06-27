@@ -42,8 +42,8 @@
       <file leaf-file-name="viewGetBoletaPago.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/rh/viewGetBoletaPago.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="45" column="50" lean-forward="false" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -1381,7 +1381,7 @@
       <workItem from="1498228166820" duration="21066000" />
       <workItem from="1498486345421" duration="19553000" />
       <workItem from="1498573082242" duration="9071000" />
-      <workItem from="1498582887914" duration="13700000" />
+      <workItem from="1498582887914" duration="14582000" />
     </task>
     <task id="LOCAL-00075" summary="rev_reg jornales">
       <created>1487880472057</created>
@@ -1730,7 +1730,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2918251000" />
+    <option name="totallyTimeSpent" value="2919133000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2323,8 +2323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/rh/viewGetBoletaPago.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="45" column="50" lean-forward="false" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
           <folding />
         </state>
       </provider>
