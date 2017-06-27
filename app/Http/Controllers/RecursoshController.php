@@ -1435,6 +1435,12 @@ class RecursoshController extends Controller
 
 
         $data = \Input::all();
+
+
+        dd($data);
+
+
+
         $fecha = $data['periodo'];
         $fecha = explode('/', $fecha);
 

@@ -93,7 +93,7 @@
                     <img src="{{ asset('img/avatar3.png')}}" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>Bienvenido ,Usuario</p>
+                    <p>Bienvenido ,Usuario: </p>
 
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
