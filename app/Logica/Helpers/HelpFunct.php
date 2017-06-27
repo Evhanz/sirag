@@ -97,7 +97,6 @@ class HelpFunct
         }
 
         return $arreglo;
-
     }
 
     static public function getItemsByLenOfArray($len, $arreglo)
@@ -404,7 +403,11 @@ class HelpFunct
 
     }
 
-
+    /**
+     * Analizar esta funcion , no recuerdo para que la hice pero seguramente te va a servir
+     * Ultimo que la hizo: Eidelman ... :3
+     * @return string : hash
+     */
     public static function getHash(){
         $date_now =  getdate();
 
@@ -413,6 +416,94 @@ class HelpFunct
         $hash = $factor_random.$date_now['hours'].$date_now['minutes'].$date_now['seconds'];
 
         return $hash;
+    }
+
+    /**
+     * @param null $formato = es el formato de fecha devuelto
+     * @return \DateTime|false|string
+     */
+
+    public static function getFechaActual($formato=null){
+
+        $hoy = getdate();
+
+        /*primero seteamos la fecha con todos los parámetros que deve ir normalmente
+            'Y-m-d H:i:s', luego se convierte en el formato que se desee
+        */
+
+        $mes  = $hoy['mon'];
+        $year = $hoy['year'];
+        $dia = $hoy['mday'];
+
+        $segundos = $hoy['seconds'];
+        $minutos = $hoy['minutes'];
+        $horas = $hoy['hours'];
+
+        if(strlen($mes) == 1 ) $mes= '0'.$mes;
+        if(strlen($dia) == 1 ) $dia= '0'.$dia;
+        if(strlen($segundos) == 1 ) $segundos= '0'.$segundos;
+        if(strlen($minutos) == 1 ) $minutos= '0'.$minutos;
+        if(strlen($horas) == 1 ) $horas= '0'.$horas;
+
+        $fecha = "$year-$mes-$dia $horas:$minutos:$segundos";
+
+        $fecha = date_create($fecha);
+        $fecha = date_format($fecha, $formato);
+
+
+        return $fecha;
+
+    }
+
+
+    /**
+     * @param $element : es lo que se le sumará , si dia o mes o año
+     * @param $cantidad : cantidad de elementos que se adecionará
+     * @param $operacion : si es suma o resta = (+) o (-)
+     * @param $fecha : si se ingresa se toma esa fecha y no laactual , la fecha tiene que venir en formato yyyy-mm-dd
+     * @return $nuevafecha|string : la fechasumada
+     */
+
+
+    public static function addElementFecha($element,$cantidad,$operacion,$fecha=null){
+
+        #ejemplos : +2 day
+        $add = "$operacion".$cantidad." $element";
+
+        if($fecha == null){
+            $fecha = date('Y-m-j');
+        }
+
+        $nuevafecha = strtotime ( $add , strtotime ( $fecha ) ) ;
+        $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
+
+        return $nuevafecha ;
+
+    }
+
+    /**
+     * @param $nameFile: el nombre del archivo donde se almacenará el log de desarrollo
+     * @param $text: la informacion que estará en el log
+     * @param null $tipo_insert puede ser a (para agregar debajon del texto), w para sobre escribir todo
+     */
+
+    public static function writeLog($nameFile,$text,$tipo_insert=null){
+
+        $path_archivo = base_path()."/storage/logs/$nameFile";
+        if($tipo_insert == null) $tipo_insert = 'w';
+
+        if (!file_exists($path_archivo)) {
+
+            $file = fopen($path_archivo, 'w');
+        } else{
+            $file = fopen($path_archivo, $tipo_insert);
+        }
+
+        fputs($file,$text.PHP_EOL);
+        fclose($file);
+
+
     }
 
 

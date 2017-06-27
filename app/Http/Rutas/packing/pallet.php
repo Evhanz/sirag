@@ -14,7 +14,7 @@ Route::get('packing/pallet/viewPalletRep',['as'=>'viewPalletRep','uses'=>'Packin
 //apis
 Route::post('packing/pallet/regPallet',['as'=>'regPallet','uses'=>'Packing\PalletController@regPallet']);
 Route::post('packing/pallet/editPallet',['as'=>'editPallet','uses'=>'Packing\PalletController@editPallet']);
-Route::get('packing/pallet/getPallet/{id}',['as'=>'getPalletById','uses'=>'Packing\PalletController@getPalletById']);
+Route::get('packing/pallet/getPallet/{codigo}',['as'=>'getPalletById','uses'=>'Packing\PalletController@getPalletCodigo']);#trae el pllet lite
 Route::get('packing/pallet/getDetailsPallet/{id}',['as'=>'getPalletById','uses'=>'Packing\PalletController@getDetailsPallet']);
 Route::get('packing/pallet/getPalletBy/{codigo}',['as'=>'getPalletByCodigo','uses'=>'Packing\PalletController@getPalletByCodigo']);
 Route::get('packing/pallet/getAllPalletPaginate',['as'=>'getAllPalletPaginate','uses'=>'Packing\PalletController@getAllPalletPaginate']);

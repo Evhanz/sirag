@@ -215,7 +215,7 @@ var v_etapa=new Vue({
         },
         getCodigoCaja: function (codigo) {
 
-            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getByCodigo/'+codigo+'/etapa';
+            var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getPalletCodigo/'+codigo+'/etapa';
             var v= this;
 
             v.changeEstateInput('c',true);
@@ -354,7 +354,6 @@ var v_etapa=new Vue({
                     data.seleccion= data.u_seleccion ;
                     data.pesaje = data.u_pesaje ;
                     data.embalaje = data.u_embalaje  ;
-
 
                     v.etapa = data;
                 });

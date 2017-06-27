@@ -62,7 +62,22 @@ class PalletRep
         return $res;
     }
 
-    public function deleteDetailPallet($id){
+    public function deleteDetailPallet($codigo){
+
+        /*solo actuliza las cajas y blanquea sus estados */
+
+        $query = "UPDATE sirag.etapa
+                  SET cod_pallet=NULL ,estado = 0
+                  WHERE 
+                  cod_pallet = $codigo";
+
+        $res = \DB::update($query);
+
+        HelpFunct::writeQuery($query);
+
+        return $res;
+
+
 
     }
 
@@ -70,10 +85,15 @@ class PalletRep
 
     }
 
-    public function getDetailsPallet($codigo){
+    public function getDetailsPallet($codigo,$limit=null){
 
+        $q1 = '';
 
-        $res = \DB::select("SELECT 
+        if($limit != null){
+            $q1 = "top $limit ";
+        }
+
+        $query = "SELECT $q1 e.codigo,e.uva,
         e.t_caja,
         e.calibre,
         p.id, 
@@ -98,7 +118,10 @@ class PalletRep
         )embalaje
         FROM sirag.etapa e 
         INNER join sirag.pallet p on e.cod_pallet=p.codigo
-        where p.codigo = $codigo");
+        where p.codigo = $codigo";
+
+
+        $res = \DB::select($query);
 
         return $res;
 

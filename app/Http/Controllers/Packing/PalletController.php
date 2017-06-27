@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use sirag\Entities\Obj;
+use sirag\Helpers\HelpFunct;
 use sirag\Repositories\packing\PalletRep;
 
 
@@ -77,6 +78,37 @@ class PalletController extends Controller
         return \Response::json($res);
     }
 
+    public function editPallet(){
+
+        $data = \Input::all();
+
+        /*primero limpiamos las cajas hy dejamos en null */
+        /*0: quiere decir que esta hábil y 1 que está ocupado*/
+
+        $pallet = [];
+        $pallet['codigo'] = $data['pallet'];
+
+        /*eliminamos los detalles que ya tiene el pallet*/
+
+        $r = $this->palletRep->deleteDetailPallet($pallet['codigo']);
+
+
+
+        /*luego agregamos los nuevois detalles */
+
+
+        $this->palletRep->editPallet($data['detalles'],$pallet['codigo'],1);
+        $res = ['code'=>200,'codigo'=>$pallet['codigo']];
+
+
+
+        return \Response::json($res);
+
+    }
+
+
+
+
     public function getDetailsPallet($id){
 
         $res = $this->palletRep->getDetailsPallet($id);
@@ -85,10 +117,17 @@ class PalletController extends Controller
     }
 
     public function getPalletByCodigo($codigo){
-
+        $response = [];
         $res = $this->palletRep->getPalletByCodigo($codigo);
 
-        return \Response::json(count($res));
+        if(count($res)>0){
+            $response['detalles']= $this->palletRep->getDetailsPallet($res[0]->codigo);
+        }
+
+        $response['data'] = $res;
+        $response['existe'] = count($res);
+
+        return \Response::json($response);
     }
 
     public function getAllPalletPaginate(){
@@ -157,6 +196,35 @@ class PalletController extends Controller
         }
 
         return \Response::json($pallets);
+    }
+
+    /**
+     * Esto es para mostrarlo en el view , y trae todo el pallet
+     * -- como no se a usado este trae el pallet de acuerdo a su codigo de una forma lite
+    */
+    public function getPalletCodigo($codigo){
+
+        $response = [];
+        $pallet = $this->palletRep->getPalletByCodigo($codigo);
+        $response['existe'] = 0;
+        $p = new Obj();
+        if(count($pallet)>0){
+
+            $response['existe'] = 1;
+            $detalle= $this->palletRep->getDetailsPallet($pallet[0]->codigo,1);
+            $p->codigo = $pallet[0]->codigo;
+            $p->calibre = $detalle[0]->calibre;
+            $p->t_caja = $detalle[0]->t_caja;
+            $p->calibre = $detalle[0]->calibre;
+            $p->uva = $detalle[0]->uva;
+
+        }
+
+        $response['data'] = $p;
+
+
+        return \Response::json($response);
+
     }
 
 

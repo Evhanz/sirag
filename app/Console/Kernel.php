@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\Inspire::class,
         Commands\d_desc_pro::class,
         Commands\SendMailContract::class,
+        Commands\InsertJornalPacking::class,
     ];
 
     /**
@@ -31,6 +32,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('divide:proveedor')
             ->daily();
         $schedule->command('alert:ContractDefeated')
+            ->daily();
+        $schedule->command('process:insert_jornal_packing')
             ->daily();
     }
 }
