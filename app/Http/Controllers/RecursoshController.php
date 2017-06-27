@@ -1436,11 +1436,6 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
-
-        dd($data);
-
-
-
         $fecha = $data['periodo'];
         $fecha = explode('/', $fecha);
 
@@ -1547,9 +1542,7 @@ class RecursoshController extends Controller
 
 
         $f = Carbon::createFromDate($fecha[2], $fecha[1], $fecha[0]);
-
         $f_f = $f->format('d/m/Y');
-
         $f_i = $f->subDay(6)->format('d/m/Y');
 
         /*para colocr el periodo 2 por si cae en dos meses*/
@@ -1565,18 +1558,13 @@ class RecursoshController extends Controller
 
 
         $view = \View::make('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->render();
+
+        dd($res);
+
         $snappy = \App::make('snappy.pdf');
-        //To file
-                $html = '<h1>Bill</h1><p>You owe me money, dude.</p>';
-
-        /*
-                $snappy->generateFromHtml($html, '/tmp/bill-124.pdf');
-                $snappy->generate('http://www.github.com', '/tmp/github.pdf');
-        */
 
        
-       
-        return \PDFS::loadView('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+       // return \PDFS::loadView('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
        
 
         //return \PDFS::loadFile('http://www.github.com')->stream('github.pdf');
@@ -1585,7 +1573,7 @@ class RecursoshController extends Controller
         //$pdf->loadHTML($view)->setPaper('a4');
         // return $pdf->download('invoice');
 
-        //echo ($view);
+
 
 
     }
