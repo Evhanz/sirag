@@ -49,6 +49,8 @@ class CostoController extends Controller
         //luego regstramos los demas
 
 
+
+
         $res_reg = $this->costoRep->insertCabeceraDistribucion($data);
 
 
@@ -59,7 +61,6 @@ class CostoController extends Controller
             $res = $this->costoRep->insertDetallesDistribucion($data['CORRELATIVO'],$fecha_input,$t_cambio);
         }else{
             throw new \Exception('Error al registrar el dato');
-
         }
 
 

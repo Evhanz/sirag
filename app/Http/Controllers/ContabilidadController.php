@@ -874,6 +874,7 @@ class ContabilidadController extends Controller
 
         */
 
+
     }
 
 

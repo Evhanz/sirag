@@ -31,8 +31,8 @@
                                         </div>
                                         <div class="form-group col-xs-3">
                                             <label for="">&nbsp;</label><br>
-                                          <!--  <a id="btnEnviarBoletaAgrario" class="btn btn-warning">Traer Boleta</a> -->
-                                            <button class="btn btn-warning">Traer Boleta</button>
+                                            <a id="btnEnviarBoletaAgrario" class="btn btn-warning">Traer Boleta</a>
+                                            <!--<button class="btn btn-warning">Traer Boleta</button> -->
                                         </div>
                                     </form>
                                 </div><!-- /.row - inside box -->
@@ -93,16 +93,16 @@
 
             var periodo = $("#periodo_agrario").val();
             periodo = periodo.split('/');
-            var mes = periodo[1];
+            var mes = periodo[1]-1;
             var dia = periodo[0];
 
             if(mes.length===1) mes = '0'+mes;
             if(dia.length===1) dia = '0'+dia;
 
 
-            var fecha = periodo[2]+'-'+mes+'-'+dia;
+           // var fecha = periodo[2]+'-'+mes+'-'+dia;
 
-            fecha = new Date(fecha);
+            var fecha = new Date(periodo[2], mes, dia, 0, 0, 0,0); //en esta forma se normaliza los
 
             console.log(fecha);
 
@@ -120,13 +120,16 @@
 
             var periodo = $("#periodo_packing").val();
             periodo = periodo.split('/');
-            var mes = periodo[1];
+            var mes = periodo[1]-1;
             var dia = periodo[0];
 
-            if(mes<10) mes = '0'+mes;
-            if(dia<10) dia = '0'+dia;
+            if(mes.length===1) mes = '0'+mes;
+            if(dia.length===1) dia = '0'+dia;
 
-            var fecha = periodo[2]+'-'+mes+'-'+dia;
+
+            // var fecha = periodo[2]+'-'+mes+'-'+dia;
+
+            var fecha = new Date(periodo[2], mes, dia, 0, 0, 0,0); //en esta forma se normaliza los
 
             fecha = new Date(fecha);
 

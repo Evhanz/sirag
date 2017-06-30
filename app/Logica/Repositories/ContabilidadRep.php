@@ -962,7 +962,6 @@ AND A.PERIODO='$periodo' -- DEBE COLOCAR USUARIO
 
 
         return $response;
-
     }
 
 

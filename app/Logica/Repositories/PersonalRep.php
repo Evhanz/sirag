@@ -3592,6 +3592,18 @@ where EMPRESA = 'e01'";
 
     }
 
+    public function getTareosByPeriodo($f_inicio,$f_fin){
+
+        $query = "SELECT THORAS cantidad,TRABAJADOR,AUX_VALOR16 cod_labor,FECHA FROM
+        flexline.PER_DETALLETRATO
+        where AUX_VALOR11 = 'T'
+        AND EMPRESA = 'E01'
+        and CONVERT(date,FECHA,113) >= '$f_inicio' 
+        and CONVERT(date,FECHA,113) <= '$f_fin'";
+
+
+    }
+
 
 
 
