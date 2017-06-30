@@ -710,6 +710,7 @@ class PersonalRep
         $t_reembolso_movilidad  =   0;
         $t_adelanto_remuneraci  =   0; //agregado por frank zelada 04/01/2017
         $t_pacifico             =   0; //agregado por frank zelada 19/01/2017
+        $t_rimac                =   0; //agregado por frank zelada 30/06/2017
         $t_desc_venta           =   0;
         $t_descuentos           =   0;
         $t_saldo_prestamo       =   0;  //FZ06042017
@@ -757,7 +758,7 @@ class PersonalRep
                     AND A.EMPRESA='e01'
                     AND B.CATEGORIA='OPERARIO'
                     and CONVERT(DATE,CONVERT(VARCHAR(8),A.PERIODO),113) BETWEEN @fecha_inicio AND @fecha --- FILTRAR POR PERIODO '$periodo'
-                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10003','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10003','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10550','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     GROUP BY A.FICHA, A.MOVIMIENTO
                     ORDER by A.FICHA
                     ";
@@ -1059,6 +1060,16 @@ class PersonalRep
                 $pacifico = $pacifico->VALOR;
             }
 
+            //10550
+            $rimac = $item->where('MOVIMIENTO','10550')->first();
+
+            if ($rimac == null){
+                $rimac=0;
+
+            }else{
+                $rimac = $rimac->VALOR;
+            }
+
 
             //10535
             $liquidacion = $item->where('MOVIMIENTO','10535')->first();
@@ -1215,6 +1226,7 @@ class PersonalRep
             $t_fondo_afp += $fondo_afp;
             $t_seguro_afp += $seguro_afp;
             $t_pacifico += $pacifico; //FZ
+            $t_rimac += $rimac; //FZ
             $t_liquidacion += $liquidacion;
             $t_desc_movilidad_con += $desc_movilidad_con;
             $t_exceso_pago += $exceso_pago; //FZ 27012017
@@ -1250,6 +1262,7 @@ class PersonalRep
             $obj->comision_afp          = number_format($comision_afp,2,'.',',');
             $obj->seguro_afp            = number_format($seguro_afp,2,'.',',');
             $obj->pacifico              = number_format($pacifico,2,'.',','); //FZ
+            $obj->rimac                 = number_format($rimac,2,'.',','); //FZ
             $obj->liquidacion           = number_format($liquidacion,2,'.',',');
             $obj->desc_movilidad_con    = number_format($desc_movilidad_con,2,'.',',');
             $obj->exceso_pago           = number_format($exceso_pago,2,'.',','); //FZ 27012017
@@ -1305,6 +1318,7 @@ class PersonalRep
         $totales['t_fondo_afp']             = number_format($t_fondo_afp,2,'.',',');
         $totales['t_seguro_afp']            = number_format($t_seguro_afp,2,'.',',');
         $totales['t_pacifico']              = number_format($t_pacifico,2,'.',',');//FZ
+        $totales['t_rimac']                 = number_format($t_rimac,2,'.',',');//FZ
         $totales['t_liquidacion']           = number_format($t_liquidacion,2,'.',',');
         $totales['t_desc_movilidad_con']    = number_format($t_desc_movilidad_con,2,'.',',');
         $totales['t_exceso_pago']           = number_format($t_exceso_pago,2,'.',','); //FZ 27012017
