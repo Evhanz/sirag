@@ -3614,7 +3614,100 @@ where EMPRESA = 'e01'";
         AND EMPRESA = 'E01'
         and CONVERT(date,FECHA,113) >= '$f_inicio' 
         and CONVERT(date,FECHA,113) <= '$f_fin'";
+    }
 
+
+    public function getTrabajadorForAFP($ficha,$periodo){
+
+        $res = '';
+
+
+        $query = "select 
+      a.ficha,(a.NOMBRE+' '+a.APELLIDO_PATERNO+' '+a.APELLIDO_MATERNO) nombre,
+      d.afp,d.comision
+      from 
+      flexline.per_trabajador a 
+      INNER join sirag.ficha_afp d 
+      on a.FICHA = d.ficha 
+      where
+      a.EMPRESA='e01'
+      and a.VIGENCIA='activo'
+      and d.periodo = '$periodo'
+      AND d.ficha = $ficha";
+
+        $res = \DB::select($query);
+
+
+        if(count($res) > 0){
+            return $res[0];
+        }else{
+            return $res;
+        }
+
+
+    }
+
+    public function updatePersonalAFP($periodo,$ficha,$afp,$comision){
+
+
+        $res = \DB::table('sirag.ficha_afp')
+            ->where('periodo', $periodo)
+            ->where('ficha',$ficha)
+            ->update(['afp' => $afp,'comision'=>$comision]);
+
+        return $res;
+
+    }
+
+    /*aca actualiza la tabla per_atrib_trab*/
+
+    public function updatePerTrabajadorAFP($ficha,$afp,$comision){
+
+        $res = [];
+
+        $res['afp'] = \DB::table('flexline.PER_ATRIB_TRAB')
+            ->where('FICHA',$ficha)
+            ->where('EMPRESA','E01')
+            ->where('ATRIBUTO','AFP')
+            ->update(['VALOR' => $afp]);
+
+        $res['comision'] = \DB::table('flexline.PER_ATRIB_TRAB')
+            ->where('FICHA',$ficha)
+            ->where('EMPRESA','E01')
+            ->where('ATRIBUTO','TIPCOMAFP')
+            ->update(['VALOR' => $comision]);
+
+        return $res;
+    }
+
+    public function insertFichaAfp($periodo){
+        $query = "insert into sirag.ficha_afp 
+                  select 
+                  a.ficha,
+                  '$periodo' periodo, --- PERIODO SE TIENE QUE CAMBIAR DE ACUERDO AL MES ACTUAL
+                  (SELECT VALOR FROM flexline.PER_ATRIB_TRAB
+                  WHERE EMPRESA=a.EMPRESA
+                  and ficha=a.FICHA
+                  AND ATRIBUTO='AFP'
+                  ) afp,
+                  (SELECT VALOR FROM flexline.PER_ATRIB_TRAB
+                  WHERE EMPRESA=a.EMPRESA
+                  and ficha=a.FICHA
+                  AND ATRIBUTO='TIPCOMAFP'
+                  ) comision
+                  from 
+                  flexline.per_trabajador a
+                  where
+                  a.EMPRESA='e01'
+                  and a.VIGENCIA='activo'
+                  and a.FICHA not in (select 
+                  ficha
+                  from sirag.ficha_afp
+                  where periodo='$periodo') --- PERIODO SE TIENE QUE CAMBIAR DE ACUERDO AL MES ACTUAL";
+
+        $res = \DB::insert($query);
+
+        return $res;
 
     }
 

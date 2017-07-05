@@ -24,6 +24,7 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
     Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
     Route::get('rh/rep/viewGetBoletaPago',['as'=>'viewGetBoletaPago','uses'=>'RecursoshController@viewGetBoletaPago']);
     Route::get('rh/rep/viewFeriado',['as'=>'viewFeriado','uses'=>'RecursoshController@viewFeriado']);
+    Route::get('rh/rep/viewMantenedorAFP',['as'=>'viewMantenedorAFP','uses'=>'RecursoshController@viewMantenedorAFP']);
 
 });
 
@@ -65,20 +66,21 @@ Route::post('rh/api/getJornalesByFechas',['as'=>'getJornalesByFechas','uses'=>'R
 Route::post('rh/api/processdominical',['as'=>'processdominical','uses'=>'RecursoshController@processdominical']);
 Route::get('rh/api/getJefeByFicha/{ficha}',['as'=>'getJefeByFicha','uses'=>'RecursoshController@getJefeByFicha']);
 Route::get('rh/api/getTrabajadorByFichaAndActive/{ficha}',['as'=>'getTrabajadorByFichaAndActive','uses'=>'RecursoshController@getTrabajadorByFichaAndActive']);
-
-
-
+Route::get('rh/api/getInitMantAFP',['as'=>'getInitMantAFP','uses'=>'RecursoshController@getInitMantAFP']);
+Route::get('rh/api/getTrabajadorForAFP/{ficha}/{periodo}',['as'=>'getTrabajadorForAFP','uses'=>'RecursoshController@getTrabajadorForAFP']);
 
 
 
 //inserts
 Route::post('rh/store/regJornales',['as'=>'regJornales','uses'=>'RecursoshController@regJornales']);
 Route::post('rh/store/regFeriados',['as'=>'regFeriados','uses'=>'RecursoshController@regFeriados']);
+Route::get('rh/store/insertFichaAfp/{periodo}',['as'=>'insertFichaAfp','uses'=>'RecursoshController@insertFichaAfp']);
 
 //edits
 Route::post('rh/store/editJornal',['as'=>'editJornal','uses'=>'RecursoshController@editJornal']);
 Route::post('rh/vacaciones/editPeriodo',['as'=>'editPeriodoVac','uses'=>'RecursoshController@editPeriodoVac']);
 Route::post('rh/cargo/editCargo',['as'=>'editCargo','uses'=>'RecursoshController@editCargo']);
+Route::post('rh/afp/editPersonalAFP',['as'=>'editPersonalAFP','uses'=>'RecursoshController@editPersonalAFP']);
 
 //deletes
 Route::post('rh/delete/deleteJornales',['as'=>'deleteJornales','uses'=>'RecursoshController@deleteJornales']);

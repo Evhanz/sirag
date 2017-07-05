@@ -104,6 +104,9 @@ class CostoRep
                 ,'DIST_H.NOCTURNO','DIST_H.NORMAL','ESSALUD','GRATIFICACION','VACACIONES')
                 ";
 
+        HelpFunct::writeQuery($query);
+
+
 
 
         $select_base_value = \DB::select($query);

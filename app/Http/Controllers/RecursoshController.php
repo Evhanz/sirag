@@ -11,16 +11,19 @@ use Maatwebsite\Excel\Facades\Excel;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use sirag\Entities\Obj;
 use sirag\Helpers\HelpFunct;
+use sirag\Repositories\DocumentoRep;
 use sirag\Repositories\PersonalRep;
 
 class RecursoshController extends Controller
 {
 
     protected $personalRep;
+    protected $documentoRep;
 
-    public function __construct(PersonalRep $personalRep)
+    public function __construct(PersonalRep $personalRep,DocumentoRep $documentoRep)
     {
         $this->personalRep = $personalRep;
+        $this->documentoRep = $documentoRep;
     }
 
     public function viewPersonal()
@@ -85,6 +88,12 @@ class RecursoshController extends Controller
     public function viewMantenedorPersonal(){
         return view('rh/viewMantenedorPersonal');
     }
+
+    public function viewMantenedorAFP(){
+        return view('rh/viewMantenedorAFP');
+    }
+
+
 
 
 
@@ -1424,7 +1433,22 @@ class RecursoshController extends Controller
         $res = $this->personalRep->getJefeByFicha($ficha);
 
         return \Response::Json($res);
+    }
 
+    public function getInitMantAFP(){
+
+        $response['afp'] = $this->documentoRep->getAFP();
+        $response['comision'] = $this->documentoRep->getComision();
+
+
+        return  \Response::json($response);
+    }
+
+
+    public function getTrabajadorForAFP($ficha,$periodo){
+
+        $trabajador = $this->personalRep->getTrabajadorForAFP($ficha,$periodo);
+        return  \Response::json($trabajador);
     }
 
 
@@ -1574,9 +1598,38 @@ class RecursoshController extends Controller
         //$pdf->loadHTML($view)->setPaper('a4');
         // return $pdf->download('invoice');
 
+    }
+
+    public function editPersonalAFP(){
+
+        $data = \Input::all();
+        $res = [];
+        $trabajador = $data['trabajador'];
+        $periodo_hoy = HelpFunct::getFechaActual('Ym').'01';
 
 
 
+        //actualizamos el detalle de afp
+
+        $res['detalle_res'] = $this->personalRep->updatePersonalAFP($data['periodo'],$trabajador['ficha']
+            ,$trabajador['afp'],$trabajador['comision']);
+
+        //actualizamos
+
+        if($periodo_hoy == $data['periodo']){
+            $res['trabajador_res'] =$this->personalRep->updatePerTrabajadorAFP($trabajador['ficha']
+                ,$trabajador['afp'],$trabajador['comision']);
+        }
+
+
+       return \Response::json($res);
+
+    }
+
+    public function insertFichaAfp($periodo){
+
+        $res = $this->personalRep->insertFichaAfp($periodo);
+        return \Response::json($res);
     }
 
 

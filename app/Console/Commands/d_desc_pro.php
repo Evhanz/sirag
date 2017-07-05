@@ -45,7 +45,8 @@ class d_desc_pro extends Command
                 where EMPRESA='e01'
                 and TIPO='CON_PROVEE'
                 AND CODIGO LIKE '10%'
-                AND LEN(TEXTO2) = 0");
+                AND (LEN(TEXTO2) = 0 OR TEXTO2 IS NULL)");
+
 
 
 

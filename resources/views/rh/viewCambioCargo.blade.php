@@ -59,8 +59,6 @@
 
                                             </div>
                                             <div class="col-lg-6">
-
-
                                                 <div class="box box-warning">
                                                     <div class="box-body">
                                                         <label for="cargo">Cargo</label>
@@ -70,13 +68,10 @@
                                                             <option value="EMBALAJE">EMBALAJE</option>
                                                             <option value="SELECCION">SELECCION</option>
                                                         </select>
-
                                                         <br>
-
                                                         <button class="btn btn-success" ng-click="changeCargo()" style="width:100%">
                                                             Guardar
                                                         </button>
-
                                                     </div>
                                                 </div>
 

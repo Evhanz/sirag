@@ -266,6 +266,25 @@ order by FECHA_GUIA";
 
     }
 
+    public function getAFP(){
+
+        $query = "select * from flexline.gen_tabcod where EMPRESA='e01'  and TIPO='PER_AFP' ";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+
+    }
+    public function getComision(){
+        $query = "select * from flexline.gen_tabcod where EMPRESA='e01' and TIPO='PER_TIPO.COMISION'";
+
+        $res = \DB::select($query);
+
+        return $res;
+
+    }
+
 
 
 }

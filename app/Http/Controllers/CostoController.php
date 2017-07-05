@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use sirag\Helpers\HelpFunct;
 use sirag\Repositories\CostoRep;
 
 class CostoController extends Controller
@@ -26,12 +27,15 @@ class CostoController extends Controller
 
         ini_set('memory_limit', '1024M');
 
+        $hora = HelpFunct::getFechaActual('Y-m-d H:i:s');
+        HelpFunct::writeLog("proceso_costo.txt","Empezó .............. : $hora",'a');
+
         $fecha_input = "2017-02-28";
 
         $t_cambio = $this->costoRep->getTipoCambio('2017-02-28');
 
         $data =['f_fin'=>'2017-02-28','TIPO_COMPROBANTE'=>'AS. DESTINO','EMPRESA' => 'E01','FECHA'=>'20170228'
-            ,'CORRELATIVO'=>'3109','GLOSA'=>'AS. DESTINO CENTRO DE COSTO ENERO 2017'
+            ,'CORRELATIVO'=>'999999','GLOSA'=>'AS. DESTINO CENTRO DE COSTO ENERO 2017'
             ,'NUMERO_EXTERNO'=>null,'MONEDA' => 'S/.','TASA' => 1,'ORIGEN'=>'CONTAB'
             ,'TOTAL'=>0,'ESTADO'=>'A','USUARIO'=>'MPONCE','FECHA_MODIFICACION'=>'20170313'
             ,'FOLIO'=>null,'ASOCIADA'=>null,'OCUPADO'=>'N','PROCESO'=>'GENERA','TASA2'=>$t_cambio
@@ -50,7 +54,6 @@ class CostoController extends Controller
 
 
 
-
         $res_reg = $this->costoRep->insertCabeceraDistribucion($data);
 
 
@@ -62,6 +65,9 @@ class CostoController extends Controller
         }else{
             throw new \Exception('Error al registrar el dato');
         }
+
+        $hora = HelpFunct::getFechaActual('Y-m-d H:i:s');
+        HelpFunct::writeLog("proceso_costo.txt","Terminó .............. : $hora",'a');
 
 
 
