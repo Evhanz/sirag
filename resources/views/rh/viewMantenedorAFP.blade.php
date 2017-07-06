@@ -13,7 +13,7 @@
                 <div class="box box-default" >
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
-                            <li class="active"><a data-toggle="tab" href="#home">Mantenedor de AFP</a></li>
+                            <li class="active"><a data-toggle="tab" href="#home">Mantenedor de Sistema de Pensiones</a></li>
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">
@@ -61,7 +61,7 @@
                                                                 </div>
                                                                 <div class="col-lg-6">
 
-                                                                    <label for="">Generar AFP:</label>
+                                                                    <label for="">Generar AFP/SNP:</label>
 
                                                                     <a ng-click="insertPersonalAFP()" class="btn btn-info" style="width: 100%">
                                                                         <i class="fa fa-dot-circle-o"></i>
