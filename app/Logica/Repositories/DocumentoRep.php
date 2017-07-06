@@ -299,5 +299,20 @@ order by FECHA_GUIA";
     }
 
 
+    /*esto edita la flexline.PER_TRAMOS*/
+
+    public function editPorcentajeAFPEmpleados($columna,$value,$descripcion,$codigo){
+
+        $res = \DB::table("flexline.PER_TRAMOS")
+            ->where('empresa','E01')
+            ->where('CODIGO',$codigo)
+            ->where('FECHA_INICIO','20120901')
+            ->where('DESDE',$descripcion)
+            ->update([$columna=>$value]);
+
+        return $res;
+    }
+
+
 
 }

@@ -1645,8 +1645,29 @@ class RecursoshController extends Controller
 
         $data = \Input::all();
 
+        $periodo_hoy = HelpFunct::getFechaActual('Ym').'01';
+
 
         $res = $this->documentoRep->editPorcentajeAFP($data['columna'],$data['value'],$data['periodo'],$data['descripcion']);
+
+        /* es la columna de fondo =  $data['columna'] =>  valor1 : flujo  , valor2 : mixto  ,  valor3 : seguro */
+        //si es igual se edita la tabla flexline.PER_TRAMOS
+        if($periodo_hoy == $data['periodo']){
+
+            $colum_per_tramos = '';
+            $codigo = '';
+
+            switch($data['columna']){
+                case 'valor1': $colum_per_tramos = 'VALOR1'; $codigo = 'TABLAAFP'; break;
+                case 'valor2': $colum_per_tramos = 'VALOR1'; $codigo = 'TABLACOMISION'; break;
+                case 'valor3': $colum_per_tramos = 'VALOR2'; $codigo = 'TABLAAFP'; break;
+            }
+
+            $res_edit = $this->documentoRep->editPorcentajeAFPEmpleados($colum_per_tramos,$data['value'],$data['descripcion'],$codigo);
+
+        }
+
+
 
 
         if($res == true){
