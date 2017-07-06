@@ -3708,7 +3708,34 @@ where EMPRESA = 'e01'";
         $res = \DB::insert($query);
 
         return $res;
+    }
 
+    public function getPorcentajesAFP($periodo){
+
+        $query = "SELECT 
+                    codigo1, 
+                    descripcion, --- TABLA DE AFP (YA SE ENVIO EN EL CORREO ANTERIOR)
+                    valor1 as COMI_FLUJO , 
+                    valor2 as COMI_MIXTO , 
+                    valor3 as SEGURO --- SE DEBE COPIAR LO MISMO PARA VALOR4
+                    FROM DBO.GEN_TABLA
+                    WHERE empresa='E01'
+                    AND cod_tabla='TABLAAFP'
+                    AND descripcion != 'ONP'
+                    AND codigo1='$periodo' --- PERIODO EL CUAL SE ELIGE";
+
+        $res = \DB::select($query);
+
+        foreach ($res as  $item){
+
+            $item->COMI_FLUJO = round($item->COMI_FLUJO,2);
+            $item->COMI_MIXTO = round($item->COMI_MIXTO,2);
+            $item->SEGURO = round($item->SEGURO,2);
+
+        }
+
+
+        return $res;
     }
 
 

@@ -120,23 +120,27 @@
                                             <div class="col-lg-6">
                                                 <div class="box box-warning">
                                                     <div class="box-body">
-                                                        <label for="cargo">Mantenedor de porcentajes</label>
+                                                        <label for="cargo">Mantenedor de porcentajes
+                                                            <a ng-click="getProcentajesAfp()" class="btn btn-warning btn-xs">
+                                                                <i class="fa fa-search"></i>
+                                                            </a>
+                                                        </label>
                                                         <br>
                                                        <table class="table table-bordered">
                                                            <thead>
                                                            <tr>
-                                                               <th>Fondo</th>
-                                                               <th>%1</th>
-                                                               <th>%2</th>
-                                                               <th>%3</th>
+                                                               <th>Descripcion</th>
+                                                               <th>Comision Flujo</th>
+                                                               <th>Comision Mixto</th>
+                                                               <th>Seguro</th>
                                                            </tr>
                                                            </thead>
                                                            <tbody>
-                                                           <tr>
-                                                               <td>AFP</td>
-                                                               <td>10</td>
-                                                               <td>12</td>
-                                                               <td>15</td>
+                                                           <tr ng-repeat="item in porcentajes">
+                                                               <td>@{{ item.descripcion }}</td>
+                                                               <td><input ng-keyup="$event.keyCode == 13 && updatePorcentaje(item,'flujo',$index)" id="@{{ $index }}_flujo" class="form-control" ng-dblclick="changePorcentaje('flujo',$index)" step="any" type="number" ng-model = "item.COMI_FLUJO " readonly> </td>
+                                                               <td><input ng-keyup="$event.keyCode == 13 && updatePorcentaje(item,'mixta',$index)" id="@{{ $index }}_mixta" class="form-control" ng-dblclick="changePorcentaje('mixta',$index)" step="any"  type="number" ng-model = "item.COMI_MIXTO " readonly> </td>
+                                                               <td><input ng-keyup="$event.keyCode == 13 && updatePorcentaje(item,'seguro',$index)" id="@{{ $index }}_seguro" class="form-control" ng-dblclick="changePorcentaje('seguro',$index)" step="any" type="number" ng-model="item.SEGURO" readonly> </td>
                                                            </tr>
                                                            </tbody>
 
@@ -197,6 +201,7 @@
             $scope.trabajador = {ficha:'',afp:'',nombre:'',comision:''};
             $scope.afps =[];
             $scope.comisiones =[];
+            $scope.porcentajes = [];
 
 
 
@@ -231,8 +236,6 @@
                 }
 
             };
-
-
             $scope.updateFondo = function () {
 
                 var bandera = $scope.trabajador.afp ;
@@ -246,8 +249,6 @@
                 }
 
             };
-
-
             $scope.updateTrabajador = function () {
 
                 var bandera = validateForm();
@@ -288,11 +289,9 @@
 
 
             };
-
             $scope.changeFicha = function () {
                 $scope.trabajador.nombre = '';
             };
-
             $scope.insertPersonalAFP = function () {
 
                 var periodo = $("#anio").val() +''+ $("#mes").val()+'01';
@@ -314,11 +313,77 @@
                         alert('Error en el proceso');
                     });
                 }
+            };
+            $scope.getProcentajesAfp = function () {
+
+                var periodo = $("#anio").val()+''+$("#mes").val()+'01';
+                var ruta = "{{route('modRH')}}/api/getPorcentajesAFP/"+periodo;
+
+                $scope.porcentajes = [];
+
+                $http.get(ruta)
+                    .success(function(data){
+                        $scope.porcentajes = data;
+                    }).error(function(data) {
+                    console.log(data);
+                    alert('Error en el proceso');
+                });
+
+            };
+
+            $scope.changePorcentaje = function (opcion, index) {
+
+              //  alert('llega');
+
+                $("#"+index+"_"+opcion).removeAttr("readonly");
+
+               // $().prop('disabled', false);
+            };
+
+
+            $scope.updatePorcentaje = function (item,opcion,index) {
+
+                var columna = '',value=0;
+                var ruta = "{{route('editPorcentajeAFP')}}";
+                var token = $("#_token").val();
+                var periodo = $("#anio").val()+''+$("#mes").val()+'01';
+                $("#"+index+"_"+opcion).attr("readonly");
+
+                switch (opcion){
+
+                    case 'flujo':  columna = 'valor1'; value = item.COMI_FLUJO; break;
+                    case 'mixta':  columna = 'valor2'; value = item.COMI_MIXTO; break;
+                    case 'seguro': columna = 'valor3'; value = item.SEGURO; break;
+                }
+
+
+                $http.post(ruta,{
+                    _token:token,
+                    columna:columna,
+                    value:value,
+                    periodo:periodo,
+                    descripcion:item.descripcion
+                })
+                    .success(function(data){
+                        if(data=== 'ok'){
+                            alert('Cambiado Correctamente');
+                            $scope.getProcentajesAfp();
+                        }else{
+                            alert('Error:500');
+                            console.log(data);
+                            $scope.getProcentajesAfp();
+                        }
+                    }).error(function(data) {
+                    console.log(data);
+                    alert('Error en el proceso');
+                    $scope.getProcentajesAfp();
+                });
 
 
 
 
             };
+
 
             function validateForm() {
                 var trabajador  = $scope.trabajador;
@@ -351,8 +416,6 @@
 
 
             }
-
-
             function getInitData() {
 
                 var ruta = "{{ route('getInitMantAFP') }}";
@@ -366,8 +429,8 @@
 
                 });
 
-
             }
+
 
 
 

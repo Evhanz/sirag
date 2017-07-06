@@ -68,6 +68,7 @@ Route::get('rh/api/getJefeByFicha/{ficha}',['as'=>'getJefeByFicha','uses'=>'Recu
 Route::get('rh/api/getTrabajadorByFichaAndActive/{ficha}',['as'=>'getTrabajadorByFichaAndActive','uses'=>'RecursoshController@getTrabajadorByFichaAndActive']);
 Route::get('rh/api/getInitMantAFP',['as'=>'getInitMantAFP','uses'=>'RecursoshController@getInitMantAFP']);
 Route::get('rh/api/getTrabajadorForAFP/{ficha}/{periodo}',['as'=>'getTrabajadorForAFP','uses'=>'RecursoshController@getTrabajadorForAFP']);
+Route::get('rh/api/getPorcentajesAFP/{periodo}',['as'=>'apiGetPorcentajesAFP','uses'=>'RecursoshController@apiGetPorcentajesAFP']);
 
 
 
@@ -81,6 +82,7 @@ Route::post('rh/store/editJornal',['as'=>'editJornal','uses'=>'RecursoshControll
 Route::post('rh/vacaciones/editPeriodo',['as'=>'editPeriodoVac','uses'=>'RecursoshController@editPeriodoVac']);
 Route::post('rh/cargo/editCargo',['as'=>'editCargo','uses'=>'RecursoshController@editCargo']);
 Route::post('rh/afp/editPersonalAFP',['as'=>'editPersonalAFP','uses'=>'RecursoshController@editPersonalAFP']);
+Route::post('rh/afp/editPorcentajeAFP',['as'=>'editPorcentajeAFP','uses'=>'RecursoshController@editPorcentajeAFP']);
 
 //deletes
 Route::post('rh/delete/deleteJornales',['as'=>'deleteJornales','uses'=>'RecursoshController@deleteJornales']);

@@ -1633,6 +1633,37 @@ class RecursoshController extends Controller
     }
 
 
+    public function apiGetPorcentajesAFP($periodo){
+
+        $res = $this->personalRep->getPorcentajesAFP($periodo);
+
+        return \Response::json($res);
+
+    }
+
+    public function editPorcentajeAFP(){
+
+        $data = \Input::all();
+
+
+        $res = $this->documentoRep->editPorcentajeAFP($data['columna'],$data['value'],$data['periodo'],$data['descripcion']);
+
+
+        if($res == true){
+            $response = 'ok';
+        }else{
+
+            $response = 'error';
+
+        }
+
+        return $response;
+
+
+
+    }
+
+
 
 
 

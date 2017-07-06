@@ -282,7 +282,20 @@ order by FECHA_GUIA";
         $res = \DB::select($query);
 
         return $res;
+    }
 
+    /*esto edita la GEN_TABLA*/
+
+    public function editPorcentajeAFP($columna,$value,$periodo,$descripcion){
+
+        $res = \DB::table("DBO.GEN_TABLA")
+            ->where('empresa','E01')
+            ->where('cod_tabla','TABLAAFP')
+            ->where('codigo1',$periodo)
+            ->where('descripcion',$descripcion)
+            ->update([$columna=>$value]);
+
+        return $res;
     }
 
 
