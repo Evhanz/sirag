@@ -388,9 +388,10 @@ class ContabilidadRep
                     FROM flexline.DocumentoD 
                     where CONVERT(date,Fecha) BETWEEN '$menor_fecha_ini' AND '$mayor_fecha_fin'
                     AND TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
-                    AND LEN(Analisis15) = 6
-                    and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
+                    AND ( ISNUMERIC(Analisis15) = 1 and  LEN(Analisis15) = 6 )
+                    --and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
                     group by  Analisis15
+                    HAVING (SUBSTRING ( Analisis15 ,3 , 1 ) = $fundo)
                     ORDER BY cci";
 
         $res_codigos = \DB::select($query);
@@ -411,7 +412,8 @@ class ContabilidadRep
                         where CONVERT(date,D.Fecha) BETWEEN '$menor_fecha_ini' AND '$mayor_fecha_fin'
                         AND D.TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
                         AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) > 0
-                        and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
+                        AND ( ISNUMERIC(Analisis15) = 1 and  LEN(Analisis15) = 6 )
+                        and SUBSTRING ( CONVERT(VARCHAR(20),Analisis15)  ,3 , 1 ) = $fundo
                         group by p.GLOSA,P.PRODUCTO,P.TIPO
                         ORDER BY P.TIPO,p.GLOSA";
 
@@ -471,8 +473,9 @@ class ContabilidadRep
                     where CONVERT(date,Fecha) BETWEEN '$startDate' AND '$endDate'
                     AND TipoDocto in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
                     AND LEN(Analisis15) = 5
-                    and SUBSTRING ( Analisis15 ,3 , 1 )  = $fundo
+                    and SUBSTRING ( CONVERT(VARCHAR(20),Analisis15)  ,3 , 1 )  = $fundo
                     group by  Analisis15
+                    --query de otros 
                     ORDER BY cci";
 
         $res_cci_otros = \DB::select($query);
@@ -485,7 +488,7 @@ class ContabilidadRep
         where CONVERT(date,D.Fecha)  BETWEEN '$startDate' AND '$endDate'
         AND D.TipoDocto  in ('SALIDA ALMACEN','TRANSF P/ PRODUCTO')
         AND LEN(coalesce( D.AUX_VALOR19,D.Analisis15)) = 5
-        and SUBSTRING ( D.Analisis15 ,3 , 1 )  = $fundo
+        and SUBSTRING ( CONVERT(VARCHAR(20),Analisis15)  ,3 , 1 ) = $fundo
         group by p.GLOSA,P.PRODUCTO,P.TIPO
         ORDER BY P.TIPO,p.GLOSA";
 

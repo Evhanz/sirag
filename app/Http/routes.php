@@ -127,11 +127,12 @@ Route::get('prueba/', ['middleware' => 'prueba', function () {
 
 Route::get('prueba/',function (){
 
-    $res = \sirag\Helpers\HelpFunct::addElementFecha('day','8','+','2017-06-10');
 
-    \sirag\Helpers\HelpFunct::writeLog('prueba.txt',$res,'w');
+    $resultado = shell_exec("ls -ls");
 
-    dd($res);
+    print "Salida: $resultado\n";
+
+
 
 });
 
