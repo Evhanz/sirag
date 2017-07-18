@@ -11,12 +11,12 @@
 @foreach($res as $item)
 
     <?php
-    $maestro = [0];
+    $maestro = $item[0];
     ?>
 
     <div class="boleta">
         <div class="title">
-            <div class="l$itemogo">
+            <div class="logo">
                 <IMG SRC="{{ asset('img/logo.jpg') }}">
             </div>
             <div class="razon">
@@ -33,7 +33,8 @@
         </div>
         <hr >
         <p>
-        <H5 style="padding: 0px;margin: 0px;font-size: 14px;letter-spacing: 0.2em">TRABAJADOR: <STRONG>{{$maestro->NOMBRE}}</STRONG></H5>
+        <H5 style="padding: 0px;margin: 0px;font-size: 14px;letter-spacing: 0.2em">TRABAJADOR: 
+        <STRONG>{{$maestro->NOMBRE}}</STRONG></H5>
         </p>
 
         <table style="margin: 0px;padding: 0px;" id="details">
