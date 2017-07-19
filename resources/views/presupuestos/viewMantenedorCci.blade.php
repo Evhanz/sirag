@@ -68,15 +68,33 @@
 				<h4><strong>FACTORES PRODUCCION</strong></h4>
 				<hr>
 				<div class="row">
-					<div class="col-lg-4">
-						<label for="Cliente">Cliente</label>
-						<input  class="form-control" name="Cliente" type="text" required="">
+					<div class="col-lg-3">
+						<label for="cliente">Cliente</label>
+						<input  class="form-control" name="cliente" type="text" required="">
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
+						<label for="jefePrograma">Jefe Programa</label>
+						<input  class="form-control" name="jefePrograma" type="text" required="">
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<label for="campana">Campaña</label>
 						<input  class="form-control" name="campana" type="text" required="">
+					</div>
+					<div class="col-lg-3">
+						<label for="clasificacion">Clasificacion</label>
+						<input  class="form-control" name="clasificacion" type="text" required="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<label for="fechaInicio">Fecha Inicio</label>
+						<input  class="form-control" name="fechaInicio" type="text" required="">
+					</div>
+					<div class="col-lg-4">
+						<label for="fechaTermino">Fecha Termino</label>
+						<input  class="form-control" name="fechaTermino" type="text" required="">
+					</div>
+					<div class="col-lg-4">
 					</div>
 				</div>
 			</div>
