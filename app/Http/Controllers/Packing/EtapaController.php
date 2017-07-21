@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Packing;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use sirag\Helpers\Maker;
 use sirag\Repositories\packing\EtapaRep;
 
 class EtapaController extends Controller
@@ -59,6 +60,18 @@ class EtapaController extends Controller
 
         return view('packing/etapa/viewAllEtapa',compact('etapa'));
     }
+
+    public function viewConfigEtiquetas(){
+
+        $calibre = $this->etapaRep->getCalibresUva();
+        $tipo_caja = $this->etapaRep->getTiposCaja();
+        $uva = $this->etapaRep->getTiposUva();
+        $max_codigo = $this->etapaRep->getMaxCodigoEtapa();
+
+        return view('packing/etapa/viewConfigEtiquetas',compact('calibre','tipo_caja','uva','max_codigo'));
+
+    }
+
 
 
 
@@ -170,7 +183,9 @@ class EtapaController extends Controller
 
         $res = $this->etapaRep->getEtapaByCodigo($codigo,$opcion);
 
-        return count($res);
+        if(count($res)==0) $res = [];
+
+        return ($res);
     }
 
     public function getEmpleadoByFichaTipo($ficha,$tipo){
@@ -193,6 +208,24 @@ class EtapaController extends Controller
         $res = $this->etapaRep->getEtapaByCodigoPallet($codigo);
         return \Response::json($res);
     }
+
+
+    public function regCodigoCaja(){
+
+
+        $data = \Input::all();
+
+        /*aqui se necesita unmaker*/
+        $a_insert = Maker::getArrayCodigosCajas($data['desde'],$data['cantidad'],$data['tipo_caja']
+            ,$data['tipo_uva'],$data['calibre']);
+
+       $this->etapaRep->regEtiquetaEtapa($a_insert);
+
+        return back()->with('status', 'correcto');
+
+    }
+
+
 
 
 

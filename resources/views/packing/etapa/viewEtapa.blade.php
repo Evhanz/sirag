@@ -13,9 +13,6 @@
     </ol>
 
 
-
-
-
 @stop
 
 @section('head_options')

@@ -9,6 +9,8 @@
         <li><a href="#"><i class="fa fa-dashboard"></i> Modulo: Materia Prima</a></li>
         <li class="active">New</li>
     </ol>
+
+
 @stop
 
 @section('head_options')

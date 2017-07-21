@@ -20,11 +20,19 @@ class WelcomeController extends Controller
     {
         //
 
-
         if ( Auth::user()== null) {
             return Redirect::to('/inicio');
+        }else{
+
+
+            $t_menu =  substr(Auth::user()->USR,0,2);
+
+
+            if($t_menu=='MV') {  return view('main/saludo_MV');  }
+            else {  return view('main/saludo');}
+
         }
-        return view('main/saludo');
+
     }
 
     /**

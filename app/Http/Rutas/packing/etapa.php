@@ -12,12 +12,18 @@ Route::get('packing/etapa/viewAll',['as'=>'viewEtapaAll','uses'=>'Packing\EtapaC
 Route::get('packing/etapa/getEtapaByParameter',['as'=>'getEtapaByParameter','uses'=>'Packing\EtapaController@getEtapaByParameter']);
 Route::get('packing/etapa/viewEtapaRep',['as'=>'viewEtapaRep','uses'=>'Packing\EtapaController@viewEtapaRep']);
 Route::get('packing/etapa/viewEtapaByCodigo/{codigo}',['as'=>'viewEtapaByCodigo','uses'=>'Packing\EtapaController@viewEtapaByCodigo']);
+Route::get('packing/etapa/viewConfigEtiquetas',['as'=>'viewConfigEtiquetas','uses'=>'Packing\EtapaController@viewConfigEtiquetas']);
+
+
 
 //inserts
 Route::post('packing/etapa/reg',
     ['as'=>'apiSeleccionReg','uses'=>'Packing\EtapaController@apiSeleccionReg']);
 Route::post('packing/etapa/editar',
     ['as'=>'apiSeleccionEdit','uses'=>'Packing\EtapaController@apiSeleccionEdit']);
+Route::post('packing/etapa/regCodigoCaja',
+    ['as'=>'regCodigoCaja','uses'=>'Packing\EtapaController@regCodigoCaja']);
+
 //api
 Route::get('packing/etapa/api/getById/{id}',['as'=>'apiGetEtapaById','uses'=>'Packing\EtapaController@apiGetById']);
 Route::get('packing/etapa/api/getByCodigoPallet/{codigo}',['as'=>'apiGetEtapaByCodigoPallet'

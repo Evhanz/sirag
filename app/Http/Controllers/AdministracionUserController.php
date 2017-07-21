@@ -59,10 +59,6 @@ class AdministracionUserController extends Controller
     }
 
 
-
-
-
-
     public function updateRolesUsuarios()
     {
         $data = \Input::all();

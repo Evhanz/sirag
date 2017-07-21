@@ -46,6 +46,15 @@ class EtapaRep
         return $res;
     }
 
+
+    public function regEtiquetaEtapa($data){
+
+
+        $res = \DB::table('sirag.etapa')->insert($data);
+
+        return $res;
+    }
+
     public function getAllEtapa(){
         $res = \DB::table('sirag.etapa')->take(10)->get();
         return $res;
@@ -210,6 +219,19 @@ class EtapaRep
         return $res ;
 
     }
+
+
+    public function getMaxCodigoEtapa(){
+        $query = "SELECT MAX(codigo) codigo
+                  FROM BDFlexline.sirag.etapa";
+
+        $res = \DB::select($query);
+
+        return $res[0]->codigo+1;
+    }
+
+
+
 
 
 

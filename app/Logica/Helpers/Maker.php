@@ -67,4 +67,29 @@ class Maker
         return $res;
     }
 
+
+    public static function getArrayCodigosCajas($cod_inicio,$cant,$t_caja,$uva,$calibre){
+
+
+        $res =[];
+
+        for ($i = 0 ;$i<$cant;$i++){
+
+            $item = [];
+            $item['codigo'] = $cod_inicio+$i;
+            $item['t_caja'] = $t_caja;
+            $item['uva'] = $uva;
+            $item['calibre'] = $calibre;
+            $item['estado'] = 0;
+            $item['usuario'] = 'EHERNANDEZ';
+
+            array_push($res,$item);
+        }
+
+
+        return $res;
+
+
+    }
+
 }
