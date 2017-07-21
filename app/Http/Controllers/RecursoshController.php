@@ -1580,15 +1580,19 @@ class RecursoshController extends Controller
         $res = $this->personalRep->getBoletaPagoPacking($data);
 
 
+
+
         $view = \View::make('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->render();
 
 
         $snappy = \App::make('snappy.pdf');
 
-        echo $view;
+       // echo $view;
+
+
 
        
-        //return \PDFS::loadView('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
+        return \PDFS::loadView('rh.pdf.boletaPagoPackingPdf', compact('res', 'f_i', 'f_f'))->setPaper('a4')->stream('nombre-archivo.pdf');
        
 
         //return \PDFS::loadFile('http://www.github.com')->stream('github.pdf');

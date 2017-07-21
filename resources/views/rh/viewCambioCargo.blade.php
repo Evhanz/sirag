@@ -67,6 +67,7 @@
                                                             <option value="PESADO">PESADO</option>
                                                             <option value="EMBALAJE">EMBALAJE</option>
                                                             <option value="SELECCION">SELECCION</option>
+                                                            <option value="PESO FIJO">PESO FIJO</option>
                                                         </select>
                                                         <br>
                                                         <button class="btn btn-success" ng-click="changeCargo()" style="width:100%">
