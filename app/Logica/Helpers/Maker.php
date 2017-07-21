@@ -68,7 +68,7 @@ class Maker
     }
 
 
-    public static function getArrayCodigosCajas($cod_inicio,$cant,$t_caja,$uva,$calibre){
+    public static function getArrayCodigosCajas($cod_inicio,$cant,$t_caja,$uva,$calibre,$lote){
 
 
         $res =[];
@@ -82,6 +82,7 @@ class Maker
             $item['calibre'] = $calibre;
             $item['estado'] = 0;
             $item['usuario'] = 'EHERNANDEZ';
+            $item['lote'] = $lote;
 
             array_push($res,$item);
         }

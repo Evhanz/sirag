@@ -28,7 +28,7 @@ class WelcomeController extends Controller
             $t_menu =  substr(Auth::user()->USR,0,2);
 
 
-            if($t_menu=='MV') {  return view('main/saludo_MV');  }
+            if($t_menu=='MV') {  return view('main/viewMobileEtapa');  }
             else {  return view('main/saludo');}
 
         }

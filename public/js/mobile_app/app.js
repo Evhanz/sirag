@@ -89,20 +89,22 @@ var v = new Vue({
   },
   data: {
     etapa:{
-      calibre:'',
-      seleccion_estado:0,
-      pesaje_estado:0,
-      embalaje_estado:0,
-      peso_fijo_estado:0,
-      codigo_estado:0,
-      embalaje:'',
-      pesaje:'',
-      peso:0,
-      seleccion:'',
-      peso_fijo:'',
-      t_caja:'',
-      uva:'',
-      codigo:''
+        calibre:'',
+        seleccion_estado:0,
+        pesaje_estado:0,
+        embalaje_estado:0,
+        peso_fijo_estado:0,
+        codigo_estado:0,
+        embalaje:'',
+        pesaje:'',
+        peso:0,
+        seleccion:'',
+        peso_fijo:'',
+        t_caja:'',
+        uva:'',
+        codigo:'',
+        id:''
+
     },
     codigo:'',
     opcion:'',
@@ -117,77 +119,96 @@ var v = new Vue({
 
   methods:{
       getCodigoCaja: function (codigo) {
-
-      var v= this;
-
-      alert(codigo);
-      $("#input_seleccion").focus();
-
-      var ruta = $("#url_base").val()+'/packing/etapa/api/getByCodigo/'+codigo+'/etapa';
-      v.changeEstateInput('c',true);
-
-      if (codigo === '' || codigo.length < 8 || codigo.length > 8){
-        alert('Ingrese una código válido');
-        v.changeEstateInput('c',false);
-        v.etapa.codigo = '';
+        var v= this;
         $("#input_seleccion").focus();
-      }else{
-        $.getJSON( ruta)
-            .done(function( data ) {
-
-
-              if(data.length ===1 ){
-                v.etapa.codigo_estado = 1;
-                $("#input_seleccion").focus();
-
-
-              }else if(data.length === 0){
-                alert('La Caja no se ha ingresado');
-                v.changeEstateInput('c',false);
-                v.etapa.codigo = '';
-                $("#input_codigo_caja").focus();
-              }
-              console.log(data);
-            })
-            .fail(function (data) {
-              alert('ocurrio un error');
-              v.changeEstateInput('c',false);
-            });
-      }
-    },
-      getTrabajador: function (ficha,tipo) {
-       ficha = ficha.trim();
-       var v = this;
-       //var ruta = $("#ruta_empleados").val()+'/packing/etapa/api/getEmpleadoByFichaTipo/'+ficha+'/'+tipo;
-       v.changeEstateInput(tipo,true);
-       if (ficha === ''){
-         alert('Ingrese una ficha');
-         v.changeEstateInput(tipo,false);
+        var ruta = $("#url_base").val()+'/packing/etapa/api/getByCodigo/'+codigo+'/etapa';
+        v.changeEstateInput('c',true);
+        if (codigo === '' || codigo.length < 8 || codigo.length > 8){
+          alert('Ingrese una código válido');
+          v.changeEstateInput('c',false);
+          v.etapa.codigo = '';
+          $("#input_codigo_caja").focus();
         }else{
-
-          switch (tipo) {
-            case 's':
-              v.etapa.seleccion_estado = 1;
-              $("#input_pesaje").focus();
-              break;
-            case 'p':
-              v.etapa.pesaje_estado = 1;
-              $("#input_embalaje").focus();
-              break;
-            case 'e':
-              $("#t_caja").focus();
-              v.etapa.embalaje_estado = 1;
-              break;
-            case 'f':
-              $("#t_caja").focus();
-              v.etapa.peso_fijo_estado = 1;
-              break;
-          }
-
+          $.getJSON( ruta)
+              .done(function( data ) {
+                  if(data.length ===1 ){
+                    v.etapa.codigo_estado = 1;
+                    $("#input_seleccion").focus();
+                    v.etapa.calibre = data[0].calibre;
+                    v.etapa.t_caja = data[0].t_caja;
+                    v.etapa.uva = data[0].uva;
+                    v.etapa.id = data[0].id;
+                  }else if(data.length === 0){
+                    alert('La Caja no se ha ingresado');
+                    v.changeEstateInput('c',false);
+                    v.etapa.codigo = '';
+                    $("#input_codigo_caja").focus();
+                  }
+                  console.log(data);
+              })
+              .fail(function (data) {
+                alert('ocurrio un error');
+                v.changeEstateInput('c',false);
+              });
         }
-
-
-    },
+      },
+      getTrabajador: function (ficha,tipo) {
+        ficha = ficha.trim();
+        var v = this;
+        var ruta = $("#url_base").val()+'/packing/etapa/api/getEmpleadoByFichaTipo/'+ficha+'/'+tipo;
+        v.changeEstateInput(tipo,true);
+        if (ficha === ''){
+          alert('Ingrese una ficha');
+          v.changeEstateInput(tipo,false);
+        }
+        else{
+          $.getJSON( ruta)
+              .done(function( data ) {
+                if(data===1){
+                  switch (tipo) {
+                    case 's':
+                      v.etapa.seleccion_estado = 1;
+                      $("#input_pesaje").focus();
+                      break;
+                    case 'p':
+                      v.etapa.pesaje_estado = 1;
+                      $("#input_embalaje").focus();
+                      break;
+                    case 'e':
+                      $("#t_caja").focus();
+                      v.etapa.embalaje_estado = 1;
+                      break;
+                    case 'f':
+                      $("#t_caja").focus();
+                      v.etapa.peso_fijo_estado = 1;
+                      break;
+                  }
+                }
+               else{
+                   alert('Codigo de Trabajador incorrecto');
+                   v.changeEstateInput(tipo,false);
+                   switch (tipo) {
+                       case 's':
+                           v.etapa.seleccion ='';
+                           break;
+                       case 'p':
+                           v.etapa.pesaje ='';
+                           break;
+                       case 'e':
+                           v.etapa.embalaje ='';
+                           break;
+                       case 'f':
+                           v.etapa.peso_fijo ='';
+                           break;
+                   }
+               }
+             }).fail(function (data) {
+               alert('Error:');
+               console.log(data);
+               v.changeEstateInput(tipo,false);
+             });
+        }
+      },
       changeEstateInput: function (tipo, estado) {
       switch (tipo) {
         case 's':
@@ -233,47 +254,76 @@ var v = new Vue({
       }
     },
       guardarCaja: function(){
+        var caja = this.etapa ;
+        var url = $('#url_send_caja').val();
+        var token = $('#_token').val();
+        var v_obj = this;
+        var bandera = v_obj.validateForm();
+        console.log(token);
+        if(bandera === 0 ){
+              $.ajax({
+                  data: {etapa:caja,_token:token},
+                  url:url,
+                  type: 'post',
+                  beforeSend: function () {
+                      $("#btnSaveCaja").attr('disabled',true);
+                  },
+                  success:    function (data) {
+                      // console.log('si salio',data);
 
+                      if (data.code == '200'){
+                        $("#btnSaveCaja").attr('disabled',false);
+                        $("#input_codigo_caja").focus();
+                        v_obj.changeEstateInput('all',false);
+                        v_obj.cajas.push(caja);
+                        v_obj.etapa = {
+                              calibre:'',
+                              seleccion_estado:0,
+                              pesaje_estado:0,
+                              embalaje_estado:0,
+                              peso_fijo_estado:0,
+                              codigo_estado:0,
+                              embalaje:'',
+                              pesaje:'',
+                              peso:0,
+                              seleccion:'',
+                              peso_fijo:'',
+                              t_caja:'',
+                              uva:'',
+                              codigo:''
+                        };
+                        v_obj.changeEstateInput('-',false);
+                        alert('Correcto');
+                      }else{
+                          alert('Error: '+ data.code);
+                      }
 
-
-
-      var caja = this.etapa ;
-
-      this.cajas.push(caja);
-
-      this.etapa = {
-        calibre:'',
-        seleccion_estado:0,
-        pesaje_estado:0,
-        embalaje_estado:0,
-        peso_fijo_estado:0,
-        codigo_estado:0,
-        embalaje:'',
-        pesaje:'',
-        peso:0,
-        seleccion:'',
-        peso_fijo:'',
-        t_caja:'',
-        uva:'',
-        codigo:''
-      };
-      this.changeEstateInput('-',false);
-      $("#input_codigo_caja").focus();
-      alert('Correcto');
-
-   
-    },
-      validateFom:function () {
+                  },
+                  error:       function (data) {
+                      console.log('error',data);
+                      alert('ocurrio un error');
+                      $("#btnSaveCaja").attr('disabled',false);
+                  }
+              });
+          } else {
+            alert('Tiene que registrar todos los datos');
+          }
+      },
+      validateForm:function () {
 
         var bandera = 0;
+        var v = this;
 
-        if ( this.etapa.seleccion_estado  == 0,
-              this.etapa.pesaje_estado    == 0,
-              this.etapa.embalaje_estado  ==  0,
-              this.etapa.peso_fijo_estado ==  0,
-              this.etapa.codigo_estado    ==  0){
+        if ( v.etapa.seleccion_estado  === 0 ||
+            v.etapa.pesaje_estado    === 0 ||
+            v.etapa.embalaje_estado  ===  0 ||
+            v.etapa.codigo_estado    ===  0){
+
+          bandera = 1;
 
         }
+
+        return bandera;
 
 
 

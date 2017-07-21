@@ -86,6 +86,10 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputName2">Lote</label><br>
+                                <input name="lote" id="lote" class="form-control sels" required/>
+                            </div>
                             <hr>
 
                             <div class="form-group">
@@ -229,6 +233,9 @@
                 bandera = 1;
             }
             if($('#tipo_uva').val() === ''){
+                bandera = 1;
+            }
+            if($('#lote').val() === ''){
                 bandera = 1;
             }
 

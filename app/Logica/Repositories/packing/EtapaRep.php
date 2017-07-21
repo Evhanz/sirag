@@ -83,7 +83,6 @@ class EtapaRep
         $uva = $data['uva'];
         $calibre = $data['calibre'];
         $t_caja = $data['t_caja'];
-        $peso = $data['peso'];
         $embalaje = $data['embalaje'];
         $fecha = $data['fecha'];
         $seleccion = $data['seleccion'];
@@ -93,8 +92,7 @@ class EtapaRep
         $res =\DB::table('sirag.etapa')
             ->where('id', $id)
             ->update(
-                ['t_caja' => $t_caja, 'uva' => $uva,'calibre' => $calibre,'peso' => $peso,
-                    'e_embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
+                ['t_caja' => $t_caja, 'uva' => $uva,'calibre' => $calibre,'e_embalaje'=>'', 'fecha' => $fecha,'hora' => '00:00', 'usuario' => 'EHERNANDEZ',
                     'estado' => 1,'u_seleccion'=>$seleccion,'u_pesaje'=>$pesaje, 'u_embalaje' => $embalaje]);
 
         return $res;

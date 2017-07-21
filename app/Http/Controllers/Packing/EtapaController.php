@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Packing;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use sirag\Helpers\HelpFunct;
 use sirag\Helpers\Maker;
 use sirag\Repositories\packing\EtapaRep;
 
@@ -109,6 +110,8 @@ class EtapaController extends Controller
         $data  = \Input::all();
 
         $etapa = $data['etapa'];
+
+        $etapa['fecha'] = HelpFunct::getFechaActual();
 
         $bandera = 0;
         $res = 0;
@@ -217,7 +220,7 @@ class EtapaController extends Controller
 
         /*aqui se necesita unmaker*/
         $a_insert = Maker::getArrayCodigosCajas($data['desde'],$data['cantidad'],$data['tipo_caja']
-            ,$data['tipo_uva'],$data['calibre']);
+            ,$data['tipo_uva'],$data['calibre'],$data['lote']);
 
        $this->etapaRep->regEtiquetaEtapa($a_insert);
 

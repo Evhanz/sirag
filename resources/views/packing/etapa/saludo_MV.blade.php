@@ -64,6 +64,7 @@
 
     <!-- Main Views -->
     <f7-views>
+
         <f7-view id="main-view" navbar-through :dynamic-navbar="true" main>
             <!-- iOS Theme Navbar -->
             <f7-navbar v-if="$theme.ios"  class="theme-teal">
@@ -92,7 +93,7 @@
                     </f7-navbar>
 
                     <f7-block-title >
-                        Ingreso de Pallets
+                        Ingreso de Pallets : veremos
                         <f7-link class="btn_perzonalizado " style="float: right;" href="/about/">
                             <!-- <i class="f7-icons">data_fill</i> -->
                             <f7-badge color="orange" style="float: right;font-size: 15px;">@{{cajas.length}}</f7-badge>
@@ -104,6 +105,7 @@
                         <div class="list-block" id="block_input">
                             <ul>
                                 <li>
+
                                     <div class="item-content">
                                         <div class="item-media">
                                             <i v-if="etapa.codigo_estado == 0 " class="f7-icons color-red">check_round</i>
@@ -308,11 +310,10 @@
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
-
-<script src="js/framework7.min.js"></script>
-<script src="js/vue.min.js"></script>
-<script src="js/framework7-vue.min.js"></script>
-<script src="js/app.js"></script>
+<script src="{{asset('js/mobile_app/framework7.min.js')}}"></script>
+<script src="{{asset('js/mobile_app/vue.min.js')}}js/"></script>
+<script src="{{asset('js/mobile_app/framework7-vue.min.js')}}"></script>
+<script src="{{asset('js/mobile_app/app.js')}}"></script>
 
 
 

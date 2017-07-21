@@ -24,6 +24,7 @@ Route::post('packing/etapa/editar',
 Route::post('packing/etapa/regCodigoCaja',
     ['as'=>'regCodigoCaja','uses'=>'Packing\EtapaController@regCodigoCaja']);
 
+
 //api
 Route::get('packing/etapa/api/getById/{id}',['as'=>'apiGetEtapaById','uses'=>'Packing\EtapaController@apiGetById']);
 Route::get('packing/etapa/api/getByCodigoPallet/{codigo}',['as'=>'apiGetEtapaByCodigoPallet'
