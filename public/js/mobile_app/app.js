@@ -131,7 +131,7 @@ var v = new Vue({
         }else{
           $.getJSON( ruta)
               .done(function( data ) {
-                  if(data.length ===1 ){
+                  if(data.length ===1 && data[0].estado == 0 && data[0].cod_pallet === null){
                     v.etapa.codigo_estado = 1;
                     $("#input_seleccion").focus();
                     v.etapa.calibre = data[0].calibre;
@@ -143,6 +143,11 @@ var v = new Vue({
                     v.changeEstateInput('c',false);
                     v.etapa.codigo = '';
                     $("#input_codigo_caja").focus();
+                  }else {
+                      alert('La Caja no está disponible');
+                      v.changeEstateInput('c',false);
+                      v.etapa.codigo = '';
+                      $("#input_codigo_caja").focus();
                   }
                   console.log(data);
               })
@@ -259,7 +264,10 @@ var v = new Vue({
         var token = $('#_token').val();
         var v_obj = this;
         var bandera = v_obj.validateForm();
-        console.log(token);
+
+
+        console.log(bandera);
+
         if(bandera === 0 ){
               $.ajax({
                   data: {etapa:caja,_token:token},
@@ -269,7 +277,6 @@ var v = new Vue({
                       $("#btnSaveCaja").attr('disabled',true);
                   },
                   success:    function (data) {
-                      // console.log('si salio',data);
 
                       if (data.code == '200'){
                         $("#btnSaveCaja").attr('disabled',false);
@@ -294,8 +301,10 @@ var v = new Vue({
                         };
                         v_obj.changeEstateInput('-',false);
                         alert('Correcto');
+
                       }else{
                           alert('Error: '+ data.code);
+                          $("#btnSaveCaja").attr('disabled',false);
                       }
 
                   },

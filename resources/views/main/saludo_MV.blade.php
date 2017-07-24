@@ -19,7 +19,7 @@
 
     <input type="hidden" id="url_base"  value="{{ url() }}">
     <input type="hidden" id="_token" value="{{ csrf_token() }}">
-    <input type="hidden" id="url_send_caja" value="{{ url('') }}">
+    <input type="hidden" id="url_send_caja" value="{{ route('apiSeleccionEdit') }}">
 
     <!-- Statusbar -->
     <f7-statusbar></f7-statusbar>

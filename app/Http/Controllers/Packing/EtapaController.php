@@ -111,7 +111,9 @@ class EtapaController extends Controller
 
         $etapa = $data['etapa'];
 
-        $etapa['fecha'] = HelpFunct::getFechaActual();
+        $etapa['fecha'] = HelpFunct::getFechaActual('Ymd');
+
+        //dd($etapa['fecha']);
 
         $bandera = 0;
         $res = 0;
@@ -124,7 +126,7 @@ class EtapaController extends Controller
             $response = ['code'=>200,'codigo'=>$res];
         }catch (\Exception $e){
             $bandera =$e;
-            $response = ['code'=>500,'mensaje'=>'error'];
+            $response = ['code'=>500,'mensaje'=>'error'.$e];
         }
 
 
