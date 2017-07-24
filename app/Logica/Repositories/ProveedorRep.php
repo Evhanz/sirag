@@ -37,7 +37,7 @@ class ProveedorRep
         foreach($p as $item){
             $item->sucursales = \DB::select("SELECT *
                                       FROM flexline.CtaCteDirecciones
-                                      where CtaCte = $item->ruc
+                                      where CtaCte = '$item->ruc'
                                       AND Empresa ='e01'
                                       AND Principal <> 'S'");
         }
