@@ -267,4 +267,5 @@ class PalletController extends Controller
     }
 
 
+
 }

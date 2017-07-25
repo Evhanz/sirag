@@ -15,6 +15,10 @@ Route::get('packing/etapa/viewEtapaByCodigo/{codigo}',['as'=>'viewEtapaByCodigo'
 Route::get('packing/etapa/viewConfigEtiquetas',['as'=>'viewConfigEtiquetas','uses'=>'Packing\EtapaController@viewConfigEtiquetas']);
 
 
+//view  mobiles
+
+Route::get('packing/pallet/viewChangeCajasMV',['as'=>'viewChangeCajasMV','uses'=>'Packing\EtapaController@viewChangeCajasMV']);
+
 
 //inserts
 Route::post('packing/etapa/reg',

@@ -60,7 +60,6 @@
                                 </div>
                             </a>
                         </li>
-
                         <li class="">
                             <a href="{{ URL::route('viewChangeCajasMV') }}" data-view="#main-view" class="external link">
                                 <div class="item-content">
@@ -124,7 +123,7 @@
                         <f7-nav-left>
                             <f7-link icon="icon-bars" open-panel="left" data-fun='btn'></f7-link>
                         </f7-nav-left>
-                        <f7-nav-center sliding style="width:60%">Ingreso Cajas</f7-nav-center>
+                        <f7-nav-center sliding style="width:60%">Cambio de Cajas</f7-nav-center>
                         <!--
                         <f7-nav-right>
                           <f7-link icon="icon-bars" open-panel="right"></f7-link>
@@ -133,105 +132,75 @@
                     </f7-navbar>
 
                     <f7-block-title >
-                        Ingreso de Pallets
-                        <f7-link class="btn_perzonalizado " style="float: right;" href="/about/">
-                            <!-- <i class="f7-icons">data_fill</i> -->
-                            <f7-badge color="orange" style="float: right;font-size: 15px;">@{{cajas.length}}</f7-badge>
-                        </f7-link>
-
-
+                        -
                     </f7-block-title>
                     <f7-block inner id="content_block_input">
                         <div class="list-block" id="block_input">
                             <ul>
 
                                 <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i v-if="etapa.codigo_estado == 0 " class="f7-icons color-red">check_round</i>
-                                            <i v-else="etapa.codigo_estado == 0 " class="f7-icons color-green">check_round</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title floating-label">Codigo de Caja</div>
-                                            <div class="item-input">
-                                                <input id="input_codigo_caja"  @keyup="etapa.codigo_estado = 0 " @keyup.enter="getCodigoCaja(etapa.codigo,'c')" type="text" v-model='etapa.codigo'>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i v-if="etapa.seleccion_estado == 0 " class="f7-icons color-red">check_round</i>
-                                            <i v-else="etapa.seleccion_estado == 0 " class="f7-icons color-green">check_round</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title floating-label">Seleccion</div>
-                                            <div class="item-input">
-                                                <input id="input_seleccion" @keyup="etapaWrite('s')" @keyup.enter="getTrabajador(etapa.seleccion,'s')" type="text"  v-model='etapa.seleccion'>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i v-if="etapa.pesaje_estado == 0 " class="f7-icons color-red">check_round</i>
-                                            <i v-else="etapa.pesaje_estado == 0 " class="f7-icons color-green">check_round</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title floating-label">Pesaje</div>
-                                            <div class="item-input">
-                                                <input id="input_pesaje"  type="text" @keyup="etapaWrite('p')" @keyup.enter="getTrabajador(etapa.pesaje,'p')"  v-model='etapa.pesaje'>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-content">
-                                        <div class="item-media">
-                                            <i v-if="etapa.embalaje_estado == 0 " class="f7-icons color-red">check_round</i>
-                                            <i v-else="etapa.embalaje_estado == 0 " class="f7-icons color-green">check_round</i>
-                                        </div>
-                                        <div class="item-inner">
-                                            <div class="item-title floating-label">Embalaje</div>
-                                            <div class="item-input">
-                                                <input id="input_embalaje" type="text" @keyup="etapaWrite('e')" @keyup.enter="getTrabajador(etapa.embalaje,'e')" v-model='etapa.embalaje' >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a @click="guardarCaja()" id="btnSaveCaja" class="button button-fill color-green button-round notification-custom" >Guardar Caja</a>
-                                    <br>
-
-                                </li>
-
-                                <li>
                                     <div class="card">
-                                        <div class="card-header">Codigo de pallet</div>
+                                        <div class="card-header"> Caja Saliente</div>
                                         <div class="card-content">
 
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <i v-if="codigo_pallet_estado == 0 " class="f7-icons color-red">check_round</i>
-                                                    <i v-else="codigo_pallet_estado == 0 " class="f7-icons color-green">check_round</i>
+                                                    <i v-if="caja_saliente.estado == 0 " class="f7-icons color-red">check_round</i>
+                                                    <i v-else="caja_saliente.estado == 0 " class="f7-icons color-green">check_round</i>
                                                 </div>
                                                 <div class="item-inner">
-                                                    <div class="item-title floating-label">Codigo de Pallet</div>
+                                                    <div class="item-title floating-label">Codigo de Caja</div>
                                                     <div class="item-input">
-                                                        <input id="codigo_pallet" @keyup.enter="validateCodePallet()"  type="text" name="name" v-model='codigo_pallet'>
+                                                        <input id="cod_caja_saliente" @keyup.enter="validateCodigoCaja()"  type="text" name="name" v-model='caja_saliente.codigo'>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-if="cajas.length >0 && codigo_pallet_estado !=0 " class="card-footer">
-                                            <a id="btnSavePallet" @click="savePallet()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%">Guardar Pallet</a>
-                                        </div>
                                     </div>
                                 </li>
+
+
                                 <li>
-                                   <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
+                                    <div class="card">
+                                        <div class="card-header">Caja a Cambiar </div>
+                                        <div class="card-content">
+
+                                            <div class="item-content">
+                                                <div class="item-media">
+                                                    <i v-if="caja_saliente.estado == 0 " class="f7-icons color-red">check_round</i>
+                                                    <i v-else="caja_saliente.estado == 0 " class="f7-icons color-green">check_round</i>
+                                                </div>
+                                                <div class="item-inner">
+                                                    <div class="item-title floating-label">Codigo de Caja</div>
+                                                    <div class="item-input">
+                                                        <input id="cod_caja_saliente" @keyup.enter="validateCodigoCaja()"  type="text" name="name" v-model='caja_saliente.codigo'>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <f7-label>Motivo</f7-label>
+                                    <f7-input type="select">
+                                        <option value="1">Male</option>
+                                        <option value="1">Female</option>
+                                    </f7-input>
+
+                                </li>
+
+
+                                <li>
+                                    <a id="btnSavePallet" @click="savePallet()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%">Guardar Cambio</a>
+
+                                </li>
+
+
+
+                                <li>
+                                    <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
                                 </li>
 
                             </ul>
@@ -355,7 +324,7 @@
 <script src="{{asset('js/mobile_app/framework7.min.js')}}"></script>
 <script src="{{asset('js/mobile_app/vue.min.js')}}"></script>
 <script src="{{asset('js/mobile_app/framework7-vue.min.js')}}"></script>
-<script src="{{asset('js/mobile_app/app.js')}}"></script>
+<script src="{{asset('js/mobile_app/changeCajas.js')}}"></script>
 
 
 

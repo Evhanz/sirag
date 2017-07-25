@@ -11,6 +11,9 @@ Route::get('packing/pallet/viewEdit',['as'=>'viewEditPallet','uses'=>'Packing\Pa
 Route::get('packing/pallet/viewAll',['as'=>'viewAllPallet','uses'=>'Packing\PalletController@viewAll']);
 Route::get('packing/pallet/viewPalletRep',['as'=>'viewPalletRep','uses'=>'Packing\PalletController@viewPalletRep']);
 
+
+
+
 //apis
 Route::post('packing/pallet/regPallet',['as'=>'regPallet','uses'=>'Packing\PalletController@regPallet']);
 Route::post('packing/pallet/editPallet',['as'=>'editPallet','uses'=>'Packing\PalletController@editPallet']);

@@ -231,7 +231,11 @@ class EtapaController extends Controller
     }
 
 
+    public function   viewChangeCajasMV(){
 
+        return view('packing/etapa/changeCajas_MV');
+
+    }
 
 
 
