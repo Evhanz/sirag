@@ -190,7 +190,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a>
+                                    <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
                                 </li>
                             </ul>
                         </div>
@@ -293,7 +293,7 @@
 
         <!-- Search-through list -->
         <f7-list class="searchbar-found" id="search-list">
-            <f7-list-item v-for="item in items" :title="'Item ' + item.codigo"></f7-list-item>
+            <f7-list-item v-for="item in items" :title="'Caja Codigo: ' + item.codigo + ' '+ item.uva"></f7-list-item>
         </f7-list>
 
 

@@ -31,15 +31,36 @@
             <f7-pages>
                 <f7-page>
                     <f7-navbar v-if="$theme.ios" title="Left Panel" sliding></f7-navbar>
+
+                    <!--
                     <f7-block-title>Load page in panel</f7-block-title>
                     <f7-list>
                         <f7-list-item link="/about/" title="About"></f7-list-item>
                         <f7-list-item link="/form/" title="Form"></f7-list-item>
                     </f7-list>
+                    -->
                     <f7-block-title>Load page in main as</f7-block-title>
                     <f7-list>
+
+                        <!--
                         <f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
                         <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
+                        <f7-list-item  title="Form" >
+                            <f7-link href="http://google.com" external> > </f7-link>
+                        </f7-list-item>
+
+                        -->
+
+                        <li class="">
+                            <a href="{{ URL::route('outLogin') }}" data-view="#main-view" class="external link">
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Cerrar Sesion</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
                     </f7-list>
                 </f7-page>
             </f7-pages>
@@ -189,18 +210,18 @@
                                                 <div class="item-inner">
                                                     <div class="item-title floating-label">Codigo de Pallet</div>
                                                     <div class="item-input">
-                                                        <input type="text" name="name" v-model='codigo_pallet'>
+                                                        <input id="codigo_pallet" @keyup.enter="validateCodePallet()"  type="text" name="name" v-model='codigo_pallet'>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <a href="" class="button button-fill color-green button-round notification-custom" style="width:100%">Guardar Pallet</a>
+                                        <div v-if="cajas.length >0 && codigo_pallet_estado !=0 " class="card-footer">
+                                            <a id="btnSavePallet" @click="savePallet()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%">Guardar Pallet</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a>
+                                   <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
                                 </li>
 
                             </ul>
@@ -210,7 +231,7 @@
                 </f7-page>
             </f7-pages>
             <!-- Floating Action Button -->
-            <a href="#" class="floating-button color-pink">
+            <a href="#" @click="resetForm()" class="floating-button color-pink">
                 <i class="icon icon-plus"></i>
             </a>
 

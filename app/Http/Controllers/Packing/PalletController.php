@@ -56,7 +56,7 @@ class PalletController extends Controller
 
         $pallet = [];
         $pallet['codigo'] = $data['pallet'];
-        $pallet['registrador'] = 'EHERNANDEZ';
+        $pallet['registrador'] = 'MVPACKING';
         $pallet['fecha_registro'] = $date;
         $pallet['estado'] = 1;
 
@@ -65,6 +65,7 @@ class PalletController extends Controller
 
         if($id_pallet >0 ){
 
+            //se insertan los detalles
 
             $this->palletRep->editPallet($data['detalles'],$pallet['codigo'],1);
             $res = ['code'=>200,'codigo'=>$pallet['codigo']];
