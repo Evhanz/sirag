@@ -3790,6 +3790,7 @@ where EMPRESA = 'e01'";
         AND PT.FICHA=DT.TRABAJADOR
         AND PT.CATEGORIA='OPERARIO'
         AND LEN(GC.CODIGO) = 6
+        AND GT.TEXTO4='MOD'
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,GT.texto3";
 
