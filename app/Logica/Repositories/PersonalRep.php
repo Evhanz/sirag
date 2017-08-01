@@ -2558,7 +2558,7 @@ class PersonalRep
         ORDER BY P.EMPLEADO
         ";
 
-        HelpFunct::writeQuery($query);
+        //HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
@@ -3705,6 +3705,8 @@ where EMPRESA = 'e01'";
                   ficha
                   from sirag.ficha_afp
                   where periodo='$periodo') --- PERIODO SE TIENE QUE CAMBIAR DE ACUERDO AL MES ACTUAL";
+
+        //HelpFunct::writeQuery($query);
 
         $res = \DB::insert($query);
 
