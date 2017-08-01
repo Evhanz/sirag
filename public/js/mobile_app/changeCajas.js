@@ -1,5 +1,8 @@
 
 
+// Init F7 Vue Plugin
+Vue.use(Framework7Vue);
+
 // Init App
 var v = new Vue({
   el: '#app',
@@ -25,24 +28,15 @@ var v = new Vue({
     ]
   },
   data: {
-    etapa:{
-        calibre:'',
-        seleccion_estado:0,
-        pesaje_estado:0,
-        embalaje_estado:0,
-        peso_fijo_estado:0,
-        codigo_estado:0,
-        embalaje:'',
-        pesaje:'',
-        peso:0,
-        seleccion:'',
-        peso_fijo:'',
-        t_caja:'',
-        uva:'',
-        codigo:'',
-        id:''
-
+    caja_saliente:{
+        estado:0,
+        codigo:''
     },
+    caja_cambiar:{
+        estado:0,
+        codigo:''
+    },
+    codigo_motivo:''
 
 
   },
@@ -62,21 +56,13 @@ var v = new Vue({
           $.getJSON( ruta)
               .done(function( data ) {
                   if(data.length ===1 && data[0].estado == 0 && data[0].cod_pallet === null){
-                    v.etapa.codigo_estado = 1;
-                    $("#input_seleccion").focus();
-                    v.etapa.calibre = data[0].calibre;
-                    v.etapa.t_caja = data[0].t_caja;
-                    v.etapa.uva = data[0].uva;
-                    v.etapa.id = data[0].id;
+
                   }else if(data.length === 0){
                     alert('La Caja no se ha ingresado');
-                    v.changeEstateInput('c',false);
-                    v.etapa.codigo = '';
-                    $("#input_codigo_caja").focus();
+
                   }else {
                       alert('La Caja no está disponible');
-                      v.changeEstateInput('c',false);
-                      v.etapa.codigo = '';
+
                       $("#input_codigo_caja").focus();
                   }
                   console.log(data);

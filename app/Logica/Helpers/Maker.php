@@ -9,6 +9,8 @@
 namespace sirag\Helpers;
 
 
+use sirag\Entities\Obj;
+
 class Maker
 {
 
@@ -89,6 +91,120 @@ class Maker
 
 
         return $res;
+
+
+    }
+
+    /**
+     * Esta funcion trae el array de acuerdo al cruce de columnas que se haran ,
+     * devolvera cada parron con su fundo dependiente
+     */
+    public static function getArrayModActivityKey($periodo){
+
+        $a_keys = [];
+
+        $o = new Obj();
+        $o->fundo = '6';
+        $o->parrones= [$periodo.'6011',$periodo.'6012',$periodo.'6013'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '6';
+        $o->parrones= [$periodo.'6041',$periodo.'6051',$periodo.'6061'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '3';
+        $o->parrones= [$periodo.'3011',$periodo.'3021'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '1';
+        $o->parrones= [$periodo.'1011',$periodo.'1031'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '1';
+        $o->parrones= [$periodo.'1021',$periodo.'1041'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '1';
+        $o->parrones= [$periodo.'1051',$periodo.'1061'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '5';
+        $o->parrones= [$periodo.'5011',$periodo.'5021',$periodo.'5031',$periodo.'5041',$periodo.'5051'
+            ,$periodo.'5061',$periodo.'5071',$periodo.'5081',$periodo.'5091',$periodo.'5101'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '1';
+        $o->parrones= [$periodo.'1071',$periodo.'1081',$periodo.'1091',$periodo.'1101'];
+
+        array_push($a_keys,$o);
+
+
+        $o = new Obj();
+        $o->fundo = '1';
+        $o->parrones= [$periodo.'1111',$periodo.'1121',$periodo.'1131',$periodo.'1141'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '4';
+        $o->parrones= [$periodo.'4011',$periodo.'4021',$periodo.'4031',$periodo.'4041'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '4';
+        $o->parrones= [$periodo.'4081',$periodo.'4091',$periodo.'4101'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '4';
+        $o->parrones= [$periodo.'4111',$periodo.'4121',$periodo.'4131',$periodo.'4141',$periodo.'4151',$periodo.'4161'
+            ,$periodo.'4171',$periodo.'4181',$periodo.'4191'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '2';
+        $o->parrones= [$periodo.'2021',$periodo.'2031'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '2';
+        $o->parrones= [$periodo.'2011',$periodo.'2041'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '4';
+        $o->parrones= [$periodo.'4051'];
+
+        array_push($a_keys,$o);
+
+        $o = new Obj();
+        $o->fundo = '4';
+        $o->parrones= [$periodo.'4061',$periodo.'4711',$periodo.'4721'];
+
+        array_push($a_keys,$o);
+
+
+        return $a_keys;
+
 
 
     }

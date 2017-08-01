@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use sirag\Entities\Obj;
 use sirag\Helpers\HelpFunct;
+use sirag\Helpers\Maker;
 use sirag\Repositories\DocumentoRep;
 use sirag\Repositories\PersonalRep;
 
@@ -1706,6 +1707,45 @@ class RecursoshController extends Controller
         }
 
         return $response;
+
+    }
+
+    public function getModPorActividad(){
+
+        set_time_limit (250);
+
+        $data = \Input::all();
+        $fechas =explode('-',$data['fecha']);
+
+        $f_inicio = explode('/',trim($fechas[0]));
+        $f_fin = explode('/',trim($fechas[1]));
+
+        $f_inicio = $f_inicio[2].'-'.$f_inicio[1].'-'.$f_inicio[0];
+        $f_fin = $f_fin[2].'-'.$f_fin[1].'-'.$f_fin[0];
+
+
+        $keys = Maker::getArrayModActivityKey('17');
+
+        $res = $this->personalRep->modPorActividad($f_inicio,$f_fin,$keys);
+
+       // return \Response::Json($res);
+        //dd($res);
+
+
+        Excel::create('Mod Por Actividad ', function($excel) use($res) {
+
+            $labores = $res['labores'];
+            $keys = $res['keys'];
+            $calculated = $res['calculated'];
+
+            $excel->sheet('MOD', function($sheet) use($calculated) {
+
+                $sheet->loadView('rh.excel.modPorActividad',compact('calculated'));
+
+            });
+
+
+        })->export('xls');
 
     }
 

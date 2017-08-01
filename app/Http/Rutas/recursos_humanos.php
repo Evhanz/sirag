@@ -69,6 +69,7 @@ Route::get('rh/api/getTrabajadorByFichaAndActive/{ficha}',['as'=>'getTrabajadorB
 Route::get('rh/api/getInitMantAFP',['as'=>'getInitMantAFP','uses'=>'RecursoshController@getInitMantAFP']);
 Route::get('rh/api/getTrabajadorForAFP/{ficha}/{periodo}',['as'=>'getTrabajadorForAFP','uses'=>'RecursoshController@getTrabajadorForAFP']);
 Route::get('rh/api/getPorcentajesAFP/{periodo}',['as'=>'apiGetPorcentajesAFP','uses'=>'RecursoshController@apiGetPorcentajesAFP']);
+Route::post('rh/api/getModPorActividad',['as'=>'getModPorActividad','uses'=>'RecursoshController@getModPorActividad']);
 
 
 

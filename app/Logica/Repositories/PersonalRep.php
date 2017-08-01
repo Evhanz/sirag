@@ -1417,6 +1417,8 @@ class PersonalRep
         AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
         GROUP BY GC.CODIGO, GT.descripcion,CONVERT(DATE,DT.FECHA,113),GT.texto3";
 
+        HelpFunct::writeQuery($query);
+
 
 
         $res = \DB::select($query);
@@ -3735,6 +3737,150 @@ where EMPRESA = 'e01'";
 
 
         return $res;
+    }
+
+
+    public function modPorActividad($fecha_inicio,$fecha_fin,$keys){
+
+        $query = "
+        --esta fecha se usará para saber que dia se consultará el detalle 
+        DECLARE @fecha date;
+       
+        --luego se sacara la fecha de inicio para sacar el rango de consulta
+        DECLARE @fecha_inicio DATE;
+        -- seteamos la fecha de inicio restandole 6 dias a la fecha dada
+        SET @fecha = '$fecha_fin'; --aca se cambia por la variable
+        SET @fecha_inicio= '$fecha_inicio';
+        --SET @fecha_inicio= DATEADD(day,-6,@fecha); 
+        select GC.CODIGO, GT.descripcion,SUM(DT.CANTIDAD) CANTIDAD
+        ,(SELECT SUM(DEBE_INGRESO) FROM flexline.CON_MOVCOM
+            WHERE EMPRESA='E01'
+            AND TIPO_COMPROBANTE='PLANILLAS'
+            AND ((PERIODO=YEAR(@fecha)) OR (PERIODO=YEAR(@fecha_inicio)))
+            AND CONVERT(DATE,FECHA) BETWEEN @fecha_inicio AND @fecha
+            AND AUX_VALOR19 = GC.CODIGO
+            AND ESTADO='A'
+            AND AUX_VALOR19 IS NOT NULL) MONTO,
+            (SELECT SUM(CANTIDAD) 
+            FROM flexline.PER_DETALLETRATO A,
+            flexline.PER_TRABAJADOR B
+            WHERE A.EMPRESA='E01'
+            AND CONVERT(DATE,A.FECHA) BETWEEN @fecha_inicio and @fecha
+            AND A.AUX_VALOR5 = GC.CODIGO
+            AND B.EMPRESA=A.EMPRESA
+            AND B.FICHA=A.TRABAJADOR
+            AND B.CATEGORIA='OPERARIO'
+            ) CANTIDAD_H
+            ,coalesce(GT.texto3,9999) correlativo
+            
+        from
+        dbo.GEN_TABLA as GT INNER JOIN 
+        flexline.PER_DETALLETRATO DT 
+        ON GT.codigo1=DT.AUX_VALOR16 AND GT.empresa = DT.EMPRESA INNER JOIN
+        flexline.GEN_TABCOD GC ON DT.AUX_VALOR5 = GC.CODIGO AND DT.EMPRESA = GC.EMPRESA,
+        FLEXLINE.PER_TRABAJADOR PT
+        where 
+        DT.EMPRESA='e01'
+        AND GC.TIPO = 'CON_CCOSTO_INTERNO'
+        and GT.vigencia='S'
+        and GT.cod_tabla='per_labor'
+        and DT.TRATO='TRATO_HORA'
+        AND GC.CODIGO <> '696969'
+        AND PT.EMPRESA=DT.EMPRESA
+        AND PT.FICHA=DT.TRABAJADOR
+        AND PT.CATEGORIA='OPERARIO'
+        AND LEN(GC.CODIGO) = 6
+        AND CONVERT(DATE,DT.FECHA) BETWEEN @fecha_inicio and @fecha
+        GROUP BY GC.CODIGO, GT.descripcion,GT.texto3";
+
+        $res = \DB::select($query);
+
+
+        /*sacamos el costo x hora de todo */
+
+
+        foreach ($res as $item){
+
+            $item->COSTO_X_HORA = round($item->MONTO / $item->CANTIDAD_H,2);
+        }
+
+
+        $res = collect($res);
+
+
+        //sacamos los codigos para que sean nuestra scolumnas a cruzar
+
+        $labores =  $res->groupBy('descripcion')->keys()->toArray();
+
+
+        $a_data_calculated = [];
+
+
+        //recorremos el array de keys
+
+        foreach ($labores as $item){
+
+            $values = [];
+
+            /*aca esta todos los fundos*/
+            foreach ($keys as $key){
+
+                /*primero sacamos todos los registros que pertenecen al array de parrones*/
+                $detalles = $res->filter(function ($value) use($key) {
+                    return  in_array($value->CODIGO, $key->parrones);
+                })->groupBy('descripcion');
+
+                //hallamos la suma de todos los detalles x su costo por hora ,así determinamos su
+                // costo de acuerdo a cada labor
+
+                /*recorremos todas las labores*/
+
+                $valor_suma = 0;
+                $a_labores_existentes = $detalles->keys()->toArray();
+
+
+                if( in_array($item, $a_labores_existentes)){
+                    //quiere decir que existe el valor dentro del key
+
+                    $suma = 0;
+
+                    foreach ($detalles as $k=>$det){
+                     //   $i->CANTIDAD * $i->MONTO_X_HORA;
+                       if($k == $item){
+
+                           $suma = $det->sum(function ($i){
+                               return  $i->CANTIDAD * $i->COSTO_X_HORA;
+                           });
+                       }
+                    }
+
+
+
+                    $valor_suma = $suma;
+                }
+
+                array_push($values,$valor_suma);
+
+                $key->details = $detalles;
+            }
+
+            $calcualted = [];
+            $calcualted['descripcion'] = $item;
+            $calcualted['values'] = $values;
+
+
+            array_push($a_data_calculated,$calcualted);
+
+        }
+
+
+        $data['labores'] = $labores;
+        $data['keys'] = $keys;
+        $data['calculated'] = $a_data_calculated;
+
+
+        return $data;
+
     }
 
 

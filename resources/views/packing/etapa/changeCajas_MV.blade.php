@@ -137,12 +137,10 @@
                     <f7-block inner id="content_block_input">
                         <div class="list-block" id="block_input">
                             <ul>
-
                                 <li>
                                     <div class="card">
                                         <div class="card-header"> Caja Saliente</div>
                                         <div class="card-content">
-
                                             <div class="item-content">
                                                 <div class="item-media">
                                                     <i v-if="caja_saliente.estado == 0 " class="f7-icons color-red">check_round</i>
@@ -151,7 +149,7 @@
                                                 <div class="item-inner">
                                                     <div class="item-title floating-label">Codigo de Caja</div>
                                                     <div class="item-input">
-                                                        <input id="cod_caja_saliente" @keyup.enter="validateCodigoCaja()"  type="text" name="name" v-model='caja_saliente.codigo'>
+                                                        <input id="cod_caja_saliente" @keyup.enter="getCodigoCaja(caja_saliente.codigo)"  type="text" name="name" v-model='caja_saliente.codigo'>
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,40 +165,39 @@
 
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <i v-if="caja_saliente.estado == 0 " class="f7-icons color-red">check_round</i>
-                                                    <i v-else="caja_saliente.estado == 0 " class="f7-icons color-green">check_round</i>
+                                                    <i v-if="caja_cambiar.estado == 0 " class="f7-icons color-red">check_round</i>
+                                                    <i v-else="caja_cambiar.estado == 0 " class="f7-icons color-green">check_round</i>
                                                 </div>
                                                 <div class="item-inner">
                                                     <div class="item-title floating-label">Codigo de Caja</div>
                                                     <div class="item-input">
-                                                        <input id="cod_caja_saliente" @keyup.enter="validateCodigoCaja()"  type="text" name="name" v-model='caja_saliente.codigo'>
+                                                        <input id="cod_caja_cambiar" @keyup.enter="getCodigoCaja(caja_cambiar.codigo)"  type="text" name="name" v-model='caja_cambiar.codigo'>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </li>
 
-                                <li>
-                                    <f7-label>Motivo</f7-label>
-                                    <f7-input type="select">
-                                        <option value="1">Male</option>
-                                        <option value="1">Female</option>
+
+                                <li style="padding: 0 15px 0 15px">
+                                    <f7-label> <strong>Motivo</strong></f7-label>
+                                    <f7-input type="select" v-model="codigo_motivo">
+                                        <option value="">---------</option>
+                                        <option value="997">SENASA</option>
+                                        <option value="996">INTERNO</option>
                                     </f7-input>
-
+                                    <br>
                                 </li>
-
 
                                 <li>
-                                    <a id="btnSavePallet" @click="savePallet()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%">Guardar Cambio</a>
-
+                                    <a id="btnSavePallet" @click="savePallet()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%"
+                                       :disabled="caja_cambiar.estado == 0 || caja_saliente.estado == 0 || codigo_motivo == '' ">Guardar Cambio</a>
                                 </li>
-
-
 
                                 <li>
                                     <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
+                                    <i style="font-size: 12px">*Considerar: Se cambiará los datos de una caja con todos los datos hacia la otra </i>
                                 </li>
 
                             </ul>
