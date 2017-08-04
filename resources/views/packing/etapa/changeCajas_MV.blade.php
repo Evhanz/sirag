@@ -19,7 +19,7 @@
 
     <input type="hidden" id="url_base"  value="{{ url() }}">
     <input type="hidden" id="_token" value="{{ csrf_token() }}">
-    <input type="hidden" id="url_send_caja" value="{{ route('apiSeleccionEdit') }}">
+    <input type="hidden" id="url_send_cambios" value="{{ route('regChangeCajas') }}">
 
     <!-- Statusbar -->
     <f7-statusbar></f7-statusbar>
@@ -48,7 +48,6 @@
                         <f7-list-item  title="Form" >
                             <f7-link href="http://google.com" external> > </f7-link>
                         </f7-list-item>
-
                         -->
 
                         <li class="">
@@ -143,13 +142,13 @@
                                         <div class="card-content">
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <i v-if="caja_saliente.estado == 0 " class="f7-icons color-red">check_round</i>
-                                                    <i v-else="caja_saliente.estado == 0 " class="f7-icons color-green">check_round</i>
+                                                    <i v-if="caja_saliente.estado_get == 0 " class="f7-icons color-red">check_round</i>
+                                                    <i v-else="caja_saliente.estado_get == 0 " class="f7-icons color-green">check_round</i>
                                                 </div>
                                                 <div class="item-inner">
                                                     <div class="item-title floating-label">Codigo de Caja</div>
                                                     <div class="item-input">
-                                                        <input id="cod_caja_saliente" @keyup.enter="getCodigoCaja(caja_saliente.codigo)"  type="text" name="name" v-model='caja_saliente.codigo'>
+                                                        <input id="cod_caja_saliente" @keyup.enter="getCodigoCaja(caja_saliente.codigo,'saliente')"  type="text" name="name" v-model='caja_saliente.codigo'>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,13 +164,13 @@
 
                                             <div class="item-content">
                                                 <div class="item-media">
-                                                    <i v-if="caja_cambiar.estado == 0 " class="f7-icons color-red">check_round</i>
-                                                    <i v-else="caja_cambiar.estado == 0 " class="f7-icons color-green">check_round</i>
+                                                    <i v-if="caja_cambiar.estado_get == 0 " class="f7-icons color-red">check_round</i>
+                                                    <i v-else="caja_cambiar.estado_get == 0 " class="f7-icons color-green">check_round</i>
                                                 </div>
                                                 <div class="item-inner">
                                                     <div class="item-title floating-label">Codigo de Caja</div>
                                                     <div class="item-input">
-                                                        <input id="cod_caja_cambiar" @keyup.enter="getCodigoCaja(caja_cambiar.codigo)"  type="text" name="name" v-model='caja_cambiar.codigo'>
+                                                        <input id="cod_caja_cambiar" @keyup.enter="getCodigoCaja(caja_cambiar.codigo,'entrante')"  type="text" name="name" v-model='caja_cambiar.codigo'>
                                                     </div>
                                                 </div>
                                             </div>
@@ -182,7 +181,7 @@
 
                                 <li style="padding: 0 15px 0 15px">
                                     <f7-label> <strong>Motivo</strong></f7-label>
-                                    <f7-input type="select" v-model="codigo_motivo">
+                                    <f7-input id="selectType" type="select" v-model="codigo_motivo">
                                         <option value="">---------</option>
                                         <option value="997">SENASA</option>
                                         <option value="996">INTERNO</option>
@@ -191,8 +190,8 @@
                                 </li>
 
                                 <li>
-                                    <a id="btnSavePallet" @click="savePallet()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%"
-                                       :disabled="caja_cambiar.estado == 0 || caja_saliente.estado == 0 || codigo_motivo == '' ">Guardar Cambio</a>
+                                    <a id="btnSaveCambio" @click="saveCambio()" href="" class="button button-fill color-green button-round notification-custom" style="width:100%"
+                                       :disabled="caja_cambiar.estado_get == 0 || caja_saliente.estado_get == 0 || codigo_motivo == '' ">Guardar Cambio</a>
                                 </li>
 
                                 <li>

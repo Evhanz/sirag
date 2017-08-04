@@ -238,6 +238,52 @@ class EtapaController extends Controller
     }
 
 
+    public function regChangeCajas(){
+
+        $data = \Input::all();
+
+        $caja_saliente = $data['caja_saliente'];
+        $caja_cambiar = $data['caja_cambiar'];
+        $codigo_motivo = $data['codigo_motivo'];
+
+
+        try{
+
+
+        $a_of_maker =   Maker::getArrayUpdateChangeCajas($caja_saliente,$caja_cambiar,$codigo_motivo);
+
+        //maker for update B con los values de  A
+
+        $data_update_for_B  = $a_of_maker['update_B'];
+        $this->etapaRep->updateEtapaForMoves($data_update_for_B,$caja_cambiar['id']);
+
+        //update A codigo nada mas
+        $periodo = HelpFunct::getFechaActual('Y');
+        $periodo = substr($periodo,2,2);
+
+        $new_codigo['cod_pallet'] = $data['codigo_motivo'].$periodo;
+        $this->etapaRep->updateEtapaForMoves($new_codigo,$caja_saliente['id']);
+
+
+        //ingresaar el detalle del update
+
+        $this->etapaRep->insertEtapaForMoves($a_of_maker['d_cambio']);
+
+        $response['code'] = 200;
+
+
+        }catch (\Exception $e){
+            $response['code'] = 500;
+            $response['mensaje'] = $e;
+        }
+
+        return \Response::json($response);
+
+
+
+    }
+
+
 
 
 

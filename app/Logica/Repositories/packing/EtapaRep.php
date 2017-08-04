@@ -98,6 +98,23 @@ class EtapaRep
         return $res;
     }
 
+
+    public function updateEtapaForMoves($data,$id){
+
+        $res =\DB::table('sirag.etapa')
+            ->where('id', $id)
+            ->update($data);
+
+        return $res;
+    }
+
+    public function insertEtapaForMoves($data){
+
+        $res =\DB::table('sirag.detalle_cambio_caja')->insert($data);
+
+        return $res;
+    }
+
     public function getCalibresUva(){
 
         $query = "SELECT CODIGO FROM flexline.GEN_TABCOD

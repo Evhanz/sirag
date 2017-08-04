@@ -27,6 +27,9 @@ Route::post('packing/etapa/editar',
     ['as'=>'apiSeleccionEdit','uses'=>'Packing\EtapaController@apiSeleccionEdit']);
 Route::post('packing/etapa/regCodigoCaja',
     ['as'=>'regCodigoCaja','uses'=>'Packing\EtapaController@regCodigoCaja']);
+Route::post('packing/etapa/regChangeCajas',
+    ['as'=>'regChangeCajas','uses'=>'Packing\EtapaController@regChangeCajas']);
+
 
 
 //api

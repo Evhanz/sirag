@@ -209,4 +209,39 @@ class Maker
 
     }
 
+    public static function getArrayUpdateChangeCajas($caja_saliente,$caja_cambiar,$codigo_motivo){
+
+        //para B
+
+        $update_B = [];
+        $update_B['u_embalaje']     = $caja_saliente['u_embalaje'] ;
+        $update_B['u_pesaje']       = $caja_saliente['u_pesaje'] ;
+        $update_B['u_peso_fijo']    = $caja_saliente['u_peso_fijo'] ;
+        $update_B['u_seleccion']    = $caja_saliente['u_seleccion'] ;
+        $update_B['estado']         = $caja_saliente['estado'] ;
+        $update_B['cod_pallet']     = $caja_saliente['cod_pallet'] ;
+
+        //Detalle cambio
+
+        $fecha = HelpFunct::getFechaActual('ymd');
+
+        $d_cambio = [];
+        $d_cambio['codigo_origen']  =   $caja_saliente['codigo'];
+        $d_cambio['codigo_destino'] =   $caja_cambiar['codigo'];
+        $d_cambio['data_origen']    =   implode('|',$caja_saliente);
+        $d_cambio['data_destino']   =   implode('|',$caja_cambiar);
+        $d_cambio['fecha']          =   $fecha;
+        $d_cambio['codigo_motivo']  =   $codigo_motivo;
+
+
+        $response = [];
+        $response['update_B'] = $update_B;
+        $response['d_cambio'] = $d_cambio;
+
+
+        return $response;
+
+
+    }
+
 }
