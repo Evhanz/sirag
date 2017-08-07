@@ -2533,7 +2533,11 @@ class PersonalRep
         MAX(case SUBSTRING (CONVERT (CHAR , L.PERIODO), 1, 6 ) when SUBSTRING (CONVERT (CHAR , P.FECHA_INICIO), 1, 6 ) then 'S' else 'N' end ) AS 'INICIO_DE_RL',
         MAX(case SUBSTRING (CONVERT (CHAR , L.PERIODO), 1, 6 ) when SUBSTRING (CONVERT (CHAR , P.FECHA_TERMINO), 1, 6 ) then 'S' else 'N' end ) AS 'CESE_DE_RL',
         '' AS 'EXCEPCION_DE_APORTAR',
-        Sum(L.Valor) as 'Remuneracion_Asegurable',
+        Sum(L.Valor) - COALESCE((SELECT SUM(VALOR) FROM flexline.PER_DET_LIQ
+        WHERE EMPRESA=P.EMPRESA
+        AND FICHA=P.FICHA
+        AND PERIODO LIKE '$anio' + '$mes' +'%'
+        AND MOVIMIENTO IN ('10532')),0) as 'Remuneracion_Asegurable',
         '0' as 'Aporte_Voluntario_c/fin_Previsional',
         '0' as 'Aporte_Voluntario_s/fin_Previsional',
         '0' as 'Aporte_Voluntario_del_Empleador',
@@ -2554,11 +2558,11 @@ class PersonalRep
         AND F.periodo= '$anio' + '$mes' + '01'
         AND SUBSTRING(CONVERT(VARCHAR(20),L.PERIODO),1,4)=$anio ---- COLOCAR AÑO
         AND SUBSTRING(CONVERT(VARCHAR(20),L.PERIODO),5,2)=$mes --- COLCOAR PERIODO DEL MES QUE CORRESPONDE
-        GROUP BY P.EMPLEADO,P.APELLIDO_MATERNO,P.APELLIDO_PATERNO,P.NOMBRE,L.EMPRESA,L.FICHA
+        GROUP BY P.EMPLEADO,P.APELLIDO_MATERNO,P.APELLIDO_PATERNO,P.NOMBRE,L.EMPRESA,L.FICHA,P.EMPRESA,P.FICHA
         ORDER BY P.EMPLEADO
         ";
 
-        //HelpFunct::writeQuery($query);
+        HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
