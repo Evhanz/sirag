@@ -2562,7 +2562,7 @@ class PersonalRep
         ORDER BY P.EMPLEADO
         ";
 
-        HelpFunct::writeQuery($query);
+        //HelpFunct::writeQuery($query);
 
         $res = \DB::select($query);
 
