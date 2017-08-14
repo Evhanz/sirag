@@ -3891,6 +3891,24 @@ where EMPRESA = 'e01'";
     }
 
 
+    public function getFactorMetaPacking($labor){
+
+
+        $query = "SELECT valor2 AS HORA_DIARIA,valor1 AS META FROM DBO.Gen_tabla
+        WHERE empresa='E01'
+        AND codigo1='$labor' -- CODIGO DE LA LABOR QUE SE OBTIENE DEL AUX_VALOR16: PER_DETALLE_TRATO
+        AND texto1='T' -- ESTE VALOR ES FIJO
+        AND vigencia='S' -- SIEMPRE TOMAR EL VIGENTE VALOR FIJO";
+
+        $res = \DB::select($query);
+
+        $factor = $res[0]->HORA_DIARIA / $res[0]->META ;
+
+
+        return round($factor,2);
+    }
+
+
 
 
 

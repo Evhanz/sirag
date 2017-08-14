@@ -55,15 +55,17 @@ class InsertJornalPacking extends Command
 
         /*El proceso debe estar descrito en un documento, buscar las referencias*/
 
-        /*se limpia los registros que ya hayan sido registrados , po si se vuelve a correr el proceso*/
+        /*se limpia los registros que ya hayan sido registrados , por si se vuelve a correr el proceso*/
         $personalRep->cleanRegDestajo($fecha);
 
 
         #1seleccion
         //primero se hace un selecct de todos los que se insertaran
         $pers_seleccion = $personalRep->getCantCajasPacking('u_seleccion', $fecha, $fecha);
+        //sacamos el factor de la meta segun la labor (121)
+        $factor = $personalRep->getFactorMetaPacking('121');
 
-        $a_seleccion = Maker::getArrayJornales($pers_seleccion,$fecha,'17006','121','EHERNANDEZ','L02');
+        $a_seleccion = Maker::getArrayJornales($pers_seleccion,$fecha,'17006','121','EHERNANDEZ','L02',$factor);
 
         //------------ insert -------------------------
 
@@ -84,8 +86,10 @@ class InsertJornalPacking extends Command
         #2pesado
         //primero se hace un selecct de todos los que se insertaran
         $pers_seleccion = $personalRep->getCantCajasPacking('u_pesaje', $fecha, $fecha);
+        //sacamos el factor de la meta segun la labor (119)
+        $factor = $personalRep->getFactorMetaPacking('119');
 
-        $a_seleccion = Maker::getArrayJornales($pers_seleccion,$fecha,'17008','119','EHERNANDEZ','L02');
+        $a_seleccion = Maker::getArrayJornales($pers_seleccion,$fecha,'17008','119','EHERNANDEZ','L02',$factor);
 
         //------------ insert -------------------------
 
@@ -107,8 +111,10 @@ class InsertJornalPacking extends Command
 
         //primero se hace un selecct de todos los que se insertaran
         $pers_seleccion = $personalRep->getCantCajasPacking('u_embalaje', $fecha, $fecha);
+        //sacamos el factor de la meta segun la labor (122)
+        $factor = $personalRep->getFactorMetaPacking('122');
 
-        $a_seleccion = Maker::getArrayJornales($pers_seleccion,$fecha,'17006','121','EHERNANDEZ','L02');
+        $a_seleccion = Maker::getArrayJornales($pers_seleccion,$fecha,'17009','122','EHERNANDEZ','L02',$factor);
 
         //------------ insert -------------------------
 

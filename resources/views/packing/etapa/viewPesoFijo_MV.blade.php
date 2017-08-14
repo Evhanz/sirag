@@ -230,7 +230,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                   <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
+                                    <!-- <a href="#" data-picker=".picker-1" class="open-picker">Open Picker </a> -->
                                 </li>
 
                             </ul>
@@ -241,7 +241,7 @@
             </f7-pages>
             <!-- Floating Action Button -->
             <a href="#" @click="resetForm()" class="floating-button color-pink">
-               <!-- <i class="icon icon-plus"></i>-->
+                <!-- <i class="icon icon-plus"></i>-->
                 <i class="f7-icons">refresh</i>
             </a>
 

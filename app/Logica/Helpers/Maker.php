@@ -14,7 +14,7 @@ use sirag\Entities\Obj;
 class Maker
 {
 
-    public static function getArrayJornales($personal,$fecha,$cci,$cod_labor,$usuario,$aux_20)
+    public static function getArrayJornales($personal,$fecha,$cci,$cod_labor,$usuario,$aux_20,$factor)
     {
 
         $res = [];
@@ -32,8 +32,8 @@ class Maker
             $obj['HINICIO'] = 0;
             $obj['HFIN'] = 0;
             $obj['THORAS'] = $item->cant_cajas;
-            $obj['CANTIDAD'] = 8;
-            $obj['MONTO'] = 8;
+            $obj['CANTIDAD'] = round($item->cant_cajas*$factor ,2 )  ;
+            $obj['MONTO'] =  round($item->cant_cajas*$factor ,2 )  ;
             $obj['ESTADO'] = 'NRPT';
             $obj['AUX_VALOR1'] = '';
             $obj['AUX_VALOR2'] = '';
@@ -55,7 +55,7 @@ class Maker
             $obj['AUX_VALOR18'] = '';
             $obj['AUX_VALOR19'] = $usuario;
             $obj['AUX_VALOR20'] = $aux_20;
-            $obj['MONTO_INICIAL'] = 8;
+            $obj['MONTO_INICIAL'] =  round($item->cant_cajas*$factor ,2 ) ;
             $obj['TIPO_TRAB'] = 'TRABAJADOR';
             $obj['TIPODOCTOP'] = '';
             $obj['CORRELATIVOP'] = 0;
