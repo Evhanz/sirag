@@ -27,8 +27,20 @@
                     <div class="box-header">
                         <ul class="nav nav-tabs" id="tab_filtros">
                             <li class="active"><a data-toggle="tab" href="#home">Jornales</a></li>
-                            <li ><a data-toggle="tab" href="#dominical">Dominical</a></li>
-                            <li ><a data-toggle="tab" href="#feriados">Feriados</a></li>
+                            @foreach(Auth::user()->getAccess() as $modulos )
+
+                                @foreach($modulos->sub_modulo as $submodulo)
+                                    @if( $submodulo->alias == 'viewRegJornalesDominicales' )
+                                        <li ><a data-toggle="tab" href="#dominical">Dominical</a></li>
+                                    @endif
+                                    @if( $submodulo->alias == 'viewRegJornalesFeriados' )
+                                        <li ><a data-toggle="tab" href="#feriados">Feriados</a></li>
+                                    @endif                                  
+                                        
+                                    
+                                @endforeach
+
+                            @endforeach
                         </ul>
                     </div><!-- /.box-header -->
                     <div class="box-body no-padding">

@@ -20,7 +20,18 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
     Route::get('rh/rep/viewGetAFPNet',['as'=>'viewGetAFPNet','uses'=>'RecursoshController@viewGetAFPNet']);
     Route::get('rh/rep/viewGetCostoMOFundoParron',['as'=>'viewGetCostoMOFundoParron',
         'uses'=>'RecursoshController@viewGetCostoMOFundoParron']);
+    
+
+
+
+    Route::get('rh/rep/viewRegJornalesDominicales',['as'=>'viewRegJornalesDominicales','uses'=>'RecursoshController@viewRegJornales']);
+    Route::get('rh/rep/viewRegJornalesFeriados',['as'=>'viewRegJornalesFeriados','uses'=>'RecursoshController@viewRegJornales']);
     Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
+
+
+
+
+    
     Route::get('rh/rep/viewDeleteMovimientos',['as'=>'viewDeleteMovimientos','uses'=>'RecursoshController@viewDeleteMovimientos']);
     Route::get('rh/rep/viewGetBoletaPago',['as'=>'viewGetBoletaPago','uses'=>'RecursoshController@viewGetBoletaPago']);
     Route::get('rh/rep/viewFeriado',['as'=>'viewFeriado','uses'=>'RecursoshController@viewFeriado']);
