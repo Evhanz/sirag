@@ -113,7 +113,9 @@
                         </a>
                         <ul class="treeview-menu">
                             @foreach($modulos->sub_modulo as $submodulo)
-                                <li><a href="{{ URL::route($submodulo->alias) }}" class="item sub"><i class="fa fa-angle-double-right"></i> {{$submodulo->descripcion}}</a></li>
+                                 @if( $submodulo->alias != 'viewRegJornalesFeriados' && $submodulo->alias != 'viewRegJornalesDominicales')
+                                    <li><a href="{{ URL::route($submodulo->alias) }}" class="item sub"><i class="fa fa-angle-double-right"></i> {{$submodulo->descripcion}}</a></li>
+                                    @endif   
                             @endforeach
                         </ul>
                     </li><!--Comercial-->

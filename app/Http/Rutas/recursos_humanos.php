@@ -24,6 +24,7 @@ Route::group(['middleware' => 'roles','roles'=>['ADMIN','RH']], function () {
 
 
 
+
     Route::get('rh/rep/viewRegJornalesDominicales',['as'=>'viewRegJornalesDominicales','uses'=>'RecursoshController@viewRegJornales']);
     Route::get('rh/rep/viewRegJornalesFeriados',['as'=>'viewRegJornalesFeriados','uses'=>'RecursoshController@viewRegJornales']);
     Route::get('rh/rep/viewRegJornales',['as'=>'viewRegJornales','uses'=>'RecursoshController@viewRegJornales']);
