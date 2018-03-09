@@ -12,7 +12,7 @@
 
                 AGRO EXPORTACIONES S.A.C. <br>
                 AGRICOLA <br>
-                AV. RAMON CASTILLA 688 OFC 305 - URB. LA AURORA MIRAFLORES LIMA
+                CAL.EUCHAIZ NRO. 170 DPTO. 401 URB. LA FLORESTA-SANTIAGO DE SURCO - LIMA
         </div>
         <div class="cabecera_RIGTH">
 

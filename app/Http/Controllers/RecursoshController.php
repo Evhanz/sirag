@@ -216,13 +216,13 @@ class RecursoshController extends Controller
         \Mail::send('email', $res, function($message)
         {
             //remitente
-            $message->from('ehernandez@agrograce.com.pe', 'Sistema Sirag');
+            $message->from('sirag@agrograce.com.pe', 'Sistema Sirag');
 
             //asunto
             $message->subject('Contratos por vencer');
 
             //receptor
-            $message->to('eidelhs@gmail.com','Eidelman ');
+            $message->to(['atejada@agrograce.com.pe','yjimenez@agrograce.com.pe','jmiranda@agrograce.com.pe']);
 
         });
 

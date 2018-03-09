@@ -106,11 +106,11 @@
 
             console.log(fecha);
 
-            if(fecha.getDay()===3){
+            if(fecha.getDay()===0){
 
                 $("#formAgrario").submit();
             }else{
-                alert('Debe Ingresar un miercoles para obtener resultados');
+                alert('Debe Ingresar un Domingo para obtener resultados');
             }
         });
 
@@ -133,10 +133,10 @@
 
             fecha = new Date(fecha);
 
-            if(fecha.getDay()===3){
+            if(fecha.getDay()===0){
                 $("#formPacking").submit();
             }else{
-                alert('Debe Ingresar un miercoles para obtener resultados');
+                alert('Debe Ingresar un Domingo para obtener resultados');
             }
 
 

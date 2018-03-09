@@ -14,6 +14,7 @@
                             <div class="form-group col-xs-3">
                                 <label for="">Periodo</label>
                                 <select class="form-control" name="periodo" id="periodo" required>
+                                    <option value="2018">2018</option>
                                     <option value="2017">2017</option>
                                     <option value="2016">2016</option>
                                     <option value="2015">2015</option>

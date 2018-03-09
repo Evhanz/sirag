@@ -22,7 +22,7 @@
             <div class="razon">
                 <span><strong>AGRO EXPORTACIONES GRACE S.A.C.</strong></span><br>
                 <SPAN>R.U.C. 20518803078</SPAN><br>
-                <span>Av. Mariscal Ramón Castilla N°688,Dpto. 305 C.C. La Aurora, Miraflores-Lima</span>
+                <span>Cal.Euchaiz Nro.170 Dpto. 401 Urb. La Floresta de Monterrico- Santiago de Surco - Lima</span>
             </div>
             <div class="titulo">
                 <p>BOLETA DE PAGO</p>
@@ -100,8 +100,8 @@
                 }ELSE{
                     $temp = '0.00';
                 }
-                ?>
-                <td>{{$temp}}</td>
+                ?>                                    
+                <td>{{number_format($temp, 2, '.', ',')}}</td>
             </tr>
             <tr>
                 <td>Cargo:</td>
@@ -350,7 +350,7 @@
             <div class="razon">
                 <span><strong>AGRO EXPORTACIONES GRACE S.A.C.</strong></span><br>
                 <SPAN>R.U.C. 20518803078</SPAN><br>
-                <span>Av. Mariscal Ramón Castilla N°688,Dpto. 305 C.C. La Aurora, Miraflores-Lima</span>
+                <span>Cal.Euchaiz Nro.170 Dpto. 401 Urb. La Floresta de Monterrico- Santiago de Surco - Lima</span>
             </div>
             <div class="titulo">
                 <p>BOLETA DE PAGO</p>
@@ -429,7 +429,7 @@
                     $temp = '0.00';
                 }
                 ?>
-                <td>{{$temp}}</td>
+                <td>{{ number_format($temp, 2, '.', ',')}}</td>
             </tr>
             <tr>
                 <td>Cargo:</td>

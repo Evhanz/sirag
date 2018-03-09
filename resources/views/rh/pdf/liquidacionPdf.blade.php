@@ -31,7 +31,7 @@
         <div class="row1_rigth">
             <span>AGRO EXPORTACIONS GRACE S.A.C.</span><br>
             <span>20516603078</span><br>
-            <span>AV. RAMON CASTILLA 688 OFC 305 - URB. LA AURORA</span>
+            <span>CAL.EUCHAIZ NRO. 170 DPTO. 401 URB.LA FLORESTA DE MONTERRICO- SANTIAGO DE SURCO - LIMA</span>
         </div>
 
     </div>
