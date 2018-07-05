@@ -44,8 +44,8 @@
                                                 </div>
 
                                                 <div class="col-xs-3">
-                                                    <label for="" >Familia </label><br>
-                                                    <select class="form-control" ng-model="familiaFilter" id="f_familia" ng-init="familiaFilter='MATERIA PRIMA'">
+                                                    <label for="" >Familia1 </label><br>
+                                                    <select class="form-control" ng-model="familiaFilter" id="f_familia" ng-init="familiaFilter=MATERIA PRIMA">
                                                         <option value="">---------</option>
                                                         <option ng-repeat="familia in familias "
                                                                 value="@{{familia.CODIGO}}">

@@ -214,7 +214,8 @@ class ContabilidadRep
                 WHERE EMPRESA='E01'
                 AND TIPO='GEN_PARRON'
                 AND VIGENCIA <> 'N'
-                AND CODIGO LIKE '%$fundo'";
+                AND CODIGO LIKE '%$fundo'
+                order by CODIGO";
         $res = \DB::select($query);
 
         return $res;

@@ -147,7 +147,7 @@
                                                                     <input id="codigo@{{$index}}" ng-init="item.codigo=''" ng-model="item.codigo" ng-keyup="getLabor($event,item.codigo,item,$index)" style="width: 3em;" type="text">
                                                                     <input style="width: 12em;" type="text" ng-model="item.labor_desc" ng-init="item.labor_desc=''" disabled>
                                                                 </td>
-                                                                <td><input style="width: 3em;" type="text" disabled >
+                                                                <td><input style="width: 3em;" type="text" disabled>
                                                                 </td>
                                                                 <td>
                                                                     <select name="" id="actividad@{{ $index }}" ng-init="item.actividad=''" ng-model="item.actividad" ng-change="changeActividad($index)">
