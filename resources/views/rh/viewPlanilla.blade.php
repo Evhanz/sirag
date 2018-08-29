@@ -195,6 +195,7 @@
                                                         <th>Descanso Medico</th>
                                                         <th>Subsidio Enfermedad</th>
                                                         <th>Subsidio Maternidad</th>
+                                                        <th>Bono Productividad</th>
                                                         <th>Total Haber</th>
                                                         <th>SNP</th>
                                                         <th>Fondo AFP</th>
@@ -237,6 +238,7 @@
                                                         <td>@{{ item.descanso_medico }}</td>
                                                         <td>@{{ item.subsidio_enfermedad }}</td>
                                                         <td>@{{ item.subsidio_maternidad }}</td>
+                                                        <td>@{{ item.bono_productividad }}</td> <!-- JM-->
                                                         <td>@{{ item.total_haber }}</td>
                                                         <td>@{{ item.snp }}</td>
                                                         <td>@{{ item.fondo_afp }}</td>
@@ -274,6 +276,7 @@
                                                         <td>@{{ totales_agraria.t_descanso_medico }}</td>
                                                         <td>@{{ totales_agraria.t_subsidio_enfermedad }}</td>
                                                         <td>@{{ totales_agraria.t_subsidio_maternidad }}</td>
+                                                        <td>@{{ totales_agraria.t_bono_productividad }}</td>
                                                         <td>@{{ totales_agraria.t_total_haber }}</td>
                                                         <td>@{{ totales_agraria.t_snp }}</td>
                                                         <td>@{{ totales_agraria.t_fondo_afp }}</td>

@@ -699,6 +699,7 @@ class PersonalRep
         $t_descanso_medico      =   0;
         $t_subsidio_enfermedad  =   0;
         $t_subsidio_maternidad  =   0;
+        $t_bono_productividad   =   0;
         $t_total_haber          =   0;
         $t_snp                  =   0;
         $t_fondo_afp            =   0;
@@ -758,7 +759,7 @@ class PersonalRep
                     AND A.EMPRESA='e01'
                     AND B.CATEGORIA='OPERARIO'
                     and CONVERT(DATE,CONVERT(VARCHAR(8),A.PERIODO),113) BETWEEN @fecha_inicio AND @fecha --- FILTRAR POR PERIODO '$periodo'
-                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10003','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10550','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
+                    and A.MOVIMIENTO IN ('10','10001','10011','10002','10003','10004','10007','10050','10010','10016','10020','10025','10032','10033','10036','10041','10501','10502','10538','10503','10514','10550','10527','10504','10534','10535','10542','10545','10547','10528','10804','10051','10052','10012','10040','11','99005') --- LOS MOVIMIENTOSA DEBEN SALIR COMO COLUMNA
                     GROUP BY A.FICHA, A.MOVIMIENTO
                     ORDER by A.FICHA
                     ";
@@ -996,6 +997,19 @@ class PersonalRep
                 $subsidio_maternidad = $subsidio_maternidad->VALOR;
             }
 
+               //10040
+            $bono_productividad = $item->where('MOVIMIENTO','10040')->first();
+           
+            if($bono_productividad == null){
+                $bono_productividad=0;
+
+            }else{
+
+                $bono_productividad = $bono_productividad->VALOR;
+            }
+
+
+
             //10
             $total_haber = $item->where('MOVIMIENTO','10')->first();
 
@@ -1221,6 +1235,7 @@ class PersonalRep
             $t_descanso_medico += $descanso_medico;
             $t_subsidio_enfermedad += $subsidio_enfermedad;
             $t_subsidio_maternidad += $subsidio_maternidad;
+            $t_bono_productividad   +=$bono_productividad;
             $t_total_haber += $total_haber;
             $t_snp += $snp;
             $t_fondo_afp += $fondo_afp;
@@ -1256,6 +1271,7 @@ class PersonalRep
             $obj->descanso_medico       = number_format($descanso_medico,2,'.',',');
             $obj->subsidio_enfermedad   = number_format($subsidio_enfermedad,2,'.',',');
             $obj->subsidio_maternidad   = number_format($subsidio_maternidad,2,'.',',');
+            $obj->bono_productividad    = number_format($bono_productividad,2,'.',',');
             $obj->total_haber           = number_format($total_haber,2,'.',',');
             $obj->snp                   = number_format($snp,2,'.',',');
             $obj->fondo_afp             = number_format($fondo_afp,2,'.',',');
@@ -1313,6 +1329,7 @@ class PersonalRep
         $totales['t_descanso_medico']       = number_format($t_descanso_medico,2,'.',',');
         $totales['t_subsidio_enfermedad']   = number_format($t_subsidio_enfermedad,2,'.',',');
         $totales['t_subsidio_maternidad']   = number_format($t_subsidio_maternidad,2,'.',',');
+        $totales['t_bono_productividad']    =number_format($t_bono_productividad,2,'.',',');
         $totales['t_total_haber']           = number_format($t_total_haber,2,'.',',');
         $totales['t_snp']                   = number_format($t_snp,2,'.',',');
         $totales['t_fondo_afp']             = number_format($t_fondo_afp,2,'.',',');
